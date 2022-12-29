@@ -48,8 +48,11 @@ class ResConfigSettings(models.TransientModel):
                 res += ('\n* %s: ' + _('Connection is available')) % webservice
             except UserError as error:
                 hint_msg = re.search('.*(HINT|CONSEJO): (.*)', error.name)
-                msg = hint_msg.groups()[-1] if hint_msg and len(hint_msg.groups()) > 1 \
-                    else '\n'.join(re.search('.*' + webservice + ': (.*)\n\n', error.name).groups())
+                if hint_msg:
+                    msg = hint_msg.groups()[-1] if hint_msg and len(hint_msg.groups()) > 1 \
+                        else '\n'.join(re.search('.*' + webservice + ': (.*)\n\n', error.name).groups())
+                else:
+                    msg = error.name
                 res += '\n* %s: ' % webservice + _('Connection failed') + '. %s' % msg.strip()
             except Exception as error:
                 res += ('\n* %s: ' + _('Connection failed') + '. ' + _('This is what we get') + ' %s') % (webservice, repr(error))

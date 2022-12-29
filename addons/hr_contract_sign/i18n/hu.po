@@ -3,18 +3,20 @@
 # 	* hr_contract_sign
 # 
 # Translators:
-# Martin Trigaux, 2019
-# krnkris, 2019
-# gezza <geza.nagy@oregional.hu>, 2019
-# Ákos Nagy <akos.nagy@oregional.hu>, 2019
+# Krisztián Juhász <juhasz.krisztian@josafar.hu>, 2022
+# gezza <geza.nagy@oregional.hu>, 2022
+# krnkris, 2022
+# Ákos Nagy <akos.nagy@oregional.hu>, 2022
+# Martin Trigaux, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:36+0000\n"
-"Last-Translator: Ákos Nagy <akos.nagy@oregional.hu>, 2019\n"
+"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: Tamás Németh <ntomasz81@gmail.com>, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,9 +27,20 @@ msgstr ""
 #. module: hr_contract_sign
 #: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
 #, python-format
+msgid "%s and %s are the signatories."
+msgstr ""
+
+#. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
+#, python-format
+msgid "%s does not have a work email set."
+msgstr ""
+
+#. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
+#, python-format
 msgid ""
-"%s requested a new signature on document: %s.<br/>%s and %s are the "
-"signatories."
+"%s requested a new signature on the following documents:<br/><ul>%s</ul>%s"
 msgstr ""
 
 #. module: hr_contract_sign
@@ -38,9 +51,14 @@ msgid "<span class=\"o_stat_text\">Signature Requests</span>"
 msgstr "<span class=\"o_stat_text\">Aláírási kérések</span>"
 
 #. module: hr_contract_sign
-#: model_terms:ir.ui.view,arch_db:hr_contract_sign.sign_request_employee_view_kanban
-msgid "Avatar"
-msgstr "Avatár"
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
+msgid "Attach a file"
+msgstr "Fájl csatolása"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__attachment_ids
+msgid "Attachment"
+msgstr "Melléklet"
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__contract_id
@@ -48,7 +66,12 @@ msgid "Contract"
 msgstr "Szerződés"
 
 #. module: hr_contract_sign
-#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__follower_ids
+#: model:ir.model,name:hr_contract_sign.model_hr_contract_history
+msgid "Contract history"
+msgstr "Szerződés előzmény"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__cc_partner_ids
 msgid "Copy to"
 msgstr "Másolás ide"
 
@@ -75,50 +98,74 @@ msgstr "Megjelenített név"
 #. module: hr_contract_sign
 #: model:ir.actions.act_window,name:hr_contract_sign.sign_contract_wizard_action
 msgid "Document Signature"
+msgstr "Dokumentum aláírás"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_plan_activity_type__sign_template_id
+msgid "Document to sign"
 msgstr ""
 
 #. module: hr_contract_sign
-#: model:ir.model.fields,help:hr_contract_sign.field_hr_contract_sign_document_wizard__sign_template_id
-msgid "Document that the employee will have to sign."
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__sign_template_ids
+msgid "Documents to sign"
 msgstr ""
 
 #. module: hr_contract_sign
-#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__sign_template_id
-msgid "Document to Sign"
+#: model:ir.model.fields,help:hr_contract_sign.field_hr_contract_sign_document_wizard__sign_template_ids
+msgid ""
+"Documents to sign. Only documents with 1 or 2 different responsible are selectable.\n"
+"        Documents with 1 responsible will only have to be signed by the employee while documents with 2 different responsible will have to be signed by both the employee and the responsible.\n"
+"        "
 msgstr ""
 
 #. module: hr_contract_sign
 #: model:ir.model,name:hr_contract_sign.model_hr_employee
-#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__employee_id
-#: model:res.groups,name:hr_contract_sign.group_sign_employee
 msgid "Employee"
 msgstr "Alkalmazott"
 
 #. module: hr_contract_sign
 #: model:ir.model,name:hr_contract_sign.model_hr_contract
 msgid "Employee Contract"
-msgstr "Munkavállalói szerződés"
+msgstr "Alkalmazotti szerződés"
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__employee_role_id
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_plan_activity_type__employee_role_id
 msgid "Employee Role"
 msgstr ""
 
 #. module: hr_contract_sign
-#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
-#, python-format
-msgid "Employee must be linked to a user and a partner."
+#: model:ir.model.fields,help:hr_contract_sign.field_hr_contract_sign_document_wizard__employee_role_id
+#: model:ir.model.fields,help:hr_contract_sign.field_hr_plan_activity_type__employee_role_id
+msgid ""
+"Employee's role on the templates to sign. The same role must be present in "
+"all the templates"
 msgstr ""
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__employee_ids
+msgid "Employees"
+msgstr "Alkalmazottak"
 
 #. module: hr_contract_sign
 #: model:sign.item.role,name:hr_contract_sign.sign_item_role_job_responsible
 msgid "HR Responsible"
+msgstr "Személyügyi felelős"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__has_both_template
+msgid "Has Both Template"
 msgstr ""
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__id
 msgid "ID"
 msgstr "Azonosító"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_plan_activity_type__is_signature_request
+msgid "Is Signature Request"
+msgstr ""
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard____last_update
@@ -133,7 +180,12 @@ msgstr "Frissítette"
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__write_date
 msgid "Last Updated on"
-msgstr "Frissítve "
+msgstr "Frissítve ekkor"
+
+#. module: hr_contract_sign
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
+msgid "Mail Options"
+msgstr ""
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__message
@@ -141,12 +193,53 @@ msgid "Message"
 msgstr "Üzenet"
 
 #. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
+#, python-format
+msgid ""
+"No appropriate template could be found, please make sure you configured them"
+" properly."
+msgstr ""
+
+#. module: hr_contract_sign
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
+msgid "No template available"
+msgstr ""
+
+#. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
+#, python-format
+msgid "Only %s has to sign."
+msgstr ""
+
+#. module: hr_contract_sign
+#: model:sign.template,redirect_url_text:hr_contract_sign.template_sign_termination
+msgid "Open Link"
+msgstr ""
+
+#. module: hr_contract_sign
 #: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
 msgid "Optional Message..."
 msgstr "Opcionális üzenet..."
 
 #. module: hr_contract_sign
+#: model:ir.model,name:hr_contract_sign.model_hr_plan_wizard
+msgid "Plan Wizard"
+msgstr "Tervkészítő"
+
+#. module: hr_contract_sign
+#: model:ir.model,name:hr_contract_sign.model_hr_plan_activity_type
+msgid "Plan activity type"
+msgstr ""
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__possible_template_ids
+msgid "Possible Template"
+msgstr ""
+
+#. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract__sign_request_ids
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_history__sign_request_ids
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_employee__sign_request_ids
 msgid "Requested Signatures"
 msgstr "Kért aláírások"
 
@@ -154,6 +247,11 @@ msgstr "Kért aláírások"
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__responsible_id
 msgid "Responsible"
 msgstr "Felelős"
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_plan_activity_type__responsible_count
+msgid "Responsible Count"
+msgstr "Felelősök száma"
 
 #. module: hr_contract_sign
 #: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
@@ -168,15 +266,36 @@ msgid "Sign Request Count"
 msgstr ""
 
 #. module: hr_contract_sign
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
+msgid "Sign Request Options"
+msgstr ""
+
+#. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__sign_template_responsible_ids
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_plan_activity_type__sign_template_responsible_ids
+msgid "Sign Template Responsible"
+msgstr ""
+
+#. module: hr_contract_sign
 #: model:ir.model,name:hr_contract_sign.model_hr_contract_sign_document_wizard
 msgid "Sign document in contract"
 msgstr ""
 
 #. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_plan_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.hr_contract_history_view_form
 #: model_terms:ir.ui.view,arch_db:hr_contract_sign.hr_contract_sign_view_form
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.hr_employee_sign_view_form
 #: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
+#, python-format
 msgid "Signature Request"
 msgstr "Aláírási kérés"
+
+#. module: hr_contract_sign
+#: code:addons/hr_contract_sign/wizard/hr_contract_sign_document_wizard.py:0
+#, python-format
+msgid "Signature Request - %s"
+msgstr "Aláírási kérés - %s"
 
 #. module: hr_contract_sign
 #: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__subject
@@ -184,11 +303,33 @@ msgid "Subject"
 msgstr "Tárgy"
 
 #. module: hr_contract_sign
+#: model:ir.model.fields,field_description:hr_contract_sign.field_hr_contract_sign_document_wizard__template_warning
+msgid "Template Warning"
+msgstr ""
+
+#. module: hr_contract_sign
 #: model:ir.model,name:hr_contract_sign.model_res_users
-msgid "Users"
-msgstr "Felhasználók"
+msgid "User"
+msgstr "Felhasználó"
 
 #. module: hr_contract_sign
 #: model_terms:ir.ui.view,arch_db:hr_contract_sign.view_hr_contract_sign
 msgid "Write email or search contact..."
 msgstr "Írjon e-mailt, vagy keressen egy kapcsolatot..."
+
+#. module: hr_contract_sign
+#: code:addons/hr_contract_sign/models/hr_contract.py:0
+#, python-format
+msgid ""
+"You can't delete a contract linked to a signed document, archive it instead."
+msgstr ""
+
+#. module: hr_contract_sign
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.hr_contract_history_view_form
+msgid "document"
+msgstr "dokumentum"
+
+#. module: hr_contract_sign
+#: model_terms:ir.ui.view,arch_db:hr_contract_sign.hr_contract_history_view_form
+msgid "documents"
+msgstr "dokumentumok"

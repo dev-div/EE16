@@ -3,16 +3,16 @@
 # 	* sale_amazon
 # 
 # Translators:
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # Martin Trigaux, 2022
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:47+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -162,13 +162,11 @@ msgid "Amazon Order Ref"
 msgstr "Референс замовлення Amazon"
 
 #. module: sale_amazon
-#: model:product.product,name:sale_amazon.default_product
 #: model:product.template,name:sale_amazon.default_product_product_template
 msgid "Amazon Sale"
 msgstr "Продаж Amazon"
 
 #. module: sale_amazon
-#: model:product.product,name:sale_amazon.shipping_product
 #: model:product.template,name:sale_amazon.shipping_product_product_template
 msgid "Amazon Shipping"
 msgstr "Доставка Amazon"
@@ -189,18 +187,21 @@ msgid "Amazon accounts correspond to Amazon Seller Central accounts."
 msgstr "Облікові записи Amazon обліковим записам Amazon Seller Central."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_marketplace.py:0
 #, python-format
 msgid "Amazon marketplaces cannot be deleted."
 msgstr "Маркетплейси Amazon не можливо видалити."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Amazon move : %s"
 msgstr "Переміщення Amazon : %s"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -213,6 +214,7 @@ msgstr ""
 "потрібно встановити його вручну."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -223,48 +225,108 @@ msgstr ""
 " Вам потрібно призначити перевізника для цієї доставки."
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_AE
+msgid "Amazon.ae"
+msgstr ""
+
+#. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_CA
 msgid "Amazon.ca"
+msgstr "Amazon.ca"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_JP
+msgid "Amazon.co.jp"
 msgstr ""
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_UK
 msgid "Amazon.co.uk"
-msgstr ""
+msgstr "Amazon.co.uk"
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_US
 msgid "Amazon.com"
+msgstr "Amazon.com"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_AU
+msgid "Amazon.com.au"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_BE
+msgid "Amazon.com.be"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_BR
+msgid "Amazon.com.br"
 msgstr ""
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_MX
 msgid "Amazon.com.mx"
+msgstr "Amazon.com.mx"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_TR
+msgid "Amazon.com.tr"
 msgstr ""
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_DE
 msgid "Amazon.de"
+msgstr "Amazon.de"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_EG
+msgid "Amazon.eg"
 msgstr ""
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_ES
 msgid "Amazon.es"
-msgstr ""
+msgstr "Amazon.es"
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_FR
 msgid "Amazon.fr"
+msgstr "Amazon.fr"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_IN
+msgid "Amazon.in"
 msgstr ""
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_IT
 msgid "Amazon.it"
-msgstr ""
+msgstr "Amazon.it"
 
 #. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_NL
 msgid "Amazon.nl"
+msgstr "Amazon.nl"
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_PL
+msgid "Amazon.pl"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SA
+msgid "Amazon.sa"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SE
+msgid "Amazon.se"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SG
+msgid "Amazon.sg"
 msgstr ""
 
 #. module: sale_amazon
@@ -275,14 +337,12 @@ msgstr "Amazon: Невдала синхронізація замовлення"
 #. module: sale_amazon
 #: model:ir.actions.server,name:sale_amazon.ir_cron_sync_amazon_orders_ir_actions_server
 #: model:ir.cron,cron_name:sale_amazon.ir_cron_sync_amazon_orders
-#: model:ir.cron,name:sale_amazon.ir_cron_sync_amazon_orders
 msgid "Amazon: sync orders"
 msgstr "Amazon: синхронізувати замовлення"
 
 #. module: sale_amazon
 #: model:ir.actions.server,name:sale_amazon.ir_cron_sync_amazon_pickings_ir_actions_server
 #: model:ir.cron,cron_name:sale_amazon.ir_cron_sync_amazon_pickings
-#: model:ir.cron,name:sale_amazon.ir_cron_sync_amazon_pickings
 msgid "Amazon: sync pickings"
 msgstr "Amazon: синхронізувати комплектування"
 
@@ -324,24 +384,28 @@ msgid "Contact"
 msgstr "Контакт"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the API."
 msgstr "Не вдалося встановити з’єднання з API."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the feed URL."
 msgstr "Не вдалося встановити з’єднання з URL-адресою каналу."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the proxy."
 msgstr "Не вдалося встановити з’єднання з проксі."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/controllers/onboarding.py:0
 #, python-format
 msgid "Could not find Amazon account with id %s"
@@ -367,6 +431,7 @@ msgid "Credentials"
 msgstr "Повноваження"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/res_config_settings.py:0
 #: model_terms:ir.ui.view,arch_db:sale_amazon.res_config_settings_view_form
 #, python-format
@@ -381,6 +446,7 @@ msgid "Display Name"
 msgstr "Назва для відображення"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Error code: %s; description: %s"
@@ -422,6 +488,7 @@ msgid "Fulfillment by Merchant"
 msgstr "Виконання продавцем"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -445,6 +512,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -556,6 +624,7 @@ msgid "Offer Count"
 msgstr "Кількість пропозицій"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #: code:addons/sale_amazon/models/product_product.py:0
 #: code:addons/sale_amazon/models/product_template.py:0
@@ -567,6 +636,7 @@ msgid "Offers"
 msgstr "Пропозиції"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Only available marketplaces can be selected"
@@ -583,6 +653,7 @@ msgid "Order Follow-up"
 msgstr "Нагадування замовлення"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #: model_terms:ir.ui.view,arch_db:sale_amazon.amazon_account_view_form
 #, python-format
@@ -606,6 +677,7 @@ msgid "Product Variant"
 msgstr "Варіант товару"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -686,7 +758,7 @@ msgstr "Центральна URL-адреса продавця"
 #. module: sale_amazon
 #: model:ir.model.fields,field_description:sale_amazon.field_amazon_account__seller_key
 msgid "Seller Key"
-msgstr ""
+msgstr "Ключ продавця"
 
 #. module: sale_amazon
 #: model:ir.model.fields,field_description:sale_amazon.field_amazon_account__base_marketplace_id
@@ -699,6 +771,7 @@ msgid "Stock Location"
 msgstr "Розташування запасів"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Successfully updated the marketplaces available to this account!"
@@ -767,12 +840,14 @@ msgid "The Stock Keeping Unit."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "The communication with the API failed."
 msgstr "Зв'язок з API не вдався."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid ""
@@ -843,6 +918,7 @@ msgid "The moment at which the token becomes invalid."
 msgstr "Момент, коли токен стає недійсним."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -946,14 +1022,6 @@ msgid "Transfer"
 msgstr "Переміщення"
 
 #. module: sale_amazon
-#: model:product.product,uom_name:sale_amazon.default_product
-#: model:product.product,uom_name:sale_amazon.shipping_product
-#: model:product.template,uom_name:sale_amazon.default_product_product_template
-#: model:product.template,uom_name:sale_amazon.shipping_product_product_template
-msgid "Units"
-msgstr "Одиниці"
-
-#. module: sale_amazon
 #: model_terms:ir.ui.view,arch_db:sale_amazon.amazon_account_view_form
 msgid "Unlink account"
 msgstr "Від'єднати обліковий запис"
@@ -969,6 +1037,7 @@ msgid "View on Seller Central"
 msgstr "Переглянути на Seller Central"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Warning"
@@ -997,12 +1066,14 @@ msgid "Whether this sales team is associated with Amazon orders or not."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "You first need to authorize the Amazon account %s."
 msgstr "Спочатку потрібно авторизувати обліковий запис Amazon%s."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid ""
@@ -1013,6 +1084,7 @@ msgstr ""
 "запису Amazon %s."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -1028,6 +1100,7 @@ msgid "Your Amazon account is linked with Odoo."
 msgstr "Ваш обліковий запис Amazon пов’язано з Odoo."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -1038,12 +1111,14 @@ msgstr ""
 "Умова: %s - %s"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "[%s] Delivery Charges for %s"
 msgstr "[%s] Плата за доставку %s"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "[%s] Gift Wrapping Charges for %s"

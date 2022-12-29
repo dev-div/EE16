@@ -7,9 +7,12 @@ import { createSpreadsheetFromGraphView, openChartSidePanel } from "../utils/cha
 import { patch, unpatch } from "@web/core/utils/patch";
 import { GraphController } from "@web/views/graph/graph_controller";
 import { patchGraphSpreadsheet } from "@spreadsheet_edition/assets/graph_view/graph_view";
+import { fakeCookieService } from "@web/../tests/helpers/mock_services";
+import { registry } from "@web/core/registry";
 
 function beforeEach() {
     patch(GraphController.prototype, "graph_spreadsheet", patchGraphSpreadsheet);
+    registry.category("services").add("cookie", fakeCookieService);
 }
 
 function afterEach() {

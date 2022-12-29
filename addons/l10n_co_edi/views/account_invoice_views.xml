@@ -19,7 +19,7 @@
                         <field name="l10n_co_edi_attachment_url" widget="url" attrs="{'invisible': [('l10n_co_edi_attachment_url', '!=', False)]}" />
                         <field name="l10n_co_edi_operation_type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         <field name="l10n_co_edi_payment_option_id" attrs="{'required': [('l10n_co_edi_is_direct_payment', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="l10n_co_edi_cufe_cude_ref" readonly="1" attrs="{'invisible': [('edi_state', 'in', ('to_send', None))]}" groups="base.group_no_one"/>
+                        <field name="l10n_co_edi_cufe_cude_ref" class="text-break" readonly="1" attrs="{'invisible': [('edi_state', 'in', ('to_send', None))]}" groups="base.group_no_one"/>
                         <field name="l10n_co_edi_description_code_credit" attrs="{'invisible': [('move_type', 'not in', ('out_refund', 'in_refund'))], 'readonly': [('state', '!=', 'draft')]}"/>
                         <field name="l10n_co_edi_description_code_debit" attrs="{'required': [('l10n_co_edi_debit_note', '=', True)], 'invisible': [('l10n_co_edi_debit_note', '!=', True)]}"/>
                     </group>

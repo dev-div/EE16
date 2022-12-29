@@ -100,9 +100,9 @@ msgstr ""
 "        <t t-else=\"\">\n"
 "            .<br/>\n"
 "        </t>\n"
-"        Je kunt deze e-mail beantwoorden als je vragen heeft.\n"
+"        Aarzel niet om op deze e-mail te antwoorden al je vragen hebt.\n"
 "        <br/><br/>\n"
-"        Dank je,\n"
+"        Hartelijk dank,\n"
 "        <t t-if=\"user.signature\">\n"
 "            <br/>\n"
 "            <t t-out=\"user.signature or ''\">--<br/>Mitchell Admin</t>\n"
@@ -217,7 +217,7 @@ msgstr "Voeg een interne notitie toe."
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form
 msgid "Add quotation notes."
-msgstr "Voeg offerte notities toe."
+msgstr "Voeg offertenotities toe."
 
 #. module: repair
 #: model:ir.model.fields.selection,name:repair.selection__repair_order__invoice_method__after_repair
@@ -597,12 +597,12 @@ msgstr "Facturatiemethode"
 #. module: repair
 #: model:ir.model.fields,field_description:repair.field_repair_order__invoice_state
 msgid "Invoice State"
-msgstr "Status factuur"
+msgstr "Factuurstatus"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.report_repairorder
 msgid "Invoice address:"
-msgstr "Factuur adres:"
+msgstr "Factuuradres:"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.report_repairorder
@@ -771,6 +771,16 @@ msgid "Normal"
 msgstr "Normaal"
 
 #. module: repair
+#. odoo-python
+#: code:addons/repair/models/repair.py:0
+#, python-format
+msgid ""
+"Note that the warehouses of the return and repair locations don't match!"
+msgstr ""
+"Merk op dat de magazijnen van de retour- en reparatielocaties niet "
+"overeenkomen!"
+
+#. module: repair
 #: model:ir.model.fields,field_description:repair.field_repair_order__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Aantal acties"
@@ -865,7 +875,7 @@ msgstr "Producthoeveelheid"
 #: model:ir.model.fields,field_description:repair.field_repair_line__tracking
 #: model:ir.model.fields,field_description:repair.field_repair_order__tracking
 msgid "Product Tracking"
-msgstr "Product tracering"
+msgstr "Producttracering"
 
 #. module: repair
 #: model:ir.model.fields,field_description:repair.field_repair_fee__product_uom
@@ -918,7 +928,7 @@ msgstr "Offerte / Order"
 #: model:ir.model.fields,field_description:repair.field_repair_order__quotation_notes
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form
 msgid "Quotation Notes"
-msgstr "Offerte notities"
+msgstr "Offertenotities"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form_filter
@@ -1037,7 +1047,7 @@ msgstr "Reparatieservices"
 #: model:ir.model,name:repair.model_repair_tags
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_tag_form
 msgid "Repair Tags"
-msgstr "Reparatie labels"
+msgstr "Reparatielabels"
 
 #. module: repair
 #: code:addons/repair/models/repair.py:0
@@ -1181,7 +1191,7 @@ msgstr "Offerte versturen"
 #: model:mail.template,description:repair.mail_template_repair_quotation
 msgid "Sent manually when clicking on \"Send Quotation\" on a repair order"
 msgstr ""
-"Manueel verzonden als je klikt op \"Offerte verzenden\" op een "
+"Handmatig verzonden als je klikt op \"Offerte verzenden\" op een "
 "reparatieorder"
 
 #. module: repair
@@ -1326,7 +1336,7 @@ msgstr "Totaalbedrag"
 #. module: repair
 #: model:ir.model,name:repair.model_stock_traceability_report
 msgid "Traceability Report"
-msgstr "Traceabilityrapport"
+msgstr "Traceability rapport"
 
 #. module: repair
 #: model:ir.model,name:repair.model_stock_picking

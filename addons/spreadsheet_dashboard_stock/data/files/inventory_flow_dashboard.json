@@ -1298,6 +1298,14 @@
                 "4": {
                     "field": "warehouse_id",
                     "type": "many2one"
+                },
+                "5": {
+                    "field": "picking_id.move_ids.warehouse_id",
+                    "type": "many2one"
+                },
+                "6": {
+                    "field": "picking_id.move_ids.warehouse_id",
+                    "type": "many2one"
                 }
             },
             "listFields": {},
@@ -1332,6 +1340,14 @@
                 },
                 "4": {
                     "field": "location_dest_id",
+                    "type": "many2one"
+                },
+                "5": {
+                    "field": "picking_id.move_ids.location_dest_id",
+                    "type": "many2one"
+                },
+                "6": {
+                    "field": "picking_id.move_ids.location_dest_id",
                     "type": "many2one"
                 }
             },

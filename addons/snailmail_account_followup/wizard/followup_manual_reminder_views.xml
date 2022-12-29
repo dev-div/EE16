@@ -11,10 +11,6 @@
                         <field name="snailmail" string="By post" nolabel="1"/><label for="snailmail"/>
                     </group>
                 </group>
-                <group name="print_options" position="attributes">
-                    <attribute name="attrs">{'invisible': [('print','=',False),('snailmail','=',False)]}</attribute>
-                    <attribute name="string">Print/Letter</attribute>
-                </group>
                 <group name="main" position="after">
                     <div name="snailmail_cost" attrs="{'invisible':[('snailmail','=',False)]}" class="text-start d-inline-block" style="margin-bottom: 15px;">
                         <span> Sending this document by post will cost
@@ -31,9 +27,9 @@
                 <group name="email_content" position="attributes">
                     <attribute name="attrs">{'invisible': [('print','=',False),('email','=',False),('snailmail','=',False)]}</attribute>
                 </group>
-                <field name="template_id" position="attributes">
+                <group name="attachments" position="attributes">
                     <attribute name="attrs">{'invisible': [('print','=',False),('email','=',False),('snailmail','=',False)]}</attribute>
-                </field>
+                </group>
                 <xpath expr="//footer/button[1]" position="attributes">
                     <attribute name="attrs">{'invisible': ['|',('print','=',False),'&amp;','&amp;',('email','=',False),('sms', '=', False),('snailmail','=',False)]}</attribute>
                 </xpath>

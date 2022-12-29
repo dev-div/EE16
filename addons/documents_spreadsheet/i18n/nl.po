@@ -9,9 +9,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
 "Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
@@ -22,28 +22,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/wizard/save_spreadsheet_template.py:0
 #, python-format
 msgid "\"%s\" saved as template"
 msgstr "\"%s\" opgeslagen als sjabloon"
 
 #. module: documents_spreadsheet
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
-msgid ""
-"#{ isSpreadsheet and 'Odoo Spreadsheets not available for download' or ''}"
-msgstr ""
-"#{ isSpreadsheet en 'Odoo Spreadsheets niet beschikbaar om te downloaden' of"
-" ''}"
-
-#. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/spreadsheet_template.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (kopie)"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/spreadsheet_component.js:0
 #, python-format
 msgid "%s - Template"
@@ -52,11 +45,11 @@ msgstr "%s - Sjabloon"
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.res_config_settings_view_form_inherit_documents_spreadsheet
 msgid ""
-"<strong>Spreadsheets</strong>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<strong class=\"o_form_label\">Spreadsheets</strong>\n"
+"                            <span class=\"fa fa-lg fa-building-o ms-1\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
-"<strong>Spreadsheets</strong>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Waarden die hier worden ingesteld, zijn bedrijfsspecifiek.\" aria-label=\"De hier ingestelde waarden zijn bedrijfsspecifiek.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<strong class=\"o_form_label\">Spreadsheets</strong>\n"
+"                            <span class=\"fa fa-lg fa-building-o ms-1\" title=\"De hier ingestelde waarden zijn bedrijfsspecifiek.\" aria-label=\"De hier ingestelde waarden zijn bedrijfsspecifiek.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: documents_spreadsheet
 #: model:ir.model.constraint,message:documents_spreadsheet.constraint_spreadsheet_contributor_spreadsheet_user_unique
@@ -80,7 +73,7 @@ msgstr ""
 "toegankelijk is voor de gewenste gebruikers."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Blank spreadsheet"
@@ -96,7 +89,7 @@ msgstr ""
 "bijgewerkt door hun <strong>maker</strong>."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.save_spreadsheet_template_view_form
 #, python-format
@@ -130,14 +123,14 @@ msgid "Contributors"
 msgstr "Bijdragers"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Create"
 msgstr "Aanmaken"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.xml:0
 #, python-format
 msgid "Create Spreadsheet"
@@ -270,14 +263,14 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New Spreadsheet"
 msgstr "Nieuwe spreadsheet"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New sheet saved in Documents"
@@ -289,7 +282,7 @@ msgid "New spreadsheet"
 msgstr "Nieuwe spreadsheet"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_action.js:0
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.js:0
 #, python-format
@@ -297,11 +290,17 @@ msgid "New spreadsheet created in Documents"
 msgstr "Nieuwe spreadsheet gemaakt in documenten"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "New spreadsheet template created"
 msgstr "Nieuwe spreadsheetsjabloon gemaakt"
+
+#. module: documents_spreadsheet
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
+msgid "Odoo Spreadsheets not available for download"
+msgstr "Odoo Spreadsheets kan niet worden gedownload"
 
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.spreadsheet_revision_action
@@ -365,7 +364,7 @@ msgid "Spreadsheet Templates"
 msgstr "Spreadsheetsjablonen"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/inspector/documents_inspector.js:0
 #, python-format
 msgid ""
@@ -381,18 +380,21 @@ msgid "Template Name"
 msgstr "Sjabloonnaam"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The file is not a xlsx file"
 msgstr "Het bestand is geen xlsx-bestand"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The xlsx file is corrupted"
 msgstr "Het xlsx-bestand is beschadigd"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
@@ -406,14 +408,14 @@ msgid "Thumbnail"
 msgstr "Miniatuur"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/control_panel/spreadsheet_breadcrumbs.xml:0
 #, python-format
 msgid "Toggle favorite"
 msgstr "Favoriet wisselen"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "Untitled spreadsheet template"
@@ -430,7 +432,7 @@ msgid "Workspace"
 msgstr "Werkruimte"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.js:0
 #, python-format
 msgid ""
@@ -440,7 +442,7 @@ msgstr ""
 "om bewerking mogelijk te maken."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.xml:0
 #, python-format
 msgid "getPageTitle('SPREADSHEET')"

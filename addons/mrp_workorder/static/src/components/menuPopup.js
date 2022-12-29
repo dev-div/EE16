@@ -50,7 +50,7 @@ class MenuPopup extends Component {
         );
         this.props.onClosePopup('menu');
         this.action.doAction(action, { onClose: () => {
-            this.props.onClose(message);
+            this.props.onClose({message});
         }});
     }
 }

@@ -80,6 +80,7 @@
 
     .breadcrumb {
         font-size: 18px;
+        min-width: 0;
 
         > li {
             @include o-text-overflow();
@@ -88,6 +89,7 @@
         @include media-breakpoint-down(md) {
             width: 100%;
             overflow: hidden;
+            flex-wrap: nowrap;
 
             > li {
                 margin: 0;
@@ -97,6 +99,7 @@
                 }
 
                 &.o_back_button {
+                    flex-shrink: 0;
                     &, & ~ li {
                         margin: auto 0;
                     }
@@ -111,7 +114,7 @@
                     }
 
                     &.btn {
-                        padding: 0.4rem;
+                        padding: $o-cp-button-sm-no-border-padding;
                     }
 
                     > a {
@@ -189,11 +192,22 @@
     .o_cp_bottom_right {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-end;
-        column-gap: $o-horizontal-padding;
+        justify-content: space-between;
+        align-items: center;
+
+        @include media-breakpoint-up(md) {
+            column-gap: $o-horizontal-padding;
+        }
+
+        > .o_form_status_indicator {
+            @include media-breakpoint-down(md) {
+                .o_form_status_indicator_buttons > .btn {
+                    padding: $o-cp-button-sm-no-border-padding;
+                }
+            }
+        }
 
         > .o_cp_pager {
-            margin: auto 0 auto auto;
             padding-left: 5px;
             text-align: center;
             user-select: none;

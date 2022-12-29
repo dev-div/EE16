@@ -17,6 +17,7 @@ patch(BomOverviewTable, "mrp_plm", {
         showOptions: { 
             ...BomOverviewTable.showOptions,
             ecos: Boolean,
+            ecoAllowed: Boolean,
         },
     },
 });

@@ -22,7 +22,7 @@
                     <div t-if="record.linkedin_likes_count.raw_value !== 0"
                          class="o_social_linkedin_likes o_social_subtle_btn_disabled ps-2 pe-3">
                         <i class="fa fa-thumbs-up me-1" title="Likes"/>
-                        <b class="o_social_kanban_likes_count" t-esc="_insertThousandSeparator(record.linkedin_likes_count.raw_value)"/>
+                        <field name="linkedin_likes_count" class="fw-bold"/>
                     </div>
                     <div class="o_social_linkedin_comments o_social_comments o_social_subtle_btn px-3"
                          t-on-click.prevent="_onLinkedInCommentsClick">

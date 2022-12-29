@@ -16,9 +16,11 @@ patch(SpreadsheetPivotModel.prototype, "documents_spreadsheet_templates_pivot_mo
 
     /**
      * Get the possible values for the given groupBy
+     * @param {string} groupBy
+     * @returns {any[]}
      */
     getPossibleValuesForGroupBy(groupBy) {
-        return this._fieldsValue[groupBy];
+        return this._fieldsValue[groupBy] || [];
     },
 
     /**
@@ -44,7 +46,9 @@ patch(SpreadsheetPivotModel.prototype, "documents_spreadsheet_templates_pivot_mo
         collectValues(this.data.rowGroupTree, rowValues);
 
         for (let i = 0; i < this.metaData.fullRowGroupBys.length; i++) {
-            let vals = [...new Set(rowValues.map((array) => array[i]))];
+            let vals = [
+                ...new Set(rowValues.map((array) => array[i]).filter((val) => val !== undefined)),
+            ];
             if (i !== 0) {
                 vals = await this._orderValues(vals, this.metaData.fullRowGroupBys[i]);
             }
@@ -55,7 +59,7 @@ patch(SpreadsheetPivotModel.prototype, "documents_spreadsheet_templates_pivot_mo
             if (i !== 0) {
                 vals = await this._orderValues(vals, this.metaData.fullColGroupBys[i]);
             } else {
-                vals = colValues.map((array) => array[i]);
+                vals = colValues.map((array) => array[i]).filter((val) => val !== undefined);
                 vals = [...new Set(vals)];
             }
             this._fieldsValue[this.metaData.fullColGroupBys[i]] = vals;
@@ -82,7 +86,7 @@ patch(SpreadsheetPivotModel.prototype, "documents_spreadsheet_templates_pivot_mo
             domain,
             [requestField],
             {
-                order: field.relation ? undefined : [{ name: field.name, asc: true }],
+                order: field.relation ? undefined : `${field.name} ASC`,
                 context: { ...context, active_test: false },
             }
         );

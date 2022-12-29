@@ -149,7 +149,7 @@
                     ('parent_state', '=', 'posted'),
                     ('debit', '=', '0'),
                     ('company_id', '=', company_id),
-                    ('account_id.account_type', 'in', ('income', 'income_other'))
+                    ('account_id.account_type', '=', 'liability_current')
                 ]</attribute>
             </field>
         </field>

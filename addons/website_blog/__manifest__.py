@@ -29,12 +29,13 @@
         'data/website_blog_demo.xml'
     ],
     'installable': True,
-    'application': True,
+    'application': False,
     'assets': {
         'website.assets_wysiwyg': [
             'website_blog/static/src/js/options.js',
             'website_blog/static/src/js/wysiwyg.js',
             'website_blog/static/src/snippets/s_blog_posts/options.js',
+            'website_blog/static/src/js/snippets.editor.js',
         ],
         'website.assets_editor': [
             'website_blog/static/src/js/tours/website_blog.js',

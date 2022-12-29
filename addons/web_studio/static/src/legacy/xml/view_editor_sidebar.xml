@@ -659,18 +659,8 @@
                 <label for="widget">Widget</label>
                 <select id="widget" name="widget" data-type="attributes">
                     <option t-foreach="widget.state.field.field_widgets" t-as="w" t-key="w_index" t-att-selected="widget.widgetKey ===  w[0] ? 'selected' : undefined" t-att-value="w[0]">
-                        <t
-                            t-set="desc"
-                            t-value="widget.getFieldInfo(w[1], 'description')"/>
-                        <t t-if="widget.debug">
-                            <t
-                                t-set="desc"
-                                t-value="desc and desc + ' ('+w[0]+')' or w[0]"/>
-                        </t>
-                        <t t-if="widget.widgetKey === w[0] and !desc">
-                            <t t-set="desc" t-value="widget.widgetKey"/>
-                        </t>
-                        <t t-esc="desc"/>
+                        <!-- "name (technical_key)" or "(technical_key)"-->
+                        <t t-esc="w[1] ? w[1] + ' ('+w[0]+')' : '('+w[0]+')'"/>
                     </option>
                 </select>
             </div>
@@ -942,7 +932,8 @@
 <t t-name="web_studio.ViewEditorSidebar.div">
     <div t-if="widget.view_type === 'kanban' and widget.state.$node and widget.state.$node.hasClass('o_dropdown_kanban')" class="o_web_studio_sidebar_checkbox">
         <div class="form-check">
-            <input type="checkbox" id="set_cover" name="set_cover" class="form-check-input" t-att-checked="widget.state.$node.find('a[data-type=set_cover]').length ? 'checked' : undefined"/>
+            <t t-set="hasCoverSetter" t-value="widget.state.$node[0].dataset.hasCoverSetter" />
+            <input type="checkbox" id="set_cover" name="set_cover" class="form-check-input" t-att-checked="hasCoverSetter ? 'checked' : undefined"/>
             <label for="set_cover" class="form-check-label">Set Cover Image</label>
         </div>
     </div>

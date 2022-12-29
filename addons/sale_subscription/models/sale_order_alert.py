@@ -131,9 +131,9 @@ class SaleOrderAlert(models.Model):
                         'value': action_value})
                     ]}
                 )
-
             elif vals.get('action') in ('email', 'sms'):
-                super(SaleOrderAlert, alert).write({'state': vals.get('action')})
+                action = 'mail_post' if vals['action'] == 'email' else 'sms'
+                super(SaleOrderAlert, alert).write({'state': action})
             elif vals.get('action') == 'next_activity' or vals.get('activity_user_ids') or vals.get('activity_user'):
                 alert._set_activity_action()
 

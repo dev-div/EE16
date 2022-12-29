@@ -3,6 +3,8 @@ import { HomeMenu } from "@web_enterprise/webclient/home_menu/home_menu";
 import { url } from "@web/core/utils/urls";
 import { patch } from "@web/core/utils/patch";
 
+const { onMounted, onWillUnmount } = owl;
+
 patch(HomeMenu.prototype, "web_studio.HomeMenuBackground", {
     setup() {
         this._super();
@@ -14,5 +16,14 @@ patch(HomeMenu.prototype, "web_studio.HomeMenuBackground", {
             model: "res.company",
             field: "background_image",
         });
+
+        onMounted(() => {
+            document.body.classList.add("o_home_menu_background");
+            document.body.classList.toggle("o_home_menu_background_custom", this.menus.getMenu("root").backgroundImage);
+        });
+
+        onWillUnmount(() => {
+            document.body.classList.remove("o_home_menu_background", "o_home_menu_background_custom");
+        })
     },
 });

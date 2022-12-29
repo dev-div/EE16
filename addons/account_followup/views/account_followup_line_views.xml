@@ -31,26 +31,20 @@
                     </div>
                     <notebook>
                         <page string="Notification" name="notification">
-                            <group>
-                                <group string="Actions" name="actions">
-                                    <field name="send_email"/>
-                                    <field name="send_sms"/>
-                                </group>
-                                <group string="Templates" name="templates" col="1">
-                                    <group name="email" attrs="{'invisible': [('send_email', '=', False)]}">
-                                        <field name="mail_template_id" string="Content Template"/>
+                            <group col="3">
+                                <group string="Actions" name="actions" colspan="2" col="3">
+                                    <group colspan="1">
+                                        <field name="send_email"/>
+                                        <field name="send_sms"/>
                                     </group>
-                                    <group name="sms" attrs="{'invisible': [('send_sms', '=', False)]}">
-                                        <field name="sms_template_id" />
+                                    <group colspan="2">
+                                        <field name="mail_template_id" string="Content Template" attrs="{'invisible': [('send_email', '=', False)]}"/>
+                                        <field name="sms_template_id" attrs="{'invisible': [('send_sms', '=', False)]}"/>
                                     </group>
                                 </group>
-                            </group>
-                            <group string="Options" name="options">
-                                <group>
+                                <group string="Options" name="options" colspan="1">
                                     <field name="auto_execute"/>
-                                </group>
-                                <group>
-                                    <field name="join_invoices"/>
+                                    <field name="join_invoices" attrs="{'invisible': [('send_email','=',False)]}"/>
                                 </group>
                             </group>
                         </page>
@@ -88,7 +82,7 @@
     </record>
 
     <record id="action_account_followup_line_definition_form" model="ir.actions.act_window">
-        <field name="name">Payment Follow-ups</field>
+        <field name="name">Follow-up Levels</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account_followup.followup.line</field>
         <field name="search_view_id" ref="view_account_followup_line_filter"/>

@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2022
-# Martin Trigaux, 2022
+# Caroline Renson <car@odoo.com>, 2022
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
+# Martin Trigaux, 2022
 # Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:27+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
 "Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
@@ -23,6 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -33,6 +35,7 @@ msgstr ""
 "%s t/m %s"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -48,6 +51,7 @@ msgid "% Happy"
 msgstr "% Blij"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_line.py:0
 #, python-format
 msgid "%(product)s - %(duration)d %(unit)s"
@@ -67,6 +71,17 @@ msgstr "1 maand"
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_alert__mrr_change_period__3months
 msgid "3 Months"
 msgstr "3 maanden"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid ""
+"<b>Congratulations</b>, your first subscription quotation is ready to be "
+"sent!"
+msgstr ""
+"<b>Gefeliciteerd</b>, je eerste abonnementsofferte is klaar om verzonden te "
+"worden!"
 
 #. module: sale_subscription
 #: model:mail.template,body_html:sale_subscription.mail_template_subscription_alert
@@ -295,37 +310,37 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
-"<div style=\"marge: 0px; padding: 0px;\">\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
 "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"                    Beste <t t-out=\"object.partner_id.name of ''\">Brandon Freeman</t>\n"
+"                    Beste <t t-out=\"object.partner_id.name or ''\">Brandon Freeman</t>\n"
 "                    <t t-if=\"object.partner_id.parent_id\">\n"
-"                        (<t t-out=\"object.partner_id.parent_id.name of ''\">Azure interieur</t>)\n"
+"                        (<t t-out=\"object.partner_id.parent_id.name or ''\">Azure Interior</t>)\n"
 "                    </t>,\n"
 "                    <br/><br/>\n"
-"                    Hier is, in bijlage, je abonnement\n"
+"                    Als bijlage kan je de factuur van je abonnement\n"
 "                    <t t-if=\"object.name\">\n"
-"                        factuur <span style=\"font-weight:bold;\" t-out=\"object.name of ''\">Kantoorschoonmaakservice</span>\n"
+"                         <span style=\"font-weight:bold;\" t-out=\"object.name or ''\">Kantoorschoonmaakservice</span>\n"
 "                    </t>\n"
 "                    <t t-else=\"\">\n"
 "                        factuur\n"
 "                    </t>\n"
 "                    <t t-if=\"object.invoice_origin\">\n"
-"                        (met referentie: <t t-out=\"object.invoice_origin of ''\">INVOICE_ORIGIN</t>)\n"
+"                        (met referentie: <t t-out=\"object.invoice_origin or ''\">INVOICE_ORIGIN</t>)\n"
 "                    </t>\n"
-"                    bedrag in <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_total, object.currency_id) of ''\">$ 10.00</span>\n"
-"                    van <t t-out=\"object.company_id.name of ''\">Je Bedrijf</t>.\n"
+"                    voor het bedrag van <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_total, object.currency_id) or ''\">$ 10.00</span>\n"
+"                    van <t t-out=\"object.company_id.name or ''\">Je Bedrijf</t>.\n"
 "                    <t t-if=\"object.payment_state in ('paid', 'in_payment')\">\n"
 "                        Deze factuur is al betaald.\n"
 "                    </t>\n"
 "                    <t t-else=\"\">\n"
-"                        Gelieve de betaling zo spoedig mogelijk te verrichten.\n"
+"                       Gelieve de betaling zo spoedig mogelijk te verrichten.\n"
 "                    </t>\n"
 "                    <br/><br/>\n"
 "                    Aarzel niet om ons te contacteren indien je vragen heeft.\n"
 "                    <br/><br/>\n"
 "                    <t t-if=\"not is_html_empty(object.invoice_user_id.signature)\">\n"
 "                        <br/><br/>\n"
-"                        <t t-out=\"object.invoice_user_id.signature of ''\">--<br/>Mitchell-beheerder</t>\n"
+"                        <t t-out=\"object.invoice_user_id.signature or ''\">--<br/>Mitchell Admin</t>\n"
 "                    </t>\n"
 "                </p>\n"
 "            </div>\n"
@@ -593,7 +608,7 @@ msgstr ""
 "    <!-- INHOUD -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate; \">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
 "                    Beste <t t-out=\"object.partner_id.name of ''\">Brandon Freeman</t>,<br/><br/>\n"
 "                    Je abonnement (<t t-out=\"ctx.get('subscription_name') of ''\">CODE</t>\n"
@@ -604,12 +619,12 @@ msgstr ""
 "                        via een betaling van <t t-out=\"ctx.get('total_amount') of ''\">100</t> <t t-out=\"ctx.get('currency_name') of ''\">$ </t> in rekening gebracht op <t t-out=\"ctx.get('payment_token') of ''\">PAYMENT_TOKEN</t>.\n"
 "                    </t>\n"
 "                    <br/><br/>\n"
-"                    U vindt je factuur als bijlage.\n"
+"                    Je vindt je factuur als bijlage.\n"
 "                    <t t-if=\"ctx.get('volgende_datum')\">\n"
 "                        Je volgende factuur is op <t t-out=\"format_date(ctx.get('next_date')) of ''\">05/05/2021</t>.\n"
 "                    </t>\n"
 "                    <br/><br/>\n"
-"                    Als je vragen heeft, aarzel dan niet om contact met ons op te nemen.\n"
+"                    Als je vragen hebt, aarzel dan niet om contact met ons op te nemen.\n"
 "                    <br/><br/>\n"
 "                    Bedankt voor het kiezen van <t t-out=\"company.name of ''\">Je Bedrijf</t>!\n"
 "                    <div t-if=\"gebruiker.handtekening\">\n"
@@ -1025,12 +1040,14 @@ msgstr ""
 "        "
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/product.py:0
 #, python-format
 msgid "A 'Storable Product' cannot be a 'Subscription Product' !"
 msgstr "Een 'voorraadproduct' kan geen 'abonnementsproduct' zijn!"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/product.py:0
 #, python-format
 msgid "A 'Subscription Product' cannot be a 'Storable Product' !"
@@ -1051,6 +1068,7 @@ msgstr ""
 "uitgevoerd via de website."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "A renewal quotation %s has been created"
@@ -1128,6 +1146,7 @@ msgid "Alive"
 msgstr "Levend"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #, python-format
 msgid "All"
@@ -1139,6 +1158,7 @@ msgid "Amount:"
 msgstr "Bedrag:"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "An upsell quotation %s has been created"
@@ -1178,6 +1198,13 @@ msgid "Assign To"
 msgstr "Toewijzen aan"
 
 #. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Assign a new partner to the contract"
+msgstr "Een nieuwe partner toewijzen aan het contract"
+
+#. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_alert__automation_id
 msgid "Automated Action"
 msgstr "Geautomatiseerde actie"
@@ -1188,6 +1215,7 @@ msgid "Automatic Closing"
 msgstr "Automatische afsluiting"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -1207,6 +1235,17 @@ msgid ""
 msgstr ""
 "Automatische betaling met token mislukt. De configuratie en het token van de"
 " betalingsprovider moeten worden gecontroleerd"
+
+#. module: sale_subscription
+#. odoo-python
+#: code:addons/sale_subscription/models/sale_order.py:0
+#, python-format
+msgid ""
+"Automatic renewal succeeded. Free subscription. Next Invoice: %(inv)s. No "
+"email sent."
+msgstr ""
+"Automatische verlenging gelukt. Gratis abonnement. Volgende factuur: "
+"%(inv)s. Geen e-mail verzonden."
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_alert__website_published
@@ -1271,13 +1310,20 @@ msgstr ""
 " het totale aantal beoordelingen"
 
 #. module: sale_subscription
+#: model_terms:ir.ui.view,arch_db:sale_subscription.product_template_search_view_inherit_sale_subscription
+msgid "Can be Recurring"
+msgstr "Kan terugkerend zijn"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/manage_form.js:0
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_subscription_close_reason_view_form
 #: model_terms:ir.ui.view,arch_db:sale_subscription.subscription
+#, python-format
 msgid "Cancel"
 msgstr "Annuleren"
 
 #. module: sale_subscription
-#: model:product.product,name:sale_subscription.product_car_leasing
 #: model:product.template,name:sale_subscription.product_car_leasing_product_template
 msgid "Car Leasing (SUB)"
 msgstr "Autoleasing (SUB)"
@@ -1320,7 +1366,7 @@ msgstr ""
 "geretourneerde actie waarde wordt gebruikt als globale return waarde."
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
 msgid "Choose a product name.<br/><i>(e.g. eLearning Access)</i>"
@@ -1353,26 +1399,16 @@ msgstr ""
 "Posten als notitie: log een notitie op document"
 
 #. module: sale_subscription
-#. openerp-web
-#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
-#, python-format
-msgid ""
-"Choose the recurrence for this template.<br/><i>(e.g. 1 time per Year)</i>"
-msgstr ""
-"Kies de herhaling van dit sjabloon. <br/><i>(bijvoorbeeld 1 keer per "
-"jaar)</i>"
-
-#. module: sale_subscription
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_log__event_type__2_churn
 msgid "Churn"
 msgstr "Verloop"
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
-msgid "Click here to create <b>your first subscription template</b>"
-msgstr "Klik hier <b>om je eerste abonnement sjabloon te maken</b>"
+msgid "Click here to add some products or services to your quotation."
+msgstr "Klik hier om producten of diensten toe te voegen aan je offerte."
 
 #. module: sale_subscription
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_subscription_order_view_form
@@ -1402,6 +1438,7 @@ msgid "Close Subscription"
 msgstr "Sluit abonnement"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_log__category__closed
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_stage__category__closed
@@ -1420,6 +1457,7 @@ msgid "Closed subscriptions"
 msgstr "Gesloten abonnementen"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #, python-format
 msgid "Closing text: %s"
@@ -1451,13 +1489,6 @@ msgstr "Bedrijfsvaluta"
 #: model:ir.ui.menu,name:sale_subscription.menu_sale_subscription_config
 msgid "Configuration"
 msgstr "Configuratie"
-
-#. module: sale_subscription
-#. openerp-web
-#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
-#, python-format
-msgid "Configure your subscription templates here"
-msgstr "Configureer je abonnementssjablonen hier"
 
 #. module: sale_subscription
 #: model_terms:ir.ui.view,arch_db:sale_subscription.subscription
@@ -1545,7 +1576,7 @@ msgstr ""
 "                één maand vanaf de einddatum."
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
 msgid "Create your first subscription product here"
@@ -1733,14 +1764,6 @@ msgid "End Date"
 msgstr "Einddatum"
 
 #. module: sale_subscription
-#. openerp-web
-#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
-#, python-format
-msgid "Enter a name for this template.<br/><i>(e.g. eLearning Yearly)</i>"
-msgstr ""
-"Geef een naam voor dit sjabloon.<br/><i>(bijv. e-Learning jaarlijks)</i>"
-
-#. module: sale_subscription
 #: model:ir.model.fields,help:sale_subscription.field_sale_order_stage__description
 msgid ""
 "Enter here the internal requirements for this stage. It will appear as a "
@@ -1750,12 +1773,14 @@ msgstr ""
 "op de fase naam."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "Error during renewal of contract %s (Payment not recorded)"
 msgstr "Fout tijdens verlenging van contract %s (betaling niet geregistreerd)"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "Error: unable to put the subscription in a closed stage"
@@ -1823,11 +1848,25 @@ msgstr ""
 "Geef je team de vereisten om een abonnement naar deze fase te verplaatsen."
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
 msgid "Go ahead and create a new product"
 msgstr "Ga je gang en maak een nieuw product"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Go ahead and create a new subscription"
+msgstr "Ga je gang en maak een nieuw abonnement"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Go back to the subscription view"
+msgstr "Ga terug naar het abonnementsoverzicht"
 
 #. module: sale_subscription
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order__health__done
@@ -1883,9 +1922,10 @@ msgstr "Geschiedenis"
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order__history_count
 msgid "History Count"
-msgstr "Geschiedenis tellen"
+msgstr "Aantal vermeldingen in geschiedenis"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/product_pricing.py:0
 #, python-format
 msgid "Hourly and daily pricing are forbidden on recurring products"
@@ -2005,6 +2045,7 @@ msgstr ""
 "betalen voor de huidige factuurperiode."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_log__category__progress
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order_stage__category__progress
@@ -2058,7 +2099,7 @@ msgid ""
 "Invoice_{{ ctx.get('code', ctx.get('subscription_name')) }}_{{ "
 "format_date(ctx.get('previous_date')) }}"
 msgstr ""
-"Invoice_{{ ctx.get('code', ctx.get('subscription_name')) }}_{{ "
+"Factuur_{{ ctx.get('code', ctx.get('subscription_name')) }}_{{ "
 "format_date(ctx.get('vorige_date')) }}"
 
 #. module: sale_subscription
@@ -2185,14 +2226,21 @@ msgid "Least Delay Msg"
 msgstr "Minste vertraging boodschap"
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
-msgid "Let's create your first subscription template."
-msgstr "Laten we je eerste abonnement sjabloon maken."
+msgid "Let's add a pricing with a recurrence"
+msgstr "Laten we een terugkerende prijs toevoegen"
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Let's configure the product price"
+msgstr "Laten we de prijs van het product configureren"
+
+#. module: sale_subscription
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
 msgid "Let's go to the catalog to create our first subscription product"
@@ -2261,6 +2309,7 @@ msgid "MRR after Change"
 msgstr "MRR na wijziging"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "MRR changes"
@@ -2295,6 +2344,7 @@ msgstr ""
 "Het beheren van betaalmethoden vereist ingelogd zijn onder de klantorder."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -2367,6 +2417,7 @@ msgid "My Subscriptions"
 msgstr "Mijn abonnementen"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_subscription_report__name
 #, python-format
@@ -2385,6 +2436,7 @@ msgid "Neutral face"
 msgstr "Neutraal gezicht"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #, python-format
 msgid "Newest"
@@ -2438,7 +2490,6 @@ msgstr ""
 "te sluiten of te vernieuwen."
 
 #. module: sale_subscription
-#: model:product.product,name:sale_subscription.product_office_cleaning
 #: model:product.template,name:sale_subscription.product_office_cleaning_product_template
 #: model:sale.order.template.line,name:sale_subscription.montly_template_line
 #: model:sale.order.template.line,name:sale_subscription.yearly_template_line
@@ -2451,6 +2502,7 @@ msgid "On Change Fields Trigger"
 msgstr "Bij wijziging veld trigger"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_template.py:0
 #, python-format
 msgid "Operation not supported"
@@ -2523,6 +2575,11 @@ msgid "Payment Failure"
 msgstr "Betaling mislukt"
 
 #. module: sale_subscription
+#: model:ir.model,name:sale_subscription.model_payment_provider
+msgid "Payment Provider"
+msgstr "Betalingsprovider"
+
+#. module: sale_subscription
 #: model:ir.model,name:sale_subscription.model_payment_token
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order__payment_token_id
 msgid "Payment Token"
@@ -2568,6 +2625,13 @@ msgstr "Abonnementdetails"
 #: model:ir.ui.menu,name:sale_subscription.menu_template_of_subscription
 msgid "Plans"
 msgstr "Plannen"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/manage_form.js:0
+#, python-format
+msgid "Please provide another payment method for these subscriptions."
+msgstr "Geef een andere betaalwijze voor deze abonnementen."
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_subscription_report__pricelist_id
@@ -2710,7 +2774,7 @@ msgstr "Beoordeling percentage"
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order__rating_percentage_satisfaction
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_subscription_alert_view_form
 msgid "Rating Satisfaction"
-msgstr "Beoordelingstevredenheid"
+msgstr "Beoordeling"
 
 #. module: sale_subscription
 #: model:ir.model.fields,help:sale_subscription.field_sale_order_alert__rating_percentage
@@ -2762,8 +2826,8 @@ msgstr "Herhalend"
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_subscription_report__recurring_total
-msgid "Recurring Price"
-msgstr "Herhalend bedrag"
+msgid "Recurring Amount"
+msgstr "Terugkerend bedrag"
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_template__recurring_rule_type
@@ -2771,6 +2835,7 @@ msgid "Recurring Rule Type"
 msgstr "Herhalend regeltype"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -2786,6 +2851,7 @@ msgid "Reference:"
 msgstr "Referentie:"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_subscription_order_view_form
 #, python-format
@@ -2816,7 +2882,7 @@ msgstr "Offerte voor verlenging"
 #. module: sale_subscription
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order__renew_state__renewed
 msgid "Renewed"
-msgstr "Verlengt"
+msgstr "Verlengd"
 
 #. module: sale_subscription
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order__renew_state__renewing
@@ -2898,21 +2964,18 @@ msgstr "Verkooporderfase"
 #. module: sale_subscription
 #: model:ir.actions.server,name:sale_subscription.ir_cron_sale_subscription_update_kpi_ir_actions_server
 #: model:ir.cron,cron_name:sale_subscription.ir_cron_sale_subscription_update_kpi
-#: model:ir.cron,name:sale_subscription.ir_cron_sale_subscription_update_kpi
 msgid "Sale Subscription: Update KPI"
 msgstr "Verkoop abonnement: update KPI"
 
 #. module: sale_subscription
 #: model:ir.actions.server,name:sale_subscription.account_analytic_cron_for_invoice_ir_actions_server
 #: model:ir.cron,cron_name:sale_subscription.account_analytic_cron_for_invoice
-#: model:ir.cron,name:sale_subscription.account_analytic_cron_for_invoice
 msgid "Sale Subscription: generate recurring invoices and payments"
 msgstr "Abonnementen: genereer herhalende facturen en betalingen"
 
 #. module: sale_subscription
 #: model:ir.actions.server,name:sale_subscription.account_analytic_cron_ir_actions_server
 #: model:ir.cron,cron_name:sale_subscription.account_analytic_cron
-#: model:ir.cron,name:sale_subscription.account_analytic_cron
 msgid "Sale Subscription: subscriptions expiration"
 msgstr "Abonnement: abonnementen vervaldatum"
 
@@ -2959,38 +3022,23 @@ msgid "Salesperson"
 msgstr "Verkoper"
 
 #. module: sale_subscription
-#. openerp-web
-#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
-#, python-format
-msgid ""
-"Save and you're all set!<br/>Simply sell this product to create a "
-"subscription automatically or create a subscription manually!"
-msgstr ""
-"Sla op en je bent klaar! <br/> Je kunt eenvoudig dit product verkopen om een"
-" abonnement aan te maken of je kunt handmatig een abonnement maken!"
-
-#. module: sale_subscription
-#. openerp-web
-#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
-#, python-format
-msgid "Save this template and the modifications you've made to it."
-msgstr "Sla dit sjabloon op en de wijzigingen die je hierop heeft gemaakt."
-
-#. module: sale_subscription
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_order_template_view_search
 msgid "Search Template"
 msgstr "Zoeksjabloon"
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
-msgid ""
-"Select your newly created template. Every sale of this product will generate"
-" a new subscription!"
-msgstr ""
-"Selecteer je nieuw aangemaakt sjabloon. Elke verkoop van dit product "
-"genereerd een nieuw abonnement!"
+msgid "Select a recurrence"
+msgstr "Selecteer een herhaling"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Select a recurring product"
+msgstr "Selecteer een terugkerend product"
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_template__user_closable
@@ -3051,7 +3099,7 @@ msgstr ""
 #. module: sale_subscription
 #: model:mail.template,description:sale_subscription.mail_template_subscription_invoice
 msgid "Sent manually to customers with the invoice in attachment"
-msgstr "Manueel verzonden naar klanten met hun factuur in bijlage"
+msgstr "Handmatig verzonden naar klanten met hun factuur in bijlage"
 
 #. module: sale_subscription
 #: model:mail.template,description:sale_subscription.email_payment_close
@@ -3196,6 +3244,7 @@ msgid "Start Date:"
 msgstr "Startdatum:"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #: model_terms:ir.ui.view,arch_db:sale_subscription.portal_my_subscriptions
 #, python-format
@@ -3213,6 +3262,7 @@ msgid "Subscribe Recipients"
 msgstr "Abonneren Ontvangers"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #: code:addons/sale_subscription/models/sale_order.py:0
 #: model:ir.model.fields,field_description:sale_subscription.field_account_move_line__subscription_id
@@ -3278,11 +3328,6 @@ msgstr "Abonnementsplan"
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_template_option__recurring_invoice
 msgid "Subscription Product"
 msgstr "Abonnementsproduct"
-
-#. module: sale_subscription
-#: model_terms:ir.ui.view,arch_db:sale_subscription.product_template_search_view_inherit_sale_subscription
-msgid "Subscription Products"
-msgstr "Abonnementproducten"
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_account_move_line__subscription_end_date
@@ -3386,6 +3431,7 @@ msgid "Subscription: Subscription Invoice"
 msgstr "Abonnement: abonnementsfactuur"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_alert.py:0
 #: model:ir.actions.act_window,name:sale_subscription.sale_subscription_action
 #: model:ir.actions.act_window,name:sale_subscription.sale_subscription_action_filtered
@@ -3448,12 +3494,6 @@ msgstr "Som van jaarlijks herhalende omzet"
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_alert__activity_summary
 msgid "Summary"
 msgstr "Samenvatting"
-
-#. module: sale_subscription
-#: model:base.automation,name:sale_subscription.subscription_alert_percent_revenue_base_automation
-#: model:sale.order.alert,name:sale_subscription.subscription_alert_percent_revenue
-msgid "Take action on less satisfied clients"
-msgstr "Onderneem actie tegen minder tevreden klanten"
 
 #. module: sale_subscription
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order_alert__crud_model_id
@@ -3557,6 +3597,7 @@ msgstr ""
 "verlengd."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "The renewal %s has been canceled."
@@ -3582,6 +3623,7 @@ msgid "The subscription was renewed with a new plan."
 msgstr "Het abonnement is verlengd met een nieuw abonnement."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order_line.py:0
 #, python-format
 msgid "The time unit cannot be used. Please chose one of these unit: %s."
@@ -3589,18 +3631,21 @@ msgstr ""
 "De tijdseenheid kan niet worden gebruikt. Kies een van deze eenheden: %s."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "The upsell  %s has been confirmed."
 msgstr "De upsell %s is bevestigd."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "The upsell %s has been canceled."
 msgstr "De upsell %s is geannuleerd."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #, python-format
 msgid "This Subscription is already running. There is no need to renew it."
@@ -3615,6 +3660,17 @@ msgstr ""
 "activiteiten."
 
 #. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/manage_form.js:0
+#, python-format
+msgid ""
+"This payment method cannot be removed as it is currently linked to the "
+"following active subscriptions:"
+msgstr ""
+"Deze betaalwijze kan niet worden verwijderd, omdat ze momenteel geassocieerd"
+" is met de volgende actieve abonnementen:"
+
+#. module: sale_subscription
 #: model:ir.model.fields,help:sale_subscription.field_sale_order_stage__fold
 msgid ""
 "This stage is folded in the kanban view when there are no records in that "
@@ -3624,6 +3680,7 @@ msgstr ""
 "deze fase om weer te geven."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "This subscription is renewed in %s with a change of plan."
@@ -3655,6 +3712,7 @@ msgid "Timed Condition"
 msgstr "Tijd conditie"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_order__to_renew
 #: model:ir.model.fields,field_description:sale_subscription.field_sale_subscription_report__to_renew
@@ -3755,6 +3813,7 @@ msgstr ""
 "- 'Stuur SMS-tekstbericht': stuur sms, log in op documenten (SMS)"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "Unable to put the subscription in a progress stage"
@@ -3776,19 +3835,12 @@ msgid "Unit of Measure"
 msgstr "Maateenheid"
 
 #. module: sale_subscription
-#: model:product.product,uom_name:sale_subscription.product_car_leasing
-#: model:product.product,uom_name:sale_subscription.product_office_cleaning
-#: model:product.template,uom_name:sale_subscription.product_car_leasing_product_template
-#: model:product.template,uom_name:sale_subscription.product_office_cleaning_product_template
-msgid "Units"
-msgstr "Stuks"
-
-#. module: sale_subscription
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_order_digest
 msgid "Untaxed Total:"
 msgstr "Totaal onbelast:"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_subscription.selection__sale_order__subscription_management__upsell
 #: model_terms:ir.ui.view,arch_db:sale_subscription.sale_subscription_order_view_form
@@ -3866,7 +3918,7 @@ msgid "Value Mapping"
 msgstr "Waarde verdeling"
 
 #. module: sale_subscription
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
 #, python-format
 msgid ""
@@ -3876,11 +3928,19 @@ msgstr ""
 "Wil je herhalende facturatie via abonnementen? Start door hier te klikken"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/product.py:0
 #: code:addons/sale_subscription/models/product.py:0
 #, python-format
 msgid "Warning"
 msgstr "Waarschuwing"
+
+#. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/manage_form.js:0
+#, python-format
+msgid "Warning!"
+msgstr "Waarschuwing!"
 
 #. module: sale_subscription
 #: model_terms:ir.ui.view,arch_db:sale_subscription.subscription
@@ -3963,6 +4023,7 @@ msgid "Years"
 msgstr "Jaar"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -3973,6 +4034,7 @@ msgstr ""
 "het %s contract rechtstreeks te updaten of het eerst te factureren."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/res_partner.py:0
 #, python-format
 msgid ""
@@ -3983,6 +4045,7 @@ msgstr ""
 "herhalende orders: %s"
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -3992,6 +4055,7 @@ msgstr ""
 "niet opslaan."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid "You cannot save a sale order with recurring product and no recurrence."
@@ -4000,6 +4064,7 @@ msgstr ""
 "opslaan."
 
 #. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -4043,7 +4108,7 @@ msgid ""
 "You will find here the subscriptions to be renewed (end date is close or "
 "passed)"
 msgstr ""
-"Je vind hier de te verkengen abonnementen (einddatum is gesloten of "
+"Je vindt hier de te verlengen abonnementen (einddatum is gesloten of "
 "gepasseerd)"
 
 #. module: sale_subscription
@@ -4057,6 +4122,19 @@ msgid "Your Plan"
 msgstr "Je abonnement"
 
 #. module: sale_subscription
+#. odoo-javascript
+#: code:addons/sale_subscription/static/src/js/tours/sale_subscription.js:0
+#, python-format
+msgid "Your contrat is recurrent"
+msgstr "Je contract is terugkerend"
+
+#. module: sale_subscription
+#: model_terms:ir.ui.view,arch_db:sale_subscription.payment_checkout_inherit
+msgid "Your payment details will be saved for automatic renewals."
+msgstr "Je betaalgegevens worden opgeslagen voor automatische verlengingen."
+
+#. module: sale_subscription
+#. odoo-python
 #: code:addons/sale_subscription/controllers/portal.py:0
 #, python-format
 msgid "Your subscription has been renewed until %s."
@@ -4122,12 +4200,11 @@ msgstr "{{ object.company_id.name }} Factuur (Ref {{ object.name or 'n/b' }})"
 msgid ""
 "{{ object.company_id.name }}: Our final attempt to process a payment for "
 "your subscription failed. As your payment should have been made on {{ "
-"object.recurring_next_date }}, your subscription has been terminated."
+"object.next_invoice_date }}, your subscription has been terminated."
 msgstr ""
 "{{ object.company_id.name }}: Onze laatste poging om een betaling voor je "
 "abonnement te verwerken is mislukt. Aangezien je betaling had moeten "
-"plaatsvinden op {{ object.recurring_next_date }}, is je abonnement "
-"beëindigd."
+"plaatsvinden op {{ object.next_invoice_date }}, is je abonnement beëindigd."
 
 #. module: sale_subscription
 #: model:mail.template,subject:sale_subscription.mail_template_subscription_alert
@@ -4147,12 +4224,12 @@ msgstr "{{ object.company_id.name }}: Servicebeoordelingsverzoek"
 msgid ""
 "{{ object.company_id.name }}: We were unable to process a payment for your "
 "subscription. Your subscription {{ object.name }} is still valid but will be"
-" suspended on {{ object.recurring_next_date }} unless the payment succeeds "
-"in the meantime."
+" suspended on {{ object.next_invoice_date }} unless the payment succeeds in "
+"the meantime."
 msgstr ""
 "{{ object.company_id.name }}: We kunnen een betaling voor je abonnement niet"
-" verwerken. Je abonnement {{ object.name }} is nog steeds geldig maar wordt "
-"opgeschort op {{ object.recurring_next_date }} tenzij de betaling in de "
+" verwerken. Je abonnement {{ object.name }} is nog steeds geldig, maar wordt"
+" opgeschort op {{ object.next_invoice_date }} tenzij de betaling in de "
 "tussentijd lukt."
 
 #. module: sale_subscription

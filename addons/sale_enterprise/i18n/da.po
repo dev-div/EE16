@@ -3,17 +3,17 @@
 # 	* sale_enterprise
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Sanne Kristensen <sanne@vkdata.dk>, 2019
-# Ejner Sønniksen <ejner@vkdata.dk>, 2019
+# Mads Søndergaard, 2022
+# Sanne Kristensen <sanne@vkdata.dk>, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Ejner Sønniksen <ejner@vkdata.dk>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:57+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Danish (https://www.transifex.com/odoo/teams/41243/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,19 +32,43 @@ msgid "# Lines"
 msgstr "# Linjer"
 
 #. module: sale_enterprise
+#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid "Average Days To Confirm"
+msgstr "Gennemsnitlige Dage Til Bekræftelse"
+
+#. module: sale_enterprise
+#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
+msgid "Average Days to Confirm"
+msgstr "Gennemsnitlige Dage til Bekræftelse"
+
+#. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Average Order"
 msgstr "Gennemsnitlig ordre"
 
 #. module: sale_enterprise
-#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__days_to_confirm
-msgid "Days To Confirm"
-msgstr "Antal dage til bekræftelse"
+#: model:ir.model.fields,help:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid ""
+"Average days to confirm a sales order after its creation. Due to a hack "
+"needed to calculate this,               every record will show the same "
+"average value, therefore only use this as an aggregated value with "
+"group_operator=avg"
+msgstr ""
+"Gennemsnitlige dage til at bekræfte en salgsordre efter dens oprettelse. På "
+"grund at et hack nødvendigt for at udregne dette,           vil alle datasæt"
+" vise den samme gennemsnitlige værdi, hvorfor dette kun skal bruges som en "
+"samlet værdi med group_operator=avg"
 
 #. module: sale_enterprise
-#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
-msgid "Days to Confirm"
-msgstr "Dage til at bekræfte"
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "Create a new sales order"
+msgstr "Opret en ny salgsordre"
+
+#. module: sale_enterprise
+#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
+#: model:ir.ui.menu,name:sale_enterprise.menu_sale_report_dashboard
+msgid "Dashboard"
+msgstr "Dashboard"
 
 #. module: sale_enterprise
 #: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__invoiced
@@ -58,6 +82,11 @@ msgid "Invoice Status"
 msgstr "Faktura status"
 
 #. module: sale_enterprise
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "No data yet!"
+msgstr "Ingen data endnu!"
+
+#. module: sale_enterprise
 #: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__no
 msgid "Nothing to Invoice"
 msgstr "Der er ikke noget at fakturere"
@@ -68,7 +97,6 @@ msgid "Orders"
 msgstr "Ordre"
 
 #. module: sale_enterprise
-#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_pivot
 msgid "Sales Analysis"
 msgstr "Salgsanalyse"

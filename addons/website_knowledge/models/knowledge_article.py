@@ -25,13 +25,13 @@ class Article(models.Model):
         mapping = {
             'name': {'name': 'name', 'type': 'text', 'match': True},
             'website_url': {'name': 'website_url', 'type': 'text', 'truncate': False},
-            'body': {'name': 'content', 'type': 'text', 'html': True, 'match': True},
+            'body': {'name': 'body', 'type': 'text', 'html': True, 'match': True},
         }
         return {
             'model': 'knowledge.article',
             'base_domain': [domain],
             'search_fields': ['name', 'body'],
-            'fetch_fields': ['id', 'name', 'body'],
+            'fetch_fields': ['id', 'name', 'body', 'website_url'],
             'mapping': mapping,
             'icon': 'fa-comment-o',
             'order': order,

@@ -80,17 +80,20 @@ class L10nBeSocialSecurityCertificate(models.TransientModel):
             student_slips = aggregate_payslips.filtered(lambda p: p.struct_id == student_pay)
 
             code_list = [
-                'BASIC', 'COMMISSION', 'ATN.INT', 'ATN.MOB', 'ATN.LAP', 'BASIC', 'BASIC', 'BASIC',
+                'BASIC', 'HolPayRecN', 'HolPayRecN1', 'COMMISSION', 'AFTERPUB', 'HIRINGBONUS',
+                'ADDITIONALGROSS', 'SIMPLE.DECEMBER', 'ATN.INT', 'ATN.MOB', 'ATN.LAP', 'BASIC',
                 'D.P', 'EU.LEAVE.DEDUC', 'ATN.CAR', 'PAY_SIMPLE', 'PAY DOUBLE', 'PUB.TRANS',
                 'PAY DOUBLE COMPLEMENTARY', 'SALARY', 'SALARY', 'ONSSTOTAL', 'ONSSEMPLOYER', 'ONSS1',
                 'ONSS2', 'ONSS', 'ONSS', 'ONSS', 'REP.FEES', 'REP.FEES.VOLATILE', 'CAR.PRIV', 'P.P', 'M.ONSS',
                 'ATTACH_SALARY', 'ATN.CAR.2', 'ATN.MOB.2', 'ATN.INT.2', 'ATN.LAP.2', 'MEAL_V_EMP',
                 'IMPULSION25', 'IMPULSION12', 'ASSIG_SALARY', 'ADVANCE', 'NET', 'P.P.DED',
                 'ONSSEMPLOYERBASIC', 'ONSSEMPLOYERFFE', 'ONSSEMPLOYERMFFE', 'ONSSEMPLOYERCPAE',
-                'ONSSEMPLOYERRESTREINT', 'ONSSEMPLOYERUNEMP']
+                'ONSSEMPLOYERRESTREINT', 'ONSSEMPLOYERUNEMP', 'CYCLE', 'CANTEEN']
             all_values = aggregate_payslips._get_line_values(code_list, vals_list=['total', 'quantity'])
 
-            gross_before_onss = _get_total(monthly_slips, all_values, ['BASIC', 'COMMISSION'])
+            gross_before_onss = _get_total(monthly_slips, all_values, [
+                'BASIC', 'HolPayRecN', 'HolPayRecN1', 'COMMISSION', 'AFTERPUB', 'HIRINGBONUS',
+                'ADDITIONALGROSS', 'SIMPLE.DECEMBER'])
             atn = _get_total(monthly_slips, all_values, ['ATN.INT', 'ATN.MOB', 'ATN.LAP'])
             termination_fees = _get_total(termination_slips, all_values, ['BASIC'])
             student = _get_total(student_slips, all_values, ['BASIC'])
@@ -114,6 +117,8 @@ class L10nBeSocialSecurityCertificate(models.TransientModel):
             representation_fees = _get_total(monthly_slips, all_values, ['REP.FEES', 'REP.FEES.VOLATILE'])
             private_car = _get_total(monthly_slips + student_slips, all_values, ['CAR.PRIV'])
             public_transport = _get_total(monthly_slips + student_slips, all_values, ['PUB.TRANS'])
+            cycle_allowance = _get_total(monthly_slips + student_slips, all_values, ['CYCLE'])
+            canteen_costs = _get_total(monthly_slips, all_values, ['CANTEEN'])
             atn_car = atn_without_onss
             withholding_taxes = _get_total(aggregate_payslips, all_values, ['P.P'])
             misc_onss = _get_total(aggregate_payslips, all_values, ['M.ONSS'])
@@ -152,7 +157,9 @@ class L10nBeSocialSecurityCertificate(models.TransientModel):
                 employee_ids = aggregate_payslips.employee_id.ids
                 wizard_274.with_context(wizard_274xx_force_employee_ids=employee_ids)._compute_line_ids()
 
-            withholding_taxes_exemption = wizard_274.deducted_amount_32 + wizard_274.deducted_amount_33 + wizard_274.deducted_amount_34
+            withholding_taxes_exemption_32 = wizard_274.deducted_amount_32
+            withholding_taxes_exemption_33 = wizard_274.deducted_amount_33
+            withholding_taxes_exemption_34 = wizard_274.deducted_amount_34
             withholding_taxes_capping = -wizard_274.capped_amount_34
 
             # YTI TODO: Include double holiday - 13th month
@@ -184,7 +191,9 @@ class L10nBeSocialSecurityCertificate(models.TransientModel):
                 'representation_fees': representation_fees,
                 'private_car': private_car,
                 'public_transport': public_transport,
+                'cycle_allowance': cycle_allowance,
                 'atn_car': atn_car,
+                'canteen_costs': canteen_costs,
                 'withholding_taxes': withholding_taxes,
                 'misc_onss': misc_onss,
                 'salary_attachment': salary_attachment,
@@ -205,7 +214,9 @@ class L10nBeSocialSecurityCertificate(models.TransientModel):
                 'withholding_taxes_deduction': withholding_taxes_deduction,
                 'total_employer_cost': total_employer_cost,
                 'holiday_pay_provision': holiday_pay_provision,
-                'withholding_taxes_exemption': withholding_taxes_exemption,
+                'withholding_taxes_exemption_32': withholding_taxes_exemption_32,
+                'withholding_taxes_exemption_33': withholding_taxes_exemption_33,
+                'withholding_taxes_exemption_34': withholding_taxes_exemption_34,
                 'withholding_taxes_capping': withholding_taxes_capping,
             }
             report_data.append((aggregate_name, aggregate_data))

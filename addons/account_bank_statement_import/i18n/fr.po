@@ -3,16 +3,16 @@
 # 	* account_bank_statement_import
 # 
 # Translators:
-# Martin Trigaux, 2022
 # Cécile Collart <cco@odoo.com>, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-23 08:23+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: Cécile Collart <cco@odoo.com>, 2022\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +21,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: account_bank_statement_import
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_bank_statement_import/static/src/js/account_bank_statement_import.js:0
 #, python-format
 msgid " Import Template for Bank Statements"
 msgstr "Importer un modèle pour les relevés bancaires"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "%d transactions had already been imported and were ignored."
 msgstr "%d transactions ont déjà été importées et ont été ignorées."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "1 transaction had already been imported and was ignored."
@@ -47,10 +49,11 @@ msgstr ""
 " fois !"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
-msgid "Already imported items"
-msgstr "Eléments déjà importés"
+msgid "Bank Statement %s.pdf"
+msgstr "Relevé Bancaire %s.pdf"
 
 #. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_bank_statement_line
@@ -58,11 +61,19 @@ msgid "Bank Statement Line"
 msgstr "Ligne de relevé bancaire"
 
 #. module: account_bank_statement_import
+#. odoo-python
+#: code:addons/account_bank_statement_import/models/account_journal.py:0
+#, python-format
+msgid "Bank Statement.pdf"
+msgstr "Relevé Bancaire.pdf"
+
+#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_setup_bank_manual_config
 msgid "Bank setup manual config"
 msgstr "Configuration manuelle des paramètre de la banque"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -73,6 +84,7 @@ msgstr ""
 " un journal manuellement."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -83,12 +95,14 @@ msgstr ""
 "Avez-vous installé le module qui supporte ce type de fichier ?"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Go to Apps"
 msgstr "Aller aux Apps"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -99,6 +113,7 @@ msgstr ""
 "sur chacun d'eux."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Import"
@@ -110,28 +125,26 @@ msgid "Import ID"
 msgstr "ID d'importation"
 
 #. module: account_bank_statement_import
-#: model_terms:ir.ui.view,arch_db:account_bank_statement_import.journal_dashboard_view_inherit
-msgid "Import Statement"
-msgstr "Importation d'un relevé"
-
-#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_journal
 msgid "Journal"
 msgstr "Journal"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No attachment was provided"
 msgstr "Aucune pièce jointe n'a été fournie"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No currency found matching '%s'."
 msgstr "Pas de devise trouvée correspondant à '%s'."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -140,6 +153,7 @@ msgstr ""
 "Le compte de ce relevé (%s) n'est pas le même que celui du journal (%s)."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -150,24 +164,28 @@ msgstr ""
 "(%s)."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any statement for account %s."
 msgstr "Ce fichier ne contient aucun relevé de le compte %s."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any transaction for account %s."
 msgstr "Ce fichier ne contient aucune transaction pour le compte %s."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You already have imported that file."
 msgstr "Vous avez déjà importé ce fichier."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You have to set a Default Account for the journal: %s"

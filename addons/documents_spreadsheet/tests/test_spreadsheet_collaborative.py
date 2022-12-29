@@ -144,6 +144,21 @@ class SpreadsheetCollaborative(SpreadsheetTestCommon):
         spreadsheet.unlink()
         self.assertFalse(self.env["spreadsheet.revision"].browse(ids).exists())
 
+    def test_unlink_archived_revisions(self):
+        spreadsheet = self.create_spreadsheet()
+        spreadsheet.dispatch_spreadsheet_message(
+            self.new_revision_data(spreadsheet)
+        )
+        self.snapshot(
+            spreadsheet,
+            self.get_revision(spreadsheet), "snapshot-id", "{}",
+        )
+        revisions = spreadsheet.with_context(active_test=False).spreadsheet_revision_ids
+        self.assertTrue(revisions)
+        self.assertFalse(any(revisions.mapped('active')))
+        spreadsheet.unlink()
+        self.assertFalse(revisions.exists())
+
     def test_autovacuum_revisions(self):
         spreadsheet = self.create_spreadsheet()
         with freeze_time("2021-01-10 18:00"):

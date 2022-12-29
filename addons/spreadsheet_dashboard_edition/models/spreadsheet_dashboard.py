@@ -14,3 +14,8 @@ class SpreadsheetDashboard(models.Model):
                 "spreadsheet_id": self.id,
             },
         }
+
+    def write(self, vals):
+        if "data" in vals:
+            self._delete_collaborative_data()
+        return super().write(vals)

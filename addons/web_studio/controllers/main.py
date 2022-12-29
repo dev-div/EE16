@@ -676,13 +676,8 @@ Are you sure you want to remove the selection values of those records?""") % len
             view.write({'arch': view_arch})
             ViewModel = request.env[view.model]
             try:
-                fields_view = ViewModel.with_context(studio=True).get_view(view.id, view.type)
-                view_type = 'list' if view.type == 'tree' else view.type
-                models = fields_view['models']
-                return {
-                    'views': {view_type: fields_view},
-                    'model_fields': {model: request.env[model].fields_get() for model in models}
-                }
+                studio_view = self._get_studio_view(view)
+                return self._return_view(view, studio_view)
             except Exception:
                 return False
 
@@ -751,7 +746,7 @@ Are you sure you want to remove the selection values of those records?""") % len
             # by studio will be only '/tree' but this is useless since the
             # subview xpath already specify this element. So in this case,
             # we don't add the expr computed by studio.
-            elif len(xpath) - len(expr) != xpath.find(expr):
+            elif not xpath.endswith(expr):
                 expr = xpath + expr
         return expr
 
@@ -1534,9 +1529,8 @@ Are you sure you want to remove the selection values of those records?""") % len
                 'expr': expr,
                 'position': position
             })
-        inline_view = request.env[model].get_view(view_type=subview_type)
-        view_arch = inline_view['arch']
-        xml_node = self._inline_view_filter_nodes(etree.fromstring(view_arch))
+        view_arch, _ = request.env[model]._get_view(view_type=subview_type)
+        xml_node = self._inline_view_filter_nodes(view_arch)
         xpath_node.insert(0, xml_node)
         studio_view.arch_db = etree.tostring(arch, encoding='utf-8', pretty_print=True)
         return studio_view.arch_db

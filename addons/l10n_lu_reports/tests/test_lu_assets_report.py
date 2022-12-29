@@ -108,7 +108,7 @@ class LuxembourgAssetsReportTaxesTest(TestAccountReportsCommon):
     @classmethod
     def _get_report_and_options(cls, report, date_from, date_to):
         report = report.with_context(date_from=date_from, date_to=date_to, lang='EN_us')
-        options = report._get_options({'date': {'date_from': date_from, 'date_to': date_to, 'filter': 'custom'}})
+        options = cls._generate_options(report, date_from, date_to)
         return report, options
 
     @classmethod

@@ -14,7 +14,7 @@ import {
     useBus,
     useOwnedDialogs,
     useService } from "@web/core/utils/hooks";
-import { removeContextUserInfo } from "@spreadsheet_edition/assets/helpers";
+import { omit } from "@web/core/utils/objects";
 
 /**
  * The following patch will add two new entries to the 'Favorites' dropdown menu
@@ -29,6 +29,7 @@ const EmbeddedViewRendererPatch = {
             this.orm = useService('orm');
             this.actionService = useService('action');
             this.addDialog = useOwnedDialogs();
+            this.userService = useService('user');
         }
     },
     /**
@@ -36,7 +37,7 @@ const EmbeddedViewRendererPatch = {
      */
     _getViewContext: function () {
         if (this.env.searchModel) {
-            return removeContextUserInfo(this.env.searchModel.context);
+            return omit(this.env.searchModel.context, ...Object.keys(this.userService.context));
         }
         return {};
     },

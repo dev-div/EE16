@@ -29,3 +29,34 @@ class SpreadsheetDashboardAccess(TransactionCase):
         # only read access, no one ever joined this dashboard
         result = dashboard.with_user(self.user).join_spreadsheet_session()
         self.assertEqual(result["raw"], b"{}")
+
+    def test_update_data_reset_collaborative(self):
+        dashboard_group = self.env["spreadsheet.dashboard.group"].create({
+            "name": "Dashboard group"
+        })
+        dashboard = self.env["spreadsheet.dashboard"].create(
+            {
+                "name": "a dashboard",
+                "data": base64.b64encode(b"{}"),
+                "group_ids": [Command.set(self.group.ids)],
+                "dashboard_group_id": dashboard_group.id,
+            }
+        )
+        dashboard.dispatch_spreadsheet_message({
+            "type": "REMOTE_REVISION",
+            "serverRevisionId": "rev-1-id",
+            "nextRevisionId": "rev-2-id",
+            "commands": [],
+        })
+        dashboard.dispatch_spreadsheet_message({
+            "type": "SNAPSHOT",
+            "serverRevisionId": "rev-2-id",
+            "nextRevisionId": "rev-3-id",
+            "data": {},
+        })
+        revisions = dashboard.with_context(active_test=False).spreadsheet_revision_ids
+        self.assertEqual(len(revisions.exists()), 2)
+        self.assertTrue(dashboard.spreadsheet_snapshot)
+        dashboard.data = base64.b64encode(b"{ version: 2 }")
+        self.assertFalse(revisions.exists())
+        self.assertFalse(dashboard.spreadsheet_snapshot)

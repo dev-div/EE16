@@ -1,4 +1,14 @@
 .o_kanban_timer_start {
     min-width: 5rem;
     line-height: 1.5rem;
+    &:not(:hover){
+        .o_timer_toggle_button {
+            display: none;
+        }
+    }
+    &:hover {
+        .o_timesheet_display_timer {
+            display: none;
+        }
+    }
 }

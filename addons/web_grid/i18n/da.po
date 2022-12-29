@@ -3,19 +3,19 @@
 # 	* web_grid
 # 
 # Translators:
-# Joe Hansen <joedalton2@yahoo.dk>, 2019
-# Martin Trigaux, 2019
-# Pernille Kristensen <pernillekristensen1994@gmail.com>, 2019
-# Ejner Sønniksen <ejner@vkdata.dk>, 2019
-# lhmflexerp <lhm@flexerp.dk>, 2019
+# Pernille Kristensen <pernillekristensen1994@gmail.com>, 2022
+# Ejner Sønniksen <ejner@vkdata.dk>, 2022
+# Martin Trigaux, 2022
+# Mads Søndergaard, 2022
+# Mads Søndergaard, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 11:59+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: lhmflexerp <lhm@flexerp.dk>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Mads Søndergaard, 2022\n"
 "Language-Team: Danish (https://www.transifex.com/odoo/teams/41243/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +34,13 @@ msgstr "Visning af handlingsvindue"
 #: code:addons/web_grid/static/src/xml/grid_view.xml:0
 #, python-format
 msgid "Add a Line"
+msgstr "Tilføj en linje"
+
+#. module: web_grid
+#. openerp-web
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
+#, python-format
+msgid "Add a line"
 msgstr "Tilføj en linje"
 
 #. module: web_grid
@@ -67,12 +74,28 @@ msgstr "Grid"
 #. module: web_grid
 #. openerp-web
 #: code:addons/web_grid/static/src/xml/grid_view.xml:0
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
 #, python-format
 msgid "Next"
 msgstr "Næste"
 
 #. module: web_grid
 #. openerp-web
+#: code:addons/web_grid/static/src/js/grid_controller.js:0
+#, python-format
+msgid "No activities found"
+msgstr ""
+
+#. module: web_grid
+#. openerp-web
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
+#, python-format
+msgid "None"
+msgstr "Ingen"
+
+#. module: web_grid
+#. openerp-web
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
 #: code:addons/web_grid/static/src/xml/grid_view.xml:0
 #, python-format
 msgid "Previous"
@@ -80,20 +103,23 @@ msgstr "Forrige"
 
 #. module: web_grid
 #. openerp-web
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
 #, python-format
 msgid "See all the records aggregated in this cell"
 msgstr "Se alle poster, der er aggregeret i denne celle"
 
 #. module: web_grid
 #: code:addons/web_grid/models/models.py:0
+#: code:addons/web_grid/models/models.py:0
 #, python-format
 msgid "The field used as readonly type must have a group_operator attribute."
 msgstr ""
+"Feltet som bruges som en skrivebeskyttet type, skal have en group_operator "
+"egenskab."
 
 #. module: web_grid
 #. openerp-web
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
+#: code:addons/web_grid/static/src/js/grid_model.js:0
 #, python-format
 msgid ""
 "The sectioned grid view can't handle groups with different columns sets"
@@ -116,29 +142,6 @@ msgid "Total"
 msgstr "I alt"
 
 #. module: web_grid
-#. openerp-web
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
-#, python-format
-msgid "Total (%s)"
-msgstr ""
-
-#. module: web_grid
-#. openerp-web
-#: code:addons/web_grid/static/src/js/grid_controller.js:0
-#, python-format
-msgid "Undefined"
-msgstr "Udefineret"
-
-#. module: web_grid
-#. openerp-web
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
-#: code:addons/web_grid/static/src/js/grid_renderer.js:0
-#, python-format
-msgid "Unknown"
-msgstr "Ukendt"
-
-#. module: web_grid
 #: model:ir.model,name:web_grid.model_ir_ui_view
 msgid "View"
 msgstr "Vis"
@@ -156,3 +159,13 @@ msgid ""
 "Week %(weeknumber)s\n"
 "%(week_start)s - %(week_end)s"
 msgstr ""
+"Uge %(weeknumber)s\n"
+"%(week_start)s - %(week_end)s"
+
+#. module: web_grid
+#. openerp-web
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
+#: code:addons/web_grid/static/src/xml/grid_view.xml:0
+#, python-format
+msgid "\\u00A0"
+msgstr "\\u00A0"

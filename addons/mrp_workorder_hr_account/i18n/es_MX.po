@@ -8,9 +8,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:28+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
 "Last-Translator: Braulio D. López Vázquez <bdl@odoo.com>, 2022\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/odoo/teams/41243/es_MX/)\n"
@@ -49,6 +49,11 @@ msgid "MRP Cost Structure Report"
 msgstr "Reporte de estructura de costos de MRP"
 
 #. module: mrp_workorder_hr_account
+#: model:ir.model,name:mrp_workorder_hr_account.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr "Uso del centro de trabajo"
+
+#. module: mrp_workorder_hr_account
 #: model:ir.model,name:mrp_workorder_hr_account.model_mrp_workorder
 msgid "Work Order"
 msgstr "Orden de trabajo"
@@ -59,7 +64,8 @@ msgid "Workcenter Productivity Log"
 msgstr "Registro de productividad del centro de trabajo"
 
 #. module: mrp_workorder_hr_account
+#. odoo-python
 #: code:addons/mrp_workorder_hr_account/models/mrp_workorder.py:0
 #, python-format
-msgid "[EMPL] %s"
-msgstr "[EMPL] %s"
+msgid "[EMPL] %s - %s"
+msgstr "[EMPL] %s - %s"

@@ -51,14 +51,23 @@ class HelpdeskTicket(models.Model):
         for ticket in self:
             product_ids = set(order_data.get(ticket.partner_id.id, []) + outoing_product.get(ticket.partner_id.id, []))
             ticket.suitable_product_ids = [fields.Command.set(product_ids)]
-            if ticket.product_id._origin not in ticket.suitable_product_ids._origin:
-                ticket.product_id = False
             ticket.has_partner_picking = outoing_product.get(ticket.partner_id.id, False)
+
+    @api.onchange('suitable_product_ids')
+    def onchange_product_id(self):
+        if self.product_id not in self.suitable_product_ids:
+            self.product_id = False
 
     @api.depends('picking_ids')
     def _compute_pickings_count(self):
         for ticket in self:
             ticket.pickings_count = len(ticket.picking_ids)
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'suitable_product_ids' in vals:
+            self.filtered(lambda t: t.product_id not in t.suitable_product_ids).product_id = False
+        return res
 
     def action_view_pickings(self):
         self.ensure_one()

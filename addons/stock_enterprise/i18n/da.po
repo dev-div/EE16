@@ -3,19 +3,17 @@
 # 	* stock_enterprise
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Morten Schou <ms@msteknik.dk>, 2019
-# Jesper Carstensen <jc@danodoo.dk>, 2019
-# Sanne Kristensen <sanne@vkdata.dk>, 2019
-# Ejner Sønniksen <ejner@vkdata.dk>, 2019
+# Ejner Sønniksen <ejner@vkdata.dk>, 2022
+# Mads Søndergaard, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Ejner Sønniksen <ejner@vkdata.dk>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Danish (https://www.transifex.com/odoo/teams/41243/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,6 +25,16 @@ msgstr ""
 #: model:ir.model.fields.selection,name:stock_enterprise.selection__stock_report__state__assigned
 msgid "Available"
 msgstr "Til rådighed"
+
+#. module: stock_enterprise
+#: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_pivot_view
+msgid "Average Cycle Time (Days)"
+msgstr ""
+
+#. module: stock_enterprise
+#: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_pivot_view
+msgid "Average Delay (Days)"
+msgstr ""
 
 #. module: stock_enterprise
 #: model:ir.model.fields.selection,name:stock_enterprise.selection__stock_report__state__cancel
@@ -51,12 +59,12 @@ msgstr "Kunder"
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_form_view
 msgid "Cycle Time"
-msgstr ""
+msgstr "Cyklus tid"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__cycle_time
 msgid "Cycle Time (Days)"
-msgstr ""
+msgstr "Cyklus tid (dage)"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_form_view
@@ -71,7 +79,7 @@ msgstr "Forsinkelse"
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__delay
 msgid "Delay (Days)"
-msgstr ""
+msgstr "Forsinkelse (dage)"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
@@ -79,6 +87,8 @@ msgid ""
 "Delay to deliver an order (in days). Computed by comparing the scheduled "
 "date of the delivery order and its effective date."
 msgstr ""
+"Forsinkelse til levering af en ordre (i dage). Udregnet ved at sammenligne "
+"den planlagte dato på leveringsordren, og dens effektive dato."
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
@@ -86,16 +96,18 @@ msgid ""
 "Delay to receive an order (in days). Computed by comparing the scheduled "
 "date of the receipt and its effective date."
 msgstr ""
+"Forsinkelse til modtagelse af ordre (i dage). Udregnet ved at sammenligne "
+"den planlagte dato for modtagelse, og dens effektive dato."
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
 msgid "Deliveries Cycle Time"
-msgstr ""
+msgstr "Leveringer cyklus tid"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
 msgid "Deliveries Delay"
-msgstr ""
+msgstr "Leveringer forsinkelse"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__display_name
@@ -110,12 +122,12 @@ msgstr "Udført"
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_search_view
 msgid "Done Deliveries"
-msgstr ""
+msgstr "Fuldførte leveringer"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_search_view
 msgid "Done Receipts"
-msgstr ""
+msgstr "Fuldførte modtagere"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_search_view
@@ -138,19 +150,14 @@ msgid "Internal"
 msgstr "Intern"
 
 #. module: stock_enterprise
-#: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__inventory_id
-msgid "Inventory Adjustment"
-msgstr "Lagerjustering"
-
-#. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__is_late
 msgid "Is Late"
-msgstr ""
+msgstr "Er forsinket"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__is_backorder
 msgid "Is a Backorder"
-msgstr ""
+msgstr "Er en restordre"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report____last_update
@@ -158,19 +165,19 @@ msgid "Last Modified on"
 msgstr "Sidst ændret den"
 
 #. module: stock_enterprise
-#: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_view_grid
-msgid "Month"
-msgstr "Måned"
-
-#. module: stock_enterprise
 #: model:ir.model.fields.selection,name:stock_enterprise.selection__stock_report__state__draft
 msgid "New"
 msgstr "Ny"
 
 #. module: stock_enterprise
+#: model_terms:ir.actions.act_window,help:stock_enterprise.stock_report_dashboard_action
+msgid "No data yet!"
+msgstr "Ingen data endnu!"
+
+#. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__operation_type
 msgid "Operation Type"
-msgstr ""
+msgstr "Operation type"
 
 #. module: stock_enterprise
 #: model:ir.model.fields.selection,name:stock_enterprise.selection__stock_report__state__partially_available
@@ -183,9 +190,14 @@ msgid "Partner"
 msgstr "Kontakt"
 
 #. module: stock_enterprise
+#: model:ir.ui.menu,name:stock_enterprise.stock_dashboard_menuitem
+msgid "Performance"
+msgstr "Resultater"
+
+#. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__picking_name
 msgid "Picking Name"
-msgstr ""
+msgstr "Pluk navn"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__product_id
@@ -204,19 +216,18 @@ msgstr "Antal produkter"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_enterprise_move_tree_view
-#: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_view_grid
 msgid "Quantity"
 msgstr "Antal"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
 msgid "Receipts Cycle Time"
-msgstr ""
+msgstr "Modtagelser cyklus tid"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
 msgid "Receipts Delay"
-msgstr ""
+msgstr "Modtagelser forsinkelse"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__reference
@@ -242,17 +253,12 @@ msgstr "Status"
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_pivot_view
 msgid "Stock Overview"
-msgstr ""
-
-#. module: stock_enterprise
-#: model:ir.model,name:stock_enterprise.model_report_stock_quantity
-msgid "Stock Quantity Report"
-msgstr ""
+msgstr "Lager oversigt"
 
 #. module: stock_enterprise
 #: model:ir.model,name:stock_enterprise.model_stock_report
 msgid "Stock Report"
-msgstr ""
+msgstr "Lager rapport"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
@@ -260,6 +266,8 @@ msgid ""
 "Time needed to deliver an order (in days). Computed by comparing the "
 "creation date of the delivery order and its done date."
 msgstr ""
+"Tid nødvendig til levering af en ordre (i dage). Udregnet ved at sammenligne"
+" oprettelses dato på leveringsordren med dens fuldførelses dato."
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view
@@ -267,11 +275,13 @@ msgid ""
 "Time needed to receive an order (in days). Computed by comparing the "
 "creation date of the receipt and its done date."
 msgstr ""
+"Tid nødvendig til modtagelse af ordre (i dage). Udregnet ved at sammenligne "
+"oprettelses dato for modtagelsen, og dens fuldførelses dato."
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__date_done
 msgid "Transfer Date"
-msgstr ""
+msgstr "Overførsel dato"
 
 #. module: stock_enterprise
 #: model:ir.model.fields,field_description:stock_enterprise.field_stock_report__picking_id
@@ -300,14 +310,8 @@ msgstr "Afventer tilgængelighed"
 
 #. module: stock_enterprise
 #: model:ir.actions.act_window,name:stock_enterprise.stock_report_dashboard_action
-#: model:ir.ui.menu,name:stock_enterprise.stock_dashboard_menuitem
 msgid "Warehouse Analysis"
-msgstr ""
-
-#. module: stock_enterprise
-#: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_view_grid
-msgid "Week"
-msgstr "Uge"
+msgstr "Varehus analyse"
 
 #. module: stock_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_enterprise.stock_report_dashboard_view

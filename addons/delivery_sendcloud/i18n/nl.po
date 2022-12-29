@@ -5,14 +5,15 @@
 # Translators:
 # Martin Trigaux, 2022
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-27 15:40+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "%(partner_name)s email required"
 msgstr "%(partner_name)s e-mailadres vereist"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "%(partner_name)s phone required"
@@ -78,6 +81,7 @@ msgid "Carrier"
 msgstr "Vervoerder"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Choose Sendcloud Shipping Products"
@@ -90,12 +94,14 @@ msgid "Choose from the available sendcloud shipping methods"
 msgstr "Kies uit de beschikbare verzendmethoden van sendcloud"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "Could not find currency %s"
 msgstr "Kan valuta %s niet vinden"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "Could not get document!"
@@ -150,6 +156,7 @@ msgid "Display Name"
 msgstr "Weergavenaam"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid ""
@@ -165,18 +172,21 @@ msgid "External Sendcloud Id"
 msgstr "Externe Sendcloud-ID"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Failed to create the return label!"
 msgstr "Kan het retourlabel niet maken!"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Failed to get the actual price!"
 msgstr "Kan de werkelijke prijs niet krijgen!"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Go to the shipping method"
@@ -194,6 +204,7 @@ msgid "Integration"
 msgstr "Integratie"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Label not received by carrier, please try again later"
@@ -223,6 +234,7 @@ msgid "Load your SendCloud shipping products"
 msgstr "Laad je SendCloud-verzendproducten"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid ""
@@ -244,24 +256,28 @@ msgid "Minimum Weight"
 msgstr "Minimaal gewicht"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Must be a Sendcloud carrier!"
 msgstr "Moet een Sendcloud-vervoerder zijn!"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "No address found with contact name %s on your sendcloud account."
 msgstr "Geen adres gevonden met contactnaam %s op je sendcloud-account."
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "No picking or order provided"
 msgstr "Geen pick-up of bestelling voorzien"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -383,6 +399,7 @@ msgid "Sendcloud Shipping Product"
 msgstr "Sendcloud verzendproduct"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "Shipment %s cancelled"
@@ -391,7 +408,7 @@ msgstr "Zending %s geannuleerd"
 #. module: delivery_sendcloud
 #: model:ir.model.fields.selection,name:delivery_sendcloud.selection__delivery_carrier__sendcloud_shipping_rules__ship
 msgid "Shipping"
-msgstr "Afleveradres"
+msgstr "Verzenden"
 
 #. module: delivery_sendcloud
 #: model:ir.model.fields,field_description:delivery_sendcloud.field_sendcloud_shipping_product__carrier
@@ -420,6 +437,14 @@ msgstr ""
 "in een pakkettype dat je als standaard instelt"
 
 #. module: delivery_sendcloud
+#. odoo-python
+#: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
+#, python-format
+msgid "Something went wrong, parcel not returned from Sendcloud"
+msgstr "Er ging iets mis, pakket niet terug van Sendcloud"
+
+#. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
@@ -432,12 +457,14 @@ msgid "Stock package type"
 msgstr "Verpakkingssoort"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "The %s address needs to have the street, city, zip, and country"
 msgstr "Het adres %s moet de straat, stad, postcode en land hebben"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid ""
@@ -448,12 +475,14 @@ msgstr ""
 "ontbreekt voor de volgende product(en): %s"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid "The selected shipping method does not ship from %s to %s"
 msgstr "De geselecteerde verzendmethode wordt niet verzonden van %s naar %s"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid ""
@@ -464,6 +493,18 @@ msgstr ""
 " %s"
 
 #. module: delivery_sendcloud
+#. odoo-python
+#: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"There are no shipping products available, please activate carriers in your "
+"account"
+msgstr ""
+"Er zijn geen verzendproducten beschikbaar, activeer vervoerders in je "
+"account"
+
+#. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/sendcloud_service.py:0
 #, python-format
 msgid ""
@@ -483,6 +524,7 @@ msgid "Use Sendcloud shipping rules"
 msgstr "Gebruik de verzendregels van Sendcloud"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "You must add your public and secret key for sendcloud delivery type!"
@@ -491,6 +533,7 @@ msgstr ""
 "sendcloud!"
 
 #. module: delivery_sendcloud
+#. odoo-python
 #: code:addons/delivery_sendcloud/models/delivery_carrier.py:0
 #, python-format
 msgid "You must have a shipping product configured!"

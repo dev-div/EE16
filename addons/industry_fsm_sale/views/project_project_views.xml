@@ -12,6 +12,9 @@
             <xpath expr="//page[@name='billing_employee_rate']//group/field[@name='sale_line_id']" position="attributes">
                 <attribute name="attrs">{'invisible': [('is_fsm', '=', True)]}</attribute>
             </xpath>
+            <xpath expr="//field[@name='sale_line_id'][2]" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_fsm', '=', True)]}</attribute>
+            </xpath>
 
             <xpath expr="//field[@name='sale_line_employee_ids']/tree/field[@name='sale_line_id']" position="attributes">
                 <attribute name="attrs">{'column_invisible': [('parent.is_fsm', '=', True)], 'required': [('parent.is_fsm', '=', False)]}</attribute>

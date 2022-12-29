@@ -3,8 +3,7 @@ from odoo.addons.account_avatax.tests.common import TestAccountAvataxCommon
 from odoo.addons.sale_subscription.tests.common_sale_subscription import TestSubscriptionCommon
 
 
-@tagged("-at_install", "post_install")
-class TestSaleSubscriptionAvalara(TestAccountAvataxCommon, TestSubscriptionCommon):
+class TestSaleSubscriptionAvalaraCommon:
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -13,9 +12,12 @@ class TestSaleSubscriptionAvalara(TestAccountAvataxCommon, TestSubscriptionCommo
         partner.country_id = cls.env.ref('base.us')
         partner.zip = '94134'
         partner.state_id = cls.env.ref('base.state_us_5') # California
+        cls.env.ref('product.product_category_all').avatax_category_id = cls.env.ref('account_avatax.D0000000')
 
+
+@tagged("-at_install", "post_install")
+class TestSaleSubscriptionAvalara(TestSaleSubscriptionAvalaraCommon, TestAccountAvataxCommon, TestSubscriptionCommon):
     def test_01_subscription_avatax_called(self):
-        self.env.ref('product.product_category_all').avatax_category_id = self.env.ref('account_avatax.D0000000')
         self.subscription.action_confirm()
 
         with self._capture_request({'lines': [], 'summary': []}) as capture:

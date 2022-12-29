@@ -19,10 +19,10 @@ def _get_init_messaging_result(self):
     res['voipConfig'] = {
         'mode': 'demo',
         'pbxAddress': "localhost",
-        'webSocketUrl': "ws://localhost",
+        'webSocketUrl': "wss://edge.sip.onsip.com",
     }
     res['hasDocumentsUserGroup'] = False
-    res['helpdesk_livechat_active'] = 0
+    res['helpdesk_livechat_active'] = False
     return res
 
 def _get_query_count(self):

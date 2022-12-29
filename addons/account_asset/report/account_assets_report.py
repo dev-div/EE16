@@ -130,10 +130,10 @@ class AssetReportCustomHandler(models.AbstractModel):
                 col['name'] = format_date(self.env, column_group_options['date']['date_to'])
 
         options['custom_columns_subheaders'] = [
-            {"name": "Characteristics", "colspan": 4},
-            {"name": "Assets", "colspan": 4},
-            {"name": "Depreciation", "colspan": 4},
-            {"name": "Book Value", "colspan": 1}
+            {"name": _("Characteristics"), "colspan": 4},
+            {"name": _("Assets"), "colspan": 4},
+            {"name": _("Depreciation"), "colspan": 4},
+            {"name": _("Book Value"), "colspan": 1}
         ]
 
         # Unfold all by default
@@ -227,16 +227,21 @@ class AssetReportCustomHandler(models.AbstractModel):
 
             # Format the data
             columns_by_expr_label = {
-                options['columns'][0]['expression_label']: al['asset_acquisition_date'] and format_date(self.env, al['asset_acquisition_date']) or '',  # Characteristics
-                options['columns'][1]['expression_label']: al['asset_date'] and format_date(self.env, al['asset_date']) or '',
-                options['columns'][2]['expression_label']: (al['asset_method'] == 'linear' and _('Linear')) or (al['asset_method'] == 'degressive' and _('Declining')) or _('Dec. then Straight'),
-                options['columns'][3]['expression_label']: asset_depreciation_rate}
-            for idx, val in enumerate([
-                asset_opening, asset_add, asset_minus, asset_closing,
-                depreciation_opening, depreciation_add, depreciation_minus, depreciation_closing,
-                asset_closing - depreciation_closing,
-            ], start=4):
-                columns_by_expr_label.update({options['columns'][idx]['expression_label']: val})
+                "acquisition_date": al["asset_acquisition_date"] and format_date(self.env, al["asset_acquisition_date"]) or "",  # Characteristics
+                "first_depreciation": al["asset_date"] and format_date(self.env, al["asset_date"]) or "",
+                "method": (al["asset_method"] == "linear" and _("Linear")) or (al["asset_method"] == "degressive" and _("Declining")) or _("Dec. then Straight"),
+                "duration_rate": asset_depreciation_rate,
+                "assets_date_from": asset_opening,
+                "assets_plus": asset_add,
+                "assets_minus": asset_minus,
+                "assets_date_to": asset_closing,
+                "depre_date_from": depreciation_opening,
+                "depre_plus": depreciation_add,
+                "depre_minus": depreciation_minus,
+                "depre_date_to": depreciation_closing,
+                "balance": asset_closing - depreciation_closing,
+            }
+
             lines.append((al['account_id'], al['asset_id'], columns_by_expr_label))
         return lines
 
@@ -308,13 +313,15 @@ class AssetReportCustomHandler(models.AbstractModel):
         self.env['account.move.line'].check_access_rights('read')
         self.env['account.asset'].check_access_rights('read')
 
+        move_filter = f"""move.state {"!= 'cancel'" if options.get('all_entries') else "= 'posted'"}"""
+
         sql = f"""
             SELECT asset.id AS asset_id,
                    asset.parent_id AS parent_id,
                    asset.name AS asset_name,
                    asset.original_value AS asset_original_value,
                    asset.currency_id AS asset_currency_id,
-                   asset.acquisition_date AS asset_date,
+                   MIN(move.date) AS asset_date,
                    asset.disposal_date AS asset_disposal_date,
                    asset.acquisition_date AS asset_acquisition_date,
                    asset.method AS asset_method,
@@ -326,9 +333,8 @@ class AssetReportCustomHandler(models.AbstractModel):
                    account.name AS account_name,
                    account.id AS account_id,
                    account.company_id AS company_id,
-                   COALESCE(SUM(move.depreciation_value) FILTER (WHERE move.date < %(date_from)s), 0) + COALESCE(asset.already_depreciated_amount_import, 0) AS depreciated_before,
-                   COALESCE(SUM(move.depreciation_value) FILTER (WHERE move.date BETWEEN %(date_from)s AND %(date_to)s), 0) AS depreciated_during,
-                   COALESCE(SUM(move.depreciation_value) FILTER (WHERE move.date > %(date_to)s), 0) AS remaining
+                   COALESCE(SUM(move.depreciation_value) FILTER (WHERE move.date < %(date_from)s AND {move_filter}), 0) + COALESCE(asset.already_depreciated_amount_import, 0) AS depreciated_before,
+                   COALESCE(SUM(move.depreciation_value) FILTER (WHERE move.date BETWEEN %(date_from)s AND %(date_to)s AND {move_filter}), 0) AS depreciated_during
               FROM account_asset AS asset
          LEFT JOIN account_account AS account ON asset.account_asset_id = account.id
          LEFT JOIN account_move move ON move.asset_id = asset.id
@@ -339,7 +345,6 @@ class AssetReportCustomHandler(models.AbstractModel):
                AND asset.state not in ('model', 'draft', 'cancelled')
                AND asset.asset_type = 'purchase'
                AND asset.active = 't'
-               AND move.state {"!= 'cancel'" if options.get('all_entries') else "= 'posted'"}
                AND reversal.id IS NULL
           GROUP BY asset.id, account.id
           ORDER BY account.code, asset.acquisition_date;

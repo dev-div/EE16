@@ -19,7 +19,7 @@
                     <div t-if="record.instagram_likes_count.value !== '0'"
                          class="o_social_subtle_btn_readonly ps-2 pe-3">
                         <i class="fa fa-heart me-1" title="Likes"/>
-                        <b t-esc="_insertThousandSeparator(record.instagram_likes_count.raw_value)"/>
+                        <field name="instagram_likes_count" class="fw-bold"/>
                     </div>
                     <div t-attf-class="o_social_instagram_comments o_social_comments o_social_subtle_btn px-3"
                          t-on-click.prevent="_onInstagramCommentsClick">

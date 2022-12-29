@@ -32,8 +32,8 @@
                         close="1" attrs="{'invisible': ['|', ('state', '=', 'published'), ('resource_type', '=', 'material')]}" groups="planning.group_planning_manager" data-hotkey="q"/>
                     <button string="Publish" type="object" name="action_publish" class="btn btn-primary"
                         close="1" groups="planning.group_planning_manager" attrs="{'invisible': ['|', ('state', '=', 'published'), ('resource_type', '=', 'material')]}" data-hotkey="w"/>
-                    <button name="action_self_assign" class="btn btn-primary" type="object" string="I Take It"
-                        attrs="{'invisible': ['|', '|', ('resource_id', '!=', False), ('start_datetime', '=', False), ('end_datetime', '=', False)]}" close="1"/>
+                    <button name="action_self_assign" class="btn btn-secondary" type="object" string="I Take It"
+                        attrs="{'invisible': ['|', '|', '|', ('resource_id', '!=', False), ('start_datetime', '=', False), ('end_datetime', '=', False), ('is_past', '=', True)]}" close="1"/>
                     <button name="action_self_unassign" class="btn btn-secondary" type="object" string="I Am Unavailable"
                         attrs="{'invisible': ['|', '|', '|', '|', ('is_assigned_to_me', '=', False), ('allow_self_unassign', '=', False),
                         ('is_past', '=', True), ('is_unassign_deadline_passed', '=', True), ('resource_type', '=', 'material')]}"/>
@@ -98,36 +98,24 @@
                             </div>
                         </group>
                     </group>
-                    <group groups="planning.group_planning_manager">
-                        <group>
-                            <div colspan="2" class="o_checkbox_optional_field" groups="planning.group_planning_manager">
-                                <label for="repeat"/>
-                                <div>
-                                    <field name="repeat"/>
-                                    <div attrs="{'invisible': [('repeat', '=', False)]}" class="d-flex flex-column flex-grow-1">
-                                        <div class="d-flex">
-                                            <label for="repeat_interval" string="Every"/>
-                                            <field name="repeat_interval" class="flex-shrink-1" style="max-width: 4rem;"/>
-                                            <field name="repeat_unit" class="ms-2"/>
-                                        </div>
-                                        <div class="d-flex">
-                                            <field name="repeat_type" nolabel="1" attrs="{'required': [('repeat', '=', True)]}" class="flex-shrink-1" />
-                                            <span class="d-flex flex-shrink-1">
-                                                <field name="repeat_until" class="flex-shrink-1 ms-2" nolabel="1" attrs="{'invisible': [('repeat_type', '!=', 'until')], 'required': [('repeat_type', '=', 'until'), ('repeat', '=', True)]}"/>
-                                                <field name="repeat_number" class="flex-shrink-1 ms-2" attrs="{'invisible': [('repeat_type', '!=', 'x_times')], 'required': [('repeat_type', '=', 'x_times'), ('repeat', '=', True)]}" style="max-width: 4rem;"/>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="my-4 d-block d-md-flex" groups="planning.group_planning_manager">
+                        <label for="repeat"/>
+                        <field name="repeat"/>
+                        <div class="o_checkbox_optional_field">
+                            <div attrs="{'invisible': [('repeat', '=', False)]}" class="d-flex">
+                                <label for="repeat_interval" string="Every"/>
+                                <field name="repeat_interval" class="ms-2" style="max-width: 4rem;"/>
+                                <field name="repeat_unit" class="ms-2"/>
+                                <field name="repeat_type" nolabel="1" class="ms-2" attrs="{'required': [('repeat', '=', True)]}"/>
+                                <field name="repeat_until" class="ms-2" nolabel="1" attrs="{'invisible': [('repeat_type', '!=', 'until')], 'required': [('repeat_type', '=', 'until'), ('repeat', '=', True)]}"/>
+                                <field name="repeat_number" class="ms-2" attrs="{'invisible': [('repeat_type', '!=', 'x_times')], 'required': [('repeat_type', '=', 'x_times'), ('repeat', '=', True)]}" style="max-width: 4rem;"/>
                             </div>
-                            <field name="allow_template_creation" invisible="1"/>
-                            <div colspan="2" class="o_checkbox_optional_field" attrs="{'invisible': [('allow_template_creation', '=', False)]}" groups="planning.group_planning_manager">
-                                <label for="template_creation"/>
-                                <field name="template_creation"/>
-                            </div>
-                        </group>
-                    </group>
-                    <field name="name" placeholder="Additional note sent to the employee"/>
+                        </div>
+                    </div>
+                    <field name="allow_template_creation" invisible="1"/>
+                    <label for="template_creation" groups="planning.group_planning_manager"></label>
+                    <field name="template_creation" nolabel="1" groups="planning.group_planning_manager"/>
+                    <field name="name" nolabel="1" placeholder="Additional note sent to the employee"/>
                 </sheet>
             </form>
         </field>
@@ -185,6 +173,9 @@
                                 <t t-elif="record.resource_type.raw_value == 'material'">
                                     <span name="resource"><field name="resource_id"/></span>
                                 </t>
+                                <t t-else="">
+                                    <span name="role"><field name="role_id"/></span>
+                                </t>
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left"/>
@@ -240,9 +231,10 @@
                         groups="planning.group_planning_manager" attrs="{'invisible': ['|', ('state', '=', 'published'), ('resource_type', '=', 'material')]}" data-hotkey="w" invisible="context.get('search_default_my_shifts')"/>
                     <button string="Reset to Draft" type="object" name="action_unpublish" class="btn btn-secondary" close="1"
                         groups="planning.group_planning_manager" attrs="{'invisible': ['|', ('state', '=', 'draft'), ('resource_type', '=', 'material')]}" data-hotkey="q" invisible="context.get('search_default_my_shifts')"/>
-                    <button string="Discard" special="cancel" data-hotkey="z" class="btn-secondary" close="1" fullscreen="True" groups="planning.group_planning_manager"/>
-
+                    
+                    <button name="action_self_assign" class="btn btn-secondary float-end" type="object" string="I Take It" attrs="{'invisible': ['|', '|', '|', ('employee_id', '!=', False), ('start_datetime', '=', False), ('end_datetime', '=', False), ('is_past', '=', True)]}" close="1" data-hotkey="q"/>
                     <button name="action_self_unassign" class="btn btn-secondary float-end" type="object" string="I Am Unavailable" attrs="{'invisible': ['|', '|', '|', ('is_assigned_to_me', '=', False), ('allow_self_unassign', '=', False), ('is_past', '=', True), ('is_unassign_deadline_passed', '=', True)]}" close="1" data-hotkey="w"/>
+                    <button string="Discard" special="cancel" data-hotkey="z" class="btn-secondary float-end" close="1" fullscreen="True" groups="planning.group_planning_manager"/>
                     <button name="unlink" type="object" icon="fa-trash" title="Remove" class="btn-secondary float-end d-none d-md-inline" close="1" attrs="{'invisible': [('id', '=', False)]}" groups="planning.group_planning_manager" data-hotkey="d"/>
                 </footer>
             </xpath>
@@ -468,6 +460,11 @@
                                         <field name="name" />
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col o_kanban_primary_left">
+                                        <field name="resource_ids" widget="many2many_tags"/>
+                                    </div>
+                                </div>
                                 <div class="o_kanban_manage_button_section o_dropdown_kanban">
                                     <a role="button" class="o_kanban_manage_toggle_button" href="#" title="Dropdown menu">
                                         <i class="fa fa-ellipsis-v" aria-label="Manage" title="Manage"/>
@@ -487,7 +484,6 @@
                                     <ul class="oe_kanban_colorpicker" data-field="color" role="popup"/>
                                 </div>
                             </div>
-                            <field name="resource_ids" widget="many2many_tags" />
                         </div>
                     </t>
                 </templates>

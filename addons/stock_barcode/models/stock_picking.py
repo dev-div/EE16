@@ -87,18 +87,19 @@ class StockPicking(models.Model):
         if self.env.user.has_group('uom.group_uom'):
             uoms |= self.env['uom.uom'].search([])
 
+        # Fetch `stock.location`
+        source_locations = self.env['stock.location'].search([('id', 'child_of', self.location_id.ids)])
+        destination_locations = self.env['stock.location'].search([('id', 'child_of', self.location_dest_id.ids)])
+        locations = move_lines.location_id | move_lines.location_dest_id | source_locations | destination_locations
+
         # Fetch `stock.quant.package` and `stock.package.type` if group_tracking_lot.
         packages = self.env['stock.quant.package']
         package_types = self.env['stock.package.type']
         if self.env.user.has_group('stock.group_tracking_lot'):
             packages |= move_lines.package_id | move_lines.result_package_id
-            packages |= self.env['stock.quant.package']._get_usable_packages()
+            packages |= self.env['stock.quant.package'].with_context(pack_locs=destination_locations.ids)._get_usable_packages()
             package_types = package_types.search([])
 
-        # Fetch `stock.location`
-        source_locations = self.env['stock.location'].search([('id', 'child_of', self.location_id.ids)])
-        destination_locations = self.env['stock.location'].search([('id', 'child_of', self.location_dest_id.ids)])
-        locations = move_lines.location_id | move_lines.location_dest_id | source_locations | destination_locations
         data = {
             "records": {
                 "stock.picking": self.read(self._get_fields_stock_barcode(), load=False),
@@ -219,6 +220,9 @@ class StockPicking(models.Model):
                 pack_domain = ['|', ('move_line_ids.package_id', '=', package_id), ('move_line_ids.result_package_id', '=', package_id)]
                 picking_nums = self.search_count(base_domain + pack_domain)
                 additional_context['search_default_move_line_ids'] = barcode
+        if not barcode_type and not picking_nums:  # Nothing found yet, try to find picking by name.
+            picking_nums = self.search_count(base_domain + [('name', '=', barcode)])
+            additional_context['search_default_name'] = barcode
 
         if not picking_nums:
             if barcode_type:
@@ -297,7 +301,7 @@ class StockPickingType(models.Model):
             if picking_type.code == 'internal' and\
                picking_type.restrict_scan_dest_location == 'optional' and\
                picking_type.restrict_scan_source_location == 'mandatory':
-                raise UserError(_("If the source location must be scanned for each product, the destination location must be either scanned after each line too, either not scanned at all."))
+                raise UserError(_("If the source location must be scanned, then the destination location must either be scanned after each product or not scanned at all."))
 
     def get_action_picking_tree_ready_kanban(self):
         return self._get_action('stock_barcode.stock_picking_action_kanban')

@@ -8,7 +8,7 @@ import { download } from "@web/core/network/download";
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 import { FileInput } from "@web/core/file_input/file_input";
 
-const { Component } = owl;
+import { Component } from "@odoo/owl";
 
 export class HomeMenuCustomizer extends Component {
     setup() {

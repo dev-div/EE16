@@ -8,13 +8,12 @@ import { createSpreadsheetWithPivot } from "@spreadsheet/../tests/utils/pivot";
  * Get the computed value that would be autofilled starting from the given xc.
  * The starting xc should contains a Pivot formula
  */
- export function getPivotAutofillValue(model, xc, { direction, steps }) {
+export function getPivotAutofillValue(model, xc, { direction, steps }) {
     const content = getCellFormula(model, xc);
     const column = ["left", "right"].includes(direction);
     const increment = ["left", "top"].includes(direction) ? -steps : steps;
     return model.getters.getPivotNextAutofillValue(content, column, increment);
 }
-
 
 QUnit.module("spreadsheet > pivot_autofill", {}, () => {
     QUnit.test("Autofill pivot values", async function (assert) {
@@ -424,4 +423,158 @@ QUnit.module("spreadsheet > pivot_autofill", {}, () => {
             );
         }
     );
+
+    QUnit.test("Can autofill col headers horizontally", async (assert) => {
+        const { model } = await createSpreadsheetWithPivot({
+            arch: /*xml*/ `
+                <pivot>
+                    <field name="tag_ids" type="col"/>
+                    <field name="date" interval="year" type="row"/>
+                    <field name="probability" type="measure"/>
+                </pivot>`,
+        });
+        selectCell(model, "B1");
+        model.dispatch("AUTOFILL_SELECT", { col: 2, row: 0 });
+        let tooltipContent;
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "isCool");
+        selectCell(model, "C1");
+        model.dispatch("AUTOFILL_SELECT", { col: 3, row: 0 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Growing");
+        selectCell(model, "D1");
+        model.dispatch("AUTOFILL_SELECT", { col: 4, row: 0 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Total");
+        selectCell(model, "E1");
+        model.dispatch("AUTOFILL_SELECT", { col: 5, row: 0 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "None");
+    });
+
+    QUnit.test("Can autofill col headers vertically", async (assert) => {
+        const { model } = await createSpreadsheetWithPivot({
+            arch: /*xml*/ `
+                <pivot>
+                    <field name="tag_ids" type="col"/>
+                    <field name="date" interval="year" type="row"/>
+                    <field name="probability" type="measure"/>
+                </pivot>`,
+        });
+
+        selectCell(model, "B1");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 1 });
+        let tooltipContent;
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Probability");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 2 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "2016");
+        selectCell(model, "C1");
+        model.dispatch("AUTOFILL_SELECT", { col: 2, row: 1 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Probability");
+        model.dispatch("AUTOFILL_SELECT", { col: 2, row: 2 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "2016");
+        selectCell(model, "D1");
+        model.dispatch("AUTOFILL_SELECT", { col: 3, row: 1 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Probability");
+        model.dispatch("AUTOFILL_SELECT", { col: 3, row: 2 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "2016");
+        selectCell(model, "E1");
+        model.dispatch("AUTOFILL_SELECT", { col: 4, row: 1 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Probability");
+        model.dispatch("AUTOFILL_SELECT", { col: 4, row: 2 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "2016");
+        model.dispatch("AUTOFILL_SELECT", { col: 4, row: 3 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Total");
+    });
+
+    QUnit.test("Can autofill row headers horizontally", async (assert) => {
+        const { model } = await createSpreadsheetWithPivot({
+            arch: /*xml*/ `
+                <pivot>
+                    <field name="tag_ids" type="col"/>
+                    <field name="date" interval="month" type="row"/>
+                    <field name="product_id"  type="row"/>
+                    <field name="probability" type="measure"/>
+                </pivot>`,
+        });
+        let tooltipContent;
+        selectCell(model, "A3");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 2 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "None");
+        selectCell(model, "A4");
+        model.dispatch("AUTOFILL_SELECT", { col: 2, row: 3 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "isCool");
+        selectCell(model, "A5");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 4 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "None");
+        selectCell(model, "A6");
+        model.dispatch("AUTOFILL_SELECT", { col: 3, row: 5 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Growing");
+        selectCell(model, "A7");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 6 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "None");
+        selectCell(model, "A8");
+        model.dispatch("AUTOFILL_SELECT", { col: 4, row: 7 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Total");
+        selectCell(model, "A9");
+        model.dispatch("AUTOFILL_SELECT", { col: 1, row: 8 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "None");
+    });
+
+    QUnit.test("Can autofill row headers vertically", async (assert) => {
+        const { model } = await createSpreadsheetWithPivot({
+            arch: /*xml*/ `
+                <pivot>
+                    <field name="tag_ids" type="col"/>
+                    <field name="date" interval="month" type="row"/>
+                    <field name="product_id"  type="row"/>
+                    <field name="probability" type="measure"/>
+                </pivot>`,
+        });
+        let tooltipContent;
+        selectCell(model, "A3");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 3 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "xphone");
+        selectCell(model, "A4");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 4 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "October 2016");
+        selectCell(model, "A5");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 5 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "xpad");
+        selectCell(model, "A6");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 6 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "December 2016");
+        selectCell(model, "A7");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 7 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "xpad");
+        selectCell(model, "A8");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 8 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Total");
+        selectCell(model, "A9");
+        model.dispatch("AUTOFILL_SELECT", { col: 0, row: 9 });
+        tooltipContent = model.getters.getAutofillTooltip().props.content;
+        assert.equal(tooltipContent[tooltipContent.length - 1].value, "Probability");
+    });
 });

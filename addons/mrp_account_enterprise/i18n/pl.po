@@ -3,20 +3,26 @@
 # 	* mrp_account_enterprise
 # 
 # Translators:
-# Martin Trigaux, 2019
-# taksun <taksun@o2.pl>, 2019
-# Judyta Kaźmierczak <judyta.kazmierczak@openglobe.pl>, 2019
-# Tomasz Leppich <t.leppich@gmail.com>, 2019
-# Marcin Młynarczyk <mlynarczyk@gmail.com>, 2019
-# Maciej Stawicki <ms@3lance.pl>, 2019
+# Maksym <ms@myodoo.pl>, 2022
+# taksun <taksun@o2.pl>, 2022
+# Tomasz Leppich <t.leppich@gmail.com>, 2022
+# Piotr Szlązak <szlazakpiotr@gmail.com>, 2022
+# Paweł Michoń <michon.pawel@wp.pl>, 2022
+# Marcin Młynarczyk <mlynarczyk@gmail.com>, 2022
+# Piotr Strębski <strebski@gmail.com>, 2022
+# Judyta Kaźmierczak <judyta.kazmierczak@openglobe.pl>, 2022
+# IT WEDOO, 2022
+# Dariusz Żbikowski <darek@krokus.com.pl>, 2022
+# Martin Trigaux, 2022
+# Maciej Stawicki <ms@3lance.pl>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 11:58+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: Maciej Stawicki <ms@3lance.pl>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Maciej Stawicki <ms@3lance.pl>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/odoo/teams/41243/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,8 +47,18 @@ msgstr ", od"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
-msgid "<span>Code</span>"
-msgstr "<span>Kod</span>"
+msgid "<span>Avg Cost of Components Per Unit</span>"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "<span>Avg Cost of Operations Per Unit</span>"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "<span>Avg Total Cost Per Unit</span>"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
@@ -61,13 +77,18 @@ msgstr "<span>Operacja</span>"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
-msgid "<span>Operator</span>"
-msgstr "<span>Operator</span>"
+msgid "<span>Product</span>"
+msgstr "<span>Produkt</span>"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
 msgid "<span>Quantity</span>"
 msgstr "<span>Ilość</span>"
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "<span>Resource</span>"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
@@ -83,6 +104,11 @@ msgstr "<span>Suma Kosztów</span>"
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
 msgid "<span>Unit Cost</span>"
 msgstr "<span>Koszt Jednostkowy</span>"
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "<span>Unit of Measure</span>"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
@@ -106,8 +132,23 @@ msgstr "<strong>Suma Kosztów Odpadów</strong>"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
-msgid "<strong>Unit Cost</strong>"
-msgstr "<strong>Koszt jednostki</strong>"
+msgid "<strong>Total Production Cost</strong>"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_pivot_view
+msgid "Average Component Cost / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_pivot_view
+msgid "Average Operation Cost / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_pivot_view
+msgid "Average Total Cost / Unit"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
@@ -115,17 +156,48 @@ msgid "By product(s)"
 msgstr "Produkt(y) uboczny(e)"
 
 #. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__byproduct_cost
+msgid "By-Products Total Cost"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__company_id
+msgid "Company"
+msgstr "Firma"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__unit_component_cost
+msgid "Component Cost / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__unit_component_cost
+msgid ""
+"Component cost per unit produced (in product UoM) of manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__unit_cost
+msgid "Cost / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
 #: model:ir.actions.report,name:mrp_account_enterprise.action_cost_struct_mrp_production
-#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_production_form_inherit_view6
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.product_product_inherit_form_view_cost_structure
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.product_template_inherit_form_view_cost_structure
 msgid "Cost Analysis"
 msgstr "Analiza Kosztów"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
-msgid "Cost Structure"
-msgstr "Struktura kosztów"
+msgid "Cost Analysis Report"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "Cost Breakdown of Products"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model:ir.actions.report,name:mrp_account_enterprise.action_cost_struct_product_template
@@ -134,8 +206,13 @@ msgstr "Analiza Struktury Kosztów"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
-msgid "Cost for"
-msgstr "Koszt"
+msgid "Cost of Components"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "Cost of Components per unit (in"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
@@ -144,24 +221,52 @@ msgstr "Koszt Operacji"
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "Cost of Operations per unit (in"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
 msgid "Cost of Scraps"
 msgstr "Koszt Odpadu"
 
 #. module: mrp_account_enterprise
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_mrp_cost_structure__display_name
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_product_template_cost_structure__display_name
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__unit_cost
+msgid "Cost per unit produced (in product UoM) of manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__currency_id
+msgid "Currency"
+msgstr "Waluta"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__display_name
 msgid "Display Name"
 msgstr "Nazwa wyświetlana"
 
 #. module: mrp_account_enterprise
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_mrp_cost_structure__id
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_product_template_cost_structure__id
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__unit_duration
+msgid "Duration of Operations / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__date_finished
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_search_view
+msgid "End Date"
+msgstr "Data końcowa"
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_search_view
+msgid "Group by"
+msgstr "Grupuj wg"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__id
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_account_enterprise
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_mrp_cost_structure____last_update
-#: model:ir.model.fields,field_description:mrp_account_enterprise.field_report_mrp_account_enterprise_product_template_cost_structure____last_update
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report____last_update
 msgid "Last Modified on"
 msgstr "Data ostatniej modyfikacji"
 
@@ -171,14 +276,43 @@ msgid "MRP Cost Structure Report"
 msgstr "Raport Struktury Kosztów Produkcji"
 
 #. module: mrp_account_enterprise
-#: model:ir.model,name:mrp_account_enterprise.model_product_product
-msgid "Product"
-msgstr "Produkt"
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__production_id
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_search_view
+msgid "Manufacturing Order"
+msgstr "Zamówienie produkcji"
+
+#. module: mrp_account_enterprise
+#: model:ir.model,name:mrp_account_enterprise.model_mrp_report
+msgid "Manufacturing Report"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.actions.act_window,help:mrp_account_enterprise.mrp_report_dashboard_action
+msgid "No data yet!"
+msgstr "Brak danych!"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__unit_operation_cost
+msgid ""
+"Operation cost per unit produced (in product UoM) of manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__unit_duration
+msgid "Operation duration (minutes) per unit produced of manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_pivot_view
+msgid "Order Overview"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model:ir.model,name:mrp_account_enterprise.model_product_template
-msgid "Product Template"
-msgstr "Szablon produktu"
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__product_id
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_search_view
+msgid "Product"
+msgstr "Produkt"
 
 #. module: mrp_account_enterprise
 #: model:ir.model,name:mrp_account_enterprise.model_report_mrp_account_enterprise_product_template_cost_structure
@@ -186,9 +320,83 @@ msgid "Product Template Cost Structure Report"
 msgstr "Raport Struktury Kosztów Produktu"
 
 #. module: mrp_account_enterprise
+#: model:ir.model,name:mrp_account_enterprise.model_product_product
+msgid "Product Variant"
+msgstr "Wariant produktu"
+
+#. module: mrp_account_enterprise
+#: model:ir.actions.act_window,name:mrp_account_enterprise.mrp_report_dashboard_action
+#: model:ir.ui.menu,name:mrp_account_enterprise.mrp_dashboard_menuitem
+msgid "Production Analysis"
+msgstr "Analiza produkcji"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__qty_produced
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_report_pivot_view
+msgid "Quantity Produced"
+msgstr "Iość produkowana"
+
+#. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
 msgid "Some of the Manufacturing Order(s) selected are not done yet"
 msgstr "Pewne Zamówienie Produkcyjne wśród zaznaczonych nie są jeszcze gotowe"
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__component_cost
+msgid "Total Component Cost"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__total_cost
+msgid "Total Cost"
+msgstr "Suma kosztów"
+
+#. module: mrp_account_enterprise
+#: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure
+msgid "Total Cost per unit (in"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__duration
+msgid "Total Duration of Operations"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__operation_cost
+msgid "Total Operation Cost"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,field_description:mrp_account_enterprise.field_mrp_report__unit_operation_cost
+msgid "Total Operation Cost / Unit"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__component_cost
+msgid "Total cost of components for manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__total_cost
+msgid ""
+"Total cost of manufacturing order (component + operation costs + "
+"subcontracting cost)"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__operation_cost
+msgid "Total cost of operations for manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__duration
+msgid "Total duration (minutes) of operations for manufacturing order"
+msgstr ""
+
+#. module: mrp_account_enterprise
+#: model:ir.model.fields,help:mrp_account_enterprise.field_mrp_report__qty_produced
+msgid "Total quantity produced in product's UoM"
+msgstr ""
 
 #. module: mrp_account_enterprise
 #: model_terms:ir.ui.view,arch_db:mrp_account_enterprise.mrp_cost_structure

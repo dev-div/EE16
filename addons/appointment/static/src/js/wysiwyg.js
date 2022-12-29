@@ -5,8 +5,8 @@ import { registry } from "@web/core/registry";
 import { formView } from "@web/views/form/form_view";
 import { FormController } from "@web/views/form/form_controller";
 import { FormViewDialog } from '@web/views/view_dialogs/form_view_dialog';
-import Wysiwyg from 'web_editor.wysiwyg'
-import { parseHTML } from '@web_editor/js/editor/odoo-editor/src/OdooEditor';
+import Wysiwyg from 'web_editor.wysiwyg';
+import { parseHTML, preserveCursor } from '@web_editor/js/editor/odoo-editor/src/OdooEditor';
 
 const { Component } = owl;
 
@@ -14,15 +14,16 @@ Wysiwyg.include({
     _getPowerboxOptions: function () {
         const options = this._super.apply(this, arguments);
         const {commands, categories} = options;
-        categories.push({ name: 'Navigation', priority: 40 });
+        categories.push({ name: _t('Navigation'), priority: 40 });
         commands.push(...[
             {
-                category: 'Navigation',
-                name: 'Appointment',
+                category: _t('Navigation'),
+                name: _t('Appointment'),
                 priority: 10,
-                description: 'Add a specific appointment.',
+                description: _t('Add a specific appointment.'),
                 fontawesome: 'fa-calendar',
                 callback: async () => {
+                    const restoreSelection = preserveCursor(this.odooEditor.document);
                     Component.env.services.dialog.add(AppointmentFormViewDialog, {
                         resModel: 'appointment.invite',
                         context: {
@@ -33,22 +34,25 @@ Wysiwyg.include({
                         title: _t("Insert Appointment Link"),
                         mode: "edit",
                         insertLink: (url) => {
-                            const link = `<a href="${url}">Schedule an Appointment</a>`;
+                            const link = parseHTML('<a>Schedule an Appointment</a>');
+                            link.href = url;
                             this.focus();
-                            this.odooEditor.execCommand('insert', parseHTML(link));
+                            restoreSelection();
+                            this.odooEditor.execCommand('insert', link);
                         },
                     });
                 },
             },
             {
-                category: 'Navigation',
-                name: 'Calendar',
+                category: _t('Navigation'),
+                name: _t('Calendar'),
                 priority: 10,
-                description: 'Schedule an appointment.',
+                description: _t('Schedule an appointment.'),
                 fontawesome: 'fa-calendar',
                 callback: () => {
-                    const link = `<a href="${window.location.origin}/appointment">Our Appointment Types</a>`;
-                    this.odooEditor.execCommand('insert', parseHTML(link));
+                    const link = parseHTML('<a>Our Appointment Types</a>');
+                    link.href = `${window.location.origin}/appointment`;
+                    this.odooEditor.execCommand('insert', link);
                 },
             },
         ]);

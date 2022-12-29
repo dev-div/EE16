@@ -3,18 +3,19 @@
 # 	* website_delivery_ups
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Arminas Grigonis <arminas@versada.lt>, 2019
-# Silvija Butko <silvija.butko@gmail.com>, 2019
-# Vytautas Stanaitis <vytautas@basas.lt>, 2019
+# Arminas Grigonis <arminas@versada.lt>, 2022
+# Martin Trigaux, 2022
+# Vytautas Stanaitis <vytautas@basas.lt>, 2022
+# Silvija Butko <silvija.butko@gmail.com>, 2022
+# Jonas Zinkevicius <jozi@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:39+0000\n"
-"Last-Translator: Vytautas Stanaitis <vytautas@basas.lt>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:50+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Jonas Zinkevicius <jozi@odoo.com>, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,19 +26,26 @@ msgstr ""
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
 msgid "(Bill My Account)"
-msgstr ""
+msgstr "(Išrašyti sąskaita mano paskyrai)"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
 msgid "<i class=\"fa fa-trash-o\" role=\"img\" aria-label=\"Delete\" title=\"Delete\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-trash-o\" role=\"img\" aria-label=\"Delete\" title=\"Delete\"/>"
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,pending_msg:website_delivery_ups.payment_acquirer_ups_cod
+#: model_terms:payment.provider,pending_msg:website_delivery_ups.payment_provider_ups_cod
 msgid ""
 "<i>Pending</i>, Thanks for choosing COD(Collect on Delivery/Cash on "
 "Delivery) option. Delivery boy will collect the payment on delivery."
 msgstr ""
+"<i>Laukiama</i>, ačiū, kad pasirinkote mokėjimą pristatymo metu. Jūs būsite "
+"paprašyti apmokėti užsakymą pristatymo metu."
+
+#. module: website_delivery_ups
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
+msgid "<span>(UPS Billing will remain to the customer)</span>"
+msgstr "<span>(Klientas turės padengti UPS siuntimo paslaugų kainą)</span>"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
@@ -45,9 +53,9 @@ msgid "Apply"
 msgstr "Taikyti"
 
 #. module: website_delivery_ups
-#: model:payment.acquirer,name:website_delivery_ups.payment_acquirer_ups_cod
+#: model:payment.provider,name:website_delivery_ups.payment_provider_ups_cod
 msgid "COD"
-msgstr ""
+msgstr "Mokėjimas pristatymo metu"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
@@ -55,13 +63,23 @@ msgid "Cancel"
 msgstr "Atšaukti"
 
 #. module: website_delivery_ups
+#: model:ir.model.fields.selection,name:website_delivery_ups.selection__payment_provider__custom_mode__cash_on_delivery
+msgid "Cash On Delivery"
+msgstr ""
+
+#. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
 msgid "Close"
 msgstr "Uždaryti"
 
 #. module: website_delivery_ups
-#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "Enter your Carrier Account #"
+#: model:ir.model.fields,field_description:website_delivery_ups.field_payment_provider__custom_mode
+msgid "Custom Mode"
+msgstr ""
+
+#. module: website_delivery_ups
+#: model:ir.model,name:website_delivery_ups.model_payment_provider
+msgid "Payment Provider"
 msgstr ""
 
 #. module: website_delivery_ups
@@ -71,35 +89,40 @@ msgstr "Pardavimo užsakymas"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "Select Freight Collect Method"
-msgstr ""
-
-#. module: website_delivery_ups
-#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
 msgid "UPS Bill My Account"
 msgstr "UPS Išrašytos sąskaitos"
 
 #. module: website_delivery_ups
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.property_ups_carrier_account_inherit_portal_details
+msgid "UPS Number Account"
+msgstr "UPS paskyros numeris"
+
+#. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.res_config_settings_view_form_inherit_website_delivery_ups
 msgid "UPS Shipping Methods"
-msgstr ""
+msgstr "UPS siuntimo būdai "
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
 msgid "Using Account"
-msgstr ""
+msgstr "Naudojama paskyra"
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,auth_msg:website_delivery_ups.payment_acquirer_ups_cod
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
+msgid "Your UPS Account Number"
+msgstr "Jūsų UPS paskyros numeris"
+
+#. module: website_delivery_ups
+#: model_terms:payment.provider,auth_msg:website_delivery_ups.payment_provider_ups_cod
 msgid "Your payment has been authorized."
 msgstr "Jūsų mokėjimas buvo patvirtintas."
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,cancel_msg:website_delivery_ups.payment_acquirer_ups_cod
+#: model_terms:payment.provider,cancel_msg:website_delivery_ups.payment_provider_ups_cod
 msgid "Your payment has been cancelled."
-msgstr ""
+msgstr "Jūsų mokėjimas buvo atšauktas."
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,done_msg:website_delivery_ups.payment_acquirer_ups_cod
+#: model_terms:payment.provider,done_msg:website_delivery_ups.payment_provider_ups_cod
 msgid "Your payment has been successfully processed. Thank you!"
-msgstr ""
+msgstr "Jūsų mokėjimas sėkmingai apdorotas. Ačiū Jums!"

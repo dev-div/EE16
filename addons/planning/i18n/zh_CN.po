@@ -5,16 +5,18 @@
 # Translators:
 # Raymond Yu <cl_yu@hotmail.com>, 2022
 # 黎伟杰 <674416404@qq.com>, 2022
-# Martin Trigaux, 2022
 # 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022
+# digitalliuzg8888, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:27+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,6 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "%s (copy)"
@@ -34,6 +37,7 @@ msgid "'Planning'"
 msgstr "'计划'"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_template.py:0
 #, python-format
 msgid "(%s days span)"
@@ -110,14 +114,14 @@ msgid "<b class=\"tip_title\">Tip: Record your planning faster</b>"
 msgstr "<b class=\"tip_title\">提示:更快地记录你的计划</b>"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "<b>Congratulations!</b></br> You are now a master of planning."
 msgstr "<b>祝贺你!,</b> 你现在是一个规划大师."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -128,7 +132,7 @@ msgstr ""
 "<b>拖放</b>你的班次来重新安排它。<i>提示：点击CTRL（或Cmd）来复制它。</i> <b>调整</b>轮班的<b>大小</b>来修改其周期。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "<b>Publish & send</b> your employee's planning."
@@ -608,7 +612,7 @@ msgid "Active"
 msgstr "启用"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_gantt_controller.js:0
 #, python-format
 msgid "Add Shift"
@@ -682,6 +686,7 @@ msgid "Allow Unassignment"
 msgstr "允许取消分配"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "An shift must be in the same company as its recurrency."
@@ -703,13 +708,14 @@ msgid "Archived"
 msgstr "已存档"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "Are you sure you want to delete this shift?"
 msgstr "你确定要删除这个班次吗？"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid ""
@@ -718,7 +724,7 @@ msgid ""
 msgstr "由于在此期间没有正在运行的合同，因此预计该资源不会轮班工作。 计划时间："
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -796,7 +802,7 @@ msgstr "公司"
 msgid ""
 "Company linked to the material resource. Leave empty for the resource to be "
 "available in every company."
-msgstr ""
+msgstr "公司与物资资源挂钩。为每个公司都可用的资源留空。"
 
 #. module: planning
 #: model:ir.model,name:planning.model_res_config_settings
@@ -819,14 +825,14 @@ msgid "Conflicting Slot"
 msgstr "冲突时段"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #, python-format
 msgid "Copy previous"
 msgstr "复制以前的"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
@@ -922,7 +928,7 @@ msgid ""
 "Define the roles your resources perform (e.g. Chef, Bartender, Waiter...). "
 "Create open shifts for the roles you need to complete a mission. Then, "
 "assign those open shifts to the resources that are available."
-msgstr ""
+msgstr "定义你的资源所扮演的角色(如厨师、调酒师、服务员等)。为完成任务所需的角色创建开放轮班。然后，将那些开放的轮班分配给可用的资源。"
 
 #. module: planning
 #: model_terms:ir.actions.act_window,help:planning.planning_action_roles
@@ -993,7 +999,7 @@ msgid "Doris Cole (Bartender)"
 msgstr "Doris Cole (调酒师)"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: model:ir.model.fields.selection,name:planning.selection__planning_analysis_report__state__draft
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__state__draft
@@ -1050,13 +1056,13 @@ msgstr "Eli Lambert (服务生)"
 #. module: planning
 #: model:mail.template,description:planning.email_template_slot_single
 msgid "Email sent automatically when publishing a shift"
-msgstr ""
+msgstr "发布轮班时自动发送电子邮件"
 
 #. module: planning
 #: model:mail.template,description:planning.email_template_planning_planning
 msgid ""
 "Email sent automatically when publishing the schedule of your employees"
-msgstr ""
+msgstr "当发布您的员工的时间表时，自动发送电子邮件"
 
 #. module: planning
 #: model:ir.model,name:planning.model_hr_employee
@@ -1121,6 +1127,7 @@ msgid "Every"
 msgstr "每一个"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "Every %s week(s) until %s"
@@ -1164,6 +1171,7 @@ msgid "Forever"
 msgstr "永远"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "Forever, every %s week(s)"
@@ -1213,6 +1221,7 @@ msgstr "我没有时间"
 
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form
+#: model_terms:ir.ui.view,arch_db:planning.planning_view_form_in_gantt
 msgid "I Take It"
 msgstr "我来做"
 
@@ -1242,7 +1251,7 @@ msgid ""
 msgstr "如果被选中，意味着移位包含的内容在上次发布后发生了变化。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1342,7 +1351,7 @@ msgid "Last Week"
 msgstr "上周"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #, python-format
 msgid "Legend"
@@ -1360,7 +1369,7 @@ msgid "Let employees unassign themselves from shifts"
 msgstr "允许员工自行空出排班"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1369,7 +1378,7 @@ msgid ""
 msgstr "让我们创建您的第一个 <b>班次</b>。 <i>提示：使用甘特图每个单元格上可用的 (+) 快捷方式来节省时间。</i>"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "Let's start managing your employees' schedule!"
@@ -1412,6 +1421,9 @@ msgid ""
 "Modifications made to a shift only impact the current shift and not the other ones that are part of the recurrence. The same goes when deleting a recurrent shift. Disable this option to stop the recurrence.\n"
 "To avoid polluting your database and performance issues, shifts are only created for the next 6 months. They are then gradually created as time passes by in order to always get shifts 6 months ahead. This value can be modified from the settings of Planning, in debug mode."
 msgstr ""
+"对移位的修改只影响当前移位，而不影响作为递归的一部分的其他移位。删除循环移位时也是如此。禁用此选项可停止重复。\n"
+"为了避免污染数据库和性能问题，只在未来6个月创建轮班。然后，随着时间的推移，他们逐渐创建，以便总是提前6个月得到轮班。该值可以在调试模式下从计划的设置中修改。\n"
+" "
 
 #. module: planning
 #: model:ir.model.fields,field_description:planning.field_planning_analysis_report__publication_warning
@@ -1476,6 +1488,7 @@ msgid "Next Week"
 msgstr "下一周"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/planning_send.py:0
 #, python-format
 msgid "No Email Address For Some Employees"
@@ -1522,7 +1535,7 @@ msgid "Note"
 msgstr "笔记"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1537,7 +1550,7 @@ msgid "Number of Repetitions"
 msgstr "重复次数"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_gantt_model.js:0
 #: model_terms:ir.actions.act_window,help:planning.planning_action_roles
 #: model_terms:ir.ui.view,arch_db:planning.planning_analysis_report_view_search
@@ -1553,6 +1566,7 @@ msgid "Open Shifts Available"
 msgstr "有开放的班次"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid ""
@@ -1578,7 +1592,7 @@ msgid "Period"
 msgstr "期间"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1592,6 +1606,7 @@ msgid "Planned Hours"
 msgstr "已计划的时数"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #: model:ir.actions.report,name:planning.report_planning_slot
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__allocation_type__planning
@@ -1649,27 +1664,28 @@ msgstr "计划:"
 #. module: planning
 #: model:mail.template,name:planning.email_template_planning_planning
 msgid "Planning: New Schedule"
-msgstr ""
+msgstr "计划:新计划"
 
 #. module: planning
 #: model:mail.template,name:planning.email_template_slot_single
 msgid "Planning: New Shift"
-msgstr ""
+msgstr "计划:新变更"
 
 #. module: planning
 #: model:ir.actions.server,name:planning.ir_cron_forecast_schedule_ir_actions_server
 #: model:ir.cron,cron_name:planning.ir_cron_forecast_schedule
-#: model:ir.cron,name:planning.ir_cron_forecast_schedule
 msgid "Planning: generate next recurring shifts"
 msgstr "计划：生成下一个定期轮班"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "Planning: new open shift available on"
 msgstr "计划：新的开放班次可用"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "Planning: new shift on"
@@ -1686,7 +1702,7 @@ msgid "Previous Template"
 msgstr "上一个模板"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #: model:ir.actions.server,name:planning.model_planning_slot_action_publish
@@ -1706,7 +1722,7 @@ msgid "Publish & Send"
 msgstr "发布和发送"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: model:ir.model.fields.selection,name:planning.selection__planning_analysis_report__state__published
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__state__published
@@ -1827,6 +1843,8 @@ msgid ""
 "Role that will be selected by default when creating a shift for this employee.\n"
 "This role will also have precedence over the other roles of the employee when planning orders."
 msgstr ""
+"为该员工创建轮班时默认选择的角色。\n"
+"在计划订单时，该角色也将优先于员工的其他角色。"
 
 #. module: planning
 #: model:ir.actions.act_window,name:planning.planning_action_roles
@@ -1844,6 +1862,10 @@ msgid ""
 "Additionally, the employee will only be assigned orders for these roles (with the default planning role having precedence over the other ones).\n"
 "Leave empty for the employee to be assigned shifts regardless of the role."
 msgstr ""
+"员工可以扮演的角色。当为该员工创建轮班时，只会显示这些角色的轮班模板。\n"
+"类似地，当时间表发布时，只有这些角色可用的开放轮班才会发送给员工。\n"
+"此外，将只为这些角色分配订单(默认的规划角色优先于其他角色)。\n"
+"空着，以便员工被分配轮班，不管角色是什么。"
 
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form_in_gantt
@@ -1861,7 +1883,7 @@ msgid "Save as Template"
 msgstr "保存为模版"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "Save this shift once it is ready."
@@ -1922,7 +1944,7 @@ msgid "Send Planning By Email"
 msgstr "通过电子邮件发送规划"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #, python-format
@@ -1942,6 +1964,7 @@ msgid "Settings"
 msgstr "设置"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/controllers/main.py:0
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form
 #, python-format
@@ -1986,6 +2009,7 @@ msgid "Shifts from"
 msgstr "排班"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_search
 #, python-format
@@ -2063,12 +2087,14 @@ msgid ""
 msgstr "取消分配前的天数必须为正数或等于零。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The company does not allow you to self unassign."
 msgstr "公司不允许您自行取消分配。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The deadline for unassignment has passed."
@@ -2085,43 +2111,54 @@ msgid "The end date of a shift should be after its start date."
 msgstr "一个班次的结束时间必须在开始时间之后。"
 
 #. module: planning
+#. odoo-python
+#: code:addons/planning/models/planning_recurrency.py:0
+#, python-format
+msgid "The number of repetitions cannot be negative."
+msgstr "重复次数不能为负数。"
+
+#. module: planning
 #: model:ir.model.constraint,message:planning.constraint_planning_recurrency_check_repeat_interval_positive
 msgid "The recurrence should be greater than 0."
 msgstr "重复率应大于 0。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The recurrence's end date should fall after the shift's start date."
 msgstr "重复的结束日期应晚于班次的开始日期。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "The recurring shifts have successfully been created."
 msgstr "已成功创建定期班次。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/planning_send.py:0
 #, python-format
 msgid "The schedule was successfully sent to your employees."
 msgstr "日程表已成功发送给您的员工。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_template.py:0
 #, python-format
 msgid "The selected duration creates a date too far into the future."
 msgstr "选定的持续时间会创建一个太久的日期。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shift has successfully been sent."
 msgstr "该班次已成功发送。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #, python-format
@@ -2129,7 +2166,8 @@ msgid "The shifts from the previous week have successfully been copied."
 msgstr "前一周的班次已经成功复制。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
+#. odoo-python
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #: code:addons/planning/wizard/planning_send.py:0
@@ -2140,18 +2178,21 @@ msgid ""
 msgstr "班次已成功发布，或者没有要发布的班次。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have been successfully reset to draft."
 msgstr "班次已经成功重置为草稿。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have successfully been published and sent."
 msgstr "班次已成功发布和发送。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have successfully been published."
@@ -2168,7 +2209,14 @@ msgid "The start hour cannot be negative."
 msgstr "开始时间不能是负数。"
 
 #. module: planning
-#. openerp-web
+#. odoo-python
+#: code:addons/planning/models/planning_template.py:0
+#, python-format
+msgid "The start hour must be greater or equal to 0 and lower than 24."
+msgstr ""
+
+#. module: planning
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #, python-format
@@ -2178,22 +2226,32 @@ msgid ""
 msgstr "前一周没有计划班次，或者已经复制了班次。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to publish and send."
 msgstr "没有任何班次被发布和发送。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to publish."
 msgstr "没有任何班次可发布。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to reset to draft."
 msgstr "没有任何班次，可以重置为草稿。"
+
+#. module: planning
+#. odoo-python
+#: code:addons/planning/models/planning.py:0
+#, python-format
+msgid "This Progress Bar is not implemented."
+msgstr ""
 
 #. module: planning
 #: model:ir.model.fields,field_description:planning.field_planning_slot__was_copied
@@ -2213,7 +2271,7 @@ msgid ""
 msgstr "这个公开的班次不再有了，或者在此期间规划已经更新。请与您的经理联系，以获得更多信息。"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "This shift was successfully saved as a template."
@@ -2280,6 +2338,7 @@ msgid "User"
 msgstr "用户"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/hr.py:0
 #: model:ir.actions.server,name:planning.model_hr_employee_action_planning_view
 #: model:ir.actions.server,name:planning.model_hr_employee_public_action_planning_view
@@ -2326,7 +2385,7 @@ msgid "Working Days"
 msgstr "工作天数"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -2350,30 +2409,35 @@ msgid "Yesterday"
 msgstr "昨天"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You are not allowed to reset to draft shifts."
 msgstr "你不允许重设为草稿班次。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You can not assign yourself to an already assigned shift."
 msgstr "你不能把自己分配到一个已经分配好的班次。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You can not unassign another employee than yourself."
 msgstr "您不能取消分配您以外的其他员工。"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/slot_planning_select_send.py:0
 #, python-format
 msgid "You cannot send a past unassigned slot"
 msgstr "你不能发送一个过去未分配的时段"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You don't have the right to self assign."

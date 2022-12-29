@@ -167,6 +167,15 @@
         </field>
     </record>
 
+     <record id="helpdesk_ratings_server_action" model="ir.actions.server">
+        <field name="name">helpdesk view rating</field>
+        <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_view_helpdesk_rating()
+        </field>
+    </record>
+
     <record id="rating_rating_action_helpdesk" model="ir.actions.act_window">
         <field name="name">Customer Ratings</field>
         <field name="res_model">rating.rating</field>
@@ -223,7 +232,7 @@
     <menuitem
         id="helpdesk_ticket_report_menu_ratings"
         name="Customer Ratings"
-        action="rating_rating_action_helpdesk"
+        action="helpdesk_ratings_server_action"
         sequence="30"
         groups="helpdesk.group_use_rating"
         parent="helpdesk_ticket_report_menu_main"/>

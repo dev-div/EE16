@@ -6,6 +6,7 @@
 # Martin Trigaux, 2022
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
 # Gunther Clauwaert <gclauwae@hotmail.com>, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:47+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: Gunther Clauwaert <gclauwae@hotmail.com>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_category_view_form
 msgid "<span class=\"fa fa-warning\" title=\"Invalid minimum approvals\"/>"
-msgstr "<span class=\"fa fa-warning\" title=\"Invalid minimum approvals\"/>"
+msgstr "<span class=\"fa fa-warning\" title=\"Ongeldige minimum goedkeuringen\"/>"
 
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_request_view_form
@@ -244,7 +245,7 @@ msgstr "Gearchiveerd"
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_request_view_form
 msgid "Attach Document"
-msgstr "Koppel document"
+msgstr "Document bijvoegen"
 
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_request__message_attachment_count
@@ -293,7 +294,7 @@ msgstr "Annuleren"
 #. module: approvals
 #: model:approval.category,name:approvals.approval_category_data_car_rental_application
 msgid "Car Rental Application"
-msgstr "Auto verhuur aanvraag"
+msgstr "Aanvraag autoverhuur"
 
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_product_line__product_uom_category_id
@@ -418,7 +419,7 @@ msgstr "Omschrijving"
 #: model:ir.model.fields,field_description:approvals.field_approval_product_line__display_name
 #: model:ir.model.fields,field_description:approvals.field_approval_request__display_name
 msgid "Display Name"
-msgstr "Schermnaam"
+msgstr "Weergavenaam"
 
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_category_view_form
@@ -440,12 +441,12 @@ msgstr "Dropdown menu"
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_request_view_form
 msgid "E.g: Expenses Paris business trip"
-msgstr "Bijv: Onkosten business trip Parijs"
+msgstr "Bijv: Onkosten zakenreis Parijs"
 
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_request_view_kanban
 msgid "Edit Request"
-msgstr "Wijzig aanvraag"
+msgstr "Aanvraag wijzigen"
 
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_category__manager_approval
@@ -475,7 +476,7 @@ msgstr "Volgers"
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_request__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Volgers (Relaties)"
+msgstr "Volgers (Partners)"
 
 #. module: approvals
 #: model:ir.model.fields,help:approvals.field_approval_request__activity_type_icon
@@ -564,7 +565,7 @@ msgstr ""
 "Hoe de manager van de werknemer omgaat met dit type goedkeuring.\n"
 "\n"
 "         Leeg: niets doen\n"
-"         Is goedkeurder: de manager van de werknemer staat in de goedkeurder\n"
+"         Is goedkeurder: de manager van de werknemer staat in de goedkeurderslijst\n"
 "         Goedkeuring vereist: de manager van de werknemer moet het verzoek\n"
 "         goedkeuren."
 
@@ -935,7 +936,7 @@ msgstr "Producten"
 #: model:ir.model.fields,field_description:approvals.field_approval_request__quantity
 #: model_terms:ir.ui.view,arch_db:approvals.approval_category_view_form
 msgid "Quantity"
-msgstr "Aantal"
+msgstr "Hoeveelheid"
 
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_request__reference
@@ -946,7 +947,7 @@ msgstr "Referentie"
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_category__sequence_id
 msgid "Reference Sequence"
-msgstr "Referentie reeks"
+msgstr "Referentiereeks"
 
 #. module: approvals
 #. openerp-web
@@ -975,7 +976,7 @@ msgstr "Verzoek"
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.res_users_view_form
 msgid "Request Approval"
-msgstr "Vraag goedkeuring"
+msgstr "Verzoek goedkeuring"
 
 #. module: approvals
 #: model:ir.model.fields,field_description:approvals.field_approval_request__request_owner_id
@@ -1044,7 +1045,7 @@ msgstr ""
 #. module: approvals
 #: model_terms:ir.ui.view,arch_db:approvals.approval_request_view_form
 msgid "Submit"
-msgstr "Verstuur"
+msgstr "Versturen"
 
 #. module: approvals
 #: model:ir.model.fields.selection,name:approvals.selection__approval_request__request_status__pending
@@ -1170,13 +1171,13 @@ msgstr "Je kunt pas goedkeuren na de vorige goedkeurder."
 #: code:addons/approvals/models/approval_request.py:0
 #, python-format
 msgid "You have to add at least %s approvers to confirm your request."
-msgstr "Voeg minimaal %smedewerker(s) toe die je aanvraag moeten goedkeuren"
+msgstr "Voeg minimaal %s goedkeurder(s) toe die je aanvraag moeten goedkeuren"
 
 #. module: approvals
 #: code:addons/approvals/models/approval_request.py:0
 #, python-format
 msgid "You have to attach at lease one document."
-msgstr "Je moet minimaal één document koppelen."
+msgstr "Je moet minimaal één document bijvoegen."
 
 #. module: approvals
 #: code:addons/approvals/models/approval_category.py:0
@@ -1205,4 +1206,4 @@ msgstr "menu"
 #: model_terms:ir.actions.act_window,help:approvals.approval_request_action
 #: model_terms:ir.actions.act_window,help:approvals.approval_request_action_all
 msgid "new request"
-msgstr "Nieuw verzoek"
+msgstr "nieuw verzoek"

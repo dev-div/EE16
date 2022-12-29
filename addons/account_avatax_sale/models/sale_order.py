@@ -87,6 +87,12 @@ class SaleOrder(models.Model):
     def _get_avatax_description(self):
         return 'Sales Order'
 
+    def _get_invoice_grouping_keys(self):
+        res = super()._get_invoice_grouping_keys()
+        if self.filtered('fiscal_position_id.is_avatax'):
+            res += ['partner_shipping_id']
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"

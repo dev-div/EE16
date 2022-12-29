@@ -9,7 +9,7 @@
                 data-event-name='Lead Generation' data-event-params='{"CTA": "Appointment"}' />
         </xpath>
         <xpath expr="//div[hasclass('o_appointment')]/*[1]" position="before">
-            <nav t-if="appointment_type and appointment_type.category == 'website'" class="o_wappointment_navbar navbar navbar-light border-top shadow-sm d-print-none py-0">
+            <nav t-if="appointment_type and appointment_type.category == 'website'" class="o_wappointment_navbar navbar border-top shadow-sm d-print-none py-0">
                 <div class="container">
                     <t t-set="all_appointments_url" t-value="'/appointment?' + keep_query('filter_appointment_type_ids', 'filter_staff_user_ids')"/>
                     <t t-set="invite_redirect_url" t-value="event.appointment_invite_id.redirect_url if event.appointment_invite_id else None"/>

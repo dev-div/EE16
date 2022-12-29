@@ -48,7 +48,7 @@ class AccountMove(models.Model):
             records = records.filtered(lambda r: r.payment_state != 'paid' and r.move_type in ('in_invoice', 'in_refund'))
             (self - records).release_to_pay = 'no'
         for invoice in records:
-            if invoice.payment_state == 'paid':
+            if invoice.payment_state == 'paid' or not invoice.is_invoice(include_receipts=True):
                 # no need to pay, if it's already paid
                 invoice.release_to_pay = 'no'
             elif invoice.force_release_to_pay:

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 import base64
 import logging
 from freezegun import freeze_time
@@ -18,10 +17,8 @@ _logger = logging.getLogger(__name__)
 @patch('odoo.tools.xml_utils._check_with_xsd', _check_with_xsd_patch)
 class TestL10nClEdiStock(TestL10nClEdiStockCommon):
 
-    @freeze_time('2019-10-24')
-    @patch('odoo.addons.l10n_cl_edi.models.l10n_cl_edi_util.L10nClEdiUtilMixin._get_cl_current_strftime')
-    def test_l10n_cl_edi_delivery_with_taxes_from_inventory(self, get_cl_current_strftime):
-        get_cl_current_strftime.return_value = '2019-10-24T20:00:00'
+    @freeze_time('2019-10-24T20:00:00', tz_offset=3)
+    def test_l10n_cl_edi_delivery_with_taxes_from_inventory(self):
         picking = self.PickingObj.create({
             'name': 'Test Delivery Guide',
             'partner_id': self.chilean_partner_a.id,
@@ -73,11 +70,8 @@ class TestL10nClEdiStock(TestL10nClEdiStockCommon):
             etree.fromstring(xml_expected_dte.encode())
         )
 
-    @freeze_time('2019-10-24')
-    @patch('odoo.addons.l10n_cl_edi.models.l10n_cl_edi_util.L10nClEdiUtilMixin._get_cl_current_strftime')
-    def test_l10n_cl_edi_delivery_with_taxes_from_sale_order(self, get_cl_current_strftime):
-        get_cl_current_strftime.return_value = '2019-10-24T20:00:00'
-
+    @freeze_time('2019-10-24T20:00:00', tz_offset=3)
+    def test_l10n_cl_edi_delivery_with_taxes_from_sale_order(self):
         so_vals = {
             'partner_id': self.chilean_partner_a.id,
             'order_line': [
@@ -125,11 +119,8 @@ class TestL10nClEdiStock(TestL10nClEdiStockCommon):
             etree.fromstring(xml_expected_dte.encode())
         )
 
-    @freeze_time('2019-10-24')
-    @patch('odoo.addons.l10n_cl_edi.models.l10n_cl_edi_util.L10nClEdiUtilMixin._get_cl_current_strftime')
-    def test_l10n_cl_edi_delivery_without_taxes_from_sale_order(self, get_cl_current_strftime):
-        get_cl_current_strftime.return_value = '2019-10-24T20:00:00'
-
+    @freeze_time('2019-10-24T20:00:00', tz_offset=3)
+    def test_l10n_cl_edi_delivery_without_taxes_from_sale_order(self):
         so_vals = {
             'partner_id': self.chilean_partner_a.id,
             'order_line': [
@@ -178,10 +169,8 @@ class TestL10nClEdiStock(TestL10nClEdiStockCommon):
             etree.fromstring(xml_expected_dte.encode())
         )
 
-    @freeze_time('2019-10-24')
-    @patch('odoo.addons.l10n_cl_edi.models.l10n_cl_edi_util.L10nClEdiUtilMixin._get_cl_current_strftime')
-    def test_l10n_cl_edi_delivery_guide_no_price(self, get_cl_current_strftime):
-        get_cl_current_strftime.return_value = '2019-10-24T20:00:00'
+    @freeze_time('2019-10-24T20:00:00', tz_offset=3)
+    def test_l10n_cl_edi_delivery_guide_no_price(self):
         copy_chilean_partner = self.chilean_partner_a.copy()
         copy_chilean_partner.write({'l10n_cl_delivery_guide_price': 'none'})
         so_vals = {

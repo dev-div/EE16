@@ -1,10 +1,9 @@
-# coding: utf-8
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 from unittest.mock import patch
 
-from odoo.addons.account_avatax_sale.tests.test_avatax import TestAccountAvataxCommon
-from odoo.addons.base.tests.common import HttpCase
-from odoo.tests import tagged
+from odoo.tests import HttpCase, tagged
+from odoo.addons.account_avatax.tests.common import TestAccountAvataxCommon
 
 
 @tagged('post_install', '-at_install')
@@ -32,8 +31,14 @@ class TestAccountAvataxSalePortal(TestAccountAvataxCommon, HttpCase):
             ],
         })
 
+    # FIXME this test should be in a module account_avatax_sale_management
+    # sale_management is not a dependency of account_avatax_sale...
     def test_01_portal_test_optional_products(self):
         """ Make sure that adding, deleting and changing the qty on optional products calls Avatax. """
+        sale_management = self.env['ir.module.module']._get('sale_management')
+        if sale_management.state != 'installed':
+            self.skipTest("sale_management module is not installed")
+
         portal_partner = self.env['res.users'].sudo().search([('login', '=', 'portal')]).partner_id
         order = self._create_sale_order(portal_partner)
 

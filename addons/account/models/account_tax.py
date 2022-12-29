@@ -193,12 +193,14 @@ class AccountTax(models.Model):
         return '%'.join(list(name))
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
-        return super().name_search(name=AccountTax._parse_name_search(name), args=args, operator=operator, limit=limit)
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+        if operator in ("ilike", "like"):
+            name = AccountTax._parse_name_search(name)
+        return super()._name_search(name, args, operator, limit, name_get_uid)
 
     def _search_name(self, operator, value):
         if operator not in ("ilike", "like") or not isinstance(value, str):
-            return super()._search_name(operator, value)
+            return [('name', operator, value)]
         return [('name', operator, AccountTax._parse_name_search(value))]
 
     def _check_repartition_lines(self, lines):
@@ -860,6 +862,9 @@ class AccountTax(models.Model):
 
             tax_values_list = []
             for tax_res in taxes_res['taxes']:
+                tax_amount = tax_res['amount'] / rate
+                if self.company_id.tax_calculation_rounding_method == 'round_per_line':
+                    tax_amount = currency.round(tax_amount)
                 tax_rep = self.env['account.tax.repartition.line'].browse(tax_res['tax_repartition_line_id'])
                 tax_values_list.append({
                     **tax_res,
@@ -867,7 +872,7 @@ class AccountTax(models.Model):
                     'base_amount_currency': tax_res['base'],
                     'base_amount': currency.round(tax_res['base'] / rate),
                     'tax_amount_currency': tax_res['amount'],
-                    'tax_amount': currency.round(tax_res['amount'] / rate),
+                    'tax_amount': tax_amount,
                 })
 
         else:

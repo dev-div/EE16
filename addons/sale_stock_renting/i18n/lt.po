@@ -3,18 +3,19 @@
 # 	* sale_stock_renting
 # 
 # Translators:
-# Martin Trigaux, 2019
-# digitouch UAB <digitouchagencyeur@gmail.com>, 2019
-# Linas Versada <linaskrisiukenas@gmail.com>, 2019
-# Edgaras Kriukonis <edgaras@focusate.eu>, 2019
+# Edgaras Kriukonis <edgaras@focusate.eu>, 2022
+# digitouch UAB <digitouchagencyeur@gmail.com>, 2022
+# Ramunė ViaLaurea <ramune.vialaurea@gmail.com>, 2022
+# Martin Trigaux, 2022
+# Linas Versada <linaskrisiukenas@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-30 09:48+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Edgaras Kriukonis <edgaras@focusate.eu>, 2019\n"
+"POT-Creation-Date: 2022-12-15 13:30+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,23 +24,32 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. module: sale_stock_renting
-#: model_terms:ir.ui.view,arch_db:sale_stock_renting.product_template_inherit_view_form_stock_rental
-#: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_configurator_view_form
-msgid "&amp;#032;"
+#. odoo-python
+#: code:addons/sale_stock_renting/models/product_product.py:0
+#, python-format
+msgid "%(product)s (%(qty)s item)"
 msgstr ""
 
 #. module: sale_stock_renting
-#: model_terms:ir.ui.view,arch_db:sale_stock_renting.res_config_settings_inherit_view_form
-msgid "<span class=\"o_form_label\">Default Padding Time</span>"
+#. odoo-python
+#: code:addons/sale_stock_renting/models/product_product.py:0
+#, python-format
+msgid "%(product)s (%(qty)s items)"
 msgstr ""
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_order_wizard_view_form
 msgid ""
-"<span>\n"
-"                    Some products don't have the requested qty available for pickup\n"
-"                  </span>"
+"<i class=\"fa fa-warning\"/>\n"
+"                        <span>\n"
+"                            Some products don't have the requested qty available for pickup\n"
+"                        </span>"
 msgstr ""
+
+#. module: sale_stock_renting
+#: model_terms:ir.ui.view,arch_db:sale_stock_renting.res_config_settings_inherit_view_form
+msgid "<span class=\"o_form_label\">Default Padding Time</span>"
+msgstr "<span class=\"o_form_label\">Atidėjimo laikas pagal nutylėjimą </span>"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,help:sale_stock_renting.field_res_company__padding_time
@@ -48,6 +58,15 @@ msgid ""
 "Amount of time (in hours) during which a product is considered unavailable "
 "prior to renting (preparation time)."
 msgstr ""
+"Trukmė (valandomis), kai produktas yra nepasiekiamas iki kitos nuomos "
+"(paruošimo laikas)."
+
+#. module: sale_stock_renting
+#. odoo-javascript
+#: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
+#, python-format
+msgid "Availability"
+msgstr "Pasiekiamumas"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__qty_available
@@ -55,8 +74,15 @@ msgid "Available"
 msgstr "Pasiekiamas"
 
 #. module: sale_stock_renting
+#. odoo-javascript
+#: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
+#, python-format
+msgid "Available for Rent"
+msgstr "Galima išnuomoti"
+
+#. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_configurator_view_form
-msgid "Available )"
+msgid "Available)"
 msgstr ""
 
 #. module: sale_stock_renting
@@ -72,7 +98,7 @@ msgstr "Konfigūracijos nustatymai"
 #. module: sale_stock_renting
 #: model:ir.model,name:sale_stock_renting.model_rental_wizard
 msgid "Configure the rental of a product"
-msgstr ""
+msgstr "Sukonfigūruokite produkto nuomą"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,help:sale_stock_renting.field_rental_order_wizard_line__tracking
@@ -83,7 +109,7 @@ msgstr "Užtikrinkite kaupiamo produkto atsekamumą savo sandėlyje."
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard__has_lines_missing_stock
-msgid "Has lines whose products have unsufficient stock"
+msgid "Has lines whose products have insufficient stock"
 msgstr ""
 
 #. module: sale_stock_renting
@@ -94,34 +120,50 @@ msgstr ""
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_res_company__rental_loc_id
 msgid "In rent"
-msgstr ""
+msgstr "Išnuomotas"
+
+#. module: sale_stock_renting
+#: model:ir.model.fields,field_description:sale_stock_renting.field_sale_rental_schedule__is_available
+msgid "Is Available"
+msgstr "Pasiekiamas"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__is_product_storable
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__is_product_storable
 msgid "Is Product Storable"
-msgstr ""
+msgstr "Produktas yra saugomas"
 
 #. module: sale_stock_renting
-#: model:ir.model,name:sale_stock_renting.model_stock_production_lot
+#: model:ir.model,name:sale_stock_renting.model_account_move
+msgid "Journal Entry"
+msgstr "Žurnalo įrašas"
+
+#. module: sale_stock_renting
+#: model:ir.model,name:sale_stock_renting.model_stock_lot
 msgid "Lot/Serial"
 msgstr "Partijos / serijinis numeris"
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.res_config_settings_inherit_view_form
 msgid "Minimum amount of time between two rentals"
-msgstr ""
+msgstr "Minimalus laiko tarpas tarp 2 nuomų"
 
 #. module: sale_stock_renting
-#: code:addons/sale_stock_renting/models/sale_rental.py:0
+#. odoo-python
+#: code:addons/sale_stock_renting/models/sale_order_line.py:0
 #, python-format
 msgid "No valid quant has been found in location %s for serial number %s !"
 msgstr ""
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,help:sale_stock_renting.field_rental_wizard__lot_ids
-msgid "Only available serial numbers are suggested"
-msgstr ""
+msgid "Only available serial numbers are suggested."
+msgstr "Siūlomi tik pasiekiami, laisvi serijos numeriai"
+
+#. module: sale_stock_renting
+#: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_schedule_view_gantt_inherit_stock
+msgid "Other rental(s) in conflict."
+msgstr "Kertasi su kita nuoma(-mis)."
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_res_config_settings__padding_time
@@ -131,50 +173,57 @@ msgstr "Užpildymas"
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_res_company__padding_time
 msgid "Padding Time"
-msgstr ""
+msgstr "Atidėjimo laikas"
 
 #. module: sale_stock_renting
 #: model:ir.model,name:sale_stock_renting.model_rental_order_wizard
 msgid "Pick-up/Return products"
-msgstr ""
+msgstr "Išduoti/Grąžinti produktai"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__pickeable_lot_ids
 msgid "Pickeable Lot"
-msgstr ""
+msgstr "Galimi išduoti partijos numeriai"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__pickedup_lot_ids
 #: model:ir.model.fields,field_description:sale_stock_renting.field_sale_order_line__pickedup_lot_ids
 msgid "Pickedup Lot"
-msgstr ""
+msgstr "Išduoti partijos numeriai"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_processing.py:0
 #, python-format
 msgid "Please specify the serial numbers picked up for the tracked products."
-msgstr ""
+msgstr "Nurodykite išduodamus sekamų produktų serijos numerius."
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_processing.py:0
 #, python-format
 msgid "Please specify the serial numbers returned for the tracked products."
-msgstr ""
+msgstr "Nurodykite grąžinamus sekamų produktų serijos numerius."
 
 #. module: sale_stock_renting
-#: model:ir.model,name:sale_stock_renting.model_product_product
-msgid "Product"
-msgstr "Produktas"
+#: model:product.template,name:sale_stock_renting.rental_stock_product_1_product_template
+msgid "Printer"
+msgstr "Spausdintuvas"
 
 #. module: sale_stock_renting
 #: model:ir.model,name:sale_stock_renting.model_product_template
-msgid "Product Template"
-msgstr "Produkto šablonas"
+msgid "Product"
+msgstr "Produktas"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__product_uom_id
 msgid "Product UoM"
 msgstr "Produkto mato vnt."
+
+#. module: sale_stock_renting
+#: model:ir.model,name:sale_stock_renting.model_product_product
+msgid "Product Variant"
+msgstr "Produkto variantas"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__qty_available_during_period
@@ -189,7 +238,7 @@ msgstr ""
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__rented_qty_during_period
 msgid "Quantity reserved"
-msgstr ""
+msgstr "Rezervuotas kiekis"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,help:sale_stock_renting.field_rental_wizard__rented_qty_during_period
@@ -197,16 +246,22 @@ msgid "Quantity reserved by other Rental lines during the given period"
 msgstr ""
 
 #. module: sale_stock_renting
-#: model:ir.model,name:sale_stock_renting.model_sale_rental_schedule
-msgid "Rental Schedule"
-msgstr ""
+#: model:ir.model,name:sale_stock_renting.model_sale_rental_report
+msgid "Rental Analysis Report"
+msgstr "Nuomos analizės ataskaita"
 
 #. module: sale_stock_renting
-#: code:addons/sale_stock_renting/models/sale_rental.py:0
-#: code:addons/sale_stock_renting/models/sale_rental.py:0
+#: model:ir.model,name:sale_stock_renting.model_sale_rental_schedule
+msgid "Rental Schedule"
+msgstr "Nuomos planas"
+
+#. module: sale_stock_renting
+#. odoo-python
+#: code:addons/sale_stock_renting/models/sale_order_line.py:0
+#: code:addons/sale_stock_renting/models/sale_order_line.py:0
 #, python-format
 msgid "Rental move :"
-msgstr ""
+msgstr "Nuomos judėjimas :"
 
 #. module: sale_stock_renting
 #: model:ir.model,name:sale_stock_renting.model_rental_order_wizard_line
@@ -216,18 +271,18 @@ msgstr ""
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_sale_order_line__reserved_lot_ids
 msgid "Reserved Lot"
-msgstr ""
+msgstr "Rezervuoti partijos numeriai"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__returnable_lot_ids
 msgid "Returnable Lot"
-msgstr ""
+msgstr "Grąžinami partijos numeriai"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_order_wizard_line__returned_lot_ids
 #: model:ir.model.fields,field_description:sale_stock_renting.field_sale_order_line__returned_lot_ids
 msgid "Returned Lot"
-msgstr ""
+msgstr "Grąžinti partijos numeriai"
 
 #. module: sale_stock_renting
 #: model:ir.model,name:sale_stock_renting.model_sale_order_line
@@ -238,15 +293,17 @@ msgstr "Pardavimo užsakymo eilutė"
 #: model:ir.model.fields,field_description:sale_stock_renting.field_product_product__preparation_time
 #: model:ir.model.fields,field_description:sale_stock_renting.field_product_template__preparation_time
 msgid "Security Time"
-msgstr ""
+msgstr "Atidėjimo laikas"
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_configurator_view_form
 msgid "Select available serial numbers."
-msgstr ""
+msgstr "Pasirinkti pasiekiamus serijos numerius."
 
 #. module: sale_stock_renting
+#: model:ir.model.fields,field_description:sale_stock_renting.field_sale_rental_report__lot_id
 #: model:ir.model.fields,field_description:sale_stock_renting.field_sale_rental_schedule__lot_id
+#: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_report_search_view_inherit_lots
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_schedule_view_search_inherit_lots
 msgid "Serial Number"
 msgstr "Serijinis numeris"
@@ -256,7 +313,7 @@ msgstr "Serijinis numeris"
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_order_wizard_view_form
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.report_rental_order_document
 msgid "Serial Numbers"
-msgstr "Partija"
+msgstr "Serijos numeriai"
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_configurator_view_form
@@ -266,12 +323,12 @@ msgstr ""
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__rentable_lot_ids
 msgid "Serials available in Stock"
-msgstr ""
+msgstr "Laisvi serijos numeriai sandėlyje."
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__rented_lot_ids
 msgid "Serials in rent for given period"
-msgstr ""
+msgstr "Išnuomoti serijos numeriai nurodytam laikotarpiui."
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.rental_configurator_view_form
@@ -282,7 +339,7 @@ msgstr "Atsargos"
 #: model:ir.model.fields,help:sale_stock_renting.field_product_product__preparation_time
 #: model:ir.model.fields,help:sale_stock_renting.field_product_template__preparation_time
 msgid "Temporarily make this product unavailable before pickup."
-msgstr ""
+msgstr "Produktas laikinai nepasiekiamas prieš sekančią nuomą."
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,help:sale_stock_renting.field_res_company__rental_loc_id
@@ -300,9 +357,25 @@ msgid "Tracking"
 msgstr "Sekimas"
 
 #. module: sale_stock_renting
+#. odoo-python
+#: code:addons/sale_stock_renting/models/product_template.py:0
+#, python-format
+msgid ""
+"Tracking by lots isn't supported for rental products.\n"
+"You should rather change the tracking mode to unique serial numbers."
+msgstr ""
+
+#. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_sale_order_line__unavailable_lot_ids
 msgid "Unavailable Lot"
-msgstr ""
+msgstr "Nepasiekiami serijos numeriai"
+
+#. module: sale_stock_renting
+#. odoo-javascript
+#: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
+#, python-format
+msgid "View Rentals"
+msgstr "Rodyti nuomą"
 
 #. module: sale_stock_renting
 #: model:ir.model.fields,field_description:sale_stock_renting.field_rental_wizard__warehouse_id
@@ -311,9 +384,17 @@ msgid "Warehouse"
 msgstr "Sandėlis"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid "You cannot change the product of a picked-up line."
+msgstr ""
+
+#. module: sale_stock_renting
+#. odoo-python
+#: code:addons/sale_stock_renting/models/sale_order_line.py:0
+#, python-format
+msgid "You cannot change the product of lines linked to stock moves."
 msgstr ""
 
 #. module: sale_stock_renting
@@ -324,4 +405,11 @@ msgstr "valandos"
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.product_template_inherit_view_form_stock_rental
 msgid "hours before orders"
-msgstr ""
+msgstr "valandos prieš užsakymą"
+
+#. module: sale_stock_renting
+#. odoo-javascript
+#: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
+#, python-format
+msgid "to"
+msgstr "iki"

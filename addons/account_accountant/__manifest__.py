@@ -47,9 +47,12 @@ It assigns manager and user access rights to the Administrator for the accountin
         'web.assets_backend': [
             'account_accountant/static/src/js/tours/account_accountant.js',
             'account_accountant/static/src/js/reconciliation/*.js',
-            'account_accountant/static/src/scss/*.scss',
+            'account_accountant/static/src/scss/account_reconciliation.scss',
             'account_accountant/static/src/components/**/*',
             'account_accountant/static/src/**/*.xml',
+        ],
+        'web.dark_mode_assets_backend': [
+            'account_accountant/static/src/scss/*.dark.scss',
         ],
         'web.assets_tests': [
             'account_accountant/static/tests/tours/**/*',

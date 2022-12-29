@@ -1,16 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_maintenance
+# 	* mrp_maintenance
 # 
 # Translators:
-# Martin Trigaux, 2018
+# Djordje Marjanovic <djvmarjanovic@gmail.com>, 2022
+# Martin Trigaux, 2022
+# Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2022
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-08 07:14+0000\n"
-"PO-Revision-Date: 2018-10-08 07:14+0000\n"
-"Last-Translator: Martin Trigaux, 2018\n"
+"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2022\n"
 "Language-Team: Serbian (https://www.transifex.com/odoo/teams/41243/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,6 +25,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_production_view_form_inherit_maintenance
 msgid "<span class=\"o_stat_text\">Maintenance</span>"
 msgstr ""
+
+#. module: mrp_maintenance
+#: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__company_id
+msgid "Company"
+msgstr "Kompanija"
 
 #. module: mrp_maintenance
 #: model:ir.model.fields,help:mrp_maintenance.field_maintenance_equipment__estimated_next_failure
@@ -36,7 +44,7 @@ msgstr ""
 #. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_request_view_form_inherit_mrp
 msgid "Discard"
-msgstr ""
+msgstr "Poništi"
 
 #. module: mrp_maintenance
 #: model:maintenance.equipment,name:mrp_maintenance.equipment_furniture3
@@ -121,26 +129,24 @@ msgid "Maintenance Equipment"
 msgstr ""
 
 #. module: mrp_maintenance
+#. openerp-web
+#: code:addons/mrp_maintenance/static/src/components/menuPopup.xml:0
 #: model:ir.model,name:mrp_maintenance.model_maintenance_request
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_production_view_form_inherit_maintenance
+#, python-format
 msgid "Maintenance Request"
 msgstr ""
 
 #. module: mrp_maintenance
-#: code:addons/mrp_maintenance/models/mrp_maintenance.py:93
+#: code:addons/mrp_maintenance/models/mrp_maintenance.py:0
 #, python-format
 msgid "Maintenance Requests"
 msgstr ""
 
 #. module: mrp_maintenance
-#: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_workorder_tablet_view_form_inherit_maintenance
-msgid "Maintenance request"
-msgstr ""
-
-#. module: mrp_maintenance
 #: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__production_id
 msgid "Manufacturing Order"
-msgstr "Zahtev Proizvodnje"
+msgstr "Proizvodni nalog"
 
 #. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_equipment_view_form_inherit_mrp
@@ -160,8 +166,8 @@ msgid "Mean Time To Repair"
 msgstr ""
 
 #. module: mrp_maintenance
-#: code:addons/mrp_maintenance/models/mrp_maintenance.py:80
-#: code:addons/mrp_maintenance/models/mrp_maintenance.py:115
+#: code:addons/mrp_maintenance/models/mrp_maintenance.py:0
+#: code:addons/mrp_maintenance/models/mrp_maintenance.py:0
 #, python-format
 msgid "New Maintenance Request"
 msgstr ""
@@ -172,9 +178,19 @@ msgid "Number of maintenance requests"
 msgstr ""
 
 #. module: mrp_maintenance
+#: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_request_view_search_inherit_mrp
+msgid "Operation"
+msgstr "Zadatak"
+
+#. module: mrp_maintenance
+#: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__production_company_id
+msgid "Production Company"
+msgstr ""
+
+#. module: mrp_maintenance
 #: model:ir.model,name:mrp_maintenance.model_mrp_production
 msgid "Production Order"
-msgstr "Proizvodni Nalog"
+msgstr "Nalog za proizvodnju"
 
 #. module: mrp_maintenance
 #: model:ir.model.fields,field_description:mrp_maintenance.field_mrp_production__request_ids
@@ -184,7 +200,7 @@ msgstr "Zahtev"
 #. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_request_view_form_inherit_mrp
 msgid "Save"
-msgstr ""
+msgstr "Sačuvaj"
 
 #. module: mrp_maintenance
 #: model:maintenance.equipment,name:mrp_maintenance.equipment_furniture2
@@ -215,7 +231,7 @@ msgid "days"
 msgstr "dana"
 
 #. module: mrp_maintenance
-#: code:addons/mrp_maintenance/models/mrp_maintenance.py:47
+#: code:addons/mrp_maintenance/models/mrp_maintenance.py:0
 #, python-format
 msgid "work centers"
 msgstr ""

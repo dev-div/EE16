@@ -6,12 +6,14 @@
 # Susanna Pujol, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
-# Sandra Franch <sandra.franch@upc.edu>, 2022
-# jabelchi, 2022
 # M Palau <mpalau@tda.ad>, 2022
+# Josep Anton Belchi, 2022
 # Arnau Ros, 2022
 # Martin Trigaux, 2022
 # marcescu, 2022
+# Óscar Fonseca <tecnico@extreme-micro.com>, 2022
+# Farouk Jabiri, 2022
+# Ivan Espinola, 2022
 # 
 msgid ""
 msgstr ""
@@ -19,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-10 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
-"Last-Translator: marcescu, 2022\n"
+"Last-Translator: Ivan Espinola, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,17 +46,17 @@ msgstr "123 Vistes •"
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_stream_post_view_kanban
 msgid "<i class=\"fa fa-comments me-1\" title=\"Comments\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-comments me-1\" title=\"Comments\"/>"
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_stream_post_view_kanban
 msgid "<i class=\"fa fa-thumbs-up me-1\" title=\"Likes\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-thumbs-up me-1\" title=\"Likes\"/>"
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.youtube_preview
 msgid "<span class=\"fw-bold\">Your YouTube Channel</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">El vostre canal de YouTube</span>"
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_account_view_form
@@ -171,6 +173,8 @@ msgid ""
 "Could not revoke your account.\n"
 "Error: %s"
 msgstr ""
+"No s'ha pogut revocar el vostre compte.\n"
+"Error: %s"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_account_revoke_youtube__create_uid
@@ -207,6 +211,8 @@ msgid ""
 "Expiration date of the Access Token provided by the YouTube API, this should"
 " never be set manually."
 msgstr ""
+"Data de venciment del testimoni d'accés proporcionat per l'API de YouTube, "
+"això mai s'ha de definir manualment."
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_account__youtube_access_token
@@ -278,11 +284,13 @@ msgid ""
 "Odoo will lose access to your YouTube account\n"
 "                        and delete all its related data from your database."
 msgstr ""
+"Odoo perdrà accés al vostre compte de YouTube\n"
+"                        i suprimiu totes les dades relacionades de la base de dades."
 
 #. module: social_youtube
 #: model:ir.model.fields,help:social_youtube.field_social_post__youtube_video_privacy
 msgid "Once posted, set the video as Public/Private/Unlisted"
-msgstr ""
+msgstr "Un cop publicat, establiu el vídeo com a públic/privat/desllistat"
 
 #. module: social_youtube
 #: code:addons/social_youtube/models/social_post.py:0
@@ -331,26 +339,28 @@ msgstr "Revocar"
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_account_revoke_youtube_view_form
 msgid "Revoke & Delete"
-msgstr ""
+msgstr "Revoca la supressió"
 
 #. module: social_youtube
 #: code:addons/social_youtube/models/social_account.py:0
 #, python-format
 msgid "Revoke Account"
-msgstr ""
+msgstr "Revoca el compte"
 
 #. module: social_youtube
 #: model:ir.actions.act_window,name:social_youtube.social_account_revoke_youtube_action
 #: model:ir.model,name:social_youtube.model_social_account_revoke_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_account_revoke_youtube_view_form
 msgid "Revoke YouTube Account"
-msgstr ""
+msgstr "Revoca el compte de YouTube"
 
 #. module: social_youtube
 #: code:addons/social_youtube/models/social_account.py:0
 #, python-format
 msgid "Revoking access tokens is currently limited to YouTube accounts only."
 msgstr ""
+"Actualment, la revocació de tokens d'accés només es limita als comptes de "
+"YouTube."
 
 #. module: social_youtube
 #. openerp-web
@@ -391,12 +401,12 @@ msgstr "Publicació social en directe"
 #. module: social_youtube
 #: model:ir.model,name:social_youtube.model_social_media
 msgid "Social Media"
-msgstr "Mitjans de comunicació"
+msgstr "Xarxes socials"
 
 #. module: social_youtube
 #: model:ir.model,name:social_youtube.model_social_post
 msgid "Social Post"
-msgstr "Correu social"
+msgstr "Publicació social"
 
 #. module: social_youtube
 #: model:ir.model,name:social_youtube.model_social_post_template
@@ -406,7 +416,7 @@ msgstr "Plantilla de publicació social"
 #. module: social_youtube
 #: model:ir.model,name:social_youtube.model_social_stream
 msgid "Social Stream"
-msgstr "Flux social"
+msgstr "Transmissió en viu social"
 
 #. module: social_youtube
 #: model:ir.model,name:social_youtube.model_social_stream_post
@@ -417,7 +427,7 @@ msgstr "Publicació de la transmissió en viu social"
 #: code:addons/social_youtube/models/social_post.py:0
 #, python-format
 msgid "The 'message' field is required for post ID %s"
-msgstr "El camp «message» és necessari per a l'ID de l'entrada %s"
+msgstr "El camp «message» és necessari per a l'ID de la publicació %s"
 
 #. module: social_youtube
 #. openerp-web
@@ -433,8 +443,8 @@ msgid ""
 "The url that this service requested returned an error. Please contact the "
 "author of the app."
 msgstr ""
-"L'enllaç que aquest servei ha sol·licitat ha retornat un error. Contacteu "
-"amb l'autor de l'aplicació."
+"L'URL sol·licitat per aquest servei ha retornat un error. Contacteu amb "
+"l'autor de l'aplicació."
 
 #. module: social_youtube
 #: code:addons/social_youtube/models/social_live_post.py:0
@@ -446,7 +456,7 @@ msgstr "El vídeo que intentes publicar s'ha eliminat de YouTube."
 #: code:addons/social_youtube/controllers/main.py:0
 #, python-format
 msgid "There is no channel linked with this YouTube account."
-msgstr ""
+msgstr "No hi ha cap canal enllaçat amb aquest compte de YouTube."
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_account_view_form
@@ -477,7 +487,7 @@ msgstr "Desconegut"
 #. module: social_youtube
 #: model:ir.model.fields.selection,name:social_youtube.selection__social_post__youtube_video_privacy__unlisted
 msgid "Unlisted"
-msgstr ""
+msgstr "No llistat"
 
 #. module: social_youtube
 #. openerp-web
@@ -498,14 +508,14 @@ msgstr "Ha fallat la pujada. Torneu-ho a provar."
 #: code:addons/social_youtube/static/src/js/social_youtube_upload_field.js:0
 #, python-format
 msgid "Uploading %s"
-msgstr ""
+msgstr "S'està pujant %s"
 
 #. module: social_youtube
 #. openerp-web
 #: code:addons/social_youtube/static/src/js/social_youtube_upload_field.js:0
 #, python-format
 msgid "Uploading... %s%%"
-msgstr ""
+msgstr "S'està pujant... %s%%"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_res_config_settings__youtube_use_own_account
@@ -536,7 +546,7 @@ msgstr "Descripció del vídeo"
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_post__youtube_video_privacy
 msgid "Video Privacy"
-msgstr ""
+msgstr "Privadesa del vídeo"
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_post_view_form
@@ -602,7 +612,7 @@ msgstr "Id de la categoria de YouTube"
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_account__youtube_channel_id
 msgid "YouTube Channel ID"
-msgstr ""
+msgstr "ID del canal de YouTube"
 
 #. module: social_youtube
 #: model:ir.model.fields,help:social_youtube.field_social_account__youtube_channel_id
@@ -628,7 +638,7 @@ msgstr "Comptador de comentaris de YouTube"
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.res_config_settings_view_form
 msgid "YouTube Developer Account"
-msgstr ""
+msgstr "Compte de desenvolupador de YouTube"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_stream_post__youtube_dislikes_count
@@ -643,7 +653,7 @@ msgstr "A YouTube li agrada"
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_stream_post__youtube_likes_ratio
 msgid "YouTube Likes Ratio"
-msgstr ""
+msgstr "A YouTube li agrada la relació"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_res_config_settings__youtube_oauth_client_id
@@ -685,7 +695,7 @@ msgstr "Miniatures de YouTube"
 #: model:ir.model.fields,field_description:social_youtube.field_social_post__youtube_thumbnail_url
 #: model:ir.model.fields,field_description:social_youtube.field_social_stream_post__youtube_thumbnail_url
 msgid "YouTube Thumbnail Url"
-msgstr ""
+msgstr "URL de la miniatura de YouTube"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_account__youtube_upload_playlist_id
@@ -721,7 +731,7 @@ msgstr "Títol del vídeo de YouTube"
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_post__youtube_video_url
 msgid "YouTube Video Url"
-msgstr ""
+msgstr "URL de vídeo de YouTube"
 
 #. module: social_youtube
 #: model:ir.model.fields,field_description:social_youtube.field_social_stream_post__youtube_views_count
@@ -758,6 +768,8 @@ msgid ""
 "Your videos metadata including title and view counts (but never the video "
 "itself)"
 msgstr ""
+"Les metadades dels vostres vídeos, incloent-hi el recompte de títols i "
+"vistes (però mai el vídeo en si)"
 
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_post_view_form
@@ -776,4 +788,4 @@ msgstr "Per exemple, Odoo Social Tutorial"
 #. module: social_youtube
 #: model_terms:ir.ui.view,arch_db:social_youtube.social_account_view_form
 msgid "the Google Third-party app account access panel"
-msgstr ""
+msgstr "El plafó d'accés al compte d'aplicacions de tercers de Google"

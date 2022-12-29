@@ -3,8 +3,8 @@
 # 	* knowledge
 # 
 # Translators:
-# Martin Trigaux, 2022
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
+# Martin Trigaux, 2022
 # Jolien De Paepe, 2022
 # 
 msgid ""
@@ -31,9 +31,9 @@ msgid ""
 "            before being permanently removed for your database"
 msgstr ""
 "\n"
-"            Verwijderde artikelen worden extra opgeslagen in de Prullenbak\n"
-"            <b>%(threshold)s</b> dagen\n"
-"            voordat het permanent wordt verwijderd voor je database"
+"            Verwijderde artikelen worden\n"
+"            <b>%(threshold)s</b> dagen extra opgeslagen in de prullenbak\n"
+"            voordat deze definitief worden verwijderd uit je database"
 
 #. module: knowledge
 #. openerp-web
@@ -192,7 +192,7 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-plus-circle me-1\"/>Create"
-msgstr "<i class=\"fa fa-plus-circle me-1\"/>Maken"
+msgstr "<i class=\"fa fa-plus-circle me-1\"/>Aanmaken"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -1063,19 +1063,19 @@ msgstr ""
 #. openerp-web
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
 #, python-format
-msgid "Are you sure you want to remove you own \"Write\" access ?"
-msgstr "Weet je zeker dat je je eigen schrijftoegang wilt verwijderen?"
-
-#. module: knowledge
-#. openerp-web
-#: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
-#, python-format
 msgid ""
 "Are you sure you want to remove your member? By leaving an article, you may "
 "lose access to it."
 msgstr ""
 "Weet je zeker dat je je lid wilt verwijderen? Door een artikel te verlaten, "
 "kun je de toegang ertoe verliezen."
+
+#. module: knowledge
+#. openerp-web
+#: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
+#, python-format
+msgid "Are you sure you want to remove your own \"Write\" access ?"
+msgstr "Ben je zeker dat je je eigen schrijftoegang wilt verwijderen?"
 
 #. module: knowledge
 #. openerp-web
@@ -1299,7 +1299,7 @@ msgid ""
 "private parent"
 msgstr ""
 "Kan geen artikel maken onder artikel %(parent_name)s dat een niet-privé "
-"ouder is"
+"bovenliggend artikel is"
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0
@@ -1309,7 +1309,8 @@ msgid ""
 "rights can not be inferred without a parent."
 msgstr ""
 "Kan %(article_name)s niet verplaatsen als root van de 'gedeelde' sectie "
-"omdat toegangsrechten niet kunnen worden afgeleid zonder een ouder."
+"omdat toegangsrechten niet kunnen worden afgeleid zonder een bovenliggend "
+"artikel."
 
 #. module: knowledge
 #. openerp-web
@@ -1463,7 +1464,7 @@ msgstr "Gedesynchroniseerde artikelen moeten interne rechten hebben."
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__is_desynchronized
 msgid "Desyncronized with parents"
-msgstr "Gedesynchroniseerd met ouders"
+msgstr "Gedesynchroniseerd met bovenliggende artikelen"
 
 #. module: knowledge
 #. openerp-web
@@ -1707,8 +1708,8 @@ msgstr "Indien aangevinkt, hebben sommige berichten een bezorgfout."
 msgid ""
 "If set, this article won't inherit access rules from its parents anymore."
 msgstr ""
-"Indien ingesteld, neemt dit artikel geen toegangsregels meer over van zijn "
-"ouders."
+"Indien ingesteld, neemt dit artikel geen toegangsregels meer over van de "
+"bovenliggende artikelen."
 
 #. module: knowledge
 #. openerp-web
@@ -1856,7 +1857,17 @@ msgid "Item List"
 msgstr "Lijstitem"
 
 #. module: knowledge
+#. openerp-web
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #: model:ir.ui.menu,name:knowledge.knowledge_menu_root
+#, python-format
 msgid "Knowledge"
 msgstr "Kennis"
 
@@ -1975,6 +1986,14 @@ msgid "Main Attachment"
 msgstr "Hoofdbijlage"
 
 #. module: knowledge
+#. openerp-web
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#, python-format
+msgid "Media"
+msgstr "Media"
+
+#. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_member_view_form
 msgid "Member"
 msgstr "Lid"
@@ -2018,7 +2037,7 @@ msgstr "Ontbrekend bestand"
 #: code:addons/knowledge/static/src/components/move_article_dialog/move_article_dialog.xml:0
 #, python-format
 msgid "Move \""
-msgstr "Beweging \""
+msgstr "Verplaats \""
 
 #. module: knowledge
 #. openerp-web
@@ -2071,7 +2090,7 @@ msgstr "Basisvavigatie"
 #: code:addons/knowledge/static/src/xml/knowledge_editor.xml:0
 #, python-format
 msgid "Nest articles under this one to generate a structure"
-msgstr "Nest artikelen onder deze om een structuur te genereren"
+msgstr "Maak subartikelen onder dit artikel om een structuur te maken"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__activity_calendar_event_id
@@ -2345,7 +2364,7 @@ msgstr "Zoek favorieten"
 #: code:addons/knowledge/static/src/xml/chatter_topbar.xml:0
 #, python-format
 msgid "Search Knowledge Articles"
-msgstr "Zoeken in Knowledge-artikelen"
+msgstr "Zoeken in kennis-artikelen"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_member_view_search
@@ -2357,7 +2376,7 @@ msgstr "Leden zoeken"
 #: code:addons/knowledge/static/src/components/move_article_dialog/move_article_dialog.xml:0
 #, python-format
 msgid "Search an Article to use as Parent"
-msgstr "Zoek een artikel om als ouder te gebruiken"
+msgstr "Zoek een artikel om als bovenliggend artikel te gebruiken"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -2530,15 +2549,16 @@ msgstr "Het geselecteerde lid bestaat niet of is al verwijderd."
 msgid ""
 "The sequence is computed only among the articles that have the same parent."
 msgstr ""
-"De volgorde wordt alleen berekend tussen de artikelen die dezelfde ouder "
-"hebben."
+"De volgorde wordt alleen berekend tussen de artikelen die dezelfde "
+"bovenliggende artikelen hebben."
 
 #. module: knowledge
 #: model:ir.model.fields,help:knowledge.field_knowledge_article__root_article_id
 msgid ""
 "The subject is the title of the highest parent in the article hierarchy."
 msgstr ""
-"Het onderwerp is de titel van de hoogste ouder in de artikelhiërarchie."
+"Het onderwerp is de titel van he hoogste bovenliggende artikel in de "
+"artikelhiërarchie."
 
 #. module: knowledge
 #. openerp-web
@@ -2584,14 +2604,14 @@ msgstr "Om zeker op de hoogte te blijven, volg ons op"
 #. module: knowledge
 #: model:ir.actions.act_window,name:knowledge.knowledge_article_action_trashed
 msgid "Trash"
-msgstr "Afval"
+msgstr "Prullenbak"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__to_delete
 #: model:ir.ui.menu,name:knowledge.knowledge_article_menu_trashed
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_search
 msgid "Trashed"
-msgstr "Weggegooid"
+msgstr "Verwijderd"
 
 #. module: knowledge
 #: model:ir.model.constraint,message:knowledge.constraint_knowledge_article_check_trash
@@ -2721,7 +2741,7 @@ msgstr "Welkom %s"
 #: code:addons/knowledge/static/src/components/prompt_embedded_view_name_dialog/prompt_embedded_view_name_dialog.xml:0
 #, python-format
 msgid "What do you want to manage?"
-msgstr "Wat wil je regelen?"
+msgstr "Wat wil je beheren?"
 
 #. module: knowledge
 #: model:ir.model.fields,help:knowledge.field_knowledge_article__is_locked

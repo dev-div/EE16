@@ -3,20 +3,22 @@
 # 	* currency_rate_live
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Dariusz Żbikowski <darek@krokus.com.pl>, 2019
-# Tomasz Leppich <t.leppich@gmail.com>, 2019
-# Piotr Szlązak <szlazakpiotr@gmail.com>, 2019
-# Piotr Cierkosz <piotr.w.cierkosz@gmail.com>, 2019
-# Maksym <ms@myodoo.pl>, 2019
+# Piotr Strębski <strebski@gmail.com>, 2022
+# Dariusz Żbikowski <darek@krokus.com.pl>, 2022
+# Maksym <ms@myodoo.pl>, 2022
+# Martin Trigaux, 2022
+# Piotr Szlązak <szlazakpiotr@gmail.com>, 2022
+# Tomasz Leppich <t.leppich@gmail.com>, 2022
+# Piotr Cierkosz <piotr.w.cierkosz@gmail.com>, 2022
+# Paweł Wodyński <pw@myodoo.pl>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: Maksym <ms@myodoo.pl>, 2019\n"
+"POT-Creation-Date: 2022-06-09 14:10+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Paweł Wodyński <pw@myodoo.pl>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/odoo/teams/41243/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +38,22 @@ msgstr ""
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__boc
 msgid "Bank Of Canada"
-msgstr "Bank Of Canada"
+msgstr "Bank Kanady"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bcrp
+msgid "Bank of Peru"
+msgstr "Bank Peru"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbegy
+msgid "Central Bank of Egypt"
+msgstr "Bank Centralny Egiptu"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__mindicador
+msgid "Chilean mindicador.cl"
+msgstr "Chilijski mindicador.cl"
 
 #. module: currency_rate_live
 #: model:ir.model,name:currency_rate_live.model_res_company
@@ -82,13 +99,6 @@ msgid "Interval Unit"
 msgstr "Jednostka interwału"
 
 #. module: currency_rate_live
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_company__last_currency_sync_date
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_config_settings__last_currency_sync_date
-#: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
-msgid "Last Sync Date"
-msgstr "Data ostatniej synchronizacji"
-
-#. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__manually
 msgid "Manually"
 msgstr "Ręcznie"
@@ -102,6 +112,11 @@ msgstr "Bank Meksyku"
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__monthly
 msgid "Monthly"
 msgstr "Miesięcznie"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bnr
+msgid "National Bank Of Romania"
+msgstr "Narodowy Bank Rumuni "
 
 #. module: currency_rate_live
 #: model:ir.model.fields,field_description:currency_rate_live.field_res_company__currency_next_execution_date
@@ -126,14 +141,14 @@ msgid "Service Provider"
 msgstr "Serwis dostawcy"
 
 #. module: currency_rate_live
-#: code:addons/currency_rate_live/models/res_config_settings.py:0
-#, python-format
-msgid ""
-"Unable to connect to the online exchange rate platform %s. The web service "
-"may be temporary down."
-msgstr ""
-"Nie można się połączyć z giełdą wymiany walut %s. Serwis moze być chwilowo "
-"nieczynny."
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__tcmb
+msgid "Turkey Republic Central Bank"
+msgstr "Bank Centralny Republiki Tureckiej"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbuae
+msgid "UAE Central Bank"
+msgstr "Bank Centralny ZEA"
 
 #. module: currency_rate_live
 #: code:addons/currency_rate_live/models/res_config_settings.py:0

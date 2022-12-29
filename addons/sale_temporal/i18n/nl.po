@@ -4,17 +4,18 @@
 # 
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2022
-# Martin Trigaux, 2022
-# Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
 # Gunther Clauwaert <gclauwae@hotmail.com>, 2022
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
+# Martin Trigaux, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"POT-Creation-Date: 2022-12-15 13:30+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Gunther Clauwaert <gclauwae@hotmail.com>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,12 +24,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_temporal
+#. odoo-python
 #: code:addons/sale_temporal/models/product_template.py:0
 #, python-format
 msgid "%(amount)s (fixed)"
 msgstr "%(amount)s (vast)"
 
 #. module: sale_temporal
+#. odoo-python
 #: code:addons/sale_temporal/models/product_pricing.py:0
 #: code:addons/sale_temporal/models/sale_order_recurrence.py:0
 #, python-format
@@ -80,6 +83,13 @@ msgid "Custom Pricings"
 msgstr "Prijzen op maat"
 
 #. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricing.py:0
+#, python-format
+msgid "Day"
+msgstr "Dag"
+
+#. module: sale_temporal
 #: model:ir.model.fields.selection,name:sale_temporal.selection__sale_temporal_recurrence__unit__day
 msgid "Days"
 msgstr "Dagen"
@@ -105,6 +115,13 @@ msgstr "Duur"
 #: model:ir.model.fields,help:sale_temporal.field_product_template__display_price
 msgid "First leasing pricing of the product"
 msgstr "Eerste huurprijzen van het product"
+
+#. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricing.py:0
+#, python-format
+msgid "Hour"
+msgstr "Uur"
 
 #. module: sale_temporal
 #: model:ir.model.fields,field_description:sale_temporal.field_product_pricing__id
@@ -162,6 +179,13 @@ msgstr ""
 "vertegenwoordigt dit een vaste tijdsduur."
 
 #. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricing.py:0
+#, python-format
+msgid "Month"
+msgstr "Maand"
+
+#. module: sale_temporal
 #: model:ir.model.fields.selection,name:sale_temporal.selection__sale_temporal_recurrence__unit__month
 msgid "Months"
 msgstr "Maanden"
@@ -178,6 +202,12 @@ msgid "Notes"
 msgstr "Notities"
 
 #. module: sale_temporal
+#: model_terms:ir.ui.view,arch_db:sale_temporal.product_pricelist_view
+#: model_terms:ir.ui.view,arch_db:sale_temporal.product_template_form_view_pricing
+msgid "Period"
+msgstr "Periode"
+
+#. module: sale_temporal
 #: model_terms:ir.ui.view,arch_db:sale_temporal.sale_temporal_recurrence_view_form
 #: model_terms:ir.ui.view,arch_db:sale_temporal.sale_temporal_recurrence_view_tree
 msgid "Periodicity"
@@ -190,7 +220,6 @@ msgstr "Periode"
 
 #. module: sale_temporal
 #: model:ir.model.fields,field_description:sale_temporal.field_product_pricing__price
-#: model_terms:ir.ui.view,arch_db:sale_temporal.product_template_form_view_pricing
 msgid "Price"
 msgstr "Prijs"
 
@@ -243,7 +272,6 @@ msgstr "Herhaling"
 
 #. module: sale_temporal
 #: model:ir.model.fields,field_description:sale_temporal.field_product_pricelist__product_pricing_ids
-#: model_terms:ir.ui.view,arch_db:sale_temporal.product_pricelist_view
 msgid "Recurring Price Rules"
 msgstr "Terugkerende prijsregels"
 
@@ -293,10 +321,21 @@ msgstr ""
 "De toepassingsduur van deze prijs moet groter zijn dan of gelijk zijn aan 0."
 
 #. module: sale_temporal
+#. odoo-python
 #: code:addons/sale_temporal/models/product_template.py:0
 #, python-format
 msgid "The product (%s) has incompatible values: %s"
 msgstr "Product (%s) heeft onverenigbare waarden: %s"
+
+#. module: sale_temporal
+#: model_terms:ir.ui.view,arch_db:sale_temporal.product_template_form_view_pricing
+msgid "Time based pricing"
+msgstr "Op tijd gebaseerde prijzen"
+
+#. module: sale_temporal
+#: model_terms:ir.ui.view,arch_db:sale_temporal.product_pricelist_view
+msgid "Time based rules"
+msgstr "Op tijd gebaseerde regels"
 
 #. module: sale_temporal
 #: model:ir.model.fields,field_description:sale_temporal.field_sale_temporal_recurrence__unit
@@ -309,9 +348,23 @@ msgid "Variants"
 msgstr "Varianten"
 
 #. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricing.py:0
+#, python-format
+msgid "Week"
+msgstr "Week"
+
+#. module: sale_temporal
 #: model:ir.model.fields.selection,name:sale_temporal.selection__sale_temporal_recurrence__unit__week
 msgid "Weeks"
 msgstr "Weken"
+
+#. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricing.py:0
+#, python-format
+msgid "Year"
+msgstr "Jaar"
 
 #. module: sale_temporal
 #: model:ir.model.fields.selection,name:sale_temporal.selection__sale_temporal_recurrence__unit__year
@@ -319,16 +372,29 @@ msgid "Years"
 msgstr "Jaren"
 
 #. module: sale_temporal
+#. odoo-python
+#: code:addons/sale_temporal/models/product_pricelist.py:0
+#, python-format
+msgid ""
+"You can not have a time-based rule for products that are not recurring or "
+"rentable."
+msgstr ""
+"Je kan geen op tijd gebaseerde regel instellen voor producten die niet "
+"terugkerend of verhuurbaar zijn."
+
+#. module: sale_temporal
+#. odoo-python
 #: code:addons/sale_temporal/models/product_pricing.py:0
 #, python-format
 msgid ""
 "You cannot have multiple pricing for the same variant, recurrence and "
 "pricelist"
 msgstr ""
-"U kunt niet meerdere prijzen hebben voor dezelfde variant, herhaling en "
+"Je kunt niet meerdere prijzen hebben voor dezelfde variant, herhaling en "
 "prijslijst"
 
 #. module: sale_temporal
+#. odoo-python
 #: code:addons/sale_temporal/models/product_pricing.py:0
 #: code:addons/sale_temporal/models/product_pricing.py:0
 #, python-format

@@ -12,6 +12,6 @@
     'demo': [],
     'installable': True,
     'auto_install': ['stock_enterprise'],
-    'license': 'LGPL-3',
+    'license': 'OEEL-1',
     'assets': {}
 }

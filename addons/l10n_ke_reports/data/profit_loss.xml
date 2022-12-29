@@ -217,7 +217,7 @@
     <record id="action_account_report_ke_pnl" model="ir.actions.client">
         <field name="name">Profit and Loss</field>
         <field name="tag">account_report</field>
-        <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('account_financial_report_ke_profitandloss0')}"/>
+        <field name="context" eval="{'model': 'account.report', 'report_id': ref('account_financial_report_ke_profitandloss0')}"/>
     </record>
     <record id="account_financial_report_ke_bs_B_1_earnings" model="account.report.line">
         <field name="action_id" ref="action_account_report_ke_pnl"/>

@@ -3,6 +3,8 @@
 import { click, getFixture, patchWithCleanup } from "@web/../tests/helpers/utils";
 import { clickOnDataset } from "@web/../tests/views/graph_view_tests";
 import { makeView, setupViewRegistries } from "@web/../tests/views/helpers";
+import { fakeCookieService } from "@web/../tests/helpers/mock_services";
+import { registry } from "@web/core/registry";
 
 let serverData;
 let target;
@@ -69,6 +71,7 @@ QUnit.module("HrContractEmployeeReport", (hooks) => {
         };
 
         setupViewRegistries();
+        registry.category("services").add("cookie", fakeCookieService);
     });
 
     QUnit.test(

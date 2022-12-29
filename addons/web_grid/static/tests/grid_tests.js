@@ -9,6 +9,7 @@ const cpHelpers = require('@web/../tests/search/helpers');
 var createView = testUtils.createView;
 const { createWebClient, doAction } = require('@web/../tests/webclient/helpers');
 const {
+    click,
     clickDropdown,
     clickOpenedDropdownItem,
     editInput,
@@ -1203,6 +1204,72 @@ QUnit.module('LegacyViews', {
         // recheck first column header
         assert.strictEqual($(target).find('.o_view_grid th:eq(2)').text(), "Tue,Jan 24", "The first day of the span should STILL be the 24st of January, even we resetting search");
     });
+
+    QUnit.test(
+        "dialog should close when clicking the link to many2one field",
+        async function (assert) {
+            assert.expect(2);
+
+            const views = {
+                ...this.archs,
+                "analytic.line,false,grid": /* xml */ `
+                <grid string="Timesheet" adjustment="object" adjust_name="adjust_grid">
+                    <field name="project_id" type="row"/>
+                    <field name="task_id" type="row"/>
+                    <field name="date" type="col">
+                        <range name="week" string="Week" span="week" step="day"/>
+                        <range name="month" string="Month" span="month" step="day"/>
+                        <range name="year" string="Year" span="year" step="month"/>
+                    </field>
+                    <field name="unit_amount" type="measure" widget="float_time"/>
+                </grid>`,
+                "analytic.line,false,search": `<search/>`,
+                // This is used when clicking on the link to the many2one field.
+                "task,false,form": `<form><field name="display_name"/></form>`,
+                "task,false,search": `<search/>`,
+            };
+            const serverData = { models: this.data, views };
+
+            const target = getFixture();
+
+            // create an action manager to test the interactions with the search view
+            const webClient = await createWebClient({
+                serverData,
+                legacyParams: { withLegacyMockServer: true },
+                mockRPC: (route, options) => {
+                    if (route === "/web/dataset/call_kw/task/get_formview_action") {
+                        return {
+                            res_id: options.args[0][0],
+                            type: "ir.actions.act_window",
+                            target: "current",
+                            res_model: "task",
+                            views: [[false, "form"]],
+                        };
+                    }
+                },
+            });
+
+            await doAction(webClient, {
+                res_model: "analytic.line",
+                type: "ir.actions.act_window",
+                views: [[false, "grid"]],
+                context: {
+                    search_default_filter_test: 1,
+                    grid_anchor: "2017-01-31",
+                },
+            });
+
+            await click(target, ".o_grid_button_add");
+            await testUtils.nextTick();
+            assert.containsOnce(target, ".o_dialog_container.modal-open");
+
+            await clickDropdown(target, "task_id");
+            await clickOpenedDropdownItem(target, "task_id", "BS task");
+            await click(target, '.o_field_widget[name="task_id"] button.o_external_button');
+            await testUtils.nextTick();
+            assert.containsNone(target, ".o_dialog_container.modal-open");
+        }
+    );
 
     QUnit.test('grid with two tasks with same name, and widget', async function (assert) {
         assert.expect(2);

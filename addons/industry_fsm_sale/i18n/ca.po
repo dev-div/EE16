@@ -9,9 +9,12 @@
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
 # marcescu, 2022
 # Martin Trigaux, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # Arnau Ros, 2022
+# Cristian Cruz, 2022
+# Farouk Jabiri, 2022
+# Ivan Espinola, 2022
 # 
 msgid ""
 msgstr ""
@@ -19,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:24+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Arnau Ros, 2022\n"
+"Last-Translator: Ivan Espinola, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,14 +35,14 @@ msgstr ""
 #: code:addons/industry_fsm_sale/models/project_task.py:0
 #, python-format
 msgid "%s - %s"
-msgstr ""
+msgstr "%s - %s"
 
 #. module: industry_fsm_sale
 #. openerp-web
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "<b>Invoice your time and material</b> to your customer."
-msgstr ""
+msgstr "<b>Factura el vostre temps i material</b> al vostre client."
 
 #. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/models/project_task.py:0
@@ -55,6 +58,15 @@ msgid ""
 "                            in your profile from where to draw stock.\n"
 "                        </p>"
 msgstr ""
+"<p class=\"o_view_nocontent_smiling_face\">\n"
+"                            No s'ha trobat cap producte. Creem-ne un!\n"
+"                        </p><p>\n"
+"                            Feu un seguiment dels productes que esteu utilitzant per a completar les vostres tasques i facturar els vostres clients pels productes.\n"
+"                            Consell: utilitzant kits, podeu afegir diversos productes alhora.\n"
+"                        </p><p>\n"
+"                            Quan la vostra tasca es marca com a feta, l'estoc s'actualitzarà automàticament. Simplement trieu un magatzem\n"
+"                            al vostre perfil des d'on dibuixar l'estoc.\n"
+"                        </p>"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_task_form2_inherit_sale_timesheet
@@ -64,6 +76,10 @@ msgid ""
 "updated.\" attrs=\"{'invisible': ['|', ('partner_id', '=', False), "
 "('is_task_phone_update', '=', False)]}\"/>"
 msgstr ""
+"<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
+"title=\"By saving this change, the customer phone number will also be "
+"updated.\" attrs=\"{'invisible': ['|', ('partner_id', '=', False), "
+"('is_task_phone_update', '=', False)]}\"/>"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.worksheet_time_and_material
@@ -73,7 +89,7 @@ msgstr "<span>Desc.%</span>"
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_task_form2_inherit
 msgid "<span>Products</span>"
-msgstr ""
+msgstr "<span>Productes</span>"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.worksheet_time_and_material
@@ -100,12 +116,12 @@ msgstr "<strong>Quantitat no gravada</strong>"
 #: code:addons/industry_fsm_sale/models/project_task.py:0
 #, python-format
 msgid "A customer should be set on the task to generate a worksheet."
-msgstr ""
+msgstr "S'ha d'establir un client a la tasca de generar un full de treball."
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.product_search_form_view_inherit_fsm_sale
 msgid "Added Products"
-msgstr ""
+msgstr "Productes afegits"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.worksheet_time_and_material
@@ -116,12 +132,13 @@ msgstr "Import"
 #: model:ir.model.constraint,message:industry_fsm_sale.constraint_project_project_fsm_imply_task_rate
 msgid "An FSM project must be billed at task rate or employee rate."
 msgstr ""
+"Un projecte FSM s'ha de facturar a tipus de tasca o a tipus d'empleat."
 
 #. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/wizard/sale_make_invoice_advance.py:0
 #, python-format
 msgid "An invoice has been created: %s"
-msgstr ""
+msgstr "S'ha creat una factura: %s"
 
 #. module: industry_fsm_sale
 #: model:ir.model,name:industry_fsm_sale.model_account_analytic_line
@@ -131,7 +148,7 @@ msgstr "Compte analític"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_project__allow_billable
 msgid "Billable"
-msgstr ""
+msgstr "Facturable"
 
 #. module: industry_fsm_sale
 #: model:project.task.type,legend_blocked:industry_fsm_sale.field_service_project_stage_0
@@ -145,12 +162,14 @@ msgid ""
 "By saving this change, all timesheet entries will be linked to the selected "
 "Sales Order Item without distinction."
 msgstr ""
+"En desar aquest canvi, totes les entrades del full de temps s'enllaçaran a "
+"l'element de comanda de vendes seleccionat sense distinció."
 
 #. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/models/project_task.py:0
 #, python-format
 msgid "Choose Products"
-msgstr ""
+msgstr "Trieu productes"
 
 #. module: industry_fsm_sale
 #. openerp-web
@@ -160,6 +179,8 @@ msgid ""
 "Choose a <b>name</b> for your product <i>(e.g. Bolts, Screws, Boiler, "
 "etc.).</i>"
 msgstr ""
+"Trieu un nom <b></b> per al vostre producte <i>(p. ex. Bolts, Screws, "
+"Boiler, etc.).</i>"
 
 #. module: industry_fsm_sale
 #. openerp-web
@@ -169,6 +190,9 @@ msgid ""
 "Click on your product to add it to your <b>list of materials</b>. <i>Tip: "
 "for large quantities, click on the number to edit it directly.</i>"
 msgstr ""
+"Feu clic al vostre producte per afegir-lo a la vostra llista <b>de "
+"materials</b>. Consell <i>: per a grans quantitats, feu clic sobre el número"
+" per a modificar-lo directament.</i>"
 
 #. module: industry_fsm_sale
 #: model:ir.model,name:industry_fsm_sale.model_res_config_settings
@@ -180,7 +204,7 @@ msgstr "Ajustos de configuració"
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "Confirm the creation of your <b>invoice</b>."
-msgstr ""
+msgstr "Confirmeu la creació de la vostra <b>factura</b>."
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.project_task_view_list_fsm_sale_inherit
@@ -226,12 +250,12 @@ msgstr "Descripció"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__display_create_invoice_primary
 msgid "Display Create Invoice Primary"
-msgstr ""
+msgstr "Mostra la creació de factura primària"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__display_create_invoice_secondary
 msgid "Display Create Invoice Secondary"
-msgstr ""
+msgstr "Visualitza Crea una factura secundària"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_product_product_kanban_material
@@ -241,7 +265,7 @@ msgstr "Menú desplegable"
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_product_product_kanban_material
 msgid "Edit"
-msgstr "Edita"
+msgstr "Modificar"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_project__allow_quotations
@@ -268,7 +292,7 @@ msgstr "Servei de camp"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_product_product__fsm_partner_price_currency_id
 msgid "Fsm Partner Price Currency"
-msgstr ""
+msgstr "Divisa del preu del soci Fsm"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields.selection,name:industry_fsm_sale.selection__report_project_task_user_fsm__invoice_status__invoiced
@@ -292,6 +316,18 @@ msgid "In Progress"
 msgstr "En curs"
 
 #. module: industry_fsm_sale
+#: code:addons/industry_fsm_sale/models/product_product.py:0
+#, python-format
+msgid "Invalid operator: %s"
+msgstr "Operador no vàlid: %s"
+
+#. module: industry_fsm_sale
+#: code:addons/industry_fsm_sale/models/product_product.py:0
+#, python-format
+msgid "Invalid value: %s"
+msgstr "Valor no vàlid: %s"
+
+#. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/models/project_task.py:0
 #, python-format
 msgid "Invoice"
@@ -313,6 +349,8 @@ msgstr "Estat factura"
 msgid ""
 "Invoice your time and material to your customers once your tasks are done."
 msgstr ""
+"Factura el teu temps i material als teus clients una vegada que les teves "
+"tasques estiguin acabades."
 
 #. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/models/project_task.py:0
@@ -325,7 +363,7 @@ msgstr "Factures"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__is_task_phone_update
 msgid "Is Task Phone Update"
-msgstr ""
+msgstr "És una actualització del telèfon de la tasca"
 
 #. module: industry_fsm_sale
 #. openerp-web
@@ -333,28 +371,29 @@ msgstr ""
 #, python-format
 msgid "Let's <b>track the material</b> you use for your task."
 msgstr ""
+"Fem un seguiment de <b>del material</b> que utilitzeu per a la vostra tasca."
 
 #. module: industry_fsm_sale
 #. openerp-web
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "Let's create a new <b>product</b>."
-msgstr ""
+msgstr "Creem un nou producte <b></b>."
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__material_line_product_count
 msgid "Material Line Product Count"
-msgstr ""
+msgstr "Comptador de productes de línies de material"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__material_line_total_price
 msgid "Material Line Total Price"
-msgstr ""
+msgstr "Preu total de la línia de material"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_product_product__fsm_quantity
 msgid "Material Quantity"
-msgstr ""
+msgstr "Quantitat del material"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_task_form2_inherit
@@ -364,12 +403,12 @@ msgstr "Nou pressupost"
 #. module: industry_fsm_sale
 #: model_terms:ir.actions.act_window,help:industry_fsm_sale.product_action_fsm
 msgid "No products found. Let's create one!"
-msgstr ""
+msgstr "No s'ha trobat cap producte. Creem-ne un!"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.actions.act_window,help:industry_fsm_sale.project_task_action_to_invoice_fsm
 msgid "No tasks found. Let's create one!"
-msgstr "No s'ha trobat cap tasca. ¡Creem-ne un!"
+msgstr "No s'ha trobat cap tasca. ¡Creem-ne una!"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields.selection,name:industry_fsm_sale.selection__report_project_task_user_fsm__invoice_status__no
@@ -384,12 +423,12 @@ msgstr "Nombre de factures"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_product_product__fsm_partner_price
 msgid "Partner Price"
-msgstr ""
+msgstr "Preu del soci"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__portal_quotation_count
 msgid "Portal Quotation Count"
-msgstr ""
+msgstr "Portal de comptador de pressupostos"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_product_product_kanban_material
@@ -453,7 +492,7 @@ msgstr "Projecte"
 #. module: industry_fsm_sale
 #: model:ir.model,name:industry_fsm_sale.model_project_sale_line_employee_map
 msgid "Project Sales line, employee mapping"
-msgstr ""
+msgstr "Línia de vendes del projecte, mapatge dels empleats"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.worksheet_time_and_material
@@ -475,7 +514,7 @@ msgstr "Compte de pressupostos"
 #: code:addons/industry_fsm_sale/models/sale_order.py:0
 #, python-format
 msgid "Quotation created: %s"
-msgstr ""
+msgstr "Pressupost creat: %s"
 
 #. module: industry_fsm_sale
 #: code:addons/industry_fsm_sale/controllers/portal.py:0
@@ -493,7 +532,7 @@ msgstr "Preparat"
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.view_order_form_inherit_sale_project
 msgid "Related Task"
-msgstr ""
+msgstr "Tasca relacionada"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_report_project_task_user_fsm__remaining_hours_so
@@ -514,7 +553,7 @@ msgstr "Comanda de venda"
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_project__sale_line_id
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__sale_line_id
 msgid "Sales Order Item"
-msgstr "Posició de comanda de client"
+msgstr "Element de la comanda"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,help:industry_fsm_sale.field_project_task__sale_line_id
@@ -523,6 +562,9 @@ msgid ""
 "By default the sales order item set on the project will be selected. In the absence of one, the last prepaid sales order item that has time remaining will be used.\n"
 "Remove the sales order item in order to make this task non billable. You can also change or remove the sales order item of each timesheet entry individually."
 msgstr ""
+"Element de la comanda de vendes al qual s'afegirà el temps dedicat a aquesta tasca per tal de facturar-lo al vostre client.\n"
+"Per defecte, se seleccionarà l'element de comanda de vendes establert al projecte. En absència d'una, s'utilitzarà l'últim article de comanda de prepagament que queda temps.\n"
+"Suprimiu l'element de comanda de vendes per tal que aquesta tasca no sigui facturable. També podeu canviar o eliminar l'element de comanda de vendes de cada entrada de full de temps individualment."
 
 #. module: industry_fsm_sale
 #: model:ir.model,name:industry_fsm_sale.model_sale_order_line
@@ -535,13 +577,15 @@ msgid ""
 "Sales order item that will be selected by default on the tasks and timesheets of this project, except if the employee set on the timesheets is explicitely linked to another sales order item on the project.\n"
 "It can be modified on each task and timesheet entry individually if necessary."
 msgstr ""
+"L'element de comanda de vendes que se seleccionarà per defecte a les tasques i fulls de temps d'aquest projecte, excepte si el treballador establert en els fulls de temps està explícitament enllaçat a un altre element de comanda de vendes del projecte.\n"
+"Es pot modificar a cada entrada de la tasca i del full de temps individualment si cal."
 
 #. module: industry_fsm_sale
 #. openerp-web
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "Save your <b>product</b>."
-msgstr ""
+msgstr "Deseu el vostre <b>producte</b>."
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,help:industry_fsm_sale.field_product_product__project_id
@@ -577,7 +621,7 @@ msgstr "Recurrència de la tasca"
 #. module: industry_fsm_sale
 #: model:ir.model.fields,help:industry_fsm_sale.field_sale_order__task_id
 msgid "Task from which this quotation have been created"
-msgstr ""
+msgstr "Tasca des de la qual s'ha creat aquest pressupost"
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.project_task_view_search_fsm_inherit_sale
@@ -593,7 +637,7 @@ msgstr "Impostos"
 #. module: industry_fsm_sale
 #: model:ir.model.constraint,message:industry_fsm_sale.constraint_project_project_material_imply_billable
 msgid "The material can be allowed only when the task can be billed."
-msgstr ""
+msgstr "El material només es pot permetre quan la tasca es pot facturar."
 
 #. module: industry_fsm_sale
 #: model:ir.model.constraint,message:industry_fsm_sale.constraint_project_project_timesheet_product_required_if_billable_and_timesheets_and_fsm_projects
@@ -601,6 +645,8 @@ msgid ""
 "The timesheet product is required when the fsm project can be billed and "
 "timesheets are allowed."
 msgstr ""
+"El producte del full de temps és necessari quan el projecte fsm es pot "
+"facturar i es permeten fulls de temps."
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.portal_my_task
@@ -626,11 +672,12 @@ msgstr "Preu total"
 #: model_terms:ir.actions.act_window,help:industry_fsm_sale.product_action_fsm
 msgid "Track and bill the material used to complete your tasks."
 msgstr ""
+"Seguiu i reviseu el material utilitzat per a completar les vostres tasques."
 
 #. module: industry_fsm_sale
 #: model_terms:ir.ui.view,arch_db:industry_fsm_sale.project_view_form_inherit
 msgid "Track the material used to complete tasks"
-msgstr ""
+msgstr "Segueix el material utilitzat per completar les tasques"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_sale_line_employee_map__price_unit
@@ -649,20 +696,22 @@ msgstr "Oportunitat de venda incremental"
 #, python-format
 msgid "Use the breadcrumbs to navigate to your <b>list of products</b>."
 msgstr ""
+"Utilitzeu les molles de pa per navegar a la vostra <b>llista de "
+"productes</b>."
 
 #. module: industry_fsm_sale
 #. openerp-web
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "Use the breadcrumbs to return to your <b>task</b>."
-msgstr ""
+msgstr "Utilitzeu la ruta de navegació per tornar a la vostra tasca <b></b>."
 
 #. module: industry_fsm_sale
 #. openerp-web
 #: code:addons/industry_fsm_sale/static/src/js/tours/industry_fsm_sale_tour.js:0
 #, python-format
 msgid "Wait for the invoice to show up"
-msgstr ""
+msgstr "Espera que aparegui la factura"
 
 #. module: industry_fsm_sale
 #: model:ir.model.fields,field_description:industry_fsm_sale.field_project_task__warning_message

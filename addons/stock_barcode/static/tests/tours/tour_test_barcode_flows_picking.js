@@ -196,6 +196,47 @@ tour.register('test_internal_picking_from_scratch', {test: true}, [
     { trigger: '.o_notification.border-success' } // Second call to write (change the dest. location).
 ]);
 
+tour.register('test_internal_picking_from_scratch_with_package', { test: true }, [
+    // Creates a first internal transfert (Section 1 -> Section 2).
+    { trigger: '.o_stock_barcode_main_menu', run: 'scan WH-INTERNAL' },
+    // Scans product1 and put it in P00001, then do the same for product2.
+    { trigger: '.o_barcode_client_action', run: 'scan product1' },
+    { trigger: '.o_barcode_line.o_selected', run: 'scan P00001' },
+    // Scans the destination.
+    { trigger: '.o_barcode_line .result-package', run: 'scan LOC-01-02-00' },
+    { trigger: '.o_barcode_line:not(.o_selected)', run: 'scan product2' },
+    { trigger: '.o_barcode_line[data-barcode="product2"].o_selected', run: 'scan P00001' },
+    { // Scans the destination.
+        trigger: '.o_barcode_line[data-barcode="product2"] .result-package', run: 'scan LOC-01-02-00',
+    },
+    { // Validates the internal picking.
+        trigger: '.o_barcode_line[data-barcode="product2"] .o_line_destination_location',
+        run: 'scan O-BTN.validate',
+    },
+    { trigger: '.o_notification.border-success' },
+    { trigger: '.o_notification button.o_notification_close' },
+
+    // Creates a second internal transfert (WH/Stock -> WH/Stock).
+    { trigger: '.o_stock_barcode_main_menu', run: 'scan WH-INTERNAL' },
+    { trigger: '.o_barcode_client_action', run: () => helper.assertLinesCount(0) },
+    // Scans a package with some quants and checks lines was created for its content.
+    { trigger: '.o_barcode_client_action', run: 'scan P00002' },
+    {
+        trigger: '.o_barcode_line + .o_barcode_line',
+        run: () => {
+            helper.assertLinesCount(2);
+            const $line1 = helper.getLine({ barcode: 'product1' });
+            const $line2 = helper.getLine({ barcode: 'product2' });
+            helper.assertLineQty($line1, "1");
+            helper.assertLineQty($line2, "2");
+        },
+    },
+    // Scans the destination location and validate the transfert.
+    { trigger: '.o_barcode_line.o_selected + .o_barcode_line.o_selected', run: 'scan LOC-01-02-00' },
+    { trigger: '.o_barcode_line:not(.o_selected)', run: 'scan O-BTN.validate' },
+    { trigger: '.o_notification.border-success' },
+]);
+
 tour.register('test_internal_picking_reserved_1', {test: true}, [
     {
         trigger: '.o_barcode_client_action',
@@ -574,7 +615,7 @@ tour.register('test_delivery_lot_with_package', {test: true}, [
 tour.register('test_delivery_reserved_1', {test: true}, [
     // test that picking note properly pops up + close it
     { trigger: '.alert:contains("A Test Note")' },
-    { trigger: '.close' },
+    { trigger: '.alert button.btn-close' },
     // Opens and close the line's form view to be sure the note is still hidden.
     { trigger: '.o_add_line' },
     { trigger: '.o_discard' },
@@ -652,7 +693,7 @@ tour.register('test_delivery_reserved_2', {test: true}, [
     },
 
     {
-        trigger: '.o_barcode_client_action',
+        trigger: '.o_barcode_line.o_selected.o_line_completed',
         run: 'scan product2'
     },
     tour.stepUtils.confirmAddingUnreservedProduct(),
@@ -674,12 +715,12 @@ tour.register('test_delivery_reserved_2', {test: true}, [
     },
 
     {
-        trigger: '.o_barcode_line:not(.o_line_completed)',
+        trigger: '.o_barcode_line.o_selected:not(.o_line_completed)',
         run: 'scan product1'
     },
 
     {
-        trigger: '.o_barcode_line.o_line_completed',
+        trigger: '.o_barcode_line.o_selected.o_line_completed',
         run: function() {
             helper.assertLinesCount(3);
             helper.assertScanMessage('scan_validate');
@@ -951,10 +992,38 @@ tour.register('test_receipt_from_scratch_with_lots_2', {test: true}, [
         run: 'scan productlot1'
     },
 
+    { trigger: '.o_barcode_line .o_edit' },
+
+    {
+        trigger: '.o_input[id=lot_id]',
+        run: function () {
+            const $lot_name = $('#lot_name');
+            // Check if the lot_name is invisible
+            helper.assert($lot_name.length, 0);
+        }
+    },
+
+    { trigger: '.o_save' },
+
     {
         trigger: '.o_barcode_line',
         run: 'scan lot1',
     },
+
+    { trigger: '.o_line_lot_name:contains(lot1)' },
+
+    { trigger: '.o_barcode_line .o_edit' },
+
+    {
+        trigger: '.o_input[id="lot_name"]',
+        run: function () {
+            const $lot_id = $('#lot_id');
+            // check that the lot_id is invisible
+            helper.assert($lot_id.length, 0);
+         }
+    },
+
+    { trigger: '.o_save' },
 
     {
         trigger: '.o_line_lot_name:contains(lot1)',
@@ -980,11 +1049,7 @@ tour.register('test_receipt_from_scratch_with_lots_2', {test: true}, [
 ]);
 
 tour.register('test_receipt_from_scratch_with_lots_3', {test: true}, [
-    {
-        trigger: '.o_barcode_client_action',
-        run: 'scan product1'
-    },
-
+    { trigger: '.o_barcode_client_action', run: 'scan product1' },
     {
         trigger: '.o_barcode_line',
         run: function() {
@@ -995,8 +1060,13 @@ tour.register('test_receipt_from_scratch_with_lots_3', {test: true}, [
         }
     },
 
+    // Scans a second time product1 after going through the edit form view.
+    { trigger: '.o_barcode_line.o_selected .btn.o_edit' },
+    { trigger: '.o_discard' },
+    { trigger: '.o_barcode_client_action', run: 'scan product1' },
+
     {
-        trigger: '.o_barcode_client_action',
+        trigger: '.o_barcode_line .qty-done:contains("2")',
         run: 'scan productlot1'
     },
 
@@ -1007,7 +1077,7 @@ tour.register('test_receipt_from_scratch_with_lots_3', {test: true}, [
             const $line1 = helper.getLine({barcode: 'product1'});
             const $line2 = helper.getLine({barcode: 'productlot1'});
             helper.assertLineIsHighlighted($line1, false);
-            helper.assertLineQty($line1, "1");
+            helper.assertLineQty($line1, "2");
             helper.assertLineIsHighlighted($line2, true);
             helper.assertLineQty($line2, "0");
         }
@@ -1024,13 +1094,13 @@ tour.register('test_receipt_from_scratch_with_lots_3', {test: true}, [
     },
 
     {
-        trigger: '.qty-done:contains(2)',
+        trigger: '.o_selected .qty-done:contains(2)',
         run: function() {
             helper.assertLinesCount(2);
             const $line1 = helper.getLine({barcode: 'product1'});
             const $line2 = helper.getLine({barcode: 'productlot1'});
             helper.assertLineIsHighlighted($line1, false);
-            helper.assertLineQty($line1, "1");
+            helper.assertLineQty($line1, "2");
             helper.assertLineIsHighlighted($line2, true);
             helper.assertLineQty($line2, "2");
         }
@@ -2855,6 +2925,31 @@ tour.register('test_put_in_pack_scan_package', {test: true}, [
         }
     },
     ...tour.stepUtils.validateBarcodeForm(),
+]);
+
+tour.register('test_put_in_pack_new_lines', {test: true}, [
+    {
+        trigger: '.o_barcode_client_action',
+        run: 'scan P00001',
+    },
+    {
+        trigger: '.o_notification.border-danger',
+    },
+    {
+        trigger: '.o_barcode_client_action',
+        run: 'scan product1',
+    },
+    {
+        trigger: '.o_barcode_line:contains("product1")',
+        run: 'scan P00001',
+    },
+    {
+        trigger: '.o_barcode_line:contains("product1"):contains("P00001")',
+        run: 'scan O-BTN.validate',
+    },
+    {
+        trigger: '.o_notification.border-success',
+    },
 ]);
 
 tour.register('test_picking_owner_scan_package', {test: true}, [

@@ -11,9 +11,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
 "Last-Translator: Wichanon Jamwutthipreecha, 2022\n"
 "Language-Team: Thai (https://www.transifex.com/odoo/teams/41243/th/)\n"
@@ -64,6 +64,16 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
+msgid "<span class=\"ms-3\">/ month</span>"
+msgstr ""
+
+#. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
+msgid "<span class=\"ms-3\">/ year</span>"
+msgstr ""
+
+#. module: hr_contract_salary
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Salary Package Configurator</span>"
 msgstr "<span class=\"o_form_label\">ตัวกำหนดค่าแพ็คเกจเงินเดือน</span>"
@@ -97,11 +107,6 @@ msgstr "<span> /ปี</span>"
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
 msgid "<span>/ month</span>"
 msgstr "<span>/ เดือน</span>"
-
-#. module: hr_contract_salary
-#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
-msgid "<span>/ year</span>"
-msgstr "<span>/ ปี</span>"
 
 #. module: hr_contract_salary
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
@@ -150,6 +155,7 @@ msgid "Add a section"
 msgstr "เพิ่มส่วน"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_advantage.py:0
 #, python-format
 msgid "Advanges that are not linked to a field should always be displayed."
@@ -195,6 +201,7 @@ msgid "Annual Employee Budget"
 msgstr "งบประมาณประจำปีของพนักงาน"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Annual Employer Cost"
@@ -221,7 +228,6 @@ msgstr "สมัครตอนนี้"
 #. module: hr_contract_salary
 #: model:ir.actions.server,name:hr_contract_salary.ir_cron_clean_redundant_salary_data_ir_actions_server
 #: model:ir.cron,cron_name:hr_contract_salary.ir_cron_clean_redundant_salary_data
-#: model:ir.cron,name:hr_contract_salary.ir_cron_clean_redundant_salary_data
 msgid "Archive/Delete redundant generated salary data"
 msgstr "เก็บถาวร/ลบข้อมูลเงินเดือนที่สร้างซ้ำ"
 
@@ -329,6 +335,7 @@ msgid "Contract Advantage Value"
 msgstr "ค่าสิทธิประโยชน์ของสัญญา"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Contract Information:"
@@ -352,6 +359,7 @@ msgid "Contract Templates"
 msgstr "เทมเพลตสัญญา"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Contract Type"
@@ -487,6 +495,7 @@ msgid "Date"
 msgstr "วันที่"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model.fields.selection,name:hr_contract_salary.selection__hr_contract_salary_advantage__uom__days
 #: model:ir.model.fields.selection,name:hr_contract_salary.selection__hr_contract_salary_resume__uom__days
@@ -533,7 +542,7 @@ msgid "Description"
 msgstr "คำอธิบาย"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #, python-format
 msgid "Details"
@@ -629,6 +638,7 @@ msgid "Employee Contract"
 msgstr "สัญญาของพนักงาน"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Employee Name"
@@ -650,6 +660,7 @@ msgid "Employee: Contract And Salary Package"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -743,6 +754,7 @@ msgid "Group By"
 msgstr "กลุ่มโดย"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract.py:0
 #, python-format
 msgid ""
@@ -851,6 +863,7 @@ msgid "Is origin contract a contract template ?"
 msgstr "สัญญาต้นทางเป็นเทมเพลตสัญญาหรือไม่?"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model,name:hr_contract_salary.model_hr_job
 #: model:ir.model.fields,field_description:hr_contract_salary.field_generate_simulation_link__employee_job_id
@@ -859,6 +872,7 @@ msgid "Job Position"
 msgstr "ตำแหน่งงาน"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model.fields,field_description:hr_contract_salary.field_generate_simulation_link__job_title
 #, python-format
@@ -950,6 +964,7 @@ msgid "Master"
 msgstr "ปริญญาโท"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_personal_info.py:0
 #, python-format
 msgid ""
@@ -976,6 +991,7 @@ msgid "Monthly Cost (Real)"
 msgstr "ค่าใช้จ่ายรายเดือน (ตามจริง)"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Monthly Gross Salary"
@@ -1032,12 +1048,14 @@ msgid "New Contract Document Template"
 msgstr "เทมเพลตเอกสารสัญญาใหม่"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "No"
 msgstr "ไม่"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1052,12 +1070,14 @@ msgid "No Template found"
 msgstr "ไม่พบเทมเพลต"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract.py:0
 #, python-format
 msgid "No private address defined on the employee!"
 msgstr "ไม่มีที่อยู่ส่วนตัวที่กำหนดไว้สำหรับพนักงาน!"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1066,14 +1086,14 @@ msgid ""
 msgstr "ลิงก์นี้ไม่ถูกต้อง โปรดติดต่อ ฝ่ายรับผิดชอบ HR เพื่อขอใหม่..."
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
 msgid "Not a valid e-mail address"
 msgstr "ไม่ใช่ที่อยู่อีเมลที่ถูกต้อง"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
 msgid "Not a valid input in integer field"
@@ -1095,6 +1115,7 @@ msgid "Offer link"
 msgstr "ลิงก์ข้อเสนอ"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
@@ -1114,6 +1135,7 @@ msgid "Origin Contract"
 msgstr "ที่มาสัญญา"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Original Link"
@@ -1160,6 +1182,7 @@ msgid "Personal Info"
 msgstr "ข้อมูลส่วนตัว"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Personal Information"
@@ -1223,7 +1246,7 @@ msgid "Radio Buttons"
 msgstr "ปุ่มวิทยุ"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #, python-format
@@ -1319,6 +1342,7 @@ msgid "Salary Package Resume Category"
 msgstr "หมวดหมู่ประวัติย่อแพ็คเกจเงินเดือน"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Salary Package Summary"
@@ -1410,6 +1434,7 @@ msgid "Sign document in contract"
 msgstr "ลงนามในเอกสารสัญญา"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
@@ -1434,7 +1459,7 @@ msgid "Slider Min"
 msgstr "ตัวเลื่อนต่ำสุด"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
@@ -1507,6 +1532,14 @@ msgid "The contract from which this contract has been duplicated."
 msgstr "สัญญาที่สัญญานี้ถูกทำซ้ำ"
 
 #. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.generate_simulation_link_view_form
+msgid ""
+"The employee does not have a valid email set in the private information. The"
+" Simulation Link won't be able to be completed."
+msgstr ""
+
+#. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1515,6 +1548,7 @@ msgid ""
 msgstr "พนักงานไม่ได้เชื่อมโยงกับผู้ใช้ที่มีอยู่ โปรดติดต่อผู้ดูแลระบบ"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_advantage.py:0
 #, python-format
 msgid ""
@@ -1540,6 +1574,7 @@ msgid "There is no available option to customize your salary"
 msgstr "ไม่มีตัวเลือกในการปรับแต่งเงินเดือนของคุณ"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "This contract has been updated, please request an updated link.."
@@ -1554,6 +1589,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
@@ -1596,6 +1632,7 @@ msgid "Value Type"
 msgstr "ประเภทค่า"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Wage"
@@ -1652,6 +1689,7 @@ msgid "Yearly Cost (Real)"
 msgstr "ต้นทุนรายปี (ตามจริง)"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Yes"

@@ -80,11 +80,7 @@
                     <field name="active" invisible="1"/>
                     <field name="company_id" invisible="1"/>
                     <field name="description" placeholder="Describe your team to your colleagues and customers..."/>
-                    <group>
-                        <group>
-                            <field name="company_id" groups="base.group_multi_company" required="1" nolabel="1" context="{'create': False}"/>
-                        </group>
-                    </group>
+                    <field name="company_id" groups="base.group_multi_company" required="1" nolabel="1" context="{'create': False}"/>
                     <h2>Assignment &amp; Visibility</h2>
                     <div class="row mt16 o_settings_container" id="productivity">
                         <div class="col-lg-6 o_setting_box">
@@ -194,7 +190,7 @@
                             </div>
                             <div class="o_setting_right_pane">
                                 <label for="use_website_helpdesk_form"/>
-                                <div class="text-muted">
+                                <div class="text-muted mb-4">
                                     Get tickets through an online form
                                 </div>
                             </div>

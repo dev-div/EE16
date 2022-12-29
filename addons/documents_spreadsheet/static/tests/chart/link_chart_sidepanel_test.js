@@ -1,6 +1,12 @@
 /** @odoo-module */
 
-import { click, getFixture, nextTick, patchWithCleanup } from "@web/../tests/helpers/utils";
+import {
+    click,
+    editInput,
+    getFixture,
+    nextTick,
+    patchWithCleanup,
+} from "@web/../tests/helpers/utils";
 import { session } from "@web/session";
 import { createSpreadsheet } from "../spreadsheet_test_utils";
 import { getBasicData } from "@spreadsheet/../tests/utils/data";
@@ -159,7 +165,7 @@ QUnit.module(
                     "A menu to link charts to odoo menus was added to the side panel"
                 );
                 await click(irMenuField);
-                await nextTick();
+                await editInput(irMenuField, null, "");
                 await click(document.querySelectorAll(".ui-menu-item")[0]);
                 odooMenu = model.getters.getChartOdooMenu(chartId);
                 assert.equal(
@@ -188,7 +194,7 @@ QUnit.module(
                     "A menu to link charts to odoo menus was added to the side panel"
                 );
                 await click(irMenuField);
-                await nextTick();
+                await editInput(irMenuField, null, "");
                 await click(document.querySelectorAll(".ui-menu-item")[0]);
                 odooMenu = model.getters.getChartOdooMenu(chartId);
                 assert.equal(
@@ -217,7 +223,7 @@ QUnit.module(
                     "A menu to link charts to odoo menus was added to the side panel"
                 );
                 await click(irMenuField);
-                await nextTick();
+                await editInput(irMenuField, null, "");
                 await click(document.querySelectorAll(".ui-menu-item")[0]);
                 odooMenu = model.getters.getChartOdooMenu(chartId);
                 assert.equal(

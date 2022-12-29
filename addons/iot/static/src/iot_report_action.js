@@ -33,6 +33,10 @@ async function iotReportActionHandler(action, options, env) {
         iotDevice.action({ document })
             .then(data => onIoTActionResult(data, env))
             .guardedCatch(() => iotDevice.iotLongpolling._doWarnFail(ip));
+
+        if (options.onClose) {
+            options.onClose();
+        }
         return true;
     }
 }

@@ -35,29 +35,8 @@
                 --table-hover-bg: #{$o-view-background-color};
                 --table-striped-bg: #{$o-view-background-color};
             }
-            thead > tr > th {
-                border: none;
-                .o_resize {
-                    display: none;
-                }
-                &:nth-child(-n+2) {
-                    visibility: hidden;
-                }
-                &:nth-child(3) {
-                    // fix alignment bug on safari
-                    width: initial !important;
-                }
-                padding-left: 0px;
-                @include media-breakpoint-down(sm, $o-extra-grid-breakpoints) {
-                    font-weight: 400;
-                    color: $o-brand-secondary !important;
-                    &:nth-child(1) {
-                        display: none;
-                    }
-                    &:nth-child(3) {
-                        width: 80px;
-                    }
-                }
+            thead {
+                display: none;
             }
             tr.o_data_row {
                 border-bottom: none !important;
@@ -66,7 +45,7 @@
             }
             tbody > tr {
                 border: none;
-                border-bottom: none
+                outline: none;
             }
             tbody > tr:not(.o_data_row) {
                 display: none;
@@ -80,6 +59,16 @@
             tbody > tr:nth-child(1) {
                 box-shadow: none !important;
                 border: none !important;
+            }
+            tbody > tr > td.o_list_many2one {
+                outline: none;
+                border: none !important;
+                color: #212529 !important;
+                padding-left: 0px;
+                cursor: default !important;
+                input {
+                    border-bottom: 1px solid var(--o-input-border-color) !important;
+                }
             }
             tbody > tr > td.o_list_many2one:nth-child(1) {
                 @include media-breakpoint-down(lg) {
@@ -96,19 +85,12 @@
                 width: 150px !important;
                 color: $o-gray-900 !important;
                 font-weight: 500;
-                padding-left: 0px;
-                cursor: default !important;
-                border: none;
             }
             tbody > tr > td:not(:nth-child(1)){
                 color: $o-gray-900 !important;
                 padding-left: 0px;
-                cursor: default !important;
+                cursor: text !important;
                 border: none;
-                border-bottom: 1px solid $o-gray-800;
-                &:focus-within {
-                    border-color: #017e84 !important;
-                }
                 &:nth-child(2) {
                     @include media-breakpoint-down(sm, $o-extra-grid-breakpoints) {
                         display: block !important;

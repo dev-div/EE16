@@ -12,7 +12,7 @@ import { AppCreatorWrapper } from "@web_studio/client_action/app_creator/app_cre
 import { IconCreator } from "@web_studio/client_action/icon_creator/icon_creator";
 import testUtils from "web.test_utils";
 
-const { Component } = owl;
+import { Component } from "@odoo/owl";
 const sampleIconUrl = "/web_enterprise/Parent.src/img/default_icon_app.png";
 
 const createAppCreator = async ({ env, rpc, state, onNewAppCreated }) => {

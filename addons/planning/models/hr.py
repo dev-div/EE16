@@ -95,8 +95,12 @@ class Employee(models.Model):
         # experience, but unfortunately does not trigger computation on write. That's why we need to handle it
         # here too.
         default_planning_role_id = vals.get('default_planning_role_id', False)
-        default_planning_role = self.env['planning.role'].browse(default_planning_role_id)\
-            if isinstance(default_planning_role_id, int) else default_planning_role_id
+        default_planning_role = False
+        if default_planning_role_id:
+            if isinstance(default_planning_role_id, int):
+                default_planning_role = self.env['planning.role'].browse(default_planning_role_id)
+            elif isinstance(default_planning_role_id, models.BaseModel):
+                default_planning_role = default_planning_role_id
         if default_planning_role:
             if 'planning_role_ids' in vals and vals['planning_role_ids']:
                 # `planning_role_ids` is either a list of commands, a list of ids, or a recordset

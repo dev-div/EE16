@@ -10,7 +10,6 @@ import {
     click,
     getFixture,
     nextTick,
-    triggerEvent,
     patchWithCleanup,
 } from '@web/../tests/helpers/utils';
 import { setupViewRegistries } from "@web/../tests/views/helpers";
@@ -300,7 +299,6 @@ QUnit.module('documents_kanban_mobile_tests.js', {
         // select a first record (enter selection mode)
         await click(document.querySelector('.o_data_row'));
         const toggleInspectorSelector = '.o_documents_mobile_inspector > .o_documents_toggle_inspector';
-        await nextTick();
         assert.isVisible(document.querySelector('.o_documents_mobile_inspector > *:not(.o_documents_toggle_inspector)'),
             "inspector should be opened");
 
@@ -315,9 +313,7 @@ QUnit.module('documents_kanban_mobile_tests.js', {
             "should have 1 record selected");
 
         // select a second record
-        await triggerEvent(document.querySelectorAll('.o_data_row .o_list_record_selector input')[1], null, 'touchstart');
-        await triggerEvent(document.querySelectorAll('.o_data_row .o_list_record_selector input')[1], null, 'touchend');
-        await nextTick();
+        await click(document.querySelector('.o_data_row:nth-child(2)'));
         assert.containsN(document.body, '.o_data_row.o_data_row_selected', 2,
             "should have 2 records selected");
         assert.strictEqual(document.querySelector(toggleInspectorSelector).innerText.replace(/\s+/g, " ").trim(), '2 DOCUMENTS SELECTED');
@@ -326,13 +322,11 @@ QUnit.module('documents_kanban_mobile_tests.js', {
 
         // disable selection mode
         await click(document.querySelector('.o_discard_selection'));
-        await nextTick();
         assert.containsNone(document.body, '.o_document_list_record.o_data_row_selected',
             "shouldn't have record selected");
 
         // click on the record
         await click(document.querySelector('.o_data_row'));
-        await nextTick();
         assert.containsOnce(document.body, '.o_data_row.o_data_row_selected',
             "should have 1 record selected");
         assert.strictEqual(document.querySelector(toggleInspectorSelector).innerText.replace(/\s+/g, " ").trim(), '1 DOCUMENT SELECTED');

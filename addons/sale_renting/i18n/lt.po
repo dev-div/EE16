@@ -3,23 +3,26 @@
 # 	* sale_renting
 # 
 # Translators:
-# Arminas Grigonis <arminas@versada.lt>, 2019
-# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2019
-# Anatolij, 2019
-# Audrius Palenskis <audrius.palenskis@gmail.com>, 2019
-# Šarūnas Ažna <sarunas.azna@gmail.com>, 2019
-# Antanas Muliuolis <an.muliuolis@gmail.com>, 2019
-# digitouch UAB <digitouchagencyeur@gmail.com>, 2019
-# Martin Trigaux, 2019
-# Linas Versada <linaskrisiukenas@gmail.com>, 2019
+# Šarūnas Ažna <sarunas.azna@gmail.com>, 2022
+# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2022
+# Jonas Zinkevicius <jozi@odoo.com>, 2022
+# Antanas Muliuolis <an.muliuolis@gmail.com>, 2022
+# Audrius Palenskis <audrius.palenskis@gmail.com>, 2022
+# Arunas V. <arunas@devoro.com>, 2022
+# Linas Versada <linaskrisiukenas@gmail.com>, 2022
+# grupoda2 <dmitrijus.ivanovas@gmail.com>, 2022
+# digitouch UAB <digitouchagencyeur@gmail.com>, 2022
+# Martin Trigaux, 2022
+# Ramunė ViaLaurea <ramune.vialaurea@gmail.com>, 2022
+# Denis Knotko <denis_knotko@yahoo.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-30 09:48+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-10-04 09:41+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Denis Knotko <denis_knotko@yahoo.com>, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,10 +31,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/product.py:0
-#: code:addons/sale_renting/models/product.py:0
+#: code:addons/sale_renting/models/product_product.py:0
+#: code:addons/sale_renting/models/product_template.py:0
 #, python-format
-msgid "(Rental)"
+msgid "%s (Rental)"
 msgstr ""
 
 #. module: sale_renting
@@ -45,44 +48,47 @@ msgstr ""
 #: code:addons/sale_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid "/day"
-msgstr ""
+msgstr "/dieną"
 
 #. module: sale_renting
 #: code:addons/sale_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid "/hour"
-msgstr ""
+msgstr "/valandą"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
-msgid "<span class=\"o_form_label\">Default Delay Costs</span>"
+msgid ""
+"<span class=\"o_form_label\">\n"
+"                                    Default Delay Costs\n"
+"                                </span>"
 msgstr ""
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.product_product_form_view_rental_gantt
 #: model_terms:ir.ui.view,arch_db:sale_renting.product_template_form_view_rental_gantt
 msgid "<span class=\"o_stat_text\">in Rental</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Išnuomota</span>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
 msgid "<span> to </span>"
-msgstr ""
+msgstr "<span>iki</span>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
-msgid "<strong>Order #: </strong>"
-msgstr ""
+msgid "<strong>Order # — </strong>"
+msgstr "<strong>Užsakymas # —</strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
-msgid "<strong>Pickup : </strong>"
-msgstr ""
+msgid "<strong>Pickup  — </strong>"
+msgstr "<strong>Išduoti  — </strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
-msgid "<strong>Return : </strong>"
-msgstr ""
+msgid "<strong>Return — </strong>"
+msgstr "<strong>Grąžinta  — </strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
@@ -92,12 +98,12 @@ msgstr "<strong>Pardavėjas:</strong>"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "<strong>Shipping Address:</strong>"
-msgstr ""
+msgstr "<strong>Siuntimo adresas:</strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
-msgid "<strong>Status : </strong>"
-msgstr ""
+msgid "<strong>Status — </strong>"
+msgstr "<strong>Būsena —</strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
@@ -105,21 +111,16 @@ msgid "Add"
 msgstr "Pridėti"
 
 #. module: sale_renting
-#: model_terms:ir.ui.view,arch_db:sale_renting.product_template_form_view_rental
-msgid "Add a pricing"
-msgstr ""
-
-#. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
 msgid "Additional costs for late returns"
-msgstr ""
+msgstr "Papildomas mokestis už vėluojančius grąžinimus"
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_product_product__rent_ok
 #: model:ir.model.fields,help:sale_renting.field_product_template__rent_ok
 #: model:ir.model.fields,help:sale_renting.field_sale_order_line__is_product_rentable
 msgid "Allow renting of this product."
-msgstr ""
+msgstr "Leidžiama nuomoti šitą produktą."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__analytic_account_id
@@ -129,24 +130,24 @@ msgstr "Analitinė sąskaita"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
 msgid "Apply after"
-msgstr ""
+msgstr "Taikyti po"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
 msgid "Ask customer to sign documents on the spot."
-msgstr ""
+msgstr "Paprašykite kliento iš kart pasirašyti dokumentą."
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "At first, let's create some products to rent."
-msgstr ""
+msgstr "Pirmiausiai, sukurkite keletą produktų skirtų nuomoti."
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_rental_wizard__pricing_id
 msgid "Best Pricing Rule based on duration"
-msgstr ""
+msgstr "Geriausios kainų taisyklės paremtos nuomos trukme"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_product_product__rent_ok
@@ -154,7 +155,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__is_product_rentable
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_product_template_search_view
 msgid "Can be Rented"
-msgstr ""
+msgstr "Gali būti nuomojamas"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
@@ -175,14 +176,14 @@ msgstr "Atšauktas"
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Click here to create a new quotation."
-msgstr ""
+msgstr "Norėdami sukurti naują užsakymą  paspauskite čia."
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Click here to register the pickup."
-msgstr ""
+msgstr "Norėdami registruoti išdavimą paspauskite čia"
 
 #. module: sale_renting
 #. openerp-web
@@ -196,7 +197,7 @@ msgstr ""
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Click here to start filling the quotation."
-msgstr ""
+msgstr "Paspauskite norėdami pradėti pildyti užsakymą."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__color
@@ -209,6 +210,7 @@ msgid "Companies"
 msgstr "Įmonės"
 
 #. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__company_id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__company_id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__company_id
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_search_view
@@ -229,21 +231,27 @@ msgstr "Konfigūracija"
 #. module: sale_renting
 #: model:ir.model,name:sale_renting.model_rental_wizard
 msgid "Configure the rental of a product"
-msgstr ""
+msgstr "Sukonfigūruokite produkto nuomą"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Confirm the order when the customer agrees with the terms."
-msgstr ""
+msgstr "Patvirtinkite užsakymą, kai klientas sutiks su sutarties sąlygomis."
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Confirm the returned quantities and hit Validate."
-msgstr ""
+msgstr "Suvesk grąžintus kiekius ir spausk Patvirtinti."
+
+#. module: sale_renting
+#: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__pickup
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
+msgid "Confirmed"
+msgstr "Patvirtinti"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_search_view
@@ -252,27 +260,31 @@ msgid "Confirmed Orders"
 msgstr "Patvirtinti užsakymai"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/rental_pricing.py:0
-#, python-format
-msgid "Conversion between Months and another duration unit are not supported!"
-msgstr ""
+#: model:ir.actions.act_window,name:sale_renting.action_create_rental_order
+msgid "Create Rental Orders"
+msgstr "Sukurkite nuomos užsakymą."
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_action
 msgid "Create a new quotation, the first step of a new rental!"
-msgstr ""
+msgstr "Sukurkite naują užsakymą, tai pirmas žingsnis pradedant naują nuomą!"
+
+#. module: sale_renting
+#: model_terms:ir.actions.act_window,help:sale_renting.action_rental_report
+msgid "Create a new rental order"
+msgstr "Sukurkite naują nuomos užsakymą"
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_product_template_action
 msgid "Create a new rental product!"
-msgstr ""
+msgstr "Sukurkite naują nuomos produktą"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Create or select a customer here."
-msgstr ""
+msgstr "Čia pasirinkite arba sukurkite naują klientą."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order__is_rental_order
@@ -282,7 +294,6 @@ msgstr ""
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__create_uid
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__create_uid
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__create_uid
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__create_uid
 msgid "Created by"
 msgstr "Sukūrė"
@@ -290,13 +301,11 @@ msgstr "Sukūrė"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__create_date
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__create_date
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__create_date
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__create_date
 msgid "Created on"
 msgstr "Sukurta"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__currency_id
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__currency_id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__currency_id
 msgid "Currency"
@@ -323,7 +332,7 @@ msgid "Customer Entity"
 msgstr "Kliento juridinis asmuo"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__partner_name
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__card_name
 msgid "Customer Name"
 msgstr "Kliento vardas"
 
@@ -333,25 +342,38 @@ msgid "Customers"
 msgstr "Klientai"
 
 #. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__price
+msgid "Daily Amount"
+msgstr "Suma už dieną"
+
+#. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__quantity
+msgid "Daily Ordered Qty"
+msgstr "Per dieną užsakytas kiekis"
+
+#. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__qty_delivered
+msgid "Daily Picked-Up Qty"
+msgstr "Per dieną grąžintas kiekis"
+
+#. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__qty_returned
+msgid "Daily Returned Qty"
+msgstr "Per dieną grąžintas kiekis"
+
+#. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__date
-#: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_search_view
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
 msgid "Date"
 msgstr "Data"
 
 #. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_wizard__pickup_date
-msgid "Date of Pickup"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
+msgid "Dates"
+msgstr "Datos"
 
 #. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_wizard__return_date
-msgid "Date of Return"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields.selection,name:sale_renting.selection__rental_pricing__unit__day
 #: model:ir.model.fields.selection,name:sale_renting.selection__rental_wizard__duration_unit__day
 msgid "Days"
 msgstr "Dienos"
@@ -359,12 +381,7 @@ msgstr "Dienos"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_res_config_settings__extra_product
 msgid "Delay Product"
-msgstr ""
-
-#. module: sale_renting
-#: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
-msgid "Delivered"
-msgstr "Pristatyta"
+msgstr "Vėlavimo registravimo produktas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__description
@@ -375,12 +392,11 @@ msgstr "Aprašymas"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_res_config_settings__module_sale_renting_sign
 msgid "Digital Documents"
-msgstr ""
+msgstr "Skaitmeniniai dokumentai"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__display_name
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__display_name
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__display_name
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__display_name
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__display_name
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__display_name
@@ -394,35 +410,21 @@ msgid "Draft Quotation"
 msgstr "Juodraštinis komercinis pasiūlymas"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__duration
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__duration
 msgid "Duration"
 msgstr "Trukmė"
 
 #. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_wizard__duration
-msgid "Duration of the rental (in unit of the pricing)"
-msgstr ""
-
-#. module: sale_renting
-#. openerp-web
-#: code:addons/sale_renting/static/src/js/rental_configurator_widget.js:0
-#: code:addons/sale_renting/static/src/js/rental_configurator_widget.js:0
-#, python-format
-msgid "Edit dates"
-msgstr ""
-
-#. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
 msgid "Edited Rental Line"
-msgstr ""
+msgstr "Redaguota nuomos eilutė"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Enter the product name."
-msgstr ""
+msgstr "Įveskite produkto pavadinimą."
 
 #. module: sale_renting
 #. openerp-web
@@ -434,7 +436,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/sale.py:0
+#: code:addons/sale_renting/models/sale_order_line.py:0
 #, python-format
 msgid "Expected"
 msgstr "Numatoma"
@@ -442,61 +444,50 @@ msgstr "Numatoma"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "Expected Return"
-msgstr ""
-
-#. module: sale_renting
-#: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
-msgid "Extended Filters"
-msgstr "Išplėstiniai filtrai"
+msgstr "Planuojamas grąžinimas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_product_product__extra_daily
 #: model:ir.model.fields,field_description:sale_renting.field_product_template__extra_daily
 msgid "Extra Day"
-msgstr ""
+msgstr "Vėluoj.dienos mokestis"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_product_product__extra_hourly
 #: model:ir.model.fields,field_description:sale_renting.field_product_template__extra_hourly
 msgid "Extra Hour"
-msgstr ""
+msgstr "Vėluoj.valandos mokestis"
 
 #. module: sale_renting
 #: code:addons/sale_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid "Extras:"
-msgstr ""
-
-#. module: sale_renting
-#: code:addons/sale_renting/models/product.py:0
-#, python-format
-msgid "Fallback on Sales price"
-msgstr ""
+msgstr "Vėlavimo mokesčiai:"
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_product_product__extra_daily
 #: model:ir.model.fields,help:sale_renting.field_product_template__extra_daily
 msgid "Fine by day overdue"
-msgstr ""
+msgstr "Mokestis už kiekvieną vėluoj.grąžinti dieną"
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_product_product__extra_hourly
 #: model:ir.model.fields,help:sale_renting.field_product_template__extra_hourly
 msgid "Fine by hour overdue"
-msgstr ""
+msgstr "Mokestis už kiekvieną vėluoj.grąžinti valandą"
 
 #. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_product_product__display_price
-#: model:ir.model.fields,help:sale_renting.field_product_template__display_price
-msgid "First rental pricing of the product"
-msgstr ""
+#: code:addons/sale_renting/wizard/rental_configurator.py:0
+#, python-format
+msgid "Fixed rental price"
+msgstr "Fiksuota nuomos kaina"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Go to the orders menu."
-msgstr ""
+msgstr "Pereiti į užsakymų meniu."
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search
@@ -509,33 +500,32 @@ msgstr "Grupuoti pagal"
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__has_late_lines
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order__has_late_lines
 msgid "Has Late Lines"
-msgstr ""
+msgstr "Turi vėluojančias eilutes"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order__has_pickable_lines
 msgid "Has Pickable Lines"
-msgstr ""
+msgstr "Turi neišduotas eilutes"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order__has_returnable_lines
 msgid "Has Returnable Lines"
-msgstr ""
+msgstr "Turi negrąžintas eilutes"
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_rental_wizard__pricing_explanation
 msgid "Helper text to understand rental price computation."
-msgstr ""
+msgstr "Nuomos kainos apskaičiavimo išplėstinis paaiškinimas"
 
 #. module: sale_renting
-#: model:ir.model.fields.selection,name:sale_renting.selection__rental_pricing__unit__hour
 #: model:ir.model.fields.selection,name:sale_renting.selection__rental_wizard__duration_unit__hour
+#: model:ir.model.fields.selection,name:sale_renting.selection__sale_temporal_recurrence__unit__hour
 msgid "Hours"
 msgstr "Valandos"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__id
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__id
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__id
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__id
@@ -545,33 +535,32 @@ msgstr "ID"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "Invoicing Address:"
-msgstr ""
+msgstr "Sąskaitos adresas: "
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "Invoicing and Shipping Address:"
-msgstr ""
+msgstr "Sąskaitos faktūros ir siuntimo adresas: "
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__is_late
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__late
 msgid "Is Late"
-msgstr ""
+msgstr "Vėluoja"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__is_rental
 msgid "Is Rental"
-msgstr ""
+msgstr "Yra nuoma"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__is_late
 msgid "Is overdue"
-msgstr ""
+msgstr "Pradelsta"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard____last_update
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line____last_update
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing____last_update
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard____last_update
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report____last_update
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule____last_update
@@ -581,7 +570,6 @@ msgstr "Paskutinį kartą keista"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__write_uid
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__write_uid
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__write_uid
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Paskutinį kartą atnaujino"
@@ -589,12 +577,12 @@ msgstr "Paskutinį kartą atnaujino"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__write_date
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__write_date
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__write_date
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__write_date
 msgid "Last Updated on"
 msgstr "Paskutinį kartą atnaujinta"
 
 #. module: sale_renting
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_kanban
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "Late"
@@ -603,46 +591,46 @@ msgstr "Vėluoja"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
 msgid "Late Delivery"
-msgstr ""
+msgstr "Vėluojama pristatyti"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
 msgid "Late Pickup"
-msgstr ""
+msgstr "Išduokime"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
 msgid "Late Return"
-msgstr ""
+msgstr "Grąžinkime"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Let's now create an order."
-msgstr ""
+msgstr "Sukurkime naują užsakymą"
+
+#. module: sale_renting
+#: model:product.product,name:sale_renting.rental_product_2
+#: model:product.template,name:sale_renting.rental_product_2_product_template
+msgid "Meeting Room"
+msgstr "Susirinkimų salė"
 
 #. module: sale_renting
 #: model:ir.model.constraint,message:sale_renting.constraint_res_company_min_extra_hour
 msgid "Minimal delay time before applying fines has to be positive."
 msgstr ""
+"Minimalus leidžiamas vėlavimo laikas prieš skaičiuojant delspinigius turi "
+"būti teigiamas."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_res_company__min_extra_hour
 #: model:ir.model.fields,field_description:sale_renting.field_res_config_settings__min_extra_hour
 msgid "Minimum delay time before applying fines."
-msgstr ""
+msgstr "Minimalus leidžiamas vėlavimo laikas prieš skaičiuojant delspinigius."
 
 #. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_pricing__duration
-msgid ""
-"Minimum duration before this rule is applied. If set to 0, it represents a "
-"fixed rental price."
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields.selection,name:sale_renting.selection__rental_pricing__unit__month
 #: model:ir.model.fields.selection,name:sale_renting.selection__rental_wizard__duration_unit__month
 msgid "Months"
 msgstr "Mėnesiai"
@@ -654,12 +642,29 @@ msgid "My Orders"
 msgstr "Mano užsakymai"
 
 #. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_order__next_action_date
+msgid "Next Action"
+msgstr "Kitas veiksmas"
+
+#. module: sale_renting
+#: model_terms:ir.actions.act_window,help:sale_renting.action_rental_report
+msgid "No data yet!"
+msgstr "Jokių duomenų!"
+
+#. module: sale_renting
 #: code:addons/sale_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid ""
 "No rental price is defined on the product.\n"
 "The price used is the sales price."
 msgstr ""
+"Nėra nurodyta jokia nuomos kaina.\n"
+"Ši kaina naudojama produkto pardavimui."
+
+#. module: sale_renting
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
+msgid "Ok"
+msgstr "Gerai"
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_action
@@ -667,6 +672,8 @@ msgid ""
 "Once the quotation is confirmed, it becomes a rental order.<br> You will be "
 "able to create an invoice and collect the payment."
 msgstr ""
+"Kai pasiūlymas bus patvirtintas, jis taps nuomos užsakymu. <br>Galėsite "
+"sukurti sąskaitą faktūrą ir priimti apmokėjimus."
 
 #. module: sale_renting
 #. openerp-web
@@ -674,6 +681,7 @@ msgstr ""
 #, python-format
 msgid "Once the rental is done, you can register the return."
 msgstr ""
+"Kai nuoma bus baigta, galite registruoti išnuomotų produktų grąžinimas."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__order_id
@@ -696,7 +704,7 @@ msgstr "Užsakymo data"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__order_line_id
 msgid "Order Line"
-msgstr ""
+msgstr "Užsakymo eilutės"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__name
@@ -706,7 +714,7 @@ msgstr "Užsakymo numeris"
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__order_line_id
 msgid "Order line #"
-msgstr ""
+msgstr "Užsakymo eilutė #"
 
 #. module: sale_renting
 #: model:ir.ui.menu,name:sale_renting.rental_order_menu
@@ -717,47 +725,47 @@ msgstr "Užsakymai"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
 msgid "PICKUP"
-msgstr ""
+msgstr "IŠDUOKIME"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_res_company__extra_day
 #: model:ir.model.fields,field_description:sale_renting.field_res_config_settings__extra_day
 msgid "Per Day"
-msgstr ""
+msgstr "už dieną"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_res_company__extra_hour
 #: model:ir.model.fields,field_description:sale_renting.field_res_config_settings__extra_hour
 msgid "Per Hour"
-msgstr ""
+msgstr "už valandą"
 
 #. module: sale_renting
 #: model:ir.model,name:sale_renting.model_rental_order_wizard
 msgid "Pick-up/Return products"
-msgstr ""
+msgstr "Išduoti/Grąžinti produktai"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "Picked-Up"
-msgstr ""
+msgstr "Išduotas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__qty_delivered
+#: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__return
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
 msgid "Picked-up"
-msgstr ""
+msgstr "Išduotas"
 
 #. module: sale_renting
-#: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__return
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_rental_schedule__rental_status__return
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_rental_schedule__report_line_status__pickedup
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "Pickedup"
-msgstr ""
+msgstr "Išduotas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__pickup_date
-#: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__pickup_date
 #: model:ir.model.fields.selection,name:sale_renting.selection__rental_order_wizard__status__pickup
 #: model:ir.ui.menu,name:sale_renting.rental_orders_pickup
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
@@ -770,7 +778,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
 msgid "Pickup Date"
-msgstr ""
+msgstr "Išdavimo data"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
@@ -780,24 +788,23 @@ msgstr ""
 #. module: sale_renting
 #: model:ir.actions.report,name:sale_renting.action_report_rental_saleorder
 msgid "Pickup and Return Receipt"
-msgstr ""
+msgstr "Išdavimo ir grąžinimo kvitas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__reservation_begin
 msgid "Pickup date - padding time"
-msgstr ""
+msgstr "Išdavimo data - užpildymo laikas"
+
+#. module: sale_renting
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_kanban
+msgid "Pickup:"
+msgstr "Išdavimas:"
 
 #. module: sale_renting
 #: model:ir.model.constraint,message:sale_renting.constraint_rental_wizard_rental_period_coherence
 #: model:ir.model.constraint,message:sale_renting.constraint_sale_order_line_rental_period_coherence
 msgid "Please choose a return date that is after the pickup date."
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__price
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__price
-msgid "Price"
-msgstr "Kaina"
+msgstr "Prašome pasirinkite grąžinimo datą, vėlesnę nei išdavimo data."
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__pricing_explanation
@@ -805,7 +812,6 @@ msgid "Price Computation"
 msgstr "Kainos skaičiavimas"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__pricelist_id
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__pricelist_id
 msgid "Pricelist"
 msgstr "Kainoraštis"
@@ -816,12 +822,7 @@ msgid "Pricing"
 msgstr "Kainodara"
 
 #. module: sale_renting
-#: model:ir.model,name:sale_renting.model_rental_pricing
-msgid "Pricing rule of rentals"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model,name:sale_renting.model_product_product
+#: model:ir.model,name:sale_renting.model_product_template
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__product_id
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__product_id
 #: model:ir.model.fields,field_description:sale_renting.field_res_company__extra_product
@@ -848,31 +849,25 @@ msgid "Product Reference"
 msgstr ""
 
 #. module: sale_renting
-#: model:ir.model,name:sale_renting.model_product_template
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__product_tmpl_id
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__product_tmpl_id
 msgid "Product Template"
 msgstr "Produkto šablonas"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__product_template_id
-msgid "Product Templates"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__product_variant_ids
-msgid "Product Variants"
-msgstr "Produkto variantai"
+#: model:ir.model,name:sale_renting.model_product_product
+msgid "Product Variant"
+msgstr "Produkto variantas"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
 msgid "Product to charge extra time"
-msgstr ""
+msgstr "Produkto apmokestinimas už papildomą nuomos laiką"
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_rental_wizard__product_id
 msgid "Product to rent (has to be rentable)"
-msgstr ""
+msgstr "Nuomos produktas (kurį galima išnuomoti)"
 
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.rental_product_template_action
@@ -881,26 +876,25 @@ msgid "Products"
 msgstr "Produktai"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__qty_delivered
-msgid "Qty Delivered"
-msgstr "Pristatytas kiekis"
+#: model:product.product,name:sale_renting.rental_product_1
+#: model:product.template,name:sale_renting.rental_product_1_product_template
+msgid "Projector"
+msgstr ""
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__quantity
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__product_uom_qty
 msgid "Qty Ordered"
 msgstr "Užsakytas kiekis"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__qty_delivered
+#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__qty_delivered
 msgid "Qty Picked-Up"
-msgstr ""
+msgstr "Išduotas kiekis"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__qty_returned
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__qty_returned
 msgid "Qty Returned"
-msgstr ""
+msgstr "Grąžintas kiekis"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__quantity
@@ -911,7 +905,7 @@ msgstr "Kiekis"
 #: model:ir.model.fields,field_description:sale_renting.field_product_product__qty_in_rent
 #: model:ir.model.fields,field_description:sale_renting.field_product_template__qty_in_rent
 msgid "Quantity currently in rent"
-msgstr ""
+msgstr "Šiuo metu išnuomotas kiekis"
 
 #. module: sale_renting
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__draft
@@ -936,21 +930,21 @@ msgstr "Komerciniai pasiūlymai"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
 msgid "RETURN"
-msgstr ""
+msgstr "GRĄŽINKIME"
 
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.rental_configurator_action
 msgid "Rent a product"
-msgstr ""
+msgstr "Išnuomoti prekę"
 
 #. module: sale_renting
+#: model:ir.model.fields.selection,name:sale_renting.selection__sale_order_line__temporal_type__rental
 #: model:ir.ui.menu,name:sale_renting.rental_menu_root
-#: model_terms:ir.ui.view,arch_db:sale_renting.product_template_form_view_rental
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
 msgid "Rental"
-msgstr ""
+msgstr "Nuoma"
 
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.action_rental_report
@@ -958,72 +952,52 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_pivot_view
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_search_view
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
+#: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
 msgid "Rental Analysis"
-msgstr ""
+msgstr "Nuomos analizė"
 
 #. module: sale_renting
 #: model:ir.model,name:sale_renting.model_sale_rental_report
 msgid "Rental Analysis Report"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_order__next_action_date
-msgid "Rental Next Action Date"
-msgstr ""
+msgstr "Nuomos analizės ataskaita"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
 msgid "Rental Order"
-msgstr ""
+msgstr "Nuomos užsakymas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__rental_order_line_id
 msgid "Rental Order Line"
-msgstr ""
+msgstr "Nuomos užsakymo eilutė"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__rental_order_wizard_id
 msgid "Rental Order Wizard"
-msgstr ""
+msgstr "Nuomos užsakymo langas"
 
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.rental_order_action
 #: model:ir.actions.act_window,name:sale_renting.rental_order_today_pickup_action
 #: model:ir.actions.act_window,name:sale_renting.rental_order_today_return_action
 msgid "Rental Orders"
-msgstr ""
-
-#. module: sale_renting
-#: model_terms:ir.ui.view,arch_db:sale_renting.product_template_form_view_rental
-msgid "Rental Pricing"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_product_product__rental_pricing_ids
-#: model:ir.model.fields,field_description:sale_renting.field_product_template__rental_pricing_ids
-msgid "Rental Pricings"
-msgstr ""
+msgstr "Nuomos užsakymai"
 
 #. module: sale_renting
 #: model:ir.model,name:sale_renting.model_sale_rental_schedule
 msgid "Rental Schedule"
-msgstr ""
+msgstr "Nuomos planas"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order__rental_status
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__rental_status
 msgid "Rental Status"
-msgstr ""
+msgstr "Nuomos būsena"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__report_line_status
 msgid "Rental Status (advanced)"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__rental_updatable
-msgid "Rental Updatable"
-msgstr ""
+msgstr "Nuomos būsena (išplėstinė) "
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard__rental_wizard_line_ids
@@ -1031,9 +1005,8 @@ msgid "Rental Wizard Line"
 msgstr ""
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_product_product__display_price
-#: model:ir.model.fields,field_description:sale_renting.field_product_template__display_price
-msgid "Rental price"
+#: model:ir.ui.menu,name:sale_renting.menu_sale_renting_periods
+msgid "Rental periods"
 msgstr ""
 
 #. module: sale_renting
@@ -1044,7 +1017,7 @@ msgstr ""
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search
 msgid "Rentals"
-msgstr ""
+msgstr "Nuoma"
 
 #. module: sale_renting
 #: model:ir.ui.menu,name:sale_renting.menu_rental_reporting
@@ -1058,10 +1031,8 @@ msgstr "Rezervacijos"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__qty_reserved
-#: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__pickup
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_rental_schedule__rental_status__pickup
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_rental_schedule__report_line_status__reserved
-#: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_form
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "Reserved"
@@ -1081,10 +1052,15 @@ msgstr "Grąžinti"
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
 msgid "Return Date"
-msgstr ""
+msgstr "Grąžinimo data"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/sale.py:0
+#: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_kanban
+msgid "Return:"
+msgstr "grąžinti:"
+
+#. module: sale_renting
+#: code:addons/sale_renting/models/sale_order_line.py:0
 #: model:ir.model.fields,field_description:sale_renting.field_rental_order_wizard_line__qty_returned
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__qty_returned
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_order__rental_status__returned
@@ -1097,6 +1073,11 @@ msgstr ""
 #, python-format
 msgid "Returned"
 msgstr "Sugrįžo"
+
+#. module: sale_renting
+#: model:ir.model,name:sale_renting.model_sale_temporal_recurrence
+msgid "Sale temporal Recurrence"
+msgstr ""
 
 #. module: sale_renting
 #: model:ir.model.fields.selection,name:sale_renting.selection__sale_rental_report__state__done
@@ -1141,14 +1122,14 @@ msgstr "Pardavėjas"
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Save the product."
-msgstr ""
+msgstr "Išsaugoti produktą."
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Save the quotation."
-msgstr ""
+msgstr "Išsaugoti pasiūlymą."
 
 #. module: sale_renting
 #: model:ir.ui.menu,name:sale_renting.menu_rental_schedule
@@ -1156,31 +1137,19 @@ msgid "Schedule"
 msgstr "Suplanuoti"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/product.py:0
-#: code:addons/sale_renting/models/product.py:0
+#: code:addons/sale_renting/models/product_product.py:0
+#: code:addons/sale_renting/models/product_template.py:0
 #: model:ir.actions.act_window,name:sale_renting.action_rental_order_schedule
 #, python-format
 msgid "Scheduled Rentals"
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_pricing__product_variant_ids
-msgid ""
-"Select Variants of the Product for which this rule applies.\n"
-" Leave empty if this rule applies for any variant of this template."
-msgstr ""
-
-#. module: sale_renting
-#: model:ir.model.fields,help:sale_renting.field_rental_pricing__product_template_id
-msgid "Select products on which this pricing will be applied."
-msgstr ""
+msgstr "Suplanuotos nuomos"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "Select your rental product."
-msgstr ""
+msgstr "Pasirinkite nuomos produktą."
 
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.action_rental_config_settings
@@ -1191,7 +1160,12 @@ msgstr "Nustatymai"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_wizard_view_form
 msgid "Some delay cost will be added to the sales order."
-msgstr ""
+msgstr "Prie pardavimo užsakymo turi būti pridėtas ir mokestis už vėlavimą."
+
+#. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__start_date
+msgid "Start Date"
+msgstr "Pradžios data"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_report_search_view
@@ -1209,13 +1183,28 @@ msgid "Status"
 msgstr "Būsena"
 
 #. module: sale_renting
-#: model:ir.model.constraint,message:sale_renting.constraint_rental_pricing_rental_pricing_duration
-msgid "The pricing duration has to be greater or equal to 0."
+#: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
+msgid "Sum of Daily Amount"
+msgstr "Iš viso suma per dieną"
+
+#. module: sale_renting
+#: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
+msgid "Sum of Daily Ordered Qty"
+msgstr "Iš viso per dieną užsakytas kiekis"
+
+#. module: sale_renting
+#: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
+msgid "Sum of Daily Picked-Up Qty"
+msgstr "Iš viso per dieną išduotas kiekis"
+
+#. module: sale_renting
+#: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__temporal_type
+msgid "Temporal Type"
 msgstr ""
 
 #. module: sale_renting
-#: model:ir.model.constraint,message:sale_renting.constraint_rental_pricing_rental_pricing_price
-msgid "The pricing price has to be greater or equal to 0."
+#: model:ir.model.fields,help:sale_renting.field_rental_wizard__duration
+msgid "The duration unit is based on the unit of the rental pricing rule."
 msgstr ""
 
 #. module: sale_renting
@@ -1226,20 +1215,20 @@ msgstr ""
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_sale_order_line__is_late
 msgid "The products haven't been returned in time"
-msgstr ""
+msgstr "Produktas laiku negrąžintas"
 
 #. module: sale_renting
 #. openerp-web
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "The rental configuration is available here."
-msgstr ""
+msgstr "Nuomos konfigūruoti galima čia."
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_today_pickup_action
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_today_return_action
 msgid "There isn't any scheduled pickup or return."
-msgstr ""
+msgstr "Nėra jokių suplanuotų išdavimų arba grąžinimų."
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_res_config_settings__extra_day
@@ -1261,11 +1250,13 @@ msgid ""
 "This price is based on the rental price rule that gives the cheapest price "
 "for requested duration."
 msgstr ""
+"Ši kaina apskaičiuota pritaikant žemiausią galimą nuomos kainą pagal kainyną"
+" nurodytam nuomos laikotarpiui."
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_res_config_settings__extra_product
 msgid "This product will be used to add fines in the Rental Order."
-msgstr ""
+msgstr "Produktas bus naudojamas pridėti pap.mokesčius į pardavimo užsakymą."
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form
@@ -1279,17 +1270,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_search
 msgid "To Do Today"
-msgstr ""
+msgstr "Atlikti šiandien"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search_without_searchpanel
 msgid "To Pickup"
-msgstr ""
+msgstr "Išduoti"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_search_without_searchpanel
 msgid "To Return"
-msgstr ""
+msgstr "Grąžinti"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_view_tree
@@ -1297,8 +1288,8 @@ msgid "Total Tax Included"
 msgstr "Iš viso, įskaitant mokesčius"
 
 #. module: sale_renting
-#: model:ir.model.fields,field_description:sale_renting.field_rental_pricing__unit
 #: model:ir.model.fields,field_description:sale_renting.field_rental_wizard__duration_unit
+#: model:ir.model.fields,field_description:sale_renting.field_sale_temporal_recurrence__unit
 msgid "Unit"
 msgstr "Vienetas"
 
@@ -1312,7 +1303,15 @@ msgstr "Vieneto kaina"
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_report__product_uom
 #: model:ir.model.fields,field_description:sale_renting.field_sale_rental_schedule__product_uom
 msgid "Unit of Measure"
-msgstr "Matavimo vienetas"
+msgstr "Mato vienetas"
+
+#. module: sale_renting
+#: model:product.product,uom_name:sale_renting.rental_product_1
+#: model:product.product,uom_name:sale_renting.rental_product_2
+#: model:product.template,uom_name:sale_renting.rental_product_1_product_template
+#: model:product.template,uom_name:sale_renting.rental_product_2_product_template
+msgid "Units"
+msgstr "Vienetai"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_order_wizard_view_form
@@ -1320,16 +1319,16 @@ msgid "Validate"
 msgstr "Patvirtinti"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/sale.py:0
+#: code:addons/sale_renting/models/sale_order.py:0
 #, python-format
 msgid "Validate a pickup"
-msgstr ""
+msgstr "Patvirtinti išdavimą"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/sale.py:0
+#: code:addons/sale_renting/models/sale_order.py:0
 #, python-format
 msgid "Validate a return"
-msgstr ""
+msgstr "Patvirtinti grąžinimą"
 
 #. module: sale_renting
 #. openerp-web
@@ -1346,12 +1345,18 @@ msgid ""
 "Want to <b>rent products</b>? \n"
 " Let's discover Odoo Rental App."
 msgstr ""
+"Nori <b>išnuomoti produktą</b>?\n"
+"Atrask Odoo Nuomos modulį."
 
 #. module: sale_renting
-#: model:ir.model.fields.selection,name:sale_renting.selection__rental_pricing__unit__week
 #: model:ir.model.fields.selection,name:sale_renting.selection__rental_wizard__duration_unit__week
 msgid "Weeks"
 msgstr "Savaitės"
+
+#. module: sale_renting
+#: model:ir.model.fields.selection,name:sale_renting.selection__rental_wizard__duration_unit__year
+msgid "Years"
+msgstr "Metai"
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_product_template_action
@@ -1365,19 +1370,26 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_today_return_action
 msgid ""
 "You can search on a larger period using the filters here above\n"
-"              <br>\n"
-"              or create a new rental order."
+"                <br>\n"
+"                or create a new rental order."
 msgstr ""
 
 #. module: sale_renting
 #: code:addons/sale_renting/wizard/rental_processing.py:0
 #, python-format
 msgid "You can't return more than what's been picked-up."
-msgstr ""
+msgstr "Negalima grąžinti daugiau, nei buvo išduota."
 
 #. module: sale_renting
 #: model:ir.model.constraint,message:sale_renting.constraint_sale_order_line_rental_stock_coherence
 msgid "You cannot return more than what has been picked up."
+msgstr "Negalima grąžinti daugiau, nei buvo išduota."
+
+#. module: sale_renting
+#. openerp-web
+#: code:addons/sale_renting/static/src/js/tours/rental.js:0
+#, python-format
+msgid "You're done with your fist rental. Congratulations !"
 msgstr ""
 
 #. module: sale_renting
@@ -1386,7 +1398,7 @@ msgid "hours"
 msgstr "valandos"
 
 #. module: sale_renting
-#: code:addons/sale_renting/models/sale.py:0
+#: code:addons/sale_renting/models/sale_order_line.py:0
 #, python-format
 msgid "to"
 msgstr "iki"

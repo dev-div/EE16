@@ -18,7 +18,7 @@ import { useSetupView } from "@web/views/view_hook";
 import { hasTouch } from "@web/core/browser/feature_detection";
 import { FormStatusIndicator } from "./form_status_indicator/form_status_indicator";
 
-const { Component, onWillStart, useEffect, useRef, onRendered, useState, toRaw } = owl;
+import { Component, onWillStart, useEffect, useRef, onRendered, useState, toRaw } from "@odoo/owl";
 
 const viewRegistry = registry.category("views");
 
@@ -130,6 +130,7 @@ export class FormController extends Component {
                 rootType: "record",
                 mode,
                 beforeLoadProm,
+                component: this,
             },
             {
                 ignoreUseSampleModel: true,
@@ -159,7 +160,7 @@ export class FormController extends Component {
 
         // select footers that are not in subviews and move them to another arch
         // that will be moved to the dialog's footer (if we are in a dialog)
-        const footers = [...this.archInfo.xmlDoc.querySelectorAll("footer:not(field footer")];
+        const footers = [...this.archInfo.xmlDoc.querySelectorAll("footer:not(field footer)")];
         if (footers.length) {
             this.footerArchInfo = Object.assign({}, this.archInfo);
             this.footerArchInfo.xmlDoc = createElement("t");

@@ -8,21 +8,23 @@ class BritishGenericTaxReportCustomHandler(models.AbstractModel):
     _inherit = 'account.generic.tax.report.handler'
     _description = 'British Tax Report Custom Handler'
 
+    def _dynamic_lines_generator(self, report, options, all_column_groups_expression_totals):
+        # Overridden to prevent having unnecessary lines from the generic tax report.
+        return []
+
     def _custom_options_initializer(self, report, options, previous_options=None):
         super()._custom_options_initializer(report, options)
-        report = self.env['account.report'].browse(options['report_id'])
-        if self.env.company.account_fiscal_country_id.code == 'GB' and report.availability_condition == 'always':
-            # If token, but no refresh_token, check if you got the refresh_token on the server first
-            # That way, you can see immediately if your login was successful after logging in
-            # and the label of the button will be correct
-            if self.env.user.l10n_uk_user_token and not self.env.user.l10n_uk_hmrc_vat_token:
-                self.env['hmrc.service']._login()
-            button_name = _('Send to HMRC') if self.env.user.l10n_uk_hmrc_vat_token else _('Connect to HMRC')
-            options['buttons'].append({'name': button_name, 'action': 'send_hmrc', 'sequence': 50})
+        # If token, but no refresh_token, check if you got the refresh_token on the server first
+        # That way, you can see immediately if your login was successful after logging in
+        # and the label of the button will be correct
+        if self.env.user.l10n_uk_user_token and not self.env.user.l10n_uk_hmrc_vat_token:
+            self.env['hmrc.service']._login()
+        button_name = _('Send to HMRC') if self.env.user.l10n_uk_hmrc_vat_token else _('Connect to HMRC')
+        options['buttons'].append({'name': button_name, 'action': 'send_hmrc', 'sequence': 50})
 
     def send_hmrc(self, options):
         # do the login if there is no token for the current user yet.
-        if not self.env.user.l10n_uk_hmrc_vat_token:
+        if not self.env.user.l10n_uk_hmrc_vat_token and not options.get('_running_export_test'):
             return self.env['hmrc.service']._login()
 
         # Show wizard when sending to HMRC

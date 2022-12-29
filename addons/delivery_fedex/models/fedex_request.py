@@ -142,6 +142,8 @@ class FedexRequest():
                 self.RequestedShipment.SpecialServicesRequested.SpecialServiceTypes.append('SATURDAY_DELIVERY')
 
     def set_currency(self, currency):
+        # set perferred currency as GBP instead of UKL
+        currency = 'GBP' if currency == 'UKL' else currency
         self.RequestedShipment.PreferredCurrency = currency
         # ask Fedex to include our preferred currency in the response
         self.RequestedShipment.RateRequestTypes = 'PREFERRED'
@@ -205,7 +207,7 @@ class FedexRequest():
 
     def start_rating_transaction(self, wsdl_path):
         settings = Settings(strict=False)
-        self.client = Client('file:///%s' % wsdl_path.lstrip('/'), plugins=[LogPlugin(self.debug_logger)], settings=settings)
+        self.client = Client(wsdl_path, plugins=[LogPlugin(self.debug_logger)], settings=settings)
         self.factory = self.client.type_factory('ns0')
         self.VersionId = self.factory.VersionId()
         self.VersionId.ServiceId = 'crs'
@@ -250,7 +252,7 @@ class FedexRequest():
     # Shipping stuff
 
     def start_shipping_transaction(self, wsdl_path):
-        self.client = Client('file:///%s' % wsdl_path.lstrip('/'), plugins=[LogPlugin(self.debug_logger)])
+        self.client = Client(wsdl_path, plugins=[LogPlugin(self.debug_logger)])
         self.factory = self.client.type_factory("ns0")
         self.VersionId = self.factory.VersionId()
         self.VersionId.ServiceId = 'ship'

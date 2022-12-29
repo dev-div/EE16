@@ -37,7 +37,7 @@ class AccountMove(models.Model):
             po_regex_prefix = transform_numbers_to_regex(re.escape(po_regex_prefix))
             po_regex_suffix = transform_numbers_to_regex(re.escape(po_regex_suffix))
             po_regex_sequence = r'\d{{{}}}'.format(po_sequence.padding)
-            user_infos['purchase_order_regex'] = '^' + po_regex_prefix + po_regex_sequence + po_regex_suffix + '$'
+            user_infos['purchase_order_regex'] = po_regex_prefix + po_regex_sequence + po_regex_suffix
         return user_infos
 
     def find_matching_subset_invoice_lines(self, invoice_lines, goal_total, timeout=10):

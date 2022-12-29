@@ -10,9 +10,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:41+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
 "Last-Translator: Nancy Momoland <thanhnguyen.icsc@gmail.com>, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/odoo/teams/41243/vi/)\n"
@@ -31,11 +31,11 @@ msgstr "# Phiếu lương"
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_contract__payslips_count
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_contract_history__payslips_count
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_attachment__payslip_count
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "# Payslips"
 msgstr "# Phiếu lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid ""
@@ -59,6 +59,7 @@ msgid "'Payslip - %s' % (object.name)"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "(%s Payslips)"
@@ -141,35 +142,10 @@ msgstr "<span class=\"o_stat_text\">Phiếu lương</span>"
 #. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
 msgid ""
-"<span class=\"text-muted\">Set a specific department if you wish to select "
-"all the employees from this department (and subdepartments) at once.</span>"
-msgstr ""
-"<span class=\"text-muted\">Chọn một phòng ban cụ thể nếu bạn muốn chọn tất "
-"cả nhân viên từ phòng ban này (và các phòng ban nhỏ) cùng một lúc.</span>"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
-msgid ""
-"<span class=\"text-muted\">Set a specific structure if you wish to make an "
-"extra payslip (eg: End of the year bonus). If you leave this field empty, a "
-"regular payslip will be generated for all the selected employees, based on "
-"their contracts configuration.</span>"
-msgstr ""
-"<span class=\"text-muted\">Đặt cấu trúc cụ thể nếu bạn muốn tạo thêm một "
-"phiếu lương (ví dụ: Thưởng cuối năm). Nếu bạn để trống trường này, một phiếu"
-" lương thông thường sẽ được tạo cho tất cả các nhân viên đã chọn, dựa trên "
-"cấu hình hợp đồng của họ.</span>"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
-msgid ""
-"<span colspan=\"4\" nolabel=\"1\">This wizard will generate payslips for all"
+"<span nolabel=\"1\" colspan=\"2\">This wizard will generate payslips for all"
 " selected employee(s) based on the dates and credit note specified on "
 "Payslips Run.</span>"
 msgstr ""
-"<span colspan=\"4\" nolabel=\"1\">Cửa sổ này sẽ tạo phiếu tính lương cho tất"
-" cả (các) nhân viên được chọn dựa trên ngày và phiếu chi được chỉ định trên "
-"Chạy phiếu tính lương.</span>"
 
 #. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.hr_payroll_index_form_view
@@ -311,11 +287,6 @@ msgid "A unforeseen absence must be a leave."
 msgstr "Vắng mặt phải có phiếu nghỉ phép."
 
 #. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Absenteeism Rate"
-msgstr "Tỷ lệ vắng mặt"
-
-#. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.res_config_settings_view_form
 msgid "Accounting"
 msgstr "Kế toán"
@@ -364,7 +335,7 @@ msgid "Activity Type Icon"
 msgstr "Biểu tượng kiểu hoạt động"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Add a <strong>name</strong> to the contract."
@@ -391,7 +362,7 @@ msgid "Administrator"
 msgstr "Người quản trị"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/payslip_batch/payslip_batch.xml:0
 #, python-format
 msgid "All"
@@ -443,7 +414,7 @@ msgstr ""
 "Khoản tiền còn lại."
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/payroll_stats/payroll_stats.xml:0
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_structure__schedule_pay__annually
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_structure_type__default_schedule_pay__annually
@@ -487,13 +458,14 @@ msgid "Archived"
 msgstr "Đã lưu"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/todo_list/todo_list.js:0
 #, python-format
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_attachment_report__assignment_amount
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_salary_attachment__deduction_type__assignment
@@ -502,6 +474,7 @@ msgid "Assignment of Salary"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid ""
@@ -521,17 +494,13 @@ msgid "Attachment Name"
 msgstr "Tên tệp đính kèm"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_attachment_report__attachment_amount
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_salary_attachment__deduction_type__attachment
 #, python-format
 msgid "Attachment of Salary"
 msgstr "Tệp đính kèm lương"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Attendance Rate"
-msgstr "Tỉ lệ có mặt"
 
 #. module: hr_payroll
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_report__work_entry_source__attendance
@@ -543,26 +512,6 @@ msgstr "Chấm công"
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_input_type__struct_ids
 msgid "Availability in Structure"
 msgstr "Có trong cấu trúc"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Average Basic Wage"
-msgstr "Mức lương cơ bản trung bình"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Average Gross Wage"
-msgstr "Tổng lương trung bình"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Average Hours per Day of Work"
-msgstr "Lương theo giờ trung bình một ngày làm việc"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Average Net Wage"
-msgstr "Mức lương thực tế trung bình"
 
 #. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.hr_payroll_report_view_tree
@@ -580,6 +529,7 @@ msgid "Basic"
 msgstr "Cơ bản"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
@@ -589,7 +539,6 @@ msgstr "Lương Cơ bản"
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payroll_report__basic_wage
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip__basic_wage
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "Basic Wage"
 msgstr "Lương cơ bản"
 
@@ -611,7 +560,7 @@ msgid "Batch Name"
 msgstr "Tên đợt"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/payslip_batch/payslip_batch.xml:0
 #: model:ir.ui.menu,name:hr_payroll.menu_hr_payslip_run
 #, python-format
@@ -666,12 +615,14 @@ msgid "Cancelled"
 msgstr "Đã hủy"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Cannot cancel a payslip that is done."
 msgstr "Không thể huỷ phiếu lương mà đã hoàn thành."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Cannot mark payslip as paid if not confirmed."
@@ -699,14 +650,14 @@ msgid "Change of Occupation"
 msgstr "Thay đổi nghề nghiệp"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Check the <strong>Salary Structure Type</strong>."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -715,13 +666,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Check the <strong>Working Schedule</strong>."
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_salary_attachment_report__child_support_amount
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_salary_attachment__deduction_type__child_support
@@ -740,14 +692,14 @@ msgid "Choose a Payroll Localization"
 msgstr "Chọn Quy tắc Tiền lương Bản địa"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Click here to create a new <strong>Contract</strong>."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -755,14 +707,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Click here to go back to the <strong>Employee's profile</strong>."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -770,14 +722,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Click on Employees to pick one of your <strong>Employees</strong>."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -786,28 +738,28 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Click on the <strong>Payslip</strong>."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Click on the <strong>Work Entries</strong> menu."
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/todo_list/todo_list.xml:0
 #, python-format
 msgid "Close"
 msgstr "Đóng"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
@@ -909,7 +861,7 @@ msgid "Confirm"
 msgstr "Xác nhận"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Confirm the <strong>Payslip</strong>."
@@ -926,13 +878,14 @@ msgid "Conflict"
 msgstr "Xung đột"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Conflicts"
 msgstr "Xung đột"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -1041,7 +994,7 @@ msgid "Create a new contract"
 msgstr "Tạo hợp đồng mới"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/todo_list/todo_list.xml:0
 #, python-format
 msgid "Create new todo note"
@@ -1155,7 +1108,6 @@ msgstr "Ngày"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_work_entry_report__number_of_days
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "Days"
 msgstr "Ngày"
 
@@ -1175,6 +1127,7 @@ msgid "Days of Unpaid Time Off"
 msgstr "Số ngày nghỉ không lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:hr.salary.rule.category,name:hr_payroll.DED
@@ -1193,7 +1146,7 @@ msgid "Default Work Entry Type"
 msgstr "Loại thời gian công việc mặc định"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Define a <strong>Wage</strong>."
@@ -1306,6 +1259,7 @@ msgid "Done Slip"
 msgstr "Phiếu lương đã hoàn thành"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Double Holiday Pay"
@@ -1334,6 +1288,7 @@ msgid "Draft Slip"
 msgstr "Phiếu lương dự thảo"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:ir.actions.server,name:hr_payroll.action_edit_payslip_lines
 #, python-format
@@ -1399,6 +1354,7 @@ msgid "Employee Contract"
 msgstr "Hợp đồng nhân viên"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employee Count"
@@ -1411,7 +1367,7 @@ msgid "Employee Function"
 msgstr "Chức vụ nhân viên"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/payslip_batch/payslip_batch.js:0
 #: model:ir.actions.act_window,name:hr_payroll.action_view_hr_payslip_form
 #: model:ir.actions.act_window,name:hr_payroll.action_view_hr_payslip_month_form
@@ -1420,12 +1376,14 @@ msgid "Employee Payslips"
 msgstr "Phiếu lương nhân viên"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employee Trends"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employee whose contracts and company are differents"
@@ -1442,6 +1400,7 @@ msgid "Employee's working schedule."
 msgstr "Khung giờ làm việc của Nhân viên"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_employees__employee_ids
 #: model:ir.ui.menu,name:hr_payroll.menu_hr_payroll_contracts_configuration
@@ -1453,36 +1412,42 @@ msgid "Employees"
 msgstr "Nhân viên"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employees (With Running Contracts) missing from open batches"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employees With Both New And Running Contracts"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employees With Multiple Open Payslips of Same Type"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employees Without Running Contracts"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Employees with payslips generated on the previous contract"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
@@ -1506,6 +1471,7 @@ msgid "Error"
 msgstr "Lỗi"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule_category.py:0
 #, python-format
 msgid "Error! You cannot create recursive hierarchy of Salary Rule Category."
@@ -1528,7 +1494,7 @@ msgid "Export Payslip"
 msgstr "Xuất phiếu lương"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "First, we'll create a new <strong>Contract</strong>."
@@ -1580,6 +1546,7 @@ msgid "From"
 msgstr "Từ"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "From %s to %s"
@@ -1607,7 +1574,7 @@ msgid "Generate"
 msgstr "Tạo"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/work_entries_controller_mixin.js:0
 #: code:addons/hr_payroll/static/src/views/work_entry_calendar/work_entry_calendar.xml:0
 #: model:ir.actions.act_window,name:hr_payroll.action_hr_payslip_by_employees
@@ -1637,6 +1604,7 @@ msgid "Give assurance card to new registered employees"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:hr.salary.rule.category,name:hr_payroll.GROSS
@@ -1715,11 +1683,6 @@ msgid "Hourly Wage"
 msgstr "Lương theo giờ"
 
 #. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Hours of Work"
-msgstr "Giờ làm việc"
-
-#. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_contract__hours_per_week
 #: model:ir.model.fields,field_description:hr_payroll.field_resource_calendar__hours_per_week
 msgid "Hours per Week"
@@ -1793,7 +1756,7 @@ msgstr ""
 "không cần xóa bỏ nó."
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/xml/hr_contract_tree_views.xml:0
 #, python-format
 msgid "Index Contracts"
@@ -1836,6 +1799,7 @@ msgid "Internet Subscription Invoice"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/note.py:0
 #, python-format
 msgid "Invite Follower"
@@ -1911,6 +1875,7 @@ msgid "Last 365 Days Payslip"
 msgstr "Phiếu lương 365 ngày qua"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Last Departures"
@@ -2012,11 +1977,6 @@ msgid "Links :"
 msgstr ""
 
 #. module: hr_payroll
-#: model:ir.model.fields,help:hr_payroll.field_hr_payslip__email_cc
-msgid "List of cc from incoming emails."
-msgstr "Danh sách CC từ email đến"
-
-#. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip__paid
 msgid "Made Payment Order ? "
 msgstr "Đã tạo lệnh thanh toán/UNC? "
@@ -2095,7 +2055,7 @@ msgid "Model for Printing hr.payslip.line grouped by register"
 msgstr "Đối tượng để In hr.payslip.line được nhóm theo người đăng ký"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/payroll_stats/payroll_stats.xml:0
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_structure__schedule_pay__monthly
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_structure_type__default_schedule_pay__monthly
@@ -2180,6 +2140,7 @@ msgid "Net -"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
@@ -2193,6 +2154,7 @@ msgid "Net Wage"
 msgstr "Thực lãnh"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/report/hr_contract_history.py:0
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payslip_run__state__draft
 #, python-format
@@ -2200,18 +2162,21 @@ msgid "New"
 msgstr "Mới"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "New Contracts"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "New Employees"
 msgstr "Nhân viên mới"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "New Payslip"
@@ -2252,6 +2217,7 @@ msgid "No duplication of registration numbers is allowed"
 msgstr "Không được phép trùng lặp số đăng ký"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_rule_parameter.py:0
 #, python-format
 msgid "No rule parameter with code '%s' was found for %s "
@@ -2263,6 +2229,7 @@ msgid "Normal Wage"
 msgstr "Lương cơ bản"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/res_company.py:0
 #: model:ir.model,name:hr_payroll.model_note_note
 #, python-format
@@ -2270,6 +2237,14 @@ msgid "Note"
 msgstr "Ghi chú"
 
 #. module: hr_payroll
+#: model_terms:ir.ui.view,arch_db:hr_payroll.hr_rule_parameter_view_form
+msgid ""
+"Note a description of your parameter, when it's used, how is it computed, "
+"what's the source, ..."
+msgstr ""
+
+#. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid ""
@@ -2348,7 +2323,7 @@ msgid "On the"
 msgstr "Trên"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -2357,7 +2332,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -2366,7 +2341,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -2423,14 +2398,8 @@ msgstr "Khoản đã trả"
 
 #. module: hr_payroll
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_report__work_type__2
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "Paid Time Off"
 msgstr "Nghỉ phép năm"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Paid Time Off (Basic Wage)"
-msgstr "Nghỉ có lương (Lương cơ bản)"
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_rule_parameter_value__parameter_value
@@ -2554,7 +2523,6 @@ msgstr "Bảng lương với thanh toán SEPA"
 #. module: hr_payroll
 #: model:ir.actions.server,name:hr_payroll.ir_cron_generate_payslip_pdfs_ir_actions_server
 #: model:ir.cron,cron_name:hr_payroll.ir_cron_generate_payslip_pdfs
-#: model:ir.cron,name:hr_payroll.ir_cron_generate_payslip_pdfs
 msgid "Payroll: Generate pdfs"
 msgstr "Bảng lương: Tạo pdf"
 
@@ -2566,11 +2534,11 @@ msgstr "Bảng lương: Phiếu lương mới"
 #. module: hr_payroll
 #: model:ir.actions.server,name:hr_payroll.ir_cron_update_payroll_data_ir_actions_server
 #: model:ir.cron,cron_name:hr_payroll.ir_cron_update_payroll_data
-#: model:ir.cron,name:hr_payroll.ir_cron_update_payroll_data
 msgid "Payroll: Update data"
 msgstr "Bảng lương: Cập nhật dữ liệu"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:ir.actions.report,name:hr_payroll.action_report_payslip
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payroll_edit_payslip_lines_wizard__payslip_id
@@ -2580,6 +2548,7 @@ msgid "Payslip"
 msgstr "Phiếu lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Payslip 'Date From' must be earlier 'Date To'."
@@ -2669,6 +2638,7 @@ msgid "Payslip Worked Days"
 msgstr "Ngày làm việc trên Phiếu lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_attachment.py:0
 #: model:ir.actions.act_window,name:hr_payroll.act_hr_employee_payslip_list
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_employee__slip_ids
@@ -2698,6 +2668,7 @@ msgid "Payslips Count"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Payslips Generated On Previous Contract"
@@ -2709,6 +2680,7 @@ msgid "Payslips To Pay"
 msgstr "Phiếu lương cần thanh toán"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Payslips With Negative Amounts"
@@ -2720,6 +2692,7 @@ msgid "Payslips by Employees"
 msgstr "Phiếu lương theo Nhân viên"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Payslips with negative NET"
@@ -2749,7 +2722,7 @@ msgid "Period"
 msgstr "Chu kỳ"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Pick an Employee to see his <strong>Contract's History</strong>."
@@ -2767,13 +2740,14 @@ msgid "Post payroll slips in accounting"
 msgstr "Tự động tạo các bút toán lương cho kế toán"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Previous Negative Payslip to Report"
 msgstr "Phiếu lương âm trước đó cần báo cáo"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/xml/payslip_tree_views.xml:0
 #: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 #, python-format
@@ -2786,6 +2760,7 @@ msgid "Professional Tax"
 msgstr "Thuế Nhà thầu"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Prorated end-of-year bonus"
@@ -2868,6 +2843,7 @@ msgstr ""
 "Chỉ tính lại dòng phiếu lương, không tính dòng ngày làm việc/dữ liệu nhập"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_attachment.py:0
 #, python-format
 msgid "Recorded a new payment of %s."
@@ -2884,6 +2860,7 @@ msgid "Refund"
 msgstr "Giảm công nợ"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Refund: %(payslip)s"
@@ -2905,6 +2882,7 @@ msgid "Regular Working Day"
 msgstr "Ngày làm việc thông thường"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure.py:0
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
@@ -3001,6 +2979,7 @@ msgid "Running"
 msgstr "Đang chạy"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Running contracts coming to an end"
@@ -3024,6 +3003,7 @@ msgid "Salary"
 msgstr "Tiền lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_contract.py:0
 #: code:addons/hr_payroll/report/hr_contract_history.py:0
 #: model:ir.actions.act_window,name:hr_payroll.hr_salary_attachment_action
@@ -3058,6 +3038,7 @@ msgid "Salary Attachment count"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_employee__salary_attachment_ids
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip__salary_attachment_ids
@@ -3125,6 +3106,7 @@ msgid "Salary Rules"
 msgstr "Quy tắc lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Salary Slip"
@@ -3192,7 +3174,7 @@ msgid "Search Structure Type"
 msgstr "Tìm kiếm loại cấu trúc"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Select an <strong>HR Responsible</strong> for the contract."
@@ -3220,7 +3202,23 @@ msgid "Sequence"
 msgstr "Trình tự"
 
 #. module: hr_payroll
-#. openerp-web
+#: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
+msgid ""
+"Set a specific department if you wish to select all the employees from this "
+"department (and subdepartments) at once."
+msgstr ""
+
+#. module: hr_payroll
+#: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_by_employees
+msgid ""
+"Set a specific structure if you wish to make an extra payslip (eg: End of "
+"the year bonus). If you leave this field empty, a regular payslip will be "
+"generated for all the selected employees, based on their contracts "
+"configuration."
+msgstr ""
+
+#. module: hr_payroll
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "Set the Contract as <strong><q>Running</q></strong>."
@@ -3244,6 +3242,7 @@ msgid "Slips to Confirm"
 msgstr "Phiếu lương chờ Xác nhận"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid ""
@@ -3254,6 +3253,7 @@ msgstr ""
 "đủ. Khoảng thời gian cần tìm:%s"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "Some work entries could not be validated."
@@ -3413,6 +3413,7 @@ msgid "The contract this worked days should be applied to"
 msgstr "Hợp đồng sẽ áp dụng số ngày làm việc này"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid ""
@@ -3423,6 +3424,7 @@ msgstr ""
 "%s"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid ""
@@ -3452,6 +3454,7 @@ msgstr ""
 "được thiết lập."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "The payslips should be in Draft or Waiting state."
@@ -3470,12 +3473,23 @@ msgid "The work entry won’t grant any money to employee in payslip."
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
+#: code:addons/hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid ""
+"There's no contract set on payslip %s for %s. Check that there is at least a"
+" contract set on the employee form."
+msgstr ""
+
+#. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "This action is forbidden on validated payslips."
 msgstr "Tác vụ này bị cấm trên phiếu lương đã xác thực."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "This action is restricted to payroll managers only."
@@ -3503,6 +3517,7 @@ msgid "This is a credit time contract."
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid ""
@@ -3513,12 +3528,14 @@ msgstr ""
 " trong khoảng thời gian từ %(start)s tới %(end)s."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_edit_payslip_lines_wizard.py:0
 #, python-format
 msgid "This payslip has been manually edited by %s."
 msgstr "Phiếu lương này đã được chỉnh sửa thủ công bởi %s."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "This payslip is not validated. This is not a legal document."
@@ -3547,6 +3564,7 @@ msgstr ""
 "variable names (hra, ma, lta, etc.) and the variable basic."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "Time intervals to look for:%s"
@@ -3596,16 +3614,6 @@ msgstr "Tổng"
 #: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 msgid "Total Amount"
 msgstr "Tổng số tiền"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Total Gross Wage"
-msgstr "Tổng lương thu nhập"
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "Total Net Wage"
-msgstr "Tổng lương thực lãnh"
 
 #. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
@@ -3667,6 +3675,7 @@ msgid "Unforeseen Absence"
 msgstr "Vắng mặt không lường trước"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Unknown State"
@@ -3679,7 +3688,6 @@ msgstr "Không thanh toán"
 
 #. module: hr_payroll
 #: model:ir.model.fields.selection,name:hr_payroll.selection__hr_payroll_report__work_type__3
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "Unpaid Time Off"
 msgstr "Nghỉ phép không lương"
 
@@ -3788,6 +3796,7 @@ msgid "Wage Type"
 msgstr "Loại lương"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_index_wizard.py:0
 #, python-format
 msgid "Wage indexed by %.2f%% on %s"
@@ -3804,13 +3813,14 @@ msgid "Warning Message"
 msgstr "Thông điệp cảnh báo"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_attachment.py:0
 #, python-format
 msgid "Warning, a similar attachment has been found."
 msgstr "Cảnh báo, tìm thấy tài liệu đính kèm tương tự."
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/components/dashboard/action_box/action_box.xml:0
 #, python-format
 msgid "Warnings"
@@ -3869,7 +3879,6 @@ msgstr ""
 
 #. module: hr_payroll
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payroll_report__count_work
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
 msgid "Work Days"
 msgstr "Ngày làm việc"
 
@@ -3893,7 +3902,7 @@ msgid "Work Entries Analysis Report"
 msgstr ""
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid ""
@@ -4000,61 +4009,70 @@ msgid "Working Schedule"
 msgstr "Thời gian làm việc"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Working Schedule Changes"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Wrong percentage base or quantity defined for:"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Wrong python code defined for:"
 msgstr "Đã xác định sai mã python cho:"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Wrong python condition defined for:"
 msgstr "Đã xác định sai điều kiện python cho:"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Wrong quantity defined for:"
 msgstr "Đã xác định sai điều kiện cho:"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Wrong range condition defined for:"
 msgstr "Đã xác định sai phạm vi điều kiện cho:"
 
 #. module: hr_payroll
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_payroll/static/src/js/tours/hr_payroll.js:0
 #, python-format
 msgid "You can access the Payslips from the Employee's Profile."
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "You can't validate a cancelled payslip."
 msgstr "Bạn không thể xác thực phiếu lương đã hủy."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip_run.py:0
 #, python-format
 msgid "You cannot delete a payslip batch which is not draft!"
 msgstr "Bạn không thể xóa đợt phiếu lương không ở trạng thái nháp!"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #: code:addons/hr_payroll/models/hr_payslip_run.py:0
 #, python-format
@@ -4063,12 +4081,14 @@ msgstr ""
 "Bạn không thể xoá một phiếu lương mà không ở trạng thái dự thảo hoặc huỷ!"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_salary_attachment.py:0
 #, python-format
 msgid "You cannot delete a running salary attachment!"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip_run.py:0
 #, python-format
 msgid ""
@@ -4077,12 +4097,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip.py:0
 #, python-format
 msgid "You cannot validate a payslip on which the contract is cancelled"
 msgstr ""
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_index_wizard.py:0
 #, python-format
 msgid ""
@@ -4093,27 +4115,25 @@ msgstr ""
 "chúng, vui lòng thực hiện bằng tay"
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "You must select employee(s) to generate payslip(s)."
 msgstr "Bạn phải chọn ít nhất một nhân viên để tạo (các) phiếu lương."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payslip_line.py:0
 #, python-format
 msgid "You must set a contract to create a payslip line."
 msgstr "Bạn phải thiết lập một hợp đồng để có thể tạo chi tiết phiếu lương."
 
 #. module: hr_payroll
+#. odoo-python
 #: code:addons/hr_payroll/models/hr_payroll_structure_type.py:0
 #, python-format
 msgid "You should also be logged into a company in %s to set this country."
 msgstr "Bạn cũng nên đăng nhập vào công ty trong %s để cài đặt quốc gia này."
-
-#. module: hr_payroll
-#: model_terms:ir.ui.view,arch_db:hr_payroll.payroll_report_view_dashboard
-msgid "days"
-msgstr "ngày"
 
 #. module: hr_payroll
 #: model_terms:ir.ui.view,arch_db:hr_payroll.hr_payslip_run_form

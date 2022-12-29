@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from collections import defaultdict
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import float_round
 
 
@@ -106,9 +106,9 @@ class ProductProduct(models.Model):
     @api.model
     def _search_fsm_quantity(self, operator, value):
         if not (isinstance(value, int) or (isinstance(value, bool) and value is False)):
-            raise ValueError('Invalid value: %s' % (value))
+            raise ValueError(_('Invalid value: %s', value))
         if operator not in ('=', '!=', '<=', '<', '>', '>=') or (operator == '!=' and value is False):
-            raise ValueError('Invalid operator: %s' % (operator))
+            raise ValueError(_('Invalid operator: %s', operator))
 
         task = self._get_contextual_fsm_task()
         if not task:

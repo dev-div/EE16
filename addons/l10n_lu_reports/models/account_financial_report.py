@@ -197,7 +197,9 @@ class LuxembourgishFinancialReportCustomHandler(models.AbstractModel):
             return references, names
 
         report = self.env['account.report'].browse(options['report_id'])
-        lu_template_values = self.get_financial_electronic_report_values(report._get_options(options))
+        if not self.env.context.get('skip_options_recompute'):
+            options = report._get_options(options)
+        lu_template_values = self.get_financial_electronic_report_values(options)
         for form in lu_template_values['forms']:
             if references:
                 references, names = _get_references(report)
@@ -226,10 +228,6 @@ class LuxembourgishFinancialReportCustomHandler(models.AbstractModel):
         new_context = self.env.context.copy()
         new_context['report_generation_options'] = options
         new_context['report_generation_options']['report_id'] = options['report_id']
-        # When exporting from the balance sheet, the date_from must be adjusted
-        if options['date']['mode'] == 'single':
-            date_from = datetime.strptime(options['date']['date_to'], '%Y-%m-%d') + relativedelta(years=-1, days=1)
-            new_context['report_generation_options']['date']['date_from'] = date_from.strftime('%Y-%m-%d')
         return {
             'type': 'ir.actions.act_window',
             'name': _('Export'),

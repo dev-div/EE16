@@ -4,7 +4,7 @@ import ReportEditorManager from "web_studio.ReportEditorManager";
 import { useService } from "@web/core/utils/hooks";
 import { registry } from "@web/core/registry";
 
-const { Component, xml } = owl;
+import { Component, xml } from "@odoo/owl";
 
 class ReportEditorAdapter extends ComponentAdapter {
     constructor(props) {

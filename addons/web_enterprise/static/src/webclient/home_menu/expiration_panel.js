@@ -3,7 +3,7 @@ import { useService } from "@web/core/utils/hooks";
 import { Transition } from "@web/core/transition";
 import { sprintf } from "@web/core/utils/strings";
 
-const { Component, useState, useRef } = owl;
+import { Component, useState, useRef } from "@odoo/owl";
 
 /**
  * Expiration panel

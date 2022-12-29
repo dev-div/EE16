@@ -7,7 +7,6 @@ from collections import defaultdict
 from odoo import fields, models, api, _, Command
 from odoo.tools.date_utils import get_timedelta
 from odoo.tools import format_date
-from odoo.tools.float_utils import float_is_zero
 from odoo.exceptions import ValidationError
 
 INTERVAL_FACTOR = {
@@ -48,13 +47,19 @@ class SaleOrderLine(models.Model):
         super(SaleOrderLine, self)._compute_invoice_status()
         today = fields.Date.today()
         for line in self:
+            currency_id = line.order_id.currency_id or self.env.company.currency_id
             if not line.order_id.is_subscription or line.temporal_type != 'subscription':
                 continue
             # Subscriptions and upsells
+            recurring_free = currency_id.compare_amounts(line.order_id.recurring_monthly, 0) < 1
+            if recurring_free:
+                # free subscription lines are never to invoice whatever the dates
+                line.invoice_status = 'no'
+                continue
             to_invoice_check = line.order_id.next_invoice_date and line.state in ('sale', 'done') and line.order_id.next_invoice_date >= today
             if line.order_id.end_date:
                 to_invoice_check = to_invoice_check and line.order_id.end_date > today
-            if to_invoice_check and line.order_id.start_date and line.order_id.start_date > today or float_is_zero(line.price_subtotal, precision_rounding=line.order_id.currency_id.rounding):
+            if to_invoice_check and line.order_id.start_date and line.order_id.start_date > today or (currency_id.is_zero(line.price_subtotal)):
                 line.invoice_status = 'no'
 
     @api.depends('order_id.subscription_management', 'order_id.start_date', 'order_id.next_invoice_date')
@@ -233,12 +238,14 @@ class SaleOrderLine(models.Model):
                             duration=round(self.order_id.recurrence_id.duration),
                             unit=self.order_id.recurrence_id.unit)
             lang_code = self.order_id.partner_id.lang
-            if self.qty_invoiced:
-                # We need to invoice the next period: last_invoice_date will be today once this invoice is created. We use get_timedelta to avoid gaps
-                new_period_start = self.order_id.next_invoice_date
-            else:
-                # First invoice for a given period. This period may start today
+            if self.order_id.subscription_management == 'upsell':
+                # We start at the beginning of the upsell as it's a part of recurrence
                 new_period_start = self.order_id.start_date or fields.Datetime.today()
+            else:
+                # We need to invoice the next period: last_invoice_date will be today once this invoice is created. We use get_timedelta to avoid gaps
+                # We always use next_invoice_date as the recurrence are synchronized with the invoicing periods.
+                # Next invoice date is required and is equal to start_date at the creation of a subscription
+                new_period_start = self.order_id.next_invoice_date
             format_start = format_date(self.env, new_period_start, lang_code=lang_code)
             parent_order_id = self.order_id.id
             if self.order_id.subscription_management == 'upsell':

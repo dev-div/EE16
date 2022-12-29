@@ -231,7 +231,7 @@ class DataMergeModel(models.Model):
                     self._cr.execute(query, where_clause_params)
                 except ProgrammingError as e:
                     if e.pgcode == errorcodes.UNDEFINED_FUNCTION:
-                        raise UserError('Missing required PostgreSQL extension: unaccent')
+                        raise UserError(_('Missing required PostgreSQL extension: unaccent'))
                     raise
 
                 rows = self._cr.fetchall()
@@ -301,7 +301,7 @@ class DataMergeModel(models.Model):
         models = set(self.env['ir.model'].browse(self.res_model_id.ids).mapped('model'))
         for model_name in models:
             if model_name and hasattr(self.env[model_name], '_prevent_merge') and self.env[model_name]._prevent_merge:
-                raise ValidationError('Deduplication is forbidden on the model: %s' % model_name)
+                raise ValidationError(_('Deduplication is forbidden on the model: %s', model_name))
 
     def copy(self, default=None):
         self.ensure_one()

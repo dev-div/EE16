@@ -119,6 +119,6 @@ class HrExpense(models.Model):
             predicted_product_id = self._predict_product(self.name)
             default_product = self.env['product.product'].search([('can_be_expensed', '=', True)])
             if default_product:
-                default_product = default_product.filtered(lambda p: p.default_code == "EXP_GEN") or default_product[0]
+                default_product = default_product.filtered(lambda p: p.default_code == "EXP_GEN")[:1] or default_product[0]
                 self.product_id = predicted_product_id if predicted_product_id else default_product
             

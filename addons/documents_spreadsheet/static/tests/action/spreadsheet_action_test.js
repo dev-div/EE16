@@ -4,10 +4,9 @@ import { createWebClient, doAction } from "@web/../tests/webclient/helpers";
 import spreadsheet from "@spreadsheet/o_spreadsheet/o_spreadsheet_extended";
 import { getBasicData } from "@spreadsheet/../tests/utils/data";
 import { prepareWebClientForSpreadsheet } from "../utils/webclient_helpers";
-import { getFixture, nextTick } from "@web/../tests/helpers/utils";
+import { getFixture, nextTick, click } from "@web/../tests/helpers/utils";
 import { createSpreadsheet } from "../spreadsheet_test_utils";
 import { selectCell } from "@spreadsheet/../tests/utils/commands";
-import { dom } from "web.test_utils";
 
 const { createEmptyWorkbookData } = spreadsheet.helpers;
 
@@ -226,16 +225,53 @@ QUnit.module(
             );
         });
 
-        QUnit.test("Grid has still the focus after a dialog", async function (assert) {
-            assert.expect(1);
+        QUnit.test("Grid hidden input has still the focus after a dialog", async function (assert) {
+            assert.expect(2);
 
             const { model, env } = await createSpreadsheet();
             selectCell(model, "F4");
             env.raiseError("Notification");
             await nextTick();
-            await dom.click(document.body.querySelector(".modal-footer .btn-primary"));
+            await click(document, ".modal-footer .btn-primary");
             await nextTick();
-            assert.strictEqual(document.activeElement.className, "o-grid o-two-columns");
+            assert.strictEqual(document.activeElement.tagName, "INPUT");
+            assert.strictEqual(
+                document.activeElement.parentElement.className,
+                "o-grid o-two-columns"
+            );
+        });
+
+        QUnit.test("create spreadsheet action uses action context", async function (assert) {
+            await prepareWebClientForSpreadsheet();
+            const webClient = await createWebClient({
+                serverData: { models: getBasicData() },
+                mockRPC: async function (route, args) {
+                    if (args.method === "create" && args.model === "documents.document") {
+                        assert.step("create_sheet");
+                        assert.equal(args.kwargs.context.default_res_model, "test.model");
+                        assert.equal(args.kwargs.context.default_res_id, 42);
+                    }
+                },
+            });
+            await doAction(
+                webClient,
+                {
+                    type: "ir.actions.client",
+                    tag: "action_open_spreadsheet",
+                    params: {
+                        alwaysCreate: true,
+                        createFromTemplateId: null,
+                        createInFolderId: 1,
+                    },
+                },
+                {
+                    additionalContext: {
+                        default_res_model: "test.model",
+                        default_res_id: 42,
+                    },
+                }
+            );
+            assert.verifySteps(["create_sheet"]);
         });
     }
 );

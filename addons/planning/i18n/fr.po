@@ -5,18 +5,18 @@
 # Translators:
 # gdp Odoo <gdp@odoo.com>, 2022
 # Nathan Grognet <ngr@odoo.com>, 2022
-# Martin Trigaux, 2022
 # Alexandra Jubert, 2022
-# Jolien De Paepe, 2022
 # Cécile Collart <cco@odoo.com>, 2022
+# Martin Trigaux, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:27+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Cécile Collart <cco@odoo.com>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "%s (copy)"
@@ -36,10 +37,11 @@ msgid "'Planning'"
 msgstr "'Planning'"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_template.py:0
 #, python-format
 msgid "(%s days span)"
-msgstr "(période de %s jours)"
+msgstr "(plage de %s jours)"
 
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.period_report_template
@@ -112,7 +114,7 @@ msgid "<b class=\"tip_title\">Tip: Record your planning faster</b>"
 msgstr "<b class=\"tip_title\">Astuce: Encodez votre planning plus rapidement</b>"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "<b>Congratulations!</b></br> You are now a master of planning."
@@ -121,7 +123,7 @@ msgstr ""
 " "
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -134,7 +136,7 @@ msgstr ""
 "taille</b> du poste pour en modifier la période."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "<b>Publish & send</b> your employee's planning."
@@ -624,7 +626,7 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_gantt_controller.js:0
 #, python-format
 msgid "Add Shift"
@@ -702,6 +704,7 @@ msgid "Allow Unassignment"
 msgstr "Autoriser la désassignation"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "An shift must be in the same company as its recurrency."
@@ -725,13 +728,14 @@ msgid "Archived"
 msgstr "Archivé"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "Are you sure you want to delete this shift?"
 msgstr "Voulez-vous vraiment supprimer ce poste?"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid ""
@@ -742,7 +746,7 @@ msgstr ""
 "ressource n'est pas censée travailler un poste. Horaires prévus :"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -848,14 +852,14 @@ msgid "Conflicting Slot"
 msgstr "Poste conflictuel"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #, python-format
 msgid "Copy previous"
 msgstr "Copier précédent"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
@@ -1033,7 +1037,7 @@ msgid "Doris Cole (Bartender)"
 msgstr "Doris Cole (Barman)"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: model:ir.model.fields.selection,name:planning.selection__planning_analysis_report__state__draft
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__state__draft
@@ -1168,6 +1172,7 @@ msgid "Every"
 msgstr "Tou(te)s les"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "Every %s week(s) until %s"
@@ -1213,6 +1218,7 @@ msgid "Forever"
 msgstr "Pour toujours"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_recurrency.py:0
 #, python-format
 msgid "Forever, every %s week(s)"
@@ -1262,6 +1268,7 @@ msgstr "Je suis indisponible"
 
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form
+#: model_terms:ir.ui.view,arch_db:planning.planning_view_form_in_gantt
 msgid "I Take It"
 msgstr "Je le prends"
 
@@ -1293,7 +1300,7 @@ msgstr ""
 "publication."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1395,7 +1402,7 @@ msgid "Last Week"
 msgstr "La semaine dernière"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #, python-format
 msgid "Legend"
@@ -1413,7 +1420,7 @@ msgid "Let employees unassign themselves from shifts"
 msgstr "Laissez vos employés se désassigner eux-mêmes des postes"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1424,7 +1431,7 @@ msgstr ""
 "disponible dans chaque cellule de la vue Gantt pour gagner du temps.</i>"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "Let's start managing your employees' schedule!"
@@ -1533,6 +1540,7 @@ msgid "Next Week"
 msgstr "La semaine prochaine"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/planning_send.py:0
 #, python-format
 msgid "No Email Address For Some Employees"
@@ -1579,7 +1587,7 @@ msgid "Note"
 msgstr "Note"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1596,7 +1604,7 @@ msgid "Number of Repetitions"
 msgstr "Nombre de répétitions"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_gantt_model.js:0
 #: model_terms:ir.actions.act_window,help:planning.planning_action_roles
 #: model_terms:ir.ui.view,arch_db:planning.planning_analysis_report_view_search
@@ -1612,6 +1620,7 @@ msgid "Open Shifts Available"
 msgstr "Postes ouverts disponibles"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid ""
@@ -1639,7 +1648,7 @@ msgid "Period"
 msgstr "Période"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -1655,6 +1664,7 @@ msgid "Planned Hours"
 msgstr "Heures planifiées"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #: model:ir.actions.report,name:planning.report_planning_slot
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__allocation_type__planning
@@ -1722,17 +1732,18 @@ msgstr "Planning : Nouveau poste"
 #. module: planning
 #: model:ir.actions.server,name:planning.ir_cron_forecast_schedule_ir_actions_server
 #: model:ir.cron,cron_name:planning.ir_cron_forecast_schedule
-#: model:ir.cron,name:planning.ir_cron_forecast_schedule
 msgid "Planning: generate next recurring shifts"
 msgstr "Planning: générer les prochains postes récurrents"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "Planning: new open shift available on"
 msgstr "Planning: nouveau poste ouvert disponible le"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "Planning: new shift on"
@@ -1749,7 +1760,7 @@ msgid "Previous Template"
 msgstr "Modèle précédent"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #: model:ir.actions.server,name:planning.model_planning_slot_action_publish
@@ -1769,7 +1780,7 @@ msgid "Publish & Send"
 msgstr "Publier & Envoyer"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: model:ir.model.fields.selection,name:planning.selection__planning_analysis_report__state__published
 #: model:ir.model.fields.selection,name:planning.selection__planning_slot__state__published
@@ -1930,7 +1941,7 @@ msgid "Save as Template"
 msgstr "Sauvegarder comme Modèle"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid "Save this shift once it is ready."
@@ -1993,7 +2004,7 @@ msgid "Send Planning By Email"
 msgstr "Envoyer le Planning par Email"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_calendar/planning_calendar_controller.xml:0
 #: code:addons/planning/static/src/xml/planning_gantt.xml:0
 #, python-format
@@ -2013,6 +2024,7 @@ msgid "Settings"
 msgstr "Paramètres"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/controllers/main.py:0
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form
 #, python-format
@@ -2057,6 +2069,7 @@ msgid "Shifts from"
 msgstr "Postes de"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_search
 #, python-format
@@ -2136,12 +2149,14 @@ msgstr ""
 "Le nombre de jours pour se désassigner doit être positif ou égal à zéro."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The company does not allow you to self unassign."
 msgstr "La société ne vous autorise pas à vous assigner vous-même."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The deadline for unassignment has passed."
@@ -2158,11 +2173,19 @@ msgid "The end date of a shift should be after its start date."
 msgstr "La date de fin d'un poste doit être postérieure à sa date de début."
 
 #. module: planning
+#. odoo-python
+#: code:addons/planning/models/planning_recurrency.py:0
+#, python-format
+msgid "The number of repetitions cannot be negative."
+msgstr "Le nombre de répétitions ne peut pas être négatif."
+
+#. module: planning
 #: model:ir.model.constraint,message:planning.constraint_planning_recurrency_check_repeat_interval_positive
 msgid "The recurrence should be greater than 0."
 msgstr "La récurrence doit être supérieure à 0."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The recurrence's end date should fall after the shift's start date."
@@ -2171,32 +2194,35 @@ msgstr ""
 "poste."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "The recurring shifts have successfully been created."
 msgstr "Les postes récurrents ont été créés avec succès."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/planning_send.py:0
 #, python-format
 msgid "The schedule was successfully sent to your employees."
 msgstr "L'emploi du temps a été envoyé avec succès à vos employés."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning_template.py:0
 #, python-format
 msgid "The selected duration creates a date too far into the future."
 msgstr "La durée sélectionnée crée une date trop éloignée dans le futur."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shift has successfully been sent."
 msgstr "Le poste a été envoyé avec succès."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #, python-format
@@ -2204,7 +2230,8 @@ msgid "The shifts from the previous week have successfully been copied."
 msgstr "Les postes de la semaine précédente ont été copiés avec succès."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
+#. odoo-python
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #: code:addons/planning/wizard/planning_send.py:0
@@ -2215,18 +2242,21 @@ msgid ""
 msgstr "Les postes ont déjà été publiés ou il n'y a pas de postes à publier."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have been successfully reset to draft."
 msgstr "Les postes ont été réinitialisés avec succès au brouillon."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have successfully been published and sent."
 msgstr "Les postes ont été publiés et envoyés avec succès."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "The shifts have successfully been published."
@@ -2243,7 +2273,15 @@ msgid "The start hour cannot be negative."
 msgstr "L'heure de début ne peut pas être négative."
 
 #. module: planning
-#. openerp-web
+#. odoo-python
+#: code:addons/planning/models/planning_template.py:0
+#, python-format
+msgid "The start hour must be greater or equal to 0 and lower than 24."
+msgstr ""
+"L'heure de début doit être supérieure ou égale à 0 et inférieure à 24."
+
+#. module: planning
+#. odoo-javascript
 #: code:addons/planning/static/src/js/planning_mixins.js:0
 #: code:addons/planning/static/src/views/hooks.js:0
 #, python-format
@@ -2255,22 +2293,32 @@ msgstr ""
 "été copiés."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to publish and send."
 msgstr "Il n'y a pas de postes à publier et à envoyer."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to publish."
 msgstr "Il n'y a pas de postes à publier."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "There are no shifts to reset to draft."
 msgstr "Il n'y a pas de postes à réinitialiser au brouillon."
+
+#. module: planning
+#. odoo-python
+#: code:addons/planning/models/planning.py:0
+#, python-format
+msgid "This Progress Bar is not implemented."
+msgstr "Cette barre de progression n'est pas mise en oeuvre."
 
 #. module: planning
 #: model:ir.model.fields,field_description:planning.field_planning_slot__was_copied
@@ -2292,7 +2340,7 @@ msgstr ""
 "temps. Veuillez contacter votre responsable pour plus d'informations."
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/views/planning_form/planning_form_view.js:0
 #, python-format
 msgid "This shift was successfully saved as a template."
@@ -2359,6 +2407,7 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/hr.py:0
 #: model:ir.actions.server,name:planning.model_hr_employee_action_planning_view
 #: model:ir.actions.server,name:planning.model_hr_employee_public_action_planning_view
@@ -2405,7 +2454,7 @@ msgid "Working Days"
 msgstr "Jours de travail"
 
 #. module: planning
-#. openerp-web
+#. odoo-javascript
 #: code:addons/planning/static/src/js/tours/planning.js:0
 #, python-format
 msgid ""
@@ -2431,30 +2480,35 @@ msgid "Yesterday"
 msgstr "Hier"
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You are not allowed to reset to draft shifts."
 msgstr "Vous n'êtes pas autorisé à réinitialiser les postes en brouillon."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You can not assign yourself to an already assigned shift."
 msgstr "Vous ne pouvez pas vous assigner à un poste déjà assigné."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You can not unassign another employee than yourself."
 msgstr "Vous ne pouvez pas assigner un autre employé que vous."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/wizard/slot_planning_select_send.py:0
 #, python-format
 msgid "You cannot send a past unassigned slot"
 msgstr "Vous ne pouvez pas envoyer un poste non assigné passé."
 
 #. module: planning
+#. odoo-python
 #: code:addons/planning/models/planning.py:0
 #, python-format
 msgid "You don't have the right to self assign."
@@ -2487,7 +2541,7 @@ msgstr "jours avant le début du poste"
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.planning_slot_template_view_form
 msgid "days span)"
-msgstr ""
+msgstr "jours d'intervalle)"
 
 #. module: planning
 #: model_terms:ir.ui.view,arch_db:planning.planning_view_form

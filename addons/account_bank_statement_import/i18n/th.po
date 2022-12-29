@@ -8,9 +8,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-23 08:23+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
 "Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Thai (https://www.transifex.com/odoo/teams/41243/th/)\n"
@@ -21,19 +21,21 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: account_bank_statement_import
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_bank_statement_import/static/src/js/account_bank_statement_import.js:0
 #, python-format
 msgid " Import Template for Bank Statements"
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "%d transactions had already been imported and were ignored."
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "1 transaction had already been imported and was ignored."
@@ -45,10 +47,11 @@ msgid "A bank account transactions can be imported only once !"
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
-msgid "Already imported items"
-msgstr ""
+msgid "Bank Statement %s.pdf"
+msgstr "Bank Statement %s.pdf"
 
 #. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_bank_statement_line
@@ -56,11 +59,19 @@ msgid "Bank Statement Line"
 msgstr "รายการใบแจ้งยอดจากธนาคาร"
 
 #. module: account_bank_statement_import
+#. odoo-python
+#: code:addons/account_bank_statement_import/models/account_journal.py:0
+#, python-format
+msgid "Bank Statement.pdf"
+msgstr "Bank Statement.pdf"
+
+#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_setup_bank_manual_config
 msgid "Bank setup manual config"
 msgstr "การตั้งค่าธนาคารด้วยตนเอง"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -69,6 +80,7 @@ msgid ""
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -77,12 +89,14 @@ msgid ""
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Go to Apps"
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -91,6 +105,7 @@ msgid ""
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Import"
@@ -102,28 +117,26 @@ msgid "Import ID"
 msgstr ""
 
 #. module: account_bank_statement_import
-#: model_terms:ir.ui.view,arch_db:account_bank_statement_import.journal_dashboard_view_inherit
-msgid "Import Statement"
-msgstr ""
-
-#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_journal
 msgid "Journal"
 msgstr "สมุดบันทึก"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No attachment was provided"
 msgstr "ไม่มีไฟล์แนบมา"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No currency found matching '%s'."
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -131,6 +144,7 @@ msgid ""
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -139,24 +153,28 @@ msgid ""
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any statement for account %s."
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any transaction for account %s."
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You already have imported that file."
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You have to set a Default Account for the journal: %s"

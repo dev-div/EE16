@@ -138,7 +138,7 @@
                     ('parent_state', '=', 'posted'),
                     ('credit', '=', '0'),
                     ('company_id', '=', company_id),
-                    ('account_type', '=', 'expense')
+                    ('account_type', 'in', ('asset_current', 'asset_prepayments'))
                 ]</attribute>
             </field>
         </field>

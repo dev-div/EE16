@@ -7,9 +7,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
 "Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/odoo/teams/41243/vi/)\n"
@@ -60,6 +60,16 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
+msgid "<span class=\"ms-3\">/ month</span>"
+msgstr ""
+
+#. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
+msgid "<span class=\"ms-3\">/ year</span>"
+msgstr ""
+
+#. module: hr_contract_salary
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Salary Package Configurator</span>"
 msgstr "<span class=\"o_form_label\">Trình cấu hình gói lương</span>"
@@ -93,11 +103,6 @@ msgstr "<span> /năm</span>"
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
 msgid "<span>/ month</span>"
 msgstr "<span>/ tháng</span>"
-
-#. module: hr_contract_salary
-#: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
-msgid "<span>/ year</span>"
-msgstr "<span>/ năm</span>"
 
 #. module: hr_contract_salary
 #: model_terms:ir.ui.view,arch_db:hr_contract_salary.hr_contract_view_form
@@ -146,6 +151,7 @@ msgid "Add a section"
 msgstr "Thêm khu vực"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_advantage.py:0
 #, python-format
 msgid "Advanges that are not linked to a field should always be displayed."
@@ -191,6 +197,7 @@ msgid "Annual Employee Budget"
 msgstr "Ngân quỹ nhân viên thường niên"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Annual Employer Cost"
@@ -217,7 +224,6 @@ msgstr "Áp dụng ngay"
 #. module: hr_contract_salary
 #: model:ir.actions.server,name:hr_contract_salary.ir_cron_clean_redundant_salary_data_ir_actions_server
 #: model:ir.cron,cron_name:hr_contract_salary.ir_cron_clean_redundant_salary_data
-#: model:ir.cron,name:hr_contract_salary.ir_cron_clean_redundant_salary_data
 msgid "Archive/Delete redundant generated salary data"
 msgstr "Lưu trữ / Xóa dữ liệu lương phát sinh thừa"
 
@@ -324,6 +330,7 @@ msgid "Contract Advantage Value"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Contract Information:"
@@ -347,6 +354,7 @@ msgid "Contract Templates"
 msgstr "Mẫu hợp đồng"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Contract Type"
@@ -480,6 +488,7 @@ msgid "Date"
 msgstr "Ngày"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model.fields.selection,name:hr_contract_salary.selection__hr_contract_salary_advantage__uom__days
 #: model:ir.model.fields.selection,name:hr_contract_salary.selection__hr_contract_salary_resume__uom__days
@@ -527,7 +536,7 @@ msgid "Description"
 msgstr "Mô tả"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #, python-format
 msgid "Details"
@@ -623,6 +632,7 @@ msgid "Employee Contract"
 msgstr "Hợp đồng nhân viên"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Employee Name"
@@ -644,6 +654,7 @@ msgid "Employee: Contract And Salary Package"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -734,6 +745,7 @@ msgid "Group By"
 msgstr "Nhóm theo"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract.py:0
 #, python-format
 msgid ""
@@ -842,6 +854,7 @@ msgid "Is origin contract a contract template ?"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model,name:hr_contract_salary.model_hr_job
 #: model:ir.model.fields,field_description:hr_contract_salary.field_generate_simulation_link__employee_job_id
@@ -850,6 +863,7 @@ msgid "Job Position"
 msgstr "Chức vụ"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: model:ir.model.fields,field_description:hr_contract_salary.field_generate_simulation_link__job_title
 #, python-format
@@ -941,6 +955,7 @@ msgid "Master"
 msgstr "Thạc sĩ"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_personal_info.py:0
 #, python-format
 msgid ""
@@ -965,6 +980,7 @@ msgid "Monthly Cost (Real)"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Monthly Gross Salary"
@@ -1021,12 +1037,14 @@ msgid "New Contract Document Template"
 msgstr "Mẫu tài liệu hợp đồng mới"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "No"
 msgstr "Không"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1042,12 +1060,14 @@ msgid "No Template found"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract.py:0
 #, python-format
 msgid "No private address defined on the employee!"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1056,14 +1076,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
 msgid "Not a valid e-mail address"
 msgstr ""
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
 msgid "Not a valid input in integer field"
@@ -1085,6 +1105,7 @@ msgid "Offer link"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
@@ -1104,6 +1125,7 @@ msgid "Origin Contract"
 msgstr "Hợp đồng ban đầu"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Original Link"
@@ -1150,6 +1172,7 @@ msgid "Personal Info"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Personal Information"
@@ -1213,7 +1236,7 @@ msgid "Radio Buttons"
 msgstr "Nút tròn"
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #: code:addons/hr_contract_salary/static/src/xml/resume_sidebar.xml:0
 #, python-format
@@ -1309,6 +1332,7 @@ msgid "Salary Package Resume Category"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Salary Package Summary"
@@ -1400,6 +1424,7 @@ msgid "Sign document in contract"
 msgstr "Tài liệu ký trong hợp đồng"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
@@ -1424,7 +1449,7 @@ msgid "Slider Min"
 msgstr ""
 
 #. module: hr_contract_salary
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #: code:addons/hr_contract_salary/static/src/js/hr_contract_salary.js:0
 #, python-format
@@ -1496,6 +1521,14 @@ msgid "The contract from which this contract has been duplicated."
 msgstr "Hợp đồng mà từ đó hợp đồng này đã được nhân đôi."
 
 #. module: hr_contract_salary
+#: model_terms:ir.ui.view,arch_db:hr_contract_salary.generate_simulation_link_view_form
+msgid ""
+"The employee does not have a valid email set in the private information. The"
+" Simulation Link won't be able to be completed."
+msgstr ""
+
+#. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid ""
@@ -1504,6 +1537,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/models/hr_contract_salary_advantage.py:0
 #, python-format
 msgid ""
@@ -1528,6 +1562,7 @@ msgid "There is no available option to customize your salary"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "This contract has been updated, please request an updated link.."
@@ -1542,6 +1577,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
@@ -1584,6 +1620,7 @@ msgid "Value Type"
 msgstr "Loại giá trị"
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Wage"
@@ -1640,6 +1677,7 @@ msgid "Yearly Cost (Real)"
 msgstr ""
 
 #. module: hr_contract_salary
+#. odoo-python
 #: code:addons/hr_contract_salary/controllers/main.py:0
 #, python-format
 msgid "Yes"

@@ -147,7 +147,7 @@ class UPSRequest():
 
     def _set_client(self, wsdl, api, root):
         wsdl_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), wsdl)
-        client = Client('file:///%s' % wsdl_path.lstrip('/'), plugins=[FixRequestNamespacePlug(root), LogPlugin(self.debug_logger)])
+        client = Client(wsdl_path, plugins=[FixRequestNamespacePlug(root), LogPlugin(self.debug_logger)])
         self.factory_ns2 = client.type_factory('ns2')
         self.factory_ns3 = client.type_factory('ns3')
         # ns4 only exists for Ship API - we only use it for the invoice
@@ -548,7 +548,7 @@ class UPSRequest():
 
         sso = self.factory_ns2.ShipmentServiceOptionsType()
         if shipment_info.get('require_invoice'):
-            sso.InternationalForms = self.set_invoice(shipment_info, packages.commodities, ship_to)
+            sso.InternationalForms = self.set_invoice(shipment_info, [c for pkg in packages for c in pkg.commodities], ship_to)
         if saturday_delivery:
             sso.SaturdayDeliveryIndicator = saturday_delivery
         shipment.ShipmentServiceOptions = sso

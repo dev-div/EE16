@@ -21,8 +21,9 @@ class AccountBatchPayment(models.Model):
 
     @api.depends('payment_method_id')
     def _compute_sdd_scheme(self):
+        sdd_payment_codes = self.payment_method_id._get_sdd_payment_method_code()
         for batch in self:
-            if batch.payment_method_id.code != 'sdd':
+            if batch.payment_method_id.code not in sdd_payment_codes:
                 batch.sdd_scheme = False
             else:
                 if batch.sdd_scheme:
@@ -32,21 +33,20 @@ class AccountBatchPayment(models.Model):
 
     def _get_methods_generating_files(self):
         rslt = super(AccountBatchPayment, self)._get_methods_generating_files()
-        rslt.append('sdd')
+        rslt += self.payment_method_id._get_sdd_payment_method_code()
         return rslt
     
     @api.constrains('batch_type', 'journal_id', 'payment_ids')
     def _check_payments_constrains(self):
         super(AccountBatchPayment, self)._check_payments_constrains()
-        if self.payment_method_code == 'sdd':
-            for record in self:
-                all_sdd_schemes = set(record.payment_ids.mapped('sdd_mandate_id.sdd_scheme'))
-                if len(all_sdd_schemes) > 1:
-                    raise ValidationError(_("All the payments in the batch must have the same SDD scheme."))
+        for record in self.filtered(lambda r: r.payment_method_code in r.payment_method_id._get_sdd_payment_method_code()):
+            all_sdd_schemes = set(record.payment_ids.mapped('sdd_mandate_id.sdd_scheme'))
+            if len(all_sdd_schemes) > 1:
+                raise ValidationError(_("All the payments in the batch must have the same SDD scheme."))
 
     def validate_batch(self):
         self.ensure_one()
-        if self.payment_method_code == 'sdd':
+        if self.payment_method_code in self.payment_method_id._get_sdd_payment_method_code():
             company = self.env.company
 
             if not company.sdd_creditor_identifier:
@@ -60,7 +60,7 @@ class AccountBatchPayment(models.Model):
 
     def _check_and_post_draft_payments(self, draft_payments):
         rslt = []
-        if self.payment_method_code == 'sdd':
+        if self.payment_method_code in self.payment_method_id._get_sdd_payment_method_code():
 
             drafts_without_mandate = draft_payments.filtered(lambda x: not x.get_usable_mandate())
             if drafts_without_mandate:
@@ -73,7 +73,7 @@ class AccountBatchPayment(models.Model):
         return rslt + super(AccountBatchPayment, self)._check_and_post_draft_payments(draft_payments)
 
     def _generate_export_file(self):
-        if self.payment_method_code == 'sdd':
+        if self.payment_method_code in self.payment_method_id._get_sdd_payment_method_code():
             # Constrains on models ensure all the payments can generate SDD data before
             # calling this method, so we make no further check of their content here
 
@@ -89,7 +89,7 @@ class AccountBatchPayment(models.Model):
     def check_payments_for_errors(self):
         rslt = super(AccountBatchPayment, self).check_payments_for_errors()
 
-        if self.payment_method_code != 'sdd':
+        if self.payment_method_code not in self.payment_method_id._get_sdd_payment_method_code():
             return rslt
 
         if len(self.payment_ids):

@@ -21,7 +21,7 @@ import { click, getFixture, mount } from "@web/../tests/helpers/utils";
 import { dialogService } from "@web/core/dialog/dialog_service";
 import { registry } from "@web/core/registry";
 
-const { Component, EventBus, xml } = owl;
+import { Component, EventBus, xml } from "@odoo/owl";
 const serviceRegistry = registry.category("services");
 
 const genericHomeMenuProps = {

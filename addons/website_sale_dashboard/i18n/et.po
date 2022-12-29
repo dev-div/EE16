@@ -1,20 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * website_sale_dashboard
+# 	* website_sale_dashboard
 # 
 # Translators:
-# Martin Trigaux, 2018
-# Arma Gedonsky <armagedonsky@hot.ee>, 2018
-# Eneli Õigus <enelioigus@gmail.com>, 2018
-# Martin Aavastik <martin@avalah.ee>, 2018
+# Andre Roomet <andreroomet@gmail.com>, 2022
+# Triine Aavik <triine@avalah.ee>, 2022
+# Arma Gedonsky <armagedonsky@hot.ee>, 2022
+# Algo Kärp <algokarp@gmail.com>, 2022
+# Piia Paurson <piia@avalah.ee>, 2022
+# Eneli Õigus <enelioigus@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-02 10:31+0000\n"
-"PO-Revision-Date: 2018-08-24 11:50+0000\n"
-"Last-Translator: Martin Aavastik <martin@avalah.ee>, 2018\n"
+"POT-Creation-Date: 2022-09-23 08:22+0000\n"
+"PO-Revision-Date: 2022-09-22 05:50+0000\n"
+"Last-Translator: Eneli Õigus <enelioigus@gmail.com>, 2022\n"
 "Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,48 +27,37 @@ msgstr ""
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "# Customers"
-msgstr ""
+msgstr "Kliendid"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "# Lines"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid ""
-"/website_sale_dashboard/static/src/img/website_sale_dashboard_onboarding_bg.jpg"
-msgstr ""
+msgstr "# Read"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields,field_description:website_sale_dashboard.field_sale_report__is_abandoned_cart
 msgid "Abandoned Cart"
-msgstr ""
+msgstr "Hüljatud ostukorv"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_report_view_search_website_inherit
 msgid "Abandoned Carts"
+msgstr "Hüljatud ostukorvid"
+
+#. module: website_sale_dashboard
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Activate Stripe"
 msgstr ""
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Average Order"
-msgstr ""
+msgstr "Keskmine tellimus"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Client ID"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Client Secret"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: selection:res.company,website_sale_dashboard_onboarding_state:0
+#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__closed
 msgid "Closed"
-msgstr "Suletud"
+msgstr "Lahendatud"
 
 #. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_res_company
@@ -75,53 +66,56 @@ msgstr "Ettevõtted"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
-msgid "Days to Confirm"
-msgstr ""
+msgid "Conversion Rate"
+msgstr "Konversioonimäär"
 
 #. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_digest_digest
 msgid "Digest"
-msgstr ""
+msgstr "Ülevaade"
 
 #. module: website_sale_dashboard
-#: selection:res.company,website_sale_dashboard_onboarding_state:0
+#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__done
 msgid "Done"
 msgstr "Tehtud"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Follow your website traffic in Odoo."
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Enable credit &amp; debit card payments supported by Stripe"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: selection:sale.report,invoice_status:0
-msgid "Fully Invoiced"
-msgstr "Täielikult arveks tehtud"
+#. openerp-web
+#: code:addons/website_sale_dashboard/static/src/xml/website_sale_dashboard.xml:0
+#: code:addons/website_sale_dashboard/static/src/xml/website_sale_dashboard.xml:0
+#, python-format
+msgid "Go to Website"
+msgstr "Mine veebilehele"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "How to get my Client ID"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model:ir.model.fields,field_description:website_sale_dashboard.field_sale_report__invoice_status
-msgid "Invoice Status"
-msgstr "Arve staatus"
-
-#. module: website_sale_dashboard
-#: selection:res.company,website_sale_dashboard_onboarding_state:0
+#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__just_done
 msgid "Just done"
-msgstr ""
+msgstr "Just tehtud"
 
 #. module: website_sale_dashboard
-#: selection:res.company,website_sale_dashboard_onboarding_state:0
+#: model_terms:ir.actions.act_window,help:website_sale_dashboard.sale_dashboard
+msgid "No data yet!"
+msgstr "Andmed puuduvad!"
+
+#. module: website_sale_dashboard
+#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__not_done
 msgid "Not done"
+msgstr "Ei ole valmis"
+
+#. module: website_sale_dashboard
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Online Payments"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: selection:sale.report,invoice_status:0
-msgid "Nothing to Invoice"
-msgstr "Ei ole midagi arveks teha"
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Online payments enabled"
+msgstr ""
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
@@ -137,7 +131,7 @@ msgstr "Müükide analüüs"
 #. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Müükide analüüsiraport"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields,field_description:website_sale_dashboard.field_res_company__website_sale_dashboard_onboarding_state
@@ -150,24 +144,19 @@ msgid "The configuration is done. Happy selling!"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: selection:sale.report,invoice_status:0
-msgid "To Invoice"
-msgstr "Arveks teha"
-
-#. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Total Sales"
-msgstr ""
+msgstr "Kõik müügid"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Total, Tax Included"
-msgstr ""
+msgstr "Kokku, koos maksuga"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_report_view_search_website_inherit
 msgid "Unpaid Orders"
-msgstr ""
+msgstr "Maksmata tellimused"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
@@ -175,31 +164,11 @@ msgid "Untaxed Total"
 msgstr "Ilma maksudeta kokku"
 
 #. module: website_sale_dashboard
-#: selection:sale.report,invoice_status:0
-msgid "Upselling Opportunity"
-msgstr "Lisamüügi võimalus"
-
-#. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_website
 msgid "Website"
 msgstr "Veebileht"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "action_close_website_sale_dashboard_onboarding"
-msgstr ""
-
-#. module: website_sale_dashboard
 #: model:ir.actions.act_window,name:website_sale_dashboard.sale_dashboard
 msgid "eCommerce Dashboard"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "o_onboarding_orange"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "res.company"
-msgstr ""
+msgstr "E-kaubandus töölaud"

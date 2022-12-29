@@ -65,13 +65,15 @@ export class ArticlesStructureBehavior extends AbstractBehavior {
             };
         });
 
-        onWillPatch(() => {
-            this.editor.observerUnactive(`knowledge_article_structure_id_${this.observerId}`);
-        });
-        onPatched(() => {
-            this.editor.idSet(this.props.anchor);
-            this.editor.observerActive(`knowledge_article_structure_id_${this.observerId}`);
-        });
+        if (!this.props.readonly) {
+            onWillPatch(() => {
+                this.editor.observerUnactive(`knowledge_article_structure_id_${this.observerId}`);
+            });
+            onPatched(() => {
+                this.editor.idSet(this.props.anchor);
+                this.editor.observerActive(`knowledge_article_structure_id_${this.observerId}`);
+            });
+        }
     }
 
     /**

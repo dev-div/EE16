@@ -8,6 +8,7 @@ publicWidget.registry.RentalSearchSnippet = publicWidget.Widget.extend({
     events: {
         'click .s_rental_search_btn': '_onClickRentalSearchButton',
         'toggle_search_btn .o_website_sale_daterange_picker': 'onToggleSearchBtn',
+        'apply.daterangepicker .o_website_sale_daterange_picker': '_onClickRentalSearchButton',
     },
 
     onToggleSearchBtn(ev) {

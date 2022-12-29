@@ -3,17 +3,17 @@
 # 	* hr_recruitment_extract
 # 
 # Translators:
+# Jolien De Paepe, 2022
 # Cécile Collart <cco@odoo.com>, 2022
 # Martin Trigaux, 2022
-# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-27 15:41+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Jolien De Paepe, 2022\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,12 +22,50 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "%s's Application"
 msgstr "Candidature de %s"
 
 #. module: hr_recruitment_extract
+#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Buy credits"
+msgstr ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Acheter des crédits"
+
+#. module: hr_recruitment_extract
+#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Refresh"
+msgstr ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Rafraîchir "
+
+#. module: hr_recruitment_extract
+#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Resend For Digitization"
+msgstr ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Renvoyer pour numérisation"
+
+#. module: hr_recruitment_extract
+#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
+msgid ""
+"All fields will be automated by Artificial Intelligence, it might take 5 "
+"seconds."
+msgstr ""
+"Tous les champs seront automatisés par l'Intelligence Artificielle, cela "
+"pourrait prendre 5 secondes."
+
+#. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #: model:ir.model.fields.selection,name:hr_recruitment_extract.selection__hr_applicant__extract_state__error_status
 #, python-format
@@ -45,11 +83,7 @@ msgid "Attachment"
 msgstr "Pièce jointe"
 
 #. module: hr_recruitment_extract
-#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
-msgid "Buy credits"
-msgstr "Acheter des crédits"
-
-#. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "CV is being Digitized"
@@ -106,12 +140,14 @@ msgid "Extract State"
 msgstr "État de l'extraction"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "Generated Applicant"
 msgstr "Candidat généré"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "Generated Applicants"
@@ -135,21 +171,18 @@ msgstr "Crédit insuffisant"
 #. module: hr_recruitment_extract
 #: model:ir.actions.server,name:hr_recruitment_extract.ir_cron_ocr_parse_ir_actions_server
 #: model:ir.cron,cron_name:hr_recruitment_extract.ir_cron_ocr_parse
-#: model:ir.cron,name:hr_recruitment_extract.ir_cron_ocr_parse
 msgid "Recruitment OCR: Parse CV"
 msgstr "OCR en Recrutement : analyser le CV"
 
 #. module: hr_recruitment_extract
 #: model:ir.actions.server,name:hr_recruitment_extract.ir_cron_update_ocr_status_ir_actions_server
 #: model:ir.cron,cron_name:hr_recruitment_extract.ir_cron_update_ocr_status
-#: model:ir.cron,name:hr_recruitment_extract.ir_cron_update_ocr_status
 msgid "Recruitment OCR: Update All Status"
 msgstr "OCR en Recrutement : Mettre à jour les status"
 
 #. module: hr_recruitment_extract
 #: model:ir.actions.server,name:hr_recruitment_extract.ir_cron_ocr_validate_ir_actions_server
 #: model:ir.cron,cron_name:hr_recruitment_extract.ir_cron_ocr_validate
-#: model:ir.cron,name:hr_recruitment_extract.ir_cron_ocr_validate
 msgid "Recruitment OCR: Validate CV"
 msgstr "OCR en Recrutement : Valider le CV"
 
@@ -164,16 +197,6 @@ msgid "Request ID to IAP-OCR"
 msgstr "Demander l'ID à l'IAP-OCR"
 
 #. module: hr_recruitment_extract
-#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
-msgid "Resend For Digitalization"
-msgstr "Renvoyer pour numérisation"
-
-#. module: hr_recruitment_extract
-#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
-msgid "Resend For Digitization"
-msgstr "Renvoyer pour numérisation"
-
-#. module: hr_recruitment_extract
 #: model:ir.actions.server,name:hr_recruitment_extract.ir_actions_server_digitize_cv
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
 msgid "Send For Digitization"
@@ -185,6 +208,7 @@ msgid "Send mode on applicant attachments"
 msgstr "Mode d'envoi sur les pièces jointes des candidats"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "Server is currently under maintenance. Please retry later"
@@ -193,6 +217,7 @@ msgstr ""
 "ultérieurement"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "Server not available. Please retry later"
@@ -218,19 +243,11 @@ msgstr ""
 "généralement entre 5 et 10 secondes."
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "The document could not be found"
 msgstr "Le document n'a pas pu être trouvé"
-
-#. module: hr_recruitment_extract
-#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
-msgid ""
-"The file has been sent and is being processed. It usually takes between 5 "
-"and 10 seconds."
-msgstr ""
-"Le fichier a été envoyé et est en cours de traitement. Cela prend "
-"habituellement entre 5 et 10 secondes."
 
 #. module: hr_recruitment_extract
 #: model:ir.model.fields.selection,name:hr_recruitment_extract.selection__hr_applicant__extract_state__to_validate
@@ -238,15 +255,11 @@ msgid "To validate"
 msgstr "A valider"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "Unsupported image format"
 msgstr "Format d'image non supporté"
-
-#. module: hr_recruitment_extract
-#: model_terms:ir.ui.view,arch_db:hr_recruitment_extract.hr_recruitment_extract_view_form
-msgid "Update status"
-msgstr "Mettre à jour le statut"
 
 #. module: hr_recruitment_extract
 #: model:ir.model.fields.selection,name:hr_recruitment_extract.selection__hr_applicant__extract_state__waiting_extraction
@@ -269,6 +282,7 @@ msgid "Waiting validation"
 msgstr "En attente de validation"
 
 #. module: hr_recruitment_extract
+#. odoo-python
 #: code:addons/hr_recruitment_extract/models/hr_applicant.py:0
 #, python-format
 msgid "You cannot send a CV for an applicant who's not in first stage!"

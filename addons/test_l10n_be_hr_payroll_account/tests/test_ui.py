@@ -224,7 +224,7 @@ class TestUi(odoo.tests.HttpCase):
 
         self.env.flush_all()
         with freeze_time("2022-01-01"):
-            self.start_tour("/", 'hr_contract_salary_tour', login='admin', timeout=300)
+            self.start_tour("/", 'hr_contract_salary_tour', login='admin', timeout=350)
 
         new_contract_id = self.env['hr.contract'].search([('name', 'ilike', 'nathalie')])
         self.assertTrue(new_contract_id, 'A contract has been created')
@@ -236,7 +236,7 @@ class TestUi(odoo.tests.HttpCase):
         vehicle = self.env['fleet.vehicle'].search([('company_id', '=', company_id.id), ('model_id', '=', model_corsa.id)])
         self.assertFalse(vehicle, 'A vehicle has not been created')
 
-        self.start_tour("/", 'hr_contract_salary_tour_hr_sign', login='admin', timeout=300)
+        self.start_tour("/", 'hr_contract_salary_tour_hr_sign', login='admin', timeout=350)
 
         # Contract is signed by new employee and HR, the new car must be created
         vehicle = self.env['fleet.vehicle'].search([('company_id', '=', company_id.id), ('model_id', '=', model_corsa.id)])
@@ -249,7 +249,7 @@ class TestUi(odoo.tests.HttpCase):
         # they are a new limit to available car: 1. In the new contract, we can choose to be in waiting list.
         self.env['ir.config_parameter'].sudo().set_param('l10n_be_hr_payroll_fleet.max_unused_cars', 1)
 
-        self.start_tour("/", 'hr_contract_salary_tour_2', login='admin', timeout=300)
+        self.start_tour("/", 'hr_contract_salary_tour_2', login='admin', timeout=350)
         new_contract_id = self.env['hr.contract'].search([('name', 'ilike', 'Mitchell Admin 3')])
         self.assertTrue(new_contract_id, 'A contract has been created')
         new_employee_id = new_contract_id.employee_id

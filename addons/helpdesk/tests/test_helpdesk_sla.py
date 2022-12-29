@@ -80,6 +80,7 @@ class HelpdeskSLA(TransactionCase):
             'team_id': cls.test_team.id,
             'time': 32,
             'stage_id': cls.stage_progress.id,
+            'priority': '1',
         })
         cls.sla_2 = cls.env['helpdesk.sla'].create({
             'name': 'SLA done stage with freeze time',
@@ -88,6 +89,7 @@ class HelpdeskSLA(TransactionCase):
             'tag_ids': [(4, cls.tag_freeze.id)],
             'exclude_stage_ids': cls.stage_wait.ids,
             'stage_id': cls.stage_done.id,
+            'priority': '1',
         })
 
         # He also creates a ticket types for Question and Issue

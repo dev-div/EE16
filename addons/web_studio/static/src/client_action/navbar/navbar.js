@@ -7,7 +7,7 @@ import { HomeMenuCustomizer } from "./home_menu_customizer/home_menu_customizer"
 import { EditMenuItem } from "../../legacy/edit_menu_adapter";
 import { NewModelItem } from "@web_studio/legacy/new_model_adapter";
 
-const { onMounted } = owl;
+import { onMounted } from "@odoo/owl";
 
 export class StudioNavbar extends EnterpriseNavBar {
     setup() {

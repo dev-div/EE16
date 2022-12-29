@@ -110,7 +110,7 @@ class PurchaseOrder(models.Model):
     date_calendar_start = fields.Datetime(compute='_compute_date_calendar_start', readonly=True, store=True)
 
     amount_untaxed = fields.Monetary(string='Untaxed Amount', store=True, readonly=True, compute='_amount_all', tracking=True)
-    tax_totals = fields.Binary(compute='_compute_tax_totals')
+    tax_totals = fields.Binary(compute='_compute_tax_totals', exportable=False)
     amount_tax = fields.Monetary(string='Taxes', store=True, readonly=True, compute='_amount_all')
     amount_total = fields.Monetary(string='Total', store=True, readonly=True, compute='_amount_all')
 
@@ -471,6 +471,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if order.state not in ['draft', 'sent']:
                 continue
+            order.order_line._validate_analytic_distribution()
             order._add_supplier_to_product()
             # Deal with double validation process
             if order._approval_allowed():
@@ -1207,6 +1208,12 @@ class PurchaseOrderLine(models.Model):
 
             # If not seller, use the standard price. It needs a proper currency conversion.
             if not seller:
+                unavailable_seller = line.product_id.seller_ids.filtered(
+                    lambda s: s.partner_id == line.order_id.partner_id)
+                if not unavailable_seller and line.price_unit and line.product_uom == line._origin.product_uom:
+                    # Avoid to modify the price unit if there is no price list for this partner and
+                    # the line has already one to avoid to override unit price set manually.
+                    continue
                 po_line_uom = line.product_uom or line.product_id.uom_po_id
                 price_unit = line.env['account.tax']._fix_tax_included_price_company(
                     line.product_id.uom_id._compute_price(line.product_id.standard_price, po_line_uom),
@@ -1244,7 +1251,7 @@ class PurchaseOrderLine(models.Model):
                 line.product_packaging_id = False
             # suggest biggest suitable packaging
             if line.product_id and line.product_qty and line.product_uom:
-                line.product_packaging_id = line.product_id.packaging_ids.filtered('purchase')._find_suitable_product_packaging(line.product_qty, line.product_uom)
+                line.product_packaging_id = line.product_id.packaging_ids.filtered('purchase')._find_suitable_product_packaging(line.product_qty, line.product_uom) or line.product_packaging_id
 
     @api.onchange('product_packaging_id')
     def _onchange_product_packaging_id(self):
@@ -1414,3 +1421,11 @@ class PurchaseOrderLine(models.Model):
                 values={'line': self, 'qty_received': new_qty},
                 subtype_id=self.env.ref('mail.mt_note').id
             )
+
+    def _validate_analytic_distribution(self):
+        for line in self.filtered(lambda l: not l.display_type):
+            line._validate_distribution(**{
+                'product': line.product_id.id,
+                'business_domain': 'purchase_order',
+                'company_id': line.company_id.id,
+            })

@@ -3,19 +3,21 @@
 # 	* project_enterprise
 # 
 # Translators:
-# Tamás Dombos, 2019
-# krnkris, 2019
-# gezza <geza.nagy@oregional.hu>, 2019
-# Martin Trigaux, 2019
-# Ákos Nagy <akos.nagy@oregional.hu>, 2019
+# gezza <geza.nagy@oregional.hu>, 2022
+# Krisztián Juhász <juhasz.krisztian@josafar.hu>, 2022
+# Tamás Dombos, 2022
+# Ákos Nagy <akos.nagy@oregional.hu>, 2022
+# Martin Trigaux, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
+# krnkris, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-23 11:38+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: Ákos Nagy <akos.nagy@oregional.hu>, 2019\n"
+"POT-Creation-Date: 2022-09-23 08:24+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: krnkris, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,70 +26,264 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "%s other task(s) for the same employee at the same time."
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
+"                        <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
+msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
+"                        <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_form_inherited
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
+"                    <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_kanban_inherited
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow "
+"icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', "
+"False), ('planned_date_end', '=', False)]}\"/>"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_kanban_inherited
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
-msgid "<strong>Customer: </strong>"
+msgid "<i class=\"fa fa-long-arrow-right\" title=\"Arrow\"/>"
 msgstr ""
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
-msgid "<strong>Start Date: </strong>"
+msgid "<span class=\"fst-italic text-muted\"><i class=\"fa fa-lock\"/> Private</span>"
 msgstr ""
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
-msgid "<strong>Stop Date: </strong>"
+msgid "<strong>Assignees — </strong>"
 msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
+msgid "<strong>Customer — </strong>"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
+msgid "<strong>Milestone — </strong>"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
+msgid "<strong>Project Manager — </strong>"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
+msgid "<strong>Project — </strong>"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__allocated_hours
+msgid "Allocated Hours"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__allocation_type
+msgid "Allocation Type"
+msgstr "Kiosztás típusa"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
-msgid "Address"
-msgstr "Cím"
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view_no_title
+msgid "Assignees"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_confirm_schedule_wizard_form
+msgid "Cancel"
+msgstr "Mégse"
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "Caution: some tasks have not been scheduled"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__create_uid
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__create_uid
+msgid "Created by"
+msgstr "Létrehozta"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__create_date
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__create_date
+msgid "Created on"
+msgstr "Létrehozva"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view_no_title
 msgid "Customer"
 msgstr "Ügyfél"
 
 #. module: project_enterprise
-#: model:ir.model.fields,field_description:project_enterprise.field_project_task__partner_email
-msgid "Customer Email"
-msgstr "Ügyfél e-mail címe"
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+msgid "Date"
+msgstr "Dátum"
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form_in_gantt
+msgid "Discard"
+msgstr "Elvetés"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__display_name
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__display_name
+msgid "Display Name"
+msgstr "Megjelenített név"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__display_warning_dependency_in_gantt
+msgid "Display Warning Dependency In Gantt"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__duration
+#: model:ir.model.fields.selection,name:project_enterprise.selection__project_task__allocation_type__duration
+msgid "Duration"
+msgstr "Időtartam"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__date_end
+msgid "End Date"
+msgstr "Záródátum"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__planned_date_end
+#: model:ir.model.fields,field_description:project_enterprise.field_report_project_task_user__planned_date_end
 msgid "End date"
 msgstr "Befejezés dátuma"
 
 #. module: project_enterprise
-#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form
-msgid "Gantt"
-msgstr "Gantt"
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__id
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__id
+msgid "ID"
+msgstr "Azonosító"
 
 #. module: project_enterprise
-#: model:ir.model.fields,field_description:project_enterprise.field_project_task_type__is_closed
-msgid "Is a close stage"
-msgstr "Ez lezárt állapot"
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard____last_update
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard____last_update
+msgid "Last Modified on"
+msgstr "Legutóbb frissítve"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__write_uid
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Frissítette"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__write_date
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__write_date
+msgid "Last Updated on"
+msgstr "Frissítve ekkor"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__line_ids
+msgid "Lines"
+msgstr "Tételek"
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view_no_title
+msgid "Milestone"
+msgstr ""
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__partner_mobile
 msgid "Mobile"
-msgstr "Mobilszám"
+msgstr "Mobil"
 
 #. module: project_enterprise
-#: model:ir.model.fields,field_description:project_enterprise.field_project_task__partner_phone
+#: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
+#, python-format
+msgid "No task has been scheduled in the future."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"Operation not supported, you should always compare planning_overlap to 0 "
+"value with = or > operator."
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__overlap_warning
+msgid "Overlap Warning"
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "Overlapping Tasks"
+msgstr ""
+
+#. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view_no_title
 msgid "Phone"
 msgstr "Telefon"
 
 #. module: project_enterprise
-#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_project_user_search_with_planned_dates
+#: code:addons/project_enterprise/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_form_inherited
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form
+#, python-format
 msgid "Planned Date"
-msgstr "Tervezett időpont"
+msgstr "Tervezett dátum"
 
 #. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "Planning"
 msgstr "Tervezés"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__planning_overlap
+#: model:ir.model.fields,field_description:project_enterprise.field_report_project_task_user__planning_overlap
+msgid "Planning Overlap"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+msgid "Project"
+msgstr "Projekt"
+
+#. module: project_enterprise
+#: model:ir.model,name:project_enterprise.model_project_milestone
+msgid "Project Milestone"
+msgstr ""
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__project_color
@@ -95,7 +291,46 @@ msgid "Project color"
 msgstr ""
 
 #. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form_in_gantt
+msgid "Save"
+msgstr "Mentés"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__schedule_task
+msgid "Schedule Task"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_confirm_schedule_wizard_form
+msgid "Schedule Tasks"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__selected_line_count
+msgid "Selected Line Count"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__show_warnings
+msgid "Show Warnings"
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"Some tasks weren't planned because the closest available starting date was "
+"too far ahead in the future"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__date_begin
+msgid "Start Date"
+msgstr "Kezdődátum"
+
+#. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__planned_date_begin
+#: model:ir.model.fields,field_description:project_enterprise.field_report_project_task_user__planned_date_begin
 msgid "Start date"
 msgstr "Kezdő dátum"
 
@@ -106,14 +341,19 @@ msgstr "Utca"
 
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_project_task
-#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_map_view
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__task_id
 msgid "Task"
 msgstr "Feladat"
 
 #. module: project_enterprise
-#: model:ir.model,name:project_enterprise.model_project_task_type
-msgid "Task Stage"
-msgstr "Feladat szakasza"
+#: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_line_wizard
+msgid "Task confirm schedule line wizard"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_wizard
+msgid "Task confirm schedule wizard"
+msgstr ""
 
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_report_project_task_user
@@ -121,19 +361,54 @@ msgid "Tasks Analysis"
 msgstr "Feladatok elemzése"
 
 #. module: project_enterprise
-#: model:ir.model.fields,help:project_enterprise.field_project_task_type__is_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr "A feladat úgy látszik ebben az állapotban lezárt."
+#: model_terms:ir.ui.view,arch_db:project_enterprise.report_project_task_user_view_search_inherited
+#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_search_form_inherit_enterprise
+msgid "Tasks in Conflict"
+msgstr ""
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_confirm_schedule_wizard_form
+msgid ""
+"The following tasks have not been scheduled because the corresponding\n"
+"                        employees are unavailable. The next possible dates for these tasks are:"
+msgstr ""
 
 #. module: project_enterprise
 #: model:ir.model.constraint,message:project_enterprise.constraint_project_task_planned_dates_check
-msgid "The planned start date must be prior to the planned end date."
+msgid "The planned start date must be before the planned end date."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
+#, python-format
+msgid "The task has been successfully scheduled."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
+#, python-format
+msgid "The tasks have been successfully scheduled."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"This employee does not have a running contract during the selected period.\n"
+"The working hours of the company were used as a reference instead."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"This user isn't expected to have task during this period. Planned hours :"
 msgstr ""
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.res_config_settings_view_form
 msgid "Timesheets"
-msgstr "Munkaidő-kimutatás"
+msgstr "Munkaidő-nyilvántartások"
 
 #. module: project_enterprise
 #. openerp-web
@@ -141,6 +416,40 @@ msgstr "Munkaidő-kimutatás"
 #, python-format
 msgid "Unassigned Tasks"
 msgstr "Nem kiosztoot feladat"
+
+#. module: project_enterprise
+#: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form_in_gantt
+msgid "Unschedule"
+msgstr ""
+
+#. module: project_enterprise
+#: model:ir.model,name:project_enterprise.model_res_users
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__user_id
+msgid "User"
+msgstr "Felhasználó"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task__user_names
+msgid "User Names"
+msgstr ""
+
+#. module: project_enterprise
+#. openerp-web
+#: code:addons/project_enterprise/static/src/js/task_gantt_controller.js:0
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__warning
+#, python-format
+msgid "Warning"
+msgstr "Figyelmeztetés"
+
+#. module: project_enterprise
+#: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__parent_id
+msgid "Wizard"
+msgstr "Varázsló"
+
+#. module: project_enterprise
+#: model:ir.model.fields.selection,name:project_enterprise.selection__project_task__allocation_type__working_hours
+msgid "Working Hours"
+msgstr "Munkaórák"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__partner_zip

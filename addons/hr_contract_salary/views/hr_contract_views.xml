@@ -11,13 +11,13 @@
             </xpath>
             <xpath expr="//div[@name='wage']" position="replace">
                 <div class="o_row" name="wage" attrs="{'invisible': [('holidays', '!=', 0.0)]}">
-                    <field name="wage" nolabel="1"/>
+                    <field name="wage" class="o_hr_narrow_field" nolabel="1"/>
                     <span>/ month</span>
                 </div>
             </xpath>
             <xpath expr="//div[@name='wage']" position="after">
                 <label name="label_wage_with_holidays" for="wage_with_holidays" attrs="{'invisible': [('holidays', '=', 0.0)]}"/>
-                <div class="o_row" name="div_wage_with_holidays" attrs="{'invisible': [('holidays', '=', 0.0)]}">
+                <div class="o_row o_hr_narrow_field" name="div_wage_with_holidays" attrs="{'invisible': [('holidays', '=', 0.0)]}">
                     <field name="wage_with_holidays" nolabel="1"/>
                     <span>/ month</span>
                 </div>
@@ -45,7 +45,7 @@
             <field name="job_id" position="after">
                 <label for="wage_on_signature"/>
                 <div class="o_row" name="wage">
-                    <field name="wage_on_signature" nolabel="1"/>
+                    <field class="o_hr_narrow_field" name="wage_on_signature" nolabel="1"/>
                     <span>/ month</span>
                 </div>
             </field>
@@ -66,20 +66,20 @@
                 <group groups="hr.group_hr_manager" name="employee_costs">
                     <label for="final_yearly_costs"/>
                     <div class="o_row">
-                        <field name="final_yearly_costs" nolabel="1"/>
-                        <span>/ year</span>
+                        <field name="final_yearly_costs" class="o_hr_narrow_field" nolabel="1"/>
+                        <span class="ms-3">/ year</span>
                     </div>
                     <label for="monthly_yearly_costs"/>
                     <div class="o_row">
-                        <field name="monthly_yearly_costs" nolabel="1"/>
-                        <span>/ month</span>
+                        <field name="monthly_yearly_costs" class="o_hr_narrow_field" nolabel="1"/>
+                        <span class="ms-3">/ month</span>
                     </div>
                 </group>
             </xpath>
             <xpath expr="//group[@name='yearly_advantages']" position="inside">
                 <label for="holidays" attrs="{'invisible': [('country_code', '!=', 'BE')]}"/>
                 <div class="o_row" attrs="{'invisible': [('country_code', '!=', 'BE')]}">
-                    <field name="holidays" nolabel="1"/>
+                    <field name="holidays" class="o_hr_narrow_field" nolabel="1"/>
                     <span>days / year</span>
                 </div>
             </xpath>

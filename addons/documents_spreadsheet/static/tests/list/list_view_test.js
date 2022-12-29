@@ -14,6 +14,7 @@ import { ListRenderer } from "@web/views/list/list_renderer";
 import { createSpreadsheetFromListView } from "../utils/list_helpers";
 import { dom } from "web.test_utils";
 import { doMenuAction } from "@spreadsheet/../tests/utils/ui";
+import { session } from "@web/session";
 
 const { getMenuChildren } = spreadsheet.helpers;
 const { topbarMenuRegistry, cellMenuRegistry } = spreadsheet.registries;
@@ -154,13 +155,26 @@ QUnit.module("document_spreadsheet > list view", {}, () => {
             },
         });
 
-        const context = {
+        const userContext = {
             allowed_company_ids: [15],
-            default_stage_id: 5,
-            search_default_stage_id: 5,
             tz: "bx",
             lang: "FR",
             uid: 4,
+        };
+        const testSession = {
+            uid: 4,
+            user_companies: {
+                allowed_companies: {
+                    15: { id: 15, name: "Hermit" },
+                },
+                current_company: 15,
+            },
+            user_context: userContext,
+        };
+        patchWithCleanup(session, testSession);
+        const context = {
+            ...userContext,
+            default_stage_id: 5,
         };
         const serverData = { models: getBasicData() };
         await makeView({

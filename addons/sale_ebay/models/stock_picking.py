@@ -9,7 +9,7 @@ class StockPicking(models.Model):
 
     def _action_done(self):
         result = super()._action_done()
-        self._ebay_update_carrier(transfered=True)
+        self.filtered(lambda p: p.location_dest_id.usage == 'customer')._ebay_update_carrier(transfered=True)
         return result
 
     def _ebay_update_carrier(self, transfered=False):

@@ -368,37 +368,3 @@ class TestDatevCSV(AccountTestInvoicingCommon):
                        self.tax_7.l10n_de_datev_code, '112', move.name, move.name], data)
         self.assertIn(['3570,00', 'h', 'EUR', '34000000', str(move.partner_id.id + 100000000),
                        self.tax_19.l10n_de_datev_code, '112', move.name, move.name], data)
-
-    def test_datev_different_syst_param(self):
-        report = self.env.ref('account_reports.general_ledger_report')
-        options = report._get_options()
-        options['date'].update({
-            'date_from': '2020-01-01',
-            'date_to': '2020-12-31',
-        })
-
-        move = self.env['account.move'].create([{
-            'move_type': 'out_invoice',
-            'partner_id': self.env['res.partner'].create({'name': 'Res Partner 12'}).id,
-            'invoice_date': fields.Date.to_date('2020-12-01'),
-            'invoice_line_ids': [
-                (0, None, {
-                    'price_unit': 100,
-                    'account_id': self.account_4980.id,
-                    'tax_ids': [(6, 0, self.tax_19.ids)],
-                }),
-            ]
-        }])
-        move.action_post()
-        move.line_ids.flush_recordset()
-
-        self.env['ir.config_parameter'].sudo().set_param('l10n_de.datev_start_count', 2)
-        self.env['ir.config_parameter'].sudo().set_param('l10n_de.datev_start_count_vendors', 800000)
-
-        with zipfile.ZipFile(BytesIO(self.env[report.custom_handler_model_name].l10n_de_datev_export_to_zip(options)['file_content']), 'r') as zf:
-            csv = zf.open('EXTF_accounting_entries.csv')
-        reader = pycompat.csv_reader(csv, delimiter=';', quotechar='"', quoting=2)
-        data = [[x[0], x[1], x[2], x[6], x[7], x[8], x[9], x[10], x[13]] for x in reader][2:]
-        self.assertEqual(1, len(data), "csv should have 1 line")
-        self.assertIn(['119,00', 'h', 'EUR', '49800', str(move.partner_id.id + 200000),
-                       self.tax_19.l10n_de_datev_code, '112', move.name, move.name], data)

@@ -437,6 +437,7 @@ class Task(models.Model):
     # Business Methods
     # ---------------------------------------------------------
 
-    def _message_post_after_hook(self, message, *args, **kwargs):
+    def _message_post_after_hook(self, message, msg_vals):
         if self.env.context.get('fsm_mark_as_sent') and not self.fsm_is_sent:
             self.fsm_is_sent = True
+        return super()._message_post_after_hook(message, msg_vals)

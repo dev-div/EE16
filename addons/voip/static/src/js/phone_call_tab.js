@@ -64,7 +64,7 @@ const PhoneCallTab = Widget.extend({
     async callFromTab() {
         if (this._phoneCalls.length > 0) {
             const phoneCall = this._phoneCalls[0]
-            const number = phoneCall.phoneNumber;
+            const number = phoneCall.phoneNumber || phoneCall.mobileNumber;
             this._currentPhoneCallId = phoneCall.id;
             this.trigger_up('callNumber', { number });
         } else {

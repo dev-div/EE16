@@ -890,6 +890,13 @@ class Channel(models.Model):
             # create a new one
             channel = self.create({
                 'channel_partner_ids': [Command.link(partner_id) for partner_id in partners_to],
+                'channel_member_ids': [
+                    Command.create({
+                        'partner_id': partner_id,
+                        # only pin for the current user, so the chat does not show up for the correspondent until a message has been sent
+                        'is_pinned': partner_id == self.env.user.partner_id.id
+                    }) for partner_id in partners_to
+                ],
                 'channel_type': 'chat',
                 'name': ', '.join(self.env['res.partner'].sudo().browse(partners_to).mapped('name')),
             })
@@ -1160,11 +1167,11 @@ class Channel(models.Model):
     def execute_command_help(self, **kwargs):
         partner = self.env.user.partner_id
         if self.channel_type == 'channel':
-            msg = _("You are in channel <b>#%s</b>.", self.name)
+            msg = _("You are in channel <b>#%s</b>.", html_escape(self.name))
         else:
             all_channel_members = self.env['mail.channel.member'].with_context(active_test=False)
             channel_members = all_channel_members.search([('partner_id', '!=', partner.id), ('channel_id', '=', self.id)])
-            msg = _("You are in a private conversation with <b>@%s</b>.", html_escape(channel_members[0].partner_id.name if channel_members else _("Anonymous")))
+            msg = _("You are in a private conversation with <b>@%s</b>.", _(" @").join(html_escape(member.partner_id.name) for member in channel_members) if channel_members else _("Anonymous"))
         msg += self._execute_command_help_message_extra()
 
         self._send_transient_message(partner, msg)

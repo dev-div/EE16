@@ -345,10 +345,13 @@ const DialingPanel = Widget.extend({
         this._missedCounter = missedCalls[0];
         this._refreshMissedCalls();
         if (this._missedCounter > 0) {
-            this._showWidgetFolded();
+            await this._showWidgetFolded();
             this.$('.o_dial_tab.active, .tab-pane.active').removeClass('active');
             this.$('.o_dial_recent_tab .o_dial_tab, .tab-pane.o_dial_recent').addClass('active');
             this._activeTab = this._tabs.recent;
+            if (config.device.isMobile) {
+                return this._switchToTab("recent");
+            }
         }
     },
     /**
@@ -455,9 +458,21 @@ const DialingPanel = Widget.extend({
         if (!this._isShow) {
             this.$el.show();
             this._isShow = true;
-            this._isFolded = true;
-            this._fold(false);
+            if (!config.device.isMobile) {
+                this._isFolded = true;
+                this._fold(false);
+            }
         }
+    },
+    /**
+     * @param {string} tabName
+     * @returns {Promise}
+     * @private
+     */
+    _switchToTab(tabName) {
+        this._activeTab = this._tabs[tabName];
+        this._$searchInput.val("");
+        return this._refreshPhoneCallsStatus();
     },
     /**
      * @private
@@ -718,9 +733,8 @@ const DialingPanel = Widget.extend({
      */
     async _onClickTab(ev) {
         ev.preventDefault();
-        this._activeTab = this._tabs[ev.currentTarget.getAttribute('aria-controls')];
-        this._$searchInput.val("");
-        return this._refreshPhoneCallsStatus();
+        const tabName = ev.currentTarget.getAttribute('aria-controls');
+        return this._switchToTab(tabName);
     },
     /**
      * @private

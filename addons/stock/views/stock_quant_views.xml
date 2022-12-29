@@ -46,6 +46,7 @@
                 </group>
                 <group expand='0' string='Group by...'>
                     <filter string='Product' name="productgroup" context="{'group_by': 'product_id'}"/>
+                    <filter string='Product Category' name="productcategorygroup" context="{'group_by': 'product_categ_id'}"/>
                     <filter string='Location' name="locationgroup" domain="[]" context="{'group_by': 'location_id'}"/>
                     <filter string='Storage Category' name="storagecategorygroup" domain="[]" context="{'group_by': 'storage_category_id'}"/>
                     <filter string='Owner' name="owner" context="{'group_by': 'owner_id'}" groups="stock.group_tracking_owner"/>
@@ -78,9 +79,14 @@
                             <field name='company_id' groups="base.group_multi_company"/>
                         </group>
                         <group>
-                            <label for="inventory_quantity" string="Quantity On Hand"/>
+                            <label for="quantity" string="Quantity On Hand"/>
                             <div class="o_row">
-                                <field name="inventory_quantity"/>
+                                <field name="quantity"/>
+                                <field name="product_uom_id" groups="uom.group_uom"/>
+                            </div>
+                            <label for="available_quantity" string="Available Quantity"/>
+                            <div class="o_row">
+                                <field name="available_quantity"/>
                                 <field name="product_uom_id" groups="uom.group_uom"/>
                             </div>
                             <label for="reserved_quantity" string="Quantity Reserved"/>

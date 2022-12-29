@@ -30,13 +30,15 @@ export function pasteElements(dataTransfer, target) {
     const sel = document.getSelection();
     sel.removeAllRanges();
     const range = document.createRange();
-    const firstChild = target.firstChild;
-    if (!firstChild) {
+    const lastChild = target.lastChild;
+    if (!lastChild) {
         range.setStart(target, 0);
         range.setEnd(target, 0);
+        target.scrollIntoView();
     } else {
-        range.setStart(firstChild, 0);
-        range.setEnd(firstChild, 0);
+        range.setStartAfter(lastChild);
+        range.setEndAfter(lastChild);
+        lastChild.scrollIntoView();
     }
     sel.addRange(range);
     target.dispatchEvent(fakePaste);

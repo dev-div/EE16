@@ -209,18 +209,18 @@
                         <group name="left_details">
                             <label for="appointment_duration" attrs="{'invisible': [('category', '=', 'custom')]}"/>
                             <div attrs="{'invisible': [('category', '=', 'custom')]}">
-                                <field name="appointment_duration" class="oe_inline" widget="float_time"/><span> hours</span>
+                                <field name="appointment_duration" class="oe_inline me-1 o_input_5ch" widget="float_time"/><span> hours</span>
                             </div>
                             <label for="min_schedule_hours" string="Scheduling"/>
                             <div>
-                                <span>at least <field name="min_schedule_hours" class="oe_inline" widget="float_time"/> hours before</span><br/>
+                                <span>at least <field name="min_schedule_hours" class="oe_inline ms-2 me-1 o_input_5ch" widget="float_time"/> hours before</span><br/>
                                 <div class="my-2" attrs="{'invisible': [('category', '=', 'custom')]}">
-                                    <span>and not after <field name="max_schedule_days" class="oe_inline mx-1"/> days</span>
+                                    <span>and not after <field name="max_schedule_days" class="oe_inline mx-1 o_input_5ch"/> days</span>
                                 </div>
                             </div>
                             <label for="min_cancellation_hours" string="Allow Cancelling"/>
                             <div>
-                                <span>until <field name="min_cancellation_hours" class="oe_inline mx-1" widget="float_time"/> hours before</span>
+                                <span>until <field name="min_cancellation_hours" class="oe_inline ms-2 me-1 o_input_5ch" widget="float_time"/> hours before</span>
                             </div>
                         </group>
                         <group name="right_details">

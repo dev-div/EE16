@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Hongu Cosmin <cosmin513@gmail.com>, 2022
-# Foldi Robert <foldirobert@nexterp.ro>, 2022
 # Martin Trigaux, 2022
+# Foldi Robert <foldirobert@nexterp.ro>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-23 08:23+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Foldi Robert <foldirobert@nexterp.ro>, 2022\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,19 +22,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: account_bank_statement_import
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_bank_statement_import/static/src/js/account_bank_statement_import.js:0
 #, python-format
 msgid " Import Template for Bank Statements"
 msgstr "Model de import pentru extrasele bancare"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "%d transactions had already been imported and were ignored."
 msgstr "%dtranzacții au fost deja importate și au fost ignorate."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "1 transaction had already been imported and was ignored."
@@ -46,10 +48,11 @@ msgid "A bank account transactions can be imported only once !"
 msgstr "Tranzacțiile contului bancar pot fi importate numai o dată!"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
-msgid "Already imported items"
-msgstr "Obiecte deja importate"
+msgid "Bank Statement %s.pdf"
+msgstr "Extras de cont %s.pdf"
 
 #. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_bank_statement_line
@@ -57,11 +60,19 @@ msgid "Bank Statement Line"
 msgstr "Linie extras bacă"
 
 #. module: account_bank_statement_import
+#. odoo-python
+#: code:addons/account_bank_statement_import/models/account_journal.py:0
+#, python-format
+msgid "Bank Statement.pdf"
+msgstr "Extras de cont.pdf"
+
+#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_setup_bank_manual_config
 msgid "Bank setup manual config"
 msgstr "Configurare manuală de configurare bancă"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -72,6 +83,7 @@ msgstr ""
 "manual un jurnal."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -82,12 +94,14 @@ msgstr ""
 "Ați instalat modulul pentru a suporta acest tip de fișier?"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Go to Apps"
 msgstr ""
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -98,6 +112,7 @@ msgstr ""
 "în fiecare dintre ele."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "Import"
@@ -109,28 +124,26 @@ msgid "Import ID"
 msgstr "Import ID"
 
 #. module: account_bank_statement_import
-#: model_terms:ir.ui.view,arch_db:account_bank_statement_import.journal_dashboard_view_inherit
-msgid "Import Statement"
-msgstr "Importă extrasul"
-
-#. module: account_bank_statement_import
 #: model:ir.model,name:account_bank_statement_import.model_account_journal
 msgid "Journal"
 msgstr "Jurnal"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No attachment was provided"
 msgstr "Nu a fost furnizat niciun atașament"
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "No currency found matching '%s'."
 msgstr "Nu s-a găsit potrivire pentru valuta '%s'."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -140,6 +153,7 @@ msgstr ""
 "(%s)."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -149,24 +163,28 @@ msgstr ""
 "Moneda extrasului bancar (%s) nu corepsunde cu moneda din jurnal (%s)."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any statement for account %s."
 msgstr "Acest fișier nu conține niciun extras pentru cont %s."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "This file doesn't contain any transaction for account %s."
 msgstr "Acest fișier nu conține nicio tranzacție pentru cont %s."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You already have imported that file."
 msgstr "Ați importat deja acel fișier."
 
 #. module: account_bank_statement_import
+#. odoo-python
 #: code:addons/account_bank_statement_import/models/account_journal.py:0
 #, python-format
 msgid "You have to set a Default Account for the journal: %s"

@@ -6,10 +6,13 @@
             <button type="button" title="Decrease Time"
                     class="btn btn-light btn-sm fa fa-minus shadow-none" t-on-click.stop.prevent="onClickDecrease">
             </button>
-            <div class="o_kanban_timer_start d-flex align-items-center justify-content-center"
-                 t-on-mouseover.stop="onMouseOver" t-on-mouseout.stop="onMouseOut">
-                <TimesheetDisplayTimer t-props="TimesheetDisplayTimerProps" t-if="!state.displayButton"/>
-                <TimerToggleButton t-props="TimerToggleButtonProps" t-if="state.displayButton"/>
+            <div class="o_kanban_timer_start d-flex align-items-center justify-content-center">
+                <div class="o_timesheet_display_timer">
+                    <TimesheetDisplayTimer t-props="TimesheetDisplayTimerProps"/>
+                </div>
+                <div class="o_timer_toggle_button">
+                    <TimerToggleButton t-props="TimerToggleButtonProps"/>
+                </div>
             </div>
             <button type="button" title="Increase Time"
                     class="btn btn-light btn-sm fa fa-plus shadow-none" t-on-click.stop.prevent="onClickIncrease">

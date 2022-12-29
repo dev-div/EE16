@@ -8,8 +8,11 @@ import {MrpWorkorderKanbanController} from '@mrp_workorder/views/kanban/mrp_work
 
 const {onWillStart, useState, onMounted} = owl;
 
-MrpWorkorderKanbanController.components.SelectionPopup = SelectionPopup;
-MrpWorkorderKanbanController.components.PinPopup = PinPopup;
+MrpWorkorderKanbanController.components = {
+    ...MrpWorkorderKanbanController.components,
+    SelectionPopup,
+    PinPopup,
+}
 
 patch(MrpWorkorderKanbanController.prototype, 'mrp_workorder_hr', {
     setup() {

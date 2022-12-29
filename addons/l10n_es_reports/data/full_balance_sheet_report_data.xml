@@ -534,7 +534,7 @@
                             <record id="balance_full_line_21000" model="account.report.line">
                                 <field name="name">A-1) Fondos propios</field>
                                 <field name="code">l10n_es_full_line_21000</field>
-                                <field name="aggregation_formula">l10n_es_full_line_21100.balance + l10n_es_full_line_21200.balance + l10n_es_full_line_21300.balance + l10n_es_full_line_21400.balance + l10n_es_full_line_21600.balance + l10n_es_full_line_21700.balance + l10n_es_full_line_21800.balance + l10n_es_full_line_21900.balance</field>
+                                <field name="aggregation_formula">l10n_es_full_line_21100.balance + l10n_es_full_line_21200.balance + l10n_es_full_line_21300.balance + l10n_es_full_line_21400.balance + l10n_es_full_line_21500.balance + l10n_es_full_line_21600.balance + l10n_es_full_line_21700.balance + l10n_es_full_line_21800.balance + l10n_es_full_line_21900.balance</field>
                                 <field name="children_ids">
                                     <record id="balance_full_line_21100" model="account.report.line">
                                         <field name="name">I. Capital</field>
@@ -596,22 +596,25 @@
                                         <field name="name">V. Resultados de ejercicios anteriores</field>
                                         <field name="code">l10n_es_full_line_21500</field>
                                         <field name="expression_ids">
-                                            <record id="balance_full_line_21500_domain" model="account.report.expression">
-                                                <field name="label">domain</field>
+                                            <record id="balance_full_line_21500_sub_normal" model="account.report.expression">
+                                                <field name="label">sub_strict</field>
+                                                <field name="engine">account_codes</field>
+                                                <field name="formula">-120 - 121</field>
+                                            </record>
+                                            <record id="balance_full_line_21500_sub_to_beginning" model="account.report.expression">
+                                                <field name="label">sub_to_beginning</field>
                                                 <field name="engine">domain</field>
                                                 <field name="formula" eval="[
-                                                    '|', '|', '|',
-                                                    ('account_id.code', '=like', '120%'),
-                                                    ('account_id.code', '=like', '121%'),
+                                                    '|',
                                                     ('account_id.code', '=like', '129%'),
                                                     ('account_id.internal_group', 'in', ['income', 'expense'])]"/>
-                                                <field name="date_scope">from_beginning</field>
-                                                <field name="subformula">sum</field>
+                                                <field name="date_scope">to_beginning_of_fiscalyear</field>
+                                                <field name="subformula">-sum</field>
                                             </record>
                                             <record id="balance_full_line_21500_balance" model="account.report.expression">
                                                 <field name="label">balance</field>
                                                 <field name="engine">aggregation</field>
-                                                <field name="formula">-l10n_es_full_line_21500.domain - l10n_es_full_line_21700.balance</field>
+                                                <field name="formula">l10n_es_full_line_21500.sub_strict + l10n_es_full_line_21500.sub_to_beginning</field>
                                             </record>
                                         </field>
                                     </record>
@@ -630,7 +633,10 @@
                                             <record id="balance_full_line_21700_balance" model="account.report.expression">
                                                 <field name="label">balance</field>
                                                 <field name="engine">domain</field>
-                                                <field name="formula" eval="[('account_id.internal_group', 'in', ['income', 'expense'])]"/>
+                                                <field name="formula" eval="[
+                                                    '|',
+                                                    ('account_id.code','=like','129%'),
+                                                    ('account_id.internal_group', 'in', ['income', 'expense'])]"/>
                                                 <field name="date_scope">from_fiscalyear</field>
                                                 <field name="subformula">-sum</field>
                                             </record>

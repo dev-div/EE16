@@ -4,10 +4,13 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # marcescu, 2022
+# Farouk Jabiri, 2022
+# Ivan Espinola, 2022
+# Guspy12, 2022
 # 
 msgid ""
 msgstr ""
@@ -15,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-27 15:41+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: marcescu, 2022\n"
+"Last-Translator: Guspy12, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +30,7 @@ msgstr ""
 #: code:addons/documents_project/models/project_project.py:0
 #, python-format
 msgid "%(project_name)s's Documents"
-msgstr ""
+msgstr "Documents de %(project_name)s"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_documents_workflow_rule
@@ -52,6 +55,7 @@ msgstr "Adjunt"
 #: model_terms:ir.ui.view,arch_db:documents_project.edit_project_document_form_inherit
 msgid "Categorize and share your documents with your customers"
 msgstr ""
+"Categoritzeu i compartiu els vostres documents amb els vostres clients"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_documents_facet
@@ -81,7 +85,7 @@ msgstr "Obsolet"
 #. module: documents_project
 #: model:documents.tag,name:documents_project.documents_project_status_deprecated
 msgid "Deprectated"
-msgstr ""
+msgstr "Obsolet"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_documents_document
@@ -105,7 +109,7 @@ msgstr "Documents"
 #. module: documents_project
 #: model_terms:ir.ui.view,arch_db:documents_project.edit_project_document_form_inherit
 msgid "Documents &amp; Analytics"
-msgstr ""
+msgstr "Documents i anàlisis"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_documents_folder
@@ -120,7 +124,7 @@ msgstr "Esborrany"
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_documents_document__is_shared
 msgid "Is Shared"
-msgstr ""
+msgstr "Està compartit"
 
 #. module: documents_project
 #: model:documents.workflow.rule,name:documents_project.documents_project_rule_mark_as_draft
@@ -131,23 +135,23 @@ msgstr "Marca com a esborrany"
 #: code:addons/documents_project/models/folder.py:0
 #, python-format
 msgid "Merged Workspace"
-msgstr ""
+msgstr "Espai de treball combinat"
 
 #. module: documents_project
 #: code:addons/documents_project/models/workflow.py:0
 #, python-format
 msgid "New task from Documents"
-msgstr ""
+msgstr "Tasca nova de Documents"
 
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_project_project__document_count
 msgid "Number of documents in Project"
-msgstr ""
+msgstr "Nombre de documents en el projecte"
 
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_project_task__document_count
 msgid "Number of documents in Task"
-msgstr ""
+msgstr "Nombre de documents a la tasca"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_project_project
@@ -169,7 +173,7 @@ msgstr "Documents compartits"
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_project_project__shared_document_count
 msgid "Shared Documents Count"
-msgstr ""
+msgstr "Comptador de documents compartits"
 
 #. module: documents_project
 #: model:documents.facet,name:documents_project.documents_project_status
@@ -186,7 +190,7 @@ msgstr "Tasca"
 #: code:addons/documents_project/models/workflow.py:0
 #, python-format
 msgid "Task created from document"
-msgstr ""
+msgstr "Tasca creada a partir del document"
 
 #. module: documents_project
 #: code:addons/documents_project/models/folder.py:0
@@ -195,6 +199,7 @@ msgid ""
 "The \"%s\" workspace is required by the Project application and cannot be "
 "deleted."
 msgstr ""
+"L'aplicació Projecte requereix l'espai de treball «%s» i no es pot suprimir."
 
 #. module: documents_project
 #: code:addons/documents_project/models/project_project.py:0
@@ -203,6 +208,8 @@ msgid ""
 "The \"%s\" workspace should either be in the \"%s\" company like this "
 "project or be open to all companies."
 msgstr ""
+"L'espai de treball «%s» hauria de ser a l'empresa «%s» com aquest projecte o"
+" estar obert a totes les empreses."
 
 #. module: documents_project
 #: code:addons/documents_project/models/folder.py:0
@@ -212,6 +219,9 @@ msgid ""
 "which it is linked. Please update the company of the \"%s\" project, or "
 "leave the company of this workspace empty."
 msgstr ""
+"Aquest espai de treball hauria de romandre a la mateixa empresa que el "
+"projecte «%s» al qual està enllaçat. Actualitzeu l'empresa del projecte "
+"«%s», o deixeu buida l'empresa d'aquest espai de treball."
 
 #. module: documents_project
 #: code:addons/documents_project/models/folder.py:0
@@ -222,6 +232,10 @@ msgid ""
 "\n"
 "Please update the company of those projects, or leave the company of this workspace empty."
 msgstr ""
+"Aquest espai de treball ha de romandre en la mateixa empresa que els projectes següents als quals està vinculat:\n"
+"%s\n"
+"\n"
+"Si us plau, actualitzeu l'empresa d'aquests projectes, o deixeu l'empresa d'aquest espai de treball buit."
 
 #. module: documents_project
 #: model:documents.tag,name:documents_project.documents_project_status_to_validate
@@ -234,11 +248,13 @@ msgid ""
 "Upload <span class=\"fw-normal\">a file or </span>drag <span class=\"fw-"
 "normal\">it here.</span>"
 msgstr ""
+"Puja <span class=\"fw-normal\">un fitxer o </span>arrossega <span "
+"class=\"fw-normal\">aquí. </span>"
 
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_project_task__project_use_documents
 msgid "Use Documents"
-msgstr ""
+msgstr "Utilitza documents"
 
 #. module: documents_project
 #: model:documents.workflow.rule,name:documents_project.documents_project_rule_validate
@@ -264,6 +280,9 @@ msgid ""
 " All of the attachments of your tasks will be automatically added as "
 "documents in this workspace as well."
 msgstr ""
+"Espai de treball on es categoritzaran tots els documents d'aquest projecte. "
+"Tots els adjunts de les vostres tasques s'afegiran automàticament com a "
+"documents en aquest espai de treball."
 
 #. module: documents_project
 #: code:addons/documents_project/models/project_project.py:0
@@ -274,14 +293,24 @@ msgid ""
 "\n"
 "Please update the company of all projects so that they remain in the same company as their workspace, or leave the company of the \"%s\" workspace blank."
 msgstr ""
+"No podeu canviar l'empresa d'aquest projecte, perquè el seu espai de treball està enllaçat amb els altres projectes següents que encara estan a l'empresa «%s»:\n"
+"%s\n"
+"\n"
+"Actualitzeu l'empresa de tots els projectes perquè romanguin a la mateixa empresa que l'espai de treball, o deixeu l'empresa de l'espai de treball \"%s\" en blanc."
 
 #. module: documents_project
 #: code:addons/documents_project/models/folder.py:0
 #, python-format
 msgid "You cannot set a company on the Projects workspace."
-msgstr ""
+msgstr "No podeu establir una empresa a l'espai de treball Projectes."
 
 #. module: documents_project
 #: model_terms:ir.ui.view,arch_db:documents_project.share_page
 msgid "documents shared"
-msgstr ""
+msgstr "documents compartits"
+
+#. module: documents_project
+#: code:addons/documents_project/models/workflow.py:0
+#, python-format
+msgid "new %s from %s"
+msgstr "nou %s des de %s"

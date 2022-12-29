@@ -7,8 +7,8 @@
             <form string="274.XX Sheets">
                 <header>
                     <button name="action_generate_pdf" string="Create 274.XX Sheets" type="object" class="btn-primary" states="draft,waiting"/>
-                    <button name="action_generate_xml" string="Export XML file" type="object" class="btn-primary" states="draft,waiting"/>
-                    <button name="action_generate_xls" string="Export XLSX details" type="object" class="btn-primary" states="draft,waiting"/>
+                    <button name="action_generate_xml" string="Export XML file" type="object" class="btn-secondary" states="draft,waiting"/>
+                    <button name="action_generate_xls" string="Export XLSX details" type="object" class="btn-secondary" states="draft,waiting"/>
                     <button name="action_generate_pdf" string="Create 274.XX Sheets" type="object" states="done"/>
                     <button name="action_generate_xml" string="Export XML file" type="object" states="done"/>
                     <button name="action_generate_xls" string="Export XLSX details" type="object" states="done"/>
@@ -16,8 +16,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="year"/>
-                            <field name="month"/>
+                            <field name="year" class="o_hr_narrow_field" options="{'type': 'number'}"/>
+                            <field name="month" class="o_hr_narrow_field"/>
                             <label for="date_start" string="Reference Period" invisible="1"/>
                             <div invisible="1">
                                 From<field name="date_start" class="oe_inline col-sm-5"/>

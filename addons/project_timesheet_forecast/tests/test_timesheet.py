@@ -62,6 +62,36 @@ class TestPlanningTimesheet(TestCommonForecast):
             self.assertEqual(planning_shift.timesheet_ids.filtered(lambda x: x.date == date(2019, 6, 4)).unit_amount, 8, "There should be a 8-hour timesheet on the second day of the shift.")
             self.assertEqual(planning_shift.timesheet_ids.filtered(lambda x: x.date == date(2019, 6, 7)).unit_amount, 7, "There should be a 7-hour timesheet on the last day of the shift.")
 
+    def test_generate_timesheet_with_multiple_slots(self):
+        """
+        A test to check that when we create a timesheet from multiple slots
+        with the same date and the same employee, we only get one.
+        Test case:
+        - Create two planning slots with th same date and employee
+        - generate timesheets from the slots
+        - ensure we got one timesheet line
+        """
+        slots = self.env["planning.slot"].create([
+            {
+                'project_id': self.project_opera.id,
+                'resource_id': self.resource_joseph.id,
+                'start_datetime': datetime(2021, 10, 29, 8, 0, 0),
+                'end_datetime': datetime(2021, 10, 29, 12, 0, 0),
+                'state': 'published',
+                'allow_timesheets': True,
+            },
+            {
+                'project_id': self.project_opera.id,
+                'resource_id': self.resource_joseph.id,
+                'start_datetime': datetime(2021, 10, 29, 13, 0, 0),
+                'end_datetime': datetime(2021, 10, 29, 14, 0, 0),
+                'state': 'published',
+                'allow_timesheets': True,
+            }
+        ])
+        slots._action_generate_timesheet()
+        nb_timesheet = self.env["account.analytic.line"].search_count([('slot_id', 'in', slots.ids)])
+        self.assertEqual(nb_timesheet, 1)
 
 class TestPlanningTimesheetView(TestCommonTimesheet):
     def test_get_view_timesheet_encode_uom(self):

@@ -32,7 +32,7 @@ tour.register('shop_buy_subscription_product', {
             content: "See added t o cart + try to add other recurrence",
             trigger: '.my_cart_quantity:contains("2")',
             run: function () {
-                window.location.href = '/@/shop';
+                window.location.href = '/shop';
             },
         },
         {
@@ -57,7 +57,7 @@ tour.register('shop_buy_subscription_product', {
             content: "go to cart",
             trigger: '.my_cart_quantity:contains("2")',
             run: function () {
-                window.location.href = '/@/shop/cart';
+                window.location.href = '/shop/cart';
             },
         },
     ]

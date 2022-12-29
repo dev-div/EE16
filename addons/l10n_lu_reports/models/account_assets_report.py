@@ -40,7 +40,11 @@ class AssetsReport(models.Model):
                 * 'depreciable_values': The depreciable value of each asset
             """
             # ids of asset lines are in the form <account_group>_<asset_id>
-            asset_ids = {self._get_model_info_from_id(line['id'])[1]: line['id'] for line in lines if '|' in line['id']}
+            asset_ids = {}
+            for line in lines:
+                res_model, model_id = self._get_model_info_from_id(line['id'])
+                if res_model == 'account.asset':
+                    asset_ids[model_id] = line['id']
             assets = self.env['account.asset'].search([('id', 'in', list(asset_ids.keys()))])
             # Check that all assets are in EUR and that the company has EUR as its currency;
             asset_currencies = assets.mapped('currency_id')
@@ -69,7 +73,7 @@ class AssetsReport(models.Model):
                     tax_amounts[asset_ids.get(asset['id'])] = total_tax
             return depreciable_values, tax_amounts
 
-        lu_template_values = self.env['l10n_lu.report.handler'].get_electronic_report_values((self._get_options(options)))
+        lu_template_values = self.env['l10n_lu.report.handler'].get_electronic_report_values(options)
 
         date_from = fields.Date.from_string(options['date'].get('date_from'))
         date_to = fields.Date.from_string(options['date'].get('date_to'))
@@ -120,7 +124,7 @@ class AssetsReport(models.Model):
         n_expenditure = 0
         for line in lines:
             acquisition_date = parse_date(self.env, parse_date(self.env, line['columns'][0].get('name', '')))
-            if len(self._parse_line_id(line['id'])) < 2 or isinstance(acquisition_date, (str, type(None))):
+            if self._get_model_info_from_id(line['id'])[0] != 'account.asset' or isinstance(acquisition_date, (str, type(None))):
                 # only 2 levels are  possible, level 0 are totals
                 continue
             acquisition_date = acquisition_date.strftime('%d%m%Y')

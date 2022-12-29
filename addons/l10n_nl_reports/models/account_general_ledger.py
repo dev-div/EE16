@@ -24,7 +24,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
             'name': _('XAF'),
             'sequence': 30,
             'action': 'export_file',
-            'action_param': '_l10n_nl_get_xaf',
+            'action_param': 'l10n_nl_get_xaf',
             'file_export_type': _('XAF'),
         }
         options['buttons'].append(xaf_export_button)
@@ -33,7 +33,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
         date = fields.Date.from_string(date_str)
         return date.strftime('%y%m')[1:]
 
-    def _l10n_nl_get_xaf(self, options):
+    def l10n_nl_get_xaf(self, options):
         def cust_sup_tp(customer, supplier):
             if supplier and customer:
                 return 'B'

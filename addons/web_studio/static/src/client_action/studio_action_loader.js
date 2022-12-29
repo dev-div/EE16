@@ -6,7 +6,7 @@ import { loadLegacyViews } from "@web/legacy/legacy_views";
 import { loadWysiwyg } from "web_editor.loader";
 import { useService } from "@web/core/utils/hooks";
 
-const { Component, onWillStart, xml } = owl;
+import { Component, onWillStart, xml } from "@odoo/owl";
 
 class StudioActionLoader extends Component {
     setup() {

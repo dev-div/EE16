@@ -7,14 +7,15 @@
 # Malika Berardi, 2022
 # Loïc De Greef, 2022
 # Cécile Collart <cco@odoo.com>, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:48+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: Cécile Collart <cco@odoo.com>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,15 +64,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
 msgid ""
 "<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
-"                        Reload AI Data"
-msgstr ""
-"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
-"                        Recharger les données IA"
-
-#. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
-msgid ""
-"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
 "                        Resend For Digitization"
 msgstr ""
 "<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
@@ -102,6 +94,7 @@ msgstr ""
 "pourrait prendre 5 secondes."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__error_status
 #, python-format
@@ -114,22 +107,18 @@ msgid "Attachment"
 msgstr "Pièce jointe"
 
 #. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Bill Date"
-msgstr "Date de facturation"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Bill Reference"
-msgstr "Référence de la facture"
-
-#. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Bill is being Digitized"
 msgstr "La facture est en cours de numérisation"
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_can_show_banners
+msgid "Can show the ocr banners"
+msgstr "Peut montrer les bannières ocr"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_resend_button
@@ -161,13 +150,14 @@ msgid "Config Settings"
 msgstr "Paramètres de config"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Couldn't reload AI data."
 msgstr "Impossible de recharger les données IA."
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/js/invoice_extract_form_renderer.js:0
 #, python-format
 msgid "Create"
@@ -182,12 +172,6 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__create_date
 msgid "Created on"
 msgstr "Créé le"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Customer"
-msgstr "Client"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_out_invoice_digitalization_mode
@@ -247,13 +231,6 @@ msgid "Extract Attachment"
 msgstr "Extraire la pièce jointe"
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_populated_fields
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_populated_fields
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_populated_fields
-msgid "Extract Populated Fields"
-msgstr "Extraire les champs remplis"
-
-#. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_word_ids
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_word_ids
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_word_ids
@@ -295,12 +272,14 @@ msgid "Id of the request to IAP-OCR"
 msgstr "Identifiant de la requête à IAP-OCR"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Invalid PDF (Conversion error)"
 msgstr "PDF non valide (erreur de conversion)"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Invalid PDF (Unable to get page count)"
@@ -312,29 +291,20 @@ msgid "Invoice"
 msgstr "Facture"
 
 #. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Invoice Date"
-msgstr "Date de facturation"
-
-#. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_parse_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_parse
-#: model:ir.cron,name:account_invoice_extract.ir_cron_ocr_parse
 msgid "Invoice OCR: Parse Invoices"
 msgstr "OCR en Facturation : Analyser les factures"
 
 #. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_update_ocr_status_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_update_ocr_status
-#: model:ir.cron,name:account_invoice_extract.ir_cron_update_ocr_status
 msgid "Invoice OCR: Update All Status"
 msgstr "OCR de facture: mise à jour de tous les états"
 
 #. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_validate_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_validate
-#: model:ir.cron,name:account_invoice_extract.ir_cron_ocr_validate
 msgid "Invoice OCR: Validate Invoices"
 msgstr "OCR en Facturation : Valider les factures"
 
@@ -359,6 +329,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "No document name provided"
@@ -380,6 +351,11 @@ msgid "Ocr Selected"
 msgstr "OCR selectionné"
 
 #. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "Reload AI Data"
+msgstr "Recharger les données AI"
+
+#. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.model_account_send_for_digitalization
 msgid "Send Bills for digitization"
 msgstr "Envoyer des factures pour numérisation"
@@ -390,6 +366,7 @@ msgid "Send For Digitization"
 msgstr "Envoi pour numérisation"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Server is currently under maintenance. Please retry later"
@@ -398,6 +375,7 @@ msgstr ""
 "ultérieurement"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Server not available. Please retry later"
@@ -417,6 +395,7 @@ msgid "Status code"
 msgstr "Code du statut"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""
@@ -429,11 +408,6 @@ msgstr ""
 
 #. module: account_invoice_extract
 #: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
-msgid "The bill has been populated by AI."
-msgstr "La facture a été remplie par l'IA"
-
-#. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
 msgid ""
 "The data extraction is not finished yet. The extraction usually takes "
 "between 5 and 10 seconds."
@@ -442,19 +416,21 @@ msgstr ""
 "généralement entre 5 et 10 secondes."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "The document could not be found"
 msgstr "Le document n'a pas pu être trouvé"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "The document has been rejected because it is too small"
 msgstr "Le document a été rejeté car il est trop petit"
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
 #, python-format
 msgid "The following fields were populated by the OCR:"
@@ -466,6 +442,7 @@ msgid "To validate"
 msgstr "A valider"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Unsupported image format"
@@ -475,12 +452,6 @@ msgstr "Format d'image non supporté"
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__user_selected
 msgid "User Selected"
 msgstr "Utilisateur sélectionné"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Vendor"
-msgstr "Fournisseur"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_in_invoice_digitalization_mode
@@ -538,7 +509,7 @@ msgid "Word Text"
 msgstr "Texte du Mot"
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
 #, python-format
 msgid ""
@@ -555,6 +526,7 @@ msgstr ""
 "Vous n'avez pas assez de crédits pour extraire les données de votre facture."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "You must send the same quantity of documents and file names"
@@ -562,6 +534,7 @@ msgstr ""
 "Vous devez envoyer la même quantité de documents et de noms de fichiers"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""
@@ -571,6 +544,7 @@ msgstr ""
 "extraire de données."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""

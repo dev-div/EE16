@@ -4,10 +4,12 @@
 # 
 # Translators:
 # M Palau <mpalau@tda.ad>, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # Martin Trigaux, 2022
 # marcescu, 2022
+# Ivan Espinola, 2022
+# Farouk Jabiri, 2022
 # 
 msgid ""
 msgstr ""
@@ -15,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-04 09:42+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: marcescu, 2022\n"
+"Last-Translator: Farouk Jabiri, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,6 +66,20 @@ msgid ""
 "    </tbody></table>\n"
 "                "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%; margin:0px auto;\"><tbody>\n"
+"        <tr><td valign=\"top\" style=\"text-align: left; font-size: 14px;\">\n"
+"            Estimat <t t-esc=\"object.name\"/>, l'enllaç d'accés als documents personals està disponible per a vostè.<br/><br/>\n"
+"            Trobareu tots els vostres documents HR personals en aquesta carpeta.<br/><br/>\n"
+"            Mantingueu aquest enllaç segur.<br/><br/>\n"
+"            <div style=\"text-align: center; padding: 16px 0px 16px 0px; font-size: 14px;\">\n"
+"                <a t-attf-href=\"{{ object.documents_share_id.full_url }}\" target=\"_blank\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                    Els vostres documents\n"
+"                </a>\n"
+"            </div>\n"
+"            Bon dia,<br/>\n"
+"            L'equip de HR\n"
+"        </td></tr>\n"
+"    </tbody></table>"
 
 #. module: documents_hr
 #: model:documents.tag,name:documents_hr.documents_hr_documents_absences
@@ -85,7 +101,7 @@ msgstr "Certificacions"
 #. module: documents_hr
 #: model:ir.model,name:documents_hr.model_res_company
 msgid "Companies"
-msgstr "Companyies"
+msgstr "Empreses"
 
 #. module: documents_hr
 #: model:ir.model,name:documents_hr.model_res_config_settings
@@ -139,6 +155,8 @@ msgid ""
 "Employee's private email must be set to use \"Send Access Link\" function:\n"
 "%s"
 msgstr ""
+"El correu electrònic privat del treballador s'ha d'establir per utilitzar la funció \"Envia l'enllaç d'accés\":\n"
+"%s"
 
 #. module: documents_hr
 #: model:documents.tag,name:documents_hr.documents_hr_documents_employees
@@ -154,12 +172,12 @@ msgstr "HR"
 #: code:addons/documents_hr/models/hr_employee.py:0
 #, python-format
 msgid "HR Documents: %s"
-msgstr ""
+msgstr "Documents HR: %s"
 
 #. module: documents_hr
 #: model:mail.template,name:documents_hr.mail_template_document_folder_link
 msgid "HR: Document Access Link"
-msgstr ""
+msgstr "HR: Enllaç a l'accés al document"
 
 #. module: documents_hr
 #: model:ir.model.fields,field_description:documents_hr.field_res_config_settings__documents_hr_settings
@@ -169,29 +187,31 @@ msgstr "Recursos humans"
 #. module: documents_hr
 #: model:ir.model.fields,field_description:documents_hr.field_hr_departure_wizard__send_hr_documents_access_link
 msgid "Send Access Link"
-msgstr ""
+msgstr "Envia l'enllaç d'accés"
 
 #. module: documents_hr
 #: model:ir.actions.server,name:documents_hr.ir_actions_server_send_access_link
 msgid "Send HR Documents Access Link"
-msgstr ""
+msgstr "Envia l'enllaç d'accés a documents HR"
 
 #. module: documents_hr
 #: model:ir.model.fields,help:documents_hr.field_hr_departure_wizard__send_hr_documents_access_link
 msgid ""
 "Send an email to the user with a share link to all the documents he owns."
 msgstr ""
+"Envia un correu electrònic a l'usuari amb un enllaç de compartició a tots "
+"els documents que posseeix."
 
 #. module: documents_hr
 #: model:mail.template,description:documents_hr.mail_template_document_folder_link
 msgid "Sent manually when recording an employee departure"
-msgstr ""
+msgstr "Enviat manualment en enregistrar la sortida d'un empleat"
 
 #. module: documents_hr
 #: code:addons/documents_hr/models/hr_employee.py:0
 #, python-format
 msgid "The access link has been sent to the employee."
-msgstr ""
+msgstr "L'enllaç d'accés s'ha enviat a l'empleat."
 
 #. module: documents_hr
 #: model:ir.model,name:documents_hr.model_res_users
@@ -224,3 +244,4 @@ msgstr "hr espai de treball predeterminat"
 #: model:mail.template,subject:documents_hr.mail_template_document_folder_link
 msgid "{{ object.name }}, your personal documents access link is available"
 msgstr ""
+"{{ object.name }}, l'enllaç d'accés als documents personals està disponible"

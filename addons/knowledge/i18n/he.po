@@ -7,7 +7,6 @@
 # hed shefer <hed@laylinetech.com>, 2022
 # Lilach Gilliam <lilach@apprcase.com>, 2022
 # Leandro Noijovich <eliel.sorcerer@gmail.com>, 2022
-# NoaFarkash, 2022
 # Roy Sayag, 2022
 # Amit Spilman <amit@laylinetech.com>, 2022
 # דודי מלכה <Dudimalka6@gmail.com>, 2022
@@ -16,6 +15,7 @@
 # שהאב חוסיין <shhab89@gmail.com>, 2022
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # Martin Trigaux, 2022
+# NoaFarkash, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
 # 
 msgid ""
@@ -41,6 +41,10 @@ msgid ""
 "            <b>%(threshold)s</b> days\n"
 "            before being permanently removed for your database"
 msgstr ""
+"\n"
+"מאמרים שנמחקו מאוחסנים באשפה\n"
+"<b>%(threshold)s</b> יום נוספים\n"
+" לפני הסרה לצמיתות עבור מסד הנתונים שלך"
 
 #. module: knowledge
 #. openerp-web
@@ -52,7 +56,7 @@ msgstr ""
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__favorite_count
 msgid "#Is Favorite"
-msgstr ""
+msgstr "#מועדף"
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0
@@ -66,7 +70,7 @@ msgstr "%s (העתק)"
 #: code:addons/knowledge/models/knowledge_article.py:0
 #, python-format
 msgid "%s has been sent to Trash"
-msgstr ""
+msgstr "%sנשלח לאשפה"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_mail_invite
@@ -92,22 +96,22 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-archive\"/> Unarchive"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-archive\"/>הוצא מהארכיון"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-arrows-h\"/> Full Width"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-arrows-h\"/>רוחב מלא"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-cog\" title=\"Add properties\"/> Add Properties"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-cog\" title=\"Add properties\"/>הוסף מאפיינים"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-copy\"/> Create a Copy"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-copy\"/>צור העתק"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -117,7 +121,7 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-picture-o\" title=\"Add cover\"/> Add cover"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-picture-o\" title=\"Add cover\"/>הוסף תמונת קאבר"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -127,12 +131,12 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-smile-o\" title=\"Add icon\"/> Add icon"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-smile-o\" title=\"Add icon\"/>הוסף אייקון"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-trash\"/> Delete"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-trash\"/>מחיקה"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -142,7 +146,7 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-fw fa-lg fa-trash-o\"/> Remove from Trash"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-lg fa-trash-o\"/>הסר מהאשפה"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -182,12 +186,12 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-plus-circle me-1\"/>Create"
-msgstr ""
+msgstr "<i class=\"fa fa-plus-circle me-1\"/>יצירה"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "<i class=\"fa fa-share-alt me-1\"/>Share"
-msgstr ""
+msgstr "<i class=\"fa fa-share-alt me-1\"/>שיתוף"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_kanban
@@ -207,6 +211,10 @@ msgid ""
 "                                                Open the Trash\n"
 "                                            </span>"
 msgstr ""
+"<i class=\"fa fa-trash\"/>\n"
+"<span class=\"ps-2 flex-grow-1 text-truncate\">\n"
+"פתח את סל האשפה\n"
+"</span>"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -247,12 +255,12 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_tree
 msgid "<i>There are no Articles in your Workspace.</i>"
-msgstr ""
+msgstr "<i>אין מאמרים בסביבת העבודה שלך</i>"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_tree
 msgid "<i>You do not have any private Articles.</i>"
-msgstr ""
+msgstr "<i>אין לך מאמרים פרטיים.</i>"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
@@ -267,6 +275,10 @@ msgid ""
 "                    (/<span style=\"font-style: italic;\">checklist</span>)\n"
 "                </span>"
 msgstr ""
+"<span style=\"font-size: 14px;\">\n"
+"הוסף צ'ק ליסט\n"
+"(/<span style=\"font-style: italic;\">צ'ק ליסט</span>)\n"
+"</span>"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_user_onboarding
@@ -567,7 +579,7 @@ msgstr ""
 msgid ""
 "<span style=\"font-size: 14px;\">Click anywhere, and just start "
 "typing</span>"
-msgstr ""
+msgstr "<span style=\"font-size: 14px;\">לחץ בכל מקום ופשוט התחל להקליד</span>"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_user_onboarding
@@ -698,7 +710,7 @@ msgstr ""
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Add a template section."
-msgstr ""
+msgstr "הוסף קטע תבנית."
 
 #. module: knowledge
 #: model_terms:ir.actions.act_window,help:knowledge.knowledge_article_favorite_action
@@ -706,6 +718,8 @@ msgid ""
 "Add articles in your list of favorites by clicking on the <i class=\"fa fa-"
 "star-o\"></i> next to the article name."
 msgstr ""
+"הוסף מאמרים ברשימת המועדפים שלך על ידי לחיצה על <i class=\"fa fa-"
+"star-o\"></i>ליד שם המאמר."
 
 #. module: knowledge
 #. openerp-web
@@ -813,16 +827,16 @@ msgstr ""
 #. openerp-web
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
 #, python-format
-msgid "Are you sure you want to remove you own \"Write\" access ?"
+msgid ""
+"Are you sure you want to remove your member? By leaving an article, you may "
+"lose access to it."
 msgstr ""
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
 #, python-format
-msgid ""
-"Are you sure you want to remove your member? By leaving an article, you may "
-"lose access to it."
+msgid "Are you sure you want to remove your own \"Write\" access ?"
 msgstr ""
 
 #. module: knowledge
@@ -851,6 +865,8 @@ msgid ""
 "Are you sure you want to set the internal permission to \"none\" ? If you "
 "do, you will no longer have access to the article."
 msgstr ""
+"האם אתה בטוח שברצונך להגדיר את ההרשאה הפנימית ל\"אף אחד\"? אם תעשה זאת, לא "
+"תהיה לך יותר גישה למאמר."
 
 #. module: knowledge
 #. openerp-web
@@ -890,7 +906,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:knowledge.knowledge_article_item_action
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_search
 msgid "Article Items"
-msgstr ""
+msgstr "פריטי מאמר"
 
 #. module: knowledge
 #: model:ir.model,name:knowledge.model_knowledge_article_member
@@ -983,12 +999,12 @@ msgstr "גוף"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__user_can_read
 msgid "Can Read"
-msgstr ""
+msgstr "ניתן לקריאה"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__user_can_write
 msgid "Can Write"
-msgstr ""
+msgstr "ניתן לכתיבה"
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article_member.py:0
@@ -1008,7 +1024,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_article_member__permission__read
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_invite__permission__read
 msgid "Can read"
-msgstr ""
+msgstr "ניתן לקריאה"
 
 #. module: knowledge
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_article__inherited_permission__write
@@ -1016,7 +1032,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_article_member__permission__write
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_invite__permission__write
 msgid "Can write"
-msgstr ""
+msgstr "ניתן לכתיבה"
 
 #. module: knowledge
 #. openerp-web
@@ -1055,7 +1071,7 @@ msgstr "קטגוריות"
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.js:0
 #, python-format
 msgid "Change Permission"
-msgstr ""
+msgstr "שינוי הרשאה"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__child_ids
@@ -1067,7 +1083,7 @@ msgstr ""
 #: code:addons/knowledge/static/src/xml/knowledge_editor.xml:0
 #, python-format
 msgid "Choose an Article"
-msgstr ""
+msgstr "בחר מאמר"
 
 #. module: knowledge
 #. openerp-web
@@ -1153,7 +1169,7 @@ msgstr "נוצר על-ידי"
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "Created by:"
-msgstr ""
+msgstr "נוצר על ידי:"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__create_date
@@ -1178,11 +1194,13 @@ msgid ""
 "Default permission for all internal users. (External users can still have "
 "access to this article if they are added to its members)"
 msgstr ""
+"הרשאת ברירת מחדל לכל המשתמשים הפנימיים. (משתמשים חיצוניים עדיין יכולים לקבל "
+"גישה למאמר זה אם הם יתווספו לחבריו)"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__deletion_date
 msgid "Deletion Date"
-msgstr ""
+msgstr "תאריך מחיקה"
 
 #. module: knowledge
 #: model:ir.model.constraint,message:knowledge.constraint_knowledge_article_check_permission_on_desync
@@ -1243,12 +1261,12 @@ msgstr ""
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Embed a file."
-msgstr ""
+msgstr "הטמע קובץ."
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__icon
 msgid "Emoji"
-msgstr ""
+msgstr "אימוג'י"
 
 #. module: knowledge
 #. openerp-web
@@ -1272,7 +1290,7 @@ msgstr ""
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.xml:0
 #, python-format
 msgid "External Guest"
-msgstr ""
+msgstr "אורח חיצוני"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_favorite_view_form
@@ -1283,12 +1301,12 @@ msgstr "מועדף"
 #. module: knowledge
 #: model:ir.model,name:knowledge.model_knowledge_article_favorite
 msgid "Favorite Article"
-msgstr ""
+msgstr "מאמר מועדף"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__favorite_ids
 msgid "Favorite Articles"
-msgstr ""
+msgstr "מאמרים מועדפים"
 
 #. module: knowledge
 #: model:ir.actions.act_window,name:knowledge.knowledge_article_favorite_action
@@ -1323,12 +1341,12 @@ msgstr "פונט מדהים למשל עבור משימות fa-tasks"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__full_width
 msgid "Full width"
-msgstr ""
+msgstr "רוחב מלא"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_mail_invite
 msgid "Go to Article"
-msgstr ""
+msgstr "גש למאמר"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_favorite_view_search
@@ -1342,12 +1360,12 @@ msgstr "קבץ לפי"
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.xml:0
 #, python-format
 msgid "Guest"
-msgstr ""
+msgstr "אורח"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__user_has_access
 msgid "Has Access"
-msgstr ""
+msgstr "יש גישה"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__has_message
@@ -1357,7 +1375,7 @@ msgstr "יש הודעה"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__user_has_write_access
 msgid "Has Write Access"
-msgstr ""
+msgstr "יש גישה לכתיבה"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__has_item_children
@@ -1435,13 +1453,13 @@ msgstr ""
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Index"
-msgstr ""
+msgstr "אינדקס"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__inherited_permission
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article_member__article_permission
 msgid "Inherited Permission"
-msgstr ""
+msgstr "הרשאה יורשת"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__inherited_permission_parent_id
@@ -1453,7 +1471,7 @@ msgstr ""
 #: code:addons/knowledge/static/src/components/prompt_embedded_view_name_dialog/prompt_embedded_view_name_dialog.xml:0
 #, python-format
 msgid "Insert"
-msgstr ""
+msgstr "הכנס"
 
 #. module: knowledge
 #. openerp-web
@@ -1467,7 +1485,7 @@ msgstr "הוסף קישור"
 #: code:addons/knowledge/static/src/components/prompt_embedded_view_name_dialog/prompt_embedded_view_name_dialog.js:0
 #, python-format
 msgid "Insert a Kanban View"
-msgstr ""
+msgstr "הכנס תצוגת קנבאן"
 
 #. module: knowledge
 #. openerp-web
@@ -1481,35 +1499,35 @@ msgstr ""
 #: code:addons/knowledge/static/src/components/prompt_embedded_view_name_dialog/prompt_embedded_view_name_dialog.js:0
 #, python-format
 msgid "Insert a List View"
-msgstr ""
+msgstr "הכנס תצוגת רשימה"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Insert a List view of article items"
-msgstr ""
+msgstr "הוסף תצוגת רשימה של פריטי מאמר"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/external_embedded_view_favorite_menu/insert_embedded_view.xml:0
 #, python-format
 msgid "Insert link in article"
-msgstr ""
+msgstr "הוסף לינק למסך זה במאמר במודול \"ידע\""
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/external_embedded_view_favorite_menu/insert_embedded_view.xml:0
 #, python-format
 msgid "Insert view in article"
-msgstr ""
+msgstr "הכנס את תצוגת המסך למאמר במודול \"ידע\""
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.xml:0
 #, python-format
 msgid "Internal Members"
-msgstr ""
+msgstr "חברים פנימיים"
 
 #. module: knowledge
 #. openerp-web
@@ -1517,7 +1535,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__internal_permission
 #, python-format
 msgid "Internal Permission"
-msgstr ""
+msgstr "הרשאה פנימית"
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0
@@ -1539,12 +1557,12 @@ msgstr "הזמן אנשים"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article_favorite__is_article_active
 msgid "Is Article Active"
-msgstr ""
+msgstr "האם המאמר פעיל"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__is_user_favorite
 msgid "Is Favorited"
-msgstr ""
+msgstr "מועדף"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__message_is_follower
@@ -1573,17 +1591,27 @@ msgstr ""
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Item List"
-msgstr ""
+msgstr "רשימת פריטי מאמר"
 
 #. module: knowledge
+#. openerp-web
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #: model:ir.ui.menu,name:knowledge.knowledge_menu_root
+#, python-format
 msgid "Knowledge"
 msgstr "ידע"
 
 #. module: knowledge
 #: model:ir.model,name:knowledge.model_knowledge_article
 msgid "Knowledge Article"
-msgstr ""
+msgstr "מאמר ידע"
 
 #. module: knowledge
 #: model:ir.model,name:knowledge.model_knowledge_cover
@@ -1600,22 +1628,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_tree_items
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_tree_trash
 msgid "Last Edit Date"
-msgstr ""
+msgstr "תאריך עריכה אחרון"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__last_edition_uid
 msgid "Last Edited by"
-msgstr ""
+msgstr "נערך לאחרונה על ידי"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "Last Edited by:"
-msgstr ""
+msgstr "נערך לאחרונה על ידי:"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__last_edition_date
 msgid "Last Edited on"
-msgstr ""
+msgstr "נערך לאחרונה בתאריך"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article____last_update
@@ -1651,21 +1679,21 @@ msgstr "עדכון אחרון ב"
 #: code:addons/knowledge/static/src/components/permission_panel/permission_panel.xml:0
 #, python-format
 msgid "Leave Article"
-msgstr ""
+msgstr "עזוב מאמר"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/js/wysiwyg/knowledge_article_link.js:0
 #, python-format
 msgid "Link an Article"
-msgstr ""
+msgstr "קישור למאמר"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/js/wysiwyg.js:0
 #, python-format
 msgid "Link an article."
-msgstr ""
+msgstr "קישור למאמר."
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__is_locked
@@ -1693,6 +1721,14 @@ msgid "Main Attachment"
 msgstr "קובץ ראשי מצורף "
 
 #. module: knowledge
+#. openerp-web
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#: code:addons/knowledge/static/src/js/wysiwyg.js:0
+#, python-format
+msgid "Media"
+msgstr "מדיה"
+
+#. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_member_view_form
 msgid "Member"
 msgstr "חבר"
@@ -1712,7 +1748,7 @@ msgstr "מידע על מנויים"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__root_article_id
 msgid "Menu Article"
-msgstr ""
+msgstr "מאמר בתפריט"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__message_has_error
@@ -1729,7 +1765,7 @@ msgstr "הודעות"
 #: code:addons/knowledge/static/src/components/behaviors/file_behavior/file_behavior.js:0
 #, python-format
 msgid "Missing File"
-msgstr ""
+msgstr "מסמך חסר"
 
 #. module: knowledge
 #. openerp-web
@@ -1743,14 +1779,14 @@ msgstr ""
 #: code:addons/knowledge/static/src/components/move_article_dialog/move_article_dialog.xml:0
 #, python-format
 msgid "Move Article"
-msgstr ""
+msgstr "העבר מאמר"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/move_article_dialog/move_article_dialog.js:0
 #, python-format
 msgid "Move an Article"
-msgstr ""
+msgstr "העבר מאמר"
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0
@@ -1814,25 +1850,25 @@ msgstr "סוג הפעילות הבאה"
 #: code:addons/knowledge/static/src/xml/knowledge_command_palette.xml:0
 #, python-format
 msgid "No Article found."
-msgstr ""
+msgstr "לא נמצא מאמר."
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/webclient/commands/knowledge_providers.js:0
 #, python-format
 msgid "No Article found. Create \"%s\""
-msgstr ""
+msgstr "לא נמצא מאמר. צור \"%s\""
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0
 #, python-format
 msgid "No Article in Trash"
-msgstr ""
+msgstr "אין מאמרים בסל האשפה"
 
 #. module: knowledge
 #: model_terms:ir.actions.act_window,help:knowledge.knowledge_article_favorite_action
 msgid "No Favorites yet!"
-msgstr ""
+msgstr "אין עדיין מועדפים!"
 
 #. module: knowledge
 #: model_terms:ir.actions.act_window,help:knowledge.knowledge_article_member_action
@@ -1845,19 +1881,19 @@ msgstr ""
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_article_member__permission__none
 #: model:ir.model.fields.selection,name:knowledge.selection__knowledge_invite__permission__none
 msgid "No access"
-msgstr ""
+msgstr "אין גישה"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/webclient/commands/knowledge_providers.js:0
 #, python-format
 msgid "No article found."
-msgstr ""
+msgstr "לא נמצא מאמר."
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "No article yet."
-msgstr ""
+msgstr "אין עדיין מאמר."
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__message_needaction_counter
@@ -1905,6 +1941,8 @@ msgid ""
 "Oops, the file %s could not be found. Please replace this file box by a new "
 "one to re-upload the file."
 msgstr ""
+"אופס, הקובץ %s לא נמצא. אנא החלף תיבת קובץ זו באחת חדשה כדי להעלות מחדש את "
+"הקובץ."
 
 #. module: knowledge
 #. openerp-web
@@ -1924,7 +1962,7 @@ msgstr "קווי מתאר"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__parent_id
 msgid "Parent Article"
-msgstr ""
+msgstr "מאמר אב"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__parent_path
@@ -1941,7 +1979,7 @@ msgstr "לקוח/ספק"
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article_member__permission
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_invite__permission
 msgid "Permission"
-msgstr ""
+msgstr "הרשאה"
 
 #. module: knowledge
 #. openerp-web
@@ -1980,7 +2018,7 @@ msgstr "רענן"
 #: code:addons/knowledge/static/src/components/knowledge_emoji_picker_remove_action_view/knowledge_emoji_picker_remove_action_view.xml:0
 #, python-format
 msgid "Remove Icon"
-msgstr ""
+msgstr "הסר אייקון"
 
 #. module: knowledge
 #. openerp-web
@@ -1992,7 +2030,7 @@ msgstr ""
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 msgid "Remove from Trash"
-msgstr ""
+msgstr "הסר מהאשפה"
 
 #. module: knowledge
 #. openerp-web
@@ -2052,14 +2090,14 @@ msgstr "חיפוש"
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_favorite_view_search
 msgid "Search Favorites"
-msgstr ""
+msgstr "חיפוש מועדפים"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/xml/chatter_topbar.xml:0
 #, python-format
 msgid "Search Knowledge Articles"
-msgstr ""
+msgstr "חיפוש מאמרי ידע"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_member_view_search
@@ -2077,7 +2115,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_form
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_frontend
 msgid "Search an article..."
-msgstr ""
+msgstr "חיפוש מאמר..."
 
 #. module: knowledge
 #. openerp-web
@@ -2096,7 +2134,7 @@ msgstr "סעיף"
 #: code:addons/knowledge/static/src/components/cover_selector/knowledge_cover_dialog.js:0
 #, python-format
 msgid "Select a cover"
-msgstr ""
+msgstr "בחר תמונת קאבר"
 
 #. module: knowledge
 #. openerp-web
@@ -2151,14 +2189,14 @@ msgstr ""
 #: code:addons/knowledge/models/knowledge_article.py:0
 #, python-format
 msgid "Some articles have been sent to Trash"
-msgstr ""
+msgstr "כמה מאמרים נשלחו לאשפה"
 
 #. module: knowledge
 #. openerp-web
 #: code:addons/knowledge/static/src/components/behaviors/embedded_view_behavior/embedded_view_behavior.xml:0
 #, python-format
 msgid "Something went wrong!"
-msgstr ""
+msgstr "משהו השתבש!"
 
 #. module: knowledge
 #: model:ir.model.fields,help:knowledge.field_knowledge_article__activity_state
@@ -2200,14 +2238,14 @@ msgstr ""
 #: code:addons/knowledge/models/knowledge_article.py:0
 #, python-format
 msgid "The article '%s' needs at least one member with 'Write' access."
-msgstr ""
+msgstr "המאמר '%s' צריך לפחות חבר אחד עם גישת כתיבה."
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_frontend
 msgid ""
 "The article you are trying the read has either been removed or you do not "
 "have access to it."
-msgstr ""
+msgstr "המאמר שאתה מנסה לקרוא הוסר או שאין לך גישה אליו."
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article_member.py:0
@@ -2216,6 +2254,8 @@ msgid ""
 "The external user %(user_name)s cannot have a 'write' permission on article "
 "%(article_name)s"
 msgstr ""
+"המשתמש החיצוני %(user_name)s לא יכול להיות בעל הרשאת כתיבה במאמר "
+"%(article_name)s"
 
 #. module: knowledge
 #. openerp-web
@@ -2289,19 +2329,19 @@ msgstr ""
 #. module: knowledge
 #: model:ir.actions.act_window,name:knowledge.knowledge_article_action_trashed
 msgid "Trash"
-msgstr ""
+msgstr "אשפה"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_knowledge_article__to_delete
 #: model:ir.ui.menu,name:knowledge.knowledge_article_menu_trashed
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_search
 msgid "Trashed"
-msgstr ""
+msgstr "נזרק לאשפה"
 
 #. module: knowledge
 #: model:ir.model.constraint,message:knowledge.constraint_knowledge_article_check_trash
 msgid "Trashed articles must be archived."
-msgstr ""
+msgstr "מאמרים שנזרקו לאשפה חייבים להיות בארכיון"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.knowledge_article_view_frontend
@@ -2511,7 +2551,7 @@ msgstr ""
 #: code:addons/knowledge/controllers/main.py:0
 #, python-format
 msgid "You cannot change the internal permission of this article."
-msgstr ""
+msgstr "אינך יכול לשנות את ההרשאה פנימית של מאמר זה"
 
 #. module: knowledge
 #: code:addons/knowledge/controllers/main.py:0
@@ -2543,7 +2583,7 @@ msgstr ""
 #, python-format
 msgid ""
 "You have to be editor on %(article_name)s to change its internal permission."
-msgstr ""
+msgstr "צריך להיות עורך ב%(article_name)sבכדי לשנות את ההרשאה הפנימית."
 
 #. module: knowledge
 #: code:addons/knowledge/models/knowledge_article.py:0

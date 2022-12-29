@@ -61,7 +61,9 @@
                 </group>
 
                 <footer>
-                    <button string="Sign Now" name="sign_directly" type="object" class="btn-primary" invisible="context.get('sign_directly_without_mail',False)" attrs="{'invisible': [('is_user_signer', '=', False)]}" data-hotkey="q"/>
+                    <div invisible="context.get('sign_directly_without_mail',False)">
+                        <button string="Sign Now" name="sign_directly" type="object" class="btn-primary" attrs="{'invisible': [('is_user_signer', '=', False)]}" data-hotkey="q"/>
+                    </div>
                     <button string="Send" name="send_request" type="object" class="btn-primary" invisible="context.get('sign_directly_without_mail',False)" data-hotkey="w"/>
                     <button string="Sign Now" name="sign_directly" context="{'no_sign_mail': True, 'sign_all': True}" type="object" class="btn-primary" invisible="not context.get('sign_directly_without_mail',False)" data-hotkey="q"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>

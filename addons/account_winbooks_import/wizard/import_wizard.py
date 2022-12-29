@@ -20,6 +20,11 @@ from odoo.exceptions import UserError, RedirectWarning
 _logger = logging.getLogger(__name__)
 
 
+PURCHASE_CODE = '0'
+SALE_CODE = '2'
+CREDIT_NOTE_PURCHASE_CODE = '1'
+CREDIT_NOTE_SALE_CODE = '4'
+
 class WinbooksImportWizard(models.TransientModel):
     _name = "account.winbooks.import.wizard"
     _description = 'Account Winbooks import wizard'
@@ -335,9 +340,17 @@ class WinbooksImportWizard(models.TransientModel):
                 recs.append(rec)
         result = [dict(tupleized) for tupleized in set(tuple(item.items()) for item in recs)]
         grouped = collections.defaultdict(list)
+        currency_codes = set()
         for item in result:
             # Group by number/year/period
             grouped[item['DOCNUMBER'], item['DBKCODE'], item['DBKTYPE'], item['BOOKYEAR'], item['PERIOD']] += [item]
+
+            # Get all currencies to search them in batch
+            currency_codes.add(item.get('CURRCODE'))
+        currencies = ResCurrency.with_context(active_test=False).search([('name', 'in', list(currency_codes))])
+        if currencies:
+            currencies.active = True
+        currency_map = {currency.name: currency for currency in currencies}
 
         move_data_list = []
         pdf_file_list = []
@@ -382,25 +395,36 @@ class WinbooksImportWizard(models.TransientModel):
 
             # Basic line info
             for rec in val:
-                currency = ResCurrency.search([('name', '=', rec.get('CURRCODE'))], limit=1)
-                if currency == self.env.company.currency_id:
-                    currency = self.env['res.currency']
+                currency = currency_map.get(rec.get('CURRCODE'))
                 partner_id = self.env['res.partner'].browse(partner_data.get(rec.get('ACCOUNTRP'), False))
                 account_id = self.env['account.account'].browse(account_data.get(rec.get('ACCOUNTGL')))
                 matching_number = rec.get('MATCHNO') and '%s-%s' % (rec.get('ACCOUNTGL'), rec.get('MATCHNO')) or False
+                balance = rec.get('AMOUNTEUR', 0.0)
+                amount_currency = rec.get('CURRAMOUNT') if currency and rec.get('CURRAMOUNT') else balance
                 line_data = {
                     'date': rec.get('DATE', False),
                     'account_id': account_id.id,
                     'partner_id': partner_id.id,
                     'date_maturity': rec.get('DUEDATE', False),
                     'name': rec.get('COMMENT'),
-                    'currency_id': currency.id,
-                    'debit': rec.get('AMOUNTEUR') if rec.get('AMOUNTEUR') and rec.get('AMOUNTEUR') >= 0 else 0.0,
-                    'credit': abs(rec.get('AMOUNTEUR')) if rec.get('AMOUNTEUR') and rec.get('AMOUNTEUR') < 0 else 0.0,
-                    'amount_currency': rec.get('CURRAMOUNT') if currency and rec.get('CURRAMOUNT') else 0.0,
-                    'amount_residual_currency': rec.get('CURRAMOUNT') if currency and rec.get('CURRAMOUNT') else 0.0,
+                    'balance': balance,
+                    'amount_currency': amount_currency,
+                    'amount_residual_currency': amount_currency,
                     'winbooks_matching_number': matching_number,
                 }
+                if currency:
+                    line_data['currency_id'] = currency.id
+
+                if move_data_dict['move_type'] != 'entry':
+                    if rec.get('DOCORDER') == 'VAT':
+                        line_data['display_type'] = 'tax'
+                    elif account_id and account_id.account_type in ('asset_receivable', 'liability_payable'):
+                        line_data['display_type'] = 'payment_term'
+                    elif rec.get('DBKTYPE') in (CREDIT_NOTE_PURCHASE_CODE, SALE_CODE):
+                        line_data['price_unit'] = -amount_currency
+                    elif rec.get('DBKTYPE') in (PURCHASE_CODE, CREDIT_NOTE_SALE_CODE):
+                        line_data['price_unit'] = amount_currency
+
                 if matching_number:
                     reconcile_number_set.add(matching_number)
                 if rec.get('AMOUNTEUR'):
@@ -412,6 +436,11 @@ class WinbooksImportWizard(models.TransientModel):
             # Compute refund value
             if journal_id.type in ('sale', 'purchase'):
                 is_refund = move_total_receivable_payable < 0 if journal_id.type == 'sale' else move_total_receivable_payable > 0
+                if is_refund and key[2] in (PURCHASE_CODE, SALE_CODE):
+                    # We are importing a negative invoice or purchase, so we need to change it to a credit note and inverse the price_units
+                    for move_line_data in move_line_data_list:
+                        if move_line_data[2].get('price_unit'):
+                            move_line_data[2]['price_unit'] = -move_line_data[2]['price_unit']
             else:
                 is_refund = False
 
@@ -435,10 +464,12 @@ class WinbooksImportWizard(models.TransientModel):
                     'tax_tag_ids': [(6, 0, tax_line.get_tax_tags(is_refund, repartition_type).ids)],
                     'tax_repartition_line_id': rec.get('DOCORDER') == 'VAT' and repartition_line.filtered(lambda x: x.repartition_type == repartition_type and x.account_id.id == line_data[2]['account_id']).id or False,
                 })
-            move_line_data_list = [i for i in move_line_data_list if i[2]['account_id'] or i[2]['debit'] or i[2]['credit']]  # Remove empty lines
+            move_line_data_list = [line for line in move_line_data_list if line[2]['account_id'] or line[2]['balance']]  # Remove empty lines
 
             # Adapt invoice specific informations
             if move_data_dict['move_type'] != 'entry':
+                # In Winbooks, invoice lines have the same currency, so we take the currency of the first line
+                move_data_dict['currency_id'] = currency_map.get(val[0].get('CURRCODE'), self.env.company.currency_id).id
                 move_data_dict['partner_id'] = move_line_data_list[0][2]['partner_id']
                 move_data_dict['invoice_date_due'] = move_line_data_list[0][2]['date_maturity']
                 move_data_dict['invoice_date'] = move_line_data_list[0][2]['date']
@@ -457,8 +488,7 @@ class WinbooksImportWizard(models.TransientModel):
                     'account_id': account_id.id,
                     'date_maturity': rec.get('DUEDATE', False),
                     'name': _('Counterpart (generated at import from Winbooks)'),
-                    'credit': move_amount_total if move_amount_total >= 0 else 0.0,
-                    'debit': abs(move_amount_total) if move_amount_total < 0 else 0.0,
+                    'balance': -move_amount_total,
                 }
                 move_line_data_list.append((0, 0, line_data))
 
@@ -522,17 +552,23 @@ class WinbooksImportWizard(models.TransientModel):
         """
         _logger.info("Import Analytic Accounts")
         analytic_account_data = {}
+        analytic_plan_dict = {}
         AccountAnalyticAccount = self.env['account.analytic.account']
+        AccountAnalyticPlan = self.env['account.analytic.plan']
         for rec in dbf_records:
             if not rec.get('NUMBER'):
                 continue
             analytic_account = AccountAnalyticAccount.search(
                 [('code', '=', rec.get('NUMBER')), ('company_id', '=', self.env.company.id)], limit=1)
+            plan_name = 'Imported Plan ' + rec.get('TYPE', '0')
+            if not analytic_plan_dict.get(plan_name):
+                analytic_plan_dict[plan_name] = AccountAnalyticPlan.create({'name': plan_name})
             if not analytic_account:
                 data = {
                     'code': rec.get('NUMBER'),
                     'name': rec.get('NAME1'),
-                    'active': not rec.get('INVISIBLE')
+                    'active': not rec.get('INVISIBLE'),
+                    'plan_id': analytic_plan_dict[plan_name].id,
                 }
                 analytic_account = AccountAnalyticAccount.create(data)
             analytic_account_data[rec.get('NUMBER')] = analytic_account.id

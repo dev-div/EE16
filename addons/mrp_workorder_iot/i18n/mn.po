@@ -3,18 +3,19 @@
 # 	* mrp_workorder_iot
 # 
 # Translators:
-# nasaaskii <nasaaskii@gmail.com>, 2019
-# nurbakhit nurka <nurbakhit@bumanit.mn>, 2019
-# Baskhuu Lodoikhuu <baskhuujacara@gmail.com>, 2019
-# Martin Trigaux, 2019
+# Batmunkh Ganbat <batmunkh.g@bumanit.mn>, 2022
+# Baskhuu Lodoikhuu <baskhuujacara@gmail.com>, 2022
+# Minj P <pminj322@gmail.com>, 2022
+# Батмөнх Ганбат <batmunkh2522@gmail.com>, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 11:58+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"POT-Creation-Date: 2022-10-04 09:41+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Mongolian (https://www.transifex.com/odoo/teams/41243/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +29,9 @@ msgid "Action"
 msgstr "Үйлдэл"
 
 #. module: mrp_workorder_iot
-#: model:ir.model.fields,field_description:mrp_workorder_iot.field_mrp_workorder__boxes
+#: model:ir.model.fields,field_description:mrp_workorder_iot.field_quality_check__boxes
 msgid "Boxes"
-msgstr ""
+msgstr "Хайрцаг"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__cancel
@@ -40,12 +41,12 @@ msgstr "Цуцлах"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__clomo
 msgid "Close MO"
-msgstr ""
+msgstr "ҮЗ хаах"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__clowo
 msgid "Close WO"
-msgstr ""
+msgstr "АЗ хаах"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__create_uid
@@ -60,12 +61,7 @@ msgstr "Үүсгэсэн огноо"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__device_id
 msgid "Device"
-msgstr ""
-
-#. module: mrp_workorder_iot
-#: model:ir.model.fields,field_description:mrp_workorder_iot.field_mrp_workorder__device_name
-msgid "Device Name: "
-msgstr ""
+msgstr "Төхөөрөмж"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__display_name
@@ -73,14 +69,9 @@ msgid "Display Name"
 msgstr "Дэлгэрэнгүй нэр"
 
 #. module: mrp_workorder_iot
-#: model:ir.model.fields,field_description:mrp_workorder_iot.field_mrp_workorder__ip
-msgid "Domain Address"
-msgstr ""
-
-#. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__finish
 msgid "Finish"
-msgstr ""
+msgstr "Дуусгах"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__id
@@ -90,23 +81,18 @@ msgstr "ID"
 #. module: mrp_workorder_iot
 #: model:ir.model,name:mrp_workorder_iot.model_iot_device
 msgid "IOT Device"
-msgstr ""
+msgstr "IOT төхөөрөмж"
 
 #. module: mrp_workorder_iot
 #: model:ir.model,name:mrp_workorder_iot.model_iot_trigger
 msgid "IOT Trigger"
-msgstr ""
-
-#. module: mrp_workorder_iot
-#: model:ir.model.fields,field_description:mrp_workorder_iot.field_mrp_workorder__identifier
-msgid "Identifier"
-msgstr "Хувийн дугаар"
+msgstr "IOT төлөвлөгч"
 
 #. module: mrp_workorder_iot
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_iot.iot_device_view_form
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_iot.mrp_workcenter_view_form_iot
 msgid "IoT Triggers"
-msgstr ""
+msgstr "IoT төлөвлөгч"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__key
@@ -136,12 +122,19 @@ msgstr "Дараах"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__pack
 msgid "Pack"
-msgstr "Баглаа"
+msgstr "Хайрцаг"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__pause
 msgid "Pause"
 msgstr "Түр зогсоох"
+
+#. module: mrp_workorder_iot
+#. openerp-web
+#: code:addons/mrp_workorder_iot/static/src/pedal_status_button/pedal_status_button.xml:0
+#, python-format
+msgid "Pedal Status"
+msgstr ""
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__prev
@@ -151,17 +144,22 @@ msgstr "Өмнөх"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__print-slip
 msgid "Print Delivery Slip"
-msgstr ""
+msgstr "Хүргэлтийн тасалбар хэвлэх"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__print
 msgid "Print Labels"
-msgstr ""
+msgstr "Шошго хэвлэх"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__print-op
 msgid "Print Operation"
-msgstr ""
+msgstr "Хэвлэх үйлдэл"
+
+#. module: mrp_workorder_iot
+#: model:ir.model,name:mrp_workorder_iot.model_quality_check
+msgid "Quality Check"
+msgstr "Чанарын Шалгалт"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__record
@@ -171,7 +169,7 @@ msgstr "Үйлдвэрлэлийг Хөтлөх"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__scrap
 msgid "Scrap"
-msgstr "Гологдол"
+msgstr "Хаягдал"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__sequence
@@ -186,7 +184,7 @@ msgstr "Алгасах"
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__picture
 msgid "Take Picture"
-msgstr ""
+msgstr "Зураг авах"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_device__trigger_ids
@@ -201,17 +199,12 @@ msgstr ""
 #. module: mrp_workorder_iot
 #: model:ir.model.fields.selection,name:mrp_workorder_iot.selection__iot_trigger__action__validate
 msgid "Validate"
-msgstr "Батлах"
+msgstr "Зөвшөөрөх"
 
 #. module: mrp_workorder_iot
 #: model:ir.model,name:mrp_workorder_iot.model_mrp_workcenter
 msgid "Work Center"
 msgstr "Дамжлага"
-
-#. module: mrp_workorder_iot
-#: model:ir.model,name:mrp_workorder_iot.model_mrp_workorder
-msgid "Work Order"
-msgstr "Ажлын Захиалга"
 
 #. module: mrp_workorder_iot
 #: model:ir.model.fields,field_description:mrp_workorder_iot.field_iot_trigger__workcenter_id

@@ -25,7 +25,7 @@ const TimesheetGridControllerMixin = {
         const state = this.model.get();
         const startDate = moment(state.timeBoundariesContext.start);
         const endDate = moment(state.timeBoundariesContext.end);
-        if (!analyticLineDate.isBetween(startDate, endDate)) {
+        if (!moment(analyticLineDate.format()).isBetween(startDate, endDate, 'days', [])) {
             this.displayNotification({
                 type: "success",
                 message: _t('The timesheet entry has successfully been created.'),

@@ -17,6 +17,7 @@ import { browser } from "@web/core/browser/browser";
 import { DocumentsSearchPanel } from "@documents/views/search/documents_search_panel";
 import { SearchPanel } from "@web/search/search_panel/search_panel";
 import { DocumentsKanbanRenderer } from "@documents/views/kanban/documents_kanban_renderer";
+import { XLSX_MIME_TYPE } from "@documents_spreadsheet/helpers";
 
 const find = dom.find;
 const serviceRegistry = registry.category("services");
@@ -184,5 +185,65 @@ QUnit.module(
                 "/documents/image/3/120x75?field=thumbnail&unique="
             );
         });
+
+        QUnit.test(
+            "open xlsx converts to o-spreadsheet, clone it and opens the spreadsheet",
+            async function (assert) {
+                const spreadsheetCopyId = 99;
+                const fakeActionService = {
+                    name: "action",
+                    start() {
+                        return {
+                            doAction(action) {
+                                assert.step(action.tag, "it should open the spreadsheet");
+                                assert.deepEqual(action.params.spreadsheet_id, spreadsheetCopyId);
+                            },
+                        };
+                    },
+                };
+                serviceRegistry.add("action", fakeActionService, { force: true });
+                const pyEnv = await startServer();
+                const spreadsheetId = pyEnv["documents.document"].create([
+                    {
+                        name: "My excel file",
+                        mimetype: XLSX_MIME_TYPE,
+                        thumbnail_status: "present",
+                    },
+                ]);
+                await createDocumentsView({
+                    type: "kanban",
+                    resModel: "documents.document",
+                    mockRPC: async (route, args) => {
+                        if (args.method === "clone_xlsx_into_spreadsheet") {
+                            assert.step("spreadsheet_cloned", "it should clone the spreadsheet");
+                            assert.strictEqual(args.model, "documents.document");
+                            assert.deepEqual(args.args, [spreadsheetId]);
+                            return spreadsheetCopyId;
+                        }
+                    },
+                    arch: /*xml*/ `
+                        <kanban js_class="documents_kanban">
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div>
+                                        <div name="document_preview" class="o_kanban_image_wrapper">a thumbnail</div>
+                                        <i class="fa fa-circle-thin o_record_selector"/>
+                                        <field name="name"/>
+                                        <field name="handler"/>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    `,
+                    serverData: { models: pyEnv.getData(), views: {} },
+                });
+                const fixture = getFixture();
+                await click(fixture, ".oe_kanban_previewer");
+
+                // confirm conversion to o-spreadsheet
+                await click(fixture, ".modal-content .btn.btn-primary");
+                assert.verifySteps(["spreadsheet_cloned", "action_open_spreadsheet"]);
+            }
+        );
     }
 );

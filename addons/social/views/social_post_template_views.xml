@@ -34,7 +34,7 @@
                                 <p><a href="/web#action=social.action_social_media">Link social accounts</a> before posting.</p>
                             </div>
                             <field name="message" widget="text_emojis" class="o_social_post_message_wrapper"
-                                options="{'onchange_on_keydown': true}" force_save="1" default_focus="1"
+                                onchange_on_keydown="True" force_save="1" default_focus="1"
                                    attrs="{'required': [(1, '=', 1)], 'readonly': [('has_active_accounts', '=', False)]}">
                             </field>
                             <field name="image_ids" widget="many2many_binary" class="o_social_post_form_attachments"/>

@@ -3,17 +3,18 @@
 # 	* currency_rate_live
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Bole <bole@dajmi5.com>, 2019
-# Tina Milas, 2019
+# Milan Tribuson <one.mile.code@gmail.com>, 2022
+# Tina Milas, 2022
+# Martin Trigaux, 2022
+# Bole <bole@dajmi5.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: Tina Milas, 2019\n"
+"POT-Creation-Date: 2022-06-09 14:10+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2022\n"
 "Language-Team: Croatian (https://www.transifex.com/odoo/teams/41243/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,28 @@ msgid ""
 "<i title=\"Update now\" role=\"img\" aria-label=\"Update now\" class=\"fa "
 "fa-fw fa-refresh\"/>"
 msgstr ""
+"<i title=\"Update now\" role=\"img\" aria-label=\"Update now\" class=\"fa "
+"fa-fw fa-refresh\"/>"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__boc
 msgid "Bank Of Canada"
 msgstr "Banka Kanade"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bcrp
+msgid "Bank of Peru"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbegy
+msgid "Central Bank of Egypt"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__mindicador
+msgid "Chilean mindicador.cl"
+msgstr "Čileanski mindicador.cl"
 
 #. module: currency_rate_live
 #: model:ir.model,name:currency_rate_live.model_res_company
@@ -63,7 +81,7 @@ msgstr "Centralna Europska Banka"
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__fta
 msgid "Federal Tax Administration (Switzerland)"
-msgstr ""
+msgstr "Federal Tax Administration (Switzerland)"
 
 #. module: currency_rate_live
 #: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
@@ -77,16 +95,9 @@ msgid "Interval Unit"
 msgstr "Jedinica intervala"
 
 #. module: currency_rate_live
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_company__last_currency_sync_date
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_config_settings__last_currency_sync_date
-#: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
-msgid "Last Sync Date"
-msgstr "Zadnji datum sinkronizacije"
-
-#. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__manually
 msgid "Manually"
-msgstr "Ručno"
+msgstr "ručno"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__banxico
@@ -97,6 +108,11 @@ msgstr "Banka Mexiko"
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__monthly
 msgid "Monthly"
 msgstr "Mjesečno"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bnr
+msgid "National Bank Of Romania"
+msgstr "Nacionalna Banka Rumunjske"
 
 #. module: currency_rate_live
 #: model:ir.model.fields,field_description:currency_rate_live.field_res_company__currency_next_execution_date
@@ -121,11 +137,13 @@ msgid "Service Provider"
 msgstr "Pružatelj usluge"
 
 #. module: currency_rate_live
-#: code:addons/currency_rate_live/models/res_config_settings.py:0
-#, python-format
-msgid ""
-"Unable to connect to the online exchange rate platform %s. The web service "
-"may be temporary down."
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__tcmb
+msgid "Turkey Republic Central Bank"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbuae
+msgid "UAE Central Bank"
 msgstr ""
 
 #. module: currency_rate_live
@@ -150,6 +168,8 @@ msgid ""
 "Your main currency (%s) is not supported by this exchange rate provider. "
 "Please choose another one."
 msgstr ""
+"Vaša glavna valuta (%s) nije podržana od ovog pružatelja. Molimo odaberite "
+"neku drugu"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__xe_com

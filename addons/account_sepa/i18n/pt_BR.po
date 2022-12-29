@@ -3,42 +3,59 @@
 # 	* account_sepa
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Mateus Lopes <mateus1@gmail.com>, 2019
-# falexandresilva <falexandresilva@gmail.com>, 2019
-# grazziano <gra.negocia@gmail.com>, 2019
-# Silmar <pinheirosilmar@gmail.com>, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:04+0000\n"
-"PO-Revision-Date: 2019-08-26 09:34+0000\n"
-"Last-Translator: Silmar <pinheirosilmar@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_batch_payment.py:0
 #, python-format
 msgid "A bank account is not defined."
 msgstr ""
 
 #. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_payment_register.py:0
+#, python-format
+msgid "A bank account must be set on the following documents: "
+msgstr ""
+
+#. module: account_sepa
+#: model:ir.model.fields.selection,name:account_sepa.selection__account_journal__sepa_pain_version__pain_001_001_03_austrian_004
+msgid "Austrian"
+msgstr ""
+
+#. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
-msgid "A partner has not a bank id."
+msgid ""
+"Bank account %s 's bank does not have any BIC number associated. Please "
+"define one."
+msgstr ""
+
+#. module: account_sepa
+#: model_terms:ir.ui.view,arch_db:account_sepa.view_batch_payment_form_inherit
+msgid "Batch Booking"
 msgstr ""
 
 #. module: account_sepa
 #: model:ir.model,name:account_sepa.model_account_batch_payment
 msgid "Batch Payment"
-msgstr ""
+msgstr "Batch Payment"
 
 #. module: account_sepa
 #: model:ir.model,name:account_sepa.model_res_company
@@ -48,12 +65,7 @@ msgstr "Empresas"
 #. module: account_sepa
 #: model:ir.model,name:account_sepa.model_res_config_settings
 msgid "Config Settings"
-msgstr "Ajuste de configurações"
-
-#. module: account_sepa
-#: model:ir.model.fields,field_description:account_sepa.field_account_payment__display_qr_code
-msgid "Display Qr Code"
-msgstr ""
+msgstr "Configurações"
 
 #. module: account_sepa
 #: model:ir.model.fields,help:account_sepa.field_res_company__sepa_orgid_issr
@@ -65,13 +77,18 @@ msgstr ""
 "Muenchen IV)."
 
 #. module: account_sepa
-#: model:ir.model.fields.selection,name:account_sepa.selection__res_company__sepa_pain_version__pain_001_001_03
+#: model:ir.model.fields.selection,name:account_sepa.selection__account_journal__sepa_pain_version__pain_001_001_03
 msgid "Generic"
 msgstr "Genérico"
 
 #. module: account_sepa
-#: model:ir.model.fields.selection,name:account_sepa.selection__res_company__sepa_pain_version__pain_001_003_03
-msgid "German Version"
+#: model:ir.model.fields.selection,name:account_sepa.selection__account_journal__sepa_pain_version__pain_001_003_03
+msgid "German"
+msgstr ""
+
+#. module: account_sepa
+#: model:ir.model.fields,field_description:account_sepa.field_account_journal__has_sepa_ct_payment_method
+msgid "Has Sepa Ct Payment Method"
 msgstr ""
 
 #. module: account_sepa
@@ -88,15 +105,6 @@ msgstr ""
 "Identificação atribuída por uma instituição (Número de IVA, por exemplo)."
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid ""
-"In result, the file might not be accepted by all bank as a valid SEPA Credit"
-" Transfer file"
-msgstr ""
-
-#. module: account_sepa
 #: model:ir.model.fields,field_description:account_sepa.field_res_company__sepa_orgid_issr
 #: model:ir.model.fields,field_description:account_sepa.field_res_config_settings__sepa_orgid_issr
 msgid "Issuer"
@@ -108,11 +116,37 @@ msgid "Journal"
 msgstr "Diário"
 
 #. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_batch_payment.py:0
+#, python-format
+msgid "Maximum amount is %s for payments in Euros, %s for other currencies."
+msgstr ""
+
+#. module: account_sepa
 #: model:ir.model.fields,help:account_sepa.field_res_config_settings__sepa_initiating_party_name
 msgid ""
 "Name of the Creditor Reference Party. Usage Rule: Limited to 70 characters "
 "in length."
 msgstr ""
+
+#. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_journal.py:0
+#, python-format
+msgid "Partner %s has no country code defined."
+msgstr ""
+
+#. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_journal.py:0
+#, python-format
+msgid "Partner %s has not bank account defined."
+msgstr ""
+
+#. module: account_sepa
+#: model:ir.model,name:account_sepa.model_account_payment_method
+msgid "Payment Methods"
+msgstr "Formas de pagamento"
 
 #. module: account_sepa
 #: model_terms:ir.ui.view,arch_db:account_sepa.account_journal_dashboard_kanban_view_inherited
@@ -130,25 +164,28 @@ msgid "Payments to send via SEPA"
 msgstr "Pagamento para enviar via SEPA"
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
+#. odoo-python
+#: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
-msgid "Please note that the following warning has been raised:"
+msgid ""
+"Please first set a SEPA identification number in the accounting settings."
+msgstr ""
+"Primeiro defina um número de identificação SEPA nas definições de "
+"faturamento."
+
+#. module: account_sepa
+#: model:ir.model,name:account_sepa.model_account_payment_register
+msgid "Register Payment"
+msgstr "Registrar Pagamento"
+
+#. module: account_sepa
+#: model:ir.model.fields,help:account_sepa.field_account_batch_payment__sct_batch_booking
+msgid "Request batch booking from the bank for the related bank statements."
 msgstr ""
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid "Please note that the following warnings have been raised:"
-msgstr ""
-
-#. module: account_sepa
-#: model:ir.model.fields,field_description:account_sepa.field_account_payment__qr_code_url
-msgid "Qr Code Url"
-msgstr ""
-
-#. module: account_sepa
-#: model_terms:ir.ui.view,arch_db:account_sepa.view_sepa_credit_transfer_search
-msgid "SCT Payments To Send"
+#: model:ir.model.fields,field_description:account_sepa.field_account_batch_payment__sct_batch_booking
+msgid "SCT Batch Booking"
 msgstr ""
 
 #. module: account_sepa
@@ -157,30 +194,24 @@ msgid "SEPA Credit Transfer"
 msgstr "Transferência de Crédito SEPA"
 
 #. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_journal_dashboard.py:0
 #, python-format
 msgid "SEPA Credit Transfers to Send"
 msgstr "Transferências a Crédito SEPA para enviar"
 
 #. module: account_sepa
-#: model:ir.model.fields,field_description:account_sepa.field_res_company__sepa_pain_version
-#: model:ir.model.fields,field_description:account_sepa.field_res_config_settings__sepa_pain_version
+#: model:ir.model.fields,field_description:account_sepa.field_account_journal__sepa_pain_version
+#: model_terms:ir.ui.view,arch_db:account_sepa.view_account_journal_form
 msgid "SEPA Pain Version"
 msgstr ""
 
 #. module: account_sepa
-#: model:ir.model.fields,help:account_sepa.field_res_company__sepa_pain_version
-#: model:ir.model.fields,help:account_sepa.field_res_config_settings__sepa_pain_version
+#: model:ir.model.fields,help:account_sepa.field_account_journal__sepa_pain_version
 msgid ""
 "SEPA may be a generic format, some countries differ from the SEPA "
-"recommandations made by the EPC (European Payment Councile) and thus the XML"
-" created need some tweakenings."
-msgstr ""
-
-#. module: account_sepa
-#: code:addons/account_sepa/models/account_payment.py:0
-#, python-format
-msgid "Scan me with your banking app."
+"recommendations made by the EPC (European Payment Council) and thus the XML "
+"created need some tweaking."
 msgstr ""
 
 #. module: account_sepa
@@ -189,13 +220,45 @@ msgid "Sct Generic"
 msgstr ""
 
 #. module: account_sepa
-#: model:ir.model.fields,field_description:account_sepa.field_account_batch_payment__sct_warning
-msgid "Sct Warning"
+#. odoo-python
+#: code:addons/account_sepa/models/account_batch_payment.py:0
+#, python-format
+msgid "Some payments are above the maximum amount allowed."
 msgstr ""
 
 #. module: account_sepa
-#: model:ir.model.fields.selection,name:account_sepa.selection__res_company__sepa_pain_version__pain_001_001_03_ch_02
-msgid "Swiss Version"
+#. odoo-python
+#: code:addons/account_sepa/models/account_batch_payment.py:0
+#, python-format
+msgid ""
+"Some payments are not made on an IBAN recipient account. This batch might "
+"not be accepted by certain banks because of that."
+msgstr ""
+
+#. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_batch_payment.py:0
+#, python-format
+msgid "Some payments have no recipient bank account set."
+msgstr ""
+
+#. module: account_sepa
+#. odoo-python
+#: code:addons/account_sepa/models/account_batch_payment.py:0
+#, python-format
+msgid ""
+"Some payments were instructed in another currency than Euro. This batch "
+"might not be accepted by certain banks because of that."
+msgstr ""
+
+#. module: account_sepa
+#: model:ir.model.fields.selection,name:account_sepa.selection__account_journal__sepa_pain_version__pain_001_001_03_se
+msgid "Swedish"
+msgstr ""
+
+#. module: account_sepa
+#: model:ir.model.fields.selection,name:account_sepa.selection__account_journal__sepa_pain_version__pain_001_001_03_ch_02
+msgid "Swiss"
 msgstr ""
 
 #. module: account_sepa
@@ -204,21 +267,24 @@ msgid ""
 "Technical feature used during the file creation. A SEPA message is said to "
 "be 'generic' if it cannot be considered as a standard european credit "
 "transfer. That is if the bank journal is not in €, a transaction is not in €"
-" or a payee is not identified by an IBAN account number and a bank BIC."
+" or a payee is not identified by an IBAN account number."
 msgstr ""
-"Recurso técnico utilizado durante a criação do arquivo. Uma mensagem SEPA é "
-"dita 'genérica' se ela não pode ser considerada como uma transferência de "
-"crédito padrão europeu. Isto é, se o diário não em €, uma transação não está"
-" em € ou um beneficiário não é identificado por um número de conta IBAN e um"
-" banco BIC."
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_payment.py:0
+#. odoo-python
+#: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
-msgid "The SEPA QR Code information is not set correctly."
+msgid ""
+"The BIC code '%s' associated to the bank '%s' of bank account '%s' of partner '%s' does not respect the required convention.\n"
+"It must contain 8 or 11 characters and match the following structure:\n"
+"- 4 letters: institution code or bank code\n"
+"- 2 letters: country code\n"
+"- 2 letters or digits: location code\n"
+"- 3 letters or digits: branch code, optional\n"
 msgstr ""
 
 #. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -229,6 +295,7 @@ msgstr ""
 "Uma conta IBAN válida é necessária para usar os recursos do SEPA."
 
 #. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_batch_payment.py:0
 #, python-format
 msgid ""
@@ -239,45 +306,25 @@ msgstr ""
 "Uma conta IBAN válida é necessária para usar os recursos do SEPA."
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_payment.py:0
-#, python-format
-msgid ""
-"The account '%s' (journal %s) requires a Bank Identification Code (BIC) to "
-"pay via SEPA. Please configure it first."
-msgstr ""
-"A conta '%s' (diário %s) requer um Código de Identificação Bancária (CIB) "
-"para pagar via SEPA. Por favor, configurá-lo primeiro."
-
-#. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
 msgid ""
-"The amount of the payment '%s' is too high. The maximum permitted is %s."
-msgstr "O valor do pagamento '%s' é muito alto. O máximo permitido é %s."
-
-#. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid ""
-"The creditor bank account %s used in payment %s is not identified by a BIC"
+"The amount of the payment '%(payment)s' is too high. The maximum permitted "
+"is %(limit)s."
 msgstr ""
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
+#. odoo-python
+#: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
 msgid ""
-"The creditor bank account %s used in payment %s is not identified by an IBAN"
+"The bank defined on account %s (from partner %s) has no BIC. Please first "
+"set one."
 msgstr ""
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid ""
-"The following payments have no recipient bank account set: %s. \n"
-"\n"
-msgstr ""
-
-#. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_payment.py:0
 #, python-format
 msgid ""
@@ -288,16 +335,7 @@ msgstr ""
 "favor, configurá-la primeiro."
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_payment.py:0
-#, python-format
-msgid ""
-"The partner account '%s' requires a Bank Identification Code (BIC) to pay "
-"via SEPA. Please configure it first."
-msgstr ""
-"O parceiro '%s' requer um Código de Identificação Bancária (CIB) para pagar "
-"via SEPA. Por favor, configurá-lo primeiro."
-
-#. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_batch_payment.py:0
 #, python-format
 msgid ""
@@ -306,40 +344,11 @@ msgid ""
 "a b c d e f g h i j k l m n o p q r s t u v w x y z\n"
 "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"
 "0 1 2 3 4 5 6 7 8 9\n"
-"/ - ? : ( ) . , ' + (space)"
-msgstr ""
-"O texto usado em arquivos SEPA só pode conter os seguintes caracteres :\n"
-"\n"
-"a b c d e f g h i j k l m n o p q r s t u v w x y z\n"
-"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"
-"0 1 2 3 4 5 6 7 8 9\n"
-"/ - ? : ( ) . , ' + (space)"
-
-#. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid "The transaction %s is instructed in another currency than EUR"
+"/ - ? : ( ) . , ' + & < > (space)"
 msgstr ""
 
 #. module: account_sepa
-#: code:addons/account_sepa/models/account_journal.py:0
-#, python-format
-msgid "There is no Bank Identifier Code recorded for bank account '%s'"
-msgstr ""
-"Não há nenhum Código de Identificação Bancária gravado para conta bancária "
-"'%s'"
-
-#. module: account_sepa
-#: code:addons/account_sepa/models/account_journal.py:0
-#, python-format
-msgid ""
-"There is no Bank Identifier Code recorded for bank account '%s' of journal "
-"'%s'"
-msgstr ""
-"Não há nenhum Código de Identificação Bancária gravado para conta bancária "
-"'%s' do diário '%s'"
-
-#. module: account_sepa
+#. odoo-python
 #: code:addons/account_sepa/models/account_journal.py:0
 #, python-format
 msgid "Too many transactions for a single file."
@@ -360,9 +369,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_sepa.field_res_config_settings__sepa_initiating_party_name
 msgid "Your Company Name"
 msgstr "Seu Nome de Empresa"
-
-#. module: account_sepa
-#: code:addons/account_sepa/models/account_batch_payment.py:0
-#, python-format
-msgid "Your bank account is not labelled in EUR"
-msgstr ""

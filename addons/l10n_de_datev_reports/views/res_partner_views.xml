@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.l10n_de_datev_reports</field>
+            <field name="model">res.partner</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='accounting_entries']" position="inside">
+                    <field name="l10n_de_datev_identifier_customer" groups="base.group_no_one" options="{'format': false}" />
+                </xpath>
+            </field>
+        </record>
+</odoo>

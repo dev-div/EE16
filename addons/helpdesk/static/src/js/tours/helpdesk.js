@@ -65,7 +65,7 @@ tour.register('helpdesk_tour', {
     content: _t("Use <b>activities</b> to organize your daily work."),
 }, {
     trigger: ".modal-dialog .btn-primary",
-    content: "Schedule your <b>activity</b>.",
+    content: _t("Schedule your <b>activity</b>."),
     position: "right",
     run: "click",
 }, {

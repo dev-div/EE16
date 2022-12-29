@@ -81,7 +81,10 @@
                                 t-attf-class="o_social_stream_post_message_body px-2 pb-2 #{has_attachments ? 'o_social_stream_post_with_attachments' : 'mb-2 border-bottom'}">
 
                                 <div class="o_social_stream_post_message_text overflow-hidden mb-2">
-                                    <div t-if="record.message.raw_value" t-out="formatPost(record.message.value)"/>
+                                    <t t-if="record.message.raw_value">
+                                        <div t-if="formatPost" t-out="formatPost(record.message.value)"/>
+                                        <div t-else="" t-out="record.message.value"/>
+                                    </t>
                                 </div>
                                 <a t-if="record.link_url.value"
                                     class="o_social_stream_post_link p-2 d-flex bg-100"

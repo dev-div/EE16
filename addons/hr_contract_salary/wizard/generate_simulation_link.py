@@ -82,7 +82,7 @@ class GenerateSimulationLink(models.TransientModel):
 
     email_to = fields.Char('Email To', compute='_compute_email_to', store=True, readonly=False)
     url = fields.Char('Offer link', compute='_compute_url')
-    display_warning_message = fields.Boolean(compute='_compute_from_job', compute_sudo=True)
+    display_warning_message = fields.Boolean(compute='_compute_warning_message', compute_sudo=True)
 
     @api.depends('employee_id.address_home_id.email', 'applicant_id.email_from')
     def _compute_email_to(self):
@@ -117,6 +117,17 @@ class GenerateSimulationLink(models.TransientModel):
             wizard.final_yearly_costs = wizard.contract_id.final_yearly_costs
 
     @api.depends('employee_job_id')
+    def _compute_warning_message(self):
+        for wizard in self:
+            current_job = wizard.employee_contract_id.job_id
+            new_job = wizard.employee_job_id
+
+            if (not current_job or current_job.id != new_job.id) and not new_job.default_contract_id:
+                wizard.display_warning_message = True
+            else:
+                wizard.display_warning_message = False
+
+    @api.depends('employee_job_id')
     def _compute_from_job(self):
         for wizard in self:
             wizard.job_title = wizard.employee_job_id.name
@@ -133,15 +144,6 @@ class GenerateSimulationLink(models.TransientModel):
                     wizard.contract_id = wizard.employee_contract_id or wizard.employee_contract_id.default_contract_id
             elif model == 'hr.applicant':
                 wizard.contract_id = wizard.employee_job_id.default_contract_id
-
-            current_contract = wizard.employee_contract_id
-            current_job = current_contract.job_id
-            new_job = wizard.employee_job_id
-
-            if (not current_job or current_job.id != new_job.id) and not new_job.default_contract_id:
-                wizard.display_warning_message = True
-            else:
-                wizard.display_warning_message = False
 
     def name_get(self):
         return [(w.id, w.employee_id.name or w.applicant_id.partner_name) for w in self]

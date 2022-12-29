@@ -4,7 +4,7 @@ import { GraphController } from "@web/views/graph/graph_controller";
 import { patch } from "@web/core/utils/patch";
 import { useService } from "@web/core/utils/hooks";
 import { SpreadsheetSelectorDialog } from "@spreadsheet_edition/assets/components/spreadsheet_selector_dialog/spreadsheet_selector_dialog";
-import { removeContextUserInfo } from "@spreadsheet_edition/assets/helpers";
+import { omit } from "@web/core/utils/objects";
 
 const { onWillStart } = owl;
 
@@ -34,7 +34,7 @@ export const patchGraphSpreadsheet = {
                 metaData: this.model.metaData,
                 searchParams: {
                     ...this.model.searchParams,
-                    context: removeContextUserInfo(this.model.searchParams.context),
+                    context: omit(this.model.searchParams.context, ...Object.keys(this.userService.context)),
                 },
                 menuXMLId,
             },

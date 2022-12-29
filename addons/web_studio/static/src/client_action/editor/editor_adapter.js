@@ -8,7 +8,7 @@ import { ConfirmationDialog, AlertDialog } from "@web/core/confirmation_dialog/c
 import ActionEditor from "web_studio.ActionEditor";
 import { ActionEditorMain } from "../../legacy/action_editor_main";
 
-const { Component } = owl;
+import { Component } from "@odoo/owl";
 
 export class EditorAdapter extends ComponentAdapter {
     constructor(props) {

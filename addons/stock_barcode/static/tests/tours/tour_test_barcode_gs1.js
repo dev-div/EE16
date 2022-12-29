@@ -817,12 +817,12 @@ tour.register('test_gs1_receipt_lot_serial', {test: true}, [
             helper.assertLineQty($parentLine, '12');
             helper.assertLineQty($line1, '8');
             helper.assertLineQty($line2, '4');
-            helper.assertLineIsHighlighted($line1, true);
-            helper.assertLineIsHighlighted($line2, false);
+            helper.assertLineIsHighlighted($line1, false);
+            helper.assertLineIsHighlighted($line2, true);
         }
     },
     {
-        trigger: '.o_barcode_client_action',
+        trigger: '.o_sublines .o_barcode_line:nth-child(2).o_selected',
         run: 'scan 010000007654321010b1-b002\x1D3000000004',
     },
     {

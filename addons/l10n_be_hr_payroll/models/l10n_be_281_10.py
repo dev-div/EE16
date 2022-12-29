@@ -163,7 +163,7 @@ class L10nBe28110(models.Model):
                 ('company_id', '=', sheet.company_id.id),
             ])
             all_employees = all_payslips.mapped('employee_id')
-            sheet.write({
+            sheet.update({
                 'line_ids': [(5, 0, 0)] + [(0, 0, {
                     'employee_id': employee.id,
                 }) for employee in all_employees]

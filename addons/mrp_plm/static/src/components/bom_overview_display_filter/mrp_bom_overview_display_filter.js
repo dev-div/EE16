@@ -6,7 +6,9 @@ import { BomOverviewDisplayFilter } from "@mrp/components/bom_overview_display_f
 patch(BomOverviewDisplayFilter.prototype, "mrp_plm", {
     setup() {
         this._super.apply();
-        this.displayOptions.ecos = this.env._t('ECOs');
+        if (this.props.showOptions.ecoAllowed) {
+            this.displayOptions.ecos = this.env._t('ECOs');
+        }
     },
 });
 
@@ -17,6 +19,7 @@ patch(BomOverviewDisplayFilter, "mrp_plm", {
         showOptions: { 
             ...BomOverviewDisplayFilter.showOptions,
             ecos: Boolean,
+            ecoAllowed: Boolean,
         },
     },
 });

@@ -9,6 +9,7 @@ import { homeMenuService } from "@web_enterprise/webclient/home_menu/home_menu_s
 import { studioService } from "@web_studio/studio_service";
 import { registerCleanup } from "@web/../tests/helpers/cleanup";
 import { resetViewCompilerCache } from "@web/views/view_compiler";
+import { fakeColorSchemeService } from "@web/../tests/helpers/mock_services";
 
 export function registerStudioDependencies() {
     const serviceRegistry = registry.category("services");
@@ -17,6 +18,7 @@ export function registerStudioDependencies() {
     serviceRegistry.add("enterprise_subscription", enterpriseSubscriptionService);
     serviceRegistry.add("home_menu", homeMenuService);
     serviceRegistry.add("studio", studioService);
+    serviceRegistry.add("color_scheme", fakeColorSchemeService);
     registerCleanup(() => resetViewCompilerCache());
 }
 

@@ -54,10 +54,16 @@ class TestPlanning(TestCommonPlanning):
         cls.env.user.company_id.resource_calendar_id = calendar
         cls.employee_joseph.resource_calendar_id = calendar_joseph
         cls.employee_bert.resource_calendar_id = calendar_bert
-        cls.slot = cls.env['planning.slot'].create({
-            'start_datetime': datetime(2019, 6, 27, 8, 0, 0),
-            'end_datetime': datetime(2019, 6, 27, 18, 0, 0),
-        })
+        cls.slot, cls.slot2 = cls.env['planning.slot'].create([
+            {
+                'start_datetime': datetime(2019, 6, 27, 8, 0, 0),
+                'end_datetime': datetime(2019, 6, 27, 18, 0, 0),
+            },
+            {
+                'start_datetime': datetime(2019, 6, 27, 8, 0, 0),
+                'end_datetime': datetime(2019, 6, 28, 18, 0, 0),
+            }
+        ])
         cls.template = cls.env['planning.slot.template'].create({
             'start_time': 11,
             'duration': 4,
@@ -70,14 +76,20 @@ class TestPlanning(TestCommonPlanning):
     def test_change_percentage(self):
         self.slot.allocated_percentage = 60
         self.assertEqual(self.slot.allocated_hours, 8 * 0.60, "It should 60%% of working hours")
+        self.slot2.allocated_percentage = 60
+        self.assertEqual(self.slot2.allocated_hours, 16 * 0.60)
 
     def test_change_hours_more(self):
         self.slot.allocated_hours = 12
         self.assertEqual(self.slot.allocated_percentage, 150)
+        self.slot2.allocated_hours = 24
+        self.assertEqual(self.slot2.allocated_percentage, 150)
 
     def test_change_hours_less(self):
         self.slot.allocated_hours = 4
         self.assertEqual(self.slot.allocated_percentage, 50)
+        self.slot2.allocated_hours = 8
+        self.assertEqual(self.slot2.allocated_percentage, 50)
 
     def test_change_start(self):
         self.slot.start_datetime += relativedelta(hours=2)

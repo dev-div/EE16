@@ -15,15 +15,17 @@
             <div class="o_tablet_instructions_content">
                 <t t-if="state.selectedStepId">
                     <View t-props="views['check']" t-key="state.selectedStepId"/>
-                    <div t-if="checkInstruction" class="o_tablet_instruction_note">
-                        <t t-out="checkInstruction"/>
-                    </div>
                 </t>
                 <t t-elif="steps.length !== 0">
                     <SummaryStep workorder="workorderId"/>
                 </t>
-                <t t-if="(state.selectedStepId || steps.length === 0) &amp;&amp; worksheetData">
-                    <DocumentViewer t-props="worksheetData"/>
+                <t t-if="state.selectedStepId || steps.length === 0">
+                    <div t-if="checkInstruction" class="o_tablet_instruction_note">
+                        <t t-out="checkInstruction"/>
+                    </div>
+                    <t t-if="worksheetData">
+                        <DocumentViewer t-props="worksheetData"/>
+                    </t>
                 </t>
             </div>
         </div>

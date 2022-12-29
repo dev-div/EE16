@@ -22,7 +22,7 @@ initialDate = new Date(initialDate.getTime() - initialDate.getTimezoneOffset() *
 
 const { toggleFilterMenu, toggleMenuItem } = require("@web/../tests/search/helpers");
 
-const { markup } = owl;
+const { markup } = require("@odoo/owl");
 
 const FORMAT = "YYYY-MM-DD HH:mm:ss";
 // This function is used to be sure that the unavailabilities will be displayed
@@ -2247,6 +2247,63 @@ document.createElement("a").classList.contains
 
         gantt.destroy();
     });
+
+    QUnit.test(
+        "dialog should close when clicking the link to many2one field",
+        async function (assert) {
+            assert.expect(2);
+
+            const webClient = await createWebClient({
+                serverData: {
+                    models: this.data,
+                    views: {
+                        "tasks,false,gantt": `<gantt date_start="start" date_stop="stop" default_group_by="project_id"/>`,
+                        "tasks,false,search": `<search/>`,
+
+                        // This is used for the form dialog.
+                        "tasks,false,form": `<form><field name="project_id"/></form>`,
+
+                        // This is used when clicking on the link to the many2one field.
+                        "projects,false,form": `<form><field name="name"/></form>`,
+                        "projects,false,search": `<search/>`,
+                    },
+                },
+                mockRPC: (route, options) => {
+                    if (route === "/web/dataset/call_kw/projects/get_formview_action") {
+                        return {
+                            res_id: options.args[0][0],
+                            type: "ir.actions.act_window",
+                            target: "current",
+                            res_model: "projects",
+                            views: [[false, "form"]],
+                        };
+                    }
+                },
+            });
+
+            await doAction(webClient, {
+                name: "Tasks Gantt",
+                res_model: "tasks",
+                type: "ir.actions.act_window",
+                views: [[false, "gantt"]],
+                context: { initialDate },
+            });
+
+            const target = getFixture();
+
+            await click(
+                target,
+                '.o_gantt_row:nth-child(2) .o_gantt_cell[data-date="2018-12-18 00:00:00"] .o_gantt_cell_add',
+                true
+            );
+            await testUtils.nextTick();
+            assert.containsOnce(target, ".o_dialog_container.modal-open");
+
+            await click(target, '.o_field_widget[name="project_id"] button.o_external_button');
+            await testUtils.nextTick();
+            assert.containsNone(target, ".o_dialog_container.modal-open");
+        }
+    );
 
     QUnit.test('expand/collapse rows', async function (assert) {
         assert.expect(8);

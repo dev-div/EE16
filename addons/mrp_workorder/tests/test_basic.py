@@ -1697,6 +1697,48 @@ class TestWorkOrderProcess(TestWorkOrderProcessCommon):
         self.assertEqual(wo.date_planned_finished, wo.date_planned_start + timedelta(minutes=wo.duration_expected+60),
                          "Date planned finished should be consistent with the workorder duration")
 
+    @freeze_time('2022-10-10 07:45')
+    def test_planning_9(self):
+        """ Plan a workorder and edit the scheduled start date, when we start
+        the workorder, the scheduled finish date should be updated"""
+        mo_form = Form(self.env['mrp.production'])
+        mo_form.product_id = self.product_4
+        mo_form.bom_id = self.planning_bom
+        mo_form.product_qty = 1
+        mo_form.date_planned_start = datetime(2022, 10, 10, 8, 0, 0, 0)
+        mo = mo_form.save()
+        mo.action_confirm()
+        mo.button_plan()
+        wo = mo.workorder_ids
+        wc = wo.workcenter_id
+        self.assertEqual(wo.date_planned_start, datetime(2022, 10, 10, 8, 0, 0, 0),
+                         "Date planned start should not have changed")
+        self.assertEqual(wo.duration_expected, (60.0 * 100 / wc.time_efficiency) + wc.time_start + wc.time_stop,
+                         "Duration expected should be the sum of the time_cycle (taking the workcenter efficiency into account), the time_start and time_stop")
+        self.assertEqual(wo.date_planned_finished, wo.date_planned_start + timedelta(minutes=wo.duration_expected),
+                         "Date planned finished should take into consideration the midday break")
+        duration_expected = wo.duration_expected
+
+        # Edit the workorder's scheduled start date to the next day
+        with Form(mo) as mo_form:
+            with mo_form.workorder_ids.edit(0) as wo_line:
+                wo_line.date_planned_start = datetime(2022, 10, 11, 8, 0, 0, 0)
+        self.assertEqual(wo.date_planned_start, datetime(2022, 10, 11, 8, 0, 0, 0),
+                         "Date planned start should have changed")
+        self.assertEqual(wo.duration_expected, duration_expected,
+                         "Duration expected should not have changed")
+        self.assertEqual(wo.date_planned_finished, wo.date_planned_start + timedelta(minutes=duration_expected),
+                         "Date planned finished should have been recomputed to be consistent with the workorder duration")
+
+        # Start the workorder
+        wo.button_start()
+        self.assertEqual(wo.date_planned_start, datetime(2022, 10, 10, 7, 45, 0, 0),
+                         "Date planned start should have changed")
+        self.assertEqual(wo.duration_expected, duration_expected,
+                         "Duration expected should have changed")
+        self.assertEqual(wo.date_planned_finished, wo.date_planned_start + timedelta(minutes=duration_expected),
+                         "Date planned finished should have been recomputed to be consistent with the workorder duration")
+
     def test_plan_unplan_date(self):
         """ Testing planning a workorder then cancel it and then plan it again.
         The planned date must be the same the first time and the second time the
@@ -2178,7 +2220,6 @@ class TestRoutingAndKits(TransactionCase):
             move.name = mo.name
             move.product_id = add_product
             move.product_uom = add_product.uom_id
-            move.location_id = mo.location_src_id
             move.location_dest_id = mo.production_location_id
             move.product_uom_qty = 2
             move.operation_id = mo.bom_id.operation_ids[0]
@@ -2215,7 +2256,6 @@ class TestRoutingAndKits(TransactionCase):
             move.name = mo.name
             move.product_id = add_product
             move.product_uom = add_product.uom_id
-            move.location_id = mo.location_src_id
             move.location_dest_id = mo.production_location_id
             move.product_uom_qty = 2
             move.operation_id = mo.bom_id.operation_ids[0]

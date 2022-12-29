@@ -360,15 +360,17 @@ class EasypostRequest():
 
         # get tracking code and lable file url
         result['track_shipments_url'] = {res['tracking_code']: res['tracker']['public_url'] for res in response['shipments'] if res['tracker']}
-        result['track_label_data'] = {res['tracking_code']: res['postage_label']['label_url'] for res in response['shipments']}
+        result['track_label_data'] = {res['tracking_code']: res['postage_label']['label_url'] for res in response['shipments'] if res['postage_label']}
 
         # get commercial invoice + other forms
         result['forms'] = {form['form_type']: form['form_url'] for res in response['shipments'] for form in res.get('forms', [])}
 
         # buy insurance after successful order purchase
         for shp_id in result.get('shipment_ids'):
-            endpoint = "shipments/%s/insure" % shp_id
-            response = self._make_api_request(endpoint, 'post', data={'amount': result.get('insured_amount')})
+            insured_amount = result.get('insured_amount')
+            if not float_is_zero(insured_amount, precision_rounding=2):
+                endpoint = "shipments/%s/insure" % shp_id
+                response = self._make_api_request(endpoint, 'post', data={'amount': insured_amount})
         return result
 
     def get_tracking_link(self, order_id):

@@ -70,7 +70,7 @@
                 <ENC_8 t-out="validation_time"/>
                 <ENC_9 t-out="edi_type"/>
                 <ENC_10 t-out="invoice.currency_id.name"/>
-                <ENC_15 t-out="len(invoice.invoice_line_ids.filtered(lambda line: line.display_type not in ('line_note', 'line_section')))"/>
+                <ENC_15 t-out="len(invoice.invoice_line_ids.filtered(lambda line: line.display_type == 'product'))"/>
                 <ENC_16 t-out="invoice.invoice_date_due"/>
                 <ENC_17 t-out="invoice.l10n_co_edi_attachment_url"/>
                 <ENC_20 t-out="'2' if invoice.company_id.l10n_co_edi_test_mode else '1'"/>
@@ -350,7 +350,7 @@
                     <FE1_5 t-out="format_monetary(invoice.amount_total, invoice.currency_id)"/>
 
                     <t t-set="ft1_counter" t-value="1"/>
-                    <FT1 t-foreach="invoice.invoice_line_ids.filtered(lambda line: line.display_type not in ('line_note', 'line_section'))" t-as="line">
+                    <FT1 t-foreach="invoice.invoice_line_ids.filtered(lambda line: line.display_type == 'product')" t-as="line">
                         <FT1_1 t-out="ft1_counter"/>
                         <FT1_2 t-out="format_monetary(line.price_subtotal, invoice.currency_id)"/>
                         <FT1_3 t-out="format_monetary(line.price_unit, invoice.currency_id)"/>
@@ -360,7 +360,7 @@
             </FE1>
 
             <t t-set="ite_counter" t-value="1"/>
-            <ITE t-foreach="invoice.invoice_line_ids.filtered(lambda line: line.display_type not in ('line_note', 'line_section'))" t-as="line">
+            <ITE t-foreach="invoice.invoice_line_ids.filtered(lambda line: line.display_type == 'product')" t-as="line">
                     <ITE_1 t-out="ite_counter"/>
                     <ITE_2/>
                     <ITE_3 t-out="line.quantity"/>

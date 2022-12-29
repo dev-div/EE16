@@ -6,6 +6,7 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_round, float_repr, DEFAULT_SERVER_DATE_FORMAT
 from odoo.tools.misc import mod10r, remove_accents
 from odoo.tools.xml_utils import create_xml_node, create_xml_node_chain
+from odoo.addons.account_batch_payment.models.sepa_mapping import _replace_characters_SEPA
 
 from collections import defaultdict
 
@@ -30,7 +31,7 @@ def sanitize_communication(communication):
         communication = communication[1:]
     if communication.endswith('/'):
         communication = communication[:-1]
-    communication = re.sub('[^-A-Za-z0-9/?:().,\'+ ]', '', remove_accents(communication))
+    communication = _replace_characters_SEPA(communication)
     return communication
 
 class AccountJournal(models.Model):
@@ -175,9 +176,7 @@ class AccountJournal(models.Model):
     def _get_document(self, pain_version):
         if pain_version == 'pain.001.001.03.ch.02':
             Document = self._create_pain_001_001_03_ch_document()
-        elif pain_version == 'pain.001.003.03':
-            Document = self._create_pain_001_003_03_document()
-        else:
+        else: #The German version will also use the create_pain_001_001_03_document since the version 001.003.03 is deprecated
             Document = self._create_pain_001_001_03_document()
 
         return Document
@@ -202,7 +201,8 @@ class AccountJournal(models.Model):
         return Document
 
     def _create_pain_001_003_03_document(self):
-        """ Create a sepa credit transfer file that follows the german specific guidelines, as established
+        """ This funtion is now deprecated since pain.001.003.03 cannot be used anymore.
+            Create a sepa credit transfer file that follows the German specific guidelines, as established
             by the German Bank Association (Deutsche Kreditwirtschaft) (pain.001.003.03)
 
             :param doc_payments: recordset of account.payment to be exported in the XML document returned
@@ -461,7 +461,7 @@ class AccountJournal(models.Model):
         iban = partner_bank.sanitized_acc_number
         if (
             partner_bank.acc_type != 'iban'
-            or (partner_bank.sanitized_acc_number or '')[:2] != 'CH'
+            or (partner_bank.sanitized_acc_number or '')[:2] not in ('CH', 'LI')
             or partner_bank.company_id.id not in (False, company.id)
             or len(iban) < 9
         ):

@@ -12,14 +12,14 @@ class DocumentsFolderDeletionWizard(models.TransientModel):
 
     def delete(self):
         for wizard in self:
-            self.env['documents.document'].search([('folder_id', 'child_of', wizard.folder_id.id)]).unlink()
+            self.env['documents.document'].with_context(active_test=False).search([('folder_id', 'child_of', wizard.folder_id.id)]).unlink()
         self.folder_id.unlink()
         return True
 
     def delete_and_move(self):
         for wizard in self:
             parent_folder = wizard.folder_id.parent_folder_id.ensure_one()
-            self.env['documents.document'].search([('folder_id', '=', wizard.folder_id.id)]).write({'folder_id': parent_folder.id})
+            self.env['documents.document'].with_context(active_test=False).search([('folder_id', '=', wizard.folder_id.id)]).write({'folder_id': parent_folder.id})
             wizard.folder_id.children_folder_ids.parent_folder_id = parent_folder
         self.folder_id.unlink()
         return True

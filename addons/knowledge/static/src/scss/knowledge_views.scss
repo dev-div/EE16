@@ -264,23 +264,14 @@
 
     .o_knowledge_properties {
         min-width: 250px;
+
+        .o_inner_group {
+            width: 100%;
+            grid-template-columns: 1fr;
+        }
         .o_property_field {
-            flex-direction: column !important;
-            padding: 0 !important;
-            margin-bottom: 1rem;
-            .o_td_label {
-                width: 100% !important;
-                padding: 0px !important;
-                .o_property_field_highlight b {
-                    margin-left: 0px;
-                }
-            }
             .o_property_field_value {
-                padding: 0rem !important;
                 .o_input_dropdown {
-                    margin-left: 0;
-                    padding-left: 0;
-                    min-width: auto;
                     .dropdown {
                         padding-right: 10px;
                     }
@@ -297,10 +288,6 @@
     img {
         width: 20px;
         height: 20px;
-    }
-    .select2-highlighted {
-        background: $o-brand-odoo !important;
-        color: $o-white;
     }
 }
 
@@ -342,7 +329,6 @@
         }
         .o_knowledge_properties {
             .o_property_field {
-                flex-direction: row !important;
                 label {
                     font-size: $o-font-size-base;
                 }
@@ -359,7 +345,7 @@
             overflow-x: hidden;
         }
         .o_overlap_cover {
-            margin-bottom: -90px;
+            margin-bottom: -80px;
             .o_article_emoji {
                 position:relative;
                 top:-70px;

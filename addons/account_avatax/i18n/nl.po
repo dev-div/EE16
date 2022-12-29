@@ -98,13 +98,12 @@ msgstr "API sleutel"
 #. module: account_avatax
 #: model:ir.model.fields,help:account_avatax.field_account_fiscal_position__avatax_invoice_account_id
 msgid "Account that will be used by Avatax taxes for invoices."
-msgstr "Account dat door Avatax-belastingen wordt gebruikt voor facturen."
+msgstr "Account dat door Avatax-BTW wordt gebruikt voor facturen."
 
 #. module: account_avatax
 #: model:ir.model.fields,help:account_avatax.field_account_fiscal_position__avatax_refund_account_id
 msgid "Account that will be used by Avatax taxes for refunds."
-msgstr ""
-"Account dat door Avatax-belastingen wordt gebruikt voor credit-facturen."
+msgstr "Account dat door Avatax-BTW wordt gebruikt voor credit-facturen."
 
 #. module: account_avatax
 #: model_terms:ir.ui.view,arch_db:account_avatax.res_config_settings_view_form
@@ -121,7 +120,7 @@ msgstr ""
 #. module: account_avatax
 #: model_terms:ir.ui.view,arch_db:account_avatax.res_config_settings_view_form
 msgid "Automatically compute tax rates"
-msgstr "Automatisch belastingtarieven berekenen"
+msgstr "Automatisch BTW-tarieven berekenen"
 
 #. module: account_avatax
 #: model:ir.model.fields,field_description:account_avatax.field_res_company__avalara_api_id
@@ -233,8 +232,8 @@ msgid ""
 "Avatax will use this date to calculate the tax on this invoice. If not "
 "specified it will use the Invoice Date."
 msgstr ""
-"Avatax gebruikt deze datum om de belasting op deze factuur te berekenen. Als"
-" dit niet is opgegeven, wordt de factuurdatum gebruikt."
+"Avatax gebruikt deze datum om de BTW op deze factuur te berekenen. Als dit "
+"niet is opgegeven, wordt de factuurdatum gebruikt."
 
 #. module: account_avatax
 #: model_terms:ir.ui.view,arch_db:account_avatax.avatax_validate_address_view_form
@@ -282,7 +281,7 @@ msgstr "Bedrijfscode"
 #. module: account_avatax
 #: model_terms:ir.ui.view,arch_db:account_avatax.move_form_inherit
 msgid "Compute Taxes using Avatax"
-msgstr "Belasting berekenen met Avatar"
+msgstr "BTW berekenen met Avatar"
 
 #. module: account_avatax
 #: model:ir.model,name:account_avatax.model_res_config_settings
@@ -418,8 +417,7 @@ msgstr "Mixin om unieke id's voor Avatax te genereren"
 #: model:ir.model,name:account_avatax.model_account_avatax
 msgid "Mixin to manage taxes with Avatax on various business documents"
 msgstr ""
-"Mixin om belastingen te beheren met Avatax op verschillende zakelijke "
-"documenten"
+"Mixin om BTW te beheren met Avatax op verschillende zakelijke documenten"
 
 #. module: account_avatax
 #: model:ir.model.fields,field_description:account_avatax.field_avatax_exemption__name
@@ -449,7 +447,7 @@ msgid ""
 "Odoo could not fetch the taxes related to %(document)s.\n"
 "Please check the status of `%(technical)s` in the AvaTax portal."
 msgstr ""
-"Odoo kon de belastingen met betrekking tot %(document)s niet ophalen.\n"
+"Odoo kon de BTW met betrekking tot %(document)s niet ophalen.\n"
 "Controleer de status van `%(technical)s` in het AvaTax-portaal."
 
 #. module: account_avatax
@@ -573,7 +571,7 @@ msgid ""
 "The Avalara Tax Code is required for %(name)s (#%(id)s)\n"
 "See https://taxcode.avatax.avalara.com/"
 msgstr ""
-"De Avalara-belastingcode is vereist voor %(name)s (#%(id)s)\n"
+"De Avalara-BTWcode is vereist voor %(name)s (#%(id)s)\n"
 "Zie https://taxcode.avatax.avalara.com/"
 
 #. module: account_avatax

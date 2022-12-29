@@ -533,13 +533,7 @@
             <record id="account_financial_report_l10n_pt_ddr_reg_resultado_liquido_do_periodo_balance" model="account.report.expression">
                 <field name="label">balance</field>
                 <field name="engine">aggregation</field>
-                <field name="formula">REG_RESULTADO_ANTES_DE_IMPOSTOS.balance - IMPOSTO_RENDIMENTO_PERIODO.balance</field>
-                <field name="date_scope">normal</field>
-            </record>
-            <record id="account_financial_report_l10n_pt_ddr_reg_resultado_liquido_do_periodo_balance" model="account.report.expression">
-                <field name="label">balance</field>
-                <field name="engine">aggregation</field>
-                <field name="formula">REG_RESULTADO_LIQUIDO_DO_PERIODO.balance_account_codes + REG_RESULTADO_LIQUIDO_DO_PERIODO.balance</field>
+                <field name="formula">REG_RESULTADO_LIQUIDO_DO_PERIODO.balance_account_codes + REG_RESULTADO_ANTES_DE_IMPOSTOS.balance - IMPOSTO_RENDIMENTO_PERIODO.balance</field>
                 <field name="date_scope">normal</field>
             </record>
         </field>

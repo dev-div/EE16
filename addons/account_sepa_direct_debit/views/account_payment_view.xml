@@ -30,7 +30,7 @@
                          attrs="{'invisible': ['|', '|', ('sdd_mandate_usable', '=', False), ('payment_type', '!=', 'inbound'), ('state', '!=', 'draft'),]}"
                          role="status">Good news! A valid Sepa Mandate is available.</div>
                     <div class="alert alert-warning text-center"
-                         attrs="{'invisible': ['|', '|', ('payment_method_code', '!=', 'sdd'), ('state', '!=', 'draft'), ('sdd_mandate_usable', '!=', False)]}"
+                         attrs="{'invisible': ['|', '|', ('payment_method_code', 'not in', ('sdd', 'sepa_direct_debit')), ('state', '!=', 'draft'), ('sdd_mandate_usable', '!=', False)]}"
                          role="alert">Oops! No valid SEPA mandate for this customer. <a type="action" name="%(account_sepa_direct_debit.account_sepa_direct_debit_mandate_tree_act)d">Create it.</a></div>
                 </xpath>
             </field>

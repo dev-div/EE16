@@ -1,6 +1,6 @@
 $o-account-action-col-width: 15px;
 $o-account-main-table-borders-padding: 3px;
-$o-account-light-border: 1px solid #bbb;
+$o-account-light-border: 1px solid var(--AccountReconciliation-border-color, #bbb);
 $o-account-initial-line-background: #f0f0f0;
 $o-account-info-color: #44c;
 
@@ -9,6 +9,7 @@ $o-account-info-color: #44c;
     .progress-bar {
         font-size: 1.08333333rem;
         height: 14px;
+        background-color: var(--AccountReconciliation-background-progress-bar, grey);
         span {
             display: contents;
         }
@@ -31,6 +32,10 @@ $o-account-info-color: #44c;
         font-size: 125%;
     }
 
+    .o_required_modifier {
+        --o-input-border-color: var(--AccountReconciliation-bottom-color, black);
+    }
+
     .accounting_view {
         width: 100%;
 
@@ -40,7 +45,7 @@ $o-account-info-color: #44c;
         }
         .edit_amount {
             margin-left: 20px;
-            color: #bbb;
+            color: var(--AccountReconciliation-text-color, #bbb);
         }
         .cell:hover .edit_amount {
             color: #00A09D;
@@ -56,6 +61,7 @@ $o-account-info-color: #44c;
             left: -4px;
             line-height: 0;
             padding: 3px 2px 5px 5px;
+            background-color: var(--AccountReconciliation-background-hover, #F0F0F0);
         }
 
     }
@@ -110,10 +116,11 @@ $o-account-info-color: #44c;
             border-top: $o-account-light-border;
             padding-top: 4px;
             padding-bottom: 5px;
-            background-color: $o-account-initial-line-background;
+            background-color: var(--AccountReconciliation-background-color, #FFFFFF);
         }
         tfoot td {
             color: #bbb;
+            border-color: var(--AccountReconciliation-border-color, #bbb);
         }
 
         /* columns */
@@ -121,7 +128,7 @@ $o-account-info-color: #44c;
         .cell_action {
             width: 15px;
             color: map-get($grays, '700');
-            background: #fff;
+            background: var(--AccountReconciliation-background-color, #FFFFFF);
             border: 0;
             text-align: center;
             .fa-add-remove:before {
@@ -165,7 +172,7 @@ $o-account-info-color: #44c;
 
         table.accounting_view {
             .cell_right, .cell_left, .cell_label, .cell_due_date, .cell_account_code,.cell_info_popover {
-                box-shadow: 0 1px 0 #EAEAEA;
+                box-shadow: 0 1px 0 var(--AccountReconciliation-border-color, #EAEAEA);
             }
         }
         /* info popover */
@@ -215,12 +222,12 @@ $o-account-info-color: #44c;
         }
 
         > .o_notebook > .tab-content > div {
-            border: 1px solid #ddd;
+            border: 1px solid var(--AccountReconciliation-border-color, #ddd);
             border-top: 0;
         }
 
         > .o_notebook .match table tr:hover {
-            background-color: #eee;
+            background-color: var(--AccountReconciliation-background-hover, #eee);
         }
 
         &:not([data-mode="inactive"]) > .o_notebook {

@@ -116,6 +116,10 @@ class SpanishTaxReportCustomHandler(models.AbstractModel):
             {'name': _('BOE'), 'sequence': 0, 'action': 'open_boe_wizard', 'action_param': boe_number, 'file_export_type': _('BOE')},
         )
 
+    def _dynamic_lines_generator(self, report, options, all_column_groups_expression_totals):
+        # Overridden to prevent having unnecessary lines from the generic tax report.
+        return []
+
     def open_boe_wizard(self, options, boe_number):
         """ Triggers the generation of the BOE file for the current mod report.
         In case this BOE file needs some more data to be entered manually by

@@ -6,9 +6,9 @@
 # Ivan Kropotkin <yelizariev@itpp.dev>, 2022
 # Irina Fedulova <istartlin@gmail.com>, 2022
 # ILMIR <karamov@it-projects.info>, 2022
-# Сергей Шебанин <sergey@shebanin.ru>, 2022
 # Martin Trigaux, 2022
 # Иван Дроздов <hiraetari@gmail.com>, 2022
+# Сергей Шебанин <sergey@shebanin.ru>, 2022
 # 
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:24+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Иван Дроздов <hiraetari@gmail.com>, 2022\n"
+"Last-Translator: Сергей Шебанин <sergey@shebanin.ru>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/odoo/teams/41243/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,6 +188,13 @@ msgid "ID"
 msgstr "Идентификатор"
 
 #. module: project_enterprise
+#. openerp-web
+#: code:addons/project_enterprise/static/src/js/task_gantt_utils.js:0
+#, python-format
+msgid "Invalid scale interval"
+msgstr ""
+
+#. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard____last_update
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard____last_update
 msgid "Last Modified on"
@@ -231,6 +238,14 @@ msgstr ""
 #: code:addons/project_enterprise/models/project_task.py:0
 #, python-format
 msgid ""
+"One parameter is missing to use this method. You should give a start and end"
+" dates."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
 "Operation not supported, you should always compare planning_overlap to 0 "
 "value with = or > operator."
 msgstr ""
@@ -264,7 +279,7 @@ msgstr "Планируемая дата"
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "Planning"
-msgstr "Кадровые процессы"
+msgstr "Планирование"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__planning_overlap
@@ -385,6 +400,12 @@ msgstr ""
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "The tasks have been successfully scheduled."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "This Progress Bar is not implemented."
 msgstr ""
 
 #. module: project_enterprise

@@ -11,9 +11,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:26+0000\n"
+"POT-Creation-Date: 2022-11-25 09:15+0000\n"
 "PO-Revision-Date: 2022-09-22 05:44+0000\n"
 "Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
@@ -103,17 +103,6 @@ msgstr ""
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
-msgid ""
-"<span class=\"ml4 mr4\" attrs=\"{'invisible': ['|', "
-"('form_single_currency_mode', '=', True), ('form_index', '=', "
-"False)]}\">in</span>"
-msgstr ""
-"<span class=\"ml4 mr4\" attrs=\"{'invisible': ['|', "
-"('form_single_currency_mode', '=', True), ('form_index', '=', "
-"False)]}\">在</span>"
-
-#. module: account_accountant
-#: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 msgid "<span class=\"ml4 mr4\">-</span>"
 msgstr "<span class=\"ml4 mr4\">-</span>"
 
@@ -125,24 +114,20 @@ msgstr "<span class=\"ml4 mr4\">在</span>"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 msgid ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', '|', "
-"('form_single_currency_mode', '=', True), ('form_force_negative_sign', '=', "
-"False), ('form_index', '=', False)]}\">-</span>"
+"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', "
+"('form_force_negative_sign', '=', False), ('form_index', '=', "
+"False)]}\">-</span>"
 msgstr ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', '|', "
-"('form_single_currency_mode', '=', True), ('form_force_negative_sign', '=', "
-"False), ('form_index', '=', False)]}\">-</span>"
+"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', "
+"('form_force_negative_sign', '=', False), ('form_index', '=', "
+"False)]}\">-</span>"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 msgid ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', "
-"('form_force_negative_sign', '=', False), ('form_index', '=', "
-"False)]}\">-</span>"
+"<span class=\"o_form_label\" attrs=\"{'invisible': "
+"[('form_force_negative_sign', '=', False)]}\">-</span>"
 msgstr ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': ['|', "
-"('form_force_negative_sign', '=', False), ('form_index', '=', "
-"False)]}\">-</span>"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -171,7 +156,7 @@ msgstr "<strong><b>干得好！</b>你经历了这次旅行的所有步骤。</s
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "A reconciliation must involve at least 2 move lines."
-msgstr "对账必须至少包含2个凭证行."
+msgstr "对账必须至少包含2个凭证行的结算单."
 
 #. module: account_accountant
 #. openerp-web
@@ -273,7 +258,7 @@ msgstr "金额"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__amount_currency
 msgid "Amount Currency"
-msgstr "货币总额"
+msgstr "外币金额"
 
 #. module: account_accountant
 #. openerp-web
@@ -300,10 +285,10 @@ msgid "Analytic Account"
 msgstr "分析账户"
 
 #. module: account_accountant
-#: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget__analytic_distribution_stored_char
-#: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__analytic_distribution_stored_char
-msgid "Analytic Distribution Stored Char"
-msgstr "分析分布存储字符"
+#: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget__analytic_precision
+#: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__analytic_precision
+msgid "Analytic Precision"
+msgstr "分析精度"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__use_anglo_saxon
@@ -370,7 +355,7 @@ msgstr "修改锁定日期"
 msgid ""
 "Check & validate the bill. If no vendor has been found, add one before "
 "validating."
-msgstr "核对并验证账单。如果没有找到供应商，请在有验证前添加一个 "
+msgstr "核对和验证账单。如果没有找到供应商，请在有验证前添加一个 "
 
 #. module: account_accountant
 #. openerp-web
@@ -454,7 +439,7 @@ msgstr "连接您的银行并获取最新交易。"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
 msgid "Counterpart Values"
-msgstr "对应值"
+msgstr "对方值"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -536,6 +521,7 @@ msgstr "币种"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__date
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_move_line_search_bank_rec_widget
+#: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_search_bank_rec_widget
 #, python-format
 msgid "Date"
@@ -626,6 +612,12 @@ msgid ""
 msgstr ""
 "在此日期之前，每个付款和开票单都将收到\"从开票\"状态，隐藏与它相关的所有会计分录。如果在将所有实际会计数据导入 Odoo "
 "之前仅使用开票，则在安装会计后使用此选项。"
+
+#. module: account_accountant
+#: code:addons/account_accountant/models/bank_rec_widget.py:0
+#, python-format
+msgid "Exchange Difference: %s"
+msgstr ""
 
 #. module: account_accountant
 #. openerp-web
@@ -830,7 +822,7 @@ msgstr "伟大！让我们继续。"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__group_tax_id
 msgid "Group Tax"
-msgstr "集团税"
+msgstr "群组税"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__id
@@ -1037,7 +1029,7 @@ msgstr "让我们使用 AI 填写表单<br/><br/><i>提示： 如果 OCR 尚未�
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget__line_ids
 msgid "Line"
-msgstr "线路"
+msgstr "明细行"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_bank_rec_widget_line
@@ -1198,6 +1190,7 @@ msgstr "不匹配"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_search_bank_rec_widget
+#: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_tree_bank_rec_widget
 msgid "Notes"
 msgstr "备注"
 
@@ -1275,19 +1268,19 @@ msgstr "应付"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 msgid "Payable:"
-msgstr "支付："
+msgstr "应付："
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_payment_form_inherit_account_accountant
 msgid "Payment Matching"
-msgstr "付款匹配"
+msgstr "支付匹配"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_bank_statement_line__payment_state_before_switch
 #: model:ir.model.fields,field_description:account_accountant.field_account_move__payment_state_before_switch
 #: model:ir.model.fields,field_description:account_accountant.field_account_payment__payment_state_before_switch
 msgid "Payment State Before Switch"
-msgstr "切换前的付款状态"
+msgstr "切换前的支付状态"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_payment
@@ -1367,7 +1360,7 @@ msgstr "应收"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_rec_widget_form
 msgid "Receivable:"
-msgstr "应 收账 款："
+msgstr "应收："
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_move_line_search_bank_rec_widget
@@ -1394,7 +1387,7 @@ msgstr "调节"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__reconcile_model_id
 msgid "Reconcile Model"
-msgstr "协调模型"
+msgstr "调节模型"
 
 #. module: account_accountant
 #: model:ir.model.fields.selection,name:account_accountant.selection__bank_rec_widget__state__reconciled
@@ -1440,12 +1433,12 @@ msgstr "保存"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_form_bank_rec_widget
 msgid "Save & Close"
-msgstr "保存并关闭"
+msgstr "保存和关闭"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_form_bank_rec_widget
 msgid "Save & New"
-msgstr "保存并新建"
+msgstr "保存和新建"
 
 #. module: account_accountant
 #. openerp-web
@@ -1515,12 +1508,12 @@ msgstr "源金额货币"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__source_balance
 msgid "Source Balance"
-msgstr "源平衡"
+msgstr "源余额"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__source_credit
 msgid "Source Credit"
-msgstr "来源信用"
+msgstr "源贷方"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_bank_rec_widget_line__source_debit
@@ -1739,7 +1732,7 @@ msgstr "交易货币"
 #: code:addons/account_accountant/models/account_move.py:0
 #, python-format
 msgid "Transfer Accounts"
-msgstr "转账"
+msgstr "转账账户"
 
 #. module: account_accountant
 #: model:ir.actions.server,name:account_accountant.auto_reconcile_bank_statement_line_ir_actions_server
@@ -1774,6 +1767,7 @@ msgstr "验证"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_move_line_list_bank_rec_widget
+#: model_terms:ir.ui.view,arch_db:account_accountant.view_bank_statement_line_tree_bank_rec_widget
 msgid "View"
 msgstr "视图"
 
@@ -1915,6 +1909,11 @@ msgstr "例如. 银行费用"
 #: model:ir.model.fields.selection,name:account_accountant.selection__bank_rec_widget_line__flag__early_payment
 msgid "early_payment"
 msgstr "early_payment"
+
+#. module: account_accountant
+#: model:ir.model.fields.selection,name:account_accountant.selection__bank_rec_widget_line__flag__exchange_diff
+msgid "exchange_diff"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields.selection,name:account_accountant.selection__bank_rec_widget_line__flag__liquidity

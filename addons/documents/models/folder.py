@@ -33,7 +33,7 @@ class DocumentFolder(models.Model):
         hierarchical_naming = self.env.context.get('hierarchical_naming', True)
         for record in self:
             if hierarchical_naming and record.parent_folder_id:
-                name_array.append((record.id, "%s / %s" % (record.parent_folder_id.name, record.name)))
+                name_array.append((record.id, "%s / %s" % (record.parent_folder_id.sudo().name, record.name)))
             else:
                 name_array.append((record.id, record.name))
         return name_array

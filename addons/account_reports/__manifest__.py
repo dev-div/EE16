@@ -63,6 +63,9 @@ Accounting Reports
             'account_reports/static/src/components/**/*.js',
             'account_reports/static/src/xml/**/*',
         ],
+        'web.dark_mode_assets_backend': [
+            'account_reports/static/src/scss/*.dark.scss',
+        ],
         'web.qunit_suite_tests': [
             'account_reports/static/tests/action_manager_account_report_dl_tests.js',
             'account_reports/static/tests/account_reports_tests.js',

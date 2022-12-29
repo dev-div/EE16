@@ -10,7 +10,7 @@ const { Component, onWillStart, useState } = owl;
 const permissionLevel = {'none': 0, 'read': 1, 'write': 2}
 const restrictMessage = _lt("Are you sure you want to restrict this role and restrict access ? "
 + "This article will no longer inherit access settings from the parent page.");
-const loseWriteMessage = _lt('Are you sure you want to remove you own "Write" access ?');
+const loseWriteMessage = _lt('Are you sure you want to remove your own "Write" access ?');
 
 class PermissionPanel extends Component {
     /**
@@ -25,18 +25,17 @@ class PermissionPanel extends Component {
         this.state = useState({
             loading: true,
             partner_id: session.partner_id
-        })
-        onWillStart(this.loadPanel);
+        });
+        onWillStart(() => {
+            this.loadPanel();
+        });
     }
 
     async loadPanel () {
-        const data = await this.loadData();
-        this.state = {
-            ...this.state,
-            ...data,
+        Object.assign(this.state, {
+            ...await this.loadData(),
             loading: false
-        };
-        this.render();
+        });
     }
 
     /**
@@ -163,7 +162,7 @@ class PermissionPanel extends Component {
             this.loadPanel();
         };
         const loseAccessMessage = _t('Are you sure you want to set your permission to "none"? If you do, you will no longer have access to the article.');
-        const message = willLoseAccess ? loseAccessMessage : willLoseWrite ? loseWriteMessage : loseAccessMessage;
+        const message = willLoseAccess ? loseAccessMessage : willLoseWrite ? loseWriteMessage : restrictMessage ;
         const title = willLoseAccess ? _t('Leave Article') : _t('Change Permission');
         this._showConfirmDialog(message, title, confirm, discard);
     }

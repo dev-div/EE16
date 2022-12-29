@@ -142,6 +142,7 @@
                     </div>
                     <FilterFieldOffset
                         t-if="state.type === 'date'"
+                        active="!!state.fieldMatchings[object_index].fieldMatch.chain"
                         onOffsetSelected="(e) => this.onSetFieldOffset(object_index, e.target.value)"
                         selectedOffset="object.fieldMatch and object.fieldMatch.offset || 0"
                         />

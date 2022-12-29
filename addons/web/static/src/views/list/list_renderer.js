@@ -19,7 +19,7 @@ import { ViewButton } from "@web/views/view_button/view_button";
 import { useBounceButton } from "@web/views/view_hook";
 import { Widget } from "@web/views/widgets/widget";
 
-const {
+import {
     Component,
     onMounted,
     onPatched,
@@ -29,7 +29,7 @@ const {
     useRef,
     useState,
     useEffect,
-} = owl;
+} from "@odoo/owl";
 
 const formatters = registry.category("formatters");
 
@@ -497,13 +497,7 @@ export class ListRenderer extends Component {
         const aggregates = {};
         for (const fieldName in this.props.list.activeFields) {
             const field = this.fields[fieldName];
-            const fieldValues = [];
-            for (const value of values) {
-                const fieldValue = value[fieldName];
-                if (fieldValue) {
-                    fieldValues.push(fieldValue);
-                }
-            }
+            const fieldValues = values.map((v) => v[fieldName]).filter((v) => v || v === 0);
             if (!fieldValues.length) {
                 continue;
             }
@@ -697,7 +691,7 @@ export class ListRenderer extends Component {
                 this.props.list.editedRecord &&
                 this.props.list.editedRecord.isReadonly(column.name)
             ) {
-                classNames.push("pe-none", "text-muted");
+                classNames.push("text-muted");
             } else {
                 classNames.push("cursor-pointer");
             }
@@ -881,12 +875,8 @@ export class ListRenderer extends Component {
             record = this.props.list.records[recordIndex] || record;
         };
 
-        if (this.props.list.model.multiEdit && record.selected) {
-            await recordAfterResequence();
-            await record.switchMode("edit");
-            this.cellToFocus = { column, record };
-        } else if (this.isInlineEditable(record)) {
-            if (record.isInEdition) {
+        if ((this.props.list.model.multiEdit && record.selected) || this.isInlineEditable(record)) {
+            if (record.isInEdition && this.props.list.editedRecord === record) {
                 this.focusCell(column);
                 this.cellToFocus = null;
             } else {
@@ -1704,17 +1694,14 @@ export class ListRenderer extends Component {
             return;
         }
         if (this.props.list.selection.length) {
-            // in selection mode, only selection is allowed.
-            ev.preventDefault();
-            this.toggleRecordSelection(record);
-        } else {
-            this.touchStartMs = Date.now();
-            if (this.longTouchTimer === null) {
-                this.longTouchTimer = browser.setTimeout(() => {
-                    this.toggleRecordSelection(record);
-                    this.resetLongTouchTimer();
-                }, this.constructor.LONG_TOUCH_THRESHOLD);
-            }
+            ev.stopPropagation(); // This is done in order to prevent the tooltip from showing up
+        }
+        this.touchStartMs = Date.now();
+        if (this.longTouchTimer === null) {
+            this.longTouchTimer = browser.setTimeout(() => {
+                this.toggleRecordSelection(record);
+                this.resetLongTouchTimer();
+            }, this.constructor.LONG_TOUCH_THRESHOLD);
         }
     }
     onRowTouchEnd(record) {
@@ -1765,6 +1752,24 @@ export class ListRenderer extends Component {
      */
     sortStop({ element }) {
         element.classList.remove("o_dragged");
+    }
+
+    ignoreEventInSelectionMode(ev) {
+        const { list } = this.props;
+        if (this.env.isSmall && list.selection && list.selection.length) {
+            // in selection mode, only selection is allowed.
+            ev.stopPropagation();
+            ev.preventDefault();
+        }
+    }
+
+    onClickCapture(record, ev) {
+        const { list } = this.props;
+        if (this.env.isSmall && list.selection && list.selection.length) {
+            ev.stopPropagation();
+            ev.preventDefault();
+            this.toggleRecordSelection(record);
+        }
     }
 }
 

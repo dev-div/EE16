@@ -1,7 +1,7 @@
 /** @odoo-module */
 
-import { appendAttr, isComponentNode } from "@web/views/view_compiler";
-import { computeXpath } from "@web_studio/client_action/view_editors/xml_utils";
+import { isComponentNode } from "@web/views/view_compiler";
+import { computeXpath, applyInvisible } from "@web_studio/client_action/view_editors/xml_utils";
 import { createElement } from "@web/core/utils/xml";
 import { formView } from "@web/views/form/form_view";
 import { objectToString } from "@web/views/form/form_compiler";
@@ -40,12 +40,6 @@ export class FormEditorCompiler extends formView.Compiler {
         };
         this.avatars = [];
 
-        let buttonBox = xml.querySelector("div.oe_button_box");
-        const buttonHook = createElement("ButtonHook", { add_buttonbox: !buttonBox });
-        if (buttonBox) {
-            buttonBox.prepend(buttonHook);
-        }
-
         const compiled = super.compile(key, params);
 
         const sheetBg = compiled.querySelector(".o_form_sheet_bg");
@@ -71,13 +65,20 @@ export class FormEditorCompiler extends formView.Compiler {
             parent.removeAttribute("t-if");
         }
 
+        let buttonBox = compiled.querySelector("ButtonBox");
+
+        const buttonHook = createElement(
+            "t",
+            [createElement("ButtonHook", { add_buttonbox: !buttonBox })],
+            { "t-set-slot": `slot_button_hook` }
+        );
+
         if (!buttonBox) {
-            buttonBox = createElement("div", { class: "oe_button_box" });
-            buttonBox.prepend(buttonHook);
-            const compiledButtonBox = this.compileButtonBox(buttonBox, {});
+            buttonBox = createElement("ButtonBox");
             const el = compiled.querySelector(".o_form_sheet") || compiled;
-            el.prepend(compiledButtonBox);
+            el.prepend(buttonBox);
         }
+        buttonBox.insertAdjacentElement("afterbegin", buttonHook);
 
         const fieldStatus = compiled.querySelector(`Field[type="'statusbar'"]`); // change selector at some point
         if (!fieldStatus) {
@@ -125,38 +126,7 @@ export class FormEditorCompiler extends formView.Compiler {
     }
 
     applyInvisible(invisible, compiled, params) {
-        // Just return the node if it is always Visible
-        if (!invisible) {
-            return compiled;
-        }
-
-        let isVisileExpr;
-        // If invisible is dynamic (via Domain), pass a props or apply the studio class.
-        if (typeof invisible !== "boolean") {
-            const recordExpr = params.recordExpr || "props.record";
-            isVisileExpr = `!evalDomainFromRecord(${recordExpr},${JSON.stringify(invisible)})`;
-            if (isComponentNode(compiled)) {
-                compiled.setAttribute("studioIsVisible", isVisileExpr);
-            } else {
-                appendAttr(compiled, "class", `o_web_studio_show_invisible:!${isVisileExpr}`);
-            }
-        } else {
-            if (isComponentNode(compiled)) {
-                compiled.setAttribute("studioIsVisible", "false");
-            } else {
-                appendAttr(compiled, "class", `o_web_studio_show_invisible:true`);
-            }
-        }
-
-        // Finally, put a t-if on the node that accounts for the parameter in the config.
-        const studioShowExpr = `env.config.studioShowInvisible`;
-        isVisileExpr = isVisileExpr ? `(${isVisileExpr} or ${studioShowExpr})` : studioShowExpr;
-        if (compiled.hasAttribute("t-if")) {
-            const formerTif = compiled.getAttribute("t-if");
-            isVisileExpr = `( ${formerTif} ) and ${isVisileExpr}`;
-        }
-        compiled.setAttribute("t-if", isVisileExpr);
-        return compiled;
+        return applyInvisible(invisible, compiled, params);
     }
 
     createLabelFromField(fieldId, fieldName, fieldString, label, params) {
@@ -180,18 +150,23 @@ export class FormEditorCompiler extends formView.Compiler {
             if (parentElement && parentElement.tagName === "page") {
                 const xpath = computeXpath(node.parentElement);
                 currentSlot.setAttribute("studioXpath", `"${xpath}"`);
-                if (!node.parentElement.querySelector(":scope > group")) {
-                    const hookProps = {
+                // If the page has an OuterGroup as last child, don't add a page studioHook
+                if (!parentElement.querySelector(":scope > group:last-child > group")) {
+                    const pageHookProps = {
                         position: "'inside'",
                         type: "'page'",
                         xpath: `"${xpath}"`,
                     };
-                    currentSlot.setAttribute("studioHookProps", objectToString(hookProps));
+                    currentSlot.setAttribute("studioHookProps", objectToString(pageHookProps));
                 }
             } else {
                 const xpath = node.getAttribute("studioXpath");
                 currentSlot.setAttribute("studioXpath", `"${xpath}"`);
             }
+        }
+
+        if (nodeType === 1 && node.getAttribute('studio_no_fetch')) {
+            return;
         }
 
         const compiled = super.compileNode(node, params, true); // always evalInvisible

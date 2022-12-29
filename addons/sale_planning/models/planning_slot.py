@@ -326,6 +326,8 @@ class PlanningSlot(models.Model):
         return following_slots_vals_list
 
     def _add_slot_to_list(self, start_datetime, end_datetime, resource, following_slots_vals_list, allocable=100.0):
+        if end_datetime <= start_datetime:
+            return
         allocated_hours = ((end_datetime - start_datetime).total_seconds() / 3600.0) * (allocable / 100.0)
         following_slots_vals_list.append({
             **self.sale_line_id._planning_slot_values(),

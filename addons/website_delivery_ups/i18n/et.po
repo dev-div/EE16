@@ -1,21 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * website_delivery_ups
+# 	* website_delivery_ups
 # 
 # Translators:
-# Martin Trigaux, 2018
-# Arma Gedonsky <armagedonsky@hot.ee>, 2018
-# Egon Raamat <egon@avalah.ee>, 2018
-# Eneli Õigus <enelioigus@gmail.com>, 2018
-# Martin Aavastik <martin@avalah.ee>, 2018
+# Martin Trigaux, 2022
+# Piia Paurson <piia@avalah.ee>, 2022
+# Eneli Õigus <enelioigus@gmail.com>, 2022
+# Marek Pontus, 2022
+# Triine Aavik <triine@avalah.ee>, 2022
+# Leaanika Randmets, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 14:07+0000\n"
-"PO-Revision-Date: 2018-08-24 11:49+0000\n"
-"Last-Translator: Martin Aavastik <martin@avalah.ee>, 2018\n"
+"POT-Creation-Date: 2022-09-20 09:50+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Leaanika Randmets, 2022\n"
 "Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,41 +27,26 @@ msgstr ""
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
 msgid "(Bill My Account)"
-msgstr ""
+msgstr "(Saada minu kontole arve)"
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,pending_msg:website_delivery_ups.payment_acquirer_ups_cod
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
+msgid "<i class=\"fa fa-trash-o\" role=\"img\" aria-label=\"Delete\" title=\"Delete\"/>"
+msgstr "<i class=\"fa fa-trash-o\" role=\"img\" aria-label=\"Delete\" title=\"Delete\"/>"
+
+#. module: website_delivery_ups
+#: model_terms:payment.provider,pending_msg:website_delivery_ups.payment_provider_ups_cod
 msgid ""
 "<i>Pending</i>, Thanks for choosing COD(Collect on Delivery/Cash on "
 "Delivery) option. Delivery boy will collect the payment on delivery."
 msgstr ""
+"<i>Pending</i>, Thanks for choosing COD(Collect on Delivery/Cash on "
+"Delivery) option. Delivery boy will collect the payment on delivery."
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,cancel_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
-msgstr "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
-
-#. module: website_delivery_ups
-#: model_terms:payment.acquirer,done_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid ""
-"<span><i>Done,</i> Your online payment has been successfully processed. "
-"Thank you for your order.</span>"
-msgstr ""
-"<span><i>Done,</i> Your online payment has been successfully processed. "
-"Thank you for your order.</span>"
-
-#. module: website_delivery_ups
-#: model_terms:payment.acquirer,error_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid ""
-"<span><i>Error,</i> Please be aware that an error occurred during the "
-"transaction. The order has been confirmed but will not be paid. Do not "
-"hesitate to contact us if you have any questions on the status of your "
-"order.</span>"
-msgstr ""
-"<span><i>Error,</i> Please be aware that an error occurred during the "
-"transaction. The order has been confirmed but will not be paid. Do not "
-"hesitate to contact us if you have any questions on the status of your "
-"order.</span>"
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
+msgid "<span>(UPS Billing will remain to the customer)</span>"
+msgstr "<span>(UPS Billing will remain to the customer)</span>"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
@@ -68,14 +54,9 @@ msgid "Apply"
 msgstr "Kinnita"
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,post_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid "Bank Account"
-msgstr "Pangakonto"
-
-#. module: website_delivery_ups
-#: model:payment.acquirer,name:website_delivery_ups.payment_acquirer_ups_cod
+#: model:payment.provider,name:website_delivery_ups.payment_provider_ups_cod
 msgid "COD"
-msgstr ""
+msgstr "COD"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
@@ -83,51 +64,66 @@ msgid "Cancel"
 msgstr "Tühista"
 
 #. module: website_delivery_ups
-#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "Close"
-msgstr "Kinnitatud"
-
-#. module: website_delivery_ups
-#: model_terms:payment.acquirer,post_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid "Communication"
-msgstr "Suhtlus"
-
-#. module: website_delivery_ups
-#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "Enter your Carrier Account #"
+#: model:ir.model.fields.selection,name:website_delivery_ups.selection__payment_provider__custom_mode__cash_on_delivery
+msgid "Cash On Delivery"
 msgstr ""
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,post_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid "Please use the following transfer details"
-msgstr "Please use the following transfer details"
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
+msgid "Close"
+msgstr "Sulge"
 
 #. module: website_delivery_ups
-#: model_terms:payment.acquirer,post_msg:website_delivery_ups.payment_acquirer_ups_cod
-msgid "Please use the order name as communication reference."
-msgstr "Please use the order name as communication reference."
+#: model:ir.model.fields,field_description:website_delivery_ups.field_payment_provider__custom_mode
+msgid "Custom Mode"
+msgstr ""
+
+#. module: website_delivery_ups
+#: model:ir.model,name:website_delivery_ups.model_payment_provider
+msgid "Payment Provider"
+msgstr "Makseteenuse pakkuja"
 
 #. module: website_delivery_ups
 #: model:ir.model,name:website_delivery_ups.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Müügitellimus"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "Select Freight Collect Method"
-msgstr ""
+msgid "UPS Bill My Account"
+msgstr "UPS saada minu kontole arve"
 
 #. module: website_delivery_ups
-#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
-msgid "UPS Bill My Account"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.property_ups_carrier_account_inherit_portal_details
+msgid "UPS Number Account"
+msgstr "UPS numbri konto"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.res_config_settings_view_form_inherit_website_delivery_ups
-msgid "UPS Delivery Methods"
-msgstr "UPS Delivery Methods"
+msgid "UPS Shipping Methods"
+msgstr "UPS tarnemeetodid"
 
 #. module: website_delivery_ups
 #: model_terms:ir.ui.view,arch_db:website_delivery_ups.payment_delivery_methods_inherit_website_sale_delivery
 msgid "Using Account"
-msgstr ""
+msgstr "Kasutatud konto"
+
+#. module: website_delivery_ups
+#: model_terms:ir.ui.view,arch_db:website_delivery_ups.ups_bill_my_account_dialog
+msgid "Your UPS Account Number"
+msgstr "Teie UPS kontonumber"
+
+#. module: website_delivery_ups
+#: model_terms:payment.provider,auth_msg:website_delivery_ups.payment_provider_ups_cod
+msgid "Your payment has been authorized."
+msgstr "Teie makse on autoriseeritud"
+
+#. module: website_delivery_ups
+#: model_terms:payment.provider,cancel_msg:website_delivery_ups.payment_provider_ups_cod
+msgid "Your payment has been cancelled."
+msgstr "Teie makse on tühistatud."
+
+#. module: website_delivery_ups
+#: model_terms:payment.provider,done_msg:website_delivery_ups.payment_provider_ups_cod
+msgid "Your payment has been successfully processed. Thank you!"
+msgstr "Teie makse on edukalt töödeldud. Aitäh!"

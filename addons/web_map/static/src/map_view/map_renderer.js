@@ -4,7 +4,7 @@
 
 import { renderToString } from "@web/core/utils/render";
 
-const { Component, onWillUnmount, onWillUpdateProps, useEffect, useRef, useState } = owl;
+import { Component, onWillUnmount, onWillUpdateProps, useEffect, useRef, useState } from "@odoo/owl";
 
 const apiTilesRouteWithToken =
     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}";

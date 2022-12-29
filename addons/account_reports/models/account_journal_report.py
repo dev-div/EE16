@@ -258,7 +258,7 @@ class JournalReportCustomHandler(models.AbstractModel):
                 ])
             elif journal_type == 'bank':
                 columns.extend([
-                    {'name': _('Balance'), 'class': 'text-right'},
+                    {'name': _('Balance'), 'class': 'number'},
                     {'name': ''} if not has_multicurrency else {'name': _('Amount In Currency'), 'class': 'text-right number'},
                 ])
             else:
@@ -570,7 +570,7 @@ class JournalReportCustomHandler(models.AbstractModel):
                     {
                         'name': report.format_value(current_balance, figure_type='monetary'),
                         'no_format': current_balance,
-                        'class': 'font-italic text-right',
+                        'class': 'number',
                     },
                     {'name': ''},
                 ]
@@ -886,7 +886,7 @@ class JournalReportCustomHandler(models.AbstractModel):
             'type': 'ir.actions.act_window',
             'name': _('Journal Items for Tax Audit'),
             'res_model': 'account.move.line',
-            'views': [[self.env.ref('account.view_move_line_tax_audit_tree').id, 'list'], [False, 'form']],
+            'views': [[self.env.ref('account.view_move_line_tax_audit_tree').id, 'list']],
             'domain': domain,
             'context': self.env.context,
         }

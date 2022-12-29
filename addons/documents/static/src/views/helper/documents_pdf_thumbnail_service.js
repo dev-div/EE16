@@ -64,18 +64,20 @@ export const documentsPdfThumbnailService = {
                 writeData.thumbnail = canvas.toDataURL('image/jpeg').replace("data:image/jpeg;base64,", "");
                 writeData.thumbnail_status = 'present';
             } catch (_error) {
-                if (_error.name !== "MissingPDFException") {
+                if (_error.name !== "UnexpectedResponseException" && _error.status && _error.status !== 403) {
                     writeData.thumbnail_status = 'error';
                 }
             } finally {
-                await orm.write(
-                    "documents.document",
-                    [record.resId],
-                    writeData,
-                );
-                record.data.thumbnail_status = writeData.thumbnail_status;
-                if (writeData.thumbnail) {
-                    env.bus.trigger("documents-new-pdf-thumbnail", { record });
+                if (Object.keys(writeData).length) {
+                    await orm.write(
+                        "documents.document",
+                        [record.resId],
+                        writeData,
+                    );
+                    record.data.thumbnail_status = writeData.thumbnail_status;
+                    if (writeData.thumbnail) {
+                        env.bus.trigger("documents-new-pdf-thumbnail", { record });
+                    }
                 }
                 // Restore pdfjs's state
                 window.pdfjsLib.GlobalWorkerOptions.workerSrc = initialWorkerSrc;

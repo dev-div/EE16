@@ -1,6 +1,6 @@
 from ast import literal_eval
 
-from odoo import models, fields
+from odoo import api, models, fields
 from odoo.http import request
 
 
@@ -29,6 +29,16 @@ class MrpWorkcenterProductivity(models.Model):
     employee_id = fields.Many2one(
         'hr.employee', string="Employee",
         help='employee that record this working time')
+    employee_cost = fields.Monetary('employee_cost', compute='_compute_cost', default=0, store=True)
+    total_cost = fields.Float('Cost', compute='_compute_cost', compute_sudo=True)
+    currency_id = fields.Many2one(related='company_id.currency_id')
+
+    @api.depends('duration')
+    def _compute_cost(self):
+        for time in self:
+            if time.employee_id:
+                time.employee_cost = time.employee_id.hourly_cost
+            time.total_cost = time.employee_cost * time.duration / 60
 
     def _check_open_time_ids(self):
         self.env['mrp.productivity.time']._read_group([

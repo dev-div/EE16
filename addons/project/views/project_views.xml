@@ -680,7 +680,7 @@
             <field name="name">project.project.tree</field>
             <field name="model">project.project</field>
             <field name="arch" type="xml">
-                <tree decoration-muted="active == False" string="Projects" multi_edit="1" sample="1">
+                <tree decoration-muted="active == False" string="Projects" multi_edit="1" sample="1" default_order="sequence, name, id">
                     <field name="sequence" optional="show" widget="handle"/>
                     <field name="message_needaction" invisible="1"/>
                     <field name="active" invisible="1"/>
@@ -790,6 +790,7 @@
                     on_create="project.open_create_project"
                     action="action_view_tasks" type="object"
                     sample="1"
+                    default_order="sequence, name, id"
                 >
                     <field name="display_name"/>
                     <field name="partner_id"/>
@@ -832,7 +833,7 @@
                                                     <i t-if="record.date.raw_value and record.date_start.raw_value" class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow"/>
                                                     <field name="date"/>
                                                 </div>
-                                                <div t-if="record.alias_name.value and record.alias_domain.value" class="text-muted">
+                                                <div t-if="record.alias_name.value and record.alias_domain.value" class="text-muted text-truncate" t-att-title="record.alias_id.value">
                                                     <span class="fa fa-envelope-o me-2" aria-label="Domain Alias" title="Domain Alias"></span><t t-esc="record.alias_id.value"/>
                                                 </div>
                                                 <div t-if="record.rating_active.raw_value and record.rating_count.raw_value &gt; 0" class="text-muted" groups="project.group_project_rating">
@@ -856,7 +857,7 @@
                                                 <div role="menuitem">
                                                     <a name="action_view_tasks" type="object">Tasks</a>
                                                 </div>
-                                                <div role="menuitem" groups="project.group_project_milestone">
+                                                <div role="menuitem" groups="project.group_project_milestone" t-if="record.allow_milestones.raw_value">
                                                     <a name="action_get_list_view" type="object">Milestones</a>
                                                 </div>
                                             </div>
@@ -1140,7 +1141,7 @@
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <div class="oe_title pe-0">
                         <h1 class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex">
+                            <div class="d-flex w-100">
                                 <field name="priority" widget="priority" class="me-3"/>
                                 <field name="name" class="o_task_name text-truncate" placeholder="Task Title..."/>
                             </div>
@@ -1179,14 +1180,14 @@
                         </group>
                     </group>
                     <field attrs="{'invisible': [('project_id', '=', False)]}"
-                        name="task_properties" nolabel="1" columns="2"/>
+                        name="task_properties" nolabel="1" columns="2" hideKanbanOption="1"/>
                     <notebook>
                         <page name="description_page" string="Description">
                             <field name="description" type="html" options="{'collaborative': true, 'resizable': false}" placeholder="Task description..."/>
                         </page>
                         <page name="sub_tasks_page" string="Sub-tasks" attrs="{'invisible': [('allow_subtasks', '=', False)]}">
                             <field name="child_ids"
-                                   context="{'default_project_id': project_id if not parent_id or not display_project_id else display_project_id, 'default_user_ids': user_ids, 'default_parent_id': id,
+                                   context="{'search_view_ref' : 'project.view_task_search_form_extended', 'default_project_id': project_id if not parent_id or not display_project_id else display_project_id, 'default_user_ids': user_ids, 'default_parent_id': id,
                                     'default_partner_id': partner_id, 'default_milestone_id': allow_milestones and milestone_id, 'search_default_display_project_id': project_id }"
                                    widget="many2many"
                                    domain="['!', ('id', 'parent_of', id)]">

@@ -55,13 +55,13 @@
                             t-att-Descripcion="format_string(line.name, 1000)"
                             t-att-ValorUnitario="format_float(line_values['gross_price_total_unit'] if tax_objected == '02' else (line.price_total + line_values['price_discount']) / line.quantity, currency_precision)"
                             t-att-Importe="format_float(line_values['price_subtotal_before_discount'] if tax_objected == '02' else line.price_total + line_values['price_discount'], currency_precision)"
-                            t-att-ObjetoImp="tax_objected"
+                            t-att-ObjetoImp="'01' if tax_objected == '02' and line_values['price_discount'] == line_values['price_subtotal_before_discount'] else tax_objected"
                             t-att-Descuento="format_float(line_values['price_discount'], currency_precision) if not record.currency_id.is_zero(line_values['price_discount']) else None">
                             <t t-set="tax_detail_transferred" t-value="tax_details_transferred['tax_details_per_record'][line]"/>
                             <t t-set="tax_detail_withholding" t-value="tax_details_withholding['tax_details_per_record'][line]"/>
                             <t t-if="tax_detail_transferred['tax_details'] or tax_detail_withholding['tax_details']">
 
-                                <cfdi:Impuestos t-if="tax_objected == '02'">
+                                <cfdi:Impuestos t-if="tax_objected == '02' and line_values['price_discount'] != line_values['price_subtotal_before_discount']">
                                     <t t-if="tax_detail_transferred['tax_details']">
                                         <cfdi:Traslados>
                                             <t t-foreach="tax_detail_transferred['tax_details'].values()" t-as="tax_detail_vals">

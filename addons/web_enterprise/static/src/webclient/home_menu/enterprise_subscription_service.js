@@ -10,7 +10,7 @@ import { _t } from "@web/core/l10n/translation";
 import { ExpirationPanel } from "./expiration_panel";
 
 const { DateTime } = luxon;
-const { Component, xml, useState } = owl;
+import { Component, xml, useState } from "@odoo/owl";
 
 function daysUntil(datetime) {
     const duration = datetime.diff(DateTime.utc(), "days");

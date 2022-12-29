@@ -13,13 +13,11 @@ export class BankRecBatchRejectFormController extends FormController {
         if (!this.model.root.data.cancel_action_todo) {
             this.props.kanbanDoAction(this.model.root.data.next_action_todo);
         }
-        this.props.dialogCloseFn();
     }
 }
 BankRecBatchRejectFormController.props = {
     ...FormController.props,
     kanbanDoAction: { type: Function, optional: true },
-    dialogCloseFn: { type: Function, optional: true },
 }
 
 export const BankRecBatchForm = {

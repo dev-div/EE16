@@ -4,7 +4,7 @@ import { FileInput } from "@web/core/file_input/file_input";
 import CustomFileInput from "web.CustomFileInput";
 import { useService } from "@web/core/utils/hooks";
 
-const { Component, onWillUpdateProps, useRef, useState } = owl;
+import { Component, onWillUpdateProps, useRef, useState } from "@odoo/owl";
 
 const DEFAULT_ICON = {
     backgroundColor: BG_COLORS[5],

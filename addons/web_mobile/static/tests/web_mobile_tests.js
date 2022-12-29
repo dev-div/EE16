@@ -19,7 +19,7 @@ import { makeTestEnv } from "@web/../tests/helpers/mock_env";
 import { mount, getFixture, destroy, patchWithCleanup, clickSave} from "@web/../tests/helpers/utils";
 import { makeView, setupViewRegistries } from "@web/../tests/views/helpers";
 
-const { Component, useState, xml } = owl;
+import { Component, useState, xml } from "@odoo/owl";
 
 const { createParent } = testUtils;
 

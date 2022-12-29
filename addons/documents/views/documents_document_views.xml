@@ -23,6 +23,14 @@
                 <filter string="Requested" name="requested_filter" domain="[('type', '=', 'empty')]"/>
                 <separator/>
                 <filter string="Archived" name="Inactive" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Late Activities" name="activities_overdue"
+                    domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                    help="Show all records which has next action date is before today"/>
+                <filter string="Today Activities" name="activities_today"
+                    domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Future Activities" name="activities_upcoming_all"
+                    domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
                 <field name="type"/>
                 <group expand="0" string="Group By">
                     <filter string="Contact" name="filter_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
@@ -66,35 +74,27 @@
                 <field name="thumbnail_status"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div draggable="true"
-                            t-attf-class="d-flex flex-column oe_kanban_global_area o_kanban_attachment o_documents_attachment {{record.type.raw_value === 'empty' ? 'oe_file_request' : ''}} {{props.record.selected ? 'o_record_selected' : ''}}"
+                        <div draggable="true" class="d-flex flex-column oe_kanban_global_area o_kanban_attachment o_documents_attachment"
                             t-att-data-id="record.id.raw_value">
                             <t t-set="fileRequest" t-value="record.type.raw_value === 'empty'"/>
-                            <t t-set="fileUpload" t-value="getFileUpload and getFileUpload() or false"/>
-                            <i t-if="!fileUpload" class="fa fa-circle-thin o_record_selector" title="Select document"/>
-                            <t t-else="">
-                                <FileUploadProgressBar fileUpload="fileUpload"/>
-                            </t>
-                            <div t-attf-class="o_kanban_image #{fileRequest ? 'o_request_image' : ''}">
-                                <t t-set="webimage"
-                                    t-value="(props.record.isPdf ? props.record.isPdf() &amp;&amp; props.record.hasThumbnail() : false) || new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
-                                <t t-set="binaryPreviewable"
-                                   t-value="props.record.isViewable ? props.record.isViewable() : true &amp;&amp; record.type.raw_value === 'binary'"/>
+                            <div class="o_kanban_image" t-attf-class="#{fileRequest ? 'o_request_image' : ''}">
+                                <t t-set="isPdf" t-value="['application/pdf', 'application/pdf;base64'].includes(record.mimetype.value)"/>
+                                <t t-set="hasThumbnail" t-value="(isPdf &amp;&amp; record.thumbnail_status.raw_value === 'present') || new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
                                 <!-- should be made more generic if we support different websites for videos -->
                                 <t t-set="youtubeUrlMatch" t-value="record.url.raw_value ? record.url.raw_value.match('youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]{11})') : false"/>
                                 <t t-set="youtubeVideoToken" t-value="youtubeUrlMatch ? youtubeUrlMatch.length > 1 ? youtubeUrlMatch[1] : false : false"/>
-                                <div name="document_preview" t-attf-class="o_kanban_image_wrapper #{(webimage or binaryPreviewable or youtubeVideoToken) ? 'oe_kanban_previewer' : ''}" t-att-title="fileRequest ? 'Upload file' : ''">
+                                <div name="document_preview" class="o_kanban_image_wrapper" t-att-title="fileRequest ? 'Upload file' : ''">
                                     <img t-if="youtubeVideoToken" width="100" height="100" alt="Document" class="o_attachment_image"
                                          t-attf-src="https://img.youtube.com/vi/{{youtubeVideoToken}}/0.jpg"/>
                                     <div t-elif="record.type.raw_value == 'url'" class="o_url_image fa fa-link fa-3x text-muted"/>
-                                    <t t-elif="webimage">
+                                    <t t-elif="hasThumbnail">
                                         <t t-set="unique" t-value="record.checksum.value ? record.checksum.value.slice(-8) : ''"/>
                                         <div class="o_documents_image" t-attf-style="background-image: url('/documents/image/#{record.id.raw_value}?field=thumbnail&amp;unique=#{unique}');" />
                                     </t>
                                     <div t-elif="fileRequest" class="fa fa-upload fa-3x text-muted">
                                         <input type="file" class="o_input_file o_hidden o_kanban_replace_document"/>
                                     </div>
-                                    <div t-else="!webimage" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
+                                    <div t-else="!hasThumbnail" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
                                 </div>
                             </div>
                             <div class="o_kanban_details flex-grow-1 flex-shrink-1 flex-auto">

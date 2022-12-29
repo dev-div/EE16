@@ -3,7 +3,7 @@
 import { patch } from "@web/core/utils/patch";
 import { ListRenderer } from "@web/views/list/list_renderer";
 import { useService, useBus } from "@web/core/utils/hooks";
-import { removeContextUserInfo } from "../helpers";
+import { omit } from "@web/core/utils/objects";
 import { SpreadsheetSelectorDialog } from "../components/spreadsheet_selector_dialog/spreadsheet_selector_dialog";
 import { HandleField } from "@web/views/fields/handle/handle_field";
 import { _t } from "@web/core/l10n/translation";
@@ -15,7 +15,7 @@ patch(ListRenderer.prototype, "documents_spreadsheet_list_renderer_patch", {
     setup() {
         this._super(...arguments);
         this.dialogService = useService("dialog");
-
+        this.userService = useService("user");
         useBus(this.env.bus, "insert-list-spreadsheet", this.insertListSpreadsheet.bind(this));
     },
 
@@ -60,7 +60,7 @@ patch(ListRenderer.prototype, "documents_spreadsheet_list_renderer_patch", {
                 model: model.resModel,
                 domain: model.domain,
                 orderBy: model.orderBy,
-                context: removeContextUserInfo(model.context),
+                context: omit(model.context, ...Object.keys(this.userService.context)),
                 columns: this.getColumnsForSpreadsheet(),
                 name,
             },

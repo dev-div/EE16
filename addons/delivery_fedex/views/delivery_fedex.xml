@@ -20,6 +20,13 @@
                         <group>
                             <field name="fedex_default_package_type_id" attrs="{'required': [('delivery_type', '=', 'fedex')]}" domain="[('package_carrier_type', '=', 'fedex')]"/>
                             <field name="fedex_weight_unit" string="Package Weight Unit" attrs="{'required': [('delivery_type', '=', 'fedex')]}"/>
+                            <div class="o_td_label">
+                                <span class="o_form_label">Package Length Unit</span>
+                            </div>
+                            <div class="o_field_widget">
+                                <span attrs="{'invisible': [('fedex_weight_unit', '!=', 'KG')]}">CM</span>
+                                <span attrs="{'invisible': [('fedex_weight_unit', '!=', 'LB')]}">IN</span>
+                            </div>
                             <field name="fedex_label_stock_type" attrs="{'required': [('delivery_type', '=', 'fedex')]}"/>
                             <field name="fedex_label_file_type" string="Label Format" attrs="{'required': [('delivery_type', '=', 'fedex')]}"/>
                             <field name="fedex_document_stock_type" attrs="{'required': [('delivery_type', '=', 'fedex')]}"/>

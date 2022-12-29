@@ -389,9 +389,6 @@
             <field name="next_invoice_date" position="attributes">
                  <attribute name="optional">show</attribute>
             </field>
-            <field name="recurrence_id" position="attributes">
-                <attribute name="attrs">{'readonly': [('subscription_management', '=', 'upsell')], 'required': [('subscription_management', '!=', 'upsell')]}</attribute>
-            </field>
             <field name="sale_order_template_id" position="replace">
                 <field name="sale_order_template_id" string="Subscription Plan"
                        attrs="{'invisible': ['|', ('state', 'in', ['sale', 'done']), ('subscription_management', '=', 'upsell')]}"

@@ -117,12 +117,19 @@
                     </thead>
                     <tbody>
                         <tr t-foreach="docs_related" t-as="inv">
+                            <t t-set="inv_currency" t-value="o.env['res.currency'].search([('name', '=', inv.get('MonedaDR'))], limit=1)"/>
                             <td><span t-esc="o.reconciled_invoice_ids.filtered(lambda i: i.l10n_mx_edi_cfdi_uuid == inv.get('IdDocumento')).name or ''"/></td>
                             <td><span t-esc="inv.get('IdDocumento')"/></td>
                             <td class="text-end"><span t-esc="inv.get('NumParcialidad', '')"/></td>
-                            <td class="text-end"><span t-esc="inv.get('ImpSaldoAnt', '')"/></td>
-                            <td class="text-end"><span t-esc="inv.get('ImpPagado', '')"/></td>
-                            <td class="text-end"><span t-esc="inv.get('ImpSaldoInsoluto', '')"/></td>
+                            <td class="text-end">
+                                <span t-esc="float(inv.get('ImpSaldoAnt', ''))" t-options="{'widget': 'monetary', 'display_currency': inv_currency}"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-esc="float(inv.get('ImpPagado', ''))" t-options="{'widget': 'monetary', 'display_currency': inv_currency}"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-esc="float(inv.get('ImpSaldoInsoluto', ''))" t-options="{'widget': 'monetary', 'display_currency': inv_currency}"/>
+                            </td>
                             <td><span t-esc="inv.get('MonedaDR')"/></td>
                         </tr>
                     </tbody>

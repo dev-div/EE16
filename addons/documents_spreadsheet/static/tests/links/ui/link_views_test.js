@@ -3,7 +3,7 @@
 import { busService } from "@bus/services/bus_service";
 import { multiTabService } from "@bus/multi_tab_service";
 
-import { makeFakeUserService } from "@web/../tests/helpers/mock_services";
+import { makeFakeUserService, fakeCookieService } from "@web/../tests/helpers/mock_services";
 import {
     click,
     getFixture,
@@ -237,6 +237,7 @@ QUnit.module(
 
         QUnit.test("simple graph view", async function (assert) {
             serviceRegistry.add("user", makeFakeUserService());
+            serviceRegistry.add("cookie", fakeCookieService);
             const webClient = await openView("graph");
             await insertInSpreadsheetAndClickLink(target);
             assert.strictEqual(getCurrentViewType(webClient), "graph");
@@ -244,6 +245,7 @@ QUnit.module(
 
         QUnit.test("graph view with custom chart type and order", async function (assert) {
             serviceRegistry.add("user", makeFakeUserService());
+            serviceRegistry.add("cookie", fakeCookieService);
             const webClient = await openView("graph");
             await click(target, ".fa-pie-chart");
             // count measure

@@ -4,7 +4,7 @@ import Connector from "./connector";
 import { deepMerge } from "./connector_utils";
 import { LegacyComponent } from "@web/legacy/legacy_component";
 
-const { onMounted, onWillUnmount, onWillUpdateProps } = owl;
+import { onMounted, onWillUnmount, onWillUpdateProps } from "@odoo/owl";
 
 class ConnectorContainer extends LegacyComponent {
 

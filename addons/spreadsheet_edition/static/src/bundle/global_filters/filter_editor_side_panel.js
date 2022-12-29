@@ -32,7 +32,7 @@ const ALLOWED_FIELD_TYPES = {
 
 /**
  * @typedef {import("@spreadsheet/data_sources/metadata_repository").Field} Field
- * @typedef {import("@spreadsheet/global_filters/plugins/global_filters_core_plugin").FilterMatchingField} FilterMatchingField
+ * @typedef {import("@spreadsheet/global_filters/plugins/global_filters_core_plugin").FieldMatching} FieldMatching
  *
  * @typedef State
  * @property {boolean} saved
@@ -368,7 +368,7 @@ export default class FilterEditorSidePanel extends LegacyComponent {
     onDateOptionChange(ev) {
         // TODO t-model does not work ?
         this.state.date.type = ev.target.value;
-        this.state.date.defaultValue = {};
+        this.state.date.defaultValue = this.state.date.type !== "relative" ? {} : "";
     }
 
     toggleDefaultsToCurrentPeriod(ev) {

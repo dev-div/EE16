@@ -39,15 +39,14 @@ export class TableOfContentBehavior extends AbstractBehavior {
                     this.props.anchor.removeEventListener('drop', onDrop);
                 };
             });
+            onWillPatch(() => {
+                this.editor.observerUnactive(`knowledge_toc_update_id_${this.observerId}`);
+            });
+            onPatched(() => {
+                this.editor.idSet(this.props.anchor);
+                this.editor.observerActive(`knowledge_toc_update_id_${this.observerId}`);
+            });
         }
-
-        onWillPatch(() => {
-            this.editor.observerUnactive(`knowledge_toc_update_id_${this.observerId}`);
-        });
-        onPatched(() => {
-            this.editor.idSet(this.props.anchor);
-            this.editor.observerActive(`knowledge_toc_update_id_${this.observerId}`);
-        });
 
         onWillStart(() => {
             this._updateTableOfContents();
@@ -86,13 +85,13 @@ export class TableOfContentBehavior extends AbstractBehavior {
                 const target = mutation.target;
                 const headerNode = this._findClosestHeader(target);
 
-                return headerNode && headerNode.parentElement === this.editor.editable;
+                return headerNode && headerNode.parentElement === this.props.root;
             });
             if (update) {
                 this.delayedUpdateTableOfContents();
             }
         });
-        observer.observe(this.editor.editable, {
+        observer.observe(this.props.root, {
             childList: true,
             attributes: false,
             subtree: true,
@@ -177,7 +176,7 @@ export class TableOfContentBehavior extends AbstractBehavior {
         let previousDepth = -1;
         let index = 0;
 
-        this.state.toc = fetchValidHeadings(this.editor.editable).map(heading => {
+        this.state.toc = fetchValidHeadings(this.props.root).map(heading => {
             let depth = HEADINGS.indexOf(heading.tagName);
             if (depth !== previousDepth && heading.tagName === previousTag) {
                 depth = previousDepth;
@@ -224,7 +223,7 @@ export class TableOfContentBehavior extends AbstractBehavior {
     _onTocLinkClick (event) {
         event.preventDefault();
         const headingIndex = parseInt(event.target.getAttribute('data-oe-nodeid'));
-        const targetHeading = fetchValidHeadings(this.editor.editable)[headingIndex];
+        const targetHeading = fetchValidHeadings(this.props.root)[headingIndex];
         if (targetHeading){
             targetHeading.scrollIntoView({
                 behavior: 'smooth',

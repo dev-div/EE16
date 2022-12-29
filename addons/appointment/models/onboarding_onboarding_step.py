@@ -31,10 +31,12 @@ class OnboardingStep(models.Model):
 
     @api.model
     def action_save_appointment_onboarding_create_appointment_type_step(self):
-        """:return: Whether this step was validated for the first time."""
+        """:return: Whether this step was validated for the first time or
+        `True` if step record is missing in order to refresh the panel.
+        """
         step = self.env.ref('appointment.appointment_onboarding_create_appointment_type_step',
                             raise_if_not_found=False)
-        return bool(step.action_set_just_done()) if step else False
+        return bool(step.action_set_just_done()) if step else True
 
     # Second step
     @api.model
@@ -74,5 +76,9 @@ class OnboardingStep(models.Model):
 
     @api.model
     def action_save_appointment_onboarding_configure_calendar_provider_step(self):
-        self.env.ref('appointment.appointment_onboarding_configure_calendar_provider_step',
-                     raise_if_not_found=False).action_set_just_done()
+        """:return: Whether this step was validated for the first time or
+        `True` if step record is missing in order to refresh the panel.
+        """
+        step = self.env.ref('appointment.appointment_onboarding_configure_calendar_provider_step',
+                            raise_if_not_found=False)
+        return bool(step.action_set_just_done()) if step else True

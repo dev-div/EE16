@@ -162,43 +162,41 @@
 .modal {
     .o_sign_frame {
         height: 0;
+        position: absolute;
     }
     .o_sign_frame.active {
         visibility: visible;
-        position: absolute;
-        top: 26%;
-        left: 6%;
-        height: 65%;
-        width: 120px;
+        top: 10%;
+        left: 5%;
+        height: 80%;
+        width: 20%;
         border: 3px solid #017e84;
         border-right: none;
         border-radius: 22px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        padding: 0;
-        margin: 0;
         :before {
             content: attr(sign_label);
-            font-size: 16px;
+            font-size: 120%;
             color: #017E84;
             font-family: "Inter",Sans;
-            left: 125px;
+            left: 110%;
             width: 250px;
             display: inline-block;
             position: absolute;
-            top: -11px;
+            top: calc( -2% - 10px);
             font-weight: 600;
         }
         :after {
             content: attr(hash);
-            font-size: 16px;
+            font-size: 120%;
             color: #017E84;
             font-family: $o-font-family-monospace;
             width: 250px;
             display: inline-block;
             position: absolute;
-            left: 125px;
-            bottom: -11px;
+            left: 110%;
+            bottom: calc( -2% - 10px);
         }
     }
 }

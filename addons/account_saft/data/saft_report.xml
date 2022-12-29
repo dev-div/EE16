@@ -133,6 +133,9 @@
                         <AccountID t-out="account.id"/>
                         <AccountDescription t-out="account.name[:256]"/>
                         <StandardAccountID t-out="account.code"/>
+                        <t t-if="account_vals['saft_account_type']">
+                            <AccountType t-esc="account_vals['saft_account_type']"/>
+                        </t>
                         <t t-if="account_vals['opening_balance'] &lt; 0.0">
                             <OpeningCreditBalance t-out="format_float(-account_vals['opening_balance'])"/>
                         </t>

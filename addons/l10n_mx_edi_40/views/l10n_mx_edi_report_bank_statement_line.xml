@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_payment_receipt_document" inherit_id="l10n_mx_edi.report_payment_receipt_document">
+        <xpath expr="//t[@t-if='o.move_id.l10n_mx_edi_cfdi_uuid']/t[@t-set='docs_related']" position="after">
+            <t t-if="not docs_related">
+                <t t-set="docs_related"
+                   t-value="cfdi_vals.get('cfdi_node') and cfdi_vals['cfdi_node'].Complemento.xpath('//pago20:DoctoRelacionado', namespaces={'pago20': 'http://www.sat.gob.mx/Pagos20'})"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

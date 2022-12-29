@@ -854,6 +854,7 @@ var TableBlockTotal = AbstractNewBuildingBlock.extend({
     add: function () {
         var self = this;
         var callersArguments = arguments;
+        const validRelations = ['account.move', 'sale.order', 'purchase.order'];
         return new Promise(function (resolve, reject) {
             self._super.apply(self, callersArguments).then(function () {
                 var field = {
@@ -864,8 +865,7 @@ var TableBlockTotal = AbstractNewBuildingBlock.extend({
                         return field.type === 'many2one';
                     },
                     followRelations: function (field) {
-                        return field.type === 'many2one' &&
-                            field.relation !== 'account.move' && field.relation !== 'sale.order' && field.relation !== 'purchase.order';
+                        return field.type === 'many2one' && !validRelations.includes(field.relation);
                     },
                 };
                 var availableKeys = self._getContextKeys(self.node);
@@ -877,6 +877,10 @@ var TableBlockTotal = AbstractNewBuildingBlock.extend({
                 }
                 var dialog = new NewFieldDialog(self, 'record_fake_model', field, availableKeys, fieldChain).open();
                 dialog.on('field_default_values_saved', self, function (values) {
+                    if (!validRelations.includes(values.relation)) {
+                        Dialog.alert(self, _t('Subtotal & Total can only be used in these models: ' + validRelations.join(", ")));
+                        dialog.close();
+                    }
                     resolve({
                         inheritance: self._dataInheritance(values),
                     });

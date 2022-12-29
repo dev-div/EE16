@@ -3,17 +3,21 @@
 # 	* delivery_ups
 # 
 # Translators:
-# Martin Trigaux, 2019
-# krnkris, 2019
-# Kovács Tibor <kovika@gmail.com>, 2019
+# Ákos Nagy <akos.nagy@oregional.hu>, 2022
+# Martin Trigaux, 2022
+# Krisztián Juhász <juhasz.krisztian@josafar.hu>, 2022
+# Kovács Tibor <kovika@gmail.com>, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
+# gezza <geza.nagy@oregional.hu>, 2022
+# krnkris, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: Kovács Tibor <kovika@gmail.com>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:56+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: krnkris, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +26,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"A shipment cannot have a KGS/IN or LBS/CM as its unit of measurements. "
+"Configure it from the delivery method."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"Access License number is Invalid. Provide a valid number (Length should be "
+"0-35 alphanumeric characters)"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Access License number is invalid for this delivery provider."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Access License number is invalid for this provider.Please re-license."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Access License number is revoked contact UPS to get access."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Authorization system is currently unavailable , try again later."
+msgstr ""
+
+#. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_bill_my_account
+#: model:ir.model.fields,field_description:delivery_ups.field_res_partner__bill_my_account
+#: model:ir.model.fields,field_description:delivery_ups.field_res_users__bill_my_account
 #: model:ir.model.fields,field_description:delivery_ups.field_sale_order__ups_bill_my_account
 msgid "Bill My Account"
 msgstr ""
@@ -33,15 +79,15 @@ msgid "COD Funding Option"
 msgstr ""
 
 #. module: delivery_ups
-#: model:ir.model.fields,field_description:delivery_ups.field_product_packaging__package_carrier_type
-msgid "Carrier"
-msgstr "Fuvarozó"
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Cancel shipment not available at this time , Please try again Later."
+msgstr ""
 
 #. module: delivery_ups
-#: model:ir.model.fields,field_description:delivery_ups.field_sale_order__ups_carrier_account
-#: model:ir.model.fields,field_description:delivery_ups.field_stock_picking__ups_carrier_account
-msgid "Carrier Account"
-msgstr ""
+#: model:ir.model.fields,field_description:delivery_ups.field_stock_package_type__package_carrier_type
+msgid "Carrier"
+msgstr "Fuvarozó"
 
 #. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_cod_funds_code__8
@@ -64,6 +110,16 @@ msgid "Collect on Delivery"
 msgstr ""
 
 #. module: delivery_ups
+#: model:ir.model,name:delivery_ups.model_res_partner
+msgid "Contact"
+msgstr "Kapcsolat"
+
+#. module: delivery_ups
+#: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
+msgid "Duties paid by"
+msgstr ""
+
+#. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_label_file_type__epl
 msgid "EPL"
 msgstr "EPL"
@@ -77,7 +133,16 @@ msgid ""
 msgstr ""
 
 #. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"Exceeds Total Number of allowed pieces per World Wide Express Shipment."
+msgstr ""
+
+#. module: delivery_ups
 #: model:ir.model.fields,help:delivery_ups.field_delivery_carrier__ups_bill_my_account
+#: model:ir.model.fields,help:delivery_ups.field_res_partner__bill_my_account
+#: model:ir.model.fields,help:delivery_ups.field_res_users__bill_my_account
 #: model:ir.model.fields,help:delivery_ups.field_sale_order__ups_bill_my_account
 msgid ""
 "If checked, ecommerce users will be prompted their UPS account number\n"
@@ -87,7 +152,7 @@ msgstr ""
 #. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_package_dimension_unit__in
 msgid "Inches"
-msgstr "Inches"
+msgstr "hüvelyk"
 
 #. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_package_weight_unit__kgs
@@ -95,9 +160,29 @@ msgid "Kilograms"
 msgstr "Kilogramm"
 
 #. module: delivery_ups
+#: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
+msgid "Label Format"
+msgstr ""
+
+#. module: delivery_ups
+#: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
+msgid "Options"
+msgstr "Beállítások"
+
+#. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_label_file_type__gif
 msgid "PDF"
 msgstr "PDF"
+
+#. module: delivery_ups
+#: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_package_dimension_unit
+msgid "Package Size Unit"
+msgstr ""
+
+#. module: delivery_ups
+#: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
+msgid "Package Weight Unit"
+msgstr "Csomag súly mértékegység"
 
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/ups_request.py:0
@@ -108,18 +193,189 @@ msgstr ""
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/ups_request.py:0
 #, python-format
+msgid "Please provide a valid City in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid Country in recipient's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid Country in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid State in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid Zip in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid city in the recipient address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid city in the shipper's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid country in the shipper's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"Please provide a valid package type available for service and selected "
+"locations."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid phone number for the recipient."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid shipper Number/Carrier Account."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid shipper number/Carrier Account."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid shipper phone number."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid state in the recipient address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid state in the shipper's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid street in shipper's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid street in the recipient address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid street in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid warehouse Phone Number"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid zip code in the recipient address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid zip code in the shipper's address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid zip code in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide a valid zipcode in the recipient address."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please provide at least one item to ship"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
 msgid "Please provide at least one item to ship."
 msgstr "Kérem válasszon legalább egy szállítandó tételt."
 
 #. module: delivery_ups
-#: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_package_weight_unit__lbs
-msgid "Pounds"
-msgstr "Pounds"
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please set a valid country in the recipient address."
+msgstr ""
 
 #. module: delivery_ups
-#: model:ir.model,name:delivery_ups.model_product_packaging
-msgid "Product Packaging"
-msgstr "Termék csomagolás"
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Please set a valid country in the warehouse address."
+msgstr ""
+
+#. module: delivery_ups
+#: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_package_weight_unit__lbs
+msgid "Pounds"
+msgstr "Font"
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Provided Access License Number not found in the UPS database"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Provided Tracking Ref. Number is invalid."
+msgstr ""
 
 #. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__delivery_type
@@ -130,6 +386,24 @@ msgstr "Szolgáltató"
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__ups_duty_payment__recipient
 msgid "Recipient"
 msgstr "Címzett"
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Recipient Phone must be at least 10 alphanumeric characters."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Recipient PhoneExtension cannot exceed the length of 4."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Recipient PhoneExtension must contain only numbers."
+msgstr ""
 
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/delivery_ups.py:0
@@ -147,7 +421,7 @@ msgstr "SPL"
 #. module: delivery_ups
 #: model:ir.model,name:delivery_ups.model_sale_order
 msgid "Sales Order"
-msgstr "Vásárlói megrendelés"
+msgstr "Vevői rendelések"
 
 #. module: delivery_ups
 #: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
@@ -162,8 +436,8 @@ msgstr "Küldő"
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/delivery_ups.py:0
 #, python-format
-msgid "Shipment N° %s has been cancelled"
-msgstr "N° %s sz. szállítmányt érvénytelenítettük"
+msgid "Shipment #%s has been cancelled"
+msgstr ""
 
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/delivery_ups.py:0
@@ -174,8 +448,43 @@ msgid ""
 msgstr ""
 
 #. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Shipper Phone must be at least 10 alphanumeric characters."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Shipper number must contain alphanumeric characters only."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Shipper phone extension cannot exceed the length of 4."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Shipper phone extension must contain only numbers."
+msgstr ""
+
+#. module: delivery_ups
 #: model:ir.model,name:delivery_ups.model_delivery_carrier
 msgid "Shipping Methods"
+msgstr "Szállítási módok"
+
+#. module: delivery_ups
+#: model:ir.model,name:delivery_ups.model_stock_package_type
+msgid "Stock package type"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "The UserId is currently locked out; please try again in 24 hours."
 msgstr ""
 
 #. module: delivery_ups
@@ -209,9 +518,17 @@ msgstr "A szállítás nem végezhető el, mert hiányzik a termék súlya."
 #: code:addons/delivery_ups/models/ups_request.py:0
 #, python-format
 msgid ""
-"The estimated price cannot be computed because the weight of your product is"
-" missing."
-msgstr "A körülbelüli ár nem számítható ki, mert hiányzik a termék súlya."
+"The estimated shipping price cannot be computed because the weight is missing for the following product(s): \n"
+" %s"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"The maximum number of user access attempts was exceeded. So please try again"
+" later"
+msgstr ""
 
 #. module: delivery_ups
 #: code:addons/delivery_ups/models/ups_request.py:0
@@ -222,6 +539,60 @@ msgid ""
 msgstr ""
 "A címzett hiányzik vagy rosszul kitöltött.\n"
 "(Hiányzó mező(k) : %s)"
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "The requested service is unavailable between the selected locations."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"The selected service is invalid from the requested warehouse, please choose "
+"another service."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"The selected service is invalid to the recipient address, please choose "
+"another service."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"The selected service is not possible from your warehouse to the recipient "
+"address, please choose another service."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "The selected service is not valid with the selected packaging."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"This measurement system is not valid for the selected country. Please switch"
+" from LBS/IN to KGS/CM (or vice versa). Configure it from delivery method"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"This measurement system is not valid for the selected country. Please switch"
+" from LBS/IN to KGS/CM (or vice versa). Configure it from the delivery "
+"method."
+msgstr ""
 
 #. module: delivery_ups
 #: model:ir.model.fields,help:delivery_ups.field_delivery_carrier__ups_cod
@@ -238,20 +609,21 @@ msgid ""
 msgstr ""
 
 #. module: delivery_ups
-#: model:ir.model,name:delivery_ups.model_stock_picking
-msgid "Transfer"
-msgstr "Átvitel"
-
-#. module: delivery_ups
 #: model:ir.model.fields.selection,name:delivery_ups.selection__delivery_carrier__delivery_type__ups
-#: model:ir.model.fields.selection,name:delivery_ups.selection__product_packaging__package_carrier_type__ups
+#: model:ir.model.fields.selection,name:delivery_ups.selection__stock_package_type__package_carrier_type__ups
 msgid "UPS"
-msgstr ""
+msgstr "UPS"
 
 #. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_access_number
-msgid "UPS AccessLicenseNumber"
-msgstr "UPS HozzáférésiLiszencSzám"
+msgid "UPS Access Key"
+msgstr ""
+
+#. module: delivery_ups
+#: model:ir.model.fields,field_description:delivery_ups.field_res_partner__property_ups_carrier_account
+#: model:ir.model.fields,field_description:delivery_ups.field_res_users__property_ups_carrier_account
+msgid "UPS Account Number"
+msgstr ""
 
 #. module: delivery_ups
 #: model:delivery.carrier,name:delivery_ups.delivery_carrier_ups_be
@@ -266,14 +638,14 @@ msgid "UPS Configuration"
 msgstr "UPS beállítások"
 
 #. module: delivery_ups
-#: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_default_packaging_id
-msgid "UPS Default Packaging Type"
-msgstr "UPS alapértelmezett csomag típus"
-
-#. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_label_file_type
 msgid "UPS Label File Type"
 msgstr "UPS  Felirat fájl típus"
+
+#. module: delivery_ups
+#: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_default_package_type_id
+msgid "UPS Package Type"
+msgstr ""
 
 #. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_passwd
@@ -286,9 +658,13 @@ msgid "UPS Saturday Delivery"
 msgstr ""
 
 #. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "UPS Server Not Found"
+msgstr ""
+
+#. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_default_service_type
-#: model:ir.model.fields,field_description:delivery_ups.field_sale_order__ups_service_type
-#: model:ir.model.fields,field_description:delivery_ups.field_stock_picking__ups_service_type
 msgid "UPS Service Type"
 msgstr "UPS Szolgáltatástípus"
 
@@ -316,17 +692,25 @@ msgid "UPS Username"
 msgstr "UPS Felhasználói név"
 
 #. module: delivery_ups
+#: model:ir.model.fields,field_description:delivery_ups.field_sale_order__partner_ups_carrier_account
+msgid "UPS account number"
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid ""
+"UPS address lines can only contain a maximum of 35 characters. You can split"
+" the contacts addresses on multiple lines to try to avoid this limitation."
+msgstr ""
+
+#. module: delivery_ups
 #: model:product.product,uom_name:delivery_ups.product_product_delivery_ups_be
 #: model:product.product,uom_name:delivery_ups.product_product_delivery_ups_us
 #: model:product.template,uom_name:delivery_ups.product_product_delivery_ups_be_product_template
 #: model:product.template,uom_name:delivery_ups.product_product_delivery_ups_us_product_template
 msgid "Units"
-msgstr ""
-
-#. module: delivery_ups
-#: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_package_dimension_unit
-msgid "Units for UPS Package Size"
-msgstr "UPS csomag méret mértékegységei"
+msgstr "egység"
 
 #. module: delivery_ups
 #: model:ir.model.fields,field_description:delivery_ups.field_delivery_carrier__ups_duty_payment
@@ -339,8 +723,34 @@ msgid "Ups Package Weight Unit"
 msgstr ""
 
 #. module: delivery_ups
-#: model_terms:ir.ui.view,arch_db:delivery_ups.view_delivery_carrier_form_with_provider_ups
-msgid "Value Added Services"
+#: code:addons/delivery_ups/models/ups_request.py:0
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Username/Password is invalid for this delivery provider."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Warehouse Phone must be at least 10 alphanumeric characters."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Warehouse Phone must contain only numbers."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/ups_request.py:0
+#, python-format
+msgid "Warehouse PhoneExtension cannot exceed the length of 4."
+msgstr ""
+
+#. module: delivery_ups
+#: code:addons/delivery_ups/models/sale.py:0
+#, python-format
+msgid "You must enter an UPS account number."
 msgstr ""
 
 #. module: delivery_ups

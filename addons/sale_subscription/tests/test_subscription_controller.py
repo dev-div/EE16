@@ -160,65 +160,90 @@ class TestSubscriptionController(PaymentHttpCommon, PaymentCommon, TestSubscript
         self.assertEqual(legit_user_subscription.payment_token_id, legit_payment_method, "The token should not be updated")
 
     def test_automatic_invoice_token(self):
-        # set automatic invoice
-        self.env['ir.config_parameter'].sudo().set_param('sale.automatic_invoice', 'True')
+
         self.original_prepare_invoice = self.subscription._prepare_invoice
+        self.mock_send_success_count = 0
+        with patch('odoo.addons.sale_subscription.models.sale_order.SaleOrder._do_payment', wraps=self._mock_subscription_do_payment),\
+            patch('odoo.addons.sale_subscription.models.sale_order.SaleOrder.send_success_mail', wraps=self._mock_subscription_send_success_mail):
+            self.env['ir.config_parameter'].sudo().set_param('sale.automatic_invoice', 'False')
+            subscription = self._portal_payment_controller_flow()
+            subscription.transaction_ids.unlink()
+            # set automatic invoice and restart
+            self.env['ir.config_parameter'].sudo().set_param('sale.automatic_invoice', 'True')
+            self._portal_payment_controller_flow()
 
-        with patch('odoo.addons.sale_subscription.models.sale_order.SaleOrder._do_payment', wraps=self._mock_subscription_do_payment), \
-                patch('odoo.addons.sale_subscription.models.sale_order.SaleOrder.send_success_mail',
-                      wraps=self._mock_subscription_send_success_mail):
+    def _portal_payment_controller_flow(self):
+        subscription = self.subscription.create({
+            'partner_id': self.partner.id,
+            'company_id': self.company.id,
+            'payment_token_id': self.payment_method.id,
+            'sale_order_template_id': self.subscription_tmpl.id,
 
-            subscription = self.subscription.create({
-                'partner_id': self.partner.id,
-                'company_id': self.company.id,
-                'payment_token_id': self.payment_method.id,
-                'sale_order_template_id': self.subscription_tmpl.id,
+        })
+        subscription._onchange_sale_order_template_id()
+        subscription.state = 'sent'
+        subscription._portal_ensure_token()
+        signature = "R0lGODdhAQABAIAAAP///////ywAAAAAAQABAAACAkQBADs="  # BASE64 of a simple image
+        data = {'order_id': subscription.id, 'access_token': subscription.access_token, 'signature': signature}
 
-            })
-            subscription._onchange_sale_order_template_id()
-            subscription.state = 'sent'
-            subscription._portal_ensure_token()
-            signature = "R0lGODdhAQABAIAAAP///////ywAAAAAAQABAAACAkQBADs=" # BASE64 of a simple image
-            data = {'order_id': subscription.id, 'access_token': subscription.access_token, 'signature': signature}
-
-            url = self._build_url("/my/orders/%s/accept" % subscription.id)
-            self._make_json_rpc_request(url, data)
-            data = {'order_id': subscription.id,
-                    'access_token': subscription.access_token,
-                    'amount': subscription.amount_total,
-                    'currency_id': subscription.currency_id.id,
-                    'flow': 'direct',
-                    'tokenization_requested': True,
-                    'landing_route': subscription.get_portal_url(),
-                    'payment_option_id': self.dummy_provider.id,
-                    'partner_id': subscription.partner_id.id}
-            url = self._build_url("/my/orders/%s/transaction" % subscription.id)
-            res = self._make_json_rpc_request(url, data)
-            self.assertEqual(res.status_code, 200)
-            subscription.transaction_ids.provider_id.support_manual_capture = True
-            subscription.transaction_ids._set_authorized()
-            subscription.transaction_ids.token_id = self.payment_method.id
-            self.assertEqual(subscription.next_invoice_date, datetime.date.today())
-            self.assertEqual(subscription.state, 'sale')
-            subscription.transaction_ids._reconcile_after_done()  # Create the payment
-            self.assertEqual(subscription.invoice_count, 1, "Only one invoice should be created")
-            self.assertTrue(subscription.next_invoice_date > datetime.date.today(), "the next invoice date should be updated")
-            subscription._cron_recurring_create_invoice()
-            self.assertEqual(subscription.invoice_count, 1, "Only one invoice should be created")
-            # test transaction flow when paying from the portal
-            self.assertEqual(len(subscription.transaction_ids), 1, "Only one transaction should be created")
-            first_transaction_id = subscription.transaction_ids
-            subscription.to_renew = True
-            url = self._build_url("/my/subscription/transaction/%s" % subscription.id)
-            data = {'access_token': subscription.access_token,
-                    'reference_prefix': 'test_automatic_invoice_token',
-                    'landing_route': subscription.get_portal_url(),
-                    'payment_option_id': self.dummy_provider.id,
-                    'flow': 'direct',
-                    }
-            self._make_json_rpc_request(url, data)
-            last_transaction_id = subscription.transaction_ids - first_transaction_id
-            self.assertEqual(last_transaction_id.sale_order_ids, subscription)
-            self.assertEqual(last_transaction_id.reference, "test_automatic_invoice_token",
-                             "The reference should come from the prefix")
-            last_transaction_id._set_done()
+        url = self._build_url("/my/orders/%s/accept" % subscription.id)
+        self._make_json_rpc_request(url, data)
+        data = {'order_id': subscription.id,
+                'access_token': subscription.access_token,
+                'amount': subscription.amount_total,
+                'currency_id': subscription.currency_id.id,
+                'flow': 'direct',
+                'tokenization_requested': True,
+                'landing_route': subscription.get_portal_url(),
+                'payment_option_id': self.dummy_provider.id,
+                'partner_id': subscription.partner_id.id}
+        url = self._build_url("/my/orders/%s/transaction" % subscription.id)
+        res = self._make_json_rpc_request(url, data)
+        self.assertEqual(res.status_code, 200)
+        subscription.transaction_ids.provider_id.support_manual_capture = True
+        subscription.transaction_ids._set_authorized()
+        subscription.invoice_ids.filtered(lambda am: am.state == 'draft')._post()
+        subscription.transaction_ids.token_id = self.payment_method.id
+        self.assertEqual(subscription.next_invoice_date, datetime.date.today())
+        self.assertEqual(subscription.state, 'sale')
+        subscription.transaction_ids._reconcile_after_done()  # Create the payment
+        self.assertEqual(subscription.invoice_count, 1, "One invoice should be created")
+        # subscription has a payment_token_id, the invoice is created by the flow.
+        subscription.invoice_ids.invoice_line_ids.account_id.account_type = 'asset_cash'
+        subscription.invoice_ids.auto_post = 'at_date'
+        self.env.ref('account.ir_cron_auto_post_draft_entry').method_direct_trigger()
+        self.assertTrue(subscription.next_invoice_date > datetime.date.today(), "the next invoice date should be updated")
+        self.env['account.payment.register'] \
+            .with_context(active_model='account.move', active_ids=subscription.invoice_ids.ids) \
+            .create({
+            'currency_id': subscription.currency_id.id,
+            'amount': subscription.amount_total,
+        })._create_payments()
+        self.assertEqual(subscription.invoice_ids.mapped('state'), ['posted'])
+        self.assertTrue(subscription.invoice_ids.payment_state in ['paid', 'in_payment'])
+        subscription._cron_recurring_create_invoice()
+        invoices = subscription.invoice_ids.filtered(lambda am: am.state in ['draft', 'posted']) # avoid counting canceled invoices
+        self.assertEqual(len(invoices), 1, "Only one invoice should be created")
+        # test transaction flow when paying from the portal
+        self.assertEqual(len(subscription.transaction_ids), 1, "Only one transaction should be created")
+        first_transaction_id = subscription.transaction_ids
+        subscription.to_renew = True
+        url = self._build_url("/my/subscription/transaction/%s" % subscription.id)
+        data = {'access_token': subscription.access_token,
+                'reference_prefix': 'test_automatic_invoice_token',
+                'landing_route': subscription.get_portal_url(),
+                'payment_option_id': self.dummy_provider.id,
+                'flow': 'direct',
+                }
+        self._make_json_rpc_request(url, data)
+        invoice_transactions = subscription.invoice_ids.transaction_ids
+        self.assertEqual(len(invoice_transactions), 1, "Only one transaction should be created")
+        last_transaction_id = subscription.transaction_ids - first_transaction_id
+        self.assertEqual(len(subscription.transaction_ids), 2)
+        self.assertEqual(last_transaction_id.sale_order_ids, subscription)
+        self.assertEqual(last_transaction_id.reference, "test_automatic_invoice_token",
+                         "The reference should come from the prefix")
+        last_transaction_id._set_done()
+        self.assertEqual(subscription.invoice_ids.mapped('state'), ['posted'])
+        self.assertEqual(subscription.invoice_ids.payment_state, 'in_payment')
+        return subscription

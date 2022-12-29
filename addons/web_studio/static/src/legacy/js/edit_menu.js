@@ -14,7 +14,7 @@ var Widget = require('web.Widget');
 var Many2One = relational_fields.FieldMany2One;
 const FieldRadio = relational_fields.FieldRadio;
 var _t = core._t;
-const { Component } = owl;
+const { Component } = require("@odoo/owl");
 
 var MenuItem = Widget.extend({
     template: 'web_studio.EditMenu.MenuItem',
@@ -123,6 +123,17 @@ var EditMenuDialog = Dialog.extend({
         });
         return this._super.apply(this, arguments);
     },
+    /**
+     * @override
+     * Close the dialog if it is open.
+     */
+    on_detach_callback() {
+        if (this.closeDialog) {
+            this.closeDialog();
+            this.closeDialog = undefined;
+        }
+        return this._super.apply(this, arguments);
+    },
 
     //--------------------------------------------------------------------------
     // Public
@@ -223,7 +234,7 @@ var EditMenuDialog = Dialog.extend({
         // this widget in the process), and re-show it when the wowl dialog is closed.
         this.$modal.off('hidden.bs.modal');
         this.$modal.modal("hide");
-        Component.env.services.dialog.add(FormViewDialog, {
+        this.closeDialog = Component.env.services.dialog.add(FormViewDialog, {
             resModel: 'ir.ui.menu',
             resId: menu_id,
             onRecordSaved: function () {

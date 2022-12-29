@@ -38,6 +38,7 @@ Features:
         'views/account_analytic_account_views.xml',
         'views/subscription_portal_templates.xml',
         'views/subscription_templates.xml',
+        'views/payment_templates.xml',
         'views/mail_activity_views.xml',
         'data/mail_template_data.xml',
         'data/sale_subscription_data.xml',
@@ -55,6 +56,7 @@ Features:
             'sale_subscription/static/src/js/tours/sale_subscription.js',
         ],
         'web.assets_frontend': [
+            'sale_subscription/static/src/js/manage_form.js',
             'sale_subscription/static/src/js/portal_subscription.js',
         ],
     }

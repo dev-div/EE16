@@ -3,25 +3,23 @@
 # 	* hr_payroll_account
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Mateus Lopes <mateus1@gmail.com>, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:36+0000\n"
-"Last-Translator: Mateus Lopes <mateus1@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: hr_payroll_account
-#: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_contract_view_form
 #: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_salary_rule_view_form
 msgid "Accounting"
 msgstr "Contabilidade"
@@ -34,14 +32,13 @@ msgstr "Entrada Contábil"
 #. module: hr_payroll_account
 #: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
 #: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
-#: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
-#: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
 #, python-format
 msgid "Adjustment Entry"
 msgstr "Entrada de Ajuste"
 
 #. module: hr_payroll_account
 #: model:ir.model.fields,field_description:hr_payroll_account.field_hr_contract__analytic_account_id
+#: model:ir.model.fields,field_description:hr_payroll_account.field_hr_contract_history__analytic_account_id
 #: model:ir.model.fields,field_description:hr_payroll_account.field_hr_salary_rule__analytic_account_id
 msgid "Analytic Account"
 msgstr "Conta Analítica"
@@ -49,8 +46,19 @@ msgstr "Conta Analítica"
 #. module: hr_payroll_account
 #: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_payslip_run_view_form
 #: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_payslip_view_form
-msgid "Create Draft Entry"
+msgid "Are you sure you want to proceed ?"
+msgstr "Você tem certeza que deseja continuar ?"
+
+#. module: hr_payroll_account
+#: model:ir.model,name:hr_payroll_account.model_hr_contract_history
+msgid "Contract history"
 msgstr ""
+
+#. module: hr_payroll_account
+#: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_payslip_run_view_form
+#: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_payslip_view_form
+msgid "Create Draft Entry"
+msgstr "Criar Rascunho de Registro"
 
 #. module: hr_payroll_account
 #: model:ir.model.fields,field_description:hr_payroll_account.field_hr_salary_rule__account_credit
@@ -73,6 +81,18 @@ msgid "Employee Contract"
 msgstr "Contrato do Funcionário"
 
 #. module: hr_payroll_account
+#: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
+#, python-format
+msgid ""
+"Incorrect journal: The journal must be in the same currency as the company"
+msgstr ""
+
+#. module: hr_payroll_account
+#: model:ir.model,name:hr_payroll_account.model_account_journal
+msgid "Journal"
+msgstr "Diário"
+
+#. module: hr_payroll_account
 #: model:ir.model.fields,help:hr_payroll_account.field_hr_payslip__date
 msgid "Keep empty to use the period of the validation(Payslip) date."
 msgstr "Deixe vazio para usar o período da data de validação (holerite)."
@@ -80,19 +100,20 @@ msgstr "Deixe vazio para usar o período da data de validação (holerite)."
 #. module: hr_payroll_account
 #: model:ir.model.fields,field_description:hr_payroll_account.field_hr_salary_rule__not_computed_in_net
 msgid "Not computed in net accountably"
-msgstr ""
+msgstr "Não calculado na contabilidade global"
 
 #. module: hr_payroll_account
 #: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
 #, python-format
 msgid "One of the contract for these payslips has no structure type."
-msgstr ""
+msgstr "Um dos contratos desses holerites não tem tipo estruturado."
 
 #. module: hr_payroll_account
 #: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
 #, python-format
 msgid "One of the payroll structures has no account journal defined on it."
 msgstr ""
+"Uma das estruturas de folha de pagamento não possui Livro-Razão definido"
 
 #. module: hr_payroll_account
 #: model:ir.model,name:hr_payroll_account.model_hr_payslip
@@ -108,7 +129,7 @@ msgstr "Diário de Salário"
 #. module: hr_payroll_account
 #: model:ir.model,name:hr_payroll_account.model_hr_salary_rule
 msgid "Salary Rule"
-msgstr ""
+msgstr "Regra Salarial"
 
 #. module: hr_payroll_account
 #: model:ir.model,name:hr_payroll_account.model_hr_payroll_structure
@@ -116,21 +137,11 @@ msgid "Salary Structure"
 msgstr "Estrutura do Salário"
 
 #. module: hr_payroll_account
-#: model_terms:ir.ui.view,arch_db:hr_payroll_account.hr_payslip_run_view_form
-msgid "Set to Draft"
-msgstr "Definir como Provisório"
-
-#. module: hr_payroll_account
 #: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
 #, python-format
-msgid "The Expense Journal \"%s\" has not properly configured the Credit Account!"
-msgstr "O diário de Despesas \"%s\" não possui uma Conta de Crédito configurada!"
-
-#. module: hr_payroll_account
-#: code:addons/hr_payroll_account/models/hr_payroll_account.py:0
-#, python-format
-msgid "The Expense Journal \"%s\" has not properly configured the Debit Account!"
-msgstr "O diário de Despesas  \"%s\" não possui uma Conta de Débito configurada"
+msgid ""
+"The Expense Journal \"%s\" has not properly configured the default Account!"
+msgstr ""
 
 #. module: hr_payroll_account
 #: model:ir.model.fields,help:hr_payroll_account.field_hr_salary_rule__not_computed_in_net
@@ -140,3 +151,7 @@ msgid ""
 "in the accounting. For example, if you want to display the value of your "
 "representation fees, you can check this field."
 msgstr ""
+"Este campo permite que você exclua o valor desta regra na regra \"Salário "
+"Líquido\" no nível contábil para exibir explicitamente o valor desta regra "
+"na contabilidade. Por exemplo, se você deseja exibir o valor de suas taxas "
+"de representação, você pode marcar este campo."

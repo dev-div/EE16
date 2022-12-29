@@ -2,6 +2,7 @@
 
 import { registry } from "@web/core/registry";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
+import { TagsList } from "@web/views/fields/many2many_tags/tags_list";
 
 const { Component, useState } = owl;
 
@@ -75,5 +76,6 @@ BankRecWidgetFormLinesWidget.template = "account_accountant.bank_rec_widget_form
 BankRecWidgetFormLinesWidget.props = {
     ...standardFieldProps,
 }
+BankRecWidgetFormLinesWidget.components = { TagsList };
 
 registry.category("fields").add("bank_rec_widget_form_lines_widget", BankRecWidgetFormLinesWidget);

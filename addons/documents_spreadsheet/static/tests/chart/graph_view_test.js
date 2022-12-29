@@ -5,6 +5,8 @@ import { SpreadsheetAction } from "@documents_spreadsheet/bundle/actions/spreads
 import { click, patchWithCleanup, triggerEvent } from "@web/../tests/helpers/utils";
 import { patch, unpatch } from "@web/core/utils/patch";
 import { GraphController } from "@web/views/graph/graph_controller";
+import { fakeCookieService } from "@web/../tests/helpers/mock_services";
+import { registry } from "@web/core/registry";
 import {
     createSpreadsheetFromGraphView,
     spawnGraphViewForSpreadsheet,
@@ -13,6 +15,7 @@ import { getSpreadsheetActionModel } from "../utils/webclient_helpers";
 
 function beforeEach() {
     patch(GraphController.prototype, "graph_spreadsheet", patchGraphSpreadsheet);
+    registry.category("services").add("cookie", fakeCookieService);
 }
 
 function afterEach() {

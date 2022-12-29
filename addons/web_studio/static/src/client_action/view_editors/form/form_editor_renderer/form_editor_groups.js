@@ -2,9 +2,9 @@
 
 import { formView } from "@web/views/form/form_view";
 import { studioIsVisible } from "@web_studio/client_action/view_editors/utils";
-import { StudioHook } from "../studio_hook_component";
+import { StudioHook } from "@web_studio/client_action/view_editors/components/studio_hook_component";
 
-const { Component, useChildSubEnv, useEffect, useRef } = owl;
+import { Component, useChildSubEnv, useEffect, useRef } from "@odoo/owl";
 const components = formView.Renderer.components;
 
 /*

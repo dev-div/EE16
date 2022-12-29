@@ -38,14 +38,15 @@ class MailChannel(models.Model):
     def execute_command_helpdesk(self, **kwargs):
         key = kwargs.get('body').split()
         msg = _('Something is missing or wrong in command')
-        partners = self.channel_partner_ids.filtered(lambda partner: partner != self.env.user.partner_id)
+        partners = self.with_context(active_test=False).channel_partner_ids.filtered(lambda partner: partner != self.env.user.partner_id)
         if key[0].lower() == '/helpdesk':
             if len(key) == 1:
                 if self.channel_type == 'channel':
-                    msg = _("You are in channel <b>#%s</b>.", self.name)
+                    msg = _("You are in channel <b>#%s</b>.", html_escape(self.name))
                     if self.public == 'private':
                         msg += _(" This channel is private. People must be invited to join it.")
                 else:
+                    partners = partners or self.env.user.partner_id
                     msg = _("You are in a private conversation with <b>%(mentions)s</b>.",
                             mentions=", ".join(html_escape("@%s" % p.name) for p in partners)
                            )

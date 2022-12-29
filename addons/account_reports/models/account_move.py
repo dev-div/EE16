@@ -19,7 +19,7 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         # Overridden to create carryover external values and join the pdf of the report when posting the tax closing
         processed_moves = self.env['account.move']
-        for move in self.filtered(lambda m: not m.posted_before and m.tax_closing_end_date):
+        for move in self.filtered(lambda m: m.tax_closing_end_date):
             # Generate carryover values
             report, options = move._get_report_options_from_tax_closing_entry()
 
@@ -46,9 +46,29 @@ class AccountMove(models.Model):
             processed_moves += move
 
             # Post the pdf of the tax report in the chatter, and set the lock date if possible
-            self._close_tax_period()
+            move._close_tax_period()
 
         return super()._post(soft)
+
+    def button_draft(self):
+        # Overridden in order to delete the carryover values when resetting the tax closing to draft
+        super().button_draft()
+        for closing_move in self.filtered(lambda m: m.tax_closing_end_date):
+            report, options = closing_move._get_report_options_from_tax_closing_entry()
+            closing_months_delay = closing_move.company_id._get_tax_periodicity_months_delay()
+
+            carryover_values = self.env['account.report.external.value'].search([
+                ('carryover_origin_report_line_id', 'in', report.line_ids.ids),
+                ('date', '=', options['date']['date_to']),
+            ])
+
+            carryover_impacted_period_end = fields.Date.from_string(options['date']['date_to']) + relativedelta(months=closing_months_delay)
+            tax_lock_date = closing_move.company_id.tax_lock_date
+            if carryover_values and tax_lock_date and tax_lock_date >= carryover_impacted_period_end:
+                raise UserError(_("You cannot reset this closing entry to draft, as it would delete carryover values impacting the tax report of a "
+                                  "locked period. To do this, you first need to modify you tax return lock date."))
+
+            carryover_values.unlink()
 
     def action_open_tax_report(self):
         action = self.env["ir.actions.actions"]._for_xml_id("account_reports.action_account_report_gt")
@@ -81,7 +101,7 @@ class AccountMove(models.Model):
                 ('id', '!=', move.id),
             ], limit=1)
 
-            if not open_previous_closing:
+            if not open_previous_closing and (not move.company_id.tax_lock_date or move.tax_closing_end_date > move.company_id.tax_lock_date):
                 move.company_id.sudo().tax_lock_date = move.tax_closing_end_date
 
             # Add pdf report as attachment to move

@@ -5,20 +5,21 @@
 # Translators:
 # שהאב חוסיין <shhab89@gmail.com>, 2022
 # Amit Spilman <amit@laylinetech.com>, 2022
-# NoaFarkash, 2022
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # Jonathan Spier, 2022
 # Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
 # Martin Trigaux, 2022
+# NoaFarkash, 2022
+# Ha Ketem <haketem@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:48+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Ha Ketem <haketem@gmail.com>, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,40 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format
 msgid "<b>Congratulations</b>, you are now an expert of Expenses."
 msgstr ""
+
+#. module: hr_expense_extract
+#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Buy credits"
+msgstr ""
+
+#. module: hr_expense_extract
+#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Refresh"
+msgstr ""
+
+#. module: hr_expense_extract
+#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Resend For Digitization"
+msgstr ""
+
+#. module: hr_expense_extract
+#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
+msgid ""
+"All fields will be automated by Artificial Intelligence, it might take 5 "
+"seconds."
+msgstr ""
+"כל השדות ימולאו אוטומטית באמצעו תבינה מלאכותית, זה יכול לקחת כ-5 שניות."
 
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_expense_sample_register__amount
@@ -39,6 +69,7 @@ msgid "Amount"
 msgstr "סכום כולל"
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__hr_expense__extract_state__error_status
 #, python-format
@@ -56,11 +87,6 @@ msgid "Available Payment Method Line"
 msgstr "שיטת תשלום זמינה"
 
 #. module: hr_expense_extract
-#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
-msgid "Buy credits"
-msgstr "קנה אשראי"
-
-#. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_hr_expense__extract_can_show_resend_button
 msgid "Can show the ocr resend button"
 msgstr "יכול להציג את כפתור השליחה מחדש של ה- ocr"
@@ -76,7 +102,7 @@ msgid "Cancel"
 msgstr "בטל"
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format
 msgid "Choose a receipt."
@@ -134,12 +160,12 @@ msgstr "מטבע"
 #. module: hr_expense_extract
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__res_company__expense_extract_show_ocr_option_selection__auto_send
 msgid "Digitize automatically"
-msgstr ""
+msgstr "עשה דיגיטליזציה באופן אוטומטי"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__res_company__expense_extract_show_ocr_option_selection__manual_send
 msgid "Digitize on demand only"
-msgstr ""
+msgstr "עשה דיגיטליזציה לפי דרישה בלבד"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_expense_sample_receipt__display_name
@@ -151,7 +177,7 @@ msgstr "שם לתצוגה"
 #. module: hr_expense_extract
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__res_company__expense_extract_show_ocr_option_selection__no_send
 msgid "Do not digitize"
-msgstr ""
+msgstr "לא לעשות דיגיטליזציה"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_hr_expense__extract_error_message
@@ -168,21 +194,18 @@ msgstr "מאשר הוצאות"
 #. module: hr_expense_extract
 #: model:ir.actions.server,name:hr_expense_extract.ir_cron_ocr_parse_ir_actions_server
 #: model:ir.cron,cron_name:hr_expense_extract.ir_cron_ocr_parse
-#: model:ir.cron,name:hr_expense_extract.ir_cron_ocr_parse
 msgid "Expense OCR: Parse Expenses"
 msgstr ""
 
 #. module: hr_expense_extract
 #: model:ir.actions.server,name:hr_expense_extract.ir_cron_update_ocr_status_ir_actions_server
 #: model:ir.cron,cron_name:hr_expense_extract.ir_cron_update_ocr_status
-#: model:ir.cron,name:hr_expense_extract.ir_cron_update_ocr_status
 msgid "Expense OCR: Update All Status"
 msgstr ""
 
 #. module: hr_expense_extract
 #: model:ir.actions.server,name:hr_expense_extract.ir_cron_ocr_validate_ir_actions_server
 #: model:ir.cron,cron_name:hr_expense_extract.ir_cron_ocr_validate
-#: model:ir.cron,name:hr_expense_extract.ir_cron_ocr_validate
 msgid "Expense OCR: Validate Expenses"
 msgstr ""
 
@@ -192,6 +215,7 @@ msgid "Expense Report"
 msgstr "דוח הוצאות"
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Expense is being Digitized"
@@ -203,6 +227,7 @@ msgid "Expense processing option"
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Expenses sent"
@@ -224,6 +249,7 @@ msgid "Extracted words from expense scan"
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Generated Expense"
@@ -311,6 +337,7 @@ msgid "Memo"
 msgstr "פתק"
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "No document name provided"
@@ -357,24 +384,21 @@ msgid "Register Sample Payments"
 msgstr ""
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format
 msgid "Report this expense to your manager for validation."
 msgstr ""
 
 #. module: hr_expense_extract
-#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
-msgid "Resend For Digitization"
-msgstr ""
-
-#. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/wizard/expense_sample_receipt.py:0
 #, python-format
 msgid "Sample Employee"
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/wizard/expense_sample_receipt.py:0
 #, python-format
 msgid "Sample Receipt: %s"
@@ -392,16 +416,18 @@ msgid "Send mode on expense attachments"
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Server is currently under maintenance. Please retry later"
-msgstr ""
+msgstr "עבודות תחזוקה בשרת. לא לנסות שוב מאוחר יותר"
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Server not available. Please retry later"
-msgstr ""
+msgstr "שרת לא זמין. נא לנסות שוב מאוחר יותר"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_hr_expense__extract_status_code
@@ -421,17 +447,11 @@ msgid ""
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "The document could not be found"
-msgstr ""
-
-#. module: hr_expense_extract
-#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
-msgid ""
-"The file has been sent and is being processed. It usually takes between 5 "
-"and 10 seconds."
-msgstr ""
+msgstr "המסמך לא נמצא"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__hr_expense__extract_state__to_validate
@@ -450,22 +470,18 @@ msgid "Try Sample Receipts"
 msgstr ""
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format
 msgid "Try the AI with a sample receipt."
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "Unsupported image format"
-msgstr ""
-
-#. module: hr_expense_extract
-#: model_terms:ir.ui.view,arch_db:hr_expense_extract.hr_expense_extract_view_form
-msgid "Update status"
-msgstr "עדכן סטטוס"
+msgstr "פורמט הדימוי לא נתמך"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields.selection,name:hr_expense_extract.selection__hr_expense__extract_state__waiting_extraction
@@ -483,7 +499,7 @@ msgid "Waiting validation"
 msgstr "ממתין לאישור"
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format
 msgid "Wasting time recording your receipts? Let’s try a better way."
@@ -492,14 +508,15 @@ msgstr ""
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_hr_expense_extract_words__word_page
 msgid "Word Page"
-msgstr ""
+msgstr "עמוד מילה"
 
 #. module: hr_expense_extract
 #: model:ir.model.fields,field_description:hr_expense_extract.field_hr_expense_extract_words__word_text
 msgid "Word Text"
-msgstr ""
+msgstr "טקסט מילה"
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "You cannot send a expense that is not in draft state!"
@@ -511,13 +528,14 @@ msgid "You don't have enough credit to extract data from your expense."
 msgstr ""
 
 #. module: hr_expense_extract
+#. odoo-python
 #: code:addons/hr_expense_extract/models/hr_expense.py:0
 #, python-format
 msgid "You must send the same quantity of documents and file names"
-msgstr ""
+msgstr "יש לשלוח את אותה כמות של מסמכים ושל שמות קבצים"
 
 #. module: hr_expense_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #: code:addons/hr_expense_extract/static/src/js/tours/expense_tour.js:0
 #, python-format

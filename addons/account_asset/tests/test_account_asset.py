@@ -1839,7 +1839,7 @@ class TestAccountAsset(TestAccountReportsCommon):
         refund = self.env['account.move'].create({
             'move_type': 'in_refund',
             'partner_id': self.ref("base.res_partner_12"),
-            'invoice_date': fields.Date.today() - relativedelta(months=1),
+            'invoice_date': fields.Date.today() + relativedelta(month=1),
             'invoice_line_ids': [(0, 0, {'name': 'refund', 'account_id': depreciation_account.id, 'price_unit': 500})],
         })
         refund.action_post()
@@ -1887,3 +1887,137 @@ class TestAccountAsset(TestAccountReportsCommon):
         ]
         options = self._generate_options(report, fields.Date.today() + relativedelta(months=-7, day=1), fields.Date.today())
         self.assertLinesValues(report._get_lines(options)[2:3], [0, 5, 6, 7, 8, 9, 10, 11, 12, 13], expected_values_closed_asset)
+
+    def test_depreciation_schedule_hierarchy(self):
+        # Remove previously existing assets.
+        assets = self.env['account.asset'].search([
+            ('company_id', '=', self.env.company.id),
+            ('state', '!=', 'model'),
+        ])
+        assets.state = 'draft'
+        assets.mapped('depreciation_move_ids').state = 'draft'
+        assets.unlink()
+
+        # Create the account groups.
+        self.env['account.group'].create([
+            {'name': 'Group 1', 'code_prefix_start': '1', 'code_prefix_end': '1'},
+            {'name': 'Group 11', 'code_prefix_start': '11', 'code_prefix_end': '11'},
+            {'name': 'Group 12', 'code_prefix_start': '12', 'code_prefix_end': '12'},
+        ])
+
+        # Create the accounts.
+        account_a, account_a1, account_b = self.env['account.account'].create([
+            {'code': '1100', 'name': 'Account A', 'account_type': 'asset_non_current'},
+            {'code': '1110', 'name': 'Account A1', 'account_type': 'asset_non_current'},
+            {'code': '1200', 'name': 'Account B', 'account_type': 'asset_non_current'},
+        ])
+
+        # Create and validate the assets, and post the depreciation entries.
+        self.env['account.asset'].create([
+            {
+                'account_asset_id': account_id,
+                'account_depreciation_id': account_id,
+                'account_depreciation_expense_id': self.company_data['default_account_expense'].id,
+                'journal_id': self.company_data['default_journal_misc'].id,
+                'asset_type': 'purchase',
+                'name': name,
+                'acquisition_date': fields.Date.from_string('2020-07-01'),
+                'original_value': original_value,
+                'method': 'linear',
+            }
+            for account_id, name, original_value in [
+                (account_a.id, 'ZenBook', 1250),
+                (account_a.id, 'ThinkBook', 1500),
+                (account_a1.id, 'XPS', 1750),
+                (account_b.id, 'MacBook', 2000),
+            ]
+        ]).validate()
+        self.env['account.move']._autopost_draft_entries()
+
+        # Configure the depreciation schedule report.
+        report = self.env.ref('account_asset.assets_report')
+        options = self._generate_options(report, '2022-01-01', '2022-12-31')
+        options['hierarchy'] = True
+        self.env.company.totals_below_sections = True
+
+        # Generate and compare actual VS expected values.
+        lines = [
+            {
+                'name': line['name'],
+                'level': line['level'],
+                'book_value': line['columns'][-1]['name']
+            }
+            for line in report._get_lines(options)
+        ]
+
+        expected_values = [
+            # pylint: disable=C0326
+            {'name': '1 Group 1',                   'level': 1,     'book_value': '$\xa05,200.00'},
+            {'name': '11 Group 11',                 'level': 2,     'book_value': '$\xa03,600.00'},
+            {'name': '1100 Account A',              'level': 3,     'book_value': '$\xa02,200.00'},
+            {'name': 'ZenBook',                     'level': 4,     'book_value': '$\xa01,000.00'},
+            {'name': 'ThinkBook',                   'level': 4,     'book_value': '$\xa01,200.00'},
+            {'name': 'Total 1100 Account A',        'level': 4,     'book_value': '$\xa02,200.00'},
+            {'name': '1110 Account A1',             'level': 3,     'book_value': '$\xa01,400.00'},
+            {'name': 'XPS',                         'level': 4,     'book_value': '$\xa01,400.00'},
+            {'name': 'Total 1110 Account A1',       'level': 4,     'book_value': '$\xa01,400.00'},
+            {'name': 'Total 11 Group 11',           'level': 3,     'book_value': '$\xa03,600.00'},
+            {'name': '12 Group 12',                 'level': 2,     'book_value': '$\xa01,600.00'},
+            {'name': '1200 Account B',              'level': 3,     'book_value': '$\xa01,600.00'},
+            {'name': 'MacBook',                     'level': 4,     'book_value': '$\xa01,600.00'},
+            {'name': 'Total 1200 Account B',        'level': 4,     'book_value': '$\xa01,600.00'},
+            {'name': 'Total 12 Group 12',           'level': 3,     'book_value': '$\xa01,600.00'},
+            {'name': 'Total 1 Group 1',             'level': 2,     'book_value': '$\xa05,200.00'},
+            {'name': 'Total',                       'level': 1,     'book_value': '$\xa05,200.00'},
+        ]
+
+        self.assertEqual(len(lines), len(expected_values))
+        self.assertEqual(lines, expected_values)
+
+    def test_asset_analytic_on_lines(self):
+        self.env.user.groups_id += self.env.ref('analytic.group_analytic_accounting')
+        analytic_plan = self.env['account.analytic.plan'].create({
+            'name': "Default Plan",
+        })
+        analytic_account = self.env['account.analytic.account'].create({
+            'name': "Test Account",
+            'plan_id': analytic_plan.id,
+        })
+        CEO_car = self.env['account.asset'].with_context(asset_type='purchase').create({
+            'salvage_value': 2000.0,
+            'state': 'open',
+            'method_period': '12',
+            'method_number': 5,
+            'name': "CEO's Car",
+            'original_value': 12000.0,
+            'model_id': self.account_asset_model_fixedassets.id,
+        })
+        CEO_car._onchange_model_id()
+        CEO_car.method_number = 5
+        CEO_car.analytic_distribution = {analytic_account.id: 100}
+
+        # In order to test the process of Account Asset, I perform a action to confirm Account Asset.
+        CEO_car.validate()
+
+        for move in CEO_car.depreciation_move_ids:
+            self.assertRecordValues(move.line_ids, [
+                {
+                    'analytic_distribution': {str(analytic_account.id): 100},
+                },
+                {
+                    'analytic_distribution': {str(analytic_account.id): 100},
+                },
+            ])
+
+    def test_depreciation_schedule_report_first_depreciation(self):
+        """Test that the depreciation schedule report displays the correct first depreciation date."""
+        # check that the truck's first depreciation date is correct:
+        # the truck has a yearly linear depreciation and it's prorate_date is 2015-01-01
+        # therefore we expect it's first depreciation date to be the last day of 2015
+
+        today = fields.Date.today()
+        report = self.env.ref('account_asset.assets_report')
+        options = self._generate_options(report, today + relativedelta(years=-6, month=1, day=1), today + relativedelta(years=+4, month=12, day=31))
+        lines = report._get_lines({**options, **{'unfold_all': False, 'all_entries': True}})
+
+        self.assertEqual(lines[1]['columns'][1]['name'], '12/31/2015')

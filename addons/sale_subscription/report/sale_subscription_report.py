@@ -14,7 +14,7 @@ class sale_subscription_report(models.Model):
     product_uom = fields.Many2one('uom.uom', 'Unit of Measure', readonly=True)
     recurring_monthly = fields.Float('Monthly Recurring Revenue', readonly=True)
     recurring_yearly = fields.Float('Yearly Recurring Revenue', readonly=True)
-    recurring_total = fields.Float('Recurring Price', readonly=True)
+    recurring_total = fields.Float('Recurring Amount', readonly=True)
     quantity = fields.Float('Quantity', readonly=True)
     partner_id = fields.Many2one('res.partner', 'Customer', readonly=True)
     user_id = fields.Many2one('res.users', 'Salesperson', readonly=True)
@@ -48,14 +48,20 @@ class sale_subscription_report(models.Model):
                     l.product_uom as product_uom,
                     sub.analytic_account_id as analytic_account_id,
                     sum(
-                        coalesce(l.price_subtotal / nullif(sub.amount_untaxed, 0), 0)
+                        coalesce(
+                         CASE WHEN t.recurring_invoice THEN l.price_subtotal ELSE 0 END
+                          / nullif(rc.recurring_subtotal, 0), 0
+                        )
                         * sub.recurring_monthly
                     ) as recurring_monthly,
                     sum(
-                        coalesce(l.price_subtotal / nullif(sub.amount_untaxed, 0), 0)
+                        coalesce(
+                         CASE WHEN t.recurring_invoice THEN l.price_subtotal ELSE 0 END
+                          / nullif(rc.recurring_subtotal, 0), 0
+                        )
                         * sub.recurring_monthly * 12
                     ) as recurring_yearly,
-                    sum(l.price_subtotal) as recurring_total,
+                    sum(CASE WHEN t.recurring_invoice THEN l.price_subtotal ELSE 0 END) as recurring_total,
                     sum(l.product_uom_qty) as quantity,
                     sub.date_order as date_order,
                     sub.end_date as end_date,
@@ -88,12 +94,27 @@ class sale_subscription_report(models.Model):
                         left join product_product p on (l.product_id=p.id)
                             left join product_template t on (p.product_tmpl_id=t.id)
                     left join uom_uom u on (u.id=l.product_uom)
+                    LEFT JOIN ( 
+                        SELECT 
+                            sub.id AS id,
+                            SUM(l.price_subtotal) AS recurring_subtotal
+                        FROM 
+                                 sale_order_line l
+                            JOIN sale_order sub ON (l.order_id=sub.id)
+                            LEFT JOIN product_product p ON (l.product_id=p.id)
+                            LEFT JOIN product_template t ON (p.product_tmpl_id=t.id)
+                        WHERE 
+                                sub.is_subscription
+                            AND t.recurring_invoice
+                        GROUP BY
+                            sub.id
+                    ) rc ON rc.id = sub.id
         """
         return from_str
 
     def _where(self):
         return """
-            WHERE sub.is_subscription is true
+            WHERE sub.is_subscription
         """
 
     def _group_by(self):

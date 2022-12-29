@@ -46,6 +46,7 @@
                     <field name="is_company" invisible="1"/>
                     <field name="street" required="1"/>
                     <field name="zip" required="1"/>
+                    <field name="city" required="1"/>
                     <field name="country_id" required="1"/>
                     <field name="phone" invisible="'phone' not in context.get('required_fields', [])" required="'phone' in context.get('required_fields', [])"/>
                     <field name="vat" attrs="{'required': [('is_company', '=', True)], }"/>

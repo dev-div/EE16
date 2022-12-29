@@ -3,7 +3,7 @@
 import { Model } from "@web/views/model";
 import { session } from "@web/session";
 import { browser } from "@web/core/browser/browser";
-import { parseDate, parseDateTime } from "@web/core/l10n/dates";
+import { formatDateTime, parseDate, parseDateTime } from "@web/core/l10n/dates";
 import { KeepLast } from "@web/core/utils/concurrency";
 
 const DATE_GROUP_FORMATS = {
@@ -164,6 +164,22 @@ export class MapModel extends Model {
             return this.keepLast.add(Promise.resolve(data));
         }
         const results = await this.keepLast.add(this._fetchRecordData(metaData, data));
+        
+        const datetimeFields=metaData.fieldNames.filter(name=>metaData.fields[name].type=="datetime");
+        for(let record of results.records){
+            // convert date fields from UTC to local timezone
+            for(const field of datetimeFields){
+                if (record[field]) {
+                    const dateUTC = luxon.DateTime.fromFormat(
+                        record[field],
+                        "yyyy-MM-dd HH:mm:ss",
+                        { zone: "UTC" }
+                    );
+                    record[field] = formatDateTime(dateUTC, { format: "yyyy-MM-dd HH:mm:ss" });
+                }
+            }
+        }
+
         data.records = results.records;
         data.count = results.length;
         if (data.isGrouped) {

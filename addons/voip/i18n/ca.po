@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # RGB Consulting <odoo@rgbconsulting.com>, 2022
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2022
 # Quim - eccit <quim@eccit.com>, 2022
@@ -14,6 +14,8 @@
 # Martin Trigaux, 2022
 # Arnau Ros, 2022
 # marcescu, 2022
+# Óscar Fonseca <tecnico@extreme-micro.com>, 2022
+# Ivan Espinola, 2022
 # 
 msgid ""
 msgstr ""
@@ -21,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:22+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
-"Last-Translator: marcescu, 2022\n"
+"Last-Translator: Ivan Espinola, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,21 +41,21 @@ msgstr "# de casos"
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "%(number of missed calls)s missed calls"
-msgstr ""
+msgstr "%(number de trucades perdudes)s trucades perdudes"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "1 missed call"
-msgstr ""
+msgstr "1 trucada perduda"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "2 missed calls"
-msgstr ""
+msgstr "2 trucades perdudes"
 
 #. module: voip
 #. openerp-web
@@ -63,6 +65,9 @@ msgid ""
 "A hardware error occured while trying to access audio recording device. "
 "Please make sure your drivers are up to date and try again."
 msgstr ""
+"S'ha produït un error de maquinari en intentar accedir al dispositiu "
+"d'enregistrament d'àudio. Assegureu-vos que els vostres controladors estan "
+"actualitzats i torneu-ho a provar."
 
 #. module: voip
 #. openerp-web
@@ -100,6 +105,8 @@ msgid ""
 "An error occured involving the audio recording device "
 "(%(errorName)s):</br>%(errorMessage)s"
 msgstr ""
+"S'ha produït un error en el dispositiu d'enregistrament d'àudio "
+"(%(errorName)s):</br>%(errorMessage)s"
 
 #. module: voip
 #. openerp-web
@@ -164,14 +171,14 @@ msgstr "Durada de la trucada: %(min)smin %(sec)ssegon"
 #: model:ir.model.fields,field_description:voip.field_res_users__should_call_from_another_device
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__should_call_from_another_device
 msgid "Call from another device"
-msgstr ""
+msgstr "Truca des d'un altre dispositiu"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/user_agent.js:0
 #, python-format
 msgid "Call rejected (reason: \"%(reasonPhrase)s\")"
-msgstr ""
+msgstr "Trucada rebutjada (motiu: \"%(reasonPhrase)s\")"
 
 #. module: voip
 #: code:addons/voip/models/voip_phonecall.py:0
@@ -225,6 +232,11 @@ msgid ""
 " runs over HTTPS and that your browser is not set to deny access to media "
 "devices."
 msgstr ""
+"No es pot accedir al dispositiu d'enregistrament d'àudio. Si heu denegat "
+"l'accés al micròfon, concediu-ho i torneu-ho a provar. En cas contrari, "
+"assegureu-vos que aquest lloc web s'executa a través d'HTTPS i que el vostre"
+" navegador no està configurat per a denegar l'accés als dispositius "
+"multimèdia."
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__how_to_call_on_mobile
@@ -236,6 +248,10 @@ msgid ""
 "            • Ask: Always ask whether the softphone or the device's phone must be used\n"
 "        "
 msgstr ""
+"Trieu el mètode que s'utilitzarà per a fer una trucada quan s'utilitzi l'aplicació mòbil:\n"
+"             the VoIP: Usa sempre el telèfon mòbil Odoo\n"
+"             the Telèfon del dispositiu: Utilitza sempre el telèfon del dispositiu\n"
+"             the Pregunta: Pregunta sempre si s'ha d'utilitzar el telèfon mòbil o el telèfon del dispositiu"
 
 #. module: voip
 #. openerp-web
@@ -312,12 +328,12 @@ msgstr "Data"
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__res_config_settings__mode__demo
 msgid "Demo"
-msgstr "Demo"
+msgstr "De prova"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__res_users_settings__how_to_call_on_mobile__phone
 msgid "Device's phone"
-msgstr ""
+msgstr "Telèfon del dispositiu"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall__direction
@@ -373,7 +389,7 @@ msgstr "Duració en minuts"
 #: code:addons/voip/static/src/xml/phone_call_details.xml:0
 #, python-format
 msgid "Edit"
-msgstr "Edita"
+msgstr "Modificar"
 
 #. module: voip
 #. openerp-web
@@ -401,7 +417,7 @@ msgstr "Introduïu el número..."
 #: model:ir.model.fields,field_description:voip.field_res_users__external_device_number
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__external_device_number
 msgid "External device number"
-msgstr ""
+msgstr "Número de dispositiu extern"
 
 #. module: voip
 #. openerp-web
@@ -412,6 +428,9 @@ msgid ""
 "wrong. Please have an administrator verify the websocket server URL in the "
 "General Settings."
 msgstr ""
+"No s'ha pogut iniciar l'agent d'usuari. L'URL del servidor websocket pot "
+"estar malament. Teniu un administrador que verifiqui l'URL del servidor "
+"websocket a la Configuració General."
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_voip_phonecall__sequence
@@ -443,7 +462,7 @@ msgstr "Retingut"
 #: model:ir.model.fields,field_description:voip.field_res_users__how_to_call_on_mobile
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__how_to_call_on_mobile
 msgid "How to place calls on mobile"
-msgstr ""
+msgstr "Com fer trucades al mòbil"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall__id
@@ -457,6 +476,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:voip.field_res_users_settings__should_auto_reject_incoming_calls
 msgid "If enabled, incoming calls will be automatically declined in Odoo."
 msgstr ""
+"Si s'habilita, les trucades entrants es rebutjaran automàticament a Odoo."
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__should_call_from_another_device
@@ -466,6 +486,10 @@ msgid ""
 "device number\". Use this option to place the call in Odoo but handle it "
 "from another device - e.g. your desk phone."
 msgstr ""
+"Si s'habilita, la col·locació d'una trucada a Odoo transferirà la trucada al"
+" \"número de dispositiu extern\". Utilitzeu aquesta opció per col·locar la "
+"trucada a Odoo però gestionar-la des d'un altre dispositiu -p. ex., el "
+"telèfon d'escriptori."
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__external_device_number
@@ -474,6 +498,8 @@ msgid ""
 "If the \"Call from another device\" option is enabled, calls placed in Odoo "
 "will be transfered to this phone number."
 msgstr ""
+"Si l'opció \"Call from other device\" està activada, les trucades "
+"col·locades a Odoo es transferiran a aquest número de telèfon."
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall_log_wizard__reschedule_option__7d
@@ -668,7 +694,7 @@ msgstr "Les meves trucades"
 #: code:addons/voip/static/src/xml/dialing_panel.xml:0
 #, python-format
 msgid "Next activities"
-msgstr ""
+msgstr "Activitats següents"
 
 #. module: voip
 #. openerp-web
@@ -678,6 +704,8 @@ msgid ""
 "No audio recording device available. The application requires a microphone "
 "in order to be used."
 msgstr ""
+"No hi ha cap dispositiu d'enregistrament d'àudio disponible. L'aplicació "
+"requereix un micròfon per poder utilitzar-lo."
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__pending
@@ -781,6 +809,8 @@ msgid ""
 "Please try again later. If the problem persists, you may want to ask an "
 "administrator to check the configuration."
 msgstr ""
+"Torneu-ho a provar més tard. Si el problema persisteix, és possible que "
+"vulgueu demanar a un administrador que comprovi la configuració."
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__res_config_settings__mode__prod
@@ -807,7 +837,7 @@ msgstr "Actualitzar el Panel"
 #: code:addons/voip/static/src/models/registerer.js:0
 #, python-format
 msgid "Registration rejected: %(statusCode)s %(reasonPhrase)s."
-msgstr ""
+msgstr "Registre rebutjat: %(statusCode)s %(reasonPhrase)s."
 
 #. module: voip
 #. openerp-web
@@ -827,7 +857,7 @@ msgstr "Rebutja la trucada"
 #: model:ir.model.fields,field_description:voip.field_res_users__should_auto_reject_incoming_calls
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__should_auto_reject_incoming_calls
 msgid "Reject incoming calls"
-msgstr ""
+msgstr "Rebutja les trucades entrants"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__rejected
@@ -932,6 +962,8 @@ msgid ""
 "Some documents cannot be added to the call queue as they do not have a phone"
 " number set: %(record_names)s"
 msgstr ""
+"Alguns documents no es poden afegir a la cua de trucades perquè no tenen un "
+"número de telèfon establert: %(record_names)s"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall_log_wizard__reschedule_date
@@ -970,12 +1002,12 @@ msgstr "Fes una trucada"
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_config_settings__pbx_ip
 msgid "The IP address of your PBX Server"
-msgstr ""
+msgstr "L'adreça IP del vostre servidor PBX"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_config_settings__wsServer
 msgid "The URL of your WebSocket"
-msgstr "Enllaç del vostre WebSocket"
+msgstr "L'URL del WebSocket"
 
 #. module: voip
 #. openerp-web
@@ -983,6 +1015,7 @@ msgstr "Enllaç del vostre WebSocket"
 #, python-format
 msgid "The connection cannot be made.</br> Please check your configuration."
 msgstr ""
+"No es pot fer la connexió.</br> Si us plau, comproveu la configuració."
 
 #. module: voip
 #. openerp-web
@@ -993,6 +1026,9 @@ msgid ""
 "verify the websocket server URL in the General Settings. If the problem "
 "persists, this is probably an issue with the server."
 msgstr ""
+"L'error pot provenir de la capa de transport. Teniu un administrador que "
+"verifiqui l'URL del servidor websocket a la Configuració General. Si el "
+"problema persisteix, probablement és un problema amb el servidor."
 
 #. module: voip
 #. openerp-web
@@ -1003,12 +1039,15 @@ msgid ""
 "connection cannot be made. Please check your configuration.</br> (Reason "
 "received: %(reasonPhrase)s)"
 msgstr ""
+"El número és incorrecte, les credencials d'usuari podrien ser incorrectes o "
+"no es pot fer la connexió. Comproveu la configuració.</br> (Motiu rebut: "
+"%(reasonPhrase)s)"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__voip_secret
 #: model:ir.model.fields,help:voip.field_res_users_settings__voip_secret
 msgid "The password that will be used to register with the PBX server."
-msgstr ""
+msgstr "La contrasenya que s'utilitzarà per registrar-se amb el servidor PBX."
 
 #. module: voip
 #. openerp-web
@@ -1033,6 +1072,10 @@ msgid ""
 "that you are reaching the right server (PBX server IP in the General "
 "Settings) and that the credentials in your user preferences are correct."
 msgstr ""
+"El servidor no us ha pogut autenticar. Teniu un administrador que verifiqui "
+"que esteu arribant al servidor correcte (IP del servidor PBX a la "
+"Configuració General) i que les credencials a les vostres preferències "
+"d'usuari són correctes."
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_voip_phonecall__state
@@ -1052,6 +1095,8 @@ msgid ""
 "The username (typically the extension number) that will be used to register "
 "with the PBX server."
 msgstr ""
+"El nom d'usuari (normalment el número d'extensió) que s'utilitzarà per "
+"registrar-se amb el servidor PBX."
 
 #. module: voip
 #. openerp-web
@@ -1061,6 +1106,8 @@ msgid ""
 "The websocket connection with the server has been lost. Please try to "
 "refresh the page."
 msgstr ""
+"S'ha perdut la connexió del websocket amb el servidor. Si us plau, intenteu "
+"actualitzar la pàgina."
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__open
@@ -1115,7 +1162,7 @@ msgstr "VOIP trucades telefòniques per informe d'usuari"
 #. module: voip
 #: model:ir.model,name:voip.model_voip_queue_mixin
 msgid "VOIP Queue support"
-msgstr ""
+msgstr "Implementació de la cua VOIP"
 
 #. module: voip
 #. openerp-web
@@ -1125,12 +1172,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:voip.res_users_view_form_preferences
 #, python-format
 msgid "VoIP"
-msgstr ""
+msgstr "VoIP"
 
 #. module: voip
 #: model_terms:ir.ui.view,arch_db:voip.voip_res_users_settings_view_form
 msgid "VoIP Configuration"
-msgstr ""
+msgstr "Configuració del VoIP"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_res_config_settings__mode
@@ -1141,13 +1188,13 @@ msgstr "Entorn VoIP"
 #: model:ir.model.fields,field_description:voip.field_res_users__voip_secret
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__voip_secret
 msgid "VoIP secret"
-msgstr ""
+msgstr "Secret VoIP"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_res_users__voip_username
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__voip_username
 msgid "VoIP username / Extension number"
-msgstr ""
+msgstr "Nom d'usuari / número d'extensió VoIP"
 
 #. module: voip
 #. openerp-web

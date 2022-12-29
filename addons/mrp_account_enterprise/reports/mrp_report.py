@@ -161,6 +161,7 @@ class MrpReport(models.Model):
                     AND sm.state = 'done'
                     AND sm.product_qty != 0
                     AND mo.product_id = sm.product_id
+                    AND (sm.scrapped != 't' or sm.scrapped IS NULL)
                 GROUP BY mo.id
             ) prod_qty ON prod_qty.mo_id = mo.id
             LEFT JOIN {currency_table} ON currency_table.company_id = mo.company_id

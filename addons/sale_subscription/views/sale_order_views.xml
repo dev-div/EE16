@@ -23,23 +23,17 @@
                 <field name="show_rec_invoice_button" invisible="1"/>
                 <button name="action_invoice_subscription" string="Create Invoice"
                         id="create_recurring_invoice_primary" type="object" class="btn-primary" data-hotkey="q"
-                        attrs="{'invisible': ['|', ('show_rec_invoice_button', '=', False), ('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': ['|', ('show_rec_invoice_button', '=', False), ('invoice_status', '=', 'no')]}"
                 />
-                <button name="action_invoice_subscription" string="Create Invoice"
-                        id="create_recurring_invoice" type="object" data-hotkey="q"
-                         attrs="{'invisible': ['|', ('show_rec_invoice_button', '=', False),  ('invoice_count', '=', 0)]}"
-                />
-            </button>
-            <button name="action_draft" position="after">
                 <button string="Upsell" name="prepare_upsell_order" type="object"
-                            attrs="{'invisible': [
-                            '|',
-                            '|',
-                            ('is_subscription', '=', False),
-                            ('stage_category', '!=', 'progress'),
-                            ('state', '!=', 'sale'),
-                            ]}" data-hotkey="z"/>
-                    <button string="Renew" name="prepare_renewal_order" type="object" data-hotkey="w"
+                        attrs="{'invisible': [
+                        '|',
+                        '|',
+                        ('is_subscription', '=', False),
+                        ('stage_category', '!=', 'progress'),
+                        ('state', '!=', 'sale'),
+                        ]}" data-hotkey="z"/>
+                <button string="Renew" name="prepare_renewal_order" type="object" data-hotkey="w"
                         attrs="{'invisible': [
                         '|',
                         '|',
@@ -47,7 +41,11 @@
                         ('stage_category', '!=', 'progress'),
                         ('state', '!=', 'sale'),
                         ]}"/>
-                </button>
+                <button name="action_invoice_subscription" string="Create Invoice"
+                        id="create_recurring_invoice" type="object" data-hotkey="q"
+                        attrs="{'invisible': ['|', ('show_rec_invoice_button', '=', False),  ('invoice_status', '=', 'to invoice')]}"
+                />
+            </button>
             <button name="action_cancel" position="attributes">
                 <attribute name="attrs">
                     {'invisible': [ '|',
@@ -128,16 +126,26 @@
                 </div>
             </xpath>
             <field name="show_update_pricelist" position='before'>
-                <label for="recurrence_id"/>
-                <div class="o_row" >
-                    <field name="recurrence_id"
+                <label name="recurrence_label" for="recurrence_id"/>
+                <div class="o_row" name="recurrence_block">
+                    <field name="recurrence_id" groups="!sales_team.group_sale_manager"
+                           attrs="{'readonly': [('stage_category', 'in', ['progress', 'paused', 'closed'])]}"
+                           domain="[('unit', 'not in', ['hour', 'day'])]"
+                           options="{'no_create': True}"/>
+                    <field name="recurrence_id" groups="sales_team.group_sale_manager"
                            attrs="{'readonly': [('subscription_management', '=', 'upsell')]}"
                            domain="[('unit', 'not in', ['hour', 'day'])]"
                            options="{'no_create': True}"/>
                     <span attrs="{'invisible': ['|', ('recurrence_id', '=', False), ('subscription_management', '=', 'upsell')]}">until</span>
                     <field name="end_date" attrs="{'invisible': ['|', ('recurrence_id', '=', False), ('subscription_management', '=', 'upsell')]}"/>
                 </div>
-                <field name="next_invoice_date"
+                <field name="next_invoice_date" groups="!sales_team.group_sale_manager"
+                       attrs="{
+                        'invisible': ['|', ('stage_category', 'not in', ['progress', 'paused']) , ('recurrence_id', '=', False)],
+                        'required': [('recurrence_id', '!=', False), ('state', 'in', ['sale', 'done'])],
+                        'readonly': 1,
+                        }"/>
+                <field name="next_invoice_date" groups="sales_team.group_sale_manager"
                        attrs="{
                         'invisible': ['|', ('stage_category', 'not in', ['progress', 'paused']) , ('recurrence_id', '=', False)],
                         'required': [('recurrence_id', '!=', False), ('state', 'in', ['sale', 'done'])],
@@ -159,7 +167,11 @@
             <xpath expr="//notebook/page[@name='optional_products']/field/tree/field[@name='name']" position='after'>
             </xpath>
             <group name="sales_person" position='inside'>
-                <field name="start_date"/>
+                <field name="start_date" groups="!sales_team.group_sale_manager"
+                       attrs="{'readonly': ['|', ('subscription_management', 'in', ['upsell', 'renew']),
+                                                 ('stage_category', 'in', ['progress', 'paused'])]}"/>
+                <field name="start_date" groups="sales_team.group_sale_manager"
+                       attrs="{'readonly': [('subscription_management', 'in', ['upsell', 'renew'])]}"/>
                 <field name="to_renew" attrs="{'invisible': [('is_subscription', '=', False)]}"/>
             </group>
             <group name="sale_info" position='inside'>

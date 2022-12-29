@@ -5,23 +5,30 @@
         <field name="model">hr.contract</field>
         <field name="inherit_id" ref="l10n_be_hr_payroll.hr_contract_view_form"/>
         <field name="arch" type="xml">
-            <field name="transport_mode_car" position="replace">
+            <label for="transport_mode_car" position="replace">
                 <field name="transport_mode_car" invisible="1"/>
-                <div name="car_id_div" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
-                    colspan="2" class="o_checkbox_optional_field"
+                <label for="transport_mode_car"
+                    string="Catalog Company Car"
+                    attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
+                    groups="fleet.fleet_group_manager"/>
+            </label>
+            <div name="transport_mode_car" position="replace">
+                <div name="transport_mode_car" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
+                    class="o_checkbox_optional_field"
                     groups="fleet.fleet_group_manager">
-                    <label for="transport_mode_car" string="Catalog Company Car"/>
                     <field name="transport_mode_car" attrs="{'invisible': [('wage_type', '=', 'hourly')]}" nolabel="1"/>
                     <field name="car_id" nolabel="1" attrs="{'invisible': [('transport_mode_car', '=', False)]}"/>
                 </div>
-            </field>
+            </div>
             <xpath expr="//label[@for='fuel_card']" position="before">
                 <field name="new_car" invisible="1"/>
+                <label for="new_car" string="New Company Car"
+                    groups="fleet.fleet_group_manager"
+                    attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"/>
                 <div name="new_car_model_id_div"
-                    colspan="2" class="o_checkbox_optional_field"
+                    class="o_checkbox_optional_field"
                     groups="fleet.fleet_group_manager"
                     attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}">
-                    <label for="new_car" string="New Company Car"/>
                     <field name="new_car" attrs="{'invisible': [('wage_type', '=', 'hourly')]}" nolabel="1"/>
                     <field name="new_car_model_id" attrs="{'invisible': [('new_car', '=', False)]}" nolabel="1"/>
                 </div>
@@ -36,18 +43,23 @@
                 <attribute name="attrs">{'invisible': [('transport_mode_car', '=', False), ('new_car', '=', False)]}</attribute>
             </field>
             <field name="car_atn" position="after">
-                <div name="bike_id_div" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
-                    colspan="2" class="o_checkbox_optional_field"
+                <label for="transport_mode_bike" string="Catalog Company Bike"
+                    attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
+                    groups="fleet.fleet_group_manager"/>
+                <div name="bike_id_div"
+                    attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"
+                    class="o_checkbox_optional_field"
                     groups="fleet.fleet_group_manager">
-                    <label for="transport_mode_bike" string="Catalog Company Bike"/>
                     <field name="transport_mode_bike" nolabel="1"/>
                     <field name="bike_id" nolabel="1" attrs="{'invisible': [('transport_mode_bike', '=', False)]}"/>
                 </div>
+                <label for="new_bike" string="New Company Bike"
+                    groups="fleet.fleet_group_manager"
+                    attrs="{'invisible': [('country_code', '!=', 'BE')]}"/>
                 <div name="new_bike_model_id_div"
-                    colspan="2" class="o_checkbox_optional_field"
+                    class="o_checkbox_optional_field"
                     groups="fleet.fleet_group_manager"
                     attrs="{'invisible': [('country_code', '!=', 'BE')]}">
-                    <label for="new_bike" string="New Company Bike"/>
                     <field name="new_bike" attrs="{'invisible': [('wage_type', '=', 'hourly')]}" nolabel="1"/>
                     <field name="new_bike_model_id" attrs="{'invisible': [('new_bike', '=', False)]}" nolabel="1"/>
                 </div>

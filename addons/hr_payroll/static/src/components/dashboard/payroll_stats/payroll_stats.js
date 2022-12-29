@@ -9,6 +9,7 @@ const { Component, onWillUnmount, useEffect, useRef, useState, onWillStart } = o
 export class PayrollDashboardStats extends Component {
     setup() {
         this.actionService = useService("action");
+        this.cookies = useService("cookie");
         this.canvasRef = useRef('canvas');
         this.state = useState({ monthly: true });
         onWillStart(() => loadJS("/web/static/lib/Chart/Chart.js"));
@@ -124,10 +125,20 @@ export class PayrollDashboardStats extends Component {
         const data = [];
         const labels = [];
         const backgroundColors = [];
+        const color19 = getColor(19, this.cookies.current.color_scheme);
         this.graphData.forEach((pt) => {
             data.push(pt.value);
             labels.push(pt.label);
-            const color = this.props.is_sample ? '#ebebeb' : (pt.type === 'past' ? '#ccbdc8' : (pt.type === 'future' ? '#a5d8d7' : getColor(19)));
+            let color;
+            if (this.props.is_sample) {
+                color = '#ebebeb';
+            } else if (pt.type === 'past') {
+                color = '#ccbdc8';
+            } else if (pt.type === 'future') {
+                color = '#a5d8d7';
+            } else {
+                color = color19;
+            }
             backgroundColors.push(color);
         });
 
@@ -176,7 +187,12 @@ export class PayrollDashboardStats extends Component {
         const labels = [];
         const datasets = [];
         const datasets_labels = [];
-        const colors = this.props.is_sample ? ['#e7e7e7', '#dddddd', '#f0f0f0', '#fafafa'] : [getColor(13), '#a5d8d7', '#ebebeb', '#ebebeb'];
+        let colors;
+        if (this.props.is_sample) {
+            colors = ['#e7e7e7', '#dddddd', '#f0f0f0', '#fafafa'];
+        } else {
+            colors = [getColor(13, this.cookies.current.color_scheme), '#a5d8d7', '#ebebeb', '#ebebeb'];
+        }
 
 
         _.each(this.graphData, function(graphData, code) {

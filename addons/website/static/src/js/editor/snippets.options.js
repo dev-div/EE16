@@ -1,4 +1,3 @@
-/* globals google*/
 odoo.define('website.editor.snippets.options', function (require) {
 'use strict';
 
@@ -304,7 +303,7 @@ const FontFamilyPickerUserValueWidget = SelectUserValueWidget.extend({
 });
 
 const GPSPicker = InputUserValueWidget.extend({
-    events: { // Explicitely not consider all InputUserValueWidget events
+    events: { // Explicitly not consider all InputUserValueWidget events
         'blur input': '_onInputBlur',
     },
 
@@ -314,6 +313,11 @@ const GPSPicker = InputUserValueWidget.extend({
     init() {
         this._super(...arguments);
         this._gmapCacheGPSToPlace = {};
+
+        // The google API will be loaded inside the website iframe. Let's try
+        // not having to load it in the backend too and just using the iframe
+        // google object instead.
+        this.contentWindow = this.$target[0].ownerDocument.defaultView;
     },
     /**
      * @override
@@ -324,10 +328,20 @@ const GPSPicker = InputUserValueWidget.extend({
             this.trigger_up('gmap_api_request', {
                 editableMode: true,
                 configureIfNecessary: true,
-                onSuccess: key => resolve(!!key),
+                onSuccess: key => {
+                    if (!key) {
+                        resolve(false);
+                        return;
+                    }
+
+                    // TODO see _notifyGMapError, this tries to trigger an error
+                    // early but this is not consistent with new gmap keys.
+                    this._nearbySearch('(50.854975,4.3753899)', !!key)
+                        .then(place => resolve(!!place));
+                },
             });
         });
-        if (!this._gmapLoaded) {
+        if (!this._gmapLoaded && !this._gmapErrorNotified) {
             this.trigger_up('user_value_widget_critical');
             return;
         }
@@ -342,8 +356,23 @@ const GPSPicker = InputUserValueWidget.extend({
             return;
         }
 
-        this._gmapAutocomplete = new google.maps.places.Autocomplete(this.inputEl, {types: ['geocode']});
-        google.maps.event.addListener(this._gmapAutocomplete, 'place_changed', this._onPlaceChanged.bind(this));
+        this._gmapAutocomplete = new this.contentWindow.google.maps.places.Autocomplete(this.inputEl, {types: ['geocode']});
+        this.contentWindow.google.maps.event.addListener(this._gmapAutocomplete, 'place_changed', this._onPlaceChanged.bind(this));
+    },
+    /**
+     * @override
+     */
+    destroy() {
+        this._super(...arguments);
+
+        // Without this, the google library injects elements inside the backend
+        // DOM but do not remove them once the editor is left. Notice that
+        // this is also done when the widget is destroyed for another reason
+        // than leaving the editor, but if the google API needs that container
+        // again afterwards, it will simply recreate it.
+        for (const el of document.body.querySelectorAll('.pac-container')) {
+            el.remove();
+        }
     },
 
     //--------------------------------------------------------------------------
@@ -361,17 +390,36 @@ const GPSPicker = InputUserValueWidget.extend({
      */
     async setValue() {
         await this._super(...arguments);
+        if (!this._gmapLoaded) {
+            return;
+        }
 
-        await new Promise(resolve => {
-            const gps = this._value;
-            if (this._gmapCacheGPSToPlace[gps]) {
-                this._gmapPlace = this._gmapCacheGPSToPlace[gps];
-                resolve();
-                return;
-            }
-            const service = new google.maps.places.PlacesService(document.createElement('div'));
-            const p = gps.substring(1).slice(0, -1).split(',');
-            const location = new google.maps.LatLng(p[0] || 0, p[1] || 0);
+        this._gmapPlace = await this._nearbySearch(this._value);
+
+        if (this._gmapPlace) {
+            this.inputEl.value = this._gmapPlace.formatted_address;
+        }
+    },
+
+    //--------------------------------------------------------------------------
+    // Private
+    //--------------------------------------------------------------------------
+
+    /**
+     * @private
+     * @param {string} gps
+     * @param {boolean} [notify=true]
+     * @returns {Promise}
+     */
+    async _nearbySearch(gps, notify = true) {
+        if (this._gmapCacheGPSToPlace[gps]) {
+            return this._gmapCacheGPSToPlace[gps];
+        }
+
+        const p = gps.substring(1).slice(0, -1).split(',');
+        const location = new this.contentWindow.google.maps.LatLng(p[0] || 0, p[1] || 0);
+        return new Promise(resolve => {
+            const service = new this.contentWindow.google.maps.places.PlacesService(document.createElement('div'));
             service.nearbySearch({
                 // Do a 'nearbySearch' followed by 'getDetails' to avoid using
                 // GMap Geocoder which the user may not have enabled... but
@@ -380,29 +428,68 @@ const GPSPicker = InputUserValueWidget.extend({
                 location: location,
                 radius: 1,
             }, (results, status) => {
-                const GMAP_CRITICAL_ERRORS = [google.maps.places.PlacesServiceStatus.REQUEST_DENIED, google.maps.places.PlacesServiceStatus.UNKNOWN_ERROR];
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                const GMAP_CRITICAL_ERRORS = [
+                    this.contentWindow.google.maps.places.PlacesServiceStatus.REQUEST_DENIED,
+                    this.contentWindow.google.maps.places.PlacesServiceStatus.UNKNOWN_ERROR
+                ];
+                if (status === this.contentWindow.google.maps.places.PlacesServiceStatus.OK) {
                     service.getDetails({
                         placeId: results[0].place_id,
                         fields: ['geometry', 'formatted_address'],
                     }, (place, status) => {
-                        resolve();
-                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        if (status === this.contentWindow.google.maps.places.PlacesServiceStatus.OK) {
                             this._gmapCacheGPSToPlace[gps] = place;
-                            this._gmapPlace = place;
+                            resolve(place);
                         } else if (GMAP_CRITICAL_ERRORS.includes(status)) {
-                            this.trigger_up('user_value_widget_critical');
+                            if (notify) {
+                                this._notifyGMapError();
+                            }
+                            resolve();
                         }
                     });
                 } else if (GMAP_CRITICAL_ERRORS.includes(status)) {
+                    if (notify) {
+                        this._notifyGMapError();
+                    }
                     resolve();
-                    this.trigger_up('user_value_widget_critical');
+                } else {
+                    resolve();
                 }
             });
         });
-        if (this._gmapPlace) {
-            this.inputEl.value = this._gmapPlace.formatted_address;
+    },
+    /**
+     * Indicates to the user there is an error with the google map API and
+     * re-opens the configuration dialog. For good measures, this also notifies
+     * a critical error which normally removes the related snippet entirely.
+     *
+     * @private
+     */
+    _notifyGMapError() {
+        // TODO this should be better to detect all errors. This is random.
+        // When misconfigured (wrong APIs enabled), sometimes Google throw
+        // errors immediately (which then reaches this code), sometimes it
+        // throws them later (which then induces an error log in the console
+        // and random behaviors).
+        if (this._gmapErrorNotified) {
+            return;
         }
+        this._gmapErrorNotified = true;
+
+        this.displayNotification({
+            type: 'danger',
+            sticky: true,
+            message: _t("A Google Map error occurred. Make sure to read the key configuration popup carefully."),
+        });
+        this.trigger_up('gmap_api_request', {
+            editableMode: true,
+            reconfigure: true,
+            onSuccess: () => {
+                this._gmapErrorNotified = false;
+            },
+        });
+
+        setTimeout(() => this.trigger_up('user_value_widget_critical'));
     },
 
     //--------------------------------------------------------------------------
@@ -418,10 +505,24 @@ const GPSPicker = InputUserValueWidget.extend({
         if (gmapPlace && gmapPlace.geometry) {
             this._gmapPlace = gmapPlace;
             const location = this._gmapPlace.geometry.location;
+            const oldValue = this._value;
             this._value = `(${location.lat()},${location.lng()})`;
             this._gmapCacheGPSToPlace[this._value] = gmapPlace;
-            this._onUserValueChange(ev);
+            if (oldValue !== this._value) {
+                this._onUserValueChange(ev);
+            }
         }
+    },
+    /**
+     * @override
+     */
+    _onInputBlur() {
+        // As a stable fix: do not call the _super as we actually don't want
+        // input focusout messing with the google map API. Because of this,
+        // clicking on google map autocomplete suggestion on Firefox was not
+        // working properly. This is kept as an empty function because of stable
+        // policy (ensures custo can still extend this).
+        // TODO review in master.
     },
 });
 options.userValueWidgetsRegistry['we-urlpicker'] = UrlPickerUserValueWidget;
@@ -844,7 +945,16 @@ options.registry.BackgroundShape.include({
             return el;
         }
         return _getLastPreFilterLayerElement(this.$target);
-    }
+    },
+    /**
+     * @override
+     */
+    _removeShapeEl(shapeEl) {
+        this.trigger_up('widgets_stop_request', {
+            $target: $(shapeEl),
+        });
+        return this._super(...arguments);
+    },
 });
 
 options.registry.ReplaceMedia.include({
@@ -1403,10 +1513,7 @@ options.registry.ThemeColors = options.registry.OptionsTab.extend({
      */
     async updateUI() {
         if (this.updateColorPreviews) {
-            const ccPreviewEls = this.el.querySelectorAll('.o_we_cc_preview_wrapper');
-            this.trigger_up('update_color_previews', {
-                ccPreviewEls,
-            });
+            this.trigger_up('update_color_previews');
             this.updateColorPreviews = false;
         }
         await this._super(...arguments);
@@ -1460,9 +1567,7 @@ options.registry.ThemeColors = options.registry.OptionsTab.extend({
             ccPreviewEls.push(ccPreviewEl);
             presetCollapseEl.appendChild(collapseEl);
         }
-        this.trigger_up('update_color_previews', {
-            ccPreviewEls,
-        });
+        this.trigger_up('update_color_previews');
         await this._super(...arguments);
     },
 });
@@ -1736,9 +1841,17 @@ options.registry.CarouselItem = options.Class.extend({
         const $items = this.$carousel.find('.carousel-item');
         const newLength = $items.length - 1;
         if (!this.removing && newLength > 0) {
+            // The active indicator is deleted to ensure that the other
+            // indicators will still work after the deletion.
             const $toDelete = $items.filter('.active').add(this.$indicators.find('.active'));
             this.$carousel.one('active_slide_targeted.carousel_item_option', () => {
                 $toDelete.remove();
+                // To ensure the proper functioning of the indicators, their
+                // attributes must reflect the position of the slides.
+                const indicatorsEls = this.$indicators[0].querySelectorAll('li');
+                for (let i = 0; i < indicatorsEls.length; i++) {
+                    indicatorsEls[i].setAttribute('data-bs-slide-to', i);
+                }
                 this.$controls.toggleClass('d-none', newLength === 1);
                 this.$carousel.trigger('content_changed');
                 this.removing = false;
@@ -2138,8 +2251,11 @@ const VisibilityPageOptionUpdate = options.Class.extend({
      */
     async start() {
         await this._super(...arguments);
-        const shown = await this._isShown();
-        this.trigger_up('snippet_option_visibility_update', {show: shown});
+        // TODO in master: Use the data-invisible system to get rid of this
+        // piece of code.
+        this._isShown().then(isShown => {
+            this.trigger_up('snippet_option_visibility_update', {show: isShown});
+        });
     },
     /**
      * @override
@@ -2645,29 +2761,6 @@ options.registry.CookiesBar = options.registry.SnippetPopup.extend({
 
         $content.empty().append($template);
     },
-    /**
-     * @override
-     */
-    onTargetShow: async function () {
-        // @see this.onTargetHide
-        this.$target.parent('#website_cookies_bar').show();
-        this._super(...arguments);
-
-    },
-    /**
-     * @override
-     */
-    onTargetHide: async function () {
-        // We hide the parent because contenteditable="true" would force the bar to stay visible in hidden mode.
-        this.$target.parent('#website_cookies_bar').hide();
-        this._super(...arguments);
-    },
-    /**
-     * @override
-     */
-    cleanForSave: function () {
-        this.$target.parent('#website_cookies_bar').show();
-    },
 });
 
 /**
@@ -2899,6 +2992,45 @@ options.registry.ScrollButton = options.Class.extend({
     // Private
     //--------------------------------------------------------------------------
 
+    /**
+     * @override
+     */
+    _renderCustomXML(uiFragment) {
+        // TODO adapt in master. This sets up a different UI for the image
+        // gallery snippet: for this one, we allow to force a specific height
+        // in auto mode. It was done in stable as without it, the default height
+        // is difficult to understand for the user as it depends on screen
+        // height of the one who edited the website and not on the added images.
+        // It was also a regression as in <= 11.0, this was a possibility.
+        if (this.$target[0].dataset.snippet !== 's_image_gallery') {
+            return;
+        }
+        let minHeightEl = uiFragment.querySelector('[data-name="minheight_auto_opt"]');
+        if (!minHeightEl) {
+            return;
+        }
+        minHeightEl = minHeightEl.parentElement;
+        minHeightEl.setAttribute('string', _t("Min-Height"));
+        const heightEl = document.createElement('we-input');
+        heightEl.setAttribute('string', _t("Height"));
+        heightEl.classList.add('o_we_sublevel_1');
+        heightEl.dataset.dependencies = 'minheight_auto_opt';
+        heightEl.dataset.unit = 'px';
+        heightEl.dataset.selectStyle = '';
+        heightEl.dataset.cssProperty = 'height';
+        // For this setting, we need to always force the style (= if the block
+        // is naturally 800px tall and the user enters 800px for this setting,
+        // we set 800px as inline style anyway). Indeed, this snippet's style
+        // is based on the height that is forced but once the related public
+        // widgets are started, the inner carousel items receive a min-height
+        // which makes it so the snippet "natural" height is equal to the
+        // initially forced height... so if the style is not forced, it would
+        // ultimately be removed by mistake thinking it is not necessary.
+        // Note: this is forced as not important as we still need the height to
+        // be reset to 'auto' in mobile (generic css rules).
+        heightEl.dataset.forceStyle = '';
+        uiFragment.appendChild(heightEl);
+    },
     /**
      * @override
      */
@@ -3518,6 +3650,61 @@ options.registry.SwitchableViews = options.Class.extend({
     _checkIfWidgetsUpdateNeedReload() {
         return true;
     }
+});
+
+options.registry.GridImage = options.Class.extend({
+
+    //--------------------------------------------------------------------------
+    // Options
+    //--------------------------------------------------------------------------
+
+    /**
+     * @see this.selectClass for parameters
+     */
+    changeGridImageMode(previewMode, widgetValue, params) {
+        const imageGridItemEl = this._getImageGridItem();
+        if (imageGridItemEl) {
+            imageGridItemEl.classList.toggle('o_grid_item_image_contain', widgetValue === 'contain');
+        }
+    },
+
+    //--------------------------------------------------------------------------
+    // Private
+    //--------------------------------------------------------------------------
+
+    /**
+     * Returns the parent column if it is marked as a grid item containing an
+     * image.
+     *
+     * @returns {?HTMLElement}
+     */
+    _getImageGridItem() {
+        const parentEl = this.$target[0].parentNode;
+        if (parentEl && parentEl.classList.contains('o_grid_item_image')) {
+            return parentEl;
+        }
+        return null;
+    },
+    /**
+     * @override
+     */
+    _computeVisibility() {
+        return this._super(...arguments)
+            && !!this._getImageGridItem()
+            && !('shape' in this.$target[0].dataset);
+    },
+    /**
+     * @override
+     */
+    _computeWidgetState(methodName, params) {
+        if (methodName === 'changeGridImageMode') {
+            const imageGridItemEl = this._getImageGridItem();
+            return imageGridItemEl && imageGridItemEl.classList.contains('o_grid_item_image_contain')
+                ? 'contain'
+                : 'cover';
+        }
+        return this._super(...arguments);
+    },
 });
 
 return {

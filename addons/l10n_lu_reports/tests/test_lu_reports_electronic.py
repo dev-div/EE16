@@ -283,6 +283,46 @@ class LuxembourgElectronicReportTest(TestAccountReportsCommon):
                                 <NumericField id="766">0,00</NumericField>
                                 <NumericField id="767">0,00</NumericField>
                                 <NumericField id="768">0,00</NumericField>
+                                <NumericField id="901">0,00</NumericField>
+                                <NumericField id="902">0,00</NumericField>
+                                <NumericField id="903">0,00</NumericField>
+                                <NumericField id="904">0,00</NumericField>
+                                <NumericField id="905">0,00</NumericField>
+                                <NumericField id="906">0,00</NumericField>
+                                <NumericField id="911">0,00</NumericField>
+                                <NumericField id="912">0,00</NumericField>
+                                <NumericField id="913">0,00</NumericField>
+                                <NumericField id="914">0,00</NumericField>
+                                <NumericField id="915">0,00</NumericField>
+                                <NumericField id="916">0,00</NumericField>
+                                <NumericField id="921">0,00</NumericField>
+                                <NumericField id="922">0,00</NumericField>
+                                <NumericField id="923">0,00</NumericField>
+                                <NumericField id="924">0,00</NumericField>
+                                <NumericField id="925">0,00</NumericField>
+                                <NumericField id="926">0,00</NumericField>
+                                <NumericField id="931">0,00</NumericField>
+                                <NumericField id="932">0,00</NumericField>
+                                <NumericField id="933">0,00</NumericField>
+                                <NumericField id="934">0,00</NumericField>
+                                <NumericField id="935">0,00</NumericField>
+                                <NumericField id="936">0,00</NumericField>
+                                <NumericField id="941">0,00</NumericField>
+                                <NumericField id="942">0,00</NumericField>
+                                <NumericField id="943">0,00</NumericField>
+                                <NumericField id="944">0,00</NumericField>
+                                <NumericField id="945">0,00</NumericField>
+                                <NumericField id="946">0,00</NumericField>
+                                <NumericField id="951">0,00</NumericField>
+                                <NumericField id="952">0,00</NumericField>
+                                <NumericField id="953">0,00</NumericField>
+                                <NumericField id="954">0,00</NumericField>
+                                <NumericField id="955">0,00</NumericField>
+                                <NumericField id="956">0,00</NumericField>
+                                <NumericField id="961">0,00</NumericField>
+                                <NumericField id="962">0,00</NumericField>
+                                <NumericField id="963">0,00</NumericField>
+                                <NumericField id="964">0,00</NumericField>
                         </FormData>
                     </Declaration>
                 </Declarer>

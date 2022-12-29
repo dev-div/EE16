@@ -573,9 +573,9 @@ class ProductTemplate(models.Model):
         :return: bool (did synchronisation succeed)
         """
         if not date_to - date_from <= _30DAYS:
-            raise ValidationError("This function should not be called with a range of more than 30 days, "
+            raise ValidationError(_("This function should not be called with a range of more than 30 days, "
                                   "as eBay does not handle longer timespans. "
-                                  "Instead use synchronize_orders which split in as many calls as needed.")
+                                  "Instead use synchronize_orders which split in as many calls as needed."))
         call_data = {
             'ModTimeFrom': str(date_from),
             'ModTimeTo': str(date_to),

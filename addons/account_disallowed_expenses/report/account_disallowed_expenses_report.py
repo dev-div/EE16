@@ -83,7 +83,7 @@ class DisallowedExpensesCustomHandler(models.AbstractModel):
         where += current.get('account_rate') and " AND rate.rate = %(account_rate)s" or ""
         where += not options.get('all_entries') and " AND move.state = 'posted'" or ""
 
-        group_by = " GROUP BY category.id, COALESCE(NULLIF(category_tr.value, ''), category.name)"
+        group_by = f" GROUP BY category.id, COALESCE(category.name->>'{lang}', category.name->>'en_US')"
         group_by += current.get('category') and ", account_id" or ""
         group_by += current.get('account') and options['multi_rate_in_period'] and ", rate.rate" or ""
 

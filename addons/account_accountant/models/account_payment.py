@@ -41,6 +41,9 @@ class AccountPayment(models.Model):
 
         return self.env['account.bank.statement.line']._action_open_bank_reconciliation_widget(
             extra_domain=[('id', 'in', self.reconciled_statement_line_ids.ids)],
-            default_context={'create': False},
+            default_context={
+                'create': False,
+                'default_st_line_id': self.reconciled_statement_line_ids.ids[-1],
+            },
             name=_("Matched Transactions")
         )

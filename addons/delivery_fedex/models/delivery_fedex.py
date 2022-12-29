@@ -252,7 +252,7 @@ class ProviderFedex(models.Model):
             # Commodities for customs declaration (international shipping)
             if 'INTERNATIONAL' in self.fedex_service_type  or (picking.partner_id.country_id.code == 'IN' and picking.picking_type_id.warehouse_id.partner_id.country_id.code == 'IN'):
 
-                commodities = self._get_commodities_from_order(order)
+                commodities = self._get_commodities_from_stock_move_lines(picking.move_line_ids)
                 for commodity in commodities:
                     srm.commodities(self, commodity, _convert_curr_iso_fdx(order_currency.name))
 
@@ -450,17 +450,17 @@ class ProviderFedex(models.Model):
         """Extract price info in target currency, converting if necessary"""
         if not order_currency:
             order_currency = order.currency_id
-        company_currency = order.company_id.currency_id if order.company_id else self.env.user.company_id.currency_id
+        company = order.company_id or self.env.user.company_id
         fdx_currency = _convert_curr_iso_fdx(order_currency.name)
         if fdx_currency in req_price:
             # normally we'll have the order currency on the response, then we can take it as is
             return req_price[fdx_currency]
         _logger.info("Preferred currency has not been found in FedEx response")
         # otherwise, see if we have the company currency, and convert to the order's currency
-        fdx_currency = _convert_curr_iso_fdx(company_currency.name)
+        fdx_currency = _convert_curr_iso_fdx(company.currency_id.name)
         if fdx_currency in req_price:
-            return company_currency._convert(
-                req_price[fdx_currency], order_currency, order.company_id, order.date_order or fields.Date.today())
+            return company.currency_id._convert(
+                req_price[fdx_currency], order_currency, company, order.date_order or fields.Date.today())
         # finally, attempt to find active currency in the database
         currency_codes = list(req_price.keys())
         # note, fedex sometimes return the currency as ISO instead of using their own code 
@@ -472,7 +472,7 @@ class ProviderFedex(models.Model):
         for fdx_currency in req_price:
             if fdx_currency in currency_by_name:
                 return currency_by_name[fdx_currency]._convert(
-                    req_price[fdx_currency], order_currency, order.company_id, order.date_order or fields.Date.today())
+                    req_price[fdx_currency], order_currency, company, order.date_order or fields.Date.today())
         _logger.info("No known currency has not been found in FedEx response")
         return 0.0
 

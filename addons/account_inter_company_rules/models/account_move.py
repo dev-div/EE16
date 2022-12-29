@@ -43,12 +43,11 @@ class AccountMove(models.Model):
                 invoice_vals['invoice_line_ids'].append((0, 0, line._inter_company_prepare_invoice_line_data()))
 
             inv_new = inv.with_context(default_move_type=invoice_vals['move_type']).new(invoice_vals)
-            for line in inv_new.invoice_line_ids.filtered(lambda l: not l.display_type):
+            for line in inv_new.invoice_line_ids.filtered(lambda l: l.display_type not in ('line_note', 'line_section')):
                 # We need to adapt the taxes following the fiscal position, but we must keep the
                 # price unit.
                 price_unit = line.price_unit
                 line.tax_ids = line._get_computed_taxes()
-                line._set_price_and_tax_after_fpos()
                 line.price_unit = price_unit
 
             invoice_vals = inv_new._convert_to_write(inv_new._cache)
@@ -106,9 +105,12 @@ class AccountMoveLine(models.Model):
         '''
         self.ensure_one()
 
-        account_ids = self.env['account.analytic.account'].browse(
-            list(self.analytic_distribution.keys()) if self.analytic_distribution else None)
-        analytic_distribution = {self.analytic_distribution[account_id] for account_id in account_ids.filtered(lambda r: not r.company_id).ids}
+        account_ids = [int(account_id) for account_id in self.analytic_distribution or {}]
+        accounts = self.env['account.analytic.account'].browse(account_ids)
+        analytic_distribution = {
+            str(account_id): self.analytic_distribution[str(account_id)]
+            for account_id in accounts.filtered(lambda r: not r.company_id).ids
+        }
 
         vals = {
             'display_type': self.display_type,

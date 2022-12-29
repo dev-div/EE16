@@ -9,6 +9,7 @@ patch(BomOverviewSpecialLine, "mrp_plm", {
         showOptions: { 
             ...BomOverviewSpecialLine.showOptions,
             ecos: Boolean,
+            ecoAllowed: Boolean,
         },
     },
 });

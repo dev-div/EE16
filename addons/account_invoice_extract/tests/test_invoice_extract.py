@@ -311,6 +311,39 @@ class TestInvoiceExtract(AccountTestInvoicingCommon, account_invoice_extract_com
 
         self.assertEqual(invoice.currency_id, eur_currency)
 
+    def test_same_name_currency(self):
+        # test that when we have several currencies with the same name, and no antecedants with the partner, we take the one that is on our company.
+        cad_currency = self.env['res.currency'].with_context({'active_test': False}).search([('name', '=', 'CAD')])
+        usd_currency = self.env['res.currency'].with_context({'active_test': False}).search([('name', '=', 'USD')])
+        (cad_currency | usd_currency).active = True
+
+        test_user = self.env.ref('base.user_root')
+        test_user.groups_id = [(3, self.env.ref('base.group_multi_currency').id)]
+        self.assertEqual(test_user.currency_id, usd_currency)
+
+        extract_response = self.get_default_extract_response()
+        extract_response['results'][0]['currency']['selected_value']['content'] = 'dollars'
+
+        invoice = self.env['account.move'].create({'move_type': 'in_invoice', 'extract_state': 'waiting_extraction'})
+        with self.mock_iap_extract(extract_response, {}):
+            invoice.with_user(test_user)._check_status()
+
+        self.assertEqual(invoice.currency_id, usd_currency)
+
+        # test that the currency of the last invoice (with a currency) of the partner is used for its next invoice
+        partner = self.env['res.partner'].create({'name': 'O Canada'})
+        # create an existing invoice with a currency for this partner
+        self.env['account.move'].create({'move_type': 'in_invoice', 'partner_id': partner.id, 'currency_id': cad_currency.id})
+        invoice = self.env['account.move'].create({
+            'move_type': 'in_invoice',
+            'partner_id': partner.id,
+            'extract_state': 'waiting_extraction',
+        })
+        with self.mock_iap_extract(extract_response, {}):
+            invoice.with_user(test_user)._check_status()
+
+        self.assertEqual(invoice.currency_id, cad_currency)
+
     def test_tax_adjustments(self):
         # test that if the total computed by Odoo doesn't exactly match the total found by the OCR, the tax are adjusted accordingly
         for move_type in ('in_invoice', 'out_invoice'):

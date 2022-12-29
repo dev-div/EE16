@@ -22,7 +22,7 @@ import {
     serializeDateTime,
 } from "@web/core/l10n/dates";
 
-const { Component } = owl;
+import { Component } from "@odoo/owl";
 
 /**
  * Represent one property value.
@@ -332,6 +332,7 @@ PropertyValue.components = {
 };
 
 PropertyValue.props = {
+    id: { type: String, optional: true },
     type: { type: String, optional: true },
     comodel: { type: String, optional: true },
     domain: { type: String, optional: true },

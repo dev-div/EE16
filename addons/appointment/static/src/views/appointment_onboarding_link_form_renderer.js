@@ -19,7 +19,7 @@ export class AppointmentOnboardingLinkFormRenderer extends FormRenderer {
         ev.preventDefault();
         ev.stopImmediatePropagation();
         const { bookUrl, wasFirstValidation } = await this._getInviteURL();
-        await browser.navigator.clipboard.writeText(bookUrl);
+        setTimeout(async () => await browser.navigator.clipboard.writeText(bookUrl));
         this.notification.add(
             this.env._t("Link copied to clipboard."),
             {type: "success"}

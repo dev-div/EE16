@@ -1,5 +1,6 @@
 /** @odoo-module **/
 
+import { _t } from "web.core";
 
 // -----------------------------------------------------------------------------
 // Public
@@ -18,5 +19,5 @@ export function getDateFormatForScale(scale) {
     } else if (scale.interval === 'month') {
         return 'MM-YYYY';
     }
-    throw Error("Invalid SCALE interval !");
+    throw Error(_t("Invalid scale interval"));
 }

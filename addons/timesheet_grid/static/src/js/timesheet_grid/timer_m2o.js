@@ -84,6 +84,7 @@ const TimerHeaderM2O = Widget.extend(StandaloneFieldManagerMixin, {
         const projectRecord = this.model.get(this.project);
         const projectMany2one = new Many2One(this, 'project_id', projectRecord, {
             attrs: {
+                string: _t('Project'),
                 placeholder: placeholderProject,
                 options: { no_create_edit: true },
             },
@@ -102,6 +103,7 @@ const TimerHeaderM2O = Widget.extend(StandaloneFieldManagerMixin, {
         const taskRecord = this.model.get(this.task);
         const taskMany2one = new TaskWithHours(this, 'task_id', taskRecord, {
             attrs: {
+                string: _t('Task'),
                 placeholder: placeholderTask,
                 options: { no_create_edit: true },
             },

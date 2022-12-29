@@ -29,6 +29,7 @@ import { waitForDataSourcesLoaded } from "@spreadsheet/../tests/utils/model";
  * @param {object} [params.serverData] Data to be injected in the mock server
  * @param {function} [params.mockRPC] Mock rpc function
  * @param {any[]} [params.domain] Domain of the pivot
+ * @param {object} [params.additionalContext] additional context for the action
  * @returns {Promise<object>} Webclient
  */
 export async function spawnPivotViewForSpreadsheet(params = {}) {
@@ -47,6 +48,8 @@ export async function spawnPivotViewForSpreadsheet(params = {}) {
         type: "ir.actions.act_window",
         views: [[false, "pivot"]],
         domain: params.domain,
+    }, {
+        additionalContext: params.additionalContext || {},
     });
     return webClient;
 }
@@ -83,6 +86,7 @@ export async function createSpreadsheetFromPivotView(params = {}) {
         serverData: params.serverData,
         mockRPC: params.mockRPC,
         domain: params.domain,
+        additionalContext: params.additionalContext || {},
     });
     const target = getFixture();
     if (params.actions) {

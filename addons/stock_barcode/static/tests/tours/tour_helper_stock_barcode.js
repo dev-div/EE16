@@ -181,8 +181,8 @@ function assertLineProduct(line, productName) {
  */
 function assertLineQuantityOnReservedQty (lineIndex, textQty) {
     const $line = $('.o_barcode_line').eq(lineIndex);
-    const qty = $line.find('.qty-done').text();
-    const reserved = $line.find('.qty-done').next().text();
+    const qty = $line.find('.qty-done,.inventory_quantity').text();
+    const reserved = $line.find('.qty-done,.inventory_quantity').next().text();
     const qtyText = reserved ? qty + ' ' + reserved : qty;
     assert(qtyText, textQty, 'Something wrong with the quantities');
 }

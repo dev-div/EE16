@@ -110,7 +110,7 @@ class WebsiteAppointment(AppointmentController):
 
     def _prepare_appointments_cards_data(self, page, appointment_types=None, **kwargs):
         """
-            Compute specific data for the cards layout like the the search bar and the pager.
+            Compute specific data for the cards layout like the search bar and the pager.
         """
         if appointment_types is None:
             appointment_types = self._fetch_available_appointments(

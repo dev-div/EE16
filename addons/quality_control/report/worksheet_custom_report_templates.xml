@@ -42,14 +42,14 @@
                         <hr/>
                         <div>
                             <strong>Measure : </strong>
-                            <span t-field="doc.result"/>
+                            <span t-field="doc.measure"/>
                         </div>
                         <div t-if="doc.warning_message">
                             <strong>Warning : </strong>
                             <span t-field="doc.warning_message"/>
                         </div>
                     </div>
-                    <div t-if="doc.test_type == 'picture'">
+                    <div t-if="doc.test_type == 'picture' and doc.picture">
                         <hr/>
                         <img width="750" t-attf-src="#{image_data_uri(doc.picture)}" alt="Quality Check Picture"/>
                     </div>

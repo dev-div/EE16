@@ -16,7 +16,7 @@ import { enterpriseSubscriptionService } from "@web_enterprise/webclient/home_me
 import { session } from "@web/session";
 import { templates } from "@web/core/assets";
 
-const { App, EventBus } = owl;
+import { App, EventBus } from "@odoo/owl";
 const patchDate = testUtils.mock.patchDate;
 const serviceRegistry = registry.category("services");
 let target;

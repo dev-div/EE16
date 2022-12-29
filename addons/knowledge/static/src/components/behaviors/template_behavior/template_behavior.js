@@ -112,7 +112,7 @@ export class TemplateBehavior extends AbstractBehavior {
     _createHtmlDataTransfer() {
         const dataTransfer = new DataTransfer();
         const content = this.props.anchor.querySelector('.o_knowledge_content');
-        dataTransfer.setData('text/odoo-editor', `<p><br/></p>${content.innerHTML}<p><br/></p>`);
+        dataTransfer.setData('text/odoo-editor', `<p></p>${content.innerHTML}<p></p>`);
         return dataTransfer;
     }
 }

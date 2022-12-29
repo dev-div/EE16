@@ -24,6 +24,7 @@ patch(BomOverviewLine, "mrp_plm", {
         showOptions: { 
             ...BomOverviewLine.showOptions,
             ecos: Boolean,
+            ecoAllowed: Boolean,
         },
     },
 });

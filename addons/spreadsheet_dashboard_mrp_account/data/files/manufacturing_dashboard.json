@@ -291,7 +291,7 @@
                 },
                 "C32": {
                     "style": 6,
-                    "content": "=_t(\"Quantity Produced\")",
+                    "content": "=_t(\"Qty Produced\")",
                     "border": 2
                 },
                 "C33": {
@@ -345,7 +345,7 @@
                 },
                 "C45": {
                     "style": 6,
-                    "content": "=_t(\"Quantity Produced\")",
+                    "content": "=_t(\"Qty Produced\")",
                     "border": 2
                 },
                 "C46": {
@@ -519,7 +519,7 @@
                 },
                 "G32": {
                     "style": 6,
-                    "content": "=_t(\"Quantity Produced\")",
+                    "content": "=_t(\"Qty Produced\")",
                     "border": 2
                 },
                 "G33": {
@@ -1625,6 +1625,14 @@
                     "field": "product_id",
                     "type": "many2one"
                 },
+                "7": {
+                    "field": "production_id.product_id",
+                    "type": "many2one"
+                },
+                "8": {
+                    "field": "production_id.product_id",
+                    "type": "many2one"
+                },
                 "9": {
                     "field": "product_id",
                     "type": "many2one"
@@ -1675,6 +1683,22 @@
                 "6": {
                     "field": "picking_type_id",
                     "type": "many2one"
+                },
+                "7": {
+                    "field": "production_id.picking_type_id",
+                    "type": "many2one"
+                },
+                "8": {
+                    "field": "production_id.picking_type_id",
+                    "type": "many2one"
+                },
+                "9": {
+                    "field": "production_id.picking_type_id",
+                    "type": "many2one"
+                },
+                "10": {
+                    "field": "production_id.picking_type_id",
+                    "type": "many2one"
                 }
             },
             "listFields": {},
@@ -1700,23 +1724,23 @@
             "defaultsToCurrentPeriod": false,
             "pivotFields": {
                 "1": {
-                    "field": "activity_user_id",
+                    "field": "user_id",
                     "type": "many2one"
                 },
                 "2": {
-                    "field": "activity_user_id",
+                    "field": "user_id",
                     "type": "many2one"
                 },
                 "3": {
-                    "field": "activity_user_id",
+                    "field": "user_id",
                     "type": "many2one"
                 },
                 "5": {
-                    "field": "activity_user_id",
+                    "field": "user_id",
                     "type": "many2one"
                 },
                 "6": {
-                    "field": "activity_user_id",
+                    "field": "user_id",
                     "type": "many2one"
                 },
                 "7": {
@@ -1725,6 +1749,14 @@
                 },
                 "8": {
                     "field": "user_id",
+                    "type": "many2one"
+                },
+                "9": {
+                    "field": "production_id.user_id",
+                    "type": "many2one"
+                },
+                "10": {
+                    "field": "production_id.user_id",
                     "type": "many2one"
                 }
             },

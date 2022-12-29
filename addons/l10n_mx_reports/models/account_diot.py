@@ -2,8 +2,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from __future__ import division
 
-from contextlib import contextmanager
-import locale
 import re
 import logging
 from unicodedata import normalize
@@ -216,8 +214,20 @@ class MexicanAccountReportCustomHandler(models.AbstractModel):
         self.check_for_error_on_partner([partner for partner in partner_and_values_to_report])
 
         date = fields.datetime.strptime(options['date']['date_from'], DEFAULT_SERVER_DATE_FORMAT)
-        with self._custom_setlocale():
-            month = date.strftime("%B").capitalize()
+        month = {
+            '01': 'Enero',
+            '02': 'Febrero',
+            '03': 'Marzo',
+            '04': 'Abril',
+            '05': 'Mayo',
+            '06': 'Junio',
+            '07': 'Julio',
+            '08': 'Agosto',
+            '09': 'Septiembre',
+            '10': 'Octubre',
+            '11': 'Noviembre',
+            '12': 'Diciembre',
+        }.get(date.strftime("%m"))
 
         lines = []
         for partner, values in partner_and_values_to_report.items():
@@ -271,7 +281,7 @@ class MexicanAccountReportCustomHandler(models.AbstractModel):
         for label, partner_to_value_list in label_dict.items():
             for partner_id, value in partner_to_value_list:
                 partner_to_label_val.setdefault(self.env['res.partner'].browse(partner_id), {})[label] = value
-        return partner_to_label_val
+        return dict(sorted(partner_to_label_val.items(), key=lambda item: item[0].name))
 
     def check_for_error_on_partner(self, partners):
         partner_missing_information = self.env['res.partner']
@@ -307,15 +317,3 @@ class MexicanAccountReportCustomHandler(models.AbstractModel):
         text_n = normalize('NFKC', normalize('NFKD', text).translate(trans_tab))
         check_re = re.compile(r'''[^A-Za-z\d Ññ]''')
         return check_re.sub('', text_n)
-
-    @contextmanager
-    def _custom_setlocale(self):
-        old_locale = locale.getlocale(locale.LC_TIME)
-        try:
-            locale.setlocale(locale.LC_TIME, 'es_MX.utf8')
-        except locale.Error:
-            _logger.info('Error when try to set locale "es_MX". Please contact your system administrator.')
-        try:
-            yield
-        finally:
-            locale.setlocale(locale.LC_TIME, old_locale)

@@ -4,7 +4,7 @@ import { useService } from "@web/core/utils/hooks";
 import { sprintf } from "@web/core/utils/strings";
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 
-const { onWillStart } = owl;
+import { onWillStart } from "@odoo/owl";
 
 export class NewViewDialog extends ConfirmationDialog {
     setup() {

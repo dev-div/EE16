@@ -33,7 +33,7 @@ class PlanningRecurrency(models.Model):
     @api.constrains('repeat_number', 'repeat_type')
     def _check_repeat_number(self):
         if self.filtered(lambda t: t.repeat_type == 'x_times' and t.repeat_number < 0):
-            raise ValidationError('The number of repetitions cannot be negative.')
+            raise ValidationError(_('The number of repetitions cannot be negative.'))
 
     @api.constrains('company_id', 'slot_ids')
     def _check_multi_company(self):

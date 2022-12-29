@@ -88,5 +88,45 @@ QUnit.module('LegacyViews', {
 
         gantt.destroy();
     });
+    QUnit.test('horizontal scroll applies only to the content, not to the whole controller [SMALL SCREEN]', async function (assert) {
+        assert.expect(7);
+        const gantt = await createView({
+            View: GanttView,
+            model: 'tasks',
+            data: this.data,
+            arch: `<gantt date_start="start" date_stop="stop">
+                        <field name="user_id"/>
+                   </gantt>`,
+            viewOptions: {
+                initialDate: initialDate,
+            },
+            debug: true, // for this test, we need the elements to be visible in the viewport
+        });
+
+        const o_view_controller = document.querySelector(".o_view_controller");
+        const o_content = o_view_controller.querySelector('.o_content');
+        const o_gantt_header_cell = gantt.el.querySelector('.o_gantt_header_cell:first-child');
+        const o_gantt_cp_btn_today = gantt.el.querySelector('.o_gantt_button_today');
+        const initialXCpBtn = o_gantt_cp_btn_today.getBoundingClientRect().x;
+        const initialXHeaderCell = o_gantt_header_cell.getBoundingClientRect().x;
+
+        assert.hasClass(o_view_controller, "o_action_delegate_scroll",
+            "the 'o_view_controller' should be have the 'o_action_delegate_scroll'.");
+        assert.strictEqual(window.getComputedStyle(o_view_controller).overflow,"hidden",
+            "The view controller should have overflow hidden");
+        assert.strictEqual(window.getComputedStyle(o_content).overflow,"auto", "The view content should have the overflow auto");
+        assert.strictEqual(o_content.scrollLeft, 0, "Te o_content should not have scroll value");
+
+        // Horizontal scroll
+        o_content.scrollLeft = 100;
+        await testUtils.nextTick();
+
+        assert.strictEqual(o_content.scrollLeft, 100, "the o_content should be 100 due to the overflow auto");
+        assert.ok(o_gantt_header_cell.getBoundingClientRect().x < initialXHeaderCell,
+            "the gantt header cell x position value should be lower after the scroll");
+        assert.ok(o_gantt_cp_btn_today.getBoundingClientRect().x === initialXCpBtn,
+            "the btn x position of the control panel button should be the same after the scroll");
+        gantt.destroy();
+    });
 });
 });

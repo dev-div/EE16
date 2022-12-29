@@ -3,21 +3,21 @@
 # 	* website_sale_dashboard
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Bole <bole@dajmi5.com>, 2019
-# Vladimir Olujić <olujic.vladimir@storm.hr>, 2019
-# Đurđica Žarković <durdica.zarkovic@storm.hr>, 2019
-# Karolina Tonković <karolina.tonkovic@storm.hr>, 2019
-# Mario Jureša <mario.juresa@uvid.hr>, 2019
-# Tina Milas, 2019
+# Hrvoje Sić <hrvoje.sic@gmail.com>, 2022
+# Vladimir Vrgoč, 2022
+# Đurđica Žarković <durdica.zarkovic@storm.hr>, 2022
+# Martin Trigaux, 2022
+# Tina Milas, 2022
+# Bole <bole@dajmi5.com>, 2022
+# Vladimir Olujić <olujic.vladimir@storm.hr>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:04+0000\n"
-"PO-Revision-Date: 2019-08-26 09:39+0000\n"
-"Last-Translator: Tina Milas, 2019\n"
+"POT-Creation-Date: 2022-09-23 08:22+0000\n"
+"PO-Revision-Date: 2022-09-22 05:50+0000\n"
+"Last-Translator: Vladimir Olujić <olujic.vladimir@storm.hr>, 2022\n"
 "Language-Team: Croatian (https://www.transifex.com/odoo/teams/41243/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,12 +36,6 @@ msgid "# Lines"
 msgstr "# stavaka"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid ""
-"/website_sale_dashboard/static/src/img/website_sale_dashboard_onboarding_bg.jpg"
-msgstr ""
-
-#. module: website_sale_dashboard
 #: model:ir.model.fields,field_description:website_sale_dashboard.field_sale_report__is_abandoned_cart
 msgid "Abandoned Cart"
 msgstr ""
@@ -52,19 +46,14 @@ msgid "Abandoned Carts"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
-msgid "Average Order"
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Activate Stripe"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Client ID"
-msgstr "ID klijenta"
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Client Secret"
-msgstr "Tajni klijent"
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
+msgid "Average Order"
+msgstr "Prosječna narudžba"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__closed
@@ -79,12 +68,12 @@ msgstr "Tvrtke"
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Conversion Rate"
-msgstr ""
+msgstr "Stopa pretvorbe"
 
 #. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_digest_digest
 msgid "Digest"
-msgstr ""
+msgstr "Sažetak"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__done
@@ -92,24 +81,17 @@ msgid "Done"
 msgstr "Riješeno"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "Follow your website traffic in Odoo."
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Enable credit &amp; debit card payments supported by Stripe"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__sale_report__invoice_status__invoiced
-msgid "Fully Invoiced"
-msgstr "U potpunosti izdan račun"
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.res_config_settings_view_form
-msgid "How to get my Client ID"
+#. openerp-web
+#: code:addons/website_sale_dashboard/static/src/xml/website_sale_dashboard.xml:0
+#: code:addons/website_sale_dashboard/static/src/xml/website_sale_dashboard.xml:0
+#, python-format
+msgid "Go to Website"
 msgstr ""
-
-#. module: website_sale_dashboard
-#: model:ir.model.fields,field_description:website_sale_dashboard.field_sale_report__invoice_status
-msgid "Invoice Status"
-msgstr "Stanje računa"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__just_done
@@ -117,14 +99,24 @@ msgid "Just done"
 msgstr "Upravo završeno"
 
 #. module: website_sale_dashboard
+#: model_terms:ir.actions.act_window,help:website_sale_dashboard.sale_dashboard
+msgid "No data yet!"
+msgstr "Nema još podataka!"
+
+#. module: website_sale_dashboard
 #: model:ir.model.fields.selection,name:website_sale_dashboard.selection__res_company__website_sale_dashboard_onboarding_state__not_done
 msgid "Not done"
 msgstr "Nije gotovo"
 
 #. module: website_sale_dashboard
-#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__sale_report__invoice_status__no
-msgid "Nothing to Invoice"
-msgstr "Ništa za izdavanje računa"
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Online Payments"
+msgstr ""
+
+#. module: website_sale_dashboard
+#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_onboarding_payment_provider_step
+msgid "Online payments enabled"
+msgstr ""
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
@@ -140,7 +132,7 @@ msgstr "Analiza prodaje"
 #. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Izvještaj analize prodaje"
 
 #. module: website_sale_dashboard
 #: model:ir.model.fields,field_description:website_sale_dashboard.field_res_company__website_sale_dashboard_onboarding_state
@@ -153,11 +145,6 @@ msgid "The configuration is done. Happy selling!"
 msgstr ""
 
 #. module: website_sale_dashboard
-#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__sale_report__invoice_status__to_invoice
-msgid "To Invoice"
-msgstr "Za izdavanje računa"
-
-#. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Total Sales"
 msgstr ""
@@ -165,7 +152,7 @@ msgstr ""
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_dashboard_view
 msgid "Total, Tax Included"
-msgstr ""
+msgstr "Ukupno, sa porezom"
 
 #. module: website_sale_dashboard
 #: model_terms:ir.ui.view,arch_db:website_sale_dashboard.sale_report_view_search_website_inherit
@@ -178,31 +165,11 @@ msgid "Untaxed Total"
 msgstr "Ukupno bez poreza"
 
 #. module: website_sale_dashboard
-#: model:ir.model.fields.selection,name:website_sale_dashboard.selection__sale_report__invoice_status__upselling
-msgid "Upselling Opportunity"
-msgstr "Prilika za sugestivno proširenje ponude"
-
-#. module: website_sale_dashboard
 #: model:ir.model,name:website_sale_dashboard.model_website
 msgid "Website"
 msgstr "Web stranica"
 
 #. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "action_close_website_sale_dashboard_onboarding"
-msgstr ""
-
-#. module: website_sale_dashboard
 #: model:ir.actions.act_window,name:website_sale_dashboard.sale_dashboard
 msgid "eCommerce Dashboard"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "o_onboarding_orange"
-msgstr ""
-
-#. module: website_sale_dashboard
-#: model_terms:ir.ui.view,arch_db:website_sale_dashboard.website_sale_dashboard_onboarding_panel
-msgid "res.company"
 msgstr ""

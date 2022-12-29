@@ -193,6 +193,8 @@ QUnit.test('verify appointment links button are displayed', async function (asse
         mockRPC: async function (route, args) {
             if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });
@@ -239,6 +241,8 @@ QUnit.test('create/search anytime appointment type', async function (assert) {
                 assert.step(route);
             } else if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
         session: {
@@ -287,6 +291,8 @@ QUnit.test('discard slot in calendar', async function (assert) {
         mockRPC: async function (route, args) {
             if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });
@@ -341,6 +347,8 @@ QUnit.test("cannot move real event in slots-creation mode", async function (asse
                 assert.step('write event');
             } else if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });
@@ -391,6 +399,8 @@ QUnit.test("create slots for custom appointment type", async function (assert) {
                 assert.step(route);
             } else if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });
@@ -440,6 +450,8 @@ QUnit.test('filter works in slots-creation mode', async function (assert) {
         mockRPC: function (route, args) {
             if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });
@@ -508,6 +520,8 @@ QUnit.test('click & copy appointment type url', async function (assert) {
                 assert.step(route)
             } else if (route === '/web/dataset/call_kw/res.partner/get_attendee_detail') {
                 return Promise.resolve([]);
+            } else if (route === '/web/dataset/call_kw/res.users/has_group') {
+                return Promise.resolve(true);
             }
         },
     });

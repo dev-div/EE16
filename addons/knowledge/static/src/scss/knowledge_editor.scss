@@ -16,6 +16,13 @@
     .o_property_field .o_property_field_value {
         padding: 0;
     }
+    .o_field_html .note-editable {
+        /* We are removing the bar when inside the knowledge app in order to keep the blank pad look of the app. */
+        border: none;
+        &:hover, &:focus {
+            border: none;
+        }
+    }
 }
 
 @include media-breakpoint-down(xl) {

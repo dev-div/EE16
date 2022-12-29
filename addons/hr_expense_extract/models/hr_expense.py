@@ -107,14 +107,15 @@ class HrExpense(models.Model):
 
     def attach_document(self, **kwargs):
         """when an attachment is uploaded, send the attachment to iap-extract if this is the first attachment"""
+        self._autosend_for_digitization()
+
+    def _autosend_for_digitization(self):
         if self.env.company.expense_extract_show_ocr_option_selection == 'auto_send':
-            for record in self:
-                if record.extract_state == "no_extract_requested":
-                    record.action_manual_send_for_digitization()
+            self.filtered('extract_can_show_send_button').action_manual_send_for_digitization()
 
     def _message_set_main_attachment_id(self, attachment_ids):
         super(HrExpense, self)._message_set_main_attachment_id(attachment_ids)
-        self.attach_document()
+        self._autosend_for_digitization()
 
     def get_validation(self, field):
 
@@ -289,6 +290,7 @@ class HrExpense(models.Model):
     def _cron_parse(self):
         for rec in self.search([('extract_state', '=', 'waiting_upload')]):
             rec.retry_ocr()
+            rec.env.cr.commit()
 
     def retry_ocr(self):
         """Retry to contact iap to submit the first attachment in the chatter"""
@@ -321,7 +323,6 @@ class HrExpense(models.Model):
                 'version': CLIENT_OCR_VERSION,
                 'dbuuid': self.env['ir.config_parameter'].sudo().get_param('database.uuid'),
                 'documents': [x.datas.decode('utf-8') for x in attachments],
-                'file_names': [x.name for x in attachments],
                 'user_infos': user_infos,
                 'webhook_url': webhook_url,
                 }

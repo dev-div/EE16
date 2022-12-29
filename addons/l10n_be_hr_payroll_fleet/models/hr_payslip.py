@@ -15,11 +15,11 @@ class HrPayslip(models.Model):
 
     @api.depends('contract_id.car_id.future_driver_id')
     def _compute_vehicle_id(self):
-        termination_struct = self.env.ref('l10n_be_hr_payroll.cp200_employees_termination_fees_company_car_annual')
         for slip in self.filtered(lambda s: s.state not in ['done', 'cancel']):
             contract_sudo = slip.contract_id.sudo()
             if contract_sudo.car_id:
-                if slip.struct_id != termination_struct and contract_sudo.car_id.future_driver_id:
+                future_driver = contract_sudo.car_id.future_driver_id
+                if future_driver and future_driver == slip.employee_id.address_home_id:
                     tmp_vehicle = self.env['fleet.vehicle'].search(
                         [('driver_id', '=', contract_sudo.car_id.future_driver_id.id)], limit=1)
                     slip.vehicle_id = tmp_vehicle

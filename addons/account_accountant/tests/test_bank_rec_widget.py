@@ -72,18 +72,6 @@ class TestBankRecWidget(TestBankRecWidgetCommon):
         })
         self.assertEqual(st_line._retrieve_partner(), self.env['res.partner'])
 
-    def test_retrieve_partner_from_payment_ref(self):
-        st_line = self._create_st_line(1000.0, partner_id=None, payment_ref="Gagnant turlututu Bernard tsoin tsoin")
-        partner = self.env['res.partner'].create({'name': "Bernard Gagnant"})
-        self._create_invoice_line(
-            'out_invoice',
-            partner_id=partner,
-            invoice_date='2019-01-01',
-            invoice_line_ids=[{'price_unit': 1000.0}],
-        )
-
-        self.assertEqual(st_line._retrieve_partner(), partner)
-
     def test_validation_new_aml_same_foreign_currency(self):
         income_exchange_account = self.env.company.income_currency_exchange_account_id
 
@@ -584,6 +572,7 @@ class TestBankRecWidget(TestBankRecWidgetCommon):
 
         # Validate and check the statement line.
         wizard.button_validate(async_action=False)
+        self.assertRecordValues(st_line, [{'partner_id': self.partner_a.id}])
         liquidity_line, _suspense_line, other_line = st_line._seek_for_lines()
         account = self.partner_a.property_account_receivable_id
         self.assertRecordValues(liquidity_line + other_line, [

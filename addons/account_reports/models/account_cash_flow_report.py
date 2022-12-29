@@ -31,7 +31,7 @@ class CashFlowReportCustomHandler(models.AbstractModel):
 
     def _custom_options_initializer(self, report, options, previous_options=None):
         super()._custom_options_initializer(report, options, previous_options=previous_options)
-        report._init_options_journals(options, previous_options=previous_options, additional_journals_domain=[('type', 'in', ('bank', 'cash'))])
+        report._init_options_journals(options, previous_options=previous_options, additional_journals_domain=[('type', 'in', ('bank', 'cash', 'general'))])
 
     def _get_report_data(self, report, options, layout_data):
         report_data = {}
@@ -159,7 +159,7 @@ class CashFlowReportCustomHandler(models.AbstractModel):
         # Accounts being used by at least one bank/cash journal.
         selected_journal_ids = [j['id'] for j in report._get_options_journals(options)]
 
-        where_clause = "account_journal.id IN %s" if selected_journal_ids else "account_journal.type IN ('bank', 'cash')"
+        where_clause = "account_journal.id IN %s" if selected_journal_ids else "account_journal.type IN ('bank', 'cash', 'general')"
         where_params = [tuple(selected_journal_ids)] if selected_journal_ids else []
 
         self._cr.execute(f'''

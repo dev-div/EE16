@@ -42,7 +42,7 @@ const fieldRegistry = registry.category("fields");
 const serviceRegistry = registry.category("services");
 const widgetRegistry = registry.category("view_widgets");
 
-const { Component, xml, EventBus } = owl;
+import { Component, xml, EventBus } from "@odoo/owl";
 
 let target;
 let serverData;
@@ -293,6 +293,20 @@ QUnit.module("Views", (hooks) => {
             "div.o_cell:not(.o_list_record_selector) .o-checkbox input:checked"
         );
         assert.containsNone(target, "label.o_form_label_empty:contains(timmy)");
+    });
+
+    QUnit.test("generic tags are case insensitive", async function (assert) {
+        await makeView({
+            type: "form",
+            resModel: "partner",
+            serverData,
+            arch: `
+                <form>
+                    <Div class="test">Hello</Div>
+                </form>`,
+        });
+
+        assert.containsOnce(target, "div.test");
     });
 
     QUnit.test("form view with a group that contains an invisible group", async function (assert) {
@@ -824,6 +838,35 @@ QUnit.module("Views", (hooks) => {
         });
 
         assert.containsOnce(target, "div.o_inner_group");
+    });
+
+    QUnit.test("group with formLabel", async function (assert) {
+        await makeView({
+            type: "form",
+            resModel: "partner",
+            serverData,
+            arch: `
+                <form>
+                    <sheet>
+                        <group>
+                            <!-- OuterGroup -->
+                            <field name="foo"/>
+                            <label for="foo" class="plop plop2"/>
+                            <group>
+                                <!-- InnerGroup -->
+                                <field name="display_name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>`,
+            resId: 1,
+        });
+        assert.hasClass(target.querySelector(".o_field_widget[name=foo]"), "o_field_char");
+        assert.hasClass(target.querySelector(".o_field_widget[name=foo]"), "col-lg-6");
+
+        assert.hasClass(target.querySelector(".o_form_label[for=foo]"), "plop");
+        assert.hasClass(target.querySelector(".o_form_label[for=foo]"), "plop2");
+        assert.hasClass(target.querySelector(".o_form_label[for=foo]"), "col-lg-6");
     });
 
     QUnit.test("group containing both a field and a group", async function (assert) {
@@ -1909,6 +1952,31 @@ QUnit.module("Views", (hooks) => {
 
             assert.containsOnce(target, "label.o_form_label");
             assert.equal(target.querySelector("label.o_form_label").textContent, "");
+        }
+    );
+
+    QUnit.test(
+        "two mutually exclusive labels with a dynamic invisible attribute",
+        async function (assert) {
+            await makeView({
+                type: "form",
+                resModel: "partner",
+                serverData,
+                arch: `
+                <form>
+                    <sheet>
+                        <group>
+                            <label for="bar" string="label1" attrs='{"invisible": [["bar", "=", True]]}'/>
+                            <label for="bar" string="label2" attrs='{"invisible": [["bar", "=", False]]}'/>
+                            <field name="bar" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>`,
+                resId: 2,
+            });
+            assert.containsOnce(target, "label.o_form_label", "Only one label should be displayed");
+            assert.strictEqual(target.querySelector("label.o_form_label").textContent, "label2");
+            assert.containsOnce(target, ".o_inner_group > div", "This group should only contain one line");
         }
     );
 
@@ -4755,7 +4823,8 @@ QUnit.module("Views", (hooks) => {
 
         await editInput(target, ".o_field_widget[name=foo] input", "");
         await click(target.querySelector(".o_pager_next"));
-        assert.strictEqual(target.querySelector(".breadcrumb").innerText, "first record");
+        assert.strictEqual(target.querySelector(".breadcrumb-item > span").innerText, "first record");
+        assert.strictEqual(target.querySelector(".breadcrumb-item > .o_form_status_indicator").innerText.trim(), "Unable to save");
         assert.strictEqual(target.querySelector(".o_pager_value").textContent, "1");
         assert.strictEqual(target.querySelector(".o_pager_limit").textContent, "2");
         assert.hasClass(target.querySelector(".o_field_widget[name=foo]"), "o_field_invalid");
@@ -4785,7 +4854,8 @@ QUnit.module("Views", (hooks) => {
         await editInput(target, ".o_field_widget[name=foo] input", "");
         triggerHotkey("alt+n");
         await nextTick();
-        assert.strictEqual(target.querySelector(".breadcrumb").innerText, "first record");
+        assert.strictEqual(target.querySelector(".breadcrumb-item > span").innerText, "first record");
+        assert.strictEqual(target.querySelector(".breadcrumb-item > .o_form_status_indicator").innerText.trim(), "Unable to save");
         assert.strictEqual(target.querySelector(".o_pager_value").textContent, "1");
         assert.strictEqual(target.querySelector(".o_pager_limit").textContent, "2");
         assert.hasClass(target.querySelector(".o_field_widget[name=foo]"), "o_field_invalid");
@@ -11605,6 +11675,40 @@ QUnit.module("Views", (hooks) => {
                 }
             },
         });
+
+        window.dispatchEvent(new Event("beforeunload"));
+        await nextTick();
+
+        assert.verifySteps([], "should not save because we do not change anything");
+    });
+
+    QUnit.test("Auto save: save on closing tab/browser (not dirty) with text field", async function (assert) {
+
+        serverData.models.partner.fields.bloup = {
+            string: "Bloup",
+            type: "text",
+            default: false,
+        };
+
+        await makeView({
+            type: "form",
+            resModel: "partner",
+            serverData,
+            arch: `
+                <form>
+                    <group>
+                        <field name="bloup"/>
+                    </group>
+                </form>`,
+            resId: 1,
+            mockRPC(route, { args, method, model }) {
+                if (method === "write" && model === "partner") {
+                    assert.step("save"); // should not be called
+                }
+            },
+        });
+
+        assert.strictEqual(target.querySelector(".o_field_widget[name=bloup] textarea").value, "", "should contain the default value");
 
         window.dispatchEvent(new Event("beforeunload"));
         await nextTick();

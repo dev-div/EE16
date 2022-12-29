@@ -202,7 +202,7 @@ export class KnowledgeArticleFormRenderer extends FormRenderer {
             "action_make_private_copy",
             [this.resId]
         );
-        this.openArticle(articleId);
+        this.openArticle(articleId, true);
     }
 
     /**
@@ -220,27 +220,66 @@ export class KnowledgeArticleFormRenderer extends FormRenderer {
                 parent_id: targetParentId ? targetParentId : false
             }
         );
-        this.openArticle(articleId);
+        this.openArticle(articleId, true);
     }
 
     /**
      * @param {integer} - resId: id of the article to open
+     * @param {boolean} - [forceFullReload]: will reload the whole form view using a "doAction"
+     *   if true, notably useful when the tree panel needs to be reloaded (defaults to false).
      */
-    async openArticle(resId) {
-        // disable sortable trees drag and drop.
-        const $sortable = $('.o_tree_favorite,.o_tree');
-        $sortable.sortable('disable');
-        // Focus out of name input to prevent showing an error when opening an
-        // article while the name input is focused and empty
-        if (document.activeElement.id === "name" && document.activeElement.value === "") {
+    async openArticle(resId, forceFullReload=false) {
+        // If the focus is on the "name" input, force a _rename before leaving this article
+        if (document.activeElement.id === "name") {
+            await this._rename(document.activeElement.value);
             document.activeElement.blur();
         } else if (this.resId) {  // Don't save when NoRecord helper is shown
             await this.props.record.save();
         }
-        this.actionService.doAction(
-            await this.orm.call('knowledge.article', 'action_home_page', resId ? [resId] : []),
-            {stackPosition: 'replaceCurrentAction'}
-        );
+
+        if (resId) {
+            if (forceFullReload) {
+                this.actionService.doAction(
+                    await this.orm.call('knowledge.article', 'action_home_page', resId ? [resId] : []),
+                    {stackPosition: 'replaceCurrentAction'}
+                );
+            } else {
+                // toggle on/off the classes that highlight the selected article
+                document.querySelectorAll(`[data-article-id="${this.resId}"] > div`).forEach((previousArticle) => {
+                    previousArticle.classList.remove('o_article_active', 'fw-bold', 'text-900');
+                    const emoji = previousArticle.querySelector('.o_article_emoji');
+                    if (emoji) {
+                        emoji.classList.remove('o_article_emoji_active', 'text-900');
+                    }
+                });
+
+                document.querySelectorAll(`[data-article-id="${resId}"] > div`).forEach((currentArticle) => {
+                    currentArticle.classList.add('o_article_active', 'fw-bold', 'text-900');
+                    const emoji = currentArticle.querySelector('.o_article_emoji');
+                    if (emoji) {
+                        emoji.classList.add('o_article_emoji_active', 'text-900');
+                    }
+                });
+
+                // Force save if changes have been made before loading the new record
+                if (this.props.record.isDirty) {
+                    await this.props.record.save();
+                }
+
+                // load the new record
+                try {
+                    await this.props.record.model.load({
+                        resId: resId,
+                    });
+                } catch (_) {
+                    this.actionService.doAction(
+                        await this.orm.call('knowledge.article', 'action_home_page', [false]),
+                        {stackPosition: 'replaceCurrentAction'}
+                    );
+                }
+
+            }
+        }
     }
 
     openCoverSelector() {
@@ -396,7 +435,7 @@ export class KnowledgeArticleFormRenderer extends FormRenderer {
      * @return {string} - first h1 in the body, "Untitled" if not found
      */
     _getFallbackTitle() {
-        const articleTitle = this.root.el.querySelector('.o_knowledge_editor h1');
+        const articleTitle = this.root.el.querySelector('.o_knowledge_editor .note-editable h1');
         if (articleTitle) {
             return articleTitle.textContent.trim() || this.env._t('Untitled');
         }
@@ -533,6 +572,10 @@ export class KnowledgeArticleFormRenderer extends FormRenderer {
         unfoldedArticlesIds = unfoldedArticlesIds ? unfoldedArticlesIds.split(";").map(Number) : false;
         let unfoldedFavoriteArticlesIds = localStorage.getItem('knowledge.unfolded.favorite.ids');
         unfoldedFavoriteArticlesIds = unfoldedFavoriteArticlesIds ? unfoldedFavoriteArticlesIds.split(";").map(Number) : false;
+        // Force save article if it's dirty to keep up to date the article data before rendering the tree
+        if (this.props.record.isDirty) {
+            await this.props.record.save();
+        }
         try {
             const htmlTree = await this.rpc(route,
                 {

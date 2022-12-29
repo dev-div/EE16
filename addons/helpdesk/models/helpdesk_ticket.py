@@ -89,7 +89,7 @@ class HelpdeskSLAStatus(models.Model):
                 # We should also depend on ticket creation time, otherwise for 1 day SLA, all tickets
                 # created on monday will have their deadline filled with tuesday 8:00
                 create_dt = working_calendar.plan_hours(0, status.ticket_id.create_date)
-                deadline = deadline.replace(hour=create_dt.hour, minute=create_dt.minute, second=create_dt.second, microsecond=create_dt.microsecond)
+                deadline = deadline and deadline.replace(hour=create_dt.hour, minute=create_dt.minute, second=create_dt.second, microsecond=create_dt.microsecond)
 
             sla_hours = status.sla_id.time % avg_hour
 
@@ -103,7 +103,7 @@ class HelpdeskSLAStatus(models.Model):
             # We should execute the function plan_hours in any case because, in a 1 day SLA environment,
             # if I create a ticket knowing that I'm not working the day after at the same time, ticket
             # deadline will be set at time I don't work (ticket creation time might not be in working calendar).
-            status.deadline = working_calendar.plan_hours(sla_hours, deadline, compute_leaves=True)
+            status.deadline = deadline and working_calendar.plan_hours(sla_hours, deadline, compute_leaves=True)
 
     @api.depends('deadline', 'reached_datetime')
     def _compute_status(self):
@@ -265,7 +265,7 @@ class HelpdeskTicket(models.Model):
         readonly=False, ondelete='restrict', tracking=1, group_expand='_read_group_stage_ids',
         copy=False, index=True, domain="[('team_ids', '=', team_id)]")
     date_last_stage_update = fields.Datetime("Last Stage Update", copy=False, readonly=True)
-    ticket_ref = fields.Char(string='Ticket IDs Sequence', copy=False, readonly=True)
+    ticket_ref = fields.Char(string='Ticket IDs Sequence', copy=False, readonly=True, index=True)
     # next 4 fields are computed in write (or create)
     assign_date = fields.Datetime("First assignment date")
     assign_hours = fields.Integer("Time to first assignment (hours)", compute='_compute_assign_hours', store=True)
@@ -365,7 +365,7 @@ class HelpdeskTicket(models.Model):
                 if not min_deadline or status.deadline < min_deadline:
                     min_deadline = status.deadline
 
-            ticket.write({
+            ticket.update({
                 'sla_deadline': min_deadline,
                 'sla_deadline_hours': ticket.team_id.resource_calendar_id.get_work_duration_data\
                     (now, min_deadline, compute_leaves=True)['hours'] if min_deadline else 0.0,
@@ -466,9 +466,10 @@ class HelpdeskTicket(models.Model):
             if domain:
                 partner_ticket = self.search(domain)
             ticket.partner_ticket_ids = partner_ticket
-            ticket.partner_ticket_count = len(partner_ticket) - 1 if partner_ticket else 0
+            partner_ticket = partner_ticket - ticket._origin
+            ticket.partner_ticket_count = len(partner_ticket) if partner_ticket else 0
             open_ticket = partner_ticket.filtered(lambda ticket: not ticket.stage_id.fold)
-            ticket.partner_open_ticket_count = len(open_ticket) - 1 if not ticket.stage_id.fold else len(open_ticket)
+            ticket.partner_open_ticket_count = len(open_ticket)
 
     @api.depends('assign_date')
     def _compute_assign_hours(self):

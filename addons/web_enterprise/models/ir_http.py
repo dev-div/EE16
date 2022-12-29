@@ -4,7 +4,6 @@
 import json
 
 from odoo import models
-from odoo.http import request
 
 
 class Http(models.AbstractModel):
@@ -17,8 +16,8 @@ class Http(models.AbstractModel):
         }
 
     def session_info(self):
-        ICP = request.env['ir.config_parameter'].sudo()
-        User = request.env['res.users']
+        ICP = self.env['ir.config_parameter'].sudo()
+        User = self.env['res.users']
 
         if User.has_group('base.group_system'):
             warn_enterprise = 'admin'

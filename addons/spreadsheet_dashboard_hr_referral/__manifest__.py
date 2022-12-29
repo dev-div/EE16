@@ -12,6 +12,6 @@
     'demo': [],
     'installable': True,
     'auto_install': ['hr_referral'],
-    'license': 'LGPL-3',
+    'license': 'OEEL-1',
     'assets': {}
 }

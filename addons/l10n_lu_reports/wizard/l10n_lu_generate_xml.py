@@ -51,8 +51,9 @@ class L10nLuGenerateXML(models.TransientModel):
                     additional_context={'required_fields': [ecdf_not_ok and 'l10n_lu_agent_ecdf_prefix',
                                                             matr_not_ok and 'l10n_lu_agent_matr_number']}
                 )
-        report = self.env['account.report'].browse(self.env.context.get('report_generation_options', {}).get('report_id'))
-        options = report._get_options()
+        report_gen_options = self.env.context.get('report_generation_options', {})
+        report = self.env['account.report'].browse(report_gen_options.get('report_id'))
+        options = report._get_options(report_gen_options)
         filename = self.env['l10n_lu.report.handler'].get_report_filename(options)
         agent_vat = agent.vat if agent else self._get_export_vat()
         company_vat = self._get_export_vat()
@@ -60,7 +61,6 @@ class L10nLuGenerateXML(models.TransientModel):
         company_vat = company_vat[2:] if company_vat and company_vat.startswith("LU") else company_vat
         language = self.env.context.get('lang', '').split('_')[0].upper()
         language = language in ('EN', 'FR', 'DE') and language or 'EN'
-        report_gen_options = self.env.context.get('report_generation_options', {})
         if report_gen_options:
             report_gen_options['language'] = language
         lu_template_values = {

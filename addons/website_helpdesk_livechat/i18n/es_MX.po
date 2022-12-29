@@ -42,6 +42,10 @@ msgid ""
 "                    You can search tickets by typing <b>/helpdesk_search <i>keyword</i></b> or <b><i>ticket number</i></b><br>\n"
 "                    "
 msgstr ""
+"<br><br>\n"
+"                    Puede crear un nuevo ticket al esribir <b>/helpdesk <i>nombre del ticket</i></b>.<br>\n"
+"                    Puede buscar tickets al escribir <b>/helpdesk_search <i>palabra clave</i></b> o <b><i>número de ticket</i></b><br>\n"
+"                    "
 
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.step,message:website_helpdesk_livechat.chatbot_script_helpdesk_step_done
@@ -62,7 +66,7 @@ msgstr "Respuestas predefinidas"
 #. module: website_helpdesk_livechat
 #: model_terms:ir.ui.view,arch_db:website_helpdesk_livechat.im_livechat_canned_response_view_search
 msgid "Canned Responses Search"
-msgstr ""
+msgstr "Buscar respuestas predefinidas"
 
 #. module: website_helpdesk_livechat
 #: model:ir.model,name:website_helpdesk_livechat.model_chatbot_script
@@ -90,7 +94,7 @@ msgstr "Crear un nuevo ticket de servicio de asistencia"
 #: code:addons/website_helpdesk_livechat/models/helpdesk.py:0
 #, python-format
 msgid "Created a new ticket: %s"
-msgstr ""
+msgstr "Creó un nuevo ticket: %s"
 
 #. module: website_helpdesk_livechat
 #: model:ir.model,name:website_helpdesk_livechat.model_mail_channel
@@ -100,7 +104,7 @@ msgstr "Canal de conversaciones"
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.step,message:website_helpdesk_livechat.chatbot_script_helpdesk_step_dispatch
 msgid "First, what is the nature of your issue?"
-msgstr "Primero, ¿cuál es su problema?"
+msgstr "Primero, ¿qué problema presenta?"
 
 #. module: website_helpdesk_livechat
 #: model:ir.model.fields,field_description:website_helpdesk_livechat.field_chatbot_script__ticket_count
@@ -163,7 +167,7 @@ msgstr "No"
 #. module: website_helpdesk_livechat
 #: model_terms:ir.actions.act_window,help:website_helpdesk_livechat.helpdesk_im_livechat_canned_response_action
 msgid "No canned reponses found. Let's create one!"
-msgstr ""
+msgstr "No se encontraron respuestas predeterminadas. ¡Creemos una!"
 
 #. module: website_helpdesk_livechat
 #: code:addons/website_helpdesk_livechat/models/helpdesk.py:0
@@ -173,6 +177,9 @@ msgid ""
 "format:<br> <b>/helpdesk_search <i>keyword</i></b> or <b>/helpdesk_search "
 "<i>ticket number</i></b>"
 msgstr ""
+"No se encontraron tickets para <b>%s</b>. <br> Asegúrese de estar usando el "
+"formato correcto:<br> <b>/helpdesk_search <i>palabra clave</i></b> o "
+"<b>/helpdesk_search <i>número de ticket</i></b>"
 
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.step,message:website_helpdesk_livechat.chatbot_script_helpdesk_step_ticket
@@ -222,7 +229,7 @@ msgstr ""
 #. module: website_helpdesk_livechat
 #: model_terms:ir.ui.view,arch_db:website_helpdesk_livechat.chatbot_script_view_form
 msgid "Tickets"
-msgstr "Boletos"
+msgstr "Tickets"
 
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.step,message:website_helpdesk_livechat.chatbot_script_helpdesk_step_administrative_customer_ref
@@ -253,7 +260,7 @@ msgstr ""
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.step,message:website_helpdesk_livechat.chatbot_script_helpdesk_step_administrative_issue
 msgid "We're all set. Now, what is your issue?"
-msgstr "Ya está todo listo. Ahora, ¿cuál es el problema?"
+msgstr "Ya está todo listo. Ahora, ¿qué problema presenta?"
 
 #. module: website_helpdesk_livechat
 #: model_terms:ir.actions.act_window,help:website_helpdesk_livechat.helpdesk_im_livechat_canned_response_action
@@ -262,6 +269,10 @@ msgid ""
 "responses into your messages. These shortcuts are replaced directly in your "
 "messages so that you can still make changes before sending them."
 msgstr ""
+"Con las respuestas predeterminadas, puede usar <i>:atajos</i> para insertar "
+"respuestas predefinidas en sus mensajes. Estos atajos se sustituyen "
+"directamente en sus mensajes para que pueda seguir haciendo cambios antes de"
+" enviarlos."
 
 #. module: website_helpdesk_livechat
 #: model:chatbot.script.answer,name:website_helpdesk_livechat.chatbot_script_helpdesk_step_administrative_customer_ref_answer_yes
@@ -287,3 +298,5 @@ msgid ""
 "You can search tickets by typing <b>/helpdesk_search <i>keyword</i></b> or "
 "<i><b>ticket number</b></i><br>"
 msgstr ""
+"Puede buscar tickets al escribir <b>/helpdesk_search <i>palabra "
+"clave</i></b> o <i><b>número de ticket</b></i><br>"

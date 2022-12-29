@@ -9,14 +9,16 @@ import base64
 import re
 from datetime import datetime
 
+# deprecated, will be removed in master
 def check_valid_SEPA_str(string):
-    if re.search('[^-A-Za-z0-9/?:().,\'+ ]', string) is not None:
+    if re.search('[^-A-Za-z0-9/?:().,\'&<>+ ]', string) is not None:
         raise ValidationError(_("The text used in SEPA files can only contain the following characters :\n\n"
             "a b c d e f g h i j k l m n o p q r s t u v w x y z\n"
             "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"
             "0 1 2 3 4 5 6 7 8 9\n"
-            "/ - ? : ( ) . , ' + (space)"))
+            "/ - ? : ( ) . , ' + & < > (space)"))
 
+# deprecated, will be removed in master
 def _check_sepa_str_validity(*strings):
     try:
         for string in strings:
@@ -67,14 +69,6 @@ class AccountBatchPayment(models.Model):
                 no_iban_payments += payment
             if payment.currency_id.name != 'EUR':
                 no_eur_payments += payment
-            if not _check_sepa_str_validity(payment.name, payment.ref):
-                invalid_ref_payments += payment
-
-            payment_partner = (payment.partner_bank_id and payment.partner_bank_id.acc_holder_name) \
-                    or payment.partner_id.name \
-                    or payment.partner_id.commercial_partner_id.name
-            if not _check_sepa_str_validity(payment.partner_id.street, payment.partner_id.city, payment_partner):
-                invalid_address_payments += payment
 
         if no_iban_payments:
             rslt.append({
@@ -88,30 +82,6 @@ class AccountBatchPayment(models.Model):
                 'code': 'no_eur',
                 'title': _("Some payments were instructed in another currency than Euro. This batch might not be accepted by certain banks because of that."),
                 'records': no_eur_payments,
-            })
-
-        if invalid_address_payments:
-            rslt.append({
-                'code': 'wrong_char_address',
-                'title': _("Some payments are linked to partner addresses with characters not supported by SEPA. These characters have been replaced by blanks."),
-                'records': invalid_address_payments,
-                'help': _("The text used in SEPA files can only contain the following characters :\n\n"
-                    "a b c d e f g h i j k l m n o p q r s t u v w x y z\n"
-                    "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"
-                    "0 1 2 3 4 5 6 7 8 9\n"
-                    "/ - ? : ( ) . , ' + (space)")
-            })
-
-        if invalid_ref_payments:
-            rslt.append({
-                'code': 'wrong_char_ref',
-                'title': _("Some payments have a name or reference containing characters not supported by SEPA. These characters have been replaced by blanks."),
-                'records': invalid_ref_payments,
-                'help': _("The text used in SEPA files can only contain the following characters :\n\n"
-                    "a b c d e f g h i j k l m n o p q r s t u v w x y z\n"
-                    "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"
-                    "0 1 2 3 4 5 6 7 8 9\n"
-                    "/ - ? : ( ) . , ' + (space)")
             })
 
         return rslt

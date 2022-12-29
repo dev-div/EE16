@@ -205,8 +205,7 @@ QUnit.module("spreadsheet_edition > Global filters model", {}, () => {
         assert.equal(model.getters.getGlobalFilters().length, 1);
     });
 
-    // TODORAR finx and unskip
-    QUnit.skip(
+    QUnit.test(
         "UNDO/REDO filter creation reloads the related field matchings",
         async function (assert) {
             const { model } = await createSpreadsheetWithPivot();

@@ -18,12 +18,11 @@
             <xpath expr="//group[@name='costing']" position='after'>
                 <group string="Operations" name="workorder_employee">
                     <field name="allow_employee"/>
-                    <div attrs="{'invisible': [('allow_employee', '=', False)]}">
-                        <span class="o_form_label oe_edit_only">Allowed Employees </span>
-                        <field name="employee_ids" widget="many2many_tags"
-                            domain="[('company_id', '=', company_id)]"
-                            />
-                    </div>
+                    <field name="employee_ids" widget="many2many_tags"
+                        string="Allowed Employees"
+                        domain="[('company_id', '=', company_id)]"
+                        attrs="{'invisible': [('allow_employee', '=', False)]}"
+                        />
                 </group>
             </xpath>
             <xpath expr="//div[@id='costs_hour']" position='after'>

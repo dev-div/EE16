@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
+# Dylan Kiss, 2022
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:50+0000\n"
+"POT-Creation-Date: 2022-12-15 13:30+0000\n"
 "PO-Revision-Date: 2022-09-22 05:50+0000\n"
 "Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
@@ -21,6 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -35,6 +37,7 @@ msgstr ""
 "            "
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -49,6 +52,7 @@ msgstr ""
 "            "
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -63,6 +67,7 @@ msgstr ""
 "            "
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -79,6 +84,7 @@ msgstr ""
 "            "
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -90,33 +96,33 @@ msgid ""
 msgstr ""
 "\n"
 "            Sommige van je huurproducten (%(product)s) kunnen niet gehuurd worden tijdens de\n"
-"            geselecteerde periode en je winkelwagen moet worden bijgewerkt. Het spijt ons voor de\n"
+"            geselecteerde periode en je winkelmandje moet worden bijgewerkt. Het spijt ons voor de\n"
 "            ongemak.\n"
 "        "
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "(%s days)."
 msgstr "(%s dagen)."
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "(%s hours)."
 msgstr "(%s uur)."
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "(%s months)."
 msgstr "(%s maanden)."
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "(%s weeks)."
@@ -171,18 +177,16 @@ msgid "<strong class=\"attribute_name\">Rental Period</strong>"
 msgstr "<strong class=\"attribute_name\">Huurperiode</strong>"
 
 #. module: website_sale_renting
-#. openerp-web
+#: model_terms:ir.ui.view,arch_db:website_sale_renting.rental_product
+msgid "<u class=\"h5\">Pricing</u>"
+msgstr "<u class=\"h5\">Prijs</u>"
+
+#. module: website_sale_renting
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/snippets/s_rental_search/options.js:0
 #, python-format
 msgid "All"
 msgstr "Alle"
-
-#. module: website_sale_renting
-#. openerp-web
-#: code:addons/website_sale_renting/static/src/js/website_sale_renting_daterangepicker.js:0
-#, python-format
-msgid "Apply"
-msgstr "Toepassen"
 
 #. module: website_sale_renting
 #: model_terms:ir.ui.view,arch_db:website_sale_renting.s_rental_search_options
@@ -190,7 +194,7 @@ msgid "Attribute Filter"
 msgstr "Attribuutfilter"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/website_sale_renting_daterangepicker.js:0
 #, python-format
 msgid "Cancel"
@@ -207,7 +211,7 @@ msgid "Config Settings"
 msgstr "Configuratie instellingen"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/website_sale_renting_daterangepicker.js:0
 #, python-format
 msgid "Custom Range"
@@ -219,9 +223,7 @@ msgid "Datepicker"
 msgstr "Datumkiezer"
 
 #. module: website_sale_renting
-#: code:addons/website_sale_renting/models/product_pricing.py:0
 #: model_terms:ir.ui.view,arch_db:website_sale_renting.s_rental_search_options
-#, python-format
 msgid "Day"
 msgstr "Dag"
 
@@ -247,9 +249,7 @@ msgid "From"
 msgstr "Van"
 
 #. module: website_sale_renting
-#: code:addons/website_sale_renting/models/product_pricing.py:0
 #: model_terms:ir.ui.view,arch_db:website_sale_renting.s_rental_search_options
-#, python-format
 msgid "Hour"
 msgstr "Uur"
 
@@ -282,18 +282,12 @@ msgid "Monday"
 msgstr "Maandag"
 
 #. module: website_sale_renting
-#: code:addons/website_sale_renting/models/product_pricing.py:0
-#, python-format
-msgid "Month"
-msgstr "Maand"
-
-#. module: website_sale_renting
 #: model:ir.model.fields.selection,name:website_sale_renting.selection__res_company__renting_minimal_time_unit__month
 msgid "Months"
 msgstr "Maanden"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "Please select a rental period."
@@ -303,11 +297,6 @@ msgstr "Selecteer een huurperiode."
 #: model:ir.model,name:website_sale_renting.model_product_pricelist
 msgid "Pricelist"
 msgstr "Prijslijst"
-
-#. module: website_sale_renting
-#: model:ir.model,name:website_sale_renting.model_product_pricing
-msgid "Pricing rule of temporal products"
-msgstr "Prijsregel van tijdelijke producten"
 
 #. module: website_sale_renting
 #: model:ir.model,name:website_sale_renting.model_product_template
@@ -341,27 +330,34 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: website_sale_renting
+#. odoo-javascript
+#: code:addons/website_sale_renting/static/src/js/website_sale_renting_daterangepicker.js:0
+#, python-format
+msgid "Search"
+msgstr "Zoeken"
+
+#. module: website_sale_renting
 #: model:ir.model.fields,field_description:website_sale_renting.field_res_company__renting_forbidden_sun
 #: model:ir.model.fields,field_description:website_sale_renting.field_res_config_settings__renting_forbidden_sun
 msgid "Sunday"
 msgstr "Zondag"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "The pickup date cannot be in the past."
 msgstr "De ophaaldatum mag niet in het verleden liggen."
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "The rental lasts less than the minimal rental duration %s"
 msgstr "De huur duurt korter dan de minimale huurduur %s"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "The return date should be after the pickup date."
@@ -401,31 +397,26 @@ msgid "Wednesday"
 msgstr "Woensdag"
 
 #. module: website_sale_renting
-#: code:addons/website_sale_renting/models/product_pricing.py:0
-#, python-format
-msgid "Week"
-msgstr "Week"
-
-#. module: website_sale_renting
 #: model:ir.model.fields.selection,name:website_sale_renting.selection__res_company__renting_minimal_time_unit__week
 msgid "Weeks"
 msgstr "Weken"
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "You cannot pick up your rental on that day of the week."
 msgstr "Je kunt je huur niet op die dag van de week ophalen."
 
 #. module: website_sale_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/website_sale_renting/static/src/js/renting_mixin.js:0
 #, python-format
 msgid "You cannot return your rental on that day of the week."
 msgstr "Je kunt je gehuurde op die dag van de week niet inleveren."
 
 #. module: website_sale_renting
+#. odoo-python
 #: code:addons/website_sale_renting/models/sale_order.py:0
 #, python-format
 msgid "Your rental product cannot be pickedup in the past."

@@ -4,7 +4,7 @@ import { useService } from "@web/core/utils/hooks";
 import { ComponentAdapter } from "web.OwlCompatibility";
 import { MenuItem } from "web_studio.EditMenu";
 
-const { Component, onMounted, onPatched, onWillUpdateProps, xml } = owl;
+import { Component, onMounted, onPatched, onWillUpdateProps, xml } from "@odoo/owl";
 
 class EditMenuItemAdapter extends ComponentAdapter {
     constructor(props) {

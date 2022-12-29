@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,27 +21,21 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/wizard/save_spreadsheet_template.py:0
 #, python-format
 msgid "\"%s\" saved as template"
 msgstr "\"%s\" збережено як шаблон"
 
 #. module: documents_spreadsheet
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
-msgid ""
-"#{ isSpreadsheet and 'Odoo Spreadsheets not available for download' or ''}"
-msgstr ""
-"#{ isSpreadsheet and 'Odoo Spreadsheets not available for download' or ''}"
-
-#. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/spreadsheet_template.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (копія)"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/spreadsheet_component.js:0
 #, python-format
 msgid "%s - Template"
@@ -49,11 +44,9 @@ msgstr ""
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.res_config_settings_view_form_inherit_documents_spreadsheet
 msgid ""
-"<strong>Spreadsheets</strong>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<strong class=\"o_form_label\">Spreadsheets</strong>\n"
+"                            <span class=\"fa fa-lg fa-building-o ms-1\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
-"<strong>Електронні таблиці</strong>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: documents_spreadsheet
 #: model:ir.model.constraint,message:documents_spreadsheet.constraint_spreadsheet_contributor_spreadsheet_user_unique
@@ -78,11 +71,11 @@ msgstr ""
 "потрібних користувачів."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Blank spreadsheet"
-msgstr ""
+msgstr "Порожня електронна таблиця"
 
 #. module: documents_spreadsheet
 #: model_terms:documents.folder,description:documents_spreadsheet.documents_spreadsheet_folder
@@ -94,7 +87,7 @@ msgstr ""
 " лише вони <strong>автори</strong>."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.save_spreadsheet_template_view_form
 #, python-format
@@ -128,14 +121,14 @@ msgid "Contributors"
 msgstr "Країни"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Create"
 msgstr "Створити"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.xml:0
 #, python-format
 msgid "Create Spreadsheet"
@@ -268,14 +261,14 @@ msgid "Name"
 msgstr "Назва"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New Spreadsheet"
 msgstr "Нова електронна таблиця"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New sheet saved in Documents"
@@ -287,7 +280,7 @@ msgid "New spreadsheet"
 msgstr "Нова таблиця"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_action.js:0
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.js:0
 #, python-format
@@ -295,11 +288,17 @@ msgid "New spreadsheet created in Documents"
 msgstr "Нова таблиця створеня у Документах"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "New spreadsheet template created"
 msgstr "Створено новий шаблон таблиці"
+
+#. module: documents_spreadsheet
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
+msgid "Odoo Spreadsheets not available for download"
+msgstr ""
 
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.spreadsheet_revision_action
@@ -310,7 +309,7 @@ msgstr "Перегляди"
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.save_spreadsheet_template_action
 msgid "Save as template"
-msgstr ""
+msgstr "Зберегти як шаблон"
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_spreadsheet_template__sequence
@@ -363,7 +362,7 @@ msgid "Spreadsheet Templates"
 msgstr "Шаблони електронних таблиць"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/inspector/documents_inspector.js:0
 #, python-format
 msgid ""
@@ -379,18 +378,21 @@ msgid "Template Name"
 msgstr "Назва шаблону"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The file is not a xlsx file"
 msgstr ""
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The xlsx file is corrupted"
 msgstr ""
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
@@ -404,14 +406,14 @@ msgid "Thumbnail"
 msgstr "Ескіз"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/control_panel/spreadsheet_breadcrumbs.xml:0
 #, python-format
 msgid "Toggle favorite"
 msgstr "Перемкнути закладку"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "Untitled spreadsheet template"
@@ -428,7 +430,7 @@ msgid "Workspace"
 msgstr "Папка"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.js:0
 #, python-format
 msgid ""
@@ -436,7 +438,7 @@ msgid ""
 msgstr ""
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.xml:0
 #, python-format
 msgid "getPageTitle('SPREADSHEET')"

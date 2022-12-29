@@ -25,6 +25,7 @@
         'security/ir.model.access.csv',
         'security/hmrc_security.xml',
         'wizard/hmrc_send_wizard.xml',
+        'data/tax_report.xml',
     ],
     'installable': True,
     'auto_install': ['l10n_uk', 'account_reports'],

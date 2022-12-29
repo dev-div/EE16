@@ -382,6 +382,11 @@
         // ====  "Regular" row - When it's an opened group's children
         &.open .o_gantt_row_sidebar {
             font-weight: normal;
+            background-color: inherit;
+            
+            .o_gantt_text_hoverable.o_gantt_group_none {
+                background-color: inherit;
+            }
         }
 
         // ====  "Regular" row - "Hover" State
@@ -569,24 +574,6 @@
             background-color: rgba($o-brand-odoo, .5);
         }
 
-        .o_gantt_pill_wrapper:hover {
-            overflow: visible;
-
-            .o_gantt_pill {
-                background-color: rgba($o-brand-odoo, .8);
-            }
-
-            &:before {
-                @include o-position-absolute(auto, -1px, 0, -1px);
-                border: 1px solid $o-brand-odoo;
-                border-width: 0 1px;
-                background: rgba($o-brand-odoo, .1);
-                height: 100vh;
-                content: '';
-                pointer-events: none;
-                z-index: 1;
-            }
-        }
         .o_gantt_cell:last-child .o_gantt_pill_wrapper:hover:before {
             border-right: 0px;
             right: 0;
@@ -752,5 +739,32 @@
     left: $o-connector-creator-size;
     .o_connector_creator_bullet {
         left: -0.5 * $o-connector-creator-bullet-diameter;
+    }
+}
+
+.o_view_controller:not(.o_view_sample_data) {
+    .o_gantt_view {
+        .o_gantt_total_row_container {
+            .o_gantt_row {
+                .o_gantt_pill_wrapper:hover {
+                    overflow: visible;
+
+                    .o_gantt_pill {
+                        background-color: rgba($o-brand-odoo, .8);
+                    }
+
+                    &:before {
+                        @include o-position-absolute(auto, -1px, 0, -1px);
+                        border: 1px solid $o-brand-odoo;
+                        border-width: 0 1px;
+                        background: rgba($o-brand-odoo, .1);
+                        height: 100vh;
+                        content: '';
+                        pointer-events: none;
+                        z-index: 1;
+                    }
+                }
+            }
+        }
     }
 }

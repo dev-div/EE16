@@ -69,6 +69,12 @@ export class BankRecKanbanController extends KanbanController {
         this.env.searchModel.addEventListener("update", () => this.userSearched());
     }
 
+    async onUpdatedPager() {
+        if (this.state.selectedStLineId && !this.recordById(this.state.selectedStLineId)) {
+            this.kanbanRecordsReady();
+        }
+    }
+
     userSearched() {
         this.model.addEventListener("update", () => this.kanbanRecordsReady(), { once: true });
     }
@@ -152,9 +158,13 @@ export class BankRecKanbanController extends KanbanController {
         if (["ir.actions.client", "ir.actions.act_window"].includes(action_data.type)) {
             await this.action.doAction(action_data);
         } else if (action_data.type === "rpc") {
-            this.orm.call("bank.rec.widget", action_data.method, [[], action_data.st_line_id, action_data.params], {}).then(() => {
-                this.reload();
-            });
+            // Ideally this call should be asynchronous and silent, allowing the user to continue reconciling the next st line
+            // while the current is still processing.
+            // This is a problem since the trigger_matching suggestions and the list of aml's/ batches
+            // displayed on the next record might still be processing and should not be available
+            // TODO: resolve the async capability (for now, the `await` solves many problems incl. the extra search_read of aml's)
+            await this.orm.call("bank.rec.widget", action_data.method, [[], action_data.st_line_id, action_data.params], {});
+            this.reload();
             const nextStLineId = this.getNextAvailableStLine(action_data.st_line_id);
             this.selectStLine(nextStLineId);
         } else if (action_data.type === "move_to_next") {

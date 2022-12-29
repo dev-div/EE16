@@ -43,7 +43,7 @@
                             <span t-out="doc.get_followup_html(options)"/>
                         </div>
                     </t>
-                    <t t-if="(options or {}).get('join_invoices', doc.followup_line_id.join_invoices)" t-foreach="doc._get_included_unreconciled_aml_ids().move_id" t-as="o">
+                    <t t-if="(options or {}).get('join_invoices', doc.followup_line_id.join_invoices)" t-foreach="doc._get_invoices_to_print(options)" t-as="o">
                         <t t-set="lang" t-value="o.user_id.lang if o.move_type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
                         <t t-call="account.report_invoice_document" t-lang="lang"/>
                     </t>

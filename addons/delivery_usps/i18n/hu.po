@@ -3,17 +3,19 @@
 # 	* delivery_usps
 # 
 # Translators:
-# Martin Trigaux, 2019
-# krnkris, 2019
-# gezza <geza.nagy@oregional.hu>, 2019
+# Ákos Nagy <akos.nagy@oregional.hu>, 2022
+# Martin Trigaux, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
+# krnkris, 2022
+# gezza <geza.nagy@oregional.hu>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 11:38+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: gezza <geza.nagy@oregional.hu>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:56+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: gezza <geza.nagy@oregional.hu>, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,6 +116,11 @@ msgid "International"
 msgstr "Nemzetközi"
 
 #. module: delivery_usps
+#: model_terms:ir.ui.view,arch_db:delivery_usps.view_delivery_carrier_form_with_provider_usps
+msgid "Label Format"
+msgstr ""
+
+#. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_size_container__large
 msgid "Large"
 msgstr "Nagy"
@@ -166,6 +173,11 @@ msgid "Non-rectangular"
 msgstr "Nem-négyszögletes"
 
 #. module: delivery_usps
+#: model_terms:ir.ui.view,arch_db:delivery_usps.view_delivery_carrier_form_with_provider_usps
+msgid "Options"
+msgstr "Beállítások"
+
+#. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_label_file_type__pdf
 msgid "PDF"
 msgstr "PDF"
@@ -176,29 +188,29 @@ msgid "Package"
 msgstr "Csomag"
 
 #. module: delivery_usps
+#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_girth
+msgid "Package Girth"
+msgstr ""
+
+#. module: delivery_usps
+#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_height
+msgid "Package Height"
+msgstr ""
+
+#. module: delivery_usps
+#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_length
+msgid "Package Length"
+msgstr ""
+
+#. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_first_class_mail_type__package_service
 msgid "Package Service"
 msgstr "Csomag szolgáltatás"
 
 #. module: delivery_usps
-#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_girth
-msgid "Package girth (in inches)"
-msgstr "Csomag kerület (inches)"
-
-#. module: delivery_usps
-#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_height
-msgid "Package height (in inches)"
-msgstr "Csomag magasság (inches)"
-
-#. module: delivery_usps
-#: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_length
-msgid "Package length (in inches)"
-msgstr "Csomag hossz (inches)"
-
-#. module: delivery_usps
 #: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_custom_container_width
-msgid "Package width (in inches)"
-msgstr "Csomag szélesség (inches)"
+msgid "Package Width"
+msgstr ""
 
 #. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_domestic_regular_container__padded_flat_rate_envelope
@@ -309,7 +321,7 @@ msgstr "Általános < 12 inch"
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_content_type__return
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_intl_non_delivery_option__return
 msgid "Return"
-msgstr "Visszaküld"
+msgstr "Visszaküldés"
 
 #. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_content_type__sample
@@ -319,8 +331,8 @@ msgstr "Minta"
 #. module: delivery_usps
 #: code:addons/delivery_usps/models/delivery_usps.py:0
 #, python-format
-msgid "Shipment N° %s has been cancelled"
-msgstr "N° %s sz. szállítmányt érvénytelenítettük"
+msgid "Shipment #%s has been cancelled"
+msgstr ""
 
 #. module: delivery_usps
 #: code:addons/delivery_usps/models/delivery_usps.py:0
@@ -332,7 +344,7 @@ msgstr "Szállítmány létrehozva az USPS-ben <br/> <b>Követési szám : </b>%
 #. module: delivery_usps
 #: model:ir.model,name:delivery_usps.model_delivery_carrier
 msgid "Shipping Methods"
-msgstr ""
+msgstr "Szállítási módok"
 
 #. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__usps_domestic_regular_container__sm_flat_rate_box
@@ -363,9 +375,9 @@ msgstr ""
 #: code:addons/delivery_usps/models/usps_request.py:0
 #, python-format
 msgid ""
-"The estimated price cannot be computed because the weight of your product is"
-" missing."
-msgstr "A körülbelüli ár nem számítható ki, mert hiányzik a termék súlya."
+"The estimated shipping price cannot be computed because the weight is missing for the following product(s): \n"
+" %s"
+msgstr ""
 
 #. module: delivery_usps
 #: code:addons/delivery_usps/models/usps_request.py:0
@@ -401,7 +413,7 @@ msgstr "Konténer típusok"
 #. module: delivery_usps
 #: model:ir.model.fields.selection,name:delivery_usps.selection__delivery_carrier__delivery_type__usps
 msgid "USPS"
-msgstr ""
+msgstr "USPS"
 
 #. module: delivery_usps
 #: model_terms:ir.ui.view,arch_db:delivery_usps.view_delivery_carrier_form_with_provider_usps
@@ -475,7 +487,7 @@ msgstr "USPS felhasználó azonosító ID"
 #: model:product.template,uom_name:delivery_usps.product_product_delivery_usps_domestic_product_template
 #: model:product.template,uom_name:delivery_usps.product_product_delivery_usps_international_product_template
 msgid "Units"
-msgstr ""
+msgstr "egység"
 
 #. module: delivery_usps
 #: model:ir.model.fields,field_description:delivery_usps.field_delivery_carrier__usps_size_container
@@ -486,4 +498,9 @@ msgstr ""
 #: code:addons/delivery_usps/models/usps_request.py:0
 #, python-format
 msgid "Your company or recipient ZIP code is incorrect."
+msgstr ""
+
+#. module: delivery_usps
+#: model_terms:ir.ui.view,arch_db:delivery_usps.view_delivery_carrier_form_with_provider_usps
+msgid "inch"
 msgstr ""

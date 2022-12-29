@@ -16,7 +16,8 @@
       </li>
     </xpath>
     <xpath expr="//div[contains(@class,'tab-pane')]/t[2]" position="after">
-      <StudioHook t-if="!page" t-props="props.slots[state.currentPage].studioHookProps" />
+      <t t-set="studioHookProps" t-value="props.slots[state.currentPage].studioHookProps" />
+      <StudioHook t-if="studioHookProps" t-props="studioHookProps" />
     </xpath>
   </t>
 
@@ -32,34 +33,6 @@
     </xpath>
   </t>
 
-  <t t-name="web_studio.FieldSelectorDialog" owl="1">
-    <Dialog title="'Select a Field'">
-      <div class="o_web_studio_kanban_helper">
-        <label for="field">Field</label>
-        <select id="field" name="field" class="o_input" t-ref="select">
-            <option t-if="props.showNew" class="o_new" value=''>New Field</option>
-            <option t-foreach="props.fields" t-as="field" t-key="field_index" t-att-value="field.name">
-                <t t-esc="field.string"/> <span t-if="env.debug">(<t t-esc="field.name"/>)</span>
-            </option>
-        </select>
-      </div>
-      <t t-set-slot="footer">
-        <button class="btn btn-primary" t-on-click="onConfirm">
-            Confirm
-        </button>
-        <button class="btn btn-secondary" t-on-click="onCancel">
-            Cancel
-        </button>
-      </t>
-    </Dialog>
-  </t>
-
-  <t t-name="web_studio.ViewButton" t-inherit="web.views.ViewButton" owl="1">
-    <xpath expr="./t" position="attributes">
-      <attribute name="t-ref">rootRef</attribute>
-    </xpath>
-  </t>
-
   <t t-name="web_studio.AvatarHook" owl="1">
     <div t-att-class="props.class" t-on-click="onClick">
       Add Picture
@@ -68,28 +41,6 @@
 
   <t t-name="web_studio.ButtonHook" owl="1">
       <button class="btn oe_stat_button o_web_studio_button_hook" t-on-click.stop="onClick"/>
-  </t>
-
-  <t t-name="web_studio.Field" t-inherit="web.Field" owl="1">
-    <xpath expr="./div" position="attributes">
-        <attribute name="t-ref">rootRef</attribute>
-    </xpath>
-
-    <xpath expr="./div" position="before">
-      <t t-set="isX2ManyEditable" t-value="isX2ManyEditable(props)" />
-      <t t-set="emptyPlaceholder" t-value="getEmptyPlaceholder()" />
-    </xpath>
-
-    <xpath expr="//t[@t-component]" position="attributes">
-      <attribute name="t-if">!isX2ManyEditable and !emptyPlaceholder</attribute>
-    </xpath>
-
-    <xpath expr="//t[@t-component]" position="after">
-      <FieldContentOverlay t-if="isX2ManyEditable" displayOverlay="state.displayOverlay" onEditViewType.bind="onEditViewType">
-        <t t-component="FieldComponent" t-props="fieldComponentProps"/>
-      </FieldContentOverlay>
-      <span t-if="emptyPlaceholder" t-esc="emptyPlaceholder" />
-    </xpath>
   </t>
 
 </templates>

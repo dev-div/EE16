@@ -4,11 +4,8 @@ import { bus } from 'web.core';
 import LineComponent from './line';
 
 export default class PackageLineComponent extends LineComponent {
-    get componentClasses() {
-        return [
-            this.qtyDone == 1 ? 'o_line_completed' : 'o_line_not_completed',
-            this.isSelected ? 'o_selected o_highlight' : ''
-        ].join(' ');
+    get isComplete() {
+        return this.qtyDone == this.qtyDemand;
     }
 
     get isSelected() {

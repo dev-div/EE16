@@ -3,49 +3,70 @@
 # 	* sale_enterprise
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Mateus Lopes <mateus1@gmail.com>, 2019
-# grazziano <gra.negocia@gmail.com>, 2019
-# Silmar <pinheirosilmar@gmail.com>, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Silmar <pinheirosilmar@gmail.com>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:57+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "# Customers"
-msgstr ""
+msgstr "# Clientes"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "# Lines"
+msgstr "# Linhas"
+
+#. module: sale_enterprise
+#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid "Average Days To Confirm"
+msgstr ""
+
+#. module: sale_enterprise
+#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
+msgid "Average Days to Confirm"
 msgstr ""
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Average Order"
-msgstr ""
+msgstr "Valor médio dos pedidos"
 
 #. module: sale_enterprise
-#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__days_to_confirm
-msgid "Days To Confirm"
+#: model:ir.model.fields,help:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid ""
+"Average days to confirm a sales order after its creation. Due to a hack "
+"needed to calculate this,               every record will show the same "
+"average value, therefore only use this as an aggregated value with "
+"group_operator=avg"
 msgstr ""
+"Média de dias para confirmar um pedido de venda após sua criação. Devido a "
+"um hack necessário para calcular isso,               cada registro mostrará "
+"o mesmo valor médio, portanto, use apenas como um valor agregado com "
+"group_operator=avg"
 
 #. module: sale_enterprise
-#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
-msgid "Days to Confirm"
-msgstr ""
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "Create a new sales order"
+msgstr "Criar um novo pedido de vendas"
+
+#. module: sale_enterprise
+#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
+#: model:ir.ui.menu,name:sale_enterprise.menu_sale_report_dashboard
+msgid "Dashboard"
+msgstr "Painel"
 
 #. module: sale_enterprise
 #: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__invoiced
@@ -59,6 +80,11 @@ msgid "Invoice Status"
 msgstr "Situação da Fatura"
 
 #. module: sale_enterprise
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "No data yet!"
+msgstr "Sem dados ainda!"
+
+#. module: sale_enterprise
 #: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__no
 msgid "Nothing to Invoice"
 msgstr "Nada para Faturar"
@@ -69,7 +95,6 @@ msgid "Orders"
 msgstr "Pedidos"
 
 #. module: sale_enterprise
-#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_pivot
 msgid "Sales Analysis"
 msgstr "Análise de Vendas"
@@ -77,7 +102,7 @@ msgstr "Análise de Vendas"
 #. module: sale_enterprise
 #: model:ir.model,name:sale_enterprise.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Relatório de análise de vendas"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
@@ -93,12 +118,12 @@ msgstr "Para Faturar"
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Total Sales"
-msgstr ""
+msgstr "Total de Vendas"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Total, Tax Included"
-msgstr ""
+msgstr "Total incluíndo impostos"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard

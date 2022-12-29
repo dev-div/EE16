@@ -56,3 +56,10 @@ class Applicant(models.Model):
             ('partner_id', '=', self.partner_id.id)]).sign_request_id
         res['context']['default_sign_request_ids'] = request_ids.ids
         return res
+
+    def _update_employee_from_applicant(self):
+        for applicant in self:
+            request_ids = self.env['sign.request.item'].search([
+                ('partner_id', '=', applicant.partner_id.id)]).sign_request_id
+            applicant.emp_id.sign_request_ids |= request_ids
+        return super()._update_employee_from_applicant()

@@ -62,7 +62,7 @@ class QualityCheckWizard(models.TransientModel):
 
     def do_pass(self):
         if self.test_type == 'picture' and not self.picture:
-            raise UserError('You must provide a picture before validating')
+            raise UserError(_('You must provide a picture before validating'))
         self.current_check_id.do_pass()
         return self.action_generate_next_window()
 

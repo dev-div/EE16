@@ -11,7 +11,7 @@ export class DocumentsKanbanRecord extends DocumentsRecordMixin(KanbanModel.Reco
         if (this.data.type === "empty") {
             // In case the file is actually empty we open the input to replace the file
             ev.stopPropagation();
-            ev.currentTarget.querySelector(".o_kanban_replace_document").click();
+            ev.target.querySelector(".o_kanban_replace_document").click();
         } else if (this.isViewable()) {
             ev.stopPropagation();
             ev.preventDefault();
@@ -36,7 +36,7 @@ export class DocumentsKanbanRecord extends DocumentsRecordMixin(KanbanModel.Reco
         if (!ev.target.files.length) {
             return;
         }
-        await this.model.env.bus.trigger("documents-upload-files", {
+        await this.model.env.documentsView.bus.trigger("documents-upload-files", {
             files: ev.target.files,
             folderId: this.data.folder_id && this.data.folder_id[0],
             recordId: this.resId,

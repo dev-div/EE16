@@ -219,7 +219,7 @@ class Picking(models.Model):
             'time_stamp': self._get_cl_current_strftime(),
             'caf': self.l10n_latam_document_type_id.sudo()._get_caf_file(self.company_id.id,
                                                                   int(self.l10n_latam_document_number)),
-            'fe_value': self.scheduled_date.date(),
+            'fe_value': self._get_cl_current_datetime().date(),
             'rr_value': '55555555-5' if self.partner_id._l10n_cl_is_foreign() else self._l10n_cl_format_vat(
                 self.partner_id.vat),
             'rsr_value': self._format_length(self.partner_id.name, 40),

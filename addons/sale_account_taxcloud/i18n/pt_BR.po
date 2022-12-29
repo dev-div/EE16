@@ -3,44 +3,54 @@
 # 	* sale_account_taxcloud
 # 
 # Translators:
-# Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatic4@gmail.com>, 2019
-# Mateus Lopes <mateus1@gmail.com>, 2019
-# grazziano <gra.negocia@gmail.com>, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 11:58+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: grazziano <gra.negocia@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-09-23 08:24+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: sale_account_taxcloud
 #: model_terms:ir.ui.view,arch_db:sale_account_taxcloud.view_order_form_inherit
 msgid "Go to Settings."
-msgstr ""
+msgstr "Ir para Definições."
 
 #. module: sale_account_taxcloud
 #: model:ir.model.fields,field_description:sale_account_taxcloud.field_sale_order__is_taxcloud_configured
 msgid "Is Taxcloud Configured"
-msgstr ""
+msgstr "Taxcloud Está Configurado"
 
 #. module: sale_account_taxcloud
 #: model_terms:ir.ui.view,arch_db:sale_account_taxcloud.view_order_form_inherit
 msgid ""
 "Please enter your Taxcloud credentials to compute tax rates automatically."
 msgstr ""
+"Insira suas credenciais Taxcloud para computar taxas de impostos "
+"automaticamente."
+
+#. module: sale_account_taxcloud
+#: model:ir.model,name:sale_account_taxcloud.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Fatura de Vendas com Pagamento Antecipado"
 
 #. module: sale_account_taxcloud
 #: model:ir.model,name:sale_account_taxcloud.model_sale_order
 msgid "Sales Order"
-msgstr "Ordem de Venda"
+msgstr "Pedido de venda"
+
+#. module: sale_account_taxcloud
+#: model:ir.model,name:sale_account_taxcloud.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linha do pedido de vendas"
 
 #. module: sale_account_taxcloud
 #: model_terms:ir.ui.view,arch_db:sale_account_taxcloud.view_order_form_inherit
@@ -48,20 +58,15 @@ msgid "Tax"
 msgstr "Imposto"
 
 #. module: sale_account_taxcloud
-#: model:ir.model.fields,help:sale_account_taxcloud.field_sale_order__is_taxcloud
-msgid "Technical field to determine whether to hide taxes in views or not."
-msgstr ""
-
-#. module: sale_account_taxcloud
 #: code:addons/sale_account_taxcloud/models/sale_order.py:0
 #, python-format
 msgid "Unable to retrieve taxes from TaxCloud: "
-msgstr ""
+msgstr "Incapaz de recuperar impostos de TaxCloud:"
 
 #. module: sale_account_taxcloud
 #: model_terms:ir.ui.view,arch_db:sale_account_taxcloud.view_order_form_inherit
 msgid "Update taxes"
-msgstr ""
+msgstr "Atualizar impostos"
 
 #. module: sale_account_taxcloud
 #: model:ir.model.fields,field_description:sale_account_taxcloud.field_sale_order__is_taxcloud
@@ -73,3 +78,5 @@ msgstr "Usar API TaxCloud"
 msgid ""
 "Used to determine whether or not to warn the user to configure TaxCloud."
 msgstr ""
+"Usado para determinar se deve ou não avisar o usuário para configurar o "
+"TaxCloud."

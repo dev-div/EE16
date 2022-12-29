@@ -179,3 +179,23 @@ class TestCaseDocumentsBridgeProject(TestProjectCommon):
 
         workflow_action_search = self.env['documents.workflow.action'].search([('workflow_rule_id', '=', workflow_rule_copy.id)])
         self.assertEqual(len(workflow_action_search), 1)
+
+    def test_project_document_count(self):
+        projects = self.project_pigs | self.project_goats
+        self.assertEqual(self.project_pigs.document_count, 0)
+        self.attachment_txt.write({
+            'res_model': 'project.project',
+            'res_id': self.project_pigs.id,
+        })
+        projects._compute_attached_document_count()
+        self.assertEqual(self.project_pigs.document_count, 1, "The documents linked to the project should be taken into account.")
+        self.env['documents.document'].create({
+            'datas': GIF,
+            'name': 'fileText_test.txt',
+            'mimetype': 'text/plain',
+            'folder_id': self.folder_a_a.id,
+            'res_model': 'project.task',
+            'res_id': self.task_1.id,
+        })
+        projects._compute_attached_document_count()
+        self.assertEqual(self.project_pigs.document_count, 2, "The documents linked to the tasks of the project should be taken into account.")

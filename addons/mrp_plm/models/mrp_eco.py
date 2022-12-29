@@ -650,7 +650,7 @@ class MrpEco(models.Model):
         IrAttachment = self.env['ir.attachment']
         for eco in self:
             if eco.type == 'bom':
-                eco.new_bom_id = eco.bom_id.copy(default={
+                eco.new_bom_id = eco.bom_id.sudo().copy(default={
                     'version': eco.bom_id.version + 1,
                     'active': False,
                     'previous_bom_id': eco.bom_id.id,

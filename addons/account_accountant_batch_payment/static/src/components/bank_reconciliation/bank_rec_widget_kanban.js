@@ -6,7 +6,7 @@ import { BankRecWidgetRejectDialog } from "./bank_rec_widget_batch_reject_dialog
 
 export class BankRecKanbanControllerBatch extends BankRecKanbanView.Controller {
 
-    async performAction(action_data) {
+    performAction(action_data) {
         if (["ir.actions.client", "ir.actions.act_window"].includes(action_data.type) && action_data.target === 'new') {
             this.env.services.dialog.add(
                 BankRecWidgetRejectDialog,
@@ -18,7 +18,7 @@ export class BankRecKanbanControllerBatch extends BankRecKanbanView.Controller {
                 }
             );
         } else {
-            super.performAction(action_data);
+            return super.performAction(action_data);
         }
     }
 }

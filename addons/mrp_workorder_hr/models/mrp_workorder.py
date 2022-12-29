@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
 from datetime import datetime
 
 from odoo import Command, models, fields, api
+from odoo.addons.resource.models.resource import Intervals
 from odoo.http import request
 
 
@@ -19,8 +21,14 @@ class MrpWorkorder(models.Model):
             if not wo.workcenter_id.allow_employee:
                 wo_ids_without_employees.add(wo.id)
                 continue
-            now = fields.Datetime.now()
-            wo.duration = self._intervals_duration([(t.date_start, t.date_end or now, t) for t in wo.time_ids])
+            now = datetime.now()
+            loss_type_times = defaultdict(lambda: self.env['mrp.workcenter.productivity'])
+            for time in wo.time_ids:
+                loss_type_times[time.loss_id.loss_type] |= time
+            duration = 0
+            for dummy, times in loss_type_times.items():
+                duration += self._intervals_duration([(t.date_start, t.date_end or now, t) for t in times])
+            wo.duration = duration
         return super(MrpWorkorder, self.env['mrp.workorder'].browse(wo_ids_without_employees))._compute_duration()
 
     @api.depends('employee_ids')
@@ -109,32 +117,13 @@ class MrpWorkorder(models.Model):
         if not intervals:
             return 0.0
         duration = 0
-        intervals.sort(key=lambda i: i[0])
-        date_start, date_stop, timer = intervals[0]
-        for index, interval in enumerate(intervals):
-            if interval[0] <= date_stop:
-                date_stop = max(date_stop, interval[1])
-                if index != len(intervals) - 1:
-                    continue
+        for date_start, date_stop, timer in Intervals(intervals):
             duration += timer.loss_id._convert_to_duration(date_start, date_stop, timer.workcenter_id)
-            date_start, date_stop, timer = interval
         return duration
 
-
-class MrpWorkcenterProductivity(models.Model):
-    _inherit = "mrp.workcenter.productivity"
-
-    employee_cost = fields.Monetary('employee_cost', default=0)
-    currency_id = fields.Many2one(related='company_id.currency_id')
-    total_cost = fields.Float('Cost', compute='_compute_total_cost')
-
-    @api.depends('employee_id', 'employee_cost')
-    def _compute_total_cost(self):
-        for time in self:
-            time.total_cost = time.employee_cost * time.duration
-
-    def _close(self):
-        for timer in self:
-            if timer.employee_id:
-                timer.employee_cost = timer.employee_id.hourly_cost
-        return super()._close()
+    def get_working_duration(self):
+        self.ensure_one()
+        if self.workcenter_id.allow_employee:
+            now = datetime.now()
+            return self._intervals_duration([(t.date_start, now, t) for t in self.time_ids if not t.date_end])
+        return super().get_working_duration()

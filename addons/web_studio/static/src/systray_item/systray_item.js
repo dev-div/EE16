@@ -2,7 +2,7 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 
-const { Component, useRef } = owl;
+import { Component, useRef } from "@odoo/owl";
 
 class StudioSystray extends Component {
     setup() {

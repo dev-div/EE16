@@ -292,6 +292,24 @@ class SignTemplate(models.Model):
             items[item.page] += item
         return items
 
+    def trigger_template_tour(self):
+        template = self.env.ref('sign.template_sign_tour')
+        if template.has_sign_requests:
+            template = template.copy({
+                'favorited_ids': [Command.link(self.env.user.id)],
+                'active': False
+            })
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'sign.Template',
+            'name': template.name,
+            'context': {
+                'sign_edit_call': 'sign_send_request',
+                'id': template.id,
+                'sign_directly_without_mail': False
+            }
+        }
+
 
 class SignTemplateTag(models.Model):
 

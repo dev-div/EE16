@@ -166,7 +166,7 @@ class AccountMove(models.Model):
 
     def _l10n_pe_edi_get_spot(self):
         max_percent = max(self.invoice_line_ids.mapped('product_id.l10n_pe_withhold_percentage'), default=0)
-        if not max_percent or self.amount_total_signed < 700 or not self.l10n_pe_edi_operation_type in ['1001', '1002', '1003', '1004']:
+        if not max_percent or not self.l10n_pe_edi_operation_type in ['1001', '1002', '1003', '1004']:
             return {}
         line = self.invoice_line_ids.filtered(lambda r: r.product_id.l10n_pe_withhold_percentage == max_percent)[0]
         national_bank = self.env.ref('l10n_pe_edi.peruvian_national_bank', raise_if_not_found=False)

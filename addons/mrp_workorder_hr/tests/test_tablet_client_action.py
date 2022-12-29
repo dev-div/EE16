@@ -71,7 +71,7 @@ class TestTabletWorkorderHr(TestMrpCommon, HttpCase):
         wo.button_start()
         url = self._get_client_action_url(wo.id)
 
-        self.start_tour(url, 'test_production_with_employee', login='admin', timeout=20)
+        self.start_tour(url, 'test_production_with_employee', login='admin', timeout=40)
         employee1 = self.env['hr.employee'].search([
             ('name', '=', 'Arthur Fu'),
         ])

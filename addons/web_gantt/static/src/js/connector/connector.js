@@ -2,7 +2,7 @@
 
 import { deepMerge } from "./connector_utils";
 
-const { Component, onWillUpdateProps } = owl;
+import { Component, onWillUpdateProps } from "@odoo/owl";
 
 class Connector extends Component {
 

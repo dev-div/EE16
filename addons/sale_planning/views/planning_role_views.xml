@@ -17,9 +17,11 @@
         <field name="model">planning.role</field>
         <field name="inherit_id" ref="planning.planning_role_view_kanban"/>
         <field name="arch" type="xml">
-            <field name="resource_ids" position="after">
-                <field name="product_ids" widget="many2many_tags"/>
-            </field>
+             <xpath expr="//div[hasclass('o_kanban_primary_left')]" position="after">
+                <div class="col o_kanban_primary_right">
+                    <field name="product_ids" widget="many2many_tags"/>
+                </div>
+            </xpath>
         </field>
     </record>
 
@@ -30,7 +32,7 @@
         <field name="arch" type="xml">
             <field name="resource_ids" position="after">
                 <field name="product_ids" widget="many2many_tags"
-                    context="{'default_detailed_type': 'service', 'default_detailed_type': 'service', 'default_planning_enabled': True, 'default_planning_role_id':  active_id, 'default_uom_id': %(uom.product_uom_hour)d}"/>
+                    context="{'default_detailed_type': 'service', 'default_detailed_type': 'service', 'default_planning_enabled': True, 'default_planning_role_id': id, 'default_uom_id': %(uom.product_uom_hour)d}"/>
             </field>
         </field>
     </record>

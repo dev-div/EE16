@@ -969,6 +969,17 @@ Tour.register('hr_contract_salary_tour_2', {
             run: 'click',
         },
         {
+            content: "Select Contract",
+            trigger: '.o_field_widget.o_field_many2one[name=contract_id]',
+            run: function (actions) {
+                actions.text("Mitchell Admin PFI", this.$anchor.find("input"));
+            },
+        },
+        {
+            trigger: ".ui-autocomplete > li > a:contains('Mitchell Admin PFI Contract')",
+            auto: true,
+        },
+        {
             content: "Send Offer",
             trigger: "button[name='send_offer']",
             extra_trigger: "div.modal-content",

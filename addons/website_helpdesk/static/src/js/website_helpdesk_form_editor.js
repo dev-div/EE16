@@ -12,26 +12,26 @@ FormEditorRegistry.add('create_ticket', {
         required: true,
         name: 'partner_name',
         fillWith: 'name',
-        string: 'Your Name',
+        string: _t('Your Name'),
     }, {
         type: 'email',
         required: true,
         name: 'partner_email',
         fillWith: 'email',
-        string: 'Your Email',
+        string: _t('Your Email'),
     }, {
         type: 'char',
         modelRequired: true,
         name: 'name',
-        string: 'Subject',
+        string: _t('Subject'),
     }, {
         type: 'char',
         name: 'description',
-        string: 'Description',
+        string: _t('Description'),
     }, {
         type: 'binary',
         custom: true,
-        name: 'Attachment',
+        name: _t('Attachment'),
     }],
     fields: [{
         name: 'team_id',

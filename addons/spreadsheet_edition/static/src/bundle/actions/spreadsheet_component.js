@@ -69,7 +69,7 @@ export default class SpreadsheetComponent extends LegacyComponent {
                 client: {
                     id: uuidGenerator.uuidv4(),
                     name: user.name,
-                    userId: user.uid,
+                    userId: user.userId,
                 },
                 mode: this.props.isReadonly ? "readonly" : "normal",
                 snapshotRequested: this.props.snapshotRequested,
@@ -196,7 +196,7 @@ export default class SpreadsheetComponent extends LegacyComponent {
         this.state.dialog.isDisplayed = false;
         this.state.dialog.isEditText = false;
         this.state.dialog.isEditInteger = false;
-        document.querySelector(".o-grid").focus();
+        document.querySelector(".o-grid>input").focus();
     }
 
     /**

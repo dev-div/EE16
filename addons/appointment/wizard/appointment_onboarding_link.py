@@ -35,14 +35,16 @@ class AppointmentOnboardingLink(models.TransientModel):
         onboarding_invite_step = self.env.ref('appointment.appointment_onboarding_preview_invite_step',
                                               raise_if_not_found=False)
         if not onboarding_invite_step:
-            return
+            # todo: in master, rename 'wasFirstValidation' to something like 'refreshPanel'
+            return {
+                'bookUrl': invite.book_url,
+                'wasFirstValidation': True,  # Refresh the onboarding panel to remove the missing step
+            }
         was_done = onboarding_invite_step.current_step_state in {'just_done', 'done'}
         onboarding_invite_step.action_set_just_done()
         if not was_done:
             #  make sure to check first step as well as there is now always an appointment type.
-            self.env.ref(
-                'appointment.appointment_onboarding_create_appointment_type_step',
-                raise_if_not_found=False).action_set_just_done()
+            self.env['onboarding.onboarding.step'].action_save_appointment_onboarding_create_appointment_type_step()
 
         return {
             'bookUrl': invite.book_url,

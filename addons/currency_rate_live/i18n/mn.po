@@ -3,16 +3,16 @@
 # 	* currency_rate_live
 # 
 # Translators:
-# Martin Trigaux, 2019
-# nurbakhit nurka <nurbakhit@bumanit.mn>, 2019
+# tserendavaa tsogtoo <tseegii011929@gmail.com>, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: nurbakhit nurka <nurbakhit@bumanit.mn>, 2019\n"
+"POT-Creation-Date: 2022-06-09 14:10+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Mongolian (https://www.transifex.com/odoo/teams/41243/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,10 +26,27 @@ msgid ""
 "<i title=\"Update now\" role=\"img\" aria-label=\"Update now\" class=\"fa "
 "fa-fw fa-refresh\"/>"
 msgstr ""
+"<i title=\"Update now\" role=\"img\" aria-label=\"Update now\" class=\"fa "
+"fa-fw fa-refresh\"/>"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__boc
 msgid "Bank Of Canada"
+msgstr "Канадын банк"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bcrp
+msgid "Bank of Peru"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbegy
+msgid "Central Bank of Egypt"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__mindicador
+msgid "Chilean mindicador.cl"
 msgstr ""
 
 #. module: currency_rate_live
@@ -47,7 +64,7 @@ msgstr "Тохиргооны тохируулга"
 #: model:ir.cron,cron_name:currency_rate_live.ir_cron_currency_update
 #: model:ir.cron,name:currency_rate_live.ir_cron_currency_update
 msgid "Currency: rate update"
-msgstr ""
+msgstr "Валют: ханш шинэчлэх"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__daily
@@ -62,7 +79,7 @@ msgstr "Европын Төв Банк"
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__fta
 msgid "Federal Tax Administration (Switzerland)"
-msgstr ""
+msgstr "Холбооны татварын алба (Швейцар)"
 
 #. module: currency_rate_live
 #: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
@@ -76,13 +93,6 @@ msgid "Interval Unit"
 msgstr "Интервал нэгж"
 
 #. module: currency_rate_live
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_company__last_currency_sync_date
-#: model:ir.model.fields,field_description:currency_rate_live.field_res_config_settings__last_currency_sync_date
-#: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
-msgid "Last Sync Date"
-msgstr ""
-
-#. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__manually
 msgid "Manually"
 msgstr "Гараар"
@@ -90,12 +100,17 @@ msgstr "Гараар"
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__banxico
 msgid "Mexican Bank"
-msgstr ""
+msgstr "Мексикийн банк"
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_interval_unit__monthly
 msgid "Monthly"
 msgstr "Сар бүр"
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__bnr
+msgid "National Bank Of Romania"
+msgstr ""
 
 #. module: currency_rate_live
 #: model:ir.model.fields,field_description:currency_rate_live.field_res_company__currency_next_execution_date
@@ -106,7 +121,7 @@ msgstr "Гүйцэтгэх дараагийн огноо"
 #. module: currency_rate_live
 #: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
 msgid "Next Run"
-msgstr ""
+msgstr "Дараа нь ажиллуул"
 
 #. module: currency_rate_live
 #: model_terms:ir.ui.view,arch_db:currency_rate_live.res_config_settings_view_form
@@ -120,11 +135,13 @@ msgid "Service Provider"
 msgstr "Үйлчилгээ Үзүүлэгч"
 
 #. module: currency_rate_live
-#: code:addons/currency_rate_live/models/res_config_settings.py:0
-#, python-format
-msgid ""
-"Unable to connect to the online exchange rate platform %s. The web service "
-"may be temporary down."
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__tcmb
+msgid "Turkey Republic Central Bank"
+msgstr ""
+
+#. module: currency_rate_live
+#: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__cbuae
+msgid "UAE Central Bank"
 msgstr ""
 
 #. module: currency_rate_live
@@ -149,8 +166,10 @@ msgid ""
 "Your main currency (%s) is not supported by this exchange rate provider. "
 "Please choose another one."
 msgstr ""
+"Таны үндсэн валют (%s) энэ валютын үйлчилгээ үзүүлэгч дээр дэмжигдээгүй "
+"байна. Өөрийг сонгоно уу."
 
 #. module: currency_rate_live
 #: model:ir.model.fields.selection,name:currency_rate_live.selection__res_company__currency_provider__xe_com
 msgid "xe.com"
-msgstr ""
+msgstr "xe.com"

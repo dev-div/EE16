@@ -4,6 +4,8 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
+# Raymond Yu <cl_yu@hotmail.com>, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -11,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:22+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,21 +31,21 @@ msgstr "案例"
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "%(number of missed calls)s missed calls"
-msgstr ""
+msgstr "%(未接来电数)的未接来电"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "1 missed call"
-msgstr ""
+msgstr "1个未接电话"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/dialing_panel.js:0
 #, python-format
 msgid "2 missed calls"
-msgstr ""
+msgstr "2个未接电话"
 
 #. module: voip
 #. openerp-web
@@ -52,7 +54,7 @@ msgstr ""
 msgid ""
 "A hardware error occured while trying to access audio recording device. "
 "Please make sure your drivers are up to date and try again."
-msgstr ""
+msgstr "在尝试访问录音设备时，发生了一个硬件错误。请确保你的驱动程序是最新的，然后再试一次。"
 
 #. module: voip
 #. openerp-web
@@ -89,7 +91,7 @@ msgstr "添加到呼叫队列"
 msgid ""
 "An error occured involving the audio recording device "
 "(%(errorName)s):</br>%(errorMessage)s"
-msgstr ""
+msgstr "录音设备发生了一个错误 (%(errorName)s)：</br>%(errorMessage)s"
 
 #. module: voip
 #. openerp-web
@@ -154,14 +156,14 @@ msgstr "通话时长：%(min)s分f %(sec)s秒"
 #: model:ir.model.fields,field_description:voip.field_res_users__should_call_from_another_device
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__should_call_from_another_device
 msgid "Call from another device"
-msgstr ""
+msgstr "来自其他设备的呼叫"
 
 #. module: voip
 #. openerp-web
 #: code:addons/voip/static/src/js/user_agent.js:0
 #, python-format
 msgid "Call rejected (reason: \"%(reasonPhrase)s\")"
-msgstr ""
+msgstr "呼叫被拒绝 (原因：“%(reasonPhrase)s”)"
 
 #. module: voip
 #: code:addons/voip/models/voip_phonecall.py:0
@@ -215,6 +217,7 @@ msgid ""
 " runs over HTTPS and that your browser is not set to deny access to media "
 "devices."
 msgstr ""
+"不能访问录音设备。如果您拒绝了对您麦克风的访问，请给它授权并再次尝试。否则，请确保本网站通过HTTPS运行，并且你的浏览器没有设置为拒绝访问媒体设备。"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__how_to_call_on_mobile
@@ -226,6 +229,10 @@ msgid ""
 "            • Ask: Always ask whether the softphone or the device's phone must be used\n"
 "        "
 msgstr ""
+"在使用移动端应用程序时，选择用于拨打电话的方法。\n"
+"            • VoIP：始终使用Odoo软电话\n"
+"            • 设备的电话：总是使用设备的电话\n"
+"            • 询问：总是询问是否必须使用软电话或设备的电话"
 
 #. module: voip
 #. openerp-web
@@ -307,7 +314,7 @@ msgstr "演示"
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__res_users_settings__how_to_call_on_mobile__phone
 msgid "Device's phone"
-msgstr ""
+msgstr "设备的电话"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall__direction
@@ -355,7 +362,7 @@ msgstr "时长"
 #. module: voip
 #: model:ir.model.fields,help:voip.field_voip_phonecall__duration
 msgid "Duration in minutes."
-msgstr "持续时间（分钟）。"
+msgstr "按分钟计的时长"
 
 #. module: voip
 #. openerp-web
@@ -391,7 +398,7 @@ msgstr "输入号码..."
 #: model:ir.model.fields,field_description:voip.field_res_users__external_device_number
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__external_device_number
 msgid "External device number"
-msgstr ""
+msgstr "外部设备号码"
 
 #. module: voip
 #. openerp-web
@@ -401,7 +408,7 @@ msgid ""
 "Failed to start the user agent. The URL of the websocket server may be "
 "wrong. Please have an administrator verify the websocket server URL in the "
 "General Settings."
-msgstr ""
+msgstr "启动用户代理失败。Websocket服务器的URL可能有误。请管理员在常规设置中验证websocket服务器的URL。"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_voip_phonecall__sequence
@@ -431,7 +438,7 @@ msgstr "挂掉"
 #: model:ir.model.fields,field_description:voip.field_res_users__how_to_call_on_mobile
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__how_to_call_on_mobile
 msgid "How to place calls on mobile"
-msgstr ""
+msgstr "如何在移动端拨打电话"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall__id
@@ -444,7 +451,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:voip.field_res_users__should_auto_reject_incoming_calls
 #: model:ir.model.fields,help:voip.field_res_users_settings__should_auto_reject_incoming_calls
 msgid "If enabled, incoming calls will be automatically declined in Odoo."
-msgstr ""
+msgstr "如果启用，来电将在Odoo中被自动拒绝。"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__should_call_from_another_device
@@ -453,7 +460,7 @@ msgid ""
 "If enabled, placing a call in Odoo will transfer the call to the \"External "
 "device number\". Use this option to place the call in Odoo but handle it "
 "from another device - e.g. your desk phone."
-msgstr ""
+msgstr "如果启用，在Odoo中拨打电话将把电话转到 \"外部设备号码\"。使用该选项在Odoo中拨打电话，但从另一个设备--例如你的桌面电话--处理它。"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__external_device_number
@@ -461,7 +468,7 @@ msgstr ""
 msgid ""
 "If the \"Call from another device\" option is enabled, calls placed in Odoo "
 "will be transfered to this phone number."
-msgstr ""
+msgstr "如果 “从另一设备拨打电话 ”选项被启用，在Odoo中拨打的电话将被转接到这个电话号码。"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall_log_wizard__reschedule_option__7d
@@ -502,7 +509,7 @@ msgstr ""
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__direction__incoming
 msgid "Incoming"
-msgstr "入库"
+msgstr "来电"
 
 #. module: voip
 #. openerp-web
@@ -629,7 +636,7 @@ msgstr "手机"
 #: model:ir.model.fields,field_description:voip.field_res_partner__sanitized_mobile
 #: model:ir.model.fields,field_description:voip.field_res_users__sanitized_mobile
 msgid "Mobile number sanitized"
-msgstr "消除移动号码"
+msgstr "移动号码已净化"
 
 #. module: voip
 #. openerp-web
@@ -656,7 +663,7 @@ msgstr "我的电话"
 #: code:addons/voip/static/src/xml/dialing_panel.xml:0
 #, python-format
 msgid "Next activities"
-msgstr ""
+msgstr "下个活动"
 
 #. module: voip
 #. openerp-web
@@ -665,7 +672,7 @@ msgstr ""
 msgid ""
 "No audio recording device available. The application requires a microphone "
 "in order to be used."
-msgstr ""
+msgstr "没有可用的录音设备。该应用程序需要一个麦克风才能使用。"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__pending
@@ -693,7 +700,7 @@ msgstr ""
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__direction__outgoing
 msgid "Outgoing"
-msgstr "发出"
+msgstr "拨出"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_res_config_settings__pbx_ip
@@ -728,7 +735,7 @@ msgstr "电话"
 #: model:ir.model.fields,field_description:voip.field_res_partner__sanitized_phone
 #: model:ir.model.fields,field_description:voip.field_res_users__sanitized_phone
 msgid "Phone number sanitized"
-msgstr "消除电话号码"
+msgstr "电话号码已净化"
 
 #. module: voip
 #. openerp-web
@@ -768,7 +775,7 @@ msgstr "请同意使用麦克风。"
 msgid ""
 "Please try again later. If the problem persists, you may want to ask an "
 "administrator to check the configuration."
-msgstr ""
+msgstr "请稍后再试。如果问题仍然存在，您可能要请管理员检查一下配置。"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__res_config_settings__mode__prod
@@ -795,7 +802,7 @@ msgstr "刷新面板"
 #: code:addons/voip/static/src/models/registerer.js:0
 #, python-format
 msgid "Registration rejected: %(statusCode)s %(reasonPhrase)s."
-msgstr ""
+msgstr "注册被拒绝：%(statusCode)s%(reasonPhrase)s。"
 
 #. module: voip
 #. openerp-web
@@ -815,7 +822,7 @@ msgstr "拒绝呼叫"
 #: model:ir.model.fields,field_description:voip.field_res_users__should_auto_reject_incoming_calls
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__should_auto_reject_incoming_calls
 msgid "Reject incoming calls"
-msgstr ""
+msgstr "拒绝来电"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__rejected
@@ -919,7 +926,7 @@ msgstr "单号规则"
 msgid ""
 "Some documents cannot be added to the call queue as they do not have a phone"
 " number set: %(record_names)s"
-msgstr ""
+msgstr "某些文档无法添加到呼叫队列，因为它们没有设置电话号码：%(record_names)s"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_voip_phonecall_log_wizard__reschedule_date
@@ -958,7 +965,7 @@ msgstr "接电话"
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_config_settings__pbx_ip
 msgid "The IP address of your PBX Server"
-msgstr ""
+msgstr "您的PBX服务器的IP地址"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_config_settings__wsServer
@@ -970,7 +977,7 @@ msgstr "你的WebSocket的网址"
 #: code:addons/voip/static/src/js/user_agent.js:0
 #, python-format
 msgid "The connection cannot be made.</br> Please check your configuration."
-msgstr ""
+msgstr "连接无法建立。</br>请检查您的配置。"
 
 #. module: voip
 #. openerp-web
@@ -980,7 +987,7 @@ msgid ""
 "The error may come from the transport layer. Please have an administrator "
 "verify the websocket server URL in the General Settings. If the problem "
 "persists, this is probably an issue with the server."
-msgstr ""
+msgstr "该错误可能来自传输层。请让管理员验证 \"常规设置 \"中的websocket服务器URL。如果问题持续存在，这可能是服务器的问题。"
 
 #. module: voip
 #. openerp-web
@@ -990,13 +997,13 @@ msgid ""
 "The number is incorrect, the user credentials could be wrong or the "
 "connection cannot be made. Please check your configuration.</br> (Reason "
 "received: %(reasonPhrase)s)"
-msgstr ""
+msgstr "号码不正确，用户凭据可能错误或无法建立连接。 请检查您的配置。</br> (收到的理由：%(reasonPhrase)s)"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_res_users__voip_secret
 #: model:ir.model.fields,help:voip.field_res_users_settings__voip_secret
 msgid "The password that will be used to register with the PBX server."
-msgstr ""
+msgstr "将被用来在PBX服务器注册的密码"
 
 #. module: voip
 #. openerp-web
@@ -1020,7 +1027,7 @@ msgid ""
 "The server failed to authenticate you. Please have an administrator verify "
 "that you are reaching the right server (PBX server IP in the General "
 "Settings) and that the credentials in your user preferences are correct."
-msgstr ""
+msgstr "服务器无法对您进行身份验证。 请让管理员验证您正在访问正确的服务器（常规设置中的PBX服务器IP）以及您的用户偏好中的凭据是否正确。"
 
 #. module: voip
 #: model:ir.model.fields,help:voip.field_voip_phonecall__state
@@ -1039,7 +1046,7 @@ msgstr ""
 msgid ""
 "The username (typically the extension number) that will be used to register "
 "with the PBX server."
-msgstr ""
+msgstr "将用于向PBX服务器注册的用户名 (通常是分机号)。"
 
 #. module: voip
 #. openerp-web
@@ -1048,7 +1055,7 @@ msgstr ""
 msgid ""
 "The websocket connection with the server has been lost. Please try to "
 "refresh the page."
-msgstr ""
+msgstr "与服务器的websocket连接已丢失。 请尝试刷新页面。"
 
 #. module: voip
 #: model:ir.model.fields.selection,name:voip.selection__voip_phonecall__state__open
@@ -1103,7 +1110,7 @@ msgstr "VOIP拨号器按用户报告筛选"
 #. module: voip
 #: model:ir.model,name:voip.model_voip_queue_mixin
 msgid "VOIP Queue support"
-msgstr ""
+msgstr "VOIP队列支持"
 
 #. module: voip
 #. openerp-web
@@ -1113,12 +1120,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:voip.res_users_view_form_preferences
 #, python-format
 msgid "VoIP"
-msgstr ""
+msgstr "VoIP"
 
 #. module: voip
 #: model_terms:ir.ui.view,arch_db:voip.voip_res_users_settings_view_form
 msgid "VoIP Configuration"
-msgstr ""
+msgstr "VoIP配置"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_res_config_settings__mode
@@ -1129,13 +1136,13 @@ msgstr "VoIP 环境"
 #: model:ir.model.fields,field_description:voip.field_res_users__voip_secret
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__voip_secret
 msgid "VoIP secret"
-msgstr ""
+msgstr "VoIP密钥"
 
 #. module: voip
 #: model:ir.model.fields,field_description:voip.field_res_users__voip_username
 #: model:ir.model.fields,field_description:voip.field_res_users_settings__voip_username
 msgid "VoIP username / Extension number"
-msgstr ""
+msgstr "VoIP用户名 / 分机号"
 
 #. module: voip
 #. openerp-web

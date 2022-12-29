@@ -3,21 +3,21 @@
 # 	* stock_account_enterprise
 # 
 # Translators:
-# Luiz Carlos de Lima <luiz.carlos@akretion.com.br>, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.4+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 11:29+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Luiz Carlos de Lima <luiz.carlos@akretion.com.br>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:57+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
@@ -25,16 +25,18 @@ msgid ""
 "Defines how many times the stock is sold during a period. It is computed by "
 "dividing the outgoing inventory value by the inventory value."
 msgstr ""
+"Define quantas vezes o estoque é vendido durante um período. É calculado "
+"dividindo o valor do estoque de saída pelo valor do estoque."
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "Incoming Inventory Value"
-msgstr ""
+msgstr "Valor de Estoque de Entrada"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "Inventory Turnover"
-msgstr ""
+msgstr "Giro de Estoque"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
@@ -47,6 +49,8 @@ msgid ""
 "Note that you can only access this value in the read_group, only the sum "
 "operator is supported"
 msgstr ""
+"Observe que você só pode acessar este valor no read_group, apenas o operador"
+" sum é compatível"
 
 #. module: stock_account_enterprise
 #: model:ir.model.fields,help:stock_account_enterprise.field_stock_report__stock_value
@@ -54,38 +58,40 @@ msgid ""
 "Note that you can only access this value in the read_group, only the sum "
 "operator is supported and only date_done is used from the domain"
 msgstr ""
+"Observe que você só pode acessar este valor no read_group, apenas o operador"
+" sum é compatível e apenas date_done é usado no domínio"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "Outgoing Inventory Value"
-msgstr ""
+msgstr "Valor de Estoque de Saída"
 
 #. module: stock_account_enterprise
 #: model:ir.model,name:stock_account_enterprise.model_stock_report
 msgid "Stock Report"
-msgstr ""
+msgstr "Relatório de Estoque"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "The total value of what you have in stock."
-msgstr ""
+msgstr "O valor total que você tem em estoque."
 
 #. module: stock_account_enterprise
 #: model:ir.model.fields,field_description:stock_account_enterprise.field_stock_report__stock_value
 msgid "Total Valuation of Inventory"
-msgstr ""
+msgstr "Total de Valoração de Estoque"
 
 #. module: stock_account_enterprise
 #: model:ir.model.fields,field_description:stock_account_enterprise.field_stock_report__valuation
 msgid "Valuation of Inventory using a Domain"
-msgstr ""
+msgstr "Valoração do Estoque usando um Domínio"
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "Value of all incoming stock moves."
-msgstr ""
+msgstr "Valor de todos os movimentos de entrada de estoque."
 
 #. module: stock_account_enterprise
 #: model_terms:ir.ui.view,arch_db:stock_account_enterprise.stock_report_dashboard_view_inherit
 msgid "Value of all outgoing stock moves."
-msgstr ""
+msgstr "Valor de todos os movimentos de saída de estoque."

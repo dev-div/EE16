@@ -171,10 +171,9 @@
                  data-target-input="nearest" id="shopRentingDates">
                 <input type="text" id="s_rental_search_date_input"
                        class="form-control daterange-input"/>
-                <div class="input-group-text" data-target="#shopRentingDates"
-                     data-toggle="daterange">
-                    <i class="fa fa-calendar"/>
-                </div>
+                <button class="input-group-text fa fa-calendar alert-info" data-target="#shopRentingDates"
+                        data-toggle="daterange"/>
+                <button t-if="request.params.get('start_date') and request.params.get('end_date')" class="input-group-text fa fa-times alert-danger clear-daterange"/>
             </div>
             <div class="o_renting_warning d-none">
                 <span class="text-warning">

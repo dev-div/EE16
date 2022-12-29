@@ -31,4 +31,3 @@ tour.register('account_avatax_sale_optional_products', {
     },
 ]);
 });
-

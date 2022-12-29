@@ -50,7 +50,10 @@ class Task(models.Model):
                     fsm_sn_moves |= move
             for fsm_sn_move in fsm_sn_moves:
                 ml_vals = fsm_sn_move._prepare_move_line_vals(quantity=0)
-                ml_vals['qty_done'] = qty - fsm_sn_move.quantity_done
+                task = fsm_sn_move.sale_line_id.task_id
+                # if the move_line of the delivery is linked to the current task or is a taskless product, set his qty_done accordinlgy
+                if not task or task == self:
+                    ml_vals['qty_done'] = qty - fsm_sn_move.quantity_done
                 ml_vals['lot_id'] = so_line.fsm_lot_id.id
                 if fsm_sn_move.product_id.tracking == "serial":
                     quants = self.env['stock.quant']._gather(fsm_sn_move.product_id, fsm_sn_move.location_id, lot_id=so_line.fsm_lot_id)
@@ -58,9 +61,13 @@ class Task(models.Model):
                     ml_vals['location_id'] = quant.location_id.id or fsm_sn_move.location_id.id
                 ml_to_create.append(ml_vals)
             all_fsm_sn_moves |= fsm_sn_moves
+            # set the quantity delivered of the sol to the quantity ordered for the product linked to the task
+            if so_line.task_id == self and not so_line.product_id.service_policy == 'delivered_timesheet':
+                so_line.qty_delivered = so_line.product_uom_qty
         self.env['stock.move.line'].create(ml_to_create)
 
         def is_fsm_material_picking(picking, task):
+            """ this function returns if the picking is a picking ready to be validated. """
             for move in picking.move_ids:
                 while move.move_dest_ids:
                     move = move.move_dest_ids
@@ -70,7 +77,9 @@ class Task(models.Model):
                 if not (sol.product_id != task.project_id.timesheet_product_id \
                 and sol != task.sale_line_id \
                 and sol.product_uom_qty != 0 \
-                and sol.task_id == task):
+                # On the last and, we check if the task is either done (and thus already done for the delivery) or the current one (and thus about to be validated)
+                # if not, we can not validate the delivery
+                and (sol.task_id == task or sol.task_id.fsm_done)):
                     return False
             return True
 
@@ -91,9 +100,8 @@ class Task(models.Model):
     def write(self, vals):
         result = super().write(vals)
         if 'user_ids' in vals:
-            for task in self:
-                user = task.user_ids[:1]
-                sale_order = task.sale_order_id.sudo()
-                if sale_order.state in ['draft', 'sent'] and user != sale_order.user_id:
+            for sale_order in self.filtered("is_fsm").sale_order_id.sudo().filtered(lambda order: order.state in ['draft', 'sent']):
+                user = self.user_ids[:1]
+                if user != sale_order.user_id:
                     sale_order.write({'user_id': user.id})
         return result

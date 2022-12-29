@@ -26,7 +26,7 @@ FieldPostPreview.props = {
 FieldPostPreview.extractProps = ({ attrs, field }) => {
     return {
         ...HtmlField.extractProps({ attrs, field }),
-        mediaType: attrs.media_type || false,
+        mediaType: attrs.media_type || '',
     }
 };
 

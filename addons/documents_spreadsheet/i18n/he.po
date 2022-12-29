@@ -6,21 +6,22 @@
 # Ofir Blum <ofir.blum@gmail.com>, 2022
 # Netta Waizer, 2022
 # Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
-# Roy Sayag, 2022
 # Martin Trigaux, 2022
 # david danilov, 2022
 # ExcaliberX <excaliberx@gmail.com>, 2022
 # דודי מלכה <Dudimalka6@gmail.com>, 2022
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
+# Roy Sayag, 2022
+# Ha Ketem <haketem@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022\n"
+"Last-Translator: Ha Ketem <haketem@gmail.com>, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,26 +30,21 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/wizard/save_spreadsheet_template.py:0
 #, python-format
 msgid "\"%s\" saved as template"
-msgstr ""
+msgstr "\"%s\" נשמר כתבנית"
 
 #. module: documents_spreadsheet
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
-#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
-msgid ""
-"#{ isSpreadsheet and 'Odoo Spreadsheets not available for download' or ''}"
-msgstr ""
-
-#. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/spreadsheet_template.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (העתק)"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/spreadsheet_component.js:0
 #, python-format
 msgid "%s - Template"
@@ -57,20 +53,20 @@ msgstr ""
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.res_config_settings_view_form_inherit_documents_spreadsheet
 msgid ""
-"<strong>Spreadsheets</strong>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<strong class=\"o_form_label\">Spreadsheets</strong>\n"
+"                            <span class=\"fa fa-lg fa-building-o ms-1\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: documents_spreadsheet
 #: model:ir.model.constraint,message:documents_spreadsheet.constraint_spreadsheet_contributor_spreadsheet_user_unique
 msgid "A combination of the spreadsheet and the user already exist"
-msgstr ""
+msgstr "השילוב של הגליונות והמשתמש כבר קיים"
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.save_spreadsheet_template_view_form
 msgid ""
 "Any user will be able to create a new spreadsheet based on this template."
-msgstr ""
+msgstr "כל משתמש יוכל ליצור גליון חדש המבוסס על תבנית זו."
 
 #. module: documents_spreadsheet
 #: model_terms:documents.folder,description:documents_spreadsheet.documents_spreadsheet_folder
@@ -78,9 +74,11 @@ msgid ""
 "Ask an admin to configure the workspace to be accessible to the users you "
 "want."
 msgstr ""
+"יש לבקש ממנהלת המערכת להגדיר את סביבת העבודה כך שתהיה נגישה למשתמשים "
+"שתבחר/י."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Blank spreadsheet"
@@ -92,9 +90,11 @@ msgid ""
 "By default, the spreadsheets in this workspace will only be seen and updated"
 " by their <strong>creator</strong>."
 msgstr ""
+"בברירת מחדל, הגליונות במרחב העבודה הזה יוצגו ויעודכנו על-ידי "
+"<strong>היוצר</strong>."
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.save_spreadsheet_template_view_form
 #, python-format
@@ -128,14 +128,14 @@ msgid "Contributors"
 msgstr "תורמים"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/template_dialog.xml:0
 #, python-format
 msgid "Create"
 msgstr "צור"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.xml:0
 #, python-format
 msgid "Create Spreadsheet"
@@ -178,7 +178,7 @@ msgstr "מסמך"
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_res_company__documents_spreadsheet_folder_id
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_res_config_settings__documents_spreadsheet_folder_id
 msgid "Documents Spreadsheet Folder"
-msgstr ""
+msgstr "תיקיית קובץ הגליון"
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_template_view_tree
@@ -188,7 +188,7 @@ msgstr "ערוך"
 #. module: documents_spreadsheet
 #: model_terms:documents.folder,description:documents_spreadsheet.documents_spreadsheet_folder
 msgid "Enjoy collaborative work on your spreadsheets."
-msgstr ""
+msgstr "תנו מעבודה שיתופית בגליונות."
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_documents_document__raw
@@ -236,12 +236,12 @@ msgstr "עדכון אחרון ב"
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_spreadsheet_contributor__last_update_date
 msgid "Last update date"
-msgstr ""
+msgstr "תאריך עדכון אחרון."
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_template_view_tree
 msgid "Make a copy"
-msgstr ""
+msgstr "יצירת עותק"
 
 #. module: documents_spreadsheet
 #: model_terms:documents.folder,description:documents_spreadsheet.documents_spreadsheet_folder
@@ -255,7 +255,7 @@ msgstr ""
 #. module: documents_spreadsheet
 #: model_terms:documents.folder,description:documents_spreadsheet.documents_spreadsheet_folder
 msgid "Move them to another workspace"
-msgstr ""
+msgstr "להזיז לסביבת עבודה אחרת."
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_template_view_search
@@ -268,49 +268,55 @@ msgid "Name"
 msgstr "שם"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New Spreadsheet"
-msgstr ""
+msgstr "גליון אלקטרוני חדש"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_template/spreadsheet_template_dialog.js:0
 #, python-format
 msgid "New sheet saved in Documents"
-msgstr ""
+msgstr "גליון נתונים חדש נשמר במסמכים"
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_template_view_tree
 msgid "New spreadsheet"
-msgstr ""
+msgstr "גליון אלקטרוני חדש"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_action.js:0
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.js:0
 #, python-format
 msgid "New spreadsheet created in Documents"
-msgstr ""
+msgstr "גליון אלקטרוני חדש שנוצר במסמכים"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "New spreadsheet template created"
+msgstr " תבנית גליון אלקטרוני חדשה נוצרה"
+
+#. module: documents_spreadsheet
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_page
+#: model_terms:ir.ui.view,arch_db:documents_spreadsheet.share_single
+msgid "Odoo Spreadsheets not available for download"
 msgstr ""
 
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.spreadsheet_revision_action
 #: model:ir.ui.menu,name:documents_spreadsheet.menu_technical_spreadsheet_revision
 msgid "Revisions"
-msgstr ""
+msgstr "עריכות"
 
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.save_spreadsheet_template_action
 msgid "Save as template"
-msgstr ""
+msgstr "שמור כתבנית"
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_spreadsheet_template__sequence
@@ -324,22 +330,22 @@ msgstr "רצף"
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.document_view_search_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_revision_view_search
 msgid "Spreadsheet"
-msgstr ""
+msgstr "גליון אלקטרוני"
 
 #. module: documents_spreadsheet
 #: model:ir.model,name:documents_spreadsheet.model_spreadsheet_contributor
 msgid "Spreadsheet Contributor"
-msgstr ""
+msgstr "תרם לגליון"
 
 #. module: documents_spreadsheet
 #: model_terms:ir.ui.view,arch_db:documents_spreadsheet.spreadsheet_document_view_kanban
 msgid "Spreadsheet Preview"
-msgstr ""
+msgstr "תצוגה מקדימה של גליון"
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_documents_document__spreadsheet_revision_ids
 msgid "Spreadsheet Revision"
-msgstr ""
+msgstr "עריכות גליון"
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_documents_document__spreadsheet_snapshot
@@ -349,12 +355,12 @@ msgstr ""
 #. module: documents_spreadsheet
 #: model:ir.model,name:documents_spreadsheet.model_spreadsheet_template
 msgid "Spreadsheet Template"
-msgstr ""
+msgstr "תבנית גליון"
 
 #. module: documents_spreadsheet
 #: model:ir.model,name:documents_spreadsheet.model_save_spreadsheet_template
 msgid "Spreadsheet Template Save Wizard"
-msgstr ""
+msgstr "אשף שמירת תבנית גליון"
 
 #. module: documents_spreadsheet
 #: model:ir.actions.act_window,name:documents_spreadsheet.spreadsheet_template_action
@@ -363,13 +369,14 @@ msgid "Spreadsheet Templates"
 msgstr "תבניות גיליון אלקטרוני"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/inspector/documents_inspector.js:0
 #, python-format
 msgid ""
 "Spreadsheets mass download not yet supported.\n"
 " Download spreadsheets individually instead."
 msgstr ""
+"אי אפשר עדיין להוריד גליונות בבת-אחת. בינתיים צריך להוריד אותם אחד אחד."
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_save_spreadsheet_template__template_name
@@ -377,18 +384,21 @@ msgid "Template Name"
 msgstr "שם תבנית"
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The file is not a xlsx file"
 msgstr ""
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
 msgid "The xlsx file is corrupted"
 msgstr ""
 
 #. module: documents_spreadsheet
+#. odoo-python
 #: code:addons/documents_spreadsheet/models/document.py:0
 #: code:addons/documents_spreadsheet/models/document.py:0
 #, python-format
@@ -402,18 +412,18 @@ msgid "Thumbnail"
 msgstr "תמונה ממוזערת"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/components/control_panel/spreadsheet_breadcrumbs.xml:0
 #, python-format
 msgid "Toggle favorite"
-msgstr ""
+msgstr "החלף מועדפים"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/bundle/actions/spreadsheet_template/spreadsheet_template_action.js:0
 #, python-format
 msgid "Untitled spreadsheet template"
-msgstr ""
+msgstr "תבנית לגליון ללא-שם"
 
 #. module: documents_spreadsheet
 #: model:ir.model.fields,field_description:documents_spreadsheet.field_spreadsheet_contributor__user_id
@@ -426,7 +436,7 @@ msgid "Workspace"
 msgstr "סביבת עבודה"
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/documents_view/documents_spreadsheet_controller_mixin.js:0
 #, python-format
 msgid ""
@@ -434,7 +444,7 @@ msgid ""
 msgstr ""
 
 #. module: documents_spreadsheet
-#. openerp-web
+#. odoo-javascript
 #: code:addons/documents_spreadsheet/static/src/spreadsheet_selector_dialog/document_selector_panel.xml:0
 #, python-format
 msgid "getPageTitle('SPREADSHEET')"

@@ -10,14 +10,16 @@
                     <button class="btn btn-primary" t-on-click="() => this.callAction('action_add_component')">Add Component</button>
                     <button class="btn btn-primary" t-on-click="() => this.callAction('action_add_byproduct')" name="addByProduct">Add By-product</button>
 
-                    <span><h2>Suggest a Worksheet improvement</h2></span>
-                    <t t-if="step">
-                        <button class="btn btn-primary" t-on-click="() => this.proposeChange('update_step', 'Update Instructions', 'Your New Instructions feedback was created')">Update Instructions</button>
-                        <button class="btn btn-primary" t-on-click="() => this.proposeChange('remove_step', 'Remove Step', 'Your feedback to delete this step was created')">Delete this Step</button>
-                    </t>
-                    <button class="btn btn-primary" t-on-click="() => this.callAction('action_add_step')">Add a Step</button>
-                    <t t-if="step">
-                        <button class="btn btn-primary" t-on-click="() => this.proposeChange('set_picture', 'Change Picture', '')">Set a New picture</button>
+                    <t t-if="props.popupData.has_bom">
+                        <span><h2>Suggest a Worksheet improvement</h2></span>
+                        <t t-if="step">
+                            <button class="btn btn-primary" t-on-click="() => this.proposeChange('update_step', 'Update Instructions', 'Your New Instructions feedback was created')">Update Instructions</button>
+                            <button class="btn btn-primary" t-on-click="() => this.proposeChange('remove_step', 'Remove Step', 'Your feedback to delete this step was created')">Delete this Step</button>
+                        </t>
+                        <button class="btn btn-primary" t-on-click="() => this.callAction('action_add_step')">Add a Step</button>
+                        <t t-if="step">
+                            <button class="btn btn-primary" t-on-click="() => this.proposeChange('set_picture', 'Change Picture', '')">Set a New picture</button>
+                        </t>
                     </t>
                 </div>
             </div>

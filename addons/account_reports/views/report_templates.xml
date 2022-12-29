@@ -557,7 +557,7 @@
         <div class="dropdown-menu o_filter_menu" role="menu">
             <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="report.filter_show_draft" title="Include unposted entries" data-filter="all_entries" groups="account.group_account_readonly">Include Unposted Entries</a>
             <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="report.filter_analytic_groupby" title="Analytic filters will include analytic items without accounting correspondence" data-filter="include_analytic_without_aml" groups="account.group_account_readonly">Include Analytic Simulations</a>
-            <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="report.filter_hierarchy != 'never'" title="Hierarchy" data-filter="hierarchy">Hierarchy and Subtotals</a>
+            <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="options['display_hierarchy_filter']" title="Hierarchy" data-filter="hierarchy">Hierarchy and Subtotals</a>
             <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="report.filter_unreconciled" title="Unreconciled" data-filter="unreconciled">Only Show Unreconciled Entries</a>
             <a role="menuitem" class="dropdown-item js_account_report_bool_filter" t-if="report.filter_unfold_all" title="Unfold" data-filter="unfold_all">Unfold All</a>
         </div>
@@ -620,14 +620,14 @@
 
     <template id="search_template_analytic">
         <button t-if="report.filter_analytic_groupby" type="button" class="o-no-caret btn btn-secondary dropdown-toggle analytic_groupby_filter_changed" data-bs-toggle="dropdown" groups="analytic.group_analytic_accounting">
-            <span class="fa fa-folder-open"/> Analytic
+            <span class="fa fa-folder-open"/> Analytic Group By
         </button>
         <ul t-if="report.filter_analytic_groupby" class="dropdown-menu o_filter_menu" role="menu">
             <li class="o_account_report_search js_account_analytic_groupby_m2m"/>
             <li class="o_account_report_search js_account_analytic_plans_groupby_m2m"/>
         </ul>
         <button t-if="report.filter_analytic" type="button" class="o-no-caret btn btn-secondary dropdown-toggle analytic_filter_changed" data-bs-toggle="dropdown" groups="analytic.group_analytic_accounting">
-            <span class="fa fa-folder-open"/> Analytic
+            <span class="fa fa-folder-open"/> Analytic Filter
         </button>
         <ul t-if="report.filter_analytic" class="dropdown-menu o_filter_menu" role="menu">
             <li class="o_account_report_search js_account_analytic_m2m"/>
@@ -752,10 +752,7 @@
         <div class="btn-group dropdown o_account_reports_filter_account_type" t-if="options.get('account_type') != None">
             <t t-call="account_reports.search_template_account_type"/>
         </div>
-        <div class="btn-group dropdown o_account_reports_filter_analytic" t-if="report.filter_analytic">
-            <t t-call="account_reports.search_template_analytic"/>
-        </div>
-        <div class="btn-group dropdown o_account_reports_filter_analytic_groupby" t-if="report.filter_analytic_groupby">
+        <div class="btn-group dropdown o_account_reports_filter_analytic" t-if="report.filter_analytic or report.filter_analytic_groupby">
             <t t-call="account_reports.search_template_analytic"/>
         </div>
         <div class="btn-group dropdown o_account_reports_filter_ir_filters" t-if="options['available_horizontal_groups']">

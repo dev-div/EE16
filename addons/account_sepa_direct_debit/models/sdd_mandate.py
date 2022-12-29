@@ -152,9 +152,9 @@ class SDDMandate(models.Model):
             JOIN account_move move ON move.id = payment.move_id
             WHERE move.sdd_mandate_id IS NOT NULL
             AND move.state = 'posted'
-            AND method.code = 'sdd'
+            AND method.code IN %s
             GROUP BY move.sdd_mandate_id
-        ''')
+        ''', [tuple(self.payment_ids.payment_method_id._get_sdd_payment_method_code())])
         query_res = dict((mandate_id, payment_ids) for mandate_id, payment_ids in self._cr.fetchall())
 
         for mandate in self:

@@ -108,7 +108,7 @@ class AustralianReportCustomHandler(models.AbstractModel):
     def _custom_options_initializer(self, report, options, previous_options=None):
         super()._custom_options_initializer(report, options, previous_options=previous_options)
         options['buttons'] += [{
-            'name': _('TPAR'), 'sequence': 30, 'action': 'export_file', 'action_param': '_get_txt', 'file_export_type': _('TPAR')
+            'name': _('TPAR'), 'sequence': 30, 'action': 'export_file', 'action_param': 'get_txt', 'file_export_type': _('TPAR')
         }]
 
     def _build_query(self, options, column_group_key=None):
@@ -197,9 +197,10 @@ class AustralianReportCustomHandler(models.AbstractModel):
 
         return results
 
-    def _get_txt(self, options):
+    def get_txt(self, options):
+        report = self.env['account.report'].browse(options['report_id'])
         sender_data = {
-            'vat': self.env['account.report'].get_vat_for_export(options),
+            'vat': report.get_vat_for_export(options),
             'name': self.env.company.name,
             'commercial_partner_name': self.env.company.name,
             'street': self.env.company.street,
@@ -225,7 +226,7 @@ class AustralianReportCustomHandler(models.AbstractModel):
         file_content = ''.join(lines)
 
         return {
-            'file_name': self.env['account.report'].get_default_report_filename('txt'),
+            'file_name': report.get_default_report_filename('txt'),
             'file_content': file_content,
             'file_type': 'txt',
         }

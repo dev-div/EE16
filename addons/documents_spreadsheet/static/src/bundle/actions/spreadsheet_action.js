@@ -62,7 +62,9 @@ export class SpreadsheetAction extends AbstractSpreadsheetAction {
                 raw: JSON.stringify(data),
                 folder_id: this.params.createInFolderId,
             },
-        ]);
+        ], {
+            context: this.props.action.context,
+        });
     }
 
     async _fetchData() {

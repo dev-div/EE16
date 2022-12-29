@@ -29,12 +29,12 @@ class TestAccountReportsCommon(AccountTestInvoicingCommon):
         :return:                The newly created options.
         '''
         if isinstance(date_from, datetime):
-            date_from_str = fields.Date.to_string(datetime)
+            date_from_str = fields.Date.to_string(date_from)
         else:
             date_from_str = date_from
 
         if isinstance(date_to, datetime):
-            date_to_str = fields.Date.to_string(datetime)
+            date_to_str = fields.Date.to_string(date_to)
         else:
             date_to_str = date_to
 

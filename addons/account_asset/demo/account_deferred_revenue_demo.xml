@@ -11,12 +11,15 @@
             <field name="method_number">12</field>
             <field name="method_period">1</field>
             <field name="account_asset_id" model="account.account" search="[
-                ('account_type', '=', 'asset_fixed')]"/>
+                ('account_type', '=', 'asset_fixed'),
+                ('company_id', '=', ref('base.main_company'))]"/>
             <field name="account_depreciation_id" model="account.account" search="[
-                ('account_type', '=', 'asset_fixed')]"/>
+                ('account_type', '=', 'liability_current'),
+                ('company_id', '=', ref('base.main_company'))]"/>
             <field name="account_depreciation_expense_id" model="account.account" search="[
                 ('account_type', '=', 'income'),
-                ('tag_ids', 'in', [ref('account.account_tag_operating')])]"/>
+                ('tag_ids', 'in', [ref('account.account_tag_operating')]),
+                ('company_id', '=', ref('base.main_company'))]"/>
             <field name="asset_type">sale</field>
             <field name="state">model</field>
         </record>

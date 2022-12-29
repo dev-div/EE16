@@ -7,9 +7,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:48+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
 "Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/odoo/teams/41243/vi/)\n"
@@ -56,13 +56,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
 msgid ""
 "<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
-"                        Reload AI Data"
-msgstr ""
-
-#. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
-msgid ""
-"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
 "                        Resend For Digitization"
 msgstr ""
 
@@ -91,6 +84,7 @@ msgstr ""
 "seconds."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__error_status
 #, python-format
@@ -103,21 +97,17 @@ msgid "Attachment"
 msgstr "Đính kèm"
 
 #. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Bill Date"
-msgstr "Ngày hóa đơn"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Bill Reference"
-msgstr "Mã/Số hoá đơn"
-
-#. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Bill is being Digitized"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_can_show_banners
+msgid "Can show the ocr banners"
 msgstr ""
 
 #. module: account_invoice_extract
@@ -150,13 +140,14 @@ msgid "Config Settings"
 msgstr "Cấu hình"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Couldn't reload AI data."
 msgstr ""
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/js/invoice_extract_form_renderer.js:0
 #, python-format
 msgid "Create"
@@ -171,12 +162,6 @@ msgstr "Được tạo bởi"
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__create_date
 msgid "Created on"
 msgstr "Được tạo vào"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Customer"
-msgstr "Khách hàng"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_out_invoice_digitalization_mode
@@ -236,13 +221,6 @@ msgid "Extract Attachment"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_populated_fields
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_populated_fields
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_populated_fields
-msgid "Extract Populated Fields"
-msgstr ""
-
-#. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_word_ids
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_word_ids
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_word_ids
@@ -284,12 +262,14 @@ msgid "Id of the request to IAP-OCR"
 msgstr "Id of the request to IAP-OCR"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Invalid PDF (Conversion error)"
 msgstr ""
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Invalid PDF (Unable to get page count)"
@@ -301,29 +281,20 @@ msgid "Invoice"
 msgstr "Hóa đơn"
 
 #. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Invoice Date"
-msgstr "Ngày hóa đơn"
-
-#. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_parse_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_parse
-#: model:ir.cron,name:account_invoice_extract.ir_cron_ocr_parse
 msgid "Invoice OCR: Parse Invoices"
 msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_update_ocr_status_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_update_ocr_status
-#: model:ir.cron,name:account_invoice_extract.ir_cron_update_ocr_status
 msgid "Invoice OCR: Update All Status"
 msgstr "Invoice OCR: Update All Status"
 
 #. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_validate_ir_actions_server
 #: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_validate
-#: model:ir.cron,name:account_invoice_extract.ir_cron_ocr_validate
 msgid "Invoice OCR: Validate Invoices"
 msgstr ""
 
@@ -348,6 +319,7 @@ msgid "Last Updated on"
 msgstr "Cập nhật lần cuối vào"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "No document name provided"
@@ -369,6 +341,11 @@ msgid "Ocr Selected"
 msgstr ""
 
 #. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "Reload AI Data"
+msgstr ""
+
+#. module: account_invoice_extract
 #: model:ir.actions.server,name:account_invoice_extract.model_account_send_for_digitalization
 msgid "Send Bills for digitization"
 msgstr ""
@@ -379,12 +356,14 @@ msgid "Send For Digitization"
 msgstr ""
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Server is currently under maintenance. Please retry later"
 msgstr "Server is currently under maintenance. Please retry later"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Server not available. Please retry later"
@@ -404,16 +383,12 @@ msgid "Status code"
 msgstr "Status code"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""
 "The 'invoice_ocr' IAP account token is invalid. Please delete it to let Odoo"
 " generate a new one or fill it with a valid token."
-msgstr ""
-
-#. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
-msgid "The bill has been populated by AI."
 msgstr ""
 
 #. module: account_invoice_extract
@@ -424,19 +399,21 @@ msgid ""
 msgstr ""
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "The document could not be found"
 msgstr "The document could not be found"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "The document has been rejected because it is too small"
 msgstr ""
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
 #, python-format
 msgid "The following fields were populated by the OCR:"
@@ -448,6 +425,7 @@ msgid "To validate"
 msgstr "Để xác nhận"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "Unsupported image format"
@@ -457,12 +435,6 @@ msgstr "Unsupported image format"
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__user_selected
 msgid "User Selected"
 msgstr "User Selected"
-
-#. module: account_invoice_extract
-#: code:addons/account_invoice_extract/models/account_invoice.py:0
-#, python-format
-msgid "Vendor"
-msgstr "Nhà cung cấp"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_in_invoice_digitalization_mode
@@ -520,7 +492,7 @@ msgid "Word Text"
 msgstr "Word Text"
 
 #. module: account_invoice_extract
-#. openerp-web
+#. odoo-javascript
 #: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
 #, python-format
 msgid ""
@@ -534,12 +506,14 @@ msgid "You don't have enough credit to extract data from your invoice."
 msgstr "You don't have enough credit to extract data from your invoice."
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid "You must send the same quantity of documents and file names"
 msgstr "You must send the same quantity of documents and file names"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""
@@ -548,6 +522,7 @@ msgstr ""
 "Your PDF file is protected by a password. The OCR can't extract data from it"
 
 #. module: account_invoice_extract
+#. odoo-python
 #: code:addons/account_invoice_extract/models/account_invoice.py:0
 #, python-format
 msgid ""

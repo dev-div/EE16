@@ -10,7 +10,7 @@ import { Editor } from "./editor/editor";
 import { StudioNavbar } from "./navbar/navbar";
 import { StudioHomeMenu } from "./studio_home_menu/studio_home_menu";
 
-const { Component, onWillStart, onMounted, onPatched, onWillUnmount } = owl;
+import { Component, onWillStart, onMounted, onPatched, onWillUnmount } from "@odoo/owl";
 
 export class StudioClientAction extends Component {
     setup() {

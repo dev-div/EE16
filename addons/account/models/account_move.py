@@ -78,7 +78,7 @@ class AccountMove(models.Model):
         compute='_compute_name', readonly=False, store=True,
         copy=False,
         tracking=True,
-        index='btree',  # We need the btree index for unicity constraint (`_check_unique_sequence_number`)
+        index='trigram',
     )
     ref = fields.Char(string='Reference', copy=False, tracking=True)
     date = fields.Date(
@@ -137,6 +137,7 @@ class AccountMove(models.Model):
         comodel_name='res.company',
         string='Company',
         compute='_compute_company_id', inverse='_inverse_company_id', store=True, readonly=False, precompute=True,
+        index=True,
     )
     line_ids = fields.One2many(
         'account.move.line',
@@ -188,7 +189,7 @@ class AccountMove(models.Model):
 
     # used by cash basis taxes, telling the lines of the move are always
     # exigible. This happens if the move contains no payable or receivable line.
-    always_tax_exigible = fields.Boolean(compute='_compute_always_tax_exigible', store=True)
+    always_tax_exigible = fields.Boolean(compute='_compute_always_tax_exigible', store=True, readonly=False)
 
     # === Misc fields === #
     auto_post = fields.Selection(
@@ -334,7 +335,7 @@ class AccountMove(models.Model):
     )
     display_qr_code = fields.Boolean(
         string="Display QR-code",
-        related='company_id.qr_code',
+        compute='_compute_display_qr_code',
     )
     qr_code_method = fields.Selection(
         string="Payment QR-code", copy=False,
@@ -348,6 +349,7 @@ class AccountMove(models.Model):
     invoice_outstanding_credits_debits_widget = fields.Binary(
         groups="account.group_account_invoice,account.group_account_readonly",
         compute='_compute_payments_widget_to_reconcile_info',
+        exportable=False,
     )
     invoice_has_outstanding = fields.Boolean(
         groups="account.group_account_invoice,account.group_account_readonly",
@@ -356,6 +358,7 @@ class AccountMove(models.Model):
     invoice_payments_widget = fields.Binary(
         groups="account.group_account_invoice,account.group_account_readonly",
         compute='_compute_payments_widget_reconciled_info',
+        exportable=False,
     )
 
     # === Currency fields === #
@@ -425,6 +428,7 @@ class AccountMove(models.Model):
         compute='_compute_tax_totals',
         inverse='_inverse_tax_totals',
         help='Edit Tax amounts if you encounter rounding issues.',
+        exportable=False,
     )
     payment_state = fields.Selection(
         selection=[
@@ -546,10 +550,6 @@ class AccountMove(models.Model):
 
     def _auto_init(self):
         super()._auto_init()
-        if self.pool.has_trigram:
-            # This index is for human searches
-            sql.create_index(self._cr, 'account_move_name_trigram_index', self._table, ['"name" gin_trgm_ops'], 'gin')
-
         self.env.cr.execute("""
             CREATE INDEX IF NOT EXISTS account_move_to_check_idx
             ON account_move(journal_id) WHERE to_check = true;
@@ -660,81 +660,29 @@ class AccountMove(models.Model):
 
     @api.depends('posted_before', 'state', 'journal_id', 'date')
     def _compute_name(self):
-        def journal_key(move):
-            return (move.journal_id, move.journal_id.refund_sequence and move.move_type)
-
-        def date_key(move):
-            return (move.date.year, move.date.month)
-
-        grouped = defaultdict(  # key: journal_id, move_type
-            lambda: defaultdict(  # key: first adjacent (date.year, date.month)
-                lambda: {
-                    'records': self.env['account.move'],
-                    'format': False,
-                    'format_values': False,
-                    'reset': False
-                }
-            )
-        )
         self = self.sorted(lambda m: (m.date, m.ref or '', m.id))
         highest_name = self[0]._get_last_sequence(lock=False) if self else False
 
-        # Group the moves by journal and month
         for move in self:
             if not highest_name and move == self[0] and not move.posted_before and move.date:
                 # In the form view, we need to compute a default sequence so that the user can edit
                 # it. We only check the first move as an approximation (enough for new in form view)
-                pass
+                move._set_next_sequence()
             elif move.quick_edit_mode and not move.posted_before:
                 # We always suggest the next sequence as the default name of the new move
-                pass
+                move._set_next_sequence()
             elif (move.name and move.name != '/') or move.state != 'posted':
                 try:
                     move._constrains_date_sequence()
-                    # Has already a name or is not posted, we don't add to a batch
-                    continue
+                    # The name matches the date: we don't recompute
                 except ValidationError:
                     # Has never been posted and the name doesn't match the date: recompute it
-                    pass
-            group = grouped[journal_key(move)][date_key(move)]
-            if not group['records']:
-                # Compute all the values needed to sequence this whole group
+                    move._set_next_sequence()
+            else:
+                # The name is not set yet and it is posted
                 move._set_next_sequence()
-                group['format'], group['format_values'] = move._get_sequence_format_param(move.name)
-                group['reset'] = move._deduce_sequence_number_reset(move.name)
-            group['records'] += move
-
-        # Fusion the groups depending on the sequence reset and the format used because `seq` is
-        # the same counter for multiple groups that might be spread in multiple months.
-        final_batches = []
-        for journal_group in grouped.values():
-            journal_group_changed = True
-            for date_group in journal_group.values():
-                if (
-                    journal_group_changed
-                    or final_batches[-1]['format'] != date_group['format']
-                    or dict(final_batches[-1]['format_values'], seq=0) != dict(date_group['format_values'], seq=0)
-                ):
-                    final_batches += [date_group]
-                    journal_group_changed = False
-                elif date_group['reset'] == 'never':
-                    final_batches[-1]['records'] += date_group['records']
-                elif (
-                    date_group['reset'] == 'year'
-                    and final_batches[-1]['records'][0].date.year == date_group['records'][0].date.year
-                ):
-                    final_batches[-1]['records'] += date_group['records']
-                else:
-                    final_batches += [date_group]
-
-        # Give the name based on previously computed values
-        for batch in final_batches:
-            for move in batch['records']:
-                move.name = batch['format'].format(**batch['format_values'])
-                batch['format_values']['seq'] += 1
 
         self.filtered(lambda m: not m.name).name = '/'
-        self._compute_split_sequence()
 
     @api.depends('journal_id', 'date')
     def _compute_highest_name(self):
@@ -1234,14 +1182,14 @@ class AccountMove(models.Model):
             if invoice.show_payment_term_details:
                 sign = 1 if invoice.is_inbound(include_receipts=True) else -1
                 payment_term_details = []
-                for line in invoice.line_ids.filtered(lambda l: l.display_type == 'payment_term'):
+                for line in invoice.line_ids.filtered(lambda l: l.display_type == 'payment_term').sorted('date_maturity'):
                     payment_term_details.append({
                         'date': format_date(self.env, line.date_maturity),
                         'amount': sign * line.amount_currency,
                         'discount_date': format_date(self.env, line.discount_date),
                         'discount_amount_currency': sign * line.discount_amount_currency,
                     })
-                invoice.payment_term_details = sorted(payment_term_details, key=lambda t: t.get('date'))
+                invoice.payment_term_details = payment_term_details
 
     @api.depends('move_type', 'payment_state', 'invoice_payment_term_id')
     def _compute_show_payment_term_details(self):
@@ -1256,6 +1204,7 @@ class AccountMove(models.Model):
                 invoice.show_discount_details = any(line.discount_date for line in payment_term_lines)
                 invoice.show_payment_term_details = len(payment_term_lines) > 1 or invoice.show_discount_details
             else:
+                invoice.show_discount_details = False
                 invoice.show_payment_term_details = False
 
     @api.depends('partner_id', 'invoice_source_email', 'partner_id.name')
@@ -1465,6 +1414,14 @@ class AccountMove(models.Model):
             for res in self.env.cr.dictfetchall()
         }
 
+    @api.depends('company_id')
+    def _compute_display_qr_code(self):
+        for record in self:
+            record.display_qr_code = (
+                record.move_type in ('out_invoice', 'out_receipt', 'in_invoice', 'in_receipt')
+                and record.company_id.qr_code
+            )
+
     # -------------------------------------------------------------------------
     # INVERSE METHODS
     # -------------------------------------------------------------------------
@@ -1506,7 +1463,7 @@ class AccountMove(models.Model):
             to_write = []
 
             amount_currency = abs(move.amount_total)
-            balance = move.currency_id._convert(amount_currency, move.company_currency_id, move.company_id, move.date)
+            balance = move.currency_id._convert(amount_currency, move.company_currency_id, move.company_id, move.invoice_date or move.date)
 
             for line in move.line_ids:
                 if not line.currency_id.is_zero(balance - abs(line.balance)):
@@ -1605,7 +1562,7 @@ class AccountMove(models.Model):
 
             if (
                 new_format != origin_format
-                or dict(new_format_values, seq=0) != dict(origin_format_values, seq=0)
+                or dict(new_format_values, year=0, month=0, seq=0) != dict(origin_format_values, year=0, month=0, seq=0)
             ):
                 changed = _(
                     "It was previously '%(previous)s' and it is now '%(current)s'.",
@@ -1692,13 +1649,12 @@ class AccountMove(models.Model):
                     "The total of debits equals %s and the total of credits equals %s.\n"
                     "You might want to specify a default account on journal \"%s\" to automatically balance each move.",
                     move.display_name,
-                    format_amount(self.env, sum_debit, move.currency_id),
-                    format_amount(self.env, sum_credit, move.currency_id),
+                    format_amount(self.env, sum_debit, move.company_id.currency_id),
+                    format_amount(self.env, sum_credit, move.company_id.currency_id),
                     move.journal_id.name)
             raise UserError(error_msg)
 
     def _get_unbalanced_moves(self, container):
-
         moves = container['records'].filtered(lambda move: move.line_ids)
         if not moves:
             return
@@ -1833,7 +1789,7 @@ class AccountMove(models.Model):
                 diff_amount_currency = diff_balance = difference
             else:
                 diff_amount_currency = difference
-                diff_balance = self.currency_id._convert(diff_amount_currency, self.company_id.currency_id, self.company_id, self.date)
+                diff_balance = self.currency_id._convert(diff_amount_currency, self.company_id.currency_id, self.company_id, self.invoice_date or self.date)
             return diff_balance, diff_amount_currency
 
         def _apply_cash_rounding(self, diff_balance, diff_amount_currency, cash_rounding_line):
@@ -2408,9 +2364,6 @@ class AccountMove(models.Model):
     # -------------------------------------------------------------------------
     # SEQUENCE MIXIN
     # -------------------------------------------------------------------------
-
-    def _must_check_constrains_date_sequence(self):
-        return not self.posted_before and not self.quick_edit_mode
 
     def _get_last_sequence_domain(self, relaxed=False):
         # EXTENDS account sequence.mixin
@@ -3315,6 +3268,9 @@ class AccountMove(models.Model):
                     move.currency_id.name
                 ))
 
+            if move.line_ids.account_id.filtered(lambda account: account.deprecated):
+                raise UserError(_("A line of this move is using a deprecated account, you cannot post it."))
+
             affects_tax_report = move._affect_tax_report()
             lock_dates = move._get_violated_lock_dates(move.date, affects_tax_report)
             if lock_dates:
@@ -3322,10 +3278,6 @@ class AccountMove(models.Model):
 
         # Create the analytic lines in batch is faster as it leads to less cache invalidation.
         to_post.line_ids._create_analytic_lines()
-        to_post.write({
-            'state': 'posted',
-            'posted_before': True,
-        })
 
         # Trigger copying for recurring invoices
         to_post.filtered(lambda m: m.auto_post not in ('no', 'at_date'))._copy_recurring_entries()
@@ -3340,6 +3292,12 @@ class AccountMove(models.Model):
             if wrong_lines:
                 wrong_lines.write({'partner_id': invoice.commercial_partner_id.id})
 
+        to_post.write({
+            'state': 'posted',
+            'posted_before': True,
+        })
+
+        for invoice in to_post:
             invoice.message_subscribe([
                 p.id
                 for p in [invoice.partner_id]
@@ -3786,8 +3744,8 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
 
-        if not self.is_invoice():
-            raise UserError(_("QR-codes can only be generated for invoice entries."))
+        if not self.display_qr_code:
+            return None
 
         qr_code_method = self.qr_code_method
         if qr_code_method:

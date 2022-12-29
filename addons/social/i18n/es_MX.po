@@ -3,16 +3,16 @@
 # 	* social
 # 
 # Translators:
-# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
 # Martin Trigaux, 2022
+# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:27+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/odoo/teams/41243/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,13 +26,14 @@ msgid "# Accounts"
 msgstr "# Cuentas"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "%s (max %s chars)"
-msgstr ""
+msgstr "%s (máximo %s caracteres)"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid ", you must first link a social media."
@@ -50,11 +51,11 @@ msgstr "<i class=\"fa fa-globe\" title=\"Ver la publicación\"/>"
 
 #. module: social
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_kanban
-msgid "<small>Clicks:</small>"
-msgstr "<small>Clics:</small>"
+msgid "<small class=\"pe-1\">Clicks:</small>"
+msgstr ""
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid ""
@@ -96,7 +97,7 @@ msgid "Activity Type Icon"
 msgstr "Icono de tipo de actividad"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Add"
@@ -105,10 +106,10 @@ msgstr "Agregar"
 #. module: social
 #: model_terms:ir.ui.view,arch_db:social.utm_campaign_view_form
 msgid "Add Post"
-msgstr ""
+msgstr "Agregar publicación"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/add_stream_modal.js:0
 #: code:addons/social/static/src/js/stream_post_kanban_controller.js:0
 #: code:addons/social/static/src/xml/social_templates.xml:0
@@ -122,14 +123,14 @@ msgid "Add a stream"
 msgstr "Agregar un flujo"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Add an image"
 msgstr "Agregar una imagen"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "All Companies"
@@ -169,7 +170,7 @@ msgid "Attachment Count"
 msgstr "Número de archivos adjuntos"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model:ir.model.fields,field_description:social.field_social_account__audience
 #, python-format
@@ -248,7 +249,7 @@ msgid "Can link accounts ?"
 msgstr "Se pueden vincular cuentas"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_form
 #, python-format
@@ -256,14 +257,14 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Choose which <b>account</b> you would like to link first."
 msgstr "Elija qué <b>cuenta</b> quiere vincular primero."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Click to refresh."
@@ -275,7 +276,7 @@ msgid "Clicks"
 msgstr "Clics"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Comment Image"
@@ -304,7 +305,7 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Connecting Problem"
@@ -316,6 +317,8 @@ msgid ""
 "Contains the social media handle of the person that created this account. "
 "E.g: '@odoo.official' for the 'Odoo' Twitter account"
 msgstr ""
+"Contiene el nombre de usuario en redes sociales de la persona que creó esta "
+"cuenta. Por ejemplo '@odoo.official' para la cuenta de Twitter de 'Odoo'"
 
 #. module: social
 #: model:ir.model.fields,help:social.field_social_live_post__message
@@ -348,6 +351,7 @@ msgid "Create a Post"
 msgstr "Crear una publicación"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_account.py:0
 #, python-format
 msgid ""
@@ -398,7 +402,7 @@ msgid "Defines whether this account has statistics tends or not."
 msgstr "Define si la cuenta tiene estadísticas de las tendencias o no."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_comment.js:0
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
@@ -418,7 +422,7 @@ msgstr "Descripción"
 #. module: social
 #: model_terms:ir.ui.view,arch_db:social.res_config_settings_view_form
 msgid "Developer Accounts"
-msgstr ""
+msgstr "Cuentas de desarrollador"
 
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_account__display_name
@@ -434,11 +438,11 @@ msgid "Display Name"
 msgstr "Nombre en pantalla"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_comment.js:0
 #, python-format
 msgid "Do you really want to delete %s"
-msgstr ""
+msgstr "¿En serio quiere borrar %s?"
 
 #. module: social
 #: model:ir.model.fields.selection,name:social.selection__social_post__state__draft
@@ -446,15 +450,18 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid ""
 "Due to length restrictions, the following posts cannot be posted:\n"
 " %s"
 msgstr ""
+"Debido a restricciones de caracteres, las siguientes publicaciones no se pueden realizar:\n"
+"%s"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Edit Comment"
@@ -471,9 +478,11 @@ msgid ""
 "Enable this option and load demo data to test the social module.<br/>\n"
 "                                        This must never be used on a production database!"
 msgstr ""
+"Active esta opción y cargue datos de demostración pera probar el módulo Social.<br/>\n"
+"                                        ¡Nunca use esto en una base de datos de producción!"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model:ir.model.fields,field_description:social.field_social_account__engagement
 #: model:ir.model.fields,field_description:social.field_social_live_post__engagement
@@ -503,7 +512,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:social.selection__social_live_post__state__failed
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_kanban
 msgid "Failed"
-msgstr "Fallido"
+msgstr "Falló"
 
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_live_post__failure_reason
@@ -517,6 +526,7 @@ msgid "Feed"
 msgstr "Feed"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_form
 #, python-format
@@ -579,10 +589,10 @@ msgstr "Agrupar por"
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_account__social_account_handle
 msgid "Handle / Short Name"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Happy with the result? Let's post it!"
@@ -654,7 +664,7 @@ msgid "Image URL"
 msgstr "URL de la imagen"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Image Url"
@@ -672,7 +682,7 @@ msgid "Images that were shared with this post."
 msgstr "Imágenes que se compartieron con esta publicación."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Insights"
@@ -685,7 +695,7 @@ msgid "Is Follower"
 msgstr "Es un seguidor"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid ""
@@ -696,7 +706,7 @@ msgstr ""
 "volver a vincular la cuenta"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_kanban_controller.js:0
 #, python-format
 msgid "It will appear in the Feed once it has posts to display."
@@ -742,35 +752,35 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Let's <b>connect</b> to Facebook, LinkedIn or Twitter."
 msgstr "<b>Conectemos</b> con Facebook, LinkedIn o Twitter."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Let's create your own <b>social media</b> dashboard."
 msgstr "Creemos su tablero de <b>red social</b>"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Let's start posting."
 msgstr "Comencemos a publicar."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Like"
 msgstr "Me gusta"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Likes"
@@ -782,7 +792,7 @@ msgid "Link Description"
 msgstr "Descripción del enlace"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model_terms:ir.ui.view,arch_db:social.social_stream_post_view_kanban
@@ -806,7 +816,7 @@ msgid "Link URL"
 msgstr "URL del enlace"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Link a new account"
@@ -865,7 +875,7 @@ msgid "Live Posts by Social Media"
 msgstr "Publicaciones en directo por red social"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Load more comments..."
@@ -878,7 +888,7 @@ msgid "Main Attachment"
 msgstr "Archivo adjunto principal"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Main actions"
@@ -887,7 +897,7 @@ msgstr "Acciones principales"
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_media__max_post_length
 msgid "Max Post Length"
-msgstr ""
+msgstr "Longitud máxima de la publicación"
 
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_post__media_ids
@@ -919,15 +929,17 @@ msgstr "Error de envío de mensaje"
 #: model:ir.model.fields,field_description:social.field_social_post__message_length
 #: model:ir.model.fields,field_description:social.field_social_post_template__message_length
 msgid "Message Length"
-msgstr ""
+msgstr "Longitud del mensaje"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "Message posted"
 msgstr "Mensaje publicado"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid ""
@@ -977,7 +989,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_kanban_controller.js:0
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
@@ -985,14 +997,14 @@ msgid "New Post"
 msgstr "Nueva publicación"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "New content available"
-msgstr ""
+msgstr "Nuevo contenido disponible"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Next"
@@ -1034,14 +1046,14 @@ msgid "No Stream added yet!"
 msgstr "¡Todavía no se ha agregado un flujo!"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "No comments yet."
 msgstr "Todavía no hay comentarios."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_kanban_controller.js:0
 #, python-format
 msgid "No social accounts configured, please contact your administrator."
@@ -1054,7 +1066,7 @@ msgid "Number of Actions"
 msgstr "Número de acciones"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Number of Followers of your channel"
@@ -1114,7 +1126,7 @@ msgstr ""
 "retuiteos...)"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid ""
@@ -1125,7 +1137,7 @@ msgstr ""
 "gusta, comentarios, compartidos...)"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid ""
@@ -1136,7 +1148,7 @@ msgstr ""
 " en el feed de sus amigos o seguidores (compartidos, retuiteos...)"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Or add"
@@ -1165,6 +1177,7 @@ msgstr ""
 "tiempo definido. "
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "Please specify at least one account to post into (for post ID(s) %s)."
@@ -1173,6 +1186,7 @@ msgstr ""
 "publicaciones %s)."
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_form
 #, python-format
@@ -1180,7 +1194,7 @@ msgid "Post"
 msgstr "Publicación"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model_terms:ir.ui.view,arch_db:social.social_post_view_kanban
@@ -1190,7 +1204,7 @@ msgid "Post Image"
 msgstr "Publicar imagen"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/post_kanban_view.js:0
 #: code:addons/social/static/src/js/stream_post_comments.js:0
 #: code:addons/social/static/src/js/stream_post_kanban_record.js:0
@@ -1260,7 +1274,7 @@ msgid "Posts By Accounts"
 msgstr "Publicaciones por cuentas"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Press Enter to post. Press Shift+Enter to insert a Line Break."
@@ -1274,7 +1288,7 @@ msgid "Preview your post"
 msgstr "Previsualice su publicación"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Previous"
@@ -1321,7 +1335,7 @@ msgid "Related social Account"
 msgstr "Cuenta de red social relacionada"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Reply"
@@ -1365,6 +1379,7 @@ msgid "Scheduled Date"
 msgstr "Fecha programada"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "Selected accounts (%s) do not match the selected company (%s)"
@@ -1393,6 +1408,8 @@ msgstr ""
 msgid ""
 "Set a maximum number of characters can be posted in post. 0 for no limit."
 msgstr ""
+"Establezca un número de caracteres máximos para publicar. Si no tiene "
+"límite, ponga 0."
 
 #. module: social
 #: model:ir.actions.act_window,name:social.action_social_global_settings
@@ -1434,7 +1451,7 @@ msgid "Social Marketing"
 msgstr "Marketing Social"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model:ir.actions.act_window,name:social.action_social_media
 #: model:ir.model,name:social.model_social_media
@@ -1511,12 +1528,11 @@ msgstr "Usuario social"
 #. module: social
 #: model:ir.actions.server,name:social.ir_cron_post_scheduled_ir_actions_server
 #: model:ir.cron,cron_name:social.ir_cron_post_scheduled
-#: model:ir.cron,name:social.ir_cron_post_scheduled
 msgid "Social: Publish Scheduled Posts"
 msgstr "Social: hacer las publicaciones programadas"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_kanban_dashboard.js:0
 #, python-format
 msgid ""
@@ -1538,8 +1554,7 @@ msgid ""
 " media ids (used for kanban view)."
 msgstr ""
 "Campo especial técnico que contiene un dict en donde están los títulos de "
-"las publicaciones en vivo en las IDs de medios (se usa para la vista "
-"kanban)."
+"las publicaciones en vivo en las ID de medios (se usa para la vista kanban)."
 
 #. module: social
 #: model:ir.model.fields,field_description:social.field_social_account__stats_link
@@ -1566,7 +1581,7 @@ msgstr ""
 "Planeada: futuras actividades."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #: model:ir.model.fields,field_description:social.field_social_account__stories
 #, python-format
@@ -1579,7 +1594,7 @@ msgid "Stories Trend"
 msgstr "Tendencias de historias"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_kanban_controller.js:0
 #, python-format
 msgid "Stream Added (%s)"
@@ -1624,13 +1639,14 @@ msgstr ""
 "sociales seleccionadas."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Synchronize"
 msgstr "Sincronizar"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post_template.py:0
 #, python-format
 msgid "The 'message' field is required for post ID %s"
@@ -1703,7 +1719,7 @@ msgid "Title"
 msgstr "Título"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "To add a stream"
@@ -1737,12 +1753,14 @@ msgid "UTM Source"
 msgstr "UTM Source"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "Unknown error"
 msgstr "Error desconocido"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post_template.py:0
 #, python-format
 msgid "Uploaded file does not seem to be a valid image."
@@ -1754,6 +1772,8 @@ msgid ""
 "Use your own Developer Accounts on our Social app.\n"
 "                            Those credentials are provided in the developer section of your professional social media account."
 msgstr ""
+"Use sus propias cuentas de desarrollador en nuestra aplicación Social.\n"
+"                            Las credenciales las podrá obtener en la sección de desarrollador en su cuenta de red social."
 
 #. module: social
 #: model:ir.model.fields,help:social.field_social_account__media_type
@@ -1767,7 +1787,7 @@ msgstr ""
 "características para una red social específica ('facebook', 'twitter', ...)."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "View"
@@ -1807,21 +1827,21 @@ msgstr ""
 "Adjuntará imágenes a sus publicaciones (si es compatible con la red social)."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Write a comment..."
 msgstr "Escriba un comentario..."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/tours/social.js:0
 #, python-format
 msgid "Write a message to get a preview of your post."
 msgstr "Escriba un mensaje para obtener una vista previa de su publicación."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "Write a reply..."
@@ -1837,12 +1857,14 @@ msgstr ""
 "se publiquen después en diferentes plataformas al mismo tiempo."
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/social_post.py:0
 #, python-format
 msgid "You can only move posts that are scheduled."
 msgstr "Solo puede mover publicaciones que estén programadas."
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/utm_medium.py:0
 #, python-format
 msgid ""
@@ -1853,6 +1875,7 @@ msgstr ""
 "%(social_accounts)s"
 
 #. module: social
+#. odoo-python
 #: code:addons/social/models/utm_source.py:0
 #, python-format
 msgid ""
@@ -1868,7 +1891,7 @@ msgid "Your Post"
 msgstr "Su publicación."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "a Stream from an existing account"
@@ -1880,7 +1903,7 @@ msgid "before posting."
 msgstr "antes de publicar."
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/js/stream_post_comment.js:0
 #, python-format
 msgid "comment/reply"
@@ -1892,14 +1915,14 @@ msgid "dashboard"
 msgstr "tablero"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "for"
 msgstr "para"
 
 #. module: social
-#. openerp-web
+#. odoo-javascript
 #: code:addons/social/static/src/xml/social_templates.xml:0
 #, python-format
 msgid "replies..."

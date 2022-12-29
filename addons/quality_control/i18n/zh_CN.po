@@ -5,14 +5,15 @@
 # Translators:
 # Martin Trigaux, 2022
 # Raymond Yu <cl_yu@hotmail.com>, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:47+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Raymond Yu <cl_yu@hotmail.com>, 2022\n"
+"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +141,7 @@ msgstr "<strong>备注 : </strong>"
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.view_quality_point_kanban
 msgid "<strong>Operations :</strong>"
-msgstr "<strong>操作</strong>"
+msgstr "<strong>作业：</strong>"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.worksheet_page
@@ -236,7 +237,7 @@ msgstr "检查"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_stock_move_line__check_state
 msgid "Check State"
-msgstr "核对状态"
+msgstr "检查状态"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.quality_check_view_tree
@@ -504,7 +505,7 @@ msgstr "批次行"
 #: model:ir.model.fields,field_description:quality_control.field_quality_check_wizard__is_lot_tested_fractionally
 #: model:ir.model.fields,field_description:quality_control.field_quality_point__is_lot_tested_fractionally
 msgid "Lot Tested Fractionally"
-msgstr "批次测试"
+msgstr "批次略微测试"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.view_quality_check_wizard
@@ -577,6 +578,7 @@ msgid "Nb Checks"
 msgstr "检查"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #, python-format
 msgid "New"
@@ -590,7 +592,7 @@ msgstr "下一页"
 #. module: quality_control
 #: model:ir.model.fields.selection,name:quality_control.selection__stock_move_line__check_state__no_checks
 msgid "No checks"
-msgstr "检查"
+msgstr "无检查"
 
 #. module: quality_control
 #: model_terms:ir.actions.act_window,help:quality_control.quality_check_action_spc
@@ -633,7 +635,7 @@ msgstr "正常"
 #: model:ir.model.fields,field_description:quality_control.field_quality_check_wizard__norm_unit
 #: model:ir.model.fields,field_description:quality_control.field_quality_point__norm_unit
 msgid "Norm Unit"
-msgstr "正常单位"
+msgstr "基准单位"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_quality_check_wizard__note
@@ -654,7 +656,7 @@ msgstr "OK"
 #: model:ir.model.fields.selection,name:quality_control.selection__quality_check__measure_on__operation
 #: model:ir.model.fields.selection,name:quality_control.selection__quality_point__measure_on__operation
 msgid "Operation"
-msgstr "操作"
+msgstr "作业"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_quality_check__measure_on
@@ -677,7 +679,7 @@ msgstr "概述"
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.quality_point_view_form_inherit_quality_control
 msgid "Partial Transfer Test"
-msgstr "部分转移测试"
+msgstr "部分调拨测试"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.quality_check_view_form
@@ -718,6 +720,7 @@ msgid "Picture"
 msgstr "图片"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #, python-format
 msgid "Picture Uploaded"
@@ -780,6 +783,7 @@ msgid "Quality"
 msgstr "质量"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #: code:addons/quality_control/models/quality.py:0
 #: model:ir.model,name:quality_control.model_quality_alert
@@ -799,7 +803,7 @@ msgstr "质量警报分析"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_stock_picking__quality_alert_count
 msgid "Quality Alert Count"
-msgstr "质量警报次数"
+msgstr "质量警报计数"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.quality_alert_stage_action
@@ -825,6 +829,7 @@ msgid "Quality Alerts"
 msgstr "质量警报"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #: model:ir.actions.act_window,name:quality_control.action_quality_check_wizard
 #: model:ir.model,name:quality_control.model_quality_check
@@ -845,6 +850,7 @@ msgid "Quality Check Fail"
 msgstr "未通过"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/wizard/quality_check_wizard.py:0
 #: model_terms:ir.ui.view,arch_db:quality_control.quality_check_wizard_form_failure
 #, python-format
@@ -867,6 +873,7 @@ msgid "Quality Check:"
 msgstr "质量检查："
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #: model:ir.actions.act_window,name:quality_control.quality_check_action_main
 #: model:ir.actions.act_window,name:quality_control.quality_check_action_picking
@@ -891,12 +898,12 @@ msgstr "质量检查SPC"
 #. module: quality_control
 #: model:ir.ui.menu,name:quality_control.menu_quality_control
 msgid "Quality Control"
-msgstr "质量管理"
+msgstr "质量控制"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_quality_point
 msgid "Quality Control Point"
-msgstr "质量管理节点"
+msgstr "质量控制点"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_product_product__quality_control_point_qty
@@ -907,7 +914,7 @@ msgstr "质量控制点 数量"
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.quality_point_action
 msgid "Quality Control Points"
-msgstr "质量管理点"
+msgstr "质量控制点"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_product_product__quality_fail_qty
@@ -1174,12 +1181,21 @@ msgid "Worksheet Report - Internal (PDF)"
 msgstr "工作表报告 - 内部 (PDF)"
 
 #. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/quality.py:0
 #, python-format
 msgid "You measured %.2f %s and it should be between %.2f and %.2f %s."
 msgstr "您的测量值为 %.2f %s，且该值应在 %.2f 和 %.2f %s 之间。"
 
 #. module: quality_control
+#. odoo-python
+#: code:addons/quality_control/wizard/quality_check_wizard.py:0
+#, python-format
+msgid "You must provide a picture before validating"
+msgstr ""
+
+#. module: quality_control
+#. odoo-python
 #: code:addons/quality_control/models/stock_picking.py:0
 #, python-format
 msgid "You still need to do the quality checks!"

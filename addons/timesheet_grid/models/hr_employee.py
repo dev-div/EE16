@@ -21,7 +21,7 @@ class Employee(models.Model):
         compute='_compute_timesheet_manager', store=True, readonly=False,
         domain=_get_timesheet_manager_id_domain,
         help='Select the user responsible for approving "Timesheet" of this employee.\n'
-             'If empty, the approval is done by an Administrator or Team Approver (determined in settings/users).')
+             'If empty, the approval is done by a Timesheets > Administrator or a Timesheets > User: all timesheets (as determined in the users settings).')
 
     last_validated_timesheet_date = fields.Date(groups="hr_timesheet.group_timesheet_manager")
 
@@ -99,8 +99,10 @@ class Employee(models.Model):
 
         uom = str(self.env.company.timesheet_encode_uom_id.name).lower()
 
-        employee_ids = [employee_data['id'] for employee_data in employees_grid_data if 'id' in employee_data]
-        employees = self.env['hr.employee'].browse(employee_ids)
+        employees = self.env['hr.employee'].with_context(active_test=False).search([
+            ('id', 'in', [data['id'] for data in employees_grid_data]),
+            ('company_id', 'in', self.env.companies.ids),
+        ])
         hours_per_day_per_employee = {}
 
         employees_work_days_data, _dummy = employees.resource_id.sudo()._get_valid_work_intervals(start_datetime, end_datetime)
@@ -117,7 +119,7 @@ class Employee(models.Model):
             result[employee.id] = {'units_to_work': units_to_work, 'uom': uom, 'worked_hours': 0.0}
 
         query = self._get_timesheets_and_working_hours_query()
-        self.env.cr.execute(query, (tuple(employee_ids), date_start, date_stop))
+        self.env.cr.execute(query, (tuple(employees.ids), date_start, date_stop))
 
         for data_row in self.env.cr.dictfetchall():
 

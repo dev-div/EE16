@@ -22,7 +22,7 @@ import {
 } from '@web_editor/js/editor/odoo-editor/src/utils/utils';
 import { toInline } from 'web_editor.convertInline';
 import { loadJS } from '@web/core/assets';
-const {
+import {
     markup,
     Component,
     useRef,
@@ -33,7 +33,7 @@ const {
     onWillUpdateProps,
     useEffect,
     onWillUnmount,
-} = owl;
+} from "@odoo/owl";
 
 export class HtmlFieldWysiwygAdapterComponent extends ComponentAdapter {
     setup() {
@@ -62,9 +62,7 @@ export class HtmlFieldWysiwygAdapterComponent extends ComponentAdapter {
             !_.isEqual(lastRecordInfo, newRecordInfo) ||
             !_.isEqual(lastCollaborationChannel, newCollaborationChannel))
         {
-            this.widget.resetEditor(newValue, {
-                collaborationChannel: newCollaborationChannel,
-            });
+            this.widget.resetEditor(newValue, newProps.widgetArgs[0]);
             this.env.onWysiwygReset && this.env.onWysiwygReset();
         }
     }
@@ -115,8 +113,8 @@ export class HtmlField extends Component {
             }
 
             const newRecordInfo = {
-                res_model: this.props.record.resModel,
-                res_id: this.props.record.resId,
+                res_model: newProps.record.resModel,
+                res_id: newProps.record.resId,
             };
             if (!_.isEqual(this._lastRecordInfo, newRecordInfo)) {
                 this.currentEditingValue = undefined;
@@ -160,7 +158,6 @@ export class HtmlField extends Component {
             if (this.resizerHandleObserver) {
                 this.resizerHandleObserver.disconnect();
             }
-            this.updateValue();
         });
     }
 
@@ -229,6 +226,7 @@ export class HtmlField extends Component {
                 res_model: this.props.record.resModel,
                 res_id: this.props.record.resId,
             },
+            fieldId: this.props.id,
         };
     }
     /**
@@ -308,7 +306,7 @@ export class HtmlField extends Component {
      *
      * @param {JQuery} $codeview
      */
-    toggleCodeView (el = this.codeViewRef.el) {
+    toggleCodeView() {
         this.state.showCodeView = !this.state.showCodeView;
 
         this.wysiwyg.odooEditor.observerUnactive('toggleCodeView');
@@ -318,7 +316,7 @@ export class HtmlField extends Component {
             this.props.update(value);
         } else {
             this.wysiwyg.odooEditor.observerActive('toggleCodeView');
-            const $codeview = $(el);
+            const $codeview = $(this.codeViewRef.el);
             const value = $codeview.val();
             this.props.update(value);
 
@@ -354,10 +352,13 @@ export class HtmlField extends Component {
     async commitChanges({ urgent } = {}) {
         if (this._isDirty() || urgent) {
             if (this.wysiwyg) {
+                // Avoid listening to changes made during the _toInline process.
+                this.wysiwyg.odooEditor.observerUnactive('commitChanges');
                 await this.wysiwyg.saveModifiedImages();
                 if (this.props.isInlineStyle) {
                     await this._toInline();
                 }
+                this.wysiwyg.odooEditor.observerActive('commitChanges');
             }
             await this.updateValue();
         }

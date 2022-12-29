@@ -38,7 +38,7 @@ odoo.define('account_accountant.tour', function (require) {
             // The tour will stop here if there is at least 1 vendor bill in the database.
             // While not ideal, it is ok, since that means the user obviously knows how to create a vendor bill...
             {
-                trigger: 'button.btn-primary[data-name="action_create_vendor_bill"]',
+                trigger: 'button.btn-primary[name="action_create_vendor_bill"]',
                 content: Markup(_t('Create your first vendor bill.<br/><br/><i>Tip: If you don’t have one on hand, use our sample bill.</i>')),
                 position: 'bottom',
             }, {
@@ -47,17 +47,16 @@ odoo.define('account_accountant.tour', function (require) {
                 position: 'top',
             }, {
                 trigger: '.o_data_cell',
-                extra_trigger: 'tr:not(.o_sample_data_disabled)>td:has(span[name="payment_state"])',
+                extra_trigger: 'tr:not(.o_sample_data_disabled)>td:has(div[name="payment_state"])',
                 content: _t('Let’s see how a bill looks like in form view.'),
                 position: 'bottom',
             }, {
                 trigger: 'button.btn-primary[name="action_post"]',
-                extra_trigger: 'body:has(div[name="waiting_extraction"].o_invisible_modifier)',
                 content: _t('Check & validate the bill. If no vendor has been found, add one before validating.'),
                 position: 'bottom',
             }, {
                 trigger: '.dropdown-item[data-menu-xmlid="account.menu_board_journal_1"]',
-                extra_trigger: 'button[data-value="posted"].btn-primary',
+                extra_trigger: 'button[data-value="posted"].btn',
                 content: _t('Let’s go back to the dashboard.'),
                 position: 'bottom',
             }, {
@@ -71,11 +70,11 @@ odoo.define('account_accountant.tour', function (require) {
                     $('.js_cancel').click();
                 }
             }, {
-                trigger: 'button[data-name="action_open_reconcile"]',
+                trigger: 'button[name="action_open_reconcile"]',
                 content: _t('Let’s reconcile the fetched bank transactions.'),
             }, {
-                trigger: '.o_reconciliation_lines .accounting_view button:visible',
-                content: _t('Process this transaction.')
+                trigger: 'button[name="button_validate"]',
+                content: _t('Process this transaction.'),
             }, {
                 trigger: '.breadcrumb-item:not(.active):first',
                 content: _t('Get back to the dashboard using your previous path…'),

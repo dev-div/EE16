@@ -65,7 +65,7 @@ class MrpProductionWorkcenterLine(models.Model):
     def _compute_quality_point_ids(self):
         for workorder in self:
             quality_points = workorder.operation_id.quality_point_ids
-            quality_points = quality_points.filtered(lambda qp: not qp.product_ids or workorder.production_id.product_id in qp.product_ids)
+            quality_points = quality_points.filtered(lambda qp: (not qp.product_ids or workorder.production_id.product_id in qp.product_ids) and (qp.company_id == workorder.company_id))
             workorder.quality_point_ids = quality_points
 
     @api.depends('operation_id')
@@ -400,7 +400,6 @@ class MrpProductionWorkcenterLine(models.Model):
             return True
 
         self.ensure_one()
-        self._check_sn_uniqueness()
         self._check_company()
         if any(x.quality_state == 'none' for x in self.check_ids if x.test_type != 'instructions'):
             raise UserError(_('You still need to do the quality checks!'))
@@ -437,7 +436,8 @@ class MrpProductionWorkcenterLine(models.Model):
             for wo in (self.production_id | backorder).workorder_ids:
                 if wo.state in ('done', 'cancel'):
                     continue
-                wo.current_quality_check_id.update(wo._defaults_from_move(wo.move_id))
+                if not wo.current_quality_check_id or not wo.current_quality_check_id.move_line_id:
+                    wo.current_quality_check_id.update(wo._defaults_from_move(wo.move_id))
                 if wo.move_id:
                     wo.current_quality_check_id._update_component_quantity()
             if not self.env.context.get('no_start_next'):
@@ -523,6 +523,7 @@ class MrpProductionWorkcenterLine(models.Model):
             'quality.check': self.check_ids._get_fields_for_tablet(sorted_check_list),
             'operation': self.operation_id.read(self.operation_id._get_fields_for_tablet())[0] if self.operation_id else {},
             'working_state': self.workcenter_id.working_state,
+            'has_bom': bool(self.production_id.bom_id),
             'views': {
                 'workorder': self.env.ref('mrp_workorder.mrp_workorder_view_form_tablet').id,
                 'check': self.env.ref('mrp_workorder.quality_check_view_form_tablet').id,
@@ -540,16 +541,16 @@ class MrpProductionWorkcenterLine(models.Model):
         last30op = self.env['mrp.workorder'].search_read([
             ('operation_id', '=', self.operation_id.id),
             ('date_finished', '>', fields.datetime.today() - relativedelta(days=30)),
-        ], ['duration'], order='duration')
-        last30op = [item['duration'] for item in last30op]
+        ], ['duration', 'qty_produced'])
+        last30op = sorted([item['duration'] / item['qty_produced'] for item in last30op])
+        # show rainbow man only for the best time in the last 30 days.
+        if last30op:
+            show_rainbow = show_rainbow and float_compare((self.duration / self.qty_producing), last30op[0], precision_digits=2) <= 0
 
-        passed_checks = len(list(check.quality_state == 'pass' for check in self.check_ids))
-        if passed_checks:
-            score = int(3.0 * len(self.check_ids) / passed_checks)
-        elif not self.check_ids:
-            score = 3
-        else:
-            score = 0
+        score = 3
+        if self.check_ids:
+            passed_checks = len(list(check for check in self.check_ids if check.quality_state == 'pass'))
+            score = int(3.0 * passed_checks / len(self.check_ids))
 
         return {
             'duration': self.duration,

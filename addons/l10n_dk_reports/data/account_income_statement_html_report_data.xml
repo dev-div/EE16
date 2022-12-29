@@ -274,7 +274,7 @@
     </record>
     <record id="account_financial_report_l10n_lu_dk_action" model="ir.actions.client">
         <field name="name">Resultatopgørelse</field>
-        <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('account_income_statement_report_l10n_dk_resultatopgørelse')}"/>
+        <field name="context" eval="{'model': 'account.report', 'report_id': ref('account_income_statement_report_l10n_dk_resultatopgørelse')}"/>
         <field name="tag">account_report</field>
     </record>
 </odoo>

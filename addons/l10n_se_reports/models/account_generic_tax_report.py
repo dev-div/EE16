@@ -19,9 +19,9 @@ class AccountGenericTaxReport(models.Model):
     def l10n_se_export_tax_report_to_xml(self, options):
         report_lines = self._get_lines(options)
         export_template = 'l10n_se_reports.tax_export_xml'
-        colname_to_idx = {col['name']: idx for idx, col in enumerate(options.get('columns', []))}
+        colname_to_idx = {col['expression_label']: idx for idx, col in enumerate(options.get('columns', []))}
         lines_mapping = {
-            line['columns'][colname_to_idx['Balance']]['report_line_id']: float_repr(line['columns'][colname_to_idx['Balance']]['no_format'], 0) for line in report_lines
+            line['columns'][colname_to_idx['balance']]['report_line_id']: float_repr(line['columns'][colname_to_idx['balance']]['no_format'], 0) for line in report_lines
         }
         template_context = {}
         for record in self.env['account.report.line'].browse(lines_mapping.keys()):

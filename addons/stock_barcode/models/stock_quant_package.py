@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, api
+from odoo.osv import expression
 
 
 class QuantPackage(models.Model):
@@ -33,4 +34,7 @@ class QuantPackage(models.Model):
             ('package_use', '=', 'reusable'),
             ('location_id', '=', False),
         ]
+        loc_ids = self._context.get('pack_locs')
+        if loc_ids:
+            usable_packages_domain = expression.OR([usable_packages_domain, [('location_id', 'in', loc_ids)]])
         return self.env['stock.quant.package'].search(usable_packages_domain)

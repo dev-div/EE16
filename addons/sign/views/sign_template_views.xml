@@ -178,10 +178,11 @@
         </field>
     </record>
 
-    <record id="sign_template_tour_action" model="ir.actions.client">
-        <field name="name">Template Sample Contract.pdf</field>
-        <field name="tag">sign.Template</field>
-        <field name="context" eval="{'sign_edit_call': 'sign_send_request', 'id':ref('template_sign_tour'), 'sign_directly_without_mail': False}"/>
+    <record id="sign_template_tour_trigger_action" model="ir.actions.server">
+        <field name="name">Template Sample Contract.pdf trigger</field>
+        <field name="model_id" ref="sign.model_sign_template"/>
+        <field name="state">code</field>
+        <field name="code">action = model.trigger_template_tour()</field>
     </record>
 
     <record id="sign_template_action" model="ir.actions.act_window">
@@ -199,7 +200,7 @@
             </p>
             <p>Upload a PDF file to create your first template</p>
             <p>- or -</p>
-            <a type="action" name="%(sign.sign_template_tour_action)d" class="btn btn-primary text-white o_sign_sample">Try our sample document</a>
+            <a type="action" name="%(sign.sign_template_tour_trigger_action)d" class="btn btn-primary text-white o_sign_sample">Try our sample document</a>
         </field>
     </record>
 

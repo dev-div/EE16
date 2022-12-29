@@ -13,7 +13,7 @@ class Task(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'type': 'warning',
-                    'message': 'Recurring tasks cannot be converted into tickets.',
+                    'message': _('Recurring tasks cannot be converted into tickets.'),
                 }
             }
         return {

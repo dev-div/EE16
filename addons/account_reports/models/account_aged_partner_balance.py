@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import models, fields
+from odoo import models, fields, _
 
 from dateutil.relativedelta import relativedelta
 from itertools import chain
@@ -201,11 +201,16 @@ class AgedPartnerBalanceCustomHandler(models.AbstractModel):
 
             GROUP BY {groupby_clause}
 
-            HAVING (
-                SUM(ROUND(account_move_line.balance * currency_table.rate, currency_table.precision))
-                - COALESCE(SUM(ROUND(part_debit.amount * currency_table.rate, currency_table.precision)), 0)
-                + COALESCE(SUM(ROUND(part_credit.amount * currency_table.rate, currency_table.precision)), 0)
-            ) != 0
+            HAVING
+                (
+                    SUM(ROUND(account_move_line.debit * currency_table.rate, currency_table.precision))
+                    - COALESCE(SUM(ROUND(part_debit.amount * currency_table.rate, currency_table.precision)), 0)
+                ) != 0
+                OR
+                (
+                    SUM(ROUND(account_move_line.credit * currency_table.rate, currency_table.precision))
+                    - COALESCE(SUM(ROUND(part_credit.amount * currency_table.rate, currency_table.precision)), 0)
+                ) != 0
             {tail_query}
         """
 
@@ -241,3 +246,35 @@ class AgedPartnerBalanceCustomHandler(models.AbstractModel):
         action = self.env['account.report'].open_journal_items(options=options, params=params)
         action.get('context', {}).update({'search_default_group_by_account': 0, 'search_default_group_by_partner': 1})
         return action
+
+
+class AgedPayableCustomHandler(models.AbstractModel):
+    _name = 'account.aged.payable.report.handler'
+    _inherit = 'account.aged.partner.balance.report.handler'
+    _description = 'Aged Payable Custom Handler'
+
+    def open_journal_items(self, options, params):
+        payable_account_type = {'id': 'trade_payable', 'name': _("Payable"), 'selected': True}
+
+        if 'account_type' in options:
+            options['account_type'].append(payable_account_type)
+        else:
+            options['account_type'] = [payable_account_type]
+
+        return super().open_journal_items(options, params)
+
+
+class AgedReceivableCustomHandler(models.AbstractModel):
+    _name = 'account.aged.receivable.report.handler'
+    _inherit = 'account.aged.partner.balance.report.handler'
+    _description = 'Aged Receivable Custom Handler'
+
+    def open_journal_items(self, options, params):
+        receivable_account_type = {'id': 'trade_receivable', 'name': _("Receivable"), 'selected': True}
+
+        if 'account_type' in options:
+            options['account_type'].append(receivable_account_type)
+        else:
+            options['account_type'] = [receivable_account_type]
+
+        return super().open_journal_items(options, params)

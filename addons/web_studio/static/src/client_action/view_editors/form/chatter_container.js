@@ -2,7 +2,7 @@
 
 import { formView } from "@web/views/form/form_view";
 
-const { Component } = owl;
+import { Component } from "@odoo/owl";
 
 const components = formView.Controller.components;
 

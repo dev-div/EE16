@@ -756,13 +756,15 @@ QUnit.module("spreadsheet pivot view", {}, () => {
     });
 
     QUnit.test("user related context is not saved in the spreadsheet", async function (assert) {
-        const context = {
+        const userContext = {
             allowed_company_ids: [15],
-            default_stage_id: 5,
-            search_default_stage_id: 5,
             tz: "bx",
             lang: "FR",
             uid: 4,
+        };
+        const context = {
+            ...userContext,
+            default_stage_id: 5,
         };
         const testSession = {
             uid: 4,
@@ -770,20 +772,21 @@ QUnit.module("spreadsheet pivot view", {}, () => {
                 allowed_companies: { 15: { id: 15, name: "Hermit" } },
                 current_company: 15,
             },
-            user_context: context,
+            user_context: userContext,
         };
         patchWithCleanup(session, testSession);
-        const { model, env } = await createSpreadsheetFromPivotView();
+        const { model, env } = await createSpreadsheetFromPivotView({
+            additionalContext: context,
+        });
         assert.deepEqual(
             env.services.user.context,
-            context,
+            userContext,
             "context is used for spreadsheet action"
         );
         assert.deepEqual(
             model.exportData().pivots[1].context,
             {
                 default_stage_id: 5,
-                search_default_stage_id: 5,
             },
             "user related context is not stored in context"
         );
@@ -942,6 +945,56 @@ QUnit.module("spreadsheet pivot view", {}, () => {
             order: "desc",
             originIndexes: [0],
         });
+    });
+
+    QUnit.test("search view with group by and additional row group", async (assert) => {
+        const { model } = await createSpreadsheetFromPivotView({
+            additionalContext: { search_default_group_name: true },
+            serverData: {
+                models: getBasicData(),
+                views: {
+                    "partner,false,pivot": /* xml */ `
+                        <pivot>
+                        </pivot>`,
+                    "partner,false,search": /* xml */ `
+                    <search>
+                        <group>
+                            <filter name="group_name" context="{'group_by':'name'}"/>
+                            <filter name="group_foo" context="{'group_by':'foo'}"/>
+                        </group>
+                    </search>
+                `,
+                },
+            },
+            actions: async (target) => {
+                await click(target.querySelectorAll("tbody .o_pivot_header_cell_closed")[0]);
+                // group by foo
+                await click(target.querySelector(".dropdown-menu span:nth-child(2)"));
+            },
+        });
+        assert.strictEqual(getCellContent(model, "A1"), "");
+        assert.strictEqual(getCellContent(model, "A2"), "");
+        assert.strictEqual(getCellContent(model, "A3"), '=ODOO.PIVOT.HEADER(1,"name","false")');
+        assert.strictEqual(
+            getCellContent(model, "A4"),
+            '=ODOO.PIVOT.HEADER(1,"name","false","foo",1)'
+        );
+        assert.strictEqual(
+            getCellContent(model, "A5"),
+            '=ODOO.PIVOT.HEADER(1,"name","false","foo",2)'
+        );
+        assert.strictEqual(
+            getCellContent(model, "A6"),
+            '=ODOO.PIVOT.HEADER(1,"name","false","foo",12)'
+        );
+        assert.strictEqual(
+            getCellContent(model, "A7"),
+            '=ODOO.PIVOT.HEADER(1,"name","false","foo",17)'
+        );
+        assert.strictEqual(
+            getCellContent(model, "B2"),
+            '=ODOO.PIVOT.HEADER(1,"measure","__count")'
+        );
     });
 
     QUnit.test("Pivot name can be changed from the dialog", async (assert) => {

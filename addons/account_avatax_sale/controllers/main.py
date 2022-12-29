@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-from odoo.addons.sale.controllers.portal import CustomerPortal
-from odoo.addons.sale_management.controllers.portal import CustomerPortal as CustomerPortalSaleManagement
 
-from odoo import http
+from odoo.http import route
+from odoo.addons.sale.controllers.portal import CustomerPortal
 
 
 class CustomerPortalAvatax(CustomerPortal):
-    @http.route([
-        '/my/orders/<int:order_id>',
-    ], type='http', auth='public', website=True)
-    def portal_order_page(self, order_id=None, **post):
-        response = super(CustomerPortalAvatax, self).portal_order_page(order_id=order_id, **post)
+
+    @route()
+    def portal_order_page(self, *args, **kwargs):
+        response = super().portal_order_page(*args, **kwargs)
         if 'sale_order' not in response.qcontext:
             return response
 
@@ -23,11 +20,3 @@ class CustomerPortalAvatax(CustomerPortal):
             order.button_update_avatax()
 
         return response
-
-
-class CustomerPortalSaleManagementAvatax(CustomerPortalSaleManagement):
-    def _get_order_portal_content(self, order_sudo):
-        if order_sudo.fiscal_position_id.is_avatax:
-            order_sudo.button_update_avatax()
-
-        return super()._get_order_portal_content(order_sudo)

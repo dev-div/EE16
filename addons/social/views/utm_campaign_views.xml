@@ -55,7 +55,7 @@
             </xpath>
             <xpath expr="//ul[@id='o_utm_actions']">
                 <a name="action_redirect_to_social_media_posts" type="object"
-                    t-attf-class="#{record.social_posts_count.raw_value === 0 ? 'text-muted' : ''}" groups="social.group_social_user">
+                    t-attf-class="pe-4 #{record.social_posts_count.raw_value === 0 ? 'text-muted' : ''}" groups="social.group_social_user">
                     <t t-out="record.social_posts_count.raw_value"/> Posts
                 </a>
             </xpath>

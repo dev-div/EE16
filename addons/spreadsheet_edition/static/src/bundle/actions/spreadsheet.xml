@@ -34,7 +34,7 @@
 
 
     <div t-name="spreadsheet_edition.AutofillTooltip" owl="1">
-        <t t-foreach="props.content" t-as="line" t-key="line.value">
+        <t t-foreach="props.content" t-as="line" t-key="line.value+line_index">
             <div><t t-esc="line.value"/></div>
         </t>
     </div>

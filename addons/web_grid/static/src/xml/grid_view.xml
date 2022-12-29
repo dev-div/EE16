@@ -219,7 +219,7 @@
                     <div class="ms-3">
                         <t t-foreach="grid.rows[rowlabel_index].label" t-as="label" t-key="label_index">
                             <div t-if="label or (grid.rows[rowlabel_index].label.every(element => !element) and !label_index)"  t-att-title="label"
-                                class="o_grid_row_header_part"
+                                class="o_grid_row_header_part d-inline-flex"
                                 t-att-class="{o_grid_text_muted: !label }">
                                 <t t-if="label" t-esc="label"/>
                                 <t t-else="">None</t>

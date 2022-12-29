@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details
+from datetime import datetime
 
 from odoo.fields import Command
 from odoo.tests import Form, common
@@ -548,6 +549,50 @@ class TestFsmFlowStock(TestFsmFlowSaleCommon):
         self.assertEqual(self.task.sale_order_id.delivery_count, 3)
         self.assertEqual(self.task.sale_order_id.picking_ids.mapped('state'), ['done', 'done', 'done'], "Pickings should be set as done")
 
+    def test_fsm_delivered_timesheet(self):
+        """
+        If the fsm has a service_invoice = "delivered_timesheet",
+        once we validate the task, the qty_deliverd should be the
+        time we logged on the task, not the ordered qty of the so.
+        This test is in this module to test for regressions when
+        stock module is installed.
+        """
+        self.task.write({'partner_id': self.partner_1.id})
+        product = self.service_product_delivered.with_context({'fsm_task_id': self.task.id})
+        # prep the product
+        product.type = 'service'
+        product.service_policy = 'delivered_timesheet'
+        # create the sale order
+        self.task.with_user(self.project_user)._fsm_ensure_sale_order()
+        sale_order = self.task.sale_order_id
+        # sell 4 units of the fsm service
+        sale_order_line = self.env['sale.order.line'].create({
+            'product_id': product.id,
+            'order_id': sale_order.id,
+            'name': 'sales order line 0',
+            'product_uom_qty': 4,
+            'task_id': self.task.id,
+        })
+        # link the task to the already created sale_order_line,
+        # to prevent a new one to be created when we validate the task
+        self.task.sale_line_id = sale_order_line.id
+        sale_order.action_confirm()
+        # timesheet 2 units on the task of the sale order
+        timesheet = self.env['account.analytic.line'].create({
+            'name': 'Test Line',
+            'project_id': self.task.project_id.id,
+            'task_id': self.task.id,
+            'date': datetime.now(),
+            'unit_amount': 2,
+            'employee_id': self.employee_user2.id,
+        })
+        # validate the task
+        self.task.with_user(self.project_user).action_fsm_validate()
+        self.assertEqual(sale_order.order_line[0].qty_delivered, timesheet.unit_amount,
+                         "The delivered quantity should be the same as the timesheet amount")
+        self.assertEqual(sale_order.order_line[0].qty_to_invoice, timesheet.unit_amount,
+                         "The quantity to invoice should be the same as the timesheet amount")
+
     def test_child_location_dispatching_serial_number(self):
         """
         1. Create a child location
@@ -597,3 +642,197 @@ class TestFsmFlowStock(TestFsmFlowSaleCommon):
         task_sn.with_user(self.project_user).action_fsm_validate()
 
         self.assertEqual(task_sn.sale_order_id.order_line.move_ids.move_line_ids.location_id, child_location)
+
+    def test_multiple_fsm_task(self):
+        """
+            1. Create a new so.
+            2. Create a field_service product, and 2 sol linked to the so with that product. create the material product to add to the task later on.
+            3. Confirm the so.
+            4. Adds product to the task created at the confirmation of the so.
+            5. Check that the delivery created has the correct amount of each product for each task.
+            6. Mark task linked to sol 0 as done.
+            7. Check that the qty_delivered of the sol, the qty_done of the move_line of the delivery and the status of the delivery are correct.
+            8. Mark task linked to sol 1 as done.
+            9. Check that the qty_delivered of the sol, the qty_done of the move_line of the delivery and the status of the delivery are correct.
+        """
+        # 1. create sale order
+        self.task.write({'partner_id': self.partner_1.id})
+        self.task.with_user(self.project_user)._fsm_ensure_sale_order()
+        sale_order = self.task.sale_order_id
+        # 2. create necessary records
+        product_field_service, product_a, product_b = self.env['product.product'].create([{
+            'name': 'field service',
+            'list_price': 885.0,
+            'type': 'service',
+            'service_policy': 'delivered_timesheet',
+            'taxes_id': False,
+            'project_id': self.fsm_project.id,
+            'service_tracking': 'task_global_project',
+        }, {
+            'name': 'product A',
+            'list_price': 2950.0,
+            'type': 'product',
+            'invoice_policy': 'delivery',
+            'taxes_id': False,
+            'tracking': 'lot',
+        }, {
+            'name': 'product B',
+            'list_price': 2950.0,
+            'type': 'product',
+            'invoice_policy': 'delivery',
+            'taxes_id': False,
+            'tracking': 'lot',
+        }])
+        self.env['sale.order.line'].create([{
+            'product_id': product_field_service.id,
+            'order_id': sale_order.id,
+            'name': 'sales order line 0',
+        }, {
+            'product_id': product_field_service.id,
+            'order_id': sale_order.id,
+            'name': 'sales order line 1',
+        }])
+        lot_a, lot_b = self.env["stock.lot"].create([{
+            'product_id': product_a.id,
+            'name': "Lot_1",
+            'company_id': self.env.company.id,
+        }, {
+            'product_id': product_b.id,
+            'name': "Lot_1",
+            'company_id': self.env.company.id,
+        }])
+
+        # 3. confirm sale order
+        sale_order.action_confirm()
+        task_sol_0 = sale_order.order_line[0].task_id
+        task_sol_1 = sale_order.order_line[1].task_id
+
+        # 4. add products to tasks
+        self._add_product_to_fsm_task(product_a, lot_a, task_sol_0, 2)
+        self._add_product_to_fsm_task(product_b, lot_b, task_sol_0, 4)
+        self._add_product_to_fsm_task(product_a, lot_a, task_sol_1, 1)
+        self._add_product_to_fsm_task(product_b, lot_b, task_sol_1, 3)
+
+        self.assertEqual(6, len(sale_order.order_line), "It is expected to have the 2 new sol that were created when the products were added to the task")
+
+        # 5. check that the delivery contains all the materials product from task_sol_0 and task_sol_1
+        move_lines = sale_order.picking_ids.move_ids
+        sale_order_lines = sale_order.order_line
+        self.assertEqual(0, move_lines[0].quantity_done, "the task is no yet done: the qty done must be 0")
+        self.assertEqual(2, move_lines[0].product_uom_qty, "quantity must be 2")
+        self.assertEqual(product_a, move_lines[0].product_id, "product must be product a")
+        self.assertEqual(0, move_lines[1].quantity_done, "the task is no yet done: the qty done must be 0")
+        self.assertEqual(4, move_lines[1].product_uom_qty, "quantity must be 4")
+        self.assertEqual(product_b, move_lines[1].product_id, "product must be product b")
+        self.assertEqual(0, move_lines[2].quantity_done, "the task is no yet done: the qty done must be 0")
+        self.assertEqual(1, move_lines[2].product_uom_qty, "quantity must be 1")
+        self.assertEqual(product_a, move_lines[2].product_id, "product must be product a")
+        self.assertEqual(0, move_lines[3].quantity_done, "the task is no yet done: the qty done must be 0")
+        self.assertEqual(3, move_lines[3].product_uom_qty, "quantity must be 3")
+        self.assertEqual(product_b, move_lines[3].product_id, "product must be product b")
+
+        # 6. task 1: mark as done
+        task_sol_0.with_user(self.project_user).action_fsm_validate()
+        # 7. only the move_line corresponding to task_sol_0 must change. The delivery must not be set as 'done'.
+        self.assertEqual(2, move_lines[0].quantity_done, "quantity done must be set to 2")
+        self.assertEqual(4, move_lines[1].quantity_done, "quantity done must be set to 4")
+        self.assertEqual(0, move_lines[2].quantity_done, "quantity done must not change, since its task is not yet marked as done")
+        self.assertEqual(0, move_lines[3].quantity_done, "quantity done must not change, since its task is not yet marked as done")
+        self.assertEqual(2, sale_order_lines[2].qty_delivered, "quantity delivered must be set to 2")
+        self.assertEqual(4, sale_order_lines[3].qty_delivered, "quantity delivered must be set to 4")
+        self.assertEqual(0, sale_order_lines[4].qty_delivered, "quantity delivered must not change, since its task is not yet marked as done")
+        self.assertEqual(0, sale_order_lines[5].qty_delivered, "quantity delivered must not change, since its task is not yet marked as done")
+        self.assertEqual('confirmed', sale_order.picking_ids[0].state, "state must not change as some products have yet to be send")
+
+        # 8. task 1: mark as done
+        task_sol_1.with_user(self.project_user).action_fsm_validate()
+        # 9. only the move_line corresponding to task_sol_1 must change. The delivery must be set as 'done'.
+        self.assertEqual(2, move_lines[0].quantity_done, "marking the next task as done must not change the precedent validation")
+        self.assertEqual(4, move_lines[1].quantity_done, "marking the next task as done must not change the precedent validation")
+        self.assertEqual(1, move_lines[2].quantity_done, "quantity done must be set to 1")
+        self.assertEqual(3, move_lines[3].quantity_done, "quantity done must be set to 3")
+        self.assertEqual(2, sale_order_lines[2].qty_delivered, "marking the next task as done must not change the precedent validation")
+        self.assertEqual(4, sale_order_lines[3].qty_delivered, "marking the next task as done must not change the precedent validation")
+        self.assertEqual(1, sale_order_lines[4].qty_delivered, "quantity delivered must be set to 1")
+        self.assertEqual(3, sale_order_lines[5].qty_delivered, "quantity delivered must be set to 3")
+        self.assertEqual('done', sale_order.picking_ids[0].state, "all products have been sent, the delivery must be mark as done")
+
+    def _add_product_to_fsm_task(self, product, lot, task, qty):
+        wizard = product.with_context(fsm_task_id=task.id).action_assign_serial()
+        wizard_id = self.env['fsm.stock.tracking'].browse(wizard['res_id'])
+        wizard_id.write({
+            'tracking_line_ids': [
+                (0, 0, {
+                    'product_id': product.id,
+                    'quantity': qty,
+                    'lot_id': lot.id,
+                })
+            ]
+        })
+        wizard_id.generate_lot()
+
+    def test_fsm_update_salesperson(self):
+        '''Check that the edit of the person assigned to a task of the field service project updates the salesperson on the sale order.'''
+        # create a project that does not have the fsm tag (fsm_project exists)
+        other_project = self.env['project.project'].create({
+            'name': 'Other Project',
+            'is_fsm': False,
+        })
+        # create service products
+        product_field_service, product_other_service = self.env['product.product'].create([
+            {
+                'name': "Field service product",
+                'type': 'service',
+                'service_tracking': 'task_global_project',
+                'project_id': self.fsm_project.id,
+            },
+            {
+                'name': "Other service product",
+                'type': 'service',
+                'service_tracking': 'task_global_project',
+                'project_id': other_project.id,
+            }
+        ])
+        # create sales
+        sale_order_field_service, sale_order_other_service = self.env['sale.order'].with_context(mail_notrack=True, mail_create_nolog=True).create([
+            {'partner_id': self.partner_1.id},
+            {'partner_id': self.partner_1.id},
+        ])
+        sale_order_lines = self.env['sale.order.line'].create([
+            {
+                'order_id': sale_order_field_service.id,
+                'name': product_field_service.name,
+                'product_id': product_field_service.id,
+            },
+            {
+                'order_id': sale_order_other_service.id,
+                'name': product_other_service.name,
+                'product_id': product_other_service.id,
+            },
+        ])
+        sales_orders = sale_order_field_service + sale_order_other_service
+        # confirm sales to create the related task automatically
+        sales_orders.action_confirm()
+        # check salespersons
+        self.assertEqual(sale_order_field_service.user_id, self.env.user)
+        self.assertEqual(sale_order_other_service.user_id, self.env.user)
+        # create other users
+        project_user2, project_user3 = self.env['res.users'].create([
+            {
+                'name': 'User 2',
+                'login': 'user2',
+            },
+            {
+                'name': 'User 3',
+                'login': 'user3',
+            }
+        ])
+        # change the person assigned to the task
+        sales_orders.state = 'draft'
+        sale_order_lines.task_id.write({
+                'user_ids': [Command.set([self.project_user.id, project_user2.id, project_user3.id])]
+        })
+        sales_orders.action_confirm()
+        # check that there is a change only for the sale order which concerns the field service
+        self.assertEqual(sale_order_field_service.user_id, self.project_user, 'The salesperson must have been updated')
+        self.assertEqual(sale_order_other_service.user_id, self.env.user, 'The salesperson must not have been updated')

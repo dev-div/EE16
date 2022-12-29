@@ -1,12 +1,10 @@
 /** @odoo-module **/
 import { registry } from "@web/core/registry";
-import { browser } from "@web/core/browser/browser";
-import { getCookie, setCookie } from "web.utils.cookies";
 import { delay } from "web.concurrency";
 import legacyBus from "web_studio.bus";
 import { resetViewCompilerCache } from "@web/views/view_compiler";
 
-const { EventBus } = owl;
+import { EventBus } from "@odoo/owl";
 
 const URL_VIEW_KEY = "_view_type";
 const URL_ACTION_KEY = "_action";
@@ -25,7 +23,6 @@ export const SUPPORTED_VIEW_TYPES = [
     "activity",
     "calendar",
     "cohort",
-    "dashboard",
     "form",
     "gantt",
     "graph",
@@ -37,8 +34,8 @@ export const SUPPORTED_VIEW_TYPES = [
 ];
 
 export const studioService = {
-    dependencies: ["action", "home_menu", "router", "user"],
-    async start(env, { user }) {
+    dependencies: ["action", "cookie", "color_scheme", "home_menu", "router", "user"],
+    async start(env, { user, cookie, color_scheme }) {
         function _getCurrentAction() {
             const currentController = env.services.action.currentController;
             return currentController ? currentController.action : null;
@@ -136,6 +133,7 @@ export const studioService = {
                 throw new Error("mode is mandatory");
             }
 
+            const previousState = { ...state };
             const options = {};
             if (targetMode === MODES.EDITOR) {
                 let controllerState;
@@ -169,14 +167,20 @@ export const studioService = {
             }
             state.studioMode = targetMode;
             user.updateContext({ studio: 1 });
-            // LPE: we don't manage errors during do action.....
-            const res = await env.services.action.doAction("studio", options);
+
+            let res;
+            try {
+                res = await env.services.action.doAction("studio", options);
+            } catch (e) {
+                user.removeFromContext("studio");
+                Object.assign(state, previousState);
+                throw e;
+            }
             // force color_scheme light
-            if (getCookie("color_scheme") === "dark") {
+            if (cookie.current.color_scheme === "dark") {
                 // ensure studio is fully loaded
                 await delay(0);
-                setCookie("color_scheme", "light");
-                browser.location.reload();
+                color_scheme.switchToColorScheme("light");
             }
             return res;
         }

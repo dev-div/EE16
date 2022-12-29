@@ -55,6 +55,7 @@ class TestWebsiteSaleRentingProductAttributeValueConfig(TestSaleProductAttribute
             self.assertEqual(combination_info['has_discounted_price'], False)
             self.assertEqual(combination_info['current_rental_price'], 3.5 * discount_rate * currency_ratio)
             self.assertEqual(combination_info['current_rental_duration'], 1)
+            self.assertEqual(str(combination_info['current_rental_unit']), 'Hour')
 
         with MockRequest(self.env, website=current_website):
             combination_info = self.computer.with_context(
@@ -68,3 +69,4 @@ class TestWebsiteSaleRentingProductAttributeValueConfig(TestSaleProductAttribute
             self.assertEqual(combination_info['has_discounted_price'], False)
             self.assertEqual(combination_info['current_rental_price'], 35, "The 5h rental is equal to 5 * 3.5")
             self.assertEqual(combination_info['current_rental_duration'], 5)
+            self.assertEqual(str(combination_info['current_rental_unit']), 'Hours')

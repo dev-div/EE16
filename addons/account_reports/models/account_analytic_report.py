@@ -8,7 +8,7 @@ class AccountReport(models.AbstractModel):
     _inherit = 'account.report'
 
     filter_analytic_groupby = fields.Boolean(
-        string="Filter Analytic Groupby",
+        string="Analytic Group By",
         compute=lambda x: x._compute_report_option_filter('filter_analytic_groupby'), readonly=False, store=True, depends=['root_report_id'],
     )
 
@@ -56,7 +56,7 @@ class AccountReport(models.AbstractModel):
         plans = self.env['account.analytic.plan'].browse(options.get('analytic_plans_groupby'))
         for plan in plans:
             account_list = []
-            accounts = self.env['account.analytic.account'].search([('root_plan_id', '=', plan.id)])
+            accounts = self.env['account.analytic.account'].search([('plan_id', 'child_of', plan.id)])
             for account in accounts:
                 account_list.append(account.id)
             analytic_headers.append({

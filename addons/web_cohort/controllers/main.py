@@ -63,7 +63,7 @@ class WebCohort(http.Controller):
 
             # Total
             col = 0
-            worksheet.write(row, col, _('Average Value'), style_highlight)
+            worksheet.write(row, col, _('Average'), style_highlight)
             col += 1
             worksheet.write(row, col, '%.1f' % result[report]['avg']['avg_value'], style_highlight)
             col += 1

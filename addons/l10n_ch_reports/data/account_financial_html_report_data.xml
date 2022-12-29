@@ -253,7 +253,7 @@
     </record>
     <record id="account_financial_report_l10n_ch_pl_action" model="ir.actions.client">
         <field name="name">Profit And Loss</field>
-        <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('account_financial_report_l10n_ch_cdr')}"/>
+        <field name="context" eval="{'model': 'account.report', 'report_id': ref('account_financial_report_l10n_ch_cdr')}"/>
         <field name="tag">account_report</field>
     </record>
     <record id="account_financial_report_l10n_ch_bilan" model="account.report">
@@ -466,21 +466,22 @@
                                         <field name="expression_ids">
                                             <record id="account_financial_report_line_ch_290_a_balance" model="account.report.expression">
                                                 <field name="label">balance</field>
-                                                <field name="engine">account_codes</field>
+                                                <field name="engine">domain</field>
                                                 <field name="date_scope">from_beginning</field>
-                                                <field name="formula">-29</field>
+                                                <field name="formula">[('account_id.code', '&gt;=', '290'), ('account_id.code', '&lt;', '2991'), ('account_id.account_type', '!=', 'equity_unaffected')]</field>
+                                                <field name="subformula">sum</field>
                                             </record>
                                         </field>
                                     </record>
                                     <record id="account_financial_report_line_ch_290_b" model="account.report.line">
-                                        <field name="name">Previous years' profit or loss</field>
+                                        <field name="name">Previous years' unallocated profit or loss</field>
                                         <field name="code">CH_290_B</field>
                                         <field name="expression_ids">
                                             <record id="account_financial_report_line_ch_290_b_domain" model="account.report.expression">
                                                 <field name="label">domain</field>
                                                 <field name="engine">domain</field>
                                                 <field name="date_scope">from_beginning</field>
-                                                <field name="formula">[('account_id.internal_group', 'in', ('income', 'expense'))]</field>
+                                                <field name="formula">['|', ('account_id.internal_group', 'in', ['income', 'expense']), ('account_id.account_type', '=', 'equity_unaffected')]</field>
                                                 <field name="subformula">-sum</field>
                                             </record>
                                             <record id="account_financial_report_line_ch_290_b_balance" model="account.report.expression">

@@ -17,6 +17,8 @@ const { toString, toNumber, toBoolean } = spreadsheet.helpers;
 
 /**
  * @typedef {import("@spreadsheet/data_sources/metadata_repository").Field} Field
+ * @typedef {import("@spreadsheet/pivot/pivot_table").Row} Row
+ * @typedef {import("@spreadsheet/pivot/pivot_table").Column} Column
  *
  * @typedef {Object} PivotMetaData
  * @property {Array<string>} colGroupBys
@@ -59,7 +61,7 @@ function parseGroupField(allFields, groupFieldString) {
 }
 
 const UNSUPPORTED_FIELD_TYPES = ["one2many", "binary", "html"];
-const NO_RECORD_AT_THIS_POSITION = Symbol("NO_RECORD_AT_THIS_POSITION");
+export const NO_RECORD_AT_THIS_POSITION = Symbol("NO_RECORD_AT_THIS_POSITION");
 
 function isNotSupported(fieldType) {
     return UNSUPPORTED_FIELD_TYPES.includes(fieldType);
@@ -412,6 +414,12 @@ export class SpreadsheetPivotModel extends PivotModel {
                             group.values[i],
                             group.labels[i]
                         );
+                    } else {
+                        metadataRepository.setDisplayName(
+                            field.relation,
+                            group.values[i],
+                            group.labels[i]
+                        );
                     }
                 }
             }
@@ -545,8 +553,10 @@ export class SpreadsheetPivotModel extends PivotModel {
 
     /**
      * Get the row structure
+     * @returns {Row[]}
      */
     _getSpreadsheetRows(tree) {
+        /**@type {Row[]}*/
         let rows = [];
         const group = tree.root;
         const indent = group.labels.length;
@@ -554,7 +564,7 @@ export class SpreadsheetPivotModel extends PivotModel {
 
         rows.push({
             fields: rowGroupBys.slice(0, indent),
-            values: [...group.values],
+            values: group.values.map((val) => val.toString()),
             indent,
         });
 
@@ -568,6 +578,7 @@ export class SpreadsheetPivotModel extends PivotModel {
 
     /**
      * Get the col structure
+     * @returns {Column[][]}
      */
     _getSpreadsheetCols() {
         const colGroupBys = this.metaData.fullColGroupBys;
@@ -585,7 +596,7 @@ export class SpreadsheetPivotModel extends PivotModel {
                 const leafCount = leafCounts[JSON.stringify(tree.root.values)];
                 const cell = {
                     fields: colGroupBys.slice(0, rowIndex),
-                    values: [...group.values],
+                    values: group.values.map((val) => val.toString()),
                     width: leafCount * measureCount,
                 };
                 row.push(cell);

@@ -426,3 +426,102 @@ class TestAgedReceivableReport(TestAccountReportsCommon):
                 ('Total Aged Receivable',         '',   150.0,      150.0,      150.0,      900.0,      450.0,      150.0,      1950.0),
             ],
         )
+
+    def test_aged_receivable_zero_balanced_without_reconciliation(self):
+        options = self._generate_options(self.report, '2010-01-01', '2010-01-01', default_options={'unfold_all': True})
+        invoice = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.partner_a.id,
+            'invoice_date': '2010-01-01',
+            'payment_reference': 'I',
+            'invoice_line_ids': [Command.create({
+                'name': 'test invoice',
+                'price_unit': 100,
+                'tax_ids': [],
+            })]
+        })
+        invoice.action_post()
+
+        refund = self.env['account.move'].create({
+            'move_type': 'out_refund',
+            'partner_id': self.partner_a.id,
+            'invoice_date': '2010-01-01',
+            'payment_reference': 'R',
+            'invoice_line_ids': [Command.create({
+                'name': 'test refund',
+                'price_unit': 100,
+                'tax_ids': [],
+            })]
+        })
+        refund.action_post()
+
+        self.assertLinesValues(
+            # pylint: disable=C0326
+            self.report._get_lines(options),
+            #   Name                        Due Date  Not Due On      1 - 30     31 - 60     61 - 90    91 - 120       Older       Total
+            [   0,                                1,         4,          5,          6,          7,          8,          9,          10],
+            [
+                ('Aged Receivable',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('partner_a',                    '',        '',         '',         '',         '',         '',         '',          ''),
+                (f"{refund.name} R",   '01/01/2010',    -100.0,         '',         '',         '',         '',         '',          ''),
+                (f"{invoice.name} I",  '01/01/2010',     100.0,         '',         '',         '',         '',         '',          ''),
+                ('Total partner_a',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('Total Aged Receivable',        '',        '',         '',         '',         '',         '',         '',          ''),
+            ],
+        )
+
+        # It should still work if both  invoice and refund are partially reconciled with the same amount
+        self.env['account.payment.register'].with_context(active_ids=invoice.ids, active_model='account.move').create({
+            'amount': 42,
+            'payment_date': '2010-01-01',
+            'payment_method_line_id': self.outbound_payment_method_line.id,
+        })._create_payments()
+
+        self.env['account.payment.register'].with_context(active_ids=refund.ids, active_model='account.move').create({
+            'amount': 42,
+            'payment_date': '2010-01-01',
+            'payment_method_line_id': self.outbound_payment_method_line.id,
+        })._create_payments()
+
+        self.assertLinesValues(
+            # pylint: disable=C0326
+            self.report._get_lines(options),
+            #   Name                        Due Date  Not Due On      1 - 30     31 - 60     61 - 90    91 - 120       Older       Total
+            [   0,                                1,         4,          5,          6,          7,          8,          9,          10],
+            [
+                ('Aged Receivable',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('partner_a',                    '',        '',         '',         '',         '',         '',         '',          ''),
+                (f"{refund.name} R",   '01/01/2010',     -58.0,         '',         '',         '',         '',         '',          ''),
+                (f"{invoice.name} I",  '01/01/2010',      58.0,         '',         '',         '',         '',         '',          ''),
+                ('Total partner_a',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('Total Aged Receivable',        '',        '',         '',         '',         '',         '',         '',          ''),
+            ],
+        )
+
+        # It should still work if both  invoice and refund are fully reconciled in the future
+        self.env['account.payment.register'].with_context(active_ids=invoice.ids, active_model='account.move').create({
+            'amount': 58,
+            'payment_date': '2020-01-01',
+            'payment_method_line_id': self.outbound_payment_method_line.id,
+        })._create_payments()
+
+        self.env['account.payment.register'].with_context(active_ids=refund.ids, active_model='account.move').create({
+            'amount': 58,
+            'payment_date': '2020-01-01',
+            'payment_method_line_id': self.outbound_payment_method_line.id,
+        })._create_payments()
+
+        self.assertLinesValues(
+            # pylint: disable=C0326
+            self.report._get_lines(options),
+            #   Name                        Due Date  Not Due On      1 - 30     31 - 60     61 - 90    91 - 120       Older       Total
+            [   0,                                1,         4,          5,          6,          7,          8,          9,          10],
+            [
+                ('Aged Receivable',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('partner_a',                    '',        '',         '',         '',         '',         '',         '',          ''),
+                (f"{refund.name} R",   '01/01/2010',     -58.0,         '',         '',         '',         '',         '',          ''),
+                (f"{invoice.name} I",  '01/01/2010',      58.0,         '',         '',         '',         '',         '',          ''),
+                ('Total partner_a',              '',        '',         '',         '',         '',         '',         '',          ''),
+                ('Total Aged Receivable',        '',        '',         '',         '',         '',         '',         '',          ''),
+            ],
+        )

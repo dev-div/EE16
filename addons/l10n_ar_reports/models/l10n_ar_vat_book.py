@@ -90,7 +90,11 @@ class ArgentinianReportCustomHandler(models.AbstractModel):
             'purchase': _('Purchases'),
             'all': _('All'),
         }
-        options['ar_vat_book_tax_type_selected'] = previous_options.get('ar_vat_book_tax_type_selected', 'all')
+        if options.get('_running_export_test'):
+            # Exporting the file is not allowed for 'all'. When executing the export tests, we hence always select 'sales', to avoid raising.
+            options['ar_vat_book_tax_type_selected'] = 'sale'
+        else:
+            options['ar_vat_book_tax_type_selected'] = previous_options.get('ar_vat_book_tax_type_selected', 'all')
 
         tax_types = self._vat_book_get_selected_tax_types(options)
 
@@ -172,7 +176,7 @@ class ArgentinianReportCustomHandler(models.AbstractModel):
         It contains the files that we upload to AFIP for Purchase VAT Book """
         tax_type = self._vat_book_get_selected_tax_types(options)
         if len(tax_type) > 1:
-            raise UserError("Only one tax type should be selected.")
+            raise UserError(_("Only one tax type should be selected."))
         tax_type = tax_type[0]
 
         # Build file name

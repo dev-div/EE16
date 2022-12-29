@@ -11,7 +11,8 @@
         'web',
         'web_editor',
         'mail',
-        'portal'
+        'portal',
+        'web_unsplash'
     ],
     'data': [
         'data/article_templates.xml',

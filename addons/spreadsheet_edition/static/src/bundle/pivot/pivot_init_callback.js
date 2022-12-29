@@ -14,7 +14,12 @@ export function insertPivot(pivotData) {
             fields: pivotData.metaData.fields,
             sortedColumn: pivotData.metaData.sortedColumn,
         },
-        searchParams: { ...pivotData.searchParams },
+        searchParams: {
+            ...pivotData.searchParams,
+            // groups from the search bar are included in `fullRowGroupBys` and `fullColGroupBys`
+            // but takes precedence if they are defined
+            groupBy: [],
+        },
         name: pivotData.name,
     };
     return async (model) => {

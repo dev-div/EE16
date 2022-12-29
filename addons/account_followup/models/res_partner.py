@@ -112,7 +112,7 @@ class ResPartner(models.Model):
             total_overdue = 0
             total_due = 0
             for aml in partner.unreconciled_aml_ids:
-                is_overdue = today >= aml.date_maturity if aml.date_maturity else today >= aml.date
+                is_overdue = today > aml.date_maturity if aml.date_maturity else today > aml.date
                 if aml.company_id == self.env.company and not aml.blocked:
                     total_due += aml.amount_residual
                     if is_overdue:
@@ -138,7 +138,7 @@ class ResPartner(models.Model):
             if has_overdue_invoices and most_delayed_aml:
                 new_status = 'with_overdue_invoices'
             next_followup_date_exceeded = today >= partner.followup_next_action_date if partner.followup_next_action_date else True
-            if max_aml_delay >= next_followup_delay and next_followup_date_exceeded and followup_lines_info:
+            if max_aml_delay > next_followup_delay and next_followup_date_exceeded and followup_lines_info:
                 new_status = 'in_need_of_action'
             partner.followup_status = new_status
 
@@ -254,7 +254,7 @@ class ResPartner(models.Model):
         has_overdue_invoices = False
         for aml in self.unreconciled_aml_ids:
             aml_delay = (today - (aml.date_maturity or aml.date)).days
-            is_overdue = aml_delay >= 0
+            is_overdue = aml_delay > 0
             if is_overdue:
                 has_overdue_invoices = True
             if aml.company_id == self.env.company and not aml.blocked:
@@ -276,6 +276,16 @@ class ResPartner(models.Model):
             'next_followup_delay': next_followup_delay,
             'has_overdue_invoices': has_overdue_invoices,
         }
+
+    def _get_invoices_to_print(self, options):
+        self.ensure_one()
+        if not options:
+            options = {}
+        invoices_to_print = self._get_included_unreconciled_aml_ids().move_id
+        if options.get('manual_followup'):
+            # For manual reminders, only print invoices with the selected attachments
+            return invoices_to_print.filtered(lambda inv: inv.message_main_attachment_id.id in options.get('attachment_ids'))
+        return invoices_to_print.filtered(lambda inv: inv.message_main_attachment_id)
 
     def _get_included_unreconciled_aml_ids(self):
         self.ensure_one()
@@ -398,7 +408,7 @@ class ResPartner(models.Model):
                 LEFT OUTER JOIN account_followup_followup_line next_ful ON next_ful.id = (
                     SELECT next_ful.id FROM account_followup_followup_line next_ful
                     WHERE next_ful.delay > COALESCE(ful.delay, -999)
-                      AND COALESCE(aml.date_maturity, aml.date) + next_ful.delay <= %(current_date)s
+                      AND COALESCE(aml.date_maturity, aml.date) + next_ful.delay < %(current_date)s
                       AND next_ful.company_id = %(company_id)s
                     ORDER BY next_ful.delay ASC
                     LIMIT 1
@@ -433,7 +443,7 @@ class ResPartner(models.Model):
                    AND line.blocked IS FALSE
                    AND line.company_id = %(company_id)s
                    AND COALESCE(ful.delay, -999) <= partner.followup_delay
-                   AND COALESCE(line.date_maturity, line.date) + COALESCE(ful.delay, -999) <= %(current_date)s
+                   AND COALESCE(line.date_maturity, line.date) + COALESCE(ful.delay, -999) < %(current_date)s
                  LIMIT 1
             ) in_need_of_action_aml ON true
             LEFT OUTER JOIN LATERAL (
@@ -448,7 +458,7 @@ class ResPartner(models.Model):
                    AND line.reconciled IS NOT TRUE
                    AND line.balance > 0
                    AND line.company_id = %(company_id)s
-                   AND COALESCE(line.date_maturity, line.date) <= %(current_date)s
+                   AND COALESCE(line.date_maturity, line.date) < %(current_date)s
                  LIMIT 1
             ) exceeded_unreconciled_aml ON true
             LEFT OUTER JOIN ir_property prop_date ON prop_date.res_id = CONCAT('res.partner,', partner.id)

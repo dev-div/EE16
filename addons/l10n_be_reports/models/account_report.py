@@ -181,7 +181,7 @@ class BelgianTaxReportCustomHandler(models.AbstractModel):
         grids_list = []
         currency_id = self.env.company.currency_id
 
-        options = report._get_options({'no_format': True, 'date_from': date_from, 'date_to': date_to, 'filter_unfold_all': True})
+        options = report._get_options({'no_format': True, 'date': {'date_from': date_from, 'date_to': date_to}, 'filter_unfold_all': True})
         lines = report._get_lines(options)
 
         # Create a mapping between report line ids and actual grid names
@@ -194,19 +194,19 @@ class BelgianTaxReportCustomHandler(models.AbstractModel):
         lines_grids_map[self.env.ref('l10n_be.tax_report_title_operations_sortie_48').id] = '48'
         lines_grids_map[self.env.ref('l10n_be.tax_report_line_71').id] = '71'
         lines_grids_map[self.env.ref('l10n_be.tax_report_line_72').id] = '72'
-        colname_to_idx = {col['name']: idx for idx, col in enumerate(options.get('columns', []))}
+        colname_to_idx = {col['expression_label']: idx for idx, col in enumerate(options.get('columns', []))}
         # Iterate on the report lines, using this mapping
         for line in lines:
             model, line_id = report._parse_line_id(line['id'])[-1][1:]
             if (
                     model == 'account.report.line'
                     and line_id in lines_grids_map
-                    and not currency_id.is_zero(line['columns'][colname_to_idx['Balance']]['no_format'])
+                    and not currency_id.is_zero(line['columns'][colname_to_idx['balance']]['no_format'])
             ):
                 grids_list.append((lines_grids_map[line_id],
-                                   line['columns'][colname_to_idx['Balance']]['no_format'],
-                                   line['columns'][colname_to_idx['Balance']].get('carryover_bounds', False),
-                                   line['columns'][colname_to_idx['Balance']].get('report_line_id', False)))
+                                   line['columns'][colname_to_idx['balance']]['no_format'],
+                                   line['columns'][colname_to_idx['balance']].get('carryover_bounds', False),
+                                   line['columns'][colname_to_idx['balance']].get('report_line_id', False)))
 
         # We are ignoring all grids that have 0 as values, but the belgian government always require a value at
         # least in either the grid 71 or 72. So in the case where both are set to 0, we are adding the grid 71 in the
@@ -231,15 +231,16 @@ class BelgianTaxReportCustomHandler(models.AbstractModel):
                 'code': code,
                 'amount': '%.2f' % amount,
             }
-            rslt += Markup("""<ns2:Amount GridNumber="%(code)s">%(amount)s</ns2:Amount>""") % grid_amount_data
+            rslt += Markup("""
+            <ns2:Amount GridNumber="%(code)s">%(amount)s</ns2:Amount>""") % grid_amount_data
 
         rslt += Markup("""
-                    </ns2:Data>
-                    <ns2:ClientListingNihil>%(client_nihil)s</ns2:ClientListingNihil>
-                    <ns2:Ask Restitution="%(ask_restitution)s" Payment="%(ask_payment)s"/>
-                    <ns2:Comment>%(comments)s</ns2:Comment>
-                </ns2:VATDeclaration>
-            </ns2:VATConsignment>
+        </ns2:Data>
+        <ns2:ClientListingNihil>%(client_nihil)s</ns2:ClientListingNihil>
+        <ns2:Ask Restitution="%(ask_restitution)s" Payment="%(ask_payment)s"/>
+        <ns2:Comment>%(comments)s</ns2:Comment>
+    </ns2:VATDeclaration>
+</ns2:VATConsignment>
         """) % file_data
 
         return {

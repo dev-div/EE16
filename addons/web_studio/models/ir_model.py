@@ -69,6 +69,12 @@ class Base(models.AbstractModel):
                 'module': module.name,
             })
 
+    @api.model
+    def fields_get(self, allfields=None, attributes=None):
+        if self.env.context.get('studio') and self.env.user.has_group('base.group_system'):
+            return super(Base, self.sudo()).fields_get(allfields, attributes=attributes)
+        return super().fields_get(allfields, attributes=attributes)
+
 
 class IrModel(models.Model):
     _name = 'ir.model'

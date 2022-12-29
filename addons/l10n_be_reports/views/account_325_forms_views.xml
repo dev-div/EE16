@@ -59,22 +59,20 @@
                                 <field name="form_281_50_total_amount"/>
                             </group>
                         </group>
-                        <group attrs="{'invisible': [('form_281_50_count', '=', 0)]}">
-                            <field name="form_281_50_ids" nolabel="1" widget="one2many" mode="tree" string="281.50 Forms">
-                                <tree create="0" delete="0" edit="1" editable="bottom">
-                                    <field name="official_id"/>
-                                    <field name="partner_name"/>
-                                    <field name="commissions"/>
-                                    <field name="fees"/>
-                                    <field name="atn"/>
-                                    <field name="exposed_expenses"/>
-                                    <field name="total_remuneration"/>
-                                    <field name="paid_amount"/>
-                                    <button name="action_open_281_50_view_form" string="Open" type="object" class="btn-secondary"/>
-                                    <field name="state" invisible="1"/>
-                                </tree>
-                            </field>
-                        </group>
+                        <field name="form_281_50_ids" nolabel="1" widget="one2many" mode="tree" string="281.50 Forms" attrs="{'invisible': [('form_281_50_count', '=', 0)]}">
+                            <tree create="0" delete="0" edit="1" editable="bottom">
+                                <field name="official_id"/>
+                                <field name="partner_name"/>
+                                <field name="commissions"/>
+                                <field name="fees"/>
+                                <field name="atn"/>
+                                <field name="exposed_expenses"/>
+                                <field name="total_remuneration"/>
+                                <field name="paid_amount"/>
+                                <button name="action_open_281_50_view_form" string="Open" type="object" class="btn-secondary"/>
+                                <field name="state" invisible="1"/>
+                            </tree>
+                        </field>
                     </sheet>
                     <!-- Chatter -->
                     <div class="oe_chatter">

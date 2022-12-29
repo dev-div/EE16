@@ -11,6 +11,7 @@ import os
 import re
 import sys
 import traceback
+import threading
 
 import werkzeug
 import werkzeug.exceptions
@@ -21,6 +22,7 @@ import odoo
 from odoo import api, http, models, tools, SUPERUSER_ID
 from odoo.exceptions import AccessDenied, AccessError, MissingError
 from odoo.http import request, Response, ROUTING_KEYS, Stream
+from odoo.modules.registry import Registry
 from odoo.service import security
 from odoo.tools import consteq, submap
 from odoo.tools.translate import code_translations
@@ -90,8 +92,12 @@ class IrHttp(models.AbstractModel):
         return rule, args
 
     @classmethod
+    def _get_public_users(cls):
+        return [request.env['ir.model.data']._xmlid_to_res_model_res_id('base.public_user')[1]]
+
+    @classmethod
     def _auth_method_user(cls):
-        if request.env.uid is None:
+        if request.env.uid in [None] + cls._get_public_users():
             raise http.SessionExpiredException("Session expired")
 
     @classmethod
@@ -172,7 +178,8 @@ class IrHttp(models.AbstractModel):
 
         if key not in cls._routing_map:
             _logger.info("Generating routing map for key %s" % str(key))
-            installed = request.env.registry._init_modules.union(odoo.conf.server_wide_modules)
+            registry = Registry(threading.current_thread().dbname)
+            installed = registry._init_modules.union(odoo.conf.server_wide_modules)
             if tools.config['test_enable'] and odoo.modules.module.current_test:
                 installed.add(odoo.modules.module.current_test)
             mods = sorted(installed)

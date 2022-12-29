@@ -54,7 +54,8 @@
                         t-out="author_info"/>
                     <div name="o_social_stream_post_message_text" class="o_social_stream_post_message_text overflow-hidden">
                         <t t-if="record.twitter_quoted_tweet_message.raw_value">
-                            <div t-out="formatPost(record.twitter_quoted_tweet_message.value)"/>
+                            <div t-if="formatPost" t-out="formatPost(record.twitter_quoted_tweet_message.value)"/>
+                            <div t-else="" t-out="record.twitter_quoted_tweet_message.value"/>
                         </t>
                         <t t-else=""><span class="fst-italic">Empty tweet</span></t>
                     </div>
@@ -66,8 +67,7 @@
                         <div t-attf-class="o_social_twitter_likes o_social_subtle_btn ps-2 pe-3 #{record.twitter_user_likes.raw_value ? 'o_social_twitter_user_likes' : ''}"
                              t-on-click.prevent="_onTwitterTweetLike">
                             <i class="fa fa-heart me-1" title="Likes"/>
-                            <b class="o_social_kanban_likes_count" t-esc="record.twitter_likes_count.raw_value !== '0' ?
-                                _insertThousandSeparator(record.twitter_likes_count.raw_value) : ''"/>
+                            <field name="twitter_likes_count" t-if="record.twitter_likes_count.value !== '0'" class="fw-bold"/>
                         </div>
 
                         <div class="o_social_twitter_comments o_social_comments o_social_subtle_btn px-4"

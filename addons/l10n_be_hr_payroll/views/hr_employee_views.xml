@@ -21,27 +21,21 @@
                 </div>
                 <field name="disabled_spouse_bool" attrs="{'invisible': ['|', ('marital', 'not in', ['married', 'cohabitant']), ('company_country_code', '!=', 'BE')]}"/>
             </xpath>
-            <xpath expr="//group[@name='gender_birthday']" position="after">
-                <group>
-                    <field name="disabled" attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"/>
-                </group>
+            <xpath expr="//field[@name='birthday']" position="after">
+                <field name="disabled" attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"/>
             </xpath>
-            <xpath expr="//group[@name='children']" position="inside">
+            <xpath expr="//field[@name='children']" position="after">
                 <field name="l10n_be_dependent_children_attachment" attrs="{'invisible': ['|', ('company_country_code', '!=', 'BE'), ('children', '&lt;=', 0)]}"/>
                 <field name="disabled_children_bool"  attrs="{'invisible': ['|', ('company_country_code', '!=', 'BE'), ('children', '&lt;=', 0)]}"/>
                 <field name="disabled_children_number" attrs="{'invisible':['|', ('disabled_children_bool','!=',True), ('children', '&lt;=', 0)]}" help="Number of dependent children declared as disabled"/>
                 <field name="children" invisible="1" attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"/>
             </xpath>
-            <xpath expr="//group[@name='family_status']" position="after">
-                    <group>
-                        <field name="other_dependent_people" groups="hr.group_hr_user" attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"/>
-                    </group>
-                    <group col="4" colspan="2">
-                        <field name="other_senior_dependent" attrs="{'invisible':[('other_dependent_people','!=',True)]}"/>
-                        <field name="other_disabled_senior_dependent" attrs="{'invisible':['|', ('other_dependent_people','!=',True), ('other_senior_dependent', '&lt;=', 0)]}"/>
-                        <field name="other_juniors_dependent" attrs="{'invisible':[('other_dependent_people','!=',True)]}"/>
-                        <field name="other_disabled_juniors_dependent" attrs="{'invisible':['|', ('other_dependent_people','!=',True), ('other_juniors_dependent', '&lt;=', 0)]}"/>
-                    </group>
+            <xpath expr="//separator[@name='emergency']" position="before">
+                    <field name="other_dependent_people" groups="hr.group_hr_user" attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"/>
+                    <field name="other_senior_dependent" attrs="{'invisible':[('other_dependent_people','!=',True)]}"/>
+                    <field name="other_disabled_senior_dependent" attrs="{'invisible':['|', ('other_dependent_people','!=',True), ('other_senior_dependent', '&lt;=', 0)]}"/>
+                    <field name="other_juniors_dependent" attrs="{'invisible':[('other_dependent_people','!=',True)]}"/>
+                    <field name="other_disabled_juniors_dependent" attrs="{'invisible':['|', ('other_dependent_people','!=',True), ('other_juniors_dependent', '&lt;=', 0)]}"/>
             </xpath>
             <xpath expr="//group[@name='departure']" position="attributes">
                 <attribute name="attrs">{'invisible': ['&amp;', ('active', '=', True), ('departure_reason_id', '=', False)]}</attribute>

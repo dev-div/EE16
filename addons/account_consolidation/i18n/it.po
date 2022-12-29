@@ -29,7 +29,7 @@ msgstr "N. conti"
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_chart__group_ids_count
 msgid "# Groups"
-msgstr "# Gruppi"
+msgstr "N. gruppi"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__journal_ids_count
@@ -66,7 +66,7 @@ msgstr "%s (%s Metodo di conversione della valuta)"
 #: code:addons/account_consolidation/models/consolidation_period.py:0
 #, python-format
 msgid "%s Consolidated Accounting"
-msgstr "%s Contabilità consolidata"
+msgstr "Contabilità consolidata %s"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_company_period_form
@@ -116,12 +116,14 @@ msgstr "/ Tasso finale: 1"
 msgid ""
 "<i class=\"fa fa-caret-down\" role=\"img\" aria-label=\"Unfolded\" "
 "title=\"Unfolded\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-caret-down\" role=\"img\" aria-label=\"Espanso\" title=\"Espanso\"/>"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.line_template_consolidation_report
 msgid "<i class=\"fa fa-caret-right\" role=\"img\" aria-label=\"Folded\" title=\"Folded\"/>"
 msgstr ""
+"<i class=\"fa fa-caret-right\" role=\"img\" aria-label=\"Minimizzato\" "
+"title=\"Minimizzato\"/>"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_kanban
@@ -129,7 +131,7 @@ msgid ""
 "<i class=\"fa fa-ellipsis-v\" aria-label=\"Selection\" role=\"img\" "
 "title=\"Selection\"/>"
 msgstr ""
-"<i class=\"fa fa-ellipsis-v\" aria-label=\"Selection\" role=\"img\" "
+"<i class=\"fa fa-ellipsis-v\" aria-label=\"Selezione\" role=\"img\" "
 "title=\"Selezione\"/>"
 
 #. module: account_consolidation
@@ -161,7 +163,7 @@ msgstr "<span role=\"separator\">Azioni</span>"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_kanban
 msgid "<span role=\"separator\">View</span>"
-msgstr "<span role=\"separator\">Vista</span>"
+msgstr "<span role=\"separator\">Visualizza</span>"
 
 #. module: account_consolidation
 #: model:ir.model.constraint,message:account_consolidation.constraint_consolidation_account_code_uniq
@@ -177,8 +179,8 @@ msgid ""
 "A journal entry should only be linked to a company period OR to a analysis "
 "period of another consolidation !"
 msgstr ""
-"Una voce del giornale dovrebbe essere collegata solo a un periodo aziendale "
-"OPPURE a un periodo di analisi di un altro consolidamento!"
+"Una registrazione contabile deve essere collegata solo a un periodo "
+"aziendale OPPURE a un periodo di analisi di un altro consolidamento."
 
 #. module: account_consolidation
 #: model:ir.model,name:account_consolidation.model_account_account
@@ -195,7 +197,7 @@ msgstr "Il consolidamento contabile ha una valuta diversa"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_group_tree
 msgid "Account Group"
-msgstr "Gruppo contabile"
+msgstr "Gruppo conto"
 
 #. module: account_consolidation
 #: model:ir.actions.act_window,name:account_consolidation.consolidation_group_action
@@ -204,7 +206,7 @@ msgstr "Gruppo contabile"
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_group_form
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_group_tree
 msgid "Account Groups"
-msgstr "Gruppi contabili"
+msgstr "Gruppi conto"
 
 #. module: account_consolidation
 #: model:ir.actions.act_window,name:account_consolidation.account_mapping_action
@@ -329,7 +331,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_chart__period_ids
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_tree
 msgid "Analysis Periods"
-msgstr "Periodo di analisi"
+msgstr "Periodi di analisi"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.create_period_step
@@ -339,7 +341,7 @@ msgstr "Periodo di analisi"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.create_period_step
 msgid "Analysis period created !"
-msgstr "Periodo di analisi creato"
+msgstr "Periodo di analisi creato."
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_chart_form_onboarding
@@ -355,7 +357,7 @@ msgstr "Numero allegati"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.line_template_consolidation_report
 msgid "Audit"
-msgstr "Revisione"
+msgstr "Verifica"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_journal_search
@@ -366,7 +368,7 @@ msgstr "Autogenerato"
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal__auto_generated
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal_line__auto_generated
 msgid "Automatically Generated"
-msgstr "Generato in automatico"
+msgstr "Generato automaticamente"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_company_period__currency_rate_avg
@@ -400,7 +402,7 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_company_period__chart_id
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal__chart_id
 msgid "Chart"
-msgstr "Grafico"
+msgstr "Piano"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.chart_of_account_step
@@ -435,7 +437,7 @@ msgstr "Chiudi"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_kanban
 msgid "Close period"
-msgstr "Chiudere periodo"
+msgstr "Chiudi periodo"
 
 #. module: account_consolidation
 #: model:ir.model.fields.selection,name:account_consolidation.selection__consolidation_period__state__closed
@@ -483,7 +485,7 @@ msgstr "Azienda"
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_company_period__currency_company_id
 msgid "Company Currency"
-msgstr "Valuta azienda"
+msgstr "Valuta aziendale"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_company_period__company_name
@@ -548,7 +550,7 @@ msgstr "Conti consolidati"
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_form
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_kanban
 msgid "Consolidated Balance"
-msgstr "Saldo consolidato"
+msgstr "Bilancio consolidato"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_chart_form
@@ -565,7 +567,7 @@ msgstr "Consolidato in"
 #: code:addons/account_consolidation/static/src/js/trial_balance_grid/controller.js:0
 #, python-format
 msgid "Consolidated balance"
-msgstr "Saldo consolidato"
+msgstr "Bilancio consolidato"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_account__used_in_ids
@@ -677,7 +679,7 @@ msgstr "Periodo di consolidamento"
 #. module: account_consolidation
 #: model:ir.model,name:account_consolidation.model_consolidation_period_composition
 msgid "Consolidation Period Composition"
-msgstr "Periodo di consolidamento Composizione"
+msgstr "Composizione periodo di consolidamento"
 
 #. module: account_consolidation
 #: model:ir.model,name:account_consolidation.model_consolidation_rate
@@ -690,7 +692,7 @@ msgstr "Tasso di consolidamento"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_form
 msgid "Consolidation Rate (%)"
-msgstr "Movimenti di consolidamento (%)"
+msgstr "Tasso di consolidamento (%)"
 
 #. module: account_consolidation
 #: model:ir.model,name:account_consolidation.model_consolidation_account
@@ -730,7 +732,7 @@ msgstr "Crea primo periodo"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.create_period_step
 msgid "Create your first analysis period &amp; set the currency rates."
-msgstr "Crea il tuo primo periodo di analisi &amp; imposta i tassi di valuta."
+msgstr "Crea il primo periodo di analisi e imposta i tassi di cambio."
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_account__create_uid
@@ -818,8 +820,8 @@ msgstr "Definisci"
 msgid ""
 "Define the companies that should be consolidated &amp; the target currency"
 msgstr ""
-"Definisci le aziende che dovrebbero essere consolidate &amp; la valuta "
-"target"
+"Definisci le aziende che devono essere consolidate e la valuta di "
+"destinazione"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal_line__note
@@ -899,7 +901,7 @@ msgstr "Patrimonio netto"
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_company_period__exclude_journal_ids
 msgid "Exclude Journals"
-msgstr "Escludere registri"
+msgstr "Registri esclusi"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_account__filtered_used_in_ids
@@ -972,7 +974,7 @@ msgstr "Tassi storici: %(company)s"
 msgid ""
 "How many units of company currency is needed to get 1 unit of chart currency"
 msgstr ""
-"Quante unità di valuta aziendale sono necessarie per ottenere una unità di "
+"Quante unità di valuta aziendale sono necessarie per ottenere 1 unità di "
 "valuta del piano"
 
 #. module: account_consolidation
@@ -991,23 +993,23 @@ msgstr "ID"
 #. module: account_consolidation
 #: model:ir.model.fields,help:account_consolidation.field_consolidation_period__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: account_consolidation
 #: model:ir.model.fields,help:account_consolidation.field_consolidation_period__message_has_error
 #: model:ir.model.fields,help:account_consolidation.field_consolidation_period__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna."
+msgstr "Se selezionata, alcuni messaggi presentano un errore di consegna."
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_search
 msgid "In The Future"
-msgstr "Nel futuro"
+msgstr "In futuro"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_search
 msgid "In The Past"
-msgstr "Nel passato"
+msgstr "In passato"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_account__invert_sign
@@ -1202,17 +1204,17 @@ msgstr "Numero di messaggi con errore di consegna"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_search
 msgid "Only the periods containing today"
-msgstr "Solo i periodi che comprendono la data di oggi"
+msgstr "Solo i periodi che contengono oggi"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_search
 msgid "Only the periods in the future"
-msgstr "Solo i periodi nel futuro"
+msgstr "Solo i periodi futuri"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_search
 msgid "Only the periods in the past"
-msgstr "Solo i periodi del passato"
+msgstr "Solo i periodi passati"
 
 #. module: account_consolidation
 #: model:ir.ui.menu,name:account_consolidation.menu_consolidation_operations
@@ -1223,7 +1225,7 @@ msgstr "Operazioni"
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal__originating_currency_id
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_journal_line__journal_originating_currency_id
 msgid "Originating Currency"
-msgstr "Valuta d'origine"
+msgstr "Valuta di origine"
 
 #. module: account_consolidation
 #: code:addons/account_consolidation/report/trial_balance.py:0
@@ -1287,7 +1289,7 @@ msgstr "Intervalli tasso"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_kanban
 msgid "Reopen period"
-msgstr "Riaprire il periodo"
+msgstr "Riapri periodo"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_period_form
@@ -1297,7 +1299,7 @@ msgstr "Reimposta a bozza"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_chart_form
 msgid "Review Chart Of Accounts"
-msgstr "Revisione piano dei conti"
+msgstr "Esamina piano dei conti"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__message_has_sms_error
@@ -1307,7 +1309,7 @@ msgstr "Errore di consegna SMS"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_step
 msgid "Scope of Consolidation defined !"
-msgstr "Perimetro di consolidamento definito!"
+msgstr "Ambito di consolidamento definito."
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_account__sequence
@@ -1323,7 +1325,7 @@ msgstr "Impostazioni"
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.chart_of_account_step
 msgid "Setup"
-msgstr "Impostazione"
+msgstr "Imposta"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.chart_of_account_step
@@ -1331,8 +1333,8 @@ msgid ""
 "Setup your consolidated accounts and their currency conversion method.\n"
 "                Then map them with the companies accounts."
 msgstr ""
-"Imposta i tuoi conti consolidati e il loro metodo di conversione della valuta.\n"
-"Poi mappali con i conti delle società."
+"Imposta i conti consolidati e il relativo metodo di conversione della valuta.\n"
+"                Procedi quindi alla mappatura con i conti aziendali."
 
 #. module: account_consolidation
 #: model:ir.model.fields,help:account_consolidation.field_consolidation_company_period__rate_consolidation
@@ -1444,7 +1446,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__chart_currency_id
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period_composition__using_chart_currency_id
 msgid "Target Currency"
-msgstr "Valuta target"
+msgstr "Valuta di destinazione"
 
 #. module: account_consolidation
 #: code:addons/account_consolidation/models/consolidation_period.py:0
@@ -1452,12 +1454,12 @@ msgstr "Valuta target"
 msgid ""
 "The Composed Analysis Period must be different from the Analysis Period"
 msgstr ""
-"Il Periodo di analisi composto deve essere diverso dal Periodo di analisi"
+"Il periodo di analisi composto deve essere diverso da quello di analisi"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_step
 msgid "The Scope of Consolidation"
-msgstr "L'ambito di consolidamento"
+msgstr "Ambito di consolidamento"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_company_period_form
@@ -1466,13 +1468,13 @@ msgid ""
 "The rate used for the consolidation (basically this rate will multiply the "
 "sum of everything"
 msgstr ""
-"Il tasso utilizzato per il consolidamento (fondamentalmente questo tasso "
-"moltiplicherà la somma di tutto)"
+"Il tasso utilizzato per il consolidamento (in pratica questo tasso viene "
+"moltiplicato alla somma di tutto)"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_journal_form
 msgid "This journal has been automatically generated on"
-msgstr "Questo giornale è stato generato automaticamente su"
+msgstr "Questo registro è stato generato automaticamente il"
 
 #. module: account_consolidation
 #: code:addons/account_consolidation/report/builder/abstract.py:0
@@ -1492,7 +1494,7 @@ msgstr "Totale"
 #: model_terms:ir.ui.view,arch_db:account_consolidation.view_trial_balance_report_grid
 #, python-format
 msgid "Trial Balance"
-msgstr "Situazione contabile"
+msgstr "Bilancio di verifica"
 
 #. module: account_consolidation
 #: model:ir.model,name:account_consolidation.model_consolidation_trial_balance_report_handler
@@ -1516,7 +1518,8 @@ msgid ""
 "Two compositions of the same analysis period by the same analysis period "
 "cannot be created"
 msgstr ""
-"Non si possono creare due composizioni dello stesso periodo di analisi"
+"Impossibile creare due composizioni dello stesso periodo di analisi per lo "
+"stesso periodo"
 
 #. module: account_consolidation
 #: model_terms:ir.ui.view,arch_db:account_consolidation.consolidation_journal_form
@@ -1526,7 +1529,7 @@ msgstr "Aggiorna"
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__used_in_composition_ids
 msgid "Used In Composition"
-msgstr "Usato in Composizione"
+msgstr "Usato nella composizione"
 
 #. module: account_consolidation
 #: model:ir.model.fields,help:account_consolidation.field_consolidation_chart__color
@@ -1537,7 +1540,7 @@ msgstr "Usato nella vista kanban"
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__using_composition_ids
 msgid "Using Composition"
-msgstr "Usare composizione"
+msgstr "Utilizza composizione"
 
 #. module: account_consolidation
 #: model:ir.model.fields,field_description:account_consolidation.field_consolidation_period__website_message_ids
@@ -1557,9 +1560,9 @@ msgid ""
 " chart for the journal cannot be different from the one of the chosen "
 "period."
 msgstr ""
-"Quando si imposta un periodo su un giornale di consolidamento, il grafico di"
-" consolidamento selezionato per il giornale non può essere diverso da quello"
-" del periodo scelto."
+"Se in un registro di consolidamento viene impostato un periodo, il piano di "
+"consolidamento selezionato per il registro stesso non può essere diverso da "
+"quello del periodo scelto."
 
 #. module: account_consolidation
 #: code:addons/account_consolidation/report/trial_balance.py:0
@@ -1574,7 +1577,7 @@ msgid ""
 "You can here define complex consolidations based on other sub-"
 "consolidations, as part of a whole scheme"
 msgstr ""
-"Qui puoi definire consolidamenti complessi basati su altri "
+"Qui è possibile definire consolidamenti complessi basati su altri "
 "subconsolidamenti, come parte di un intero schema"
 
 #. module: account_consolidation

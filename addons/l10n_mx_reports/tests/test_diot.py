@@ -129,6 +129,6 @@ class TestDiot(TestAccountReportsCommon):
 
         self.assertEqual(
             self.env[diot_report.custom_handler_model_name].action_get_dpiva_txt(options)['file_content'].decode(),
-            "|1.0|2022|MES|January|1|1|||14|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|04|85|XAXX010101000|||||15|||16||||||||14||-1|60|\n"
-            "|1.0|2022|MES|January|1|1|||14|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|05|85|||partnerb|US|American|15|||16||||||||14||-1|60|"
+            "|1.0|2022|MES|Enero|1|1|||14|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|04|85|XAXX010101000|||||15|||16||||||||14||-1|60|\n"
+            "|1.0|2022|MES|Enero|1|1|||14|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|05|85|||partnerb|US|American|15|||16||||||||14||-1|60|"
         )

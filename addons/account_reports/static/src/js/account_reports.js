@@ -433,17 +433,20 @@ var accountReportsWidget = AbstractAction.extend({
         this.$('.o_account_searchable_line').each(function(index, el) {
             var $accountReportLineFoldable = $(el);
             var line_id = $accountReportLineFoldable.find('.o_account_report_line').data('id');
+            if (line_id.endsWith("total--")) { //continue on the line with total in the id
+                return;
+            }
             var $childs = self.$('tr[data-parent-id="'+$.escapeSelector(String(line_id))+'"]');
 
             const lineNameEl = $accountReportLineFoldable.find('.account_report_line_name')[0];
             // Only the direct text node, not text situated in other child nodes
             const displayName = lineNameEl.childNodes[0].nodeValue.trim().toLowerCase();
-            const searchKey = lineNameEl.dataset.searchKey || '';
 
-            // The python does this too
+            const searchKey = (lineNameEl.dataset.searchKey || '').toLowerCase();
+            const name = displayName.replace(searchKey, "");
             let queryFound = undefined;
             if (searchKey) {
-                queryFound = searchKey.startsWith(query.split(' ')[0]);
+                queryFound = searchKey.startsWith(query.split(' ')[0]) || name.includes(query);
             } else {
                 queryFound = displayName.includes(query);
             }

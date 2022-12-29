@@ -272,6 +272,7 @@ class TestEdiResults(TestMxEdiCommon):
                     </xpath>
                     <xpath expr="//Concepto" position="attributes">
                       <attribute name="ValorUnitario">2000.000</attribute>
+                      <attribute name="ObjetoImp">01</attribute>
                     </xpath>
                     <xpath expr="//Concepto" position="attributes">
                       <attribute name="Importe">10000.000</attribute>
@@ -488,7 +489,7 @@ class TestEdiResults(TestMxEdiCommon):
                             ClaveProdServ="01010101"
                             Descripcion="product_mx"
                             Importe="10000.000"
-                            ObjetoImp="02"
+                            ObjetoImp="01"
                             Descuento="10000.000"
                             ValorUnitario="2000.000">
                         </Concepto>

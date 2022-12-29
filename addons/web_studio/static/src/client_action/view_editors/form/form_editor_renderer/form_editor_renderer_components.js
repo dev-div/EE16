@@ -1,43 +1,12 @@
 /** @odoo-module */
 
-import { Dialog } from "@web/core/dialog/dialog";
-import { FieldContentOverlay } from "./field_content_overlay";
 import { formView } from "@web/views/form/form_view";
-import { StudioHook } from "../studio_hook_component";
-import { studioIsVisible } from "@web_studio/client_action/view_editors/utils";
+import { StudioHook } from "@web_studio/client_action/view_editors/components/studio_hook_component";
+import { FieldSelectorDialog } from "@web_studio/client_action/view_editors/components/field_selector_dialog";
+import { studioIsVisible, useStudioRef } from "@web_studio/client_action/view_editors/utils";
 import { useService } from "@web/core/utils/hooks";
-import { fieldVisualFeedback } from "@web/views/fields/field";
 
-const { useState, Component } = owl;
-
-export function useStudioRef(refName = "studioRef", onClick) {
-    // create two hooks and call them here?
-    const comp = owl.useComponent();
-    const ref = owl.useRef(refName);
-    owl.useEffect(
-        (el) => {
-            if (el) {
-                el.setAttribute("data-studio-xpath", comp.props.studioXpath);
-            }
-        },
-        () => [ref.el]
-    );
-
-    if (onClick) {
-        const handler = onClick.bind(comp);
-        owl.useEffect(
-            (el) => {
-                if (el) {
-                    el.addEventListener("click", handler, { capture: true });
-                    return () => {
-                        el.removeEventListener("click", handler);
-                    };
-                }
-            },
-            () => [ref.el]
-        );
-    }
-}
+import { Component } from "@odoo/owl";
 
 /**
  * Overrides and extensions of components used by the FormRenderer
@@ -53,92 +22,6 @@ export function useStudioRef(refName = "studioRef", onClick) {
  */
 
 const components = formView.Renderer.components;
-
-export class Widget extends components.Widget {
-    get widgetProps() {
-        const widgetProps = super.widgetProps;
-        delete widgetProps.studioXpath;
-        delete widgetProps.hasEmptyPlaceholder;
-        delete widgetProps.hasLabel;
-        delete widgetProps.studioIsVisible;
-        return widgetProps;
-    }
-}
-
-/*
- * Field:
- * - Displays an Overlay for X2Many fields
- * - handles invisible
- */
-export class Field extends components.Field {
-    setup() {
-        super.setup();
-        this.state = useState({
-            displayOverlay: false,
-        });
-        useStudioRef("rootRef", this.onClick);
-    }
-    get fieldComponentProps() {
-        const fieldComponentProps = super.fieldComponentProps;
-        delete fieldComponentProps.studioXpath;
-        delete fieldComponentProps.hasEmptyPlaceholder;
-        delete fieldComponentProps.hasLabel;
-        delete fieldComponentProps.studioIsVisible;
-        return fieldComponentProps;
-    }
-    get classNames() {
-        const classNames = super.classNames;
-        classNames["o_web_studio_show_invisible"] = !studioIsVisible(this.props);
-        classNames["o-web-studio-editor--element-clickable"] = true;
-        if (!this.props.hasLabel && classNames["o_field_empty"]) {
-            delete classNames["o_field_empty"];
-            classNames["o_web_studio_widget_empty"] = true;
-        }
-        return classNames;
-    }
-
-    getEmptyPlaceholder() {
-        const { hasEmptyPlaceholder, hasLabel, fieldInfo, name, record } = this.props;
-        if (hasLabel || !hasEmptyPlaceholder) {
-            return false;
-        }
-        const { empty } = fieldVisualFeedback(this.FieldComponent, record, name, fieldInfo);
-        return empty ? record.activeFields[name].string : false;
-    }
-
-    isX2ManyEditable(props) {
-        const { name, record } = props;
-        const field = record.fields[name];
-        if (!["one2many", "many2many"].includes(field.type)) {
-            return false;
-        }
-        const activeField = record.activeFields[name];
-        if (["many2many_tags", "hr_org_chart"].includes(activeField.widget)) {
-            return false;
-        }
-        return true;
-    }
-
-    onEditViewType(viewType) {
-        const { name, record, studioXpath } = this.props;
-        this.env.config.onEditX2ManyView({ viewType, fieldName: name, record, xpath: studioXpath });
-    }
-
-    onClick(ev) {
-        if (ev.target.classList.contains("o_web_studio_editX2Many")) {
-            return;
-        }
-        ev.stopPropagation();
-        ev.preventDefault();
-        this.env.config.onNodeClicked({
-            xpath: this.props.studioXpath,
-            target: ev.target,
-        });
-        this.state.displayOverlay = !this.state.displayOverlay;
-    }
-}
-Field.components = { ...Field.components, FieldContentOverlay };
-Field.template = "web_studio.Field";
 
 /*
  * FormLabel:
@@ -168,38 +51,6 @@ export class FormLabel extends components.FormLabel {
 FormLabel.template = "web_studio.FormLabel";
 
 /*
- * ViewButton:
- * - Deals with invisible
- * - Click is overriden not to trigger the bound action
- */
-export class ViewButton extends components.ViewButton {
-    setup() {
-        super.setup();
-        useStudioRef("rootRef");
-    }
-    getClassName() {
-        let className = super.getClassName();
-        if (!studioIsVisible(this.props)) {
-            className += " o_web_studio_show_invisible";
-        }
-        className += " o-web-studio-editor--element-clickable";
-        return className;
-    }
-
-    onClick(ev) {
-        if (this.props.tag === "a") {
-            ev.preventDefault();
-        }
-        this.env.config.onNodeClicked({
-            xpath: this.props.studioXpath,
-            target: ev.currentTarget,
-        });
-    }
-}
-ViewButton.template = "web_studio.ViewButton";
-ViewButton.props = [...components.ViewButton.props, "studioIsVisible?", "studioXpath"];
-
-/*
  * Notebook:
  * - Display every page, the elements in the page handle whether they are invisible themselves
  * - Push a droppable hook on every empty page
@@ -225,7 +76,11 @@ export class Notebook extends components.Notebook {
 }
 Notebook.template = "web_studio.Notebook.Hook";
 Notebook.components = { ...components.Notebook.components, StudioHook };
-Notebook.props = { ...components.Notebook.props, studioXpath: String };
+Notebook.props = {
+    ...components.Notebook.props,
+    studioIsVisible: { type: Boolean, optional: true },
+    studioXpath: String,
+};
 
 export class StatusBarFieldHook extends Component {
     onClick() {
@@ -255,22 +110,6 @@ export class StatusBarFieldHook extends Component {
     }
 }
 StatusBarFieldHook.template = "web_studio.StatusBarFieldHook";
-
-class FieldSelectorDialog extends Component {
-    setup() {
-        this.selectRef = owl.useRef("select");
-    }
-    onConfirm() {
-        const field = this.selectRef.el.value;
-        this.props.onConfirm(field);
-        this.props.close();
-    }
-    onCancel() {
-        this.props.close();
-    }
-}
-FieldSelectorDialog.template = "web_studio.FieldSelectorDialog";
-FieldSelectorDialog.components = { Dialog };
 
 export class AvatarHook extends Component {
     setup() {
@@ -326,3 +165,8 @@ export class ButtonBox extends components.ButtonBox {
         return { visible, additional };
     }
 }
+
+ButtonBox.props = {
+    ...components.ButtonBox.props,
+    studioIsVisible: { type: Boolean, optional: true },
+};

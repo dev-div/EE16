@@ -20,7 +20,7 @@ class AccountJournal(models.Model):
         """
         rslt = super(AccountJournal, self).get_journal_dashboard_datas()
         domain = [
-            ('payment_method_code','=','sdd'),
+            ('payment_method_code', 'in', self.env['account.payment.method']._get_sdd_payment_method_code()),
             ('state', '=', 'posted'),
             ('is_move_sent', '=', False),
             ('is_matched', '=', False),

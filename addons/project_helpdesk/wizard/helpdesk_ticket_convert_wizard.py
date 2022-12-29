@@ -28,21 +28,21 @@ class HelpdeskTicketConvertWizard(models.TransientModel):
 
     def action_convert(self):
         tickets_to_convert = self._get_tickets_to_convert()
-        subtype_id = self.env.ref('project.mt_task_new').id
 
         created_tasks = self.env['project.task'].with_context(mail_create_nolog=True).create(
             [self._get_task_values(ticket) for ticket in tickets_to_convert]
         )
 
+        subtype_id = self.env['ir.model.data']._xmlid_to_res_id('project.mt_task_new')
         for ticket, task in zip(tickets_to_convert, created_tasks):
             ticket.active = False
 
-            ticket.sudo().message_post(body=f"Ticket converted into task <a href='#' data-oe-model='project.task' data-oe-id='{task.id}'>{task.name}</a>")
-            task_message = task.sudo().message_post(
-                body=f"Task created from ticket <a href='#' data-oe-model='helpdesk.ticket' data-oe-id='{ticket.id}'>{ticket.name}</a>",
+            ticket.sudo().message_post(body=_("Ticket converted into task %s", f"<a href='#' data-oe-model='project.task' data-oe-id='{task.id}'>{task.name}</a>"))
+            task.sudo().message_post(
+                body=_("Task created from ticket %s", f"<a href='#' data-oe-model='helpdesk.ticket' data-oe-id='{ticket.id}'>{ticket.name}</a>"),
                 is_internal=True,
+                subtype_id=subtype_id,
             )
-            task._notify_thread(task_message, {'subtype_id': subtype_id})
 
         if len(created_tasks) == 1:
             return {

@@ -31,9 +31,8 @@
             </xpath>
             <xpath expr="//div[@id='post-stats']" position="inside">
                 <div class="px-2 text-center" groups="sales_team.group_sale_salesman">
-                    <small t-if="record.use_leads.raw_value">Leads:</small>
-                    <small t-else="">Opportunities:</small>
-                    <small class="fw-bold"><t t-esc="record.leads_opportunities_count.raw_value"/></small>
+                    <small t-if="record.use_leads.raw_value" class="pe-1">Leads:</small>
+                    <small t-else="" class="pe-1">Opportunities:</small> <small class="fw-bold"><t t-esc="record.leads_opportunities_count.raw_value"/></small>
                 </div>
             </xpath>
         </field>

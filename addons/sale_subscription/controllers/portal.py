@@ -12,10 +12,9 @@ from odoo.tools.translate import _
 from odoo.tools.misc import format_date
 from odoo.tools.date_utils import get_timedelta
 from odoo.addons.payment.controllers import portal as payment_portal
-from odoo.addons.sale.controllers import portal as sale_portal
 from odoo.addons.payment import utils as payment_utils
-from odoo.addons.portal.controllers import portal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
+from odoo.addons.sale.controllers import portal as sale_portal
 
 
 class CustomerPortal(payment_portal.PaymentPortal):
@@ -124,6 +123,7 @@ class CustomerPortal(payment_portal.PaymentPortal):
             order_sudo.amount_total,
             currency_id=order_sudo.currency_id.id,
             is_validation=not order_sudo.to_renew,
+            sale_order_id=order_id,
         )  # In sudo mode to read the fields of providers and partner (if not logged in)
         # The tokens are filtered based on the partner hierarchy to allow managing tokens of any
         # sibling partners. As a result, a partner can manage any token belonging to partners of its
@@ -186,7 +186,8 @@ class CustomerPortal(payment_portal.PaymentPortal):
             'currency': order_sudo.pricelist_id.currency_id,
             'partner_id': order_sudo.partner_id.id,
             'access_token': order_sudo.access_token,
-            'transaction_route': f'/my/subscription/transaction/{order_sudo.id}'
+            'transaction_route': f'/my/subscription/transaction/{order_sudo.id}',
+            'is_subscription': True,
             # Operation-dependent values are defined in the view
         }
         values.update(payment_values)
@@ -323,3 +324,16 @@ class SalePortal(sale_portal.CustomerPortal):
         domain = super()._prepare_orders_domain(partner)
         domain.append(('is_subscription', '=', False))
         return domain
+
+    def _get_payment_values(self, order_sudo):
+        """ Override of `sale` to specify whether the sales order is a subscription.
+
+        :param recordset order_sudo: The sales order being paid, as a `sale.order` record.
+        :return: The payment-specific values.
+        :rtype: dict
+        """
+        is_subscription = order_sudo.is_subscription or order_sudo.subscription_id.is_subscription
+        return {
+            **super()._get_payment_values(order_sudo),
+            'is_subscription': is_subscription,
+        }

@@ -3,17 +3,17 @@
 # 	* sale_stock_renting
 # 
 # Translators:
-# Jolien De Paepe, 2022
 # Martin Trigaux, 2022
 # Cécile Collart <cco@odoo.com>, 2022
+# Jolien De Paepe, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:29+0000\n"
+"POT-Creation-Date: 2022-12-15 13:30+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Cécile Collart <cco@odoo.com>, 2022\n"
+"Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,12 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/models/product_product.py:0
 #, python-format
 msgid "%(product)s (%(qty)s item)"
 msgstr "%(product)s (%(qty)s article)"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/models/product_product.py:0
 #, python-format
 msgid "%(product)s (%(qty)s items)"
@@ -62,7 +64,7 @@ msgstr ""
 " indisponible avant une location (temps de préparation)."
 
 #. module: sale_stock_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
 #, python-format
 msgid "Availability"
@@ -74,7 +76,7 @@ msgid "Available"
 msgstr "Disponible"
 
 #. module: sale_stock_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
 #, python-format
 msgid "Available for Rent"
@@ -149,6 +151,7 @@ msgid "Minimum amount of time between two rentals"
 msgstr "Durée minimale entre deux locations"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/models/sale_order_line.py:0
 #, python-format
 msgid "No valid quant has been found in location %s for serial number %s !"
@@ -193,12 +196,14 @@ msgid "Pickedup Lot"
 msgstr "Lot enlevé"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_processing.py:0
 #, python-format
 msgid "Please specify the serial numbers picked up for the tracked products."
 msgstr "Merci de spécifer le numéro de série enlevé pour les articles suivis."
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_processing.py:0
 #, python-format
 msgid "Please specify the serial numbers returned for the tracked products."
@@ -206,7 +211,6 @@ msgstr ""
 "Merci de spécifier le numéro de série retourné pour les articles suivis."
 
 #. module: sale_stock_renting
-#: model:product.product,name:sale_stock_renting.rental_stock_product_1
 #: model:product.template,name:sale_stock_renting.rental_stock_product_1_product_template
 msgid "Printer"
 msgstr "Imprimante"
@@ -257,6 +261,7 @@ msgid "Rental Schedule"
 msgstr "Plannification des locations"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/models/sale_order_line.py:0
 #: code:addons/sale_stock_renting/models/sale_order_line.py:0
 #, python-format
@@ -360,6 +365,7 @@ msgid "Tracking"
 msgstr "Suivi"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/models/product_template.py:0
 #, python-format
 msgid ""
@@ -375,13 +381,7 @@ msgid "Unavailable Lot"
 msgstr "Lot indisponible"
 
 #. module: sale_stock_renting
-#: model:product.product,uom_name:sale_stock_renting.rental_stock_product_1
-#: model:product.template,uom_name:sale_stock_renting.rental_stock_product_1_product_template
-msgid "Units"
-msgstr "Unité(s)"
-
-#. module: sale_stock_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
 #, python-format
 msgid "View Rentals"
@@ -394,10 +394,20 @@ msgid "Warehouse"
 msgstr "Entrepôt"
 
 #. module: sale_stock_renting
+#. odoo-python
 #: code:addons/sale_stock_renting/wizard/rental_configurator.py:0
 #, python-format
 msgid "You cannot change the product of a picked-up line."
 msgstr "Vous ne pouvez pas modifier l'article d'une ligne enlevée."
+
+#. module: sale_stock_renting
+#. odoo-python
+#: code:addons/sale_stock_renting/models/sale_order_line.py:0
+#, python-format
+msgid "You cannot change the product of lines linked to stock moves."
+msgstr ""
+"Vous ne pouvez pas changer le produit de lignes liées à des mouvements de "
+"stock."
 
 #. module: sale_stock_renting
 #: model_terms:ir.ui.view,arch_db:sale_stock_renting.res_config_settings_inherit_view_form
@@ -410,7 +420,7 @@ msgid "hours before orders"
 msgstr "heures avant les commandes"
 
 #. module: sale_stock_renting
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_stock_renting/static/src/widgets/qty_at_date_widget.xml:0
 #, python-format
 msgid "to"

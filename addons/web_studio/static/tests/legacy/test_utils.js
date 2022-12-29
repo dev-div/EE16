@@ -151,7 +151,7 @@ async function createSidebar(params) {
  * This class let us instanciate a widget via createWebClient and get it
  * afterwards in order to use it during tests.
  */
-const { onMounted, onWillUnmount } = owl;
+const { onMounted, onWillUnmount } = require("@odoo/owl");
 class StudioEnvironmentComponent extends ComponentAdapter {
     constructor() {
         super(...arguments);

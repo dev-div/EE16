@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+  <t t-name="web_studio.ListEditorRenderer" t-inherit="web.ListRenderer" owl="1" >
+    <xpath expr="//*[@t-ref='table']" position="attributes">
+      <attribute name="t-on-click.capture">onTableClicked</attribute>
+      <attribute name="t-on-mouseover">onTableHover</attribute>
+      <attribute name="t-on-mouseout">onTableHover</attribute>
+    </xpath>
+
+    <xpath expr="//thead[1]" position="attributes">
+      <attribute name="t-ref">tableHead</attribute>
+    </xpath>
+
+    <xpath expr="//*[contains(@class, 'o_optional_columns_dropdown_toggle')]" position="attributes">
+      <attribute name="class" add="text-muted" separator=" "/>
+    </xpath>
+
+    <xpath expr="//thead//t[@t-foreach]//*[@t-else][1]" position="before">
+      <t t-elif="column.type === 'studio_hook'">
+        <t t-call="web_studio.ListEditor.StudioHook" >
+          <t t-set="column" t-value="column" />
+          <t t-set="isHeader" t-value="true" />
+        </t>
+      </t>
+    </xpath>
+
+    <xpath expr="//thead//t[@t-foreach]/th[1]" position="attributes">
+      <attribute name="t-att-data-studio-xpath">column.studioXpath</attribute>
+      <attribute name="class">o-draggable</attribute>
+      <attribute name="t-attf-class" add="{{ column.studioIsInvisible ? 'o_web_studio_show_invisible' : '' }}" separator=" " />
+    </xpath>
+
+    <xpath expr="//thead//t[@t-foreach]/th[2]" position="attributes">
+      <attribute name="t-att-data-studio-xpath">column.studioXpath</attribute>
+      <attribute name="t-attf-class" add="{{ column.studioIsInvisible ? 'o_web_studio_show_invisible' : '' }}" separator=" " />
+    </xpath>
+  </t>
+
+  <t t-name="web_studio.ListEditorRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow" owl="1">
+    <xpath expr="//t[@t-foreach]" position="inside">
+      <t t-if="column.type === 'studio_hook'">
+        <t t-call="web_studio.ListEditor.StudioHook" >
+          <t t-set="column" t-value="column" />
+        </t>
+      </t>
+    </xpath>
+
+    <xpath expr="(//t[@t-foreach]//td)[1]" position="attributes">
+      <attribute name="t-att-data-studio-xpath">column.studioXpath</attribute>
+      <attribute name="t-attf-class" add="{{ column.studioIsInvisible ? 'o_web_studio_show_invisible' : '' }}" separator=" " />
+    </xpath>
+
+    <xpath expr="(//t[@t-foreach]//td)[2]" position="attributes">
+      <attribute name="data-button-group">1</attribute>
+      <attribute name="t-att-data-studio-xpath">column.studioXpath</attribute>
+      <attribute name="t-attf-class" add="{{ column.studioIsInvisible ? 'o_web_studio_show_invisible' : '' }}" separator=" " />
+    </xpath>
+  </t>
+
+  <t t-name="web_studio.ListEditor.StudioHook" owl="1">
+    <t t-tag="isHeader ? 'th' : 'td'" t-att-data-xpath="column.xpath" t-att-data-position="column.position" class="o_web_studio_hook" t-attf-class="{{ !isHeader ? 'border-bottom-0' : ''}}">
+      <i t-if="isHeader" class="fa fa-plus" />
+    </t>
+  </t>
+
+</templates>

@@ -3,7 +3,7 @@
 import { patch } from "@web/core/utils/patch";
 import { PivotRenderer } from "@web/views/pivot/pivot_renderer";
 
-const { useEffect, useRef } = owl;
+import { useEffect, useRef } from "@odoo/owl";
 
 patch(PivotRenderer.prototype, "web_enterprise.PivotRendererMobile", {
     setup() {

@@ -100,6 +100,15 @@ QUnit.module(
             );
         });
 
+        QUnit.test("collaborative session client has the user id", async function (assert) {
+            const { model } = await createSpreadsheet();
+            const clients = [...model.getters.getConnectedClients()];
+            assert.strictEqual(clients.length, 1);
+            const localClient = clients[0];
+            assert.strictEqual(localClient.name, "Mitchell");
+            assert.strictEqual(localClient.userId, 7);
+        });
+
         QUnit.test("Sync status is correctly rendered", async function (assert) {
             assert.expect(3);
             const { model, transportService } = await createSpreadsheet();

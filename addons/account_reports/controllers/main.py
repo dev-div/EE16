@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+import werkzeug
+from werkzeug.exceptions import InternalServerError
 
 from odoo import http
 from odoo.models import check_method_name
 from odoo.http import content_disposition, request
-from odoo.tools import html_escape
 
 import json
 
@@ -50,7 +51,12 @@ class AccountReportController(http.Controller):
                 'message': 'Odoo Server Error',
                 'data': se
             }
-            return request.make_response(html_escape(json.dumps(error)))
+            res = werkzeug.wrappers.Response(
+                json.dumps(error),
+                status=500,
+                headers=[("Content-Type", "application/json")]
+            )
+            raise InternalServerError(response=res) from e
 
     def _get_response_headers(self, file_type, file_name, file_content):
         headers = [

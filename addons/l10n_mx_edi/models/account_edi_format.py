@@ -1202,7 +1202,7 @@ Content-Disposition: form-data; name="xml"; filename="xml"
             })
 
         # == Create the attachment ==
-        cfdi_filename = ('%s-%s-MX-Invoice-3.3.xml' % (invoice.journal_id.code, invoice.payment_reference)).replace('/', '')
+        cfdi_filename = ('%s-%s-MX-Invoice-3.3.xml' % (invoice.journal_id.code, invoice.name)).replace('/', '')
         cfdi_attachment = self.env['ir.attachment'].create({
             'name': cfdi_filename,
             'res_id': invoice.id,

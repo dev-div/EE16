@@ -16,6 +16,8 @@ export class BankRecWidgetFormController extends FormController {
         useSubEnv({
             onClickViewButton: this.viewButtonClick.bind(this),
         });
+        this.rootRef = useRef("root");
+        this.disabledButtons = [];
     }
 
     displayName() {
@@ -23,8 +25,26 @@ export class BankRecWidgetFormController extends FormController {
     }
 
     async viewButtonClick({ clickParams }) {
+        this.disableButtons();
         await this.model.root.update({todo_command: `button_clicked,${clickParams.name}`});
-        this.env.kanbanDoAction(this.model.root.data.next_action_todo);
+        await this.env.kanbanDoAction(this.model.root.data.next_action_todo);
+        this.enableButtons();
+    }
+
+    enableButtons() {
+        for (const btn of this.disabledButtons) {
+            btn.removeAttribute("disabled");
+        }
+        this.disabledButtons = [];
+    }
+
+    disableButtons() {
+        // maybe export the function from view_button_hook instead?
+        const btns = [...this.rootRef.el.querySelectorAll(".o_statusbar_buttons button:not([disabled])")];
+        for (const btn of btns) {
+            btn.setAttribute("disabled", "1");
+        }
+        this.disabledButtons = btns;
     }
 
     beforeUnload() {

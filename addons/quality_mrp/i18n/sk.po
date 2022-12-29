@@ -1,16 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * quality_mrp
+# 	* quality_mrp
 # 
 # Translators:
-# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2018
+# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2022
+# Rastislav Brencic <rastislav.brencic@azet.sk>, 2022
+# Martin Trigaux, 2022
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.5+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 10:04+0000\n"
-"PO-Revision-Date: 2018-09-18 10:04+0000\n"
-"Last-Translator: Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2018\n"
+"POT-Creation-Date: 2021-09-14 10:59+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Slovak (https://www.transifex.com/odoo/teams/41243/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,14 +23,27 @@ msgstr ""
 
 #. module: quality_mrp
 #: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
-msgid ""
-"<span class=\"o_stat_text text-success\" attrs=\"{'invisible': [('quality_check_fail', '=', True)]}\">Quality Checks</span>\n"
-"                    <span class=\"o_stat_text text-danger\" attrs=\"{'invisible': [('quality_check_fail', '!=', True)]}\">Quality Checks</span>"
+msgid "<span class=\"o_stat_text text-danger\">Quality Checks</span>"
 msgstr ""
 
 #. module: quality_mrp
 #: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
-msgid "<span class=\"o_stat_text\">Quality Alert</span>"
+msgid "<span class=\"o_stat_text text-success\">Quality Checks</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
+msgid "<span class=\"o_stat_text\">Quality Alerts</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
+msgid "<span class=\"o_stat_text\">Quality Checks</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.worksheet_page
+msgid "<strong>Manufacturing Order : </strong>"
 msgstr ""
 
 #. module: quality_mrp
@@ -38,14 +54,15 @@ msgstr "Výstrahy"
 #. module: quality_mrp
 #: model:ir.model.fields,field_description:quality_mrp.field_mrp_production__check_ids
 msgid "Checks"
-msgstr ""
+msgstr "Doklady"
+
+#. module: quality_mrp
+#: model:ir.model,name:quality_mrp.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Pohyby produktu (riadok skladového pohybu)"
 
 #. module: quality_mrp
 #: model:ir.model,name:quality_mrp.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Výrobná objednávka"
-
-#. module: quality_mrp
 #: model:ir.model.fields,field_description:quality_mrp.field_quality_alert__production_id
 #: model:ir.model.fields,field_description:quality_mrp.field_quality_check__production_id
 msgid "Production Order"
@@ -70,7 +87,7 @@ msgstr ""
 #. module: quality_mrp
 #: model:ir.model.fields,field_description:quality_mrp.field_mrp_production__quality_check_fail
 msgid "Quality Check Fail"
-msgstr ""
+msgstr "Kontrola kvality zlyhala"
 
 #. module: quality_mrp
 #: model:ir.model.fields,field_description:quality_mrp.field_mrp_production__quality_check_todo
@@ -84,7 +101,17 @@ msgid "Quality Checks"
 msgstr ""
 
 #. module: quality_mrp
-#: code:addons/quality_mrp/models/mrp_production.py:71
+#: model:ir.model,name:quality_mrp.model_quality_point
+msgid "Quality Control Point"
+msgstr ""
+
+#. module: quality_mrp
+#: model:ir.model,name:quality_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "Pohyb skladu"
+
+#. module: quality_mrp
+#: code:addons/quality_mrp/models/mrp_production.py:0
 #, python-format
 msgid "You still need to do the quality checks!"
 msgstr ""

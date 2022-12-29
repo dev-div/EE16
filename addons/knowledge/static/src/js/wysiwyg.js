@@ -67,9 +67,9 @@ Wysiwyg.include({
     _getPowerboxOptions: function () {
         const options = this._super();
         const {commands, categories} = options;
-        categories.push({ name: 'Media', priority: 50 });
+        categories.push({ name: _t('Media'), priority: 50 });
         commands.push({
-            category: 'Media',
+            category: _t('Media'),
             name: _t('Article'),
             priority: 10,
             description: _t('Link an article.'),
@@ -79,9 +79,9 @@ Wysiwyg.include({
             },
         });
         if (this.options.knowledgeCommands) {
-            categories.push({ name: 'Knowledge', priority: 10 });
+            categories.push({ name: _t('Knowledge'), priority: 10 });
             commands.push({
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('File'),
                 priority: 20,
                 description: _t('Embed a file.'),
@@ -96,7 +96,7 @@ Wysiwyg.include({
                     });
                 }
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Template'),
                 priority: 10,
                 description: _t('Add a template section.'),
@@ -105,7 +105,7 @@ Wysiwyg.include({
                     this._insertTemplate();
                 },
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Table Of Content'),
                 priority: 30,
                 description: _t('Add a table of content.'),
@@ -114,7 +114,7 @@ Wysiwyg.include({
                     this._insertTableOfContent();
                 },
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Item Kanban'),
                 priority: 40,
                 description: _t('Insert a Kanban view of article items'),
@@ -133,7 +133,7 @@ Wysiwyg.include({
                     });
                 }
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Item List'),
                 priority: 50,
                 description: _t('Insert a List view of article items'),
@@ -152,7 +152,7 @@ Wysiwyg.include({
                     });
                 }
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Index'),
                 priority: 40,
                 description: _t('Show the first level of nested articles.'),
@@ -161,7 +161,7 @@ Wysiwyg.include({
                     this._insertArticlesStructure(true);
                 }
             }, {
-                category: 'Knowledge',
+                category: _t('Knowledge'),
                 name: _t('Outline'),
                 priority: 40,
                 description: _t('Show all nested articles.'),

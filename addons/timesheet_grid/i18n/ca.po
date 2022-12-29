@@ -9,19 +9,21 @@
 # Harcogourmet, 2022
 # Pete M, 2022
 # marcescu, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
+# Quim - eccit <quim@eccit.com>, 2022
 # Martin Trigaux, 2022
 # CristianCruzParra, 2022
-# Quim - eccit <quim@eccit.com>, 2022
+# Ivan Espinola, 2022
+# Farouk Jabiri, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:26+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
-"Last-Translator: Quim - eccit <quim@eccit.com>, 2022\n"
+"Last-Translator: Farouk Jabiri, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,6 +32,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "%s Spent"
@@ -44,6 +47,11 @@ msgstr "<i class=\"fa fa-pause text-warning\" title=\"Timer is Paused\"/>"
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_view_kanban
 msgid "<i class=\"fa fa-play text-success\" title=\"Timer is Running\"/>"
 msgstr "<i class=\"fa fa-play text-success\" title=\"Timer is Running\"/>"
+
+#. module: timesheet_grid
+#: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
+msgid "<span class=\"col-auto ms-2\">minutes</span>"
+msgstr ""
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
@@ -140,6 +148,82 @@ msgid ""
 "</table>\n"
 "            "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"<tbody>\n"
+"    <!-- HEADER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\">\n"
+"                    <span style=\"font-size: 10px;\">Els vostres fulls de temps</span><br/>\n"
+"                    <span style=\"font-size: 20px; font-weight: bold;\" t-out=\"object.name or ''\">Abigail Peterson</span>\n"
+"                </td><td valign=\"middle\" align=\"right\">\n"
+"                    <img t-attf-src=\"/logo.png?company={{ object.company_id.id }}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"object.company_id.name\"/>\n"
+"                </td></tr>\n"
+"                <tr><td colspan=\"2\" style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- CONTENT -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                    <t t-set=\"timesheethours\" t-value=\"ctx.get('timesheet_hours', 0)\"/>\n"
+"                    <t t-set=\"workinghours\" t-value=\"ctx.get('working_hours', 0)\"/>\n"
+"                    <div>\n"
+"                        Hola <t t-out=\"object.name or ''\">Abigail Peterson</t>,<br/><br/>\n"
+"                        Aquest és un recordatori amable per registrar les vostres hores durant el període següent: <t t-out=\"ctx.get('date_start') or ''\">05/05/2021</t> <i class=\"fa fa-long-arrow-right\"/> <t t-out=\"ctx.get('date_stop') or ''\">05/06/2021</t>.\n"
+"                        De moment, tu <t t-if=\"timesheet_hours != 0\">només</t> has registrat <t t-out=\"'%d' %int(timesheet_hours)\">2</t><t t-if=\"timesheet_hours % 1 != 0\" t-out=\"':%02d' % (round(timesheet_hours % 1 * 60))\">:30</t> hores en el <t t-out=\"'%d' %int(working_hours)\">8</t><t t-if=\"working_hours % 1 != 0\" t-out=\"':%02d' % (round(working_hours % 1 * 60))\">:30</t> sol·licitat.</t>0\n"
+"                        <div t-if=\"ctx.get('action_url')\" style=\"margin: 16px 0px 16px 0px;\">\n"
+"                            <a t-att-href=\"ctx.get('action_url')\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 13px;\">Omple el full de temps</a>\n"
+"                        </div>\n"
+"                        <br/>Gràcies,<br/>\n"
+"                        <t t-if=\"user.signature\">\n"
+"                            <t t-out=\"user.signature or ''\">--<br/>Mitchell Admin</t>\n"
+"                        </t>\n"
+"                    </div>\n"
+"                </td></tr>\n"
+"                <tr><td style=\"text-align:center;\">\n"
+"                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- FOOTER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\" align=\"left\">\n"
+"                    <t t-out=\"object.company_id.name or ''\">YourCompany</t>\n"
+"                </td></tr>\n"
+"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                    <t t-out=\"object.company_id.phone or ''\">+1 650-123-4567</t>\n"
+"                    <t t-if=\"object.company_id.email\">\n"
+"                        com <a t-attf-href=\"'mailto:%s' % {{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.company_id.email or ''\">info@yourcompany.com</a>\n"
+"                    </t>\n"
+"                    <t t-if=\"object.companyid.website\">\n"
+"                        com <a t-attf-href=\"'%s' % {{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.company_id.website or ''\">http://www.example.com</a>\n"
+"                    </t>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"</tbody>\n"
+"</table>\n"
+"</td></tr>\n"
+"<!-- POWERED BY -->\n"
+"<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"      <tr><td style=\"text-align: center; font-size: 13px;\">\n"
+"        Funciona amb <a target=\"_blank\" href=\"https://www.odoo.com?utmsource=dbamp;utmmedium=mail\" style=\"color: #875A7B;\">Odoo</a>\n"
+"      </td></tr>\n"
+"    </table>\n"
+"</td></tr>\n"
+"</table>"
 
 #. module: timesheet_grid
 #: model:mail.template,body_html:timesheet_grid.mail_template_timesheet_reminder_manager
@@ -305,6 +389,9 @@ msgid ""
 "After a certain date, users will not be able to create, modify, or delete "
 "their timesheets. However, managers will still be able to do so."
 msgstr ""
+"Després d'una data determinada, els usuaris no podran crear, modificar o "
+"suprimir els seus fulls de temps. No obstant això, els directors podran fer-"
+"ho."
 
 #. module: timesheet_grid
 #: model:ir.ui.menu,name:timesheet_grid.menu_timesheet_grid_validate_all_timesheets
@@ -317,6 +404,7 @@ msgid "Amount"
 msgstr "Import"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "An employee must be linked to your user to record time."
@@ -329,7 +417,7 @@ msgid "Analytic Account"
 msgstr "Compte analític"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Apple App Store"
@@ -339,6 +427,7 @@ msgstr "App Store d'Apple"
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
 msgid "Block encoding of timesheets after a certain date"
 msgstr ""
+"Bloca la codificació dels fulls de temps després d'una determinada data"
 
 #. module: timesheet_grid
 #: model:ir.model.fields,field_description:timesheet_grid.field_account_analytic_line__can_edit
@@ -356,11 +445,13 @@ msgid ""
 "Check that your employees correctly filled in their timesheets and that "
 "their time is billable."
 msgstr ""
+"Comproveu que els vostres empleats hagin omplert correctament els seus fulls"
+" de temps i que el seu temps sigui facturable."
 
 #. module: timesheet_grid
 #: model:ir.model,name:timesheet_grid.model_res_company
 msgid "Companies"
-msgstr "Companyies"
+msgstr "Empreses"
 
 #. module: timesheet_grid
 #: model:ir.model,name:timesheet_grid.model_res_config_settings
@@ -373,19 +464,22 @@ msgid ""
 "Configure reminders in timesheet settings to remind managers to validate "
 "timesheets"
 msgstr ""
+"Configura els recordatoris a la configuració del full de temps per a "
+"recordar als gestors que validin els fulls de temps"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/task.py:0
 #, python-format
 msgid "Confirm Time Spent"
 msgstr "Confirmar el temps invertit"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Congratulations, you are now a master of Timesheets."
-msgstr ""
+msgstr "Enhorabona, ara ets un mestre dels fulls de temps."
 
 #. module: timesheet_grid
 #: model_terms:ir.actions.act_window,help:timesheet_grid.action_timesheet_previous_month
@@ -443,7 +537,7 @@ msgid "Days to Remind User"
 msgstr "Dies per recordar a l'usuari"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_toggle/timesheet_uom_hour_toggle.xml:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
@@ -455,6 +549,8 @@ msgstr "Disminuir el temps"
 msgid ""
 "Define an 'hourly cost' on the employee to track the cost of their time."
 msgstr ""
+"Definiu un «cost horari» de l'empleat per a fer un seguiment del cost del "
+"seu temps."
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_create_timesheet_view_form
@@ -468,7 +564,7 @@ msgid "Describe your activity"
 msgstr "Descriu la teva activitat"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -479,7 +575,7 @@ msgstr ""
 "amb el client...)</i>."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_create_timesheet_view_form
 #, python-format
@@ -493,25 +589,29 @@ msgid "Description"
 msgstr "Descripció"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_project.js:0
 #, python-format
 msgid ""
 "Difference between the number of %s allocated to the project and the number "
 "of %s recorded."
 msgstr ""
+"Diferència entre el nombre de %s assignat al projecte i el nombre de %s "
+"registrat."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_task.js:0
 #, python-format
 msgid ""
 "Difference between the number of %s allocated to the task and the number of "
 "%s recorded."
 msgstr ""
+"Diferència entre el nombre de %s assignat a la tasca i el nombre de %s "
+"registrat."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_avatar_employee.js:0
 #, python-format
 msgid ""
@@ -522,7 +622,7 @@ msgstr ""
 "l'empleat havia de treballar segons el seu contracte."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_avatar_employee.js:0
 #, python-format
 msgid ""
@@ -533,11 +633,11 @@ msgstr ""
 " de treballar l'empleat segons el seu contracte."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_widget.js:0
 #, python-format
 msgid "Difference between the time allocated and the time recorded."
-msgstr ""
+msgstr "Diferència entre el temps assignat i el temps registrat."
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_create_timesheet_view_form
@@ -590,12 +690,14 @@ msgid "Display Timesheet Time"
 msgstr "Visualitzar el temps del full d'hores"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid ""
 "Download our web/mobile apps to track your time from anywhere, even offline."
 msgstr ""
+"Baixeu les nostres aplicacions web/mòbil per fer un seguiment del vostre "
+"temps des de qualsevol lloc, fins i tot fora de línia."
 
 #. module: timesheet_grid
 #: model:ir.model.fields.selection,name:timesheet_grid.selection__account_analytic_line__validated_status__draft
@@ -633,7 +735,7 @@ msgid "Encoding Uom"
 msgstr "Codificar unitats de mesura"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Enter"
@@ -645,21 +747,21 @@ msgid "Frequency"
 msgstr "Freqüència"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Google Chrome Store"
 msgstr "Botiga de Google Chrome"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Google Play Store"
 msgstr "Google Play Store"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timesheet_grid_group_by_no_date_mixin.js:0
 #, python-format
 msgid "Grouping by date is not supported"
@@ -682,7 +784,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_toggle/timesheet_uom_hour_toggle.xml:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
@@ -722,7 +824,7 @@ msgstr "Última actualització el"
 #. module: timesheet_grid
 #: model:ir.model.fields,field_description:timesheet_grid.field_hr_employee__last_validated_timesheet_date
 msgid "Last Validated Timesheet Date"
-msgstr ""
+msgstr "Data del darrer full de temps validat"
 
 #. module: timesheet_grid
 #: model:ir.ui.menu,name:timesheet_grid.menu_timesheet_grid_validate_previous_week
@@ -730,7 +832,7 @@ msgid "Last Week"
 msgstr "Darrera setmana"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -739,9 +841,13 @@ msgid ""
 "can also directly add 15 minutes to this project by hitting the <b>shift + "
 "[A] keys</b>.</i>"
 msgstr ""
+"Llança el <b>temporitzador</b> per a aquest projecte prement la tecla "
+"<b>[a]</b>. Canvieu fàcilment d'un projecte a un altre utilitzant aquestes "
+"claus. <i>Consell: també podeu afegir directament 15 minuts a aquest "
+"projecte prement les tecles <b>shift + [A]</b>.</i>"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Launch the <b>timer</b> to start a new activity."
@@ -778,15 +884,16 @@ msgstr "Combina"
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_merge_wizard_view_form
 msgid "Merge Timesheet"
-msgstr ""
+msgstr "Fusiona el full de temps"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: model:ir.actions.server,name:timesheet_grid.merge_timesheet_action
 #: model:ir.model,name:timesheet_grid.model_hr_timesheet_merge_wizard
 #, python-format
 msgid "Merge Timesheets"
-msgstr ""
+msgstr "Fusiona fulls de temps"
 
 #. module: timesheet_grid
 #: model:ir.model.fields,field_description:timesheet_grid.field_res_config_settings__timesheet_min_duration
@@ -810,7 +917,7 @@ msgstr "Mes"
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.hr_timesheet_report_search_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_view_search
 msgid "My Department"
-msgstr ""
+msgstr "El meu departament"
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.hr_timesheet_report_search_grid
@@ -841,7 +948,7 @@ msgid "Next scheduled date for manager reminder"
 msgstr "Pròxima data programada per al recordatori del gestor"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "No activities found. Let's start a new one!"
@@ -856,7 +963,7 @@ msgstr "No hi ha activitats per validar."
 #. module: timesheet_grid
 #: model_terms:ir.actions.act_window,help:timesheet_grid.timesheet_grid_to_validate_action
 msgid "No timesheets to validate"
-msgstr ""
+msgstr "No hi ha fulls de temps per validar"
 
 #. module: timesheet_grid
 #: model:ir.model.fields,help:timesheet_grid.field_res_config_settings__reminder_manager_delay
@@ -865,6 +972,9 @@ msgid ""
 "email reminder will be sent to timesheet managers that still have timesheets"
 " to validate."
 msgstr ""
+"Nombre de dies després del final de la setmana/mes després dels quals "
+"s'enviarà un recordatori automàtic per correu electrònic als gestors de "
+"fulls de temps que encara tenen fulls de temps per validar."
 
 #. module: timesheet_grid
 #: model:ir.model.fields,help:timesheet_grid.field_res_config_settings__reminder_user_delay
@@ -873,8 +983,13 @@ msgid ""
 "email reminder will be sent to timesheet users that still have timesheets to"
 " encode (according to their working hours)."
 msgstr ""
+"Nombres de dies després del final de la setmana/mes després dels quals "
+"s'enviarà un recordatori automàtic per correu electrònic als usuaris de "
+"fulls de temps que encara tinguin fulls de temps per codificar (d'acord amb "
+"les seves hores de treball)."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -895,21 +1010,21 @@ msgid "Pause timer"
 msgstr "Temporitzador de pausa"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
 msgid "Play"
 msgstr "Reprodueix"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Press Esc to discard"
 msgstr "Premeu Esc per descartar-lo"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #: model:ir.model,name:timesheet_grid.model_project_project
 #: model:ir.model.fields,field_description:timesheet_grid.field_account_analytic_line__project_id
@@ -978,28 +1093,28 @@ msgid "Save time"
 msgstr "Estalvieu temps"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "See all the records aggregated in this cell"
 msgstr "Veure tots els registres agregats d'aquest cel·la"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #, python-format
 msgid "Select a Project"
 msgstr "Seleccioneu un projecte"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #, python-format
 msgid "Select a Task"
 msgstr "Seleccioneu una tasca"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Select the <b>project</b> on which you are working."
@@ -1010,10 +1125,8 @@ msgstr "Seleccioneu el <b>projecte</b> en què esteu treballant."
 #: model:ir.model.fields,help:timesheet_grid.field_res_users__timesheet_manager_id
 msgid ""
 "Select the user responsible for approving \"Timesheet\" of this employee.\n"
-"If empty, the approval is done by an Administrator or Team Approver (determined in settings/users)."
+"If empty, the approval is done by a Timesheets > Administrator or a Timesheets > User: all timesheets (as determined in the users settings)."
 msgstr ""
-"Seleccioneu l'usuari responsable d'aprovar el \"Full de temps\" d'aquest empleat.\n"
-"Si està buit, l'aprovació la fa un administrador o aprovador de l'equip (determinat a la configuració/usuaris)."
 
 #. module: timesheet_grid
 #: model:ir.model.fields,help:timesheet_grid.field_account_analytic_line__is_timesheet
@@ -1027,9 +1140,11 @@ msgid ""
 "Set reminders in settings to notify employees who didn't record their "
 "timesheet"
 msgstr ""
+"Estableix els recordatoris a la configuració per a notificar als empleats "
+"que no han enregistrat el seu full de temps"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -1041,7 +1156,14 @@ msgstr ""
 "d'una cel·la a una altra.</i>"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-python
+#: code:addons/timesheet_grid/models/analytic.py:0
+#, python-format
+msgid "Sorry, you cannot use a timer for a validated timesheet"
+msgstr ""
+
+#. module: timesheet_grid
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_timer/timesheet_uom_hour_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
@@ -1056,7 +1178,7 @@ msgid "Start timer"
 msgstr "Inicia el temporitzador"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_timer/timesheet_uom_hour_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
@@ -1067,13 +1189,16 @@ msgid "Stop"
 msgstr "Atura"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
 "Stop the <b>timer</b> when you are done. <i>Tip: hit <b>[Enter]</b> in the "
 "description to automatically log your activity.</i>"
 msgstr ""
+"Atura el <b>temporitzador</b> quan hàgiu acabat. <i>Consell: premeu "
+"<b>[Retorn]</b> a la descripció per registrar automàticament la vostra "
+"activitat.</i>"
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_view_form
@@ -1084,10 +1209,10 @@ msgstr "Atura el temporitzador"
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.hr_timesheet_report_search_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_view_search
 msgid "Suspicious Durations"
-msgstr ""
+msgstr "Duracions sospitoses"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #: model:ir.model,name:timesheet_grid.model_project_task
 #: model:ir.model.fields,field_description:timesheet_grid.field_hr_timesheet_merge_wizard__task_id
@@ -1118,13 +1243,19 @@ msgid ""
 "00:30 (assuming you have a round up of 15 min). We recommend having the same"
 " value for the minimal duration and for the round up."
 msgstr ""
+"La durada dels fulls de temps codificats a través del temporitzador "
+"s'arrodonirà automàticament fins a aquest número. Per exemple, si atureu el "
+"temporitzador a les 00:16:56, la durada de l'entrada del full de temps "
+"s'arrodonirà automàticament fins a les 00:30 (suposant que tingueu una "
+"arrodoniment de 15 minuts). Recomanem tenir el mateix valor per a la durada "
+"mínima i per a l'arrodoniment."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timesheet_grid_controller_mixin.js:0
 #, python-format
 msgid "The timesheet entry has successfully been created."
-msgstr ""
+msgstr "L'entrada del full de temps s'ha creat correctament."
 
 #. module: timesheet_grid
 #: model:ir.model.constraint,message:timesheet_grid.constraint_project_task_create_timesheet_time_positive
@@ -1132,43 +1263,60 @@ msgid "The timesheet's time must be positive"
 msgstr "El temps dels fulls de treball ha d'ésser positiu"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/wizard/timesheet_merge_wizard.py:0
 #, python-format
 msgid "The timesheets have successfully been merged."
-msgstr ""
+msgstr "Els fulls de temps s'han fusionat correctament."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "The timesheets have successfully been reset to draft."
 msgstr "Els fulls de temps s'han restablert correctament a l'esborrany."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "The timesheets have successfully been validated."
 msgstr "Els fulls de temps s'han validat correctament."
 
 #. module: timesheet_grid
-#: code:addons/timesheet_grid/models/analytic.py:0
+#. odoo-python
+#: code:addons/timesheet_grid/wizard/timesheet_merge_wizard.py:0
 #, python-format
-msgid "There are no timesheets to merge."
+msgid "The timesheets must have the same encoding unit"
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
+#: code:addons/timesheet_grid/models/analytic.py:0
+#, python-format
+msgid "There are no timesheets to merge."
+msgstr "No hi ha cap full de temps per a fusionar."
+
+#. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
 "There are no timesheets to reset to draft or they have already been "
 "invoiced."
 msgstr ""
+"No hi ha fulls de temps per a reiniciar a l'esborrany o ja han estat "
+"facturats."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/task.py:0
 #, python-format
 msgid ""
 "This project isn't expected to have task during this period. Planned hours :"
 msgstr ""
+"No s'espera que aquest projecte tingui tasca durant aquest període. Horari "
+"planificat:"
 
 #. module: timesheet_grid
 #: model:ir.model.fields,field_description:timesheet_grid.field_project_task_create_timesheet__time_spent
@@ -1207,7 +1355,7 @@ msgstr "Aprovador de fulls de temps"
 #. module: timesheet_grid
 #: model:ir.model,name:timesheet_grid.model_timesheet_grid_mixin
 msgid "Timesheet Grid mixin"
-msgstr ""
+msgstr "Mescla la quadrícula del full de temps"
 
 #. module: timesheet_grid
 #: model:ir.model.fields,field_description:timesheet_grid.field_account_analytic_line__duration_unit_amount
@@ -1228,7 +1376,6 @@ msgstr "Full de temps Unitat de temps"
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_reminder_user_ir_actions_server
 #: model:ir.cron,cron_name:timesheet_grid.timesheet_reminder_user
-#: model:ir.cron,name:timesheet_grid.timesheet_reminder_user
 msgid "Timesheet: Employees Email Reminder"
 msgstr "Full de temps: recordatori per correu electrònic dels empleats"
 
@@ -1245,7 +1392,6 @@ msgstr "Full de temps: recordatori del gestor"
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_reminder_manager_ir_actions_server
 #: model:ir.cron,cron_name:timesheet_grid.timesheet_reminder_manager
-#: model:ir.cron,name:timesheet_grid.timesheet_reminder_manager
 msgid "Timesheet: Managers Email Reminder"
 msgstr "Full de temps: recordatori per correu electrònic dels gestors"
 
@@ -1261,15 +1407,18 @@ msgstr "Fulls d'hores"
 #. module: timesheet_grid
 #: model:ir.model,name:timesheet_grid.model_timesheets_analysis_report
 msgid "Timesheets Analysis Report"
-msgstr ""
+msgstr "Informe d'anàlisi de fulls de temps"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
 "Timesheets before the %s (included) have been validated, and can no longer "
 "be %s."
 msgstr ""
+"Els fulls de temps abans de la validació de %s (inclosa) i ja no poden ser "
+"%s."
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
@@ -1281,6 +1430,12 @@ msgid ""
 "of 15 min). We recommend having the same value for the minimal duration and "
 "for the round up."
 msgstr ""
+"Els fulls de temps codificats a través del temporitzador que no compleixen "
+"la durada mínima s'arrodoniran automàticament fins al valor definit. Per "
+"exemple, si atureu el temporitzador a 00:04:36, la durada de l'entrada del "
+"full de temps s'arrodonirà automàticament fins a 00:15 (suposant que tingueu"
+" una durada mínima de 15 minuts). Recomanem tenir el mateix valor per a la "
+"durada mínima i per a l'arrodoniment."
 
 #. module: timesheet_grid
 #: model:ir.actions.act_window,name:timesheet_grid.action_timesheet_previous_month
@@ -1295,7 +1450,7 @@ msgid "To Validate"
 msgstr "Per a validar"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Track the <b>time spent</b> on your projects. <i>It starts here.</i>"
@@ -1304,7 +1459,7 @@ msgstr ""
 "aquí.</i>"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid ""
@@ -1343,9 +1498,8 @@ msgstr ""
 "de fulls de temps."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/views/timesheet_kanban/timesheet_validation_kanban_controler.xml:0
-#: code:addons/timesheet_grid/static/src/xml/timesheet_kanban.xml:0
 #: model:ir.actions.server,name:timesheet_grid.timesheet_validate_action
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_form_view
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_view_form
@@ -1376,7 +1530,7 @@ msgstr "Línia validada"
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_grid_all_timesheets_action_server
 msgid "Validation All Timesheet Server Action"
-msgstr ""
+msgstr "Acció de validació de tot el full de temps del servidor"
 
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_grid_week_action_server
@@ -1403,6 +1557,7 @@ msgid ""
 msgstr "Si l'usuari actual pot validar o restablir l'esborrany del registre."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1413,6 +1568,7 @@ msgstr ""
 "quals sou el gerent o l'aprovador del full de temps."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
@@ -1424,12 +1580,14 @@ msgstr ""
 "gerent o l'aprovador del full de temps."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "You cannot access timesheets that are not yours."
 msgstr "No podeu accedir fulls d'hores que no són vostres."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1440,6 +1598,7 @@ msgstr ""
 "amb el vostre gestor o amb l'aprovador del full de temps."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/project.py:0
 #, python-format
 msgid ""
@@ -1450,6 +1609,7 @@ msgstr ""
 "els seus fulls de temps en dies."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
@@ -1460,6 +1620,7 @@ msgid "You cannot use the timer on validated timesheets."
 msgstr "No podeu utilitzar el temporitzador en fulls de temps validats."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1487,60 +1648,57 @@ msgid "days"
 msgstr "dies"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "deleted"
-msgstr ""
+msgstr "suprimit"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "letter shortcut"
-msgstr ""
+msgstr "drecera de lletra"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "min"
 msgstr "mín"
 
 #. module: timesheet_grid
-#: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
-msgid "minutes"
-msgstr "minuts"
-
-#. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "modified"
 msgstr "modificat"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "or a"
-msgstr ""
+msgstr "o a"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "press"
 msgstr "presionar"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "press Shift + a letter shortcut"
-msgstr ""
+msgstr "premeu Maj + una drecera de lletra"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "to add"
-msgstr ""
+msgstr "afegir"

@@ -36,10 +36,10 @@ class RentalReport(models.Model):
     def _price(self):
         """For the products tracked by serial numbers, we get one unique row for each serial number
         therefore the price must be set accordingly."""
-        price = super(RentalReport, self)._price()
+        price = super()._price()
         return """
             CASE
-                WHEN res.stock_lot_id IS NOT NULL
+                WHEN res.stock_lot_id IS NOT NULL AND product_uom_qty != 0
                 THEN %s / (product_uom_qty / (u.factor * u2.factor))
                 ELSE %s
                 END """ % (price, price)

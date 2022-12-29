@@ -19,8 +19,8 @@ class BelgianECSalesReportCustomHandler(models.AbstractModel):
         This method is used to get the dynamic lines of the report and adds a comparative test linked to the tax report.
         """
         lines = super()._dynamic_lines_generator(report, options, all_column_groups_expression_totals)
-        colname_to_idx = {col['name']: idx for idx, col in enumerate(options['columns'])}
-        total = lines[-1][-1]['columns'][colname_to_idx['Amount']]['no_format']
+        colname_to_idx = {col['expression_label']: idx for idx, col in enumerate(options['columns'])}
+        total = lines[-1][-1]['columns'][colname_to_idx['balance']]['no_format']
         # This test requires the total, so needs to be checked after the lines are computed, but before the rendering
         # of the template. This is why we add it here even if it's not an option per se.
         options['be_tax_cross_check_warning'] = not self.total_consistent_with_tax_report(options, total)
@@ -94,7 +94,7 @@ class BelgianECSalesReportCustomHandler(models.AbstractModel):
         return self.env.company.currency_id.compare_amounts(tax_total, total) == 0
 
     def export_to_xml_sales_report(self, options):
-        colname_to_idx = {col['name']: idx for idx, col in enumerate(options.get('columns', []))}
+        colname_to_idx = {col['expression_label']: idx for idx, col in enumerate(options.get('columns', []))}
         # Check
         company = self.env.company
         company_vat = company.partner_id.vat
@@ -146,7 +146,7 @@ class BelgianECSalesReportCustomHandler(models.AbstractModel):
         lines = report._get_lines(options)
         xml_data = {
             'clientnbr': len([line for line in lines if report._get_model_info_from_id(line['id'])[0] == 'res.partner']),
-            'amountsum': lines[-1]['columns'][colname_to_idx['Amount']]['no_format'],
+            'amountsum': lines[-1]['columns'][colname_to_idx['balance']]['no_format'],
         }
 
         month = date_from.month if period_type == 'month' else None
@@ -196,16 +196,16 @@ class BelgianECSalesReportCustomHandler(models.AbstractModel):
         seq = 0
         for line in lines[:-1]:   # Remove total line
             seq += 1
-            country = line['columns'][colname_to_idx['Country Code']].get('name', '')
-            vat = line['columns'][colname_to_idx['VAT Number']].get('name', '')
+            country = line['columns'][colname_to_idx['country_code']].get('name', '')
+            vat = line['columns'][colname_to_idx['vat_number']].get('name', '')
             if not vat:
                 raise UserError(_('No vat number defined for %s.', line['name']))
             client = {
                 'vatnum': vat,
                 'vat': (country + vat).replace(' ', '').upper(),
                 'country': country,
-                'amount': line['columns'][colname_to_idx['Amount']]['no_format'],
-                'code': line['columns'][colname_to_idx['Tax Code']]['name'][:1],
+                'amount': line['columns'][colname_to_idx['balance']]['no_format'],
+                'code': line['columns'][colname_to_idx['sales_type_code']]['name'][:1],
                 'seq': seq,
             }
             data_clientinfo += Markup("""

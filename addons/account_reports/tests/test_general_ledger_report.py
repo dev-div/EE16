@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=C0326
 from .common import TestAccountReportsCommon
+import odoo.tests
 
 from odoo import fields
 from odoo.tests import tagged
+from freezegun import freeze_time
 
 import json
 
 @tagged('post_install', '-at_install')
-class TestGeneralLedgerReport(TestAccountReportsCommon):
+class TestGeneralLedgerReport(TestAccountReportsCommon, odoo.tests.HttpCase):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
         super().setUpClass(chart_template_ref=chart_template_ref)
@@ -419,3 +421,67 @@ class TestGeneralLedgerReport(TestAccountReportsCommon):
                 ('Total',                               2350.0,         1350.0,         1000.0),
             ],
         )
+
+    def test_general_ledger_communication(self):
+        invoice_1 = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.partner_a.id,
+            'invoice_date': '2010-01-01',
+            'payment_reference': 'payment_ref1',
+            'ref': 'ref1',
+            'invoice_line_ids': [(0, 0, {
+                'name': 'test1',
+                'tax_ids': [],
+                'quantity': 1,
+                'price_unit': 1,
+            })]
+        })
+        invoice_1.action_post()
+
+        invoice_2 = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.partner_a.id,
+            'invoice_date': '2010-01-01',
+            'payment_reference': 'payment_ref2',
+            'invoice_line_ids': [(0, 0, {
+                'name': 'test2',
+                'tax_ids': [],
+                'quantity': 1,
+                'price_unit': 2,
+            })]
+        })
+        invoice_2.action_post()
+
+        self.env.company.totals_below_sections = False
+        options = self._generate_options(self.report, '2010-01-01', '2010-01-01', default_options={'unfold_all': True})
+        self.assertLinesValues(
+            self.report._get_lines(options),
+            #   Name                                    Communication
+            [   0,                                      2],
+            [
+                ('121000 Account Receivable',           ''),
+                (invoice_1.name,                        'ref1 - payment_ref1'),
+                (invoice_2.name,                        'payment_ref2'),
+                ('400000 Product Sales',                ''),
+                (invoice_1.name,                        'ref1 - test1'),
+                (invoice_2.name,                        'test2'),
+                ('Total',                               ''),
+            ],
+        )
+
+    @freeze_time('2017-07-11')
+    def test_tour_account_reports_search(self):
+        move_07_2017 = self.env['account.move'].create({
+            'move_type': 'entry',
+            'date': fields.Date.from_string('2017-07-10'),
+            'journal_id': self.company_data['default_journal_sale'].id,
+            'line_ids': [
+                (0, 0, {'debit': 1000.0, 'credit': 0.0, 'name': '2017_1_1',
+                        'account_id': self.company_data['default_account_receivable'].id}),
+                (0, 0, {'debit': 0.0, 'credit': 1000.0, 'name': '2017_1_2',
+                        'account_id': self.company_data['default_account_revenue'].id}),
+            ],
+        })
+        move_07_2017.action_post()
+
+        self.start_tour("/web", 'account_reports_search', login=self.env.user.login)

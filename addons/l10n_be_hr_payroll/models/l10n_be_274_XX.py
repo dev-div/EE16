@@ -171,7 +171,7 @@ class L10nBe274XX(models.Model):
             payslips_34 = payslips.filtered(lambda p: p.employee_id.certificate in ['bachelor'])
             sheet.taxable_amount_34 = sum(line_values['GROSS'][p.id]['total'] for p in payslips_34)
             sheet.pp_amount_34 = sum(line_values['PPTOTAL'][p.id]['total'] for p in payslips_34)
-            sheet.write({
+            sheet.update({
                 'deducted_amount': 0,
                 'deducted_amount_32': 0,
                 'deducted_amount_33': 0,

@@ -14,27 +14,6 @@
             }
         }
 
-        // Draggable style at each step
-        // To move to the parent when all is converted
-        .o-draggable {
-            &, & * {
-                cursor: move !important;
-            }
-
-            &.o-draggable--dragging {
-                width: unset !important;
-                transform: rotate(-5deg);
-                box-shadow: 0 5px 25px -10px black;
-                transition: transform 0.6s, box-shadow 0.3s;
-
-                &.o-draggable--drop-ready {
-                    opacity: 1!important;
-                    line-height: 2;
-                    border: 2px solid $o-brand-primary;
-                }
-            }
-        }
-
         .o-web-studio-editor--element-clickable {
             // HOVER HANDLING
             // native selector: the main sibling is hovered

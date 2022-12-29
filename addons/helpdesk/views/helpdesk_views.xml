@@ -345,7 +345,7 @@
                             <field name="stage_id" string="Reach Stage" domain="[('team_ids', '=', team_id), ('id', 'not in', exclude_stage_ids)]" required="1" context="{'default_team_ids': team_id and [(6, 0, [team_id])]}"/>
                             <label for="time" string="In"/>
                             <div class="o_row">
-                                <field name="time" widget="float_time"/><span class="o_field_widget o_readonly_modifier">Working Hours</span>
+                                <field name="time" widget="float_time" class="oe_inline"/><span class="o_field_widget o_readonly_modifier">Working Hours</span>
                             </div>
                             <field name="exclude_stage_ids" widget="many2many_tags" domain="[('id', '!=', stage_id), ('team_ids', '=', team_id)]" context="{'default_team_ids': team_id and [(6, 0, [team_id])]}"/>
                         </group>
@@ -410,6 +410,8 @@
                 <field name="close_hours" string="Hours to Close" widget="float_time"/>
                 <field name="assign_hours" string="Hours to Assign" widget="float_time"/>
                 <field name="color" invisible="1"/>
+                <field name="answered_customer_message_count" invisible="1"/>
+                <field name="total_response_hours" invisible="1"/>
             </graph>
         </field>
     </record>
@@ -424,6 +426,8 @@
                 <field name="close_hours" string="Hours to Close" widget="float_time"/>
                 <field name="assign_hours" string="Hours to Assign" widget="float_time"/>
                 <field name="color" invisible="1"/>
+                <field name="answered_customer_message_count" invisible="1"/>
+                <field name="total_response_hours" invisible="1"/>
             </pivot>
         </field>
     </record>
@@ -530,6 +534,9 @@
             <tree string="Tickets" multi_edit="1" sample="1" default_order="priority desc, sla_deadline, id">
                 <field name="company_id" invisible="1"/>
                 <field name="use_sla" invisible="1"/>
+                <field name="legend_normal" invisible="1"/>
+                <field name="legend_blocked" invisible="1"/>
+                <field name="legend_done" invisible="1"/>
                 <field name="ticket_ref" string="ID" readonly="1" optional="show"/>
                 <field name="priority" optional="show" widget="priority"/>
                 <field name="name" string="Name" readonly="1"/>
@@ -713,7 +720,7 @@
                             <field name="sla_deadline" widget="remaining_days"/>
                         </span>
                     </div>
-                    <group class="mb-0">
+                    <group class="mb-0 mt-4">
                         <group>
                             <field name="active" invisible="1"/>
                             <field name="team_id" required="1" context="{'default_use_sla': True}"/>
@@ -745,7 +752,7 @@
                         </group>
                     </group>
                     <div colspan="8" attrs="{'invisible': [('team_id', '=', False)]}">
-                        <field name="properties" nolabel="1" columns="2"/>
+                        <field name="properties" nolabel="1" columns="2" hideKanbanOption="1"/>
                     </div>
                     <field name="description" class="oe-bordered-editor field_description" placeholder="Description of the ticket..."/>
                 </sheet>
@@ -767,6 +774,8 @@
                 <field name="close_hours" string="Hours to Close"/>
                 <field name="assign_hours" string="Hours to Assign"/>
                 <field name="color" invisible="1"/>
+                <field name="answered_customer_message_count" invisible="1"/>
+                <field name="total_response_hours" invisible="1"/>
             </cohort>
         </field>
     </record>
@@ -799,6 +808,8 @@
         <field name="arch" type="xml">
             <field name="stage_id" position="replace">
                 <field name="team_id"/>
+                <field name="answered_customer_message_count" invisible="1"/>
+                <field name="total_response_hours" invisible="1"/>
             </field>
         </field>
     </record>
@@ -827,6 +838,8 @@
         <field name="arch" type="xml">
             <field name="stage_id" position="after">
                 <field name="create_date" type="row" interval="day"/>
+                <field name="answered_customer_message_count" invisible="1"/>
+                <field name="total_response_hours" invisible="1"/>
             </field>
         </field>
     </record>

@@ -1,20 +1,16 @@
 /** @odoo-module **/
 
-import { browser } from "@web/core/browser/browser";
-import { getCookie, setCookie } from "web.utils.cookies";
-
 export function switchColorSchemeItem(env) {
     return {
         type: "switch",
         id: "color_scheme.switch_theme",
         description: env._t("Dark Mode"),
         callback: () => {
-            const cookie = getCookie("color_scheme");
-            const theme = cookie === "dark" ? "light" : "dark";
-            setCookie("color_scheme", theme);
-            browser.location.reload();
+            const cookie = env.services.cookie.current.color_scheme;
+            const scheme = cookie === "dark" ? "light" : "dark";
+            env.services.color_scheme.switchToColorScheme(scheme);
         },
-        isChecked: getCookie("color_scheme") == "dark" ? true : false,
+        isChecked: env.services.cookie.current.color_scheme === "dark",
         sequence: 30,
     };
 }

@@ -6,9 +6,11 @@
 # RGB Consulting <odoo@rgbconsulting.com>, 2022
 # José Cabrera Lozano <jose.cabrera@edukative.es>, 2022
 # Quim - eccit <quim@eccit.com>, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # marcescu, 2022
 # Martin Trigaux, 2022
+# Farouk Jabiri, 2022
+# Ivan Espinola, 2022
 # 
 msgid ""
 msgstr ""
@@ -16,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-10 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Ivan Espinola, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,12 +43,12 @@ msgstr "<span class=\"o_stat_text\">Registrat</span>"
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_planning_analysis_report__allocated_hours_cost
 msgid "Allocated Hours Cost"
-msgstr ""
+msgstr "Cost horari assignat"
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,help:project_timesheet_forecast.field_planning_analysis_report__remaining_hours
 msgid "Allocated hours minus the effective hours."
-msgstr ""
+msgstr "Hores assignades menys les hores efectives."
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_planning_slot__allow_timesheets
@@ -94,7 +96,7 @@ msgstr "Hores reals"
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_planning_analysis_report__effective_hours_cost
 msgid "Effective Hours Cost"
-msgstr ""
+msgstr "Cost efectiu de les hores"
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_project_timesheet_forecast_report_analysis__employee_id
@@ -110,7 +112,7 @@ msgstr "Codificar UdM a dies"
 #. module: project_timesheet_forecast
 #: model:ir.actions.server,name:project_timesheet_forecast.planning_slot_generate_timesheet_action
 msgid "Generate Timesheets"
-msgstr ""
+msgstr "Genera fulls de temps"
 
 #. module: project_timesheet_forecast
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.project_timesheet_forecast_report_view_search
@@ -140,7 +142,7 @@ msgstr "Menú"
 #. module: project_timesheet_forecast
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.project_timesheet_forecast_report_view_search
 msgid "My Department"
-msgstr ""
+msgstr "El meu departament"
 
 #. module: project_timesheet_forecast
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.project_timesheet_forecast_report_view_search
@@ -156,7 +158,7 @@ msgstr "El meu equip"
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.planning_slot_view_search_inherit_project_timesheet_forecast
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.project_forecast_view_search_inherit_project_timesheet_forecast
 msgid "No Timesheets"
-msgstr ""
+msgstr "Sense fulls de temps"
 
 #. module: project_timesheet_forecast
 #: model_terms:ir.actions.act_window,help:project_timesheet_forecast.project_timesheet_forecast_report_action
@@ -183,6 +185,8 @@ msgid ""
 "Number of hours the employee recorded on their Timesheetes for this task "
 "(and its sub-tasks) for the period of this shift."
 msgstr ""
+"Nombre d'hores que l'empleat va registrar en els seus fulls de temps per a "
+"aquesta tasca (i les seves subtasques) per al període d'aquest canvi."
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_project_timesheet_forecast_report_analysis__planned_hours
@@ -197,7 +201,7 @@ msgstr "Planificació"
 #. module: project_timesheet_forecast
 #: model:ir.model,name:project_timesheet_forecast.model_planning_analysis_report
 msgid "Planning Analysis Report"
-msgstr ""
+msgstr "Informe d'anàlisi de planificació"
 
 #. module: project_timesheet_forecast
 #: model:ir.model,name:project_timesheet_forecast.model_planning_slot
@@ -238,6 +242,8 @@ msgid ""
 "Schedule your human and material resources across roles, projects and sales "
 "orders."
 msgstr ""
+"Programa els recursos humans i materials a través de rols, projectes i "
+"comandes de venda."
 
 #. module: project_timesheet_forecast
 #: model_terms:ir.ui.view,arch_db:project_timesheet_forecast.project_timesheet_forecast_report_analysis_view_tree
@@ -258,14 +264,14 @@ msgstr "Suma d'hores planificades"
 #: code:addons/project_timesheet_forecast/models/project_forecast.py:0
 #, python-format
 msgid "The timesheet entries have successfully been generated."
-msgstr ""
+msgstr "Les entrades del full de temps s'han generat correctament."
 
 #. module: project_timesheet_forecast
 #: code:addons/project_timesheet_forecast/models/project_forecast.py:0
 #: code:addons/project_timesheet_forecast/models/project_forecast.py:0
 #, python-format
 msgid "There are no timesheets to generate or you don't have the right."
-msgstr ""
+msgstr "No hi ha fulls de temps per generar o no teniu el correcte."
 
 #. module: project_timesheet_forecast
 #: code:addons/project_timesheet_forecast/models/project_forecast.py:0
@@ -273,6 +279,8 @@ msgstr ""
 msgid ""
 "This project isn't expected to have slot during this period. Planned hours :"
 msgstr ""
+"No s'espera que aquest projecte tingui ranura durant aquest període. Horari "
+"planificat:"
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_planning_slot__timesheet_ids
@@ -316,6 +324,8 @@ msgid ""
 "Track the progress of your projects by comparing the hours initially planned"
 " with the effective hours recorded"
 msgstr ""
+"Feu un seguiment del progrés dels vostres projectes comparant les hores "
+"inicialment planificades amb les hores efectives registrades"
 
 #. module: project_timesheet_forecast
 #: model:ir.model.fields,field_description:project_timesheet_forecast.field_project_timesheet_forecast_report_analysis__line_type
@@ -326,4 +336,4 @@ msgstr "Tipus"
 #: code:addons/project_timesheet_forecast/models/project_forecast.py:0
 #, python-format
 msgid "You do not have the right to create timesheets."
-msgstr ""
+msgstr "No teniu dret a crear fulls de temps."

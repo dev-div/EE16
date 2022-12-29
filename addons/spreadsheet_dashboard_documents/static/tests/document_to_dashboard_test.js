@@ -59,7 +59,7 @@ QUnit.test("open wizard action", async (assert) => {
     const { env } = await createSpreadsheet({ serverData, spreadsheetId: 2 });
     const file = topbarMenuRegistry.getAll().find((item) => item.id === "file");
     const addToDashboard = file.children.find((item) => item.id === "add_document_to_dashboard");
-    addToDashboard.action(env);
+    await addToDashboard.action(env);
     assert.verifySteps(["open_wizard_action"]);
 });
 
@@ -70,7 +70,7 @@ QUnit.test("document's data is saved when opening wizard", async (assert) => {
     setCellContent(model, "A1", "a cell updated");
     const file = topbarMenuRegistry.getAll().find((item) => item.id === "file");
     const addToDashboard = file.children.find((item) => item.id === "add_document_to_dashboard");
-    addToDashboard.action(env);
+    await addToDashboard.action(env);
     const data = JSON.parse(serverData.models["documents.document"].records[1].raw);
     assert.strictEqual(data.sheets[0].cells.A1.content, "a cell updated");
 });

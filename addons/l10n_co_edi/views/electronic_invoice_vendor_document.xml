@@ -25,7 +25,7 @@
                 <EMI_5 t-out="invoice_partner.zip"/>
                 <EMI_6 t-out="invoice_partner.state_id.name"/>
                 <EMI_7 t-out="str(invoice_partner.state_id.l10n_co_edi_code).zfill(2)"/>
-                <EMI_8/>
+                <EMI_8 t-out="invoice_partner.street"/>
                 <EMI_9 t-out="invoice_partner.country_id.code"/>
                 <EMI_10 t-out="invoice_partner.country_id.name"/>
                 <EMI_11/>
@@ -109,8 +109,12 @@
                 <MEP_3 t-out="invoice.invoice_date_due if not l10n_co_edi_is_direct_payment else ''"/>
             </MEP>
 
+            <NOT t-foreach="notas" t-as="nota">
+                <NOT_1 t-out="nota"/>
+            </NOT>
+
             <t t-set="ite_counter" t-value="1"/>
-            <ITE t-foreach="invoice.invoice_line_ids.filtered(lambda line: not line.display_type)" t-as="line">
+            <ITE t-foreach="invoice.invoice_line_ids.filtered(lambda line: line.display_type == 'product')" t-as="line">
                     <ITE_1 t-out="ite_counter"/>
                     <ITE_2 t-out="line.quantity"/>
                     <ITE_3 t-out="line.product_uom_id.l10n_co_edi_ubl or '94'"/>

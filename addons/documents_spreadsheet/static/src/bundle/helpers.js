@@ -11,7 +11,7 @@ const Model = spreadsheet.Model;
  * Takes a template id as input, will convert the formulas
  * from relative to absolute in a way that they can be used to create a sheet.
  *
- * @param {Function} rpc
+ * @param {Object} orm
  * @param {number} templateId
  * @returns {Promise<Object>} spreadsheetData
  */

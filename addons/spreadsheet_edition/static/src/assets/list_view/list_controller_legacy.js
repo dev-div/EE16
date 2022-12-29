@@ -1,9 +1,23 @@
 /** @odoo-module */
 
-import { removeContextUserInfo } from "@spreadsheet_edition/assets/helpers";
 import { SpreadsheetSelectorDialog } from "@spreadsheet_edition/assets/components/spreadsheet_selector_dialog/spreadsheet_selector_dialog";
 import { _t } from "@web/core/l10n/translation";
 import ListController from "@web/legacy/js/views/list/list_controller";
+
+/**
+ * Remove user specific info from the context
+ *
+ * @param {Object} context
+ * @returns {Object}
+ */
+function removeContextUserInfo(context) {
+    context = { ...context };
+    delete context.allowed_company_ids;
+    delete context.tz;
+    delete context.lang;
+    delete context.uid;
+    return context;
+}
 
 ListController.include({
     _insertListSpreadsheet() {

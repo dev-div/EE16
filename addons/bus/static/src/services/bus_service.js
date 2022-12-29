@@ -1,8 +1,11 @@
 /** @odoo-module **/
 
 import { browser } from "@web/core/browser/browser";
+import { Deferred } from "@web/core/utils/concurrency";
 import { registry } from '@web/core/registry';
 import { session } from '@web/session';
+import { isIosApp } from '@web/core/browser/feature_detection';
+import { WORKER_VERSION } from "@bus/workers/websocket_worker";
 
 const { EventBus } = owl;
 
@@ -19,16 +22,21 @@ const { EventBus } = owl;
 export const busService = {
     dependencies: ['localization', 'multi_tab'],
 
-    start(env, { multi_tab: multiTab }) {
+    async start(env, { multi_tab: multiTab }) {
         if (session.dbuuid && multiTab.getSharedValue('dbuuid') !== session.dbuuid) {
             multiTab.setSharedValue('dbuuid', session.dbuuid);
             multiTab.removeSharedValue('last_notification_id');
         }
         const bus = new EventBus();
-        const workerClass = 'SharedWorker' in window ? browser.SharedWorker : browser.Worker;
-        const worker = new workerClass('/bus/websocket_worker_bundle', {
-            name: 'SharedWorker' in window ? 'odoo:websocket_shared_worker' : 'odoo:websocket_worker',
+        const workerClass = 'SharedWorker' in window && !isIosApp() ? browser.SharedWorker : browser.Worker;
+        const worker = new workerClass(`/bus/websocket_worker_bundle?v=${WORKER_VERSION}`, {
+            name: 'SharedWorker' in window && !isIosApp() ? 'odoo:websocket_shared_worker' : 'odoo:websocket_worker',
         });
+        worker.addEventListener("error", (e) => {
+            connectionInitializedDeferred.resolve();
+            console.warn("Error while loading 'bus_service' SharedWorker");
+        });
+        const connectionInitializedDeferred = new Deferred();
 
         /**
         * Send a message to the worker.
@@ -40,7 +48,7 @@ export const busService = {
         */
         function send(action, data) {
             const message = { action, data };
-            if ('SharedWorker' in window) {
+            if ('SharedWorker' in window && !isIosApp()) {
                 worker.port.postMessage(message);
             } else {
                 worker.postMessage(message);
@@ -60,6 +68,9 @@ export const busService = {
             if (type === 'notification') {
                 multiTab.setSharedValue('last_notification_id', data[data.length - 1].id);
                 data = data.map(notification => notification.message);
+            } else if (type === 'initialized') {
+                connectionInitializedDeferred.resolve();
+                return;
             }
             bus.trigger(type, data);
         }
@@ -69,7 +80,7 @@ export const busService = {
          * initial informations (last notification id, debug mode,
          * ...).
          */
-        function initializeConnection() {
+        function initializeWorkerConnection() {
             // User_id has different values according to its origin:
             //     - frontend: number or false,
             //     - backend: array with only one number
@@ -89,13 +100,13 @@ export const busService = {
             });
         }
 
-        if ('SharedWorker' in window) {
+        if ('SharedWorker' in window && !isIosApp()) {
             worker.port.start();
             worker.port.addEventListener('message', handleMessage);
         } else {
             worker.addEventListener('message', handleMessage);
         }
-        initializeConnection();
+        initializeWorkerConnection();
         browser.addEventListener('pagehide', ({ persisted }) => {
             if (!persisted) {
                 // Page is gonna be unloaded, disconnect this client
@@ -103,15 +114,20 @@ export const busService = {
                 send('leave');
             }
         });
+        await connectionInitializedDeferred;
 
         return {
             addEventListener: bus.addEventListener.bind(bus),
-            addChannel: channel => send('add_channel', channel),
+            addChannel: channel => {
+                send('add_channel', channel);
+                send('start');
+            },
             deleteChannel: channel => send('delete_channel', channel),
             forceUpdateChannels: () => send('force_update_channels'),
             trigger: bus.trigger.bind(bus),
             removeEventListener: bus.removeEventListener.bind(bus),
             send: (eventName, data) => send('send', { event_name: eventName, data }),
+            start: () => send('start'),
             stop: () => send('leave'),
         };
     },

@@ -6,6 +6,7 @@ import { kanbanView } from "@web/views/kanban/kanban_view";
 import { registry } from "@web/core/registry";
 
 import { ImagesCarouselDialog } from './images_carousel_dialog';
+import { PostKanbanCompiler } from './post_kanban_compiler';
 import { SocialPostFormatterMixin } from "./social_post_formatter_mixin";
 
 const { markup } = owl;
@@ -41,6 +42,12 @@ PostKanbanRenderer.components = {
 export const PostKanbanView = {
     ...kanbanView,
     Renderer: PostKanbanRenderer,
+    props: (genericProps, view) => {
+        return {
+            ...kanbanView.props(genericProps, view),
+            Compiler: PostKanbanCompiler,
+        };
+    },
 };
 
 registry.category("views").add("social_post_kanban_view", PostKanbanView);

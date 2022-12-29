@@ -3,7 +3,7 @@ import { useService } from "@web/core/utils/hooks";
 import { _lt } from "@web/core/l10n/translation";
 import { renderToMarkup } from "@web/core/utils/render";
 
-const { xml, reactive } = owl;
+import { xml, reactive } from "@odoo/owl";
 
 const missingApprovalsTemplate = xml`
     <ul>

@@ -118,21 +118,13 @@ export class InvoiceExtractFormRenderer extends AccountMoveFormRenderer {
             const pageLayers = pdfDocument.querySelectorAll('.page');
             for (const pageLayer of pageLayers) {
                 const pageNum = pageLayer.dataset['pageNumber'] - 1;
-                let existingBoxLayer = false;
-                for (const boxLayerApp of this.boxLayerApps) {
-                    if (boxLayerApp.props.pageLayer === pageLayer) {
-                        existingBoxLayer = true;
-                    }
-                }
-                if (!existingBoxLayer) {
-                    const boxLayerApp = this.createBoxLayerApp({
-                        boxes: this.state.visibleBoxes[pageNum] || [],
-                        mode: 'pdf',
-                        pageLayer: pageLayer,
-                    });
-                    proms.push(boxLayerApp.mount(pageLayer));
-                    this.boxLayerApps.push(boxLayerApp);
-                }
+                const boxLayerApp = this.createBoxLayerApp({
+                    boxes: this.state.visibleBoxes[pageNum] || [],
+                    mode: 'pdf',
+                    pageLayer: pageLayer,
+                });
+                proms.push(boxLayerApp.mount(pageLayer));
+                this.boxLayerApps.push(boxLayerApp);
             }
         }
         return Promise.all(proms);
@@ -203,12 +195,6 @@ export class InvoiceExtractFormRenderer extends AccountMoveFormRenderer {
         if (iframe) {
             const iframeDoc = iframe.contentDocument;
             if (iframeDoc) {
-                iframeDoc.addEventListener('pagerendered', () => {
-                    // To get pagerendered trigger_up from pdf.js, we needed to change pdf.js default option and set
-                    // eventBusDispatchToDOM to True
-                    this.destroyBoxLayers();
-                    this.renderBoxLayers(iframe);
-                });
                 this.renderInvoiceExtract(iframe);
                 return;
             }
@@ -227,6 +213,7 @@ export class InvoiceExtractFormRenderer extends AccountMoveFormRenderer {
         });
         this.activeField = undefined;
         this.activeFieldEl = undefined;
+        this.destroyBoxLayers();
     }
 
     destroyBoxLayers() {

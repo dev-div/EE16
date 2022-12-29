@@ -16,4 +16,5 @@ AbstractBehavior.props = {
     anchor: { type: Element },
     wysiwyg: { type: Object, optional: true},
     record: { type: Object },
+    root: { type: Element },
 };

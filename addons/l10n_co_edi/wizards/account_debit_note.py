@@ -37,7 +37,7 @@ class AccountDebitNote(models.TransientModel):
             return default_values
 
         default_values['line_ids'] = [[5, 0]]
-        for line in move.line_ids.filtered(lambda x: not x.display_type):
+        for line in move.line_ids.filtered(lambda x: x.display_type == 'product'):
             default_values['line_ids'].append([0, 0, {
                 'product_id': line.product_id.id,
                 'account_id': line.account_id.id,

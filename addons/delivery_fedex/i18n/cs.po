@@ -10,9 +10,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:47+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
 "Last-Translator: trendspotter <jirka.p@volny.cz>, 2022\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
@@ -35,6 +35,18 @@ msgid ""
 "<br/>According to your needs, you will need to contact different "
 "certifications :"
 msgstr "<br/>Podle vašich potřeb budete muset kontaktovat různé certifikace:"
+
+#. module: delivery_fedex
+#: model_terms:ir.ui.view,arch_db:delivery_fedex.view_delivery_carrier_form_with_provider_fedex
+msgid ""
+"<span attrs=\"{'invisible': [('fedex_weight_unit', '!=', 'KG')]}\">CM</span>\n"
+"                                <span attrs=\"{'invisible': [('fedex_weight_unit', '!=', 'LB')]}\">IN</span>"
+msgstr ""
+
+#. module: delivery_fedex
+#: model_terms:ir.ui.view,arch_db:delivery_fedex.view_delivery_carrier_form_with_provider_fedex
+msgid "<span class=\"o_form_label\">Package Length Unit</span>"
+msgstr ""
 
 #. module: delivery_fedex
 #: model_terms:ir.ui.view,arch_db:delivery_fedex.view_delivery_carrier_form_with_provider_fedex
@@ -92,6 +104,7 @@ msgid "EPL2"
 msgstr "EPL2"
 
 #. module: delivery_fedex
+#. odoo-python
 #: code:addons/delivery_fedex/models/delivery_fedex.py:0
 #, python-format
 msgid ""
@@ -230,7 +243,6 @@ msgstr "Platba daně Fedex"
 
 #. module: delivery_fedex
 #: model:delivery.carrier,name:delivery_fedex.delivery_carrier_fedex_inter
-#: model:product.product,name:delivery_fedex.product_product_delivery_fedex_inter
 #: model:product.template,name:delivery_fedex.product_product_delivery_fedex_inter_product_template
 msgid "Fedex International"
 msgstr "Fedex International"
@@ -252,7 +264,6 @@ msgstr "Fedex návod"
 
 #. module: delivery_fedex
 #: model:delivery.carrier,name:delivery_fedex.delivery_carrier_fedex_us
-#: model:product.product,name:delivery_fedex.product_product_delivery_fedex_us
 #: model:product.template,name:delivery_fedex.product_product_delivery_fedex_us_product_template
 msgid "Fedex US"
 msgstr "Fedex US"
@@ -283,6 +294,7 @@ msgid "INTERNATIONAL_PRIORITY"
 msgstr "INTERNATIONAL_PRIORITY"
 
 #. module: delivery_fedex
+#. odoo-python
 #: code:addons/delivery_fedex/models/delivery_fedex.py:0
 #, python-format
 msgid "Invalid syntax for FedEx extra data."
@@ -490,12 +502,14 @@ msgid "Sender"
 msgstr "Odesílatel"
 
 #. module: delivery_fedex
+#. odoo-python
 #: code:addons/delivery_fedex/models/delivery_fedex.py:0
 #, python-format
 msgid "Shipment #%s has been cancelled"
 msgstr "Zásilka číslo %s byla zrušena"
 
 #. module: delivery_fedex
+#. odoo-python
 #: code:addons/delivery_fedex/models/delivery_fedex.py:0
 #, python-format
 msgid ""
@@ -562,14 +576,7 @@ msgstr ""
 "společnosti FedEx e-mailem."
 
 #. module: delivery_fedex
-#: model:product.product,uom_name:delivery_fedex.product_product_delivery_fedex_inter
-#: model:product.product,uom_name:delivery_fedex.product_product_delivery_fedex_us
-#: model:product.template,uom_name:delivery_fedex.product_product_delivery_fedex_inter_product_template
-#: model:product.template,uom_name:delivery_fedex.product_product_delivery_fedex_us_product_template
-msgid "Units"
-msgstr "Jednotky"
-
-#. module: delivery_fedex
+#. odoo-python
 #: code:addons/delivery_fedex/models/delivery_fedex.py:0
 #, python-format
 msgid ""

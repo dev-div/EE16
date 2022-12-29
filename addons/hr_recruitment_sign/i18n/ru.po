@@ -8,6 +8,7 @@
 # ILMIR <karamov@it-projects.info>, 2022
 # Ivan Kropotkin <yelizariev@itpp.dev>, 2022
 # Martin Trigaux, 2022
+# Alena Vlasova, 2022
 # 
 msgid ""
 msgstr ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:49+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Alena Vlasova, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/odoo/teams/41243/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Кол-во подписей"
 #: code:addons/hr_recruitment_sign/wizard/hr_recruitment_sign_document_wizard.py:0
 #, python-format
 msgid "%s and %s are the signatories."
-msgstr ""
+msgstr "%sи %s подписавшие."
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_applicant_sign_view_form
@@ -48,7 +49,7 @@ msgstr "Соискатель"
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__applicant_role_id
 msgid "Applicant Role"
-msgstr ""
+msgstr "Должностные обязанности соискателя"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__partner_name
@@ -61,6 +62,8 @@ msgid ""
 "Applicant's role on the templates to sign. The same role must be present in "
 "all the templates"
 msgstr ""
+"Должностные обязанности сотрудника в шаблонах для подписи. Эти же "
+"обязанности должны присутствовать во всех шаблонах"
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
@@ -80,7 +83,7 @@ msgstr "Контакт"
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__cc_partner_ids
 msgid "Copy to"
-msgstr "копировать в"
+msgstr "Копировать в"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__create_uid
@@ -105,12 +108,12 @@ msgstr "Отображаемое имя"
 #. module: hr_recruitment_sign
 #: model:ir.actions.act_window,name:hr_recruitment_sign.sign_recruitment_wizard_action
 msgid "Document Signature"
-msgstr ""
+msgstr "Подпись документа"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__sign_template_ids
 msgid "Documents to sign"
-msgstr ""
+msgstr "Документы на подпись"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,help:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__sign_template_ids
@@ -119,11 +122,13 @@ msgid ""
 "        Documents with 1 responsible will only have to be signed by the applicant while documents with 2 different responsible will have to be signed by both the applicant and the responsible.\n"
 "        "
 msgstr ""
+"Документы на подпись. Можно выбрать только документы с 1 или 2 разными ответственными.\n"
+"Документы с 1 ответственным должны быть подписаны только соискателем, а документы с 2 разными ответственными должны быть подписаны и соискателем, и ответственным. "
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__has_both_template
 msgid "Has Both Template"
-msgstr ""
+msgstr "Имеет оба образца"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__id
@@ -148,7 +153,7 @@ msgstr "Последнее обновление"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "Mail Options"
-msgstr ""
+msgstr "Параметры почты"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__message
@@ -161,18 +166,18 @@ msgstr "Сообщение"
 msgid ""
 "No appropriate template could be found, please make sure you configured them"
 " properly."
-msgstr ""
+msgstr "Не удалось найти подходящий шаблон, проверьте настройки."
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "No template available"
-msgstr ""
+msgstr "Шаблон отсутствует"
 
 #. module: hr_recruitment_sign
 #: code:addons/hr_recruitment_sign/wizard/hr_recruitment_sign_document_wizard.py:0
 #, python-format
 msgid "Only %s has to sign."
-msgstr ""
+msgstr "Только %s должен подписать."
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
@@ -182,12 +187,12 @@ msgstr "Дополнительное сообщение ..."
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__possible_template_ids
 msgid "Possible Template"
-msgstr ""
+msgstr "Возможный шаблон"
 
 #. module: hr_recruitment_sign
 #: model:ir.actions.server,name:hr_recruitment_sign.action_request_signature
 msgid "Request Signature"
-msgstr ""
+msgstr "Запрос на подпись"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__responsible_id
@@ -202,17 +207,17 @@ msgstr "Отправить"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "Sign Request Options"
-msgstr ""
+msgstr "Опции запроса на подпись "
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__sign_template_responsible_ids
 msgid "Sign Template Responsible"
-msgstr ""
+msgstr "Образец подписи ответственного"
 
 #. module: hr_recruitment_sign
 #: model:ir.model,name:hr_recruitment_sign.model_hr_recruitment_sign_document_wizard
 msgid "Sign document in recruitment"
-msgstr ""
+msgstr "Подписать документ по найму"
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
@@ -239,7 +244,7 @@ msgstr "Тема"
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__template_warning
 msgid "Template Warning"
-msgstr ""
+msgstr "Образец предупреждения"
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
@@ -250,9 +255,9 @@ msgstr "Написать на электронный адрес или найт�
 #: code:addons/hr_recruitment_sign/models/hr_applicant.py:0
 #, python-format
 msgid "You must define a Contact Name for this applicant."
-msgstr ""
+msgstr "Вы должны определить контактное имя для этого заявителя."
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.message_signature_request
 msgid "requested a new signature on the following documents:"
-msgstr ""
+msgstr "запрошена новая подпись для следующих документов:"

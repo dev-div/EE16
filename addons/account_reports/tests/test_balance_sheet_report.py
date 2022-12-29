@@ -57,8 +57,9 @@ class TestBalanceSheetReport(TestAccountReportsCommon):
             fields.Date.from_string('2020-02-28')
         )
         options['unfolded_lines'] = [line_id]
+        options['hierarchy'] = True
+        self.env.company.totals_below_sections = False
         lines = self.report._get_lines(options)
-        lines = self.report._create_hierarchy(lines, options)
 
         # The Bank and Cash Accounts section start at index 2
         # Since we created 4 lines + 2 groups, we keep the 6 following lines
@@ -75,7 +76,6 @@ class TestBalanceSheetReport(TestAccountReportsCommon):
                 {'level': 8, 'name': '1014040 A'},
                 {'level': 8, 'name': '101501 Cash'},
                 {'level': 7, 'name': '101600 C'},
-                {'level': 6, 'name': 'Total Bank and Cash Accounts'},
             ]
         )
 

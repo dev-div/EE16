@@ -30,7 +30,7 @@
             </field>
             <xpath expr="//field[@name='note']" position="after">
                 <field name="worksheet_document" help="Upload your PDF file." widget="pdf_viewer" attrs="{'invisible': [('source_document', '=', 'operation')]}"/>
-                <field name="worksheet_url" placeholder="Google Slide Link" widget="embed_viewer"/>
+                <field name="worksheet_url" placeholder="Google Slide Link" widget="embed_viewer" attrs="{'invisible': [('source_document', '=', 'operation')]}"/>
             </xpath>
         </field>
     </record>
@@ -182,7 +182,7 @@
                     <field name="workorder_id" invisible="1"/>
                     <field name="title" string="Title"/>
                     <field name="note" string="Instruction"/>
-                    <field name="worksheet_document" string="Document"/>
+                    <field name="worksheet_document" string="Document" options="{'accepted_file_extensions': '.pdf'}"/>
                 </group>
                 <footer>
                     <button class="btn btn-primary" type="object" name="add_check_in_chain" string="Propose Change"/>

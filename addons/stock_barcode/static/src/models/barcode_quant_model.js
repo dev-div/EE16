@@ -570,6 +570,7 @@ export default class BarcodeQuantModel extends BarcodeModel {
             // its `virtual_id` (and so, avoid to set a new `virtual_id`).
             const prevLine = this.currentState && this.currentState.lines.find(l => l.id === id);
             const previousVirtualId = prevLine && prevLine.virtual_id;
+            quant.dummy_id = quant.dummy_id && Number(quant.dummy_id);
             quant.virtual_id = quant.dummy_id || previousVirtualId || this._uniqueVirtualId;
             quant.product_id = this.cache.getRecord('product.product', quant.product_id);
             quant.location_id = this.cache.getRecord('stock.location', quant.location_id);

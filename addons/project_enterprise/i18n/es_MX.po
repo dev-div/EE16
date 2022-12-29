@@ -3,9 +3,9 @@
 # 	* project_enterprise
 # 
 # Translators:
-# Braulio D. López Vázquez <bdl@odoo.com>, 2022
-# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
 # Martin Trigaux, 2022
+# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
+# Braulio D. López Vázquez <bdl@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:24+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Braulio D. López Vázquez <bdl@odoo.com>, 2022\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/odoo/teams/41243/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: code:addons/project_enterprise/models/project_task.py:0
 #, python-format
 msgid "%s other task(s) for the same employee at the same time."
-msgstr ""
+msgstr "%s otra(s) tarea(s) para el mismo empleado al mismo tiempo."
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form
@@ -33,8 +33,8 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
 "                        <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 msgstr ""
-"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Icono de fecha\" title=\"Fecha\"/>\n"
-"                        <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Icono de flecha\" title=\"Flecha\"/>\n"
+"                        <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Icono de flecha\" title=\"Flecha\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_form_inherited
@@ -42,6 +42,8 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
 "                    <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Icono de flecha\" title=\"Flecha\"/>\n"
+"                    <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Icono de flecha\" title=\"Flecha\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_kanban_inherited
@@ -50,6 +52,9 @@ msgid ""
 "icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', "
 "False), ('planned_date_end', '=', False)]}\"/>"
 msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Icono de "
+"flecha\" title=\"Flecha\" attrs=\"{'invisible': [('planned_date_begin', '=',"
+" False), ('planned_date_end', '=', False)]}\"/>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_kanban_inherited
@@ -57,7 +62,7 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
 "title=\"Arrow\"/>"
 msgstr ""
-"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Icono de flecha\" "
 "title=\"Flecha\"/>"
 
 #. module: project_enterprise
@@ -70,6 +75,8 @@ msgstr "<i class=\"fa fa-long-arrow-right\" title=\"Flecha\"/>"
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "<span class=\"fst-italic text-muted\"><i class=\"fa fa-lock\"/> Private</span>"
 msgstr ""
+"<span class=\"fst-italic text-muted\"><i class=\"fa fa-lock\"/> "
+"Privado</span>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
@@ -85,12 +92,12 @@ msgstr "<strong>Cliente — </strong>"
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "<strong>Milestone — </strong>"
-msgstr ""
+msgstr "<strong>Objetivo — </strong>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
 msgid "<strong>Project Manager — </strong>"
-msgstr ""
+msgstr "<strong>Gerente de proyecto — </strong>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
@@ -122,7 +129,7 @@ msgstr "Cancelar"
 #: code:addons/project_enterprise/models/project_task.py:0
 #, python-format
 msgid "Caution: some tasks have not been scheduled"
-msgstr ""
+msgstr "Cuidado: algunas tareas no se han programado"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__create_uid
@@ -187,6 +194,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: project_enterprise
+#. openerp-web
+#: code:addons/project_enterprise/static/src/js/task_gantt_utils.js:0
+#, python-format
+msgid "Invalid scale interval"
+msgstr ""
+
+#. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard____last_update
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard____last_update
 msgid "Last Modified on"
@@ -224,6 +238,14 @@ msgstr "Celular"
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "No task has been scheduled in the future."
+msgstr "No se ha programado una tarea en el futuro."
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"One parameter is missing to use this method. You should give a start and end"
+" dates."
 msgstr ""
 
 #. module: project_enterprise
@@ -239,7 +261,7 @@ msgstr ""
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__overlap_warning
 msgid "Overlap Warning"
-msgstr ""
+msgstr "Advertencia de traslapo"
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0
@@ -296,22 +318,22 @@ msgstr "Guardar"
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__schedule_task
 msgid "Schedule Task"
-msgstr ""
+msgstr "Agendar tarea"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_confirm_schedule_wizard_form
 msgid "Schedule Tasks"
-msgstr ""
+msgstr "Agendar tareas"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__selected_line_count
 msgid "Selected Line Count"
-msgstr ""
+msgstr "Conteo de líneas seleccionadas"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__show_warnings
 msgid "Show Warnings"
-msgstr ""
+msgstr "Mostrar advertencias"
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0
@@ -320,6 +342,8 @@ msgid ""
 "Some tasks weren't planned because the closest available starting date was "
 "too far ahead in the future"
 msgstr ""
+"Algunas tareas no se planearon porque la fecha de inicio disponible más "
+"cercana estaba muy lejos en el futuro"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__date_begin
@@ -346,12 +370,12 @@ msgstr "Tarea"
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_line_wizard
 msgid "Task confirm schedule line wizard"
-msgstr ""
+msgstr "Asistente de líneas de confirmación de tarea"
 
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_wizard
 msgid "Task confirm schedule wizard"
-msgstr ""
+msgstr "Asistente de la agenda de confirmación de tareas"
 
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_report_project_task_user
@@ -370,6 +394,8 @@ msgid ""
 "The following tasks have not been scheduled because the corresponding\n"
 "                        employees are unavailable. The next possible dates for these tasks are:"
 msgstr ""
+"Las tareas sigguientes no se agendaron ya que los empleados\n"
+"                        correspondientes no están disponibles. Las siguientes fechas disponibles son:"
 
 #. module: project_enterprise
 #: model:ir.model.constraint,message:project_enterprise.constraint_project_task_planned_dates_check
@@ -382,13 +408,19 @@ msgstr ""
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "The task has been successfully scheduled."
-msgstr ""
+msgstr "La tarea se agendó con éxito. "
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "The tasks have been successfully scheduled."
-msgstr ""
+msgstr "Las tareas se programaron exitosamente."
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "This Progress Bar is not implemented."
+msgstr "No se implementó esta barra de progreso."
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0
@@ -397,6 +429,8 @@ msgid ""
 "This employee does not have a running contract during the selected period.\n"
 "The working hours of the company were used as a reference instead."
 msgstr ""
+"Este empleado no tiene un contrato vigente durante el periodo seleccionado.\n"
+"En su lugar se usan como referencia las horas laborales de la empresa."
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0

@@ -3,26 +3,26 @@
 # 	* hr_payroll_expense
 # 
 # Translators:
-# Martin Trigaux, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:04+0000\n"
-"PO-Revision-Date: 2019-08-26 09:36+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"POT-Creation-Date: 2022-10-04 09:41+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: hr_payroll_expense
 #: model:ir.model,name:hr_payroll_expense.model_hr_expense_sheet
 msgid "Expense Report"
-msgstr ""
+msgstr "Relatório de Despesas"
 
 #. module: hr_payroll_expense
 #: model:ir.model.fields,field_description:hr_payroll_expense.field_hr_payslip__expense_sheet_ids
@@ -33,12 +33,17 @@ msgstr "Despesas"
 #. module: hr_payroll_expense
 #: model:ir.model.fields,field_description:hr_payroll_expense.field_hr_payslip__expenses_count
 msgid "Expenses Count"
-msgstr ""
+msgstr "Conta de Despesas"
+
+#. module: hr_payroll_expense
+#: model:hr.salary.rule,name:hr_payroll_expense.hr_salary_rule_expense_refund
+msgid "Expenses Reimbursement"
+msgstr "Reembolso de Despesas"
 
 #. module: hr_payroll_expense
 #: model:ir.model.fields,help:hr_payroll_expense.field_hr_payslip__expense_sheet_ids
 msgid "Expenses to reimburse to employee."
-msgstr ""
+msgstr "Despesas para reembolso do empregado"
 
 #. module: hr_payroll_expense
 #: model:ir.model,name:hr_payroll_expense.model_hr_payslip
@@ -53,21 +58,21 @@ msgstr "Holerite"
 #. module: hr_payroll_expense
 #: model:ir.model.fields,field_description:hr_payroll_expense.field_hr_expense_sheet__refund_in_payslip
 msgid "Reimburse In Next Payslip"
-msgstr ""
+msgstr "Reembolso no próximo Holerite"
 
 #. module: hr_payroll_expense
 #: code:addons/hr_payroll_expense/models/hr_payslip.py:0
 #, python-format
 msgid "Reimbursed Expenses"
-msgstr ""
+msgstr "Reembolso de Despesas"
 
 #. module: hr_payroll_expense
 #: model_terms:ir.ui.view,arch_db:hr_payroll_expense.hr_expense_sheet_view_form_inherit_payroll
 msgid "Report in Next Payslip"
-msgstr ""
+msgstr "Relatório no próximo holerite"
 
 #. module: hr_payroll_expense
 #: code:addons/hr_payroll_expense/models/hr_expense_sheet.py:0
 #, python-format
 msgid "Your expense (%s) will be added to your next payslip."
-msgstr ""
+msgstr "Sua despesa (%s) será reembolsada no seu próximo holerite."

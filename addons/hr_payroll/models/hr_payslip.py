@@ -164,8 +164,8 @@ class HrPayslip(models.Model):
                 lines_to_remove = slip.input_line_ids.filtered(lambda x: x.input_type_id.id in attachment_type_ids)
                 slip.update({'input_line_ids': [Command.unlink(line.id) for line in lines_to_remove]})
             if slip.employee_id.salary_attachment_ids:
-                lines_to_keep = slip.input_line_ids.filtered(lambda x: x.input_type_id.id not in attachment_type_ids)
-                input_line_vals = [Command.clear()] + [Command.link(line.id) for line in lines_to_keep]
+                lines_to_remove = slip.input_line_ids.filtered(lambda x: x.input_type_id.id in attachment_type_ids)
+                input_line_vals = [Command.unlink(line.id) for line in lines_to_remove]
 
                 valid_attachments = slip.employee_id.salary_attachment_ids.filtered(
                     lambda a: a.state == 'open' and a.date_start <= slip.date_to
@@ -752,7 +752,7 @@ class HrPayslip(models.Model):
             return
         valid_slips = self.filtered(lambda p: p.employee_id and p.date_from and p.date_to and p.contract_id and p.struct_id)
         # Make sure to reset invalid payslip's worked days line
-        self.write({'worked_days_line_ids': [(5, 0, 0)]})
+        self.update({'worked_days_line_ids': [(5, 0, 0)]})
         # Ensure work entries are generated for all contracts
         generate_from = min(p.date_from for p in self)
         current_month_end = date_utils.end_of(fields.Date.today(), 'month')
@@ -763,7 +763,7 @@ class HrPayslip(models.Model):
             if not slip.struct_id.use_worked_day_lines:
                 continue
             # YTI Note: We can't use a batched create here as the payslip may not exist
-            slip.write({'worked_days_line_ids': slip._get_new_worked_days_lines()})
+            slip.update({'worked_days_line_ids': slip._get_new_worked_days_lines()})
 
     def _get_new_worked_days_lines(self):
         if self.struct_id.use_worked_day_lines:
@@ -1036,6 +1036,7 @@ class HrPayslip(models.Model):
             })
 
         # Retrieves last batches (this month, or last month)
+        batch_limit_date = fields.Date.today() - relativedelta(months=1, day=1)
         batch_group_read = self.env['hr.payslip.run'].with_context(lang='en_US')._read_group(
             [('date_start', '>=', fields.Date.today() - relativedelta(months=1, day=1))],
             fields=['date_start'],
@@ -1044,7 +1045,10 @@ class HrPayslip(models.Model):
         # Keep only the last month
         batch_group_read = batch_group_read[:1]
         if batch_group_read:
-            min_date = datetime.strptime(batch_group_read[-1]['date_start:month'], '%B %Y')
+            if batch_group_read[-1]['__range'].get('date_start:month'):
+                min_date = datetime.strptime(batch_group_read[-1]['__range']['date_start:month']['from'], '%Y-%m-%d')
+            else:
+                min_date = batch_limit_date
             last_batches = self.env['hr.payslip.run'].search([('date_start', '>=', min_date)])
         else:
             last_batches = self.env['hr.payslip.run']
@@ -1104,6 +1108,7 @@ class HrPayslip(models.Model):
         # Retrieve employees with both draft and running contracts
         ambiguous_domain = [
             ('company_id', 'in', self.env.companies.ids),
+            ('employee_id', '!=', False),
             '|',
                 '&',
                     ('state', '=', 'draft'),
@@ -1494,7 +1499,10 @@ class HrPayslip(models.Model):
             # Keep only the last 3 months
             batch_group_read = batch_group_read[:3]
             if batch_group_read:
-                min_date = datetime.strptime(batch_group_read[-1]['date_start:month'], '%B %Y')
+                if batch_group_read[-1]['__range'].get('date_start:month'):
+                    min_date = datetime.strptime(batch_group_read[-1]['__range']['date_start:month']['from'], '%Y-%m-%d')
+                else:
+                    min_date = fields.Date.today() - relativedelta(months=1, day=1)
                 batches_read_result = self.env['hr.payslip.run'].search_read(
                     [('date_start', '>=', min_date)],
                     fields=self._get_dashboard_batch_fields())

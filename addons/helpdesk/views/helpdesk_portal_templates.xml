@@ -9,7 +9,7 @@
                 <t t-else="">Tickets</t>
             </li>
             <li t-if="ticket" class="breadcrumb-item active">
-                <span t-field="ticket.name"/> (#<span t-field="ticket.id"/>)
+                <span t-field="ticket.name"/> (#<span t-field="ticket.ticket_ref"/>)
             </li>
             <li t-if="rating_page" t-attf-class="breadcrumb-item active">
                 Our Ratings
@@ -64,7 +64,7 @@
                         </tbody>
                         <t t-foreach="tickets" t-as="ticket">
                             <tr>
-                                <td class="text-start"><a t-attf-href="/helpdesk/ticket/#{ticket.id}"><small>#</small><t t-out="ticket.id"/><span class="ms-2" t-field="ticket.name"/></a></td>
+                                <td class="text-start"><a t-attf-href="/helpdesk/ticket/#{ticket.id}"><small>#</small><t t-out="ticket.ticket_ref"/><span class="ms-2" t-field="ticket.name"/></a></td>
                                 <td class="text-end" t-if="groupby != 'create_date'">
                                     <span t-field="ticket.create_date" t-options='{"widget": "datetime", "hide_seconds": True}'/>
                                 </td>
@@ -142,7 +142,7 @@
                                 <ul class="nav flex-column">
                                     <t t-foreach="sorted(ticket_link_section, key=lambda r: r['sequence'])" t-as="ticket_link">
                                         <li class="nav-item">
-                                            <a class="nav-link ps-3" t-att-href="ticket_link['access_url']">
+                                            <a class="nav-link ps-0" t-att-href="ticket_link['access_url']">
                                                 <t t-out="ticket_link['title']"/>
                                             </a>
                                         </li>
@@ -153,7 +153,7 @@
                             <li t-if="ticket.user_id or ticket.partner_id" class="list-group-item flex-grow-1">
                                 <div class="col-12 col-md-12 pb-2" t-if="ticket.user_id">
                                     <strong>Assigned to</strong>
-                                    <div class="row flex-nowrap g-0">
+                                    <div class="d-flex ps-3 flex-nowrap">
                                         <img class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(ticket.user_id.avatar_1024)" alt="Contact"/>
                                         <div class="ms-2">
                                             <div t-out="ticket.user_id" t-options='{"widget": "contact", "fields": ["name"]}' class="mt-2"/>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="col-12 col-md-12 pb-2" t-if="ticket.partner_id">
                                     <strong>Customer</strong>
-                                    <div class="row flex-nowrap g-0">
+                                    <div class="d-flex ps-3 flex-nowrap">
                                         <img class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(ticket.partner_id.avatar_1024)" alt="Contact"/>
                                         <div class="ms-2">
                                             <div t-field="ticket.partner_id" t-options='{"widget": "contact", "fields": ["name"]}'/>
@@ -178,12 +178,12 @@
                 <div id="ticket_content" class="col-12 col-lg justify-content-end">
                     <div id="card" class="card">
                         <div id="card_header" class="card-header container" data-anchor="true">
-                            <div class="row g-0">
+                            <div class="row gs-0">
                                 <div class="col-md">
                                     <h5 class="row mx-1 mb-1 mb-md-0">
                                         <div class="col-9 text-truncate">
                                             <span t-field="ticket.name"/>
-                                            <small class="text-muted "> (#<span t-field="ticket.id"/>)</small>
+                                            <small class="text-muted "> (#<span t-field="ticket.ticket_ref"/>)</small>
                                         </div>
                                         <div class="col-3 text-end">
                                             <small class="text-end">Stage:</small>

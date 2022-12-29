@@ -3,12 +3,13 @@
 # 	* data_cleaning
 # 
 # Translators:
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # RGB Consulting <odoo@rgbconsulting.com>, 2022
 # Martin Trigaux, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
 # marcescu, 2022
+# Óscar Fonseca <tecnico@extreme-micro.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:50+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: marcescu, 2022\n"
+"Last-Translator: Óscar Fonseca <tecnico@extreme-micro.com>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +31,13 @@ msgid ""
 "' field cleaning rule.<br/>\n"
 "You can validate changes"
 msgstr ""
+"' regla de neteja de camps.<br/>\n"
+"Podeu validar els canvis"
 
 #. module: data_cleaning
 #: model_terms:ir.ui.view,arch_db:data_cleaning.view_data_merge_model_form
 msgid "<span class=\"me-1\">Every</span>"
-msgstr ""
+msgstr "<span class=\"me-1\">Cada</span>"
 
 #. module: data_cleaning
 #: model:ir.model.fields,field_description:data_cleaning.field_data_cleaning_rule__action
@@ -142,7 +145,7 @@ msgstr "Empresa"
 #: model_terms:ir.actions.act_window,help:data_cleaning.action_data_cleaning_record
 #: model_terms:ir.actions.act_window,help:data_cleaning.action_data_cleaning_record_notification
 msgid "Configure rules to identify records to clean"
-msgstr ""
+msgstr "Configura les regles per a identificar els registres a netejar"
 
 #. module: data_cleaning
 #: model:ir.model.fields,field_description:data_cleaning.field_data_cleaning_record__country_id
@@ -213,12 +216,12 @@ msgstr "Neteja de camps"
 #: model:ir.actions.act_window,name:data_cleaning.action_data_cleaning_record
 #: model:ir.actions.act_window,name:data_cleaning.action_data_cleaning_record_notification
 msgid "Field Cleaning Records"
-msgstr ""
+msgstr "Registres de neteja de camps"
 
 #. module: data_cleaning
 #: model:ir.actions.act_window,name:data_cleaning.action_data_cleaning_config
 msgid "Field Cleaning Rules"
-msgstr ""
+msgstr "Regles de neteja de camps"
 
 #. module: data_cleaning
 #: model:ir.model.fields,field_description:data_cleaning.field_data_cleaning_record__field_name
@@ -236,7 +239,7 @@ msgstr "Camp a netejar"
 #: model:ir.model.fields.selection,name:data_cleaning.selection__data_cleaning_rule__action_case__first
 #, python-format
 msgid "First Letters to Uppercase"
-msgstr ""
+msgstr "Primeres lletres a majúscules"
 
 #. module: data_cleaning
 #: code:addons/data_cleaning/models/data_cleaning_rule.py:0
@@ -252,6 +255,9 @@ msgid ""
 "every letter to lowercase except the first letter of each word, which is set"
 " to uppercase."
 msgstr ""
+"Com s'estableix el cas tipus per la regla. «Primeres lletres a majúscules» "
+"estableix cada lletra a minúscules excepte la primera lletra de cada "
+"paraula, que s'estableix a majúscules."
 
 #. module: data_cleaning
 #: model_terms:ir.ui.view,arch_db:data_cleaning.notification
@@ -294,7 +300,7 @@ msgstr "Última actualització el"
 #. module: data_cleaning
 #: model:ir.model.fields,help:data_cleaning.field_data_cleaning_model__notify_user_ids
 msgid "List of users to notify when there are new records to clean"
-msgstr ""
+msgstr "Llista d'usuaris a notificar quan hi hagi registres nous per netejar"
 
 #. module: data_cleaning
 #: model:ir.model.fields.selection,name:data_cleaning.selection__data_cleaning_model__cleaning_mode__manual
@@ -382,7 +388,7 @@ msgstr "Regles"
 #: model:ir.model.fields.selection,name:data_cleaning.selection__data_cleaning_rule__action__html
 #, python-format
 msgid "Scrap HTML"
-msgstr ""
+msgstr "Scrap HTML"
 
 #. module: data_cleaning
 #: model_terms:ir.ui.view,arch_db:data_cleaning.view_data_merge_model_form
@@ -425,11 +431,13 @@ msgid ""
 "The Python module `phonenumbers` is not installed. Format phone will not "
 "work."
 msgstr ""
+"El mòdul Python «phonenumbers» no està instal·lat. El format del telèfon no "
+"funcionarà."
 
 #. module: data_cleaning
 #: model:ir.model.constraint,message:data_cleaning.constraint_data_cleaning_model_check_notif_freq
 msgid "The notification frequency should be greater than 0"
-msgstr ""
+msgstr "La freqüència de notificació hauria de ser superior a 0"
 
 #. module: data_cleaning
 #: model:ir.model.fields,field_description:data_cleaning.field_data_cleaning_rule__action_trim
@@ -441,7 +449,7 @@ msgstr "Trim"
 #: model:ir.model.fields.selection,name:data_cleaning.selection__data_cleaning_rule__action__trim
 #, python-format
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Retalla els espais"
 
 #. module: data_cleaning
 #. openerp-web
@@ -469,6 +477,8 @@ msgid ""
 "Which spaces are trimmed by the rule. Leading, trailing, and successive "
 "spaces are considered superfluous."
 msgstr ""
+"Quins espais són retallats per la regla. Els espais inicials, finals i "
+"successius es consideren superflus."
 
 #. module: data_cleaning
 #: model_terms:ir.ui.view,arch_db:data_cleaning.notification

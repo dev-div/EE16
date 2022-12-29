@@ -3,19 +3,19 @@
 # 	* social_facebook
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Dariusz Żbikowski <darek@krokus.com.pl>, 2019
-# Mariusz, 2019
-# Piotr Szlązak <szlazakpiotr@gmail.com>, 2019
-# Maksym <ms@myodoo.pl>, 2019
+# Mariusz, 2022
+# Dariusz Żbikowski <darek@krokus.com.pl>, 2022
+# Martin Trigaux, 2022
+# Piotr Szlązak <szlazakpiotr@gmail.com>, 2022
+# Maksym <ms@myodoo.pl>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-01 12:16+0000\n"
-"PO-Revision-Date: 2019-09-23 14:02+0000\n"
-"Last-Translator: Maksym <ms@myodoo.pl>, 2019\n"
+"POT-Creation-Date: 2022-10-10 13:29+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Maksym <ms@myodoo.pl>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/odoo/teams/41243/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,32 +26,38 @@ msgstr ""
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.facebook_preview
 msgid "<b class=\"d-block mb-2\">Facebook Page</b>"
+msgstr "<b class=\"d-block mb-2\">Strona na Facebooku</b>"
+
+#. module: social_facebook
+#: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
+msgid "<i class=\"fa fa-comments me-1\" title=\"Comments\"/>"
 msgstr ""
 
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
-msgid "<i class=\"fa fa-comments\" title=\"Comments\"/>"
-msgstr ""
-
-#. module: social_facebook
-#: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
-msgid "<i class=\"fa fa-thumbs-up\" title=\"Likes\"/>"
+msgid "<i class=\"fa fa-thumbs-up me-1\" title=\"Likes\"/>"
 msgstr ""
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_live_post__facebook_post_id
 msgid "Actual Facebook ID of the post"
+msgstr "Właściwe ID posta na Facebooku"
+
+#. module: social_facebook
+#: code:addons/social_facebook/models/social_stream_post.py:0
+#, python-format
+msgid "An error occurred."
 msgstr ""
 
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.res_config_settings_view_form
 msgid "App ID"
-msgstr ""
+msgstr "ID aplikacji"
 
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.res_config_settings_view_form
 msgid "App Secret"
-msgstr ""
+msgstr "Sekret aplikacji"
 
 #. module: social_facebook
 #. openerp-web
@@ -59,6 +65,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
 #, python-format
 msgid "Author Image"
+msgstr "Obraz autora"
+
+#. module: social_facebook
+#: model:ir.model.fields,help:social_facebook.field_res_config_settings__facebook_use_own_account
+msgid ""
+"Check this if you want to use your personal Facebook Developer Account "
+"instead of the provided one."
 msgstr ""
 
 #. module: social_facebook
@@ -73,8 +86,9 @@ msgstr "Ustawienia konfiguracji"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_post__display_facebook_preview
+#: model:ir.model.fields,field_description:social_facebook.field_social_post_template__display_facebook_preview
 msgid "Display Facebook Preview"
-msgstr ""
+msgstr "Wyświetl podgląd Facebooka"
 
 #. module: social_facebook
 #: model:ir.model.fields.selection,name:social_facebook.selection__social_media__media_type__facebook
@@ -85,38 +99,38 @@ msgstr "Facebook"
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_account__facebook_access_token
 msgid "Facebook Access Token"
-msgstr ""
-
-#. module: social_facebook
-#: model_terms:ir.ui.view,arch_db:social_facebook.res_config_settings_view_form
-msgid "Facebook Account Configuration"
-msgstr ""
+msgstr "Token dostępu Facebook"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_account__facebook_account_id
 msgid "Facebook Account ID"
-msgstr ""
+msgstr "ID konta na Facebooku"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_res_config_settings__facebook_app_id
 msgid "Facebook App ID"
-msgstr ""
+msgstr "ID aplikacji Facebook"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_res_config_settings__facebook_client_secret
 msgid "Facebook App Secret"
-msgstr ""
+msgstr "Sekret aplikacji Facebook"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_stream_post__facebook_author_id
 msgid "Facebook Author ID"
-msgstr ""
+msgstr "ID autora na Facebooku"
 
 #. module: social_facebook
 #. openerp-web
-#: code:addons/social_facebook/static/src/js/stream_post_facebook_comments.js:0
+#: code:addons/social_facebook/static/src/js/stream_post_kanban_record.js:0
 #, python-format
 msgid "Facebook Comments"
+msgstr "Komentarze na Facebooku"
+
+#. module: social_facebook
+#: model_terms:ir.ui.view,arch_db:social_facebook.res_config_settings_view_form
+msgid "Facebook Developer Account"
 msgstr ""
 
 #. module: social_facebook
@@ -125,6 +139,8 @@ msgid ""
 "Facebook Page Access Token provided by the Facebook API, this should never be set manually.\n"
 "            It's used to authenticate requests when posting to or reading information from this account."
 msgstr ""
+"Token Facebook Page Access dostarczony przez Facebook API, to ustawienie nie powinno być wykonywane ręcznie.\n"
+"            Używany jest do uwierzytelniania zapytań przy postowaniu i odczytywaniu informacji z tego konta."
 
 #. module: social_facebook
 #: model:ir.model.fields,help:social_facebook.field_social_account__facebook_account_id
@@ -132,16 +148,36 @@ msgid ""
 "Facebook Page ID provided by the Facebook API, this should never be set "
 "manually."
 msgstr ""
+"Token Facebook Page Access dostarczony przez Facebook API, to ustawienie nie"
+" powinno być wykonywane ręcznie."
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_stream_post__facebook_post_id
 msgid "Facebook Post ID"
-msgstr ""
+msgstr "ID posta na Facebooku"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_post__facebook_preview
+#: model:ir.model.fields,field_description:social_facebook.field_social_post_template__facebook_preview
 msgid "Facebook Preview"
-msgstr ""
+msgstr "Podgląd Facebooka"
+
+#. module: social_facebook
+#: code:addons/social_facebook/controllers/main.py:0
+#, python-format
+msgid "Facebook did not provide a valid access token or it may have expired."
+msgstr "Facebook nie dostarczył ważnego tokenu dostępu lub się on wyczerpał."
+
+#. module: social_facebook
+#: code:addons/social_facebook/controllers/main.py:0
+#, python-format
+msgid "Facebook did not provide a valid access token."
+msgstr "Facebook nie dostarczył ważnego tokenu dostępu."
+
+#. module: social_facebook
+#: model:ir.model.fields,field_description:social_facebook.field_social_stream_post__facebook_is_event_post
+msgid "Is event post"
+msgstr "Jest postem wydarzenia"
 
 #. module: social_facebook
 #. openerp-web
@@ -154,32 +190,40 @@ msgstr "Polubienia"
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_media__media_type
 msgid "Media Type"
-msgstr ""
+msgstr "Typ mediów"
 
 #. module: social_facebook
 #: model:social.stream.type,name:social_facebook.stream_type_page_mentions
 msgid "Page Mentions"
-msgstr ""
+msgstr "Wzmianki o stronie"
 
 #. module: social_facebook
 #: model:social.stream.type,name:social_facebook.stream_type_page_posts
 msgid "Page Posts"
-msgstr ""
+msgstr "Posty na stronie"
 
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.facebook_preview
 msgid "Post Image"
+msgstr "Opublikuj obraz"
+
+#. module: social_facebook
+#: code:addons/social_facebook/models/social_stream_post.py:0
+#, python-format
+msgid ""
+"Post not found. It could be because the post has been deleted on the Social "
+"Platform."
 msgstr ""
 
 #. module: social_facebook
 #: model_terms:ir.ui.view,arch_db:social_facebook.facebook_preview
 msgid "Published by Facebook Page •"
-msgstr ""
+msgstr "Opublikowano przez stronę na Facebooku"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_stream_post__facebook_reach
 msgid "Reach"
-msgstr ""
+msgstr "Zasięg"
 
 #. module: social_facebook
 #. openerp-web
@@ -188,17 +232,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
 #, python-format
 msgid "Shares"
-msgstr ""
+msgstr "Udostępnienia"
 
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_account
 msgid "Social Account"
-msgstr ""
+msgstr "Konto w mediach społecznościowych"
 
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_live_post
 msgid "Social Live Post"
-msgstr ""
+msgstr "Post na żywo w mediach społecznościowych"
 
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_media
@@ -208,27 +252,46 @@ msgstr "Media społecznościowe"
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_post
 msgid "Social Post"
+msgstr "Post w mediach społecznościowych"
+
+#. module: social_facebook
+#: model:ir.model,name:social_facebook.model_social_post_template
+msgid "Social Post Template"
 msgstr ""
 
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_stream
 msgid "Social Stream"
-msgstr "Strumień Społeczny"
+msgstr "Kanał społecznościowy"
 
 #. module: social_facebook
 #: model:ir.model,name:social_facebook.model_social_stream_post
 msgid "Social Stream Post"
+msgstr "Post w kanale społecznościowym"
+
+#. module: social_facebook
+#: code:addons/social_facebook/controllers/main.py:0
+#, python-format
+msgid "There is no page linked to this account"
 msgstr ""
+
+#. module: social_facebook
+#: code:addons/social_facebook/controllers/main.py:0
+#, python-format
+msgid "Unauthorized. Please contact your administrator. "
+msgstr "Brak autoryzacji. Skontaktuj się z administratorem."
+
+#. module: social_facebook
+#: code:addons/social_facebook/models/social_stream_post.py:0
+#: code:addons/social_facebook/models/social_stream_post.py:0
+#, python-format
+msgid "Unknown"
+msgstr "Nieznany"
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_res_config_settings__facebook_use_own_account
 msgid "Use your own Facebook Account"
-msgstr ""
-
-#. module: social_facebook
-#: model_terms:ir.ui.view,arch_db:social_facebook.res_config_settings_view_form
-msgid "Use your own Facebook Developer Account on our Social app"
-msgstr ""
+msgstr "Użyj własnego konta Facebook"
 
 #. module: social_facebook
 #: model:ir.model.fields,help:social_facebook.field_social_media__media_type
@@ -236,11 +299,13 @@ msgid ""
 "Used to make comparisons when we need to restrict some features to a "
 "specific media ('facebook', 'twitter', ...)."
 msgstr ""
+"Używane do porównań w wypadku, gdy musimy ograniczyć niektóre "
+"funkcjonalności do poszczególnych platform ('facebook', 'twitter', ...)."
 
 #. module: social_facebook
 #: model:ir.model.fields,field_description:social_facebook.field_social_stream_post__facebook_user_likes
 msgid "User Likes"
-msgstr ""
+msgstr "Polubienia użytkownika"
 
 #. module: social_facebook
 #. openerp-web
@@ -251,14 +316,26 @@ msgid "Views"
 msgstr "Widoki"
 
 #. module: social_facebook
-#: code:addons/social_facebook/models/social_media.py:0
+#: code:addons/social_facebook/models/social_live_post.py:0
+#: code:addons/social_facebook/models/social_post.py:0
 #, python-format
-msgid "You don't have an active subscription. Please buy one here: %s"
+msgid ""
+"We could not upload your image, try reducing its size and posting it again "
+"(error: %s)."
 msgstr ""
 
 #. module: social_facebook
-#. openerp-web
-#: code:addons/social_facebook/static/src/js/stream_post_facebook_comments.js:0
+#: code:addons/social_facebook/models/social_media.py:0
 #, python-format
-msgid "comment/reply"
+msgid "You don't have an active subscription. Please buy one here: %s"
+msgstr "Nie masz aktywnej subskrypcji. Możesz ją zakupić tutaj: %s"
+
+#. module: social_facebook
+#: model_terms:ir.ui.view,arch_db:social_facebook.social_stream_post_view_kanban
+msgid "added an event"
+msgstr "dodano w wydarzeniu"
+
+#. module: social_facebook
+#: model_terms:ir.ui.view,arch_db:social_facebook.facebook_preview
+msgid "• <i class=\"fa fa-globe\"/>"
 msgstr ""

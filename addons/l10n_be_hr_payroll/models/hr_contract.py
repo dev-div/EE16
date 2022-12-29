@@ -420,6 +420,12 @@ class HrContract(models.Model):
         """
         return
 
+    def _get_contract_credit_time_values(self, date_start, date_stop):
+        contract_vals = super(HrContract, self)._get_contract_credit_time_values(date_start, date_stop)
+        for contract_val in contract_vals:
+            contract_val['is_credit_time'] = True
+        return contract_vals
+
     def _get_work_hours_split_half(self, date_from, date_to, domain=None):
         """
         Returns the amount (expressed in hours) of work

@@ -427,7 +427,7 @@ class WorksheetTemplate(models.Model):
                         container_row.append(container_col)
                         for field_node in col_node.xpath('./field'):
                             new_container_col = self._add_field_node_to_container(field_node, form_view_fields, container_col)
-                        container_row.append(new_container_col)
+                            container_row.append(new_container_col)
                     qweb_arch.append(container_row)
                 # pattern C: whe have a field inside an element group --> field take full width
                 else:
@@ -442,7 +442,8 @@ class WorksheetTemplate(models.Model):
     def _generate_qweb_report_template(self):
         for worksheet_template in self:
             report_name = worksheet_template.model_id.model.replace('.', '_')
-            new_arch = self._get_qweb_arch(worksheet_template.model_id, report_name)
+            form_view_id = self.env.context.get("qweb_report_template_form_view_id", False)
+            new_arch = self._get_qweb_arch(worksheet_template.model_id, report_name, form_view_id)
             if worksheet_template.report_view_id:  # update existing one
                 worksheet_template.report_view_id.write({'arch': new_arch})
             else:  # create the new one

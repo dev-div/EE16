@@ -46,7 +46,7 @@ class DeliveryCarrier(models.Model):
         shipping_products = sendcloud.get_shipping_products()
         return_products = sendcloud.get_shipping_products(is_return=True)
         if not shipping_products:
-            raise UserError('There are no shipping products available, please activate carriers in your account')
+            raise UserError(_('There are no shipping products available, please activate carriers in your account'))
         return {
             'name': _("Choose Sendcloud Shipping Products"),
             'type': 'ir.actions.act_window',

@@ -15,9 +15,8 @@ const { markup, onMounted } = owl;
 class PlanningFormRecord extends Record {
     async save() {
         const dirtyFields = this.dirtyFields.map((f) => f.name);
-        const res = await super.save(...arguments);
-
-        if (dirtyFields.includes("repeat") && this.data["repeat"]) {
+        const isSaved = await super.save(...arguments);
+        if (isSaved && dirtyFields.includes("repeat") && this.data["repeat"]) {
             const message = this.model.env._t("The recurring shifts have successfully been created.");
             this.model.notificationService.add(
                 markup(
@@ -26,7 +25,7 @@ class PlanningFormRecord extends Record {
                 { type: "success" }
             );
         }
-        return res;
+        return isSaved;
     }
 }
 

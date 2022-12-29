@@ -21,10 +21,7 @@ class TestWebsiteSaleStockRentingAbandonedCartEmail(TestWebsiteSaleCartAbandoned
             'rent_ok': True,
             'allow_out_of_stock_order': False
         })
-        renting_product_product = self.env['product.product'].create({
-            'name': 'renting_product_product',
-            'product_tmpl_id': renting_product_template.id,
-        })
+        renting_product_product = renting_product_template.product_variant_id
         order_line = [[0, 0, {
             'product_id': renting_product_product.id,
             'product_uom_qty': 1,

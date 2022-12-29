@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="reference_year"/>
+                            <field name="reference_year" class="o_hr_narrow_field" options="{'type': 'number'}"/>
                             <field name="company_id" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
@@ -25,8 +25,8 @@
                 </sheet>
                 <footer>
                     <button string="Export XLS" name="action_export_xls" type="object" class="btn-primary" data-hotkey="q"/>
-                    <button string="Generate Payslips" name="generate_payslips" type="object" class="btn-primary" data-hotkey="w" confirm="This will add the eco-vouchers amount on the payslips in waiting state, and create a new payslip for the employees without such a payslip. Are you sure you want to proceed ?"/>
-                    <button special="cancel" data-hotkey="z" string="Close" type="object" class="btn-primary"/>
+                    <button string="Generate Payslips" name="generate_payslips" type="object" class="btn-secondary" data-hotkey="w" confirm="This will add the eco-vouchers amount on the payslips in waiting state, and create a new payslip for the employees without such a payslip. Are you sure you want to proceed ?"/>
+                    <button special="cancel" data-hotkey="z" string="Close" type="object" class="btn-secondary"/>
                 </footer>
             </form>
         </field>

@@ -16,8 +16,6 @@ class TestItalianTaxReport(TestAccountReportsCommon):
         AccountTax = cls.env['account.tax']
         company.update({
             'vat': 'IT78926680725',
-            'l10n_it_codice_fiscale': '78926680725',
-            'l10n_it_tax_system': 'RF01',
             'country_id': cls.env.ref('base.it').id,
         })
 

@@ -1,5 +1,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from odoo import fields
 from odoo.tests import tagged
 from odoo.addons.stock_barcode.tests.test_barcode_client_action import TestBarcodeClientAction
 
@@ -109,6 +110,51 @@ class TestInventoryAdjustmentBarcodeClientAction(TestBarcodeClientAction):
         self.assertEqual(mls_with_lot.filtered(lambda ml: ml.lot_id.name == 'lot2').qty_done, 1)
         self.assertEqual(mls_with_lot.filtered(lambda ml: ml.lot_id.name == 'lot3').qty_done, 1)
         self.assertEqual(set(mls_with_sn.mapped('lot_id.name')), set(['serial1', 'serial2', 'serial3']))
+
+    def test_inventory_adjustment_tracked_product_multilocation(self):
+        """ This test ensures when the user has to count the same lot from multiple locations,
+        the right move line will be incremented when they scan the product's barcode,
+        depending of the previous scanned location.
+        """
+        self.clean_access_rights()
+        grp_multi_loc = self.env.ref('stock.group_stock_multi_locations')
+        self.env.user.write({'groups_id': [(4, grp_multi_loc.id, 0)]})
+        # Adds quants for the same product in two locations.
+        lot_default_values = {'product_id': self.productlot1.id, 'company_id': self.env.company.id}
+        lot_1 = self.env['stock.lot'].create(dict(lot_default_values, name="lot1"))
+        self.env['stock.quant']._update_available_quantity(self.productlot1, self.shelf1, 3, lot_id=lot_1)
+        self.env['stock.quant']._update_available_quantity(self.productlot1, self.shelf2, 5, lot_id=lot_1)
+        # Marks them as to count by the user.
+        quants = self.env['stock.quant'].search([('product_id', '=', self.productlot1.id)])
+        quants.user_id = self.env.user
+        quants.inventory_quantity_set = True
+        quants.inventory_date = fields.Date.today()
+        quants[0].inventory_quantity = 3
+        quants[1].inventory_quantity = 0
+        # Opens the inventory adjustement and process it.
+        action_id = self.env.ref('stock_barcode.stock_barcode_action_main_menu')
+        url = f"/web#action={action_id.id}"
+        self.start_tour(url, "test_inventory_adjustment_tracked_product_multilocation", login="admin", timeout=180)
+
+    def test_inventory_create_quant(self):
+        """ Creates a quant and checks it will not be deleted until the inventory was validated.
+        """
+        Quant = self.env['stock.quant']
+        action_id = self.env.ref('stock_barcode.stock_barcode_action_main_menu')
+        url = "/web#action=" + str(action_id.id)
+        self.start_tour(url, 'test_inventory_create_quant', login='admin', timeout=180)
+
+        Quant._unlink_zero_quants()
+        product1_quant = Quant.search([('product_id', '=', self.product1.id)])
+        self.assertEqual(len(product1_quant), 1)
+        self.assertEqual(product1_quant.inventory_quantity, 0.0)
+
+        # Validates the inventory, then checks there is no 0 qty quant.
+        product1_quant.action_validate()
+        Quant.invalidate_model()  # Updates the cache.
+        Quant._unlink_zero_quants()
+        product1_quant = Quant.search([('product_id', '=', self.product1.id)])
+        self.assertEqual(len(product1_quant), 0)
 
     def test_inventory_nomenclature(self):
         """ Simulate scanning a product and its weight

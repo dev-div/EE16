@@ -23,6 +23,10 @@
     'assets': {
         'web.assets_frontend': [
             'website_helpdesk/static/**/*',
+            ('remove', 'website_helpdesk/static/src/js/website_helpdesk_form_editor.js'),
+        ],
+        'website.assets_editor':[
+            'website_helpdesk/static/src/js/website_helpdesk_form_editor.js',
         ],
     }
 }

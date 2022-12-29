@@ -485,7 +485,7 @@ msgstr "Factice"
 #. module: stock_barcode
 #: model:ir.model.fields,field_description:stock_barcode.field_stock_backorder_confirmation__empty_move_count
 msgid "Empty Move Count"
-msgstr "Nombre de déplacements vides"
+msgstr "Nombre de mouvements vides"
 
 #. module: stock_barcode
 #: model_terms:ir.ui.view,arch_db:stock_barcode.stock_barcode_view_picking_type_form
@@ -541,13 +541,11 @@ msgstr "ID"
 #: code:addons/stock_barcode/models/stock_picking.py:0
 #, python-format
 msgid ""
-"If the source location must be scanned for each product, the destination "
-"location must be either scanned after each line too, either not scanned at "
-"all."
+"If the source location must be scanned, then the destination location must "
+"either be scanned after each product or not scanned at all."
 msgstr ""
-"Si l'emplacement source doit être scanné pour chaque produit, l'emplacement "
-"de destination doit être soit scanné après chaque ligne également, soit pas "
-"scanné du tout."
+"Si l'emplacement source doit être scanné, l'emplacement de destination doit "
+"être scanné après chaque produit ou pas scanné du tout."
 
 #. module: stock_barcode
 #: model_terms:ir.ui.view,arch_db:stock_barcode.stock_picking_type_kanban
@@ -772,7 +770,7 @@ msgstr "Qté de Conditionnements"
 #. module: stock_barcode
 #: model:ir.model.fields,field_description:stock_barcode.field_stock_backorder_confirmation__partial_move_count
 msgid "Partial Move Count"
-msgstr "Nombre de déplacements partiels"
+msgstr "Nombre de mouvements partiels"
 
 #. module: stock_barcode
 #: model:ir.actions.act_window,name:stock_barcode.stock_picking_action_form
@@ -864,7 +862,7 @@ msgstr "Codes-barres d'articles"
 #. module: stock_barcode
 #: model:ir.model,name:stock_barcode.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Mouvements d'article (Stock Move Line)"
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
 
 #. module: stock_barcode
 #: model:ir.model,name:stock_barcode.model_product_packaging
@@ -912,6 +910,7 @@ msgstr "Quantité traitée"
 #: model:ir.model.fields,help:stock_barcode.field_stock_move_line__product_packaging_uom_qty
 msgid "Quantity of the Packaging in the UoM of the Stock Move Line."
 msgstr ""
+"Quantité d'emballage dans la nomenclature de la ligne de mouvement de stock."
 
 #. module: stock_barcode
 #: model:ir.model,name:stock_barcode.model_stock_quant

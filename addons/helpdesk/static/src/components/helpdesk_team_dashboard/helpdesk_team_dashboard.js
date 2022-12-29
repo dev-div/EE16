@@ -23,7 +23,7 @@ export class HelpdeskTeamDashboard extends Component {
     }
 
     get demoClass() {
-        return this.showDemo ? 'o_demo o_debounce_disabled o_cursor_default' : '';
+        return this.showDemo ? 'o_demo o_disabled o_cursor_default' : '';
     }
 
     async onWillStart() {

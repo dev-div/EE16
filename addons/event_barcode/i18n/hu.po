@@ -3,18 +3,21 @@
 # 	* event_barcode
 # 
 # Translators:
-# Martin Trigaux, 2019
-# krnkris, 2019
-# gezza <geza.nagy@oregional.hu>, 2019
-# Tibor Kőnig <konig.tibor@evitalit.hu>, 2019
+# Gergő Kertész <gergo.kertesz@maxflow.hu>, 2022
+# Zsolt Godó <zsolttokio@gmail.com>, 2022
+# Tamás Dombos, 2022
+# Csaba Tóth <i3rendszerhaz@gmail.com>, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
+# Martin Trigaux, 2022
+# krnkris, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: Tibor Kőnig <konig.tibor@evitalit.hu>, 2019\n"
+"POT-Creation-Date: 2022-06-09 14:10+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: krnkris, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,67 +26,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: event_barcode
-#: code:addons/event_barcode/controllers/main.py:0
-#, python-format
-msgid "%s is already registered"
-msgstr "%s már regisztrált"
-
-#. module: event_barcode
-#: code:addons/event_barcode/controllers/main.py:0
-#, python-format
-msgid "%s is successfully registered"
-msgstr "%s már sikeresen regisztrált"
-
-#. module: event_barcode
-#: model_terms:ir.ui.view,arch_db:event_barcode.report_registration_badge
-msgid "&amp;nbsp;"
-msgstr "&amp;nbsp;"
-
-#. module: event_barcode
-#: model_terms:ir.ui.view,arch_db:event_barcode.report_event_template_badge
+#: model_terms:ir.ui.view,arch_db:event_barcode.event_report_template_foldable_badge_inherit_barcode
+#: model_terms:ir.ui.view,arch_db:event_barcode.event_report_template_full_page_ticket_inherit_barcode
 msgid ""
 "<i class=\"fa-2x fa fa-barcode\" title=\"Barcode\" role=\"img\" aria-"
 "label=\"Barcode\"/>"
 msgstr ""
 
 #. module: event_barcode
-#: code:addons/event_barcode/controllers/main.py:0
-#, python-format
-msgid "Attendee"
-msgstr "Feliratkozók"
-
-#. module: event_barcode
-#: model:ir.actions.act_window,name:event_barcode.act_event_registration_from_barcode
-msgid "Attendees"
-msgstr "Résztvevők"
-
-#. module: event_barcode
 #. openerp-web
 #: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
 #: model:ir.model.fields,field_description:event_barcode.field_event_registration__barcode
-#: model_terms:ir.ui.view,arch_db:event_barcode.report_registration_badge
+#: model_terms:ir.ui.view,arch_db:event_barcode.event_report_template_full_page_ticket_inherit_barcode
 #, python-format
 msgid "Barcode"
 msgstr "Vonalkód"
 
 #. module: event_barcode
 #: model:ir.actions.client,name:event_barcode.event_barcode_action_main_view
-#: model_terms:ir.ui.view,arch_db:event_barcode.event_event_view_form_inherit_barcode
 msgid "Barcode Interface"
 msgstr "Vonalkód interfész csatoló"
 
 #. module: event_barcode
 #: model_terms:ir.ui.view,arch_db:event_barcode.res_config_settings_view_form
 msgid "Barcode Nomenclature"
-msgstr "Vonalkód nomenklatúra"
+msgstr "Vonalkód nómenklatúra"
 
 #. module: event_barcode
 #: model:ir.model.constraint,message:event_barcode.constraint_event_registration_barcode_event_uniq
-msgid "Barcode should be unique per event"
-msgstr "Vonalkódnak egyedinek kell lennie eseményenként"
+msgid "Barcode should be unique"
+msgstr ""
 
 #. module: event_barcode
-#: code:addons/event_barcode/controllers/main.py:0
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
 #, python-format
 msgid "Canceled registration"
 msgstr "Törölt regisztráció"
@@ -91,9 +67,17 @@ msgstr "Törölt regisztráció"
 #. module: event_barcode
 #. openerp-web
 #: code:addons/event_barcode/static/src/js/event_barcode.js:0
+#: code:addons/event_barcode/static/src/js/event_barcode.js:0
 #, python-format
 msgid "Close"
 msgstr "Bezárás"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Company"
+msgstr "Vállalat"
 
 #. module: event_barcode
 #. openerp-web
@@ -105,17 +89,66 @@ msgstr "Vállalati logó"
 #. module: event_barcode
 #: model:ir.model,name:event_barcode.model_res_config_settings
 msgid "Config Settings"
-msgstr "Konfigurációs beállítások"
+msgstr "Beállítások módosítása"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/js/event_barcode.js:0
+#, python-format
+msgid "Confirm"
+msgstr "Megerősítés"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Confirm attendance for"
+msgstr ""
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Event"
+msgstr "Esemény"
 
 #. module: event_barcode
 #: model:ir.model,name:event_barcode.model_event_registration
 msgid "Event Registration"
-msgstr "Rendezvény regisztráció"
+msgstr "Esemény regisztráció"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/js/event_barcode.js:0
+#, python-format
+msgid "Events"
+msgstr "Események"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/js/event_barcode.js:0
+#, python-format
+msgid "Invalid ticket"
+msgstr ""
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Name"
+msgstr "Név"
 
 #. module: event_barcode
 #: model:ir.model.fields,field_description:event_barcode.field_res_config_settings__barcode_nomenclature_id
 msgid "Nomenclature"
-msgstr ""
+msgstr "Nómenklatúra"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Payment"
+msgstr "Fizetés"
 
 #. module: event_barcode
 #. openerp-web
@@ -127,10 +160,17 @@ msgstr "Nyomtatás"
 #. module: event_barcode
 #. openerp-web
 #: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
-#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
 #, python-format
 msgid "Registration"
 msgstr "Regisztráció"
+
+#. module: event_barcode
+#: code:addons/event_barcode/controllers/main.py:0
+#: model:ir.ui.menu,name:event_barcode.menu_event_registration_desk
+#: model_terms:ir.ui.view,arch_db:event_barcode.event_event_view_form
+#, python-format
+msgid "Registration Desk"
+msgstr ""
 
 #. module: event_barcode
 #. openerp-web
@@ -141,10 +181,17 @@ msgstr ""
 
 #. module: event_barcode
 #. openerp-web
+#: code:addons/event_barcode/static/src/js/event_barcode.js:0
+#, python-format
+msgid "Registration confirmed"
+msgstr "Regisztráció megerősítve"
+
+#. module: event_barcode
+#. openerp-web
 #: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
 #, python-format
-msgid "Scan your badge"
-msgstr "Jelvénye beszkennelése"
+msgid "Scan a badge"
+msgstr ""
 
 #. module: event_barcode
 #. openerp-web
@@ -154,17 +201,39 @@ msgid "Select Attendee"
 msgstr ""
 
 #. module: event_barcode
-#: code:addons/event_barcode/controllers/main.py:0
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
 #, python-format
-msgid "This ticket is not valid for this event"
-msgstr "Ez a jegy nem érvényes erre az eseményre"
+msgid "The registration must be paid"
+msgstr "A regisztrálásért fizetni kell"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "This ticket is for another event"
+msgstr ""
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "This ticket is not for an ongoing event"
+msgstr ""
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "Ticket"
+msgstr "Hibajegy"
 
 #. module: event_barcode
 #. openerp-web
 #: code:addons/event_barcode/static/src/js/event_barcode.js:0
 #, python-format
 msgid "View"
-msgstr "Nézet"
+msgstr "Megtekintés"
 
 #. module: event_barcode
 #. openerp-web
@@ -179,6 +248,20 @@ msgstr "Figyelmeztetés"
 #, python-format
 msgid "Welcome to"
 msgstr "Üdvözlöm"
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "is already registered"
+msgstr ""
+
+#. module: event_barcode
+#. openerp-web
+#: code:addons/event_barcode/static/src/xml/event_barcode.xml:0
+#, python-format
+msgid "is successfully registered"
+msgstr ""
 
 #. module: event_barcode
 #. openerp-web

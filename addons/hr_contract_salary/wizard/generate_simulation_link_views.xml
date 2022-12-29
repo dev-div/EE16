@@ -39,6 +39,11 @@
                             Before accessing the simulation link, you first need to set up an offer template.
                     </span>
                 </group>
+                <div class="alert alert-danger text-center"
+                        role="alert" colspan="2"
+                        attrs="{'invisible':[('email_to', '!=', False)]}">
+                        The employee does not have a valid email set in the private information. The Simulation Link won't be able to be completed.
+                </div>
                 <footer>
                     <button name="send_offer" type="object" string="Send" class="oe_highlight" data-hotkey="q"/>
                     <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="z"/>

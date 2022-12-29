@@ -17,10 +17,10 @@
             <div class="mt-5 o_tablet_summary_quality">
                 <span>Quality</span>
                 <t t-foreach="[...Array(data.quality_score).keys()]" t-key="i" t-as="i">
-                    <i class="fa fa-star"/>
+                    <i class="fa fa-star mx-3 fa-lg"/>
                 </t>
                 <t t-foreach="[...Array(3 - data.quality_score).keys()]" t-key="i" t-as="i">
-                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o mx-3 fa-lg"/>
                 </t>
             </div>
         </div>

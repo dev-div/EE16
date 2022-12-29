@@ -91,7 +91,7 @@ patch(AttendeeCalendarCommonRenderer.prototype, "appointment_calendar_common_ren
             const bg = el.querySelector(".fc-bg");
             if (bg) {
                 const duration = (event.end - event.start) / 3600000;
-                const iconSize = duration < 1 || event.allDay || this.props.model.scale === "month" ? "" : "h1";
+                const iconSize = duration < 1 || event.allDay || this.props.model.scale === "month" ? "" : "fa-2x";
                 const domParser = new DOMParser();
                 const injectedContentEl = domParser.parseFromString(
                     /* xml */ `

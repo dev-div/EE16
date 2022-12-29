@@ -46,7 +46,7 @@
                         class="oe_stat_button"
                         icon="fa-bars"
                         type="object"
-                        attrs="{'invisible': ['|', '|', ('move_type', '!=', 'entry'), ('id', '=', False), ('statement_line_id', '=', False)]}"
+                        attrs="{'invisible': ['|', '|', '|', ('move_type', '!=', 'entry'), ('id', '=', False), ('statement_line_id', '=', False), ('state', '=', 'cancel')]}"
                         string="1 Bank Transaction">
                 </button>
             </xpath>

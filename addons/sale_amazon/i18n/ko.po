@@ -8,9 +8,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:47+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
 "Last-Translator: JH CHOI <hwangtog@gmail.com>, 2022\n"
 "Language-Team: Korean (https://www.transifex.com/odoo/teams/41243/ko/)\n"
@@ -147,13 +147,11 @@ msgid "Amazon Order Ref"
 msgstr "아마존 주문 참조"
 
 #. module: sale_amazon
-#: model:product.product,name:sale_amazon.default_product
 #: model:product.template,name:sale_amazon.default_product_product_template
 msgid "Amazon Sale"
 msgstr "아마존 세일"
 
 #. module: sale_amazon
-#: model:product.product,name:sale_amazon.shipping_product
 #: model:product.template,name:sale_amazon.shipping_product_product_template
 msgid "Amazon Shipping"
 msgstr "아마존 배송"
@@ -174,18 +172,21 @@ msgid "Amazon accounts correspond to Amazon Seller Central accounts."
 msgstr "Amazon 계정은 Amazon Seller Central 계정에 해당합니다."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_marketplace.py:0
 #, python-format
 msgid "Amazon marketplaces cannot be deleted."
 msgstr "아마존 마켓 플레이스는 삭제할 수 없습니다."
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Amazon move : %s"
 msgstr "아마존 이동 : %s"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -195,6 +196,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -203,8 +205,18 @@ msgid ""
 msgstr ""
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_AE
+msgid "Amazon.ae"
+msgstr ""
+
+#. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_CA
 msgid "Amazon.ca"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_JP
+msgid "Amazon.co.jp"
 msgstr ""
 
 #. module: sale_amazon
@@ -218,13 +230,38 @@ msgid "Amazon.com"
 msgstr ""
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_AU
+msgid "Amazon.com.au"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_BE
+msgid "Amazon.com.be"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_BR
+msgid "Amazon.com.br"
+msgstr ""
+
+#. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_MX
 msgid "Amazon.com.mx"
 msgstr ""
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_TR
+msgid "Amazon.com.tr"
+msgstr ""
+
+#. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_DE
 msgid "Amazon.de"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_EG
+msgid "Amazon.eg"
 msgstr ""
 
 #. module: sale_amazon
@@ -238,6 +275,11 @@ msgid "Amazon.fr"
 msgstr ""
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_IN
+msgid "Amazon.in"
+msgstr ""
+
+#. module: sale_amazon
 #: model:amazon.marketplace,name:sale_amazon.marketplace_IT
 msgid "Amazon.it"
 msgstr ""
@@ -248,6 +290,26 @@ msgid "Amazon.nl"
 msgstr ""
 
 #. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_PL
+msgid "Amazon.pl"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SA
+msgid "Amazon.sa"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SE
+msgid "Amazon.se"
+msgstr ""
+
+#. module: sale_amazon
+#: model:amazon.marketplace,name:sale_amazon.marketplace_SG
+msgid "Amazon.sg"
+msgstr ""
+
+#. module: sale_amazon
 #: model:mail.template,name:sale_amazon.order_sync_failure
 msgid "Amazon: Order Synchronization Failure"
 msgstr ""
@@ -255,14 +317,12 @@ msgstr ""
 #. module: sale_amazon
 #: model:ir.actions.server,name:sale_amazon.ir_cron_sync_amazon_orders_ir_actions_server
 #: model:ir.cron,cron_name:sale_amazon.ir_cron_sync_amazon_orders
-#: model:ir.cron,name:sale_amazon.ir_cron_sync_amazon_orders
 msgid "Amazon: sync orders"
 msgstr "아마존 : 주문 동기화"
 
 #. module: sale_amazon
 #: model:ir.actions.server,name:sale_amazon.ir_cron_sync_amazon_pickings_ir_actions_server
 #: model:ir.cron,cron_name:sale_amazon.ir_cron_sync_amazon_pickings
-#: model:ir.cron,name:sale_amazon.ir_cron_sync_amazon_pickings
 msgid "Amazon: sync pickings"
 msgstr "아마존 : 선별 동기화"
 
@@ -303,24 +363,28 @@ msgid "Contact"
 msgstr "연락처"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the API."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the feed URL."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Could not establish the connection to the proxy."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/controllers/onboarding.py:0
 #, python-format
 msgid "Could not find Amazon account with id %s"
@@ -346,6 +410,7 @@ msgid "Credentials"
 msgstr "자격 인증"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/res_config_settings.py:0
 #: model_terms:ir.ui.view,arch_db:sale_amazon.res_config_settings_view_form
 #, python-format
@@ -360,6 +425,7 @@ msgid "Display Name"
 msgstr "표시명"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "Error code: %s; description: %s"
@@ -401,6 +467,7 @@ msgid "Fulfillment by Merchant"
 msgstr "판매자가 고객 주문 처리"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -424,6 +491,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -533,6 +601,7 @@ msgid "Offer Count"
 msgstr "제안 수"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #: code:addons/sale_amazon/models/product_product.py:0
 #: code:addons/sale_amazon/models/product_template.py:0
@@ -544,6 +613,7 @@ msgid "Offers"
 msgstr "제안"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Only available marketplaces can be selected"
@@ -560,6 +630,7 @@ msgid "Order Follow-up"
 msgstr "주문 후속 조치"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #: model_terms:ir.ui.view,arch_db:sale_amazon.amazon_account_view_form
 #, python-format
@@ -583,6 +654,7 @@ msgid "Product Variant"
 msgstr "파생 품목"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -672,6 +744,7 @@ msgid "Stock Location"
 msgstr "재고 공간"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Successfully updated the marketplaces available to this account!"
@@ -737,12 +810,14 @@ msgid "The Stock Keeping Unit."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "The communication with the API failed."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid ""
@@ -810,6 +885,7 @@ msgid "The moment at which the token becomes invalid."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -897,14 +973,6 @@ msgid "Transfer"
 msgstr "전송"
 
 #. module: sale_amazon
-#: model:product.product,uom_name:sale_amazon.default_product
-#: model:product.product,uom_name:sale_amazon.shipping_product
-#: model:product.template,uom_name:sale_amazon.default_product_product_template
-#: model:product.template,uom_name:sale_amazon.shipping_product_product_template
-msgid "Units"
-msgstr "단위"
-
-#. module: sale_amazon
 #: model_terms:ir.ui.view,arch_db:sale_amazon.amazon_account_view_form
 msgid "Unlink account"
 msgstr ""
@@ -920,6 +988,7 @@ msgid "View on Seller Central"
 msgstr "셀러 센트럴에서 보기"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "Warning"
@@ -948,12 +1017,14 @@ msgid "Whether this sales team is associated with Amazon orders or not."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid "You first need to authorize the Amazon account %s."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/utils.py:0
 #, python-format
 msgid ""
@@ -962,6 +1033,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -975,6 +1047,7 @@ msgid "Your Amazon account is linked with Odoo."
 msgstr ""
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid ""
@@ -985,12 +1058,14 @@ msgstr ""
 "조건 : %s - %s"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "[%s] Delivery Charges for %s"
 msgstr "[%s] %s에 대한 배송료"
 
 #. module: sale_amazon
+#. odoo-python
 #: code:addons/sale_amazon/models/amazon_account.py:0
 #, python-format
 msgid "[%s] Gift Wrapping Charges for %s"

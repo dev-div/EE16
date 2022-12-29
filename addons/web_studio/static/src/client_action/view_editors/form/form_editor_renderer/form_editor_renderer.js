@@ -9,26 +9,20 @@ import {
     getActiveHook,
     getDroppedValues,
     getHooks,
+    useStudioClickedElements,
+    useLegacyOnDropElement,
+    hookPositionTolerance,
 } from "@web_studio/client_action/view_editors/utils";
 import { ChatterContainer, ChatterContainerHook } from "../chatter_container";
-import { StudioHook } from "../studio_hook_component";
+import { StudioHook } from "@web_studio/client_action/view_editors/components/studio_hook_component";
+import { FieldStudio } from "@web_studio/client_action/view_editors/components/field_studio";
+import { WidgetStudio } from "@web_studio/client_action/view_editors/components/widget_studio";
+import { ViewButtonStudio } from "@web_studio/client_action/view_editors/components/view_button_studio";
 import { InnerGroup, OuterGroup } from "./form_editor_groups";
 
-const { useRef, useEffect, useSubEnv } = owl;
-
-const hookPositionTolerance = 50;
+import { useRef, useEffect } from "@odoo/owl";
 
 const components = formView.Renderer.components;
-
-function updateCurrentElement(mainEl, currentTarget) {
-    for (const el of mainEl.querySelectorAll(".o-web-studio-editor--element-clicked")) {
-        el.classList.remove("o-web-studio-editor--element-clicked");
-    }
-    const clickable = currentTarget.closest(".o-web-studio-editor--element-clickable");
-    if (clickable) {
-        clickable.classList.add("o-web-studio-editor--element-clicked");
-    }
-}
 
 const HOOK_CLASS_WHITELIST = [
     "o_web_studio_field_picture",
@@ -71,32 +65,10 @@ export class FormEditorRenderer extends formView.Renderer {
         const rootRef = useRef("compiled_view_root");
         this.rootRef = rootRef;
 
-        // Handle click on elements
-        const config = Object.create(this.env.config);
-        const originalNodeClicked = config.onNodeClicked;
-        config.onNodeClicked = (params) => {
-            updateCurrentElement(rootRef.el, params.target);
-            return originalNodeClicked(params);
-        };
-        useSubEnv({ config });
+        useStudioClickedElements(rootRef);
 
         // Prepare a legacy handler for JQuery UI's droppable
-        const onLegacyDropped = (ev, ui) => {
-            const hitHook = getActiveHook(rootRef.el);
-            if (!hitHook) {
-                return cleanHooks(rootRef.el);
-            }
-            const { xpath, position } = hitHook.dataset;
-            const $droppedEl = ui.draggable || $(ev.target);
-
-            const droppedData = $droppedEl.data();
-            const isNew = $droppedEl[0].classList.contains("o_web_studio_component");
-            droppedData.isNew = isNew;
-            // Fieldname is useless here since every dropped element is new.
-            const values = getDroppedValues({ droppedData, xpath, position });
-            cleanHooks(rootRef.el);
-            this.env.config.structureChange(values);
-        };
+        const onLegacyDropped = useLegacyOnDropElement(rootRef);
 
         // Deals with invisible modifier by reacting to config.studioShowVisible.
         useEffect(
@@ -237,6 +209,9 @@ export class FormEditorRenderer extends formView.Renderer {
 FormEditorRenderer.components = {
     ...components,
     ...formEditorRendererComponents,
+    Field: FieldStudio,
+    Widget: WidgetStudio,
+    ViewButton: ViewButtonStudio,
     ChatterContainer,
     ChatterContainerHook,
     InnerGroup,

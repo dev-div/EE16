@@ -169,6 +169,22 @@ class AccountEdiFormat(models.Model):
             left to philosophers, not dumb developers like myself.
             '''
             # Volume has to be reported in l (not e.g. ml).
+            if invoice.move_type in ('in_invoice', 'in_refund'):
+                company_partner = invoice.company_id.partner_id
+                invoice_partner = invoice.partner_id.commercial_partner_id
+                return [
+                    '23.-%s' % ("|".join([
+                                        company_partner.street or '',
+                                        company_partner.city or '',
+                                        company_partner.country_id.name or '',
+                                        company_partner.phone or '',
+                                        company_partner.email or '',
+                                    ])),
+                    '24.-%s' % ("|".join([invoice_partner.phone or '',
+                                        invoice_partner.ref or '',
+                                        invoice_partner.email or '',
+                                    ])),
+                ]
             lines = invoice.invoice_line_ids.filtered(lambda line: line.product_uom_id.category_id == self.env.ref('uom.product_uom_categ_vol'))
             liters = sum(line.product_uom_id._compute_quantity(line.quantity, self.env.ref('uom.product_uom_litre')) for line in lines)
             total_volume = int(liters)
@@ -197,7 +213,7 @@ class AccountEdiFormat(models.Model):
                                           invoice.company_id.l10n_co_edi_header_resolucion_aplicable or '',
                                           invoice.company_id.l10n_co_edi_header_actividad_economica or ''),
                 '2.-%s' % (invoice.company_id.l10n_co_edi_header_bank_information or '').replace('\n', '|'),
-                ('3.- %s' % (narration or 'N/A'))[:500],
+                ('3.- %s' % (narration or 'N/A'))[:5000],
                 '6.- %s|%s' % (html2plaintext(invoice.invoice_payment_term_id.note), amount_in_words),
                 '7.- %s' % (invoice.company_id.website),
                 '8.-%s|%s|%s' % (invoice.partner_id.commercial_partner_id._get_vat_without_verification_code() or '', invoice.partner_shipping_id.phone or '', invoice.invoice_origin and invoice.invoice_origin.split(',')[0] or ''),

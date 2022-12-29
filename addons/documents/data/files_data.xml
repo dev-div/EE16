@@ -28,7 +28,7 @@
             <field name="tag_ids" eval="[(6,0,[ref('documents.documents_internal_status_inbox')])]"/>
         </record>
         <!-- The thumbnail is added after -->
-        <record id="documents.documents_mail_png" model="documents.document">
+        <record id="documents.documents_mail_png" model="documents.document" forcecreate="0">
             <field name="thumbnail" type="base64" file="documents/data/files/mail_thumbnail.png"/>
         </record>
 

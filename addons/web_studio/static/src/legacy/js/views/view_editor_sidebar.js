@@ -14,6 +14,9 @@ import StandaloneFieldManagerMixin from "web.StandaloneFieldManagerMixin";
 import utils from "web.utils";
 import view_components from "web_studio.view_components";
 import Widget from "web.Widget";
+import { registry } from "@web/core/registry";
+import { sortBy } from "@web/core/utils/arrays";
+import { SIDEBAR_SAFE_FIELDS } from "@web_studio/legacy/js/views/sidebar_safe_fields";
 
 const form_component_widget_registry = view_components.registry;
 const _lt = core._lt;
@@ -45,6 +48,10 @@ export const OPTIONS_BY_WIDGET = {
     many2one: [
         {name: 'no_create', type: 'boolean', string: _lt("Disable creation"), leaveEmpty: 'unchecked'},
         {name: 'no_open', type: 'boolean', string: _lt("Disable opening"), leaveEmpty: 'unchecked'},
+    ],
+    product_configurator: [
+        { name: 'no_create', type: 'boolean', string: _lt("Disable creation"), leaveEmpty: 'unchecked' },
+        { name: 'no_open', type: 'boolean', string: _lt("Disable opening"), leaveEmpty: 'unchecked' },
     ],
     many2many_tags: [
         { name: 'no_create', type: 'boolean', string: _lt("Disable creation"), leaveEmpty: 'unchecked' },
@@ -78,6 +85,37 @@ export const OPTIONS_BY_WIDGET = {
 const UNSUPPORTED_WIDGETS_BY_VIEW = {
     list: ['many2many_checkboxes'],
 };
+
+const wowlFieldRegistry = registry.category("fields");
+function getWowlFieldWidgets(fieldType, currentKey="", blacklistedKeys=[], debug=false) {
+    const widgets = [];
+    for (const [widgetKey, Component] of wowlFieldRegistry.getEntries()) {
+        if (widgetKey !== currentKey) { // always show the current widget
+            // Widget dosn't explicitly supports the field's type
+            if (!Component.supportedTypes || !Component.supportedTypes.includes(fieldType)) {
+                continue;
+            }
+            // Widget is view-specific or is blacklisted
+            if (widgetKey.includes(".") || blacklistedKeys.includes(widgetKey)) {
+                continue;
+            }
+            // Widget is not whitelisted
+            if (!debug && !SIDEBAR_SAFE_FIELDS.includes(widgetKey)) {
+                continue;
+            }
+        }
+        widgets.push([widgetKey, Component.displayName]);
+    }
+    return sortBy(widgets, (el) => el[1] || el[0]);
+}
+
+function fieldComponentToRegistryKey(Component) {
+    for (const [key, Cp] of wowlFieldRegistry.getEntries()) {
+        if (Cp === Component) {
+            return key.includes(".") ? key.split(".")[1] : key;
+        }
+    }
+}
 
 export const ViewEditorSidebar = Widget.extend(StandaloneFieldManagerMixin, {
     template: 'web_studio.ViewEditorSidebar',
@@ -176,8 +214,15 @@ export const ViewEditorSidebar = Widget.extend(StandaloneFieldManagerMixin, {
             this._isExistingFieldFolded = true;
         }
 
+        const hasWowlFieldWidgets = ["kanban", "form", "list"].includes(this.view_type);
         const Widget = this.state.attrs.Widget;
-        this.widgetKey = this._getWidgetKey(Widget);
+        let propsFromAttrs;
+        if (hasWowlFieldWidgets) {
+            propsFromAttrs = this.state.attrs.propsFromAttrs;
+            this.widgetKey = this.state.attrs.widget || fieldComponentToRegistryKey(this.state.attrs.FieldComponent);
+        } else {
+            this.widgetKey = this._getWidgetKey(Widget);
+        }
 
         const allowedModifiersNode = ['group', 'page', 'field', 'filter'];
         if (this.state.node && allowedModifiersNode.includes(this.state.node.tag)) {
@@ -190,26 +235,34 @@ export const ViewEditorSidebar = Widget.extend(StandaloneFieldManagerMixin, {
             var field = jQuery.extend(true, {}, this.fields[this.state.attrs.name]);
             var unsupportedWidgets = UNSUPPORTED_WIDGETS_BY_VIEW[this.view_type] || [];
 
-            // fieldRegistryMap contains all widgets and components but we want to filter
-            // these widgets based on field types (and description for non debug mode)
-            const fieldRegistryMap = Object.assign({}, field_registry.map, fieldRegistryOwl.map);
-            field.field_widgets = _.chain(fieldRegistryMap)
-                .pairs()
-                .filter(function (arr) {
-                    const supportedFieldTypes = utils.isComponent(arr[1]) ?
-                        arr[1].supportedFieldTypes :
-                        arr[1].prototype.supportedFieldTypes;
-                    const description = self.getFieldInfo(arr[1], 'description');
-                    const isWidgetKeyDescription = arr[0] === self.widgetKey && !description;
-                    var isSupported = _.contains(supportedFieldTypes, field.type)
-                        && arr[0].indexOf('.') < 0 && unsupportedWidgets.indexOf(arr[0]) < 0;
-                    return config.isDebug() ? isSupported : isSupported && description || isWidgetKeyDescription;
-                })
-                .sortBy(function (arr) {
-                    const description = self.getFieldInfo(arr[1], 'description');
-                    return description || arr[0];
-                })
-                .value();
+            let fieldWidgets;
+            // Converted editors to WOWL and for which one may change field widgets
+            if (hasWowlFieldWidgets) {
+                fieldWidgets = getWowlFieldWidgets(field.type, this.widgetKey, unsupportedWidgets, config.isDebug());
+            } else {
+                // fieldRegistryMap contains all widgets and components but we want to filter
+                // these widgets based on field types (and description for non debug mode)
+                const fieldRegistryMap = Object.assign({}, field_registry.map, fieldRegistryOwl.map);
+                fieldWidgets = _.chain(fieldRegistryMap)
+                    .pairs()
+                    .filter(function (arr) {
+                        const supportedFieldTypes = utils.isComponent(arr[1]) ?
+                            arr[1].supportedFieldTypes :
+                            arr[1].prototype.supportedFieldTypes;
+                        const description = self.getFieldInfo(arr[1], 'description');
+                        const isWidgetKeyDescription = arr[0] === self.widgetKey && !description;
+                        var isSupported = _.contains(supportedFieldTypes, field.type)
+                            && arr[0].indexOf('.') < 0 && unsupportedWidgets.indexOf(arr[0]) < 0;
+                        return config.isDebug() ? isSupported : isSupported && description || isWidgetKeyDescription;
+                    })
+                    .sortBy(function (arr) {
+                        const description = self.getFieldInfo(arr[1], 'description');
+                        return description || arr[0];
+                    })
+                    .value();
+            }
+
+            field.field_widgets = fieldWidgets;
 
             this.state.field = field;
 
@@ -249,7 +302,9 @@ export const ViewEditorSidebar = Widget.extend(StandaloneFieldManagerMixin, {
             }
             this.OPTIONS_BY_WIDGET = OPTIONS_BY_WIDGET;
 
-            this.has_placeholder = Widget && Widget.prototype.has_placeholder || false;
+            this.has_placeholder = hasWowlFieldWidgets ?
+                propsFromAttrs && propsFromAttrs.dynamicPlaceholder :
+                Widget && Widget.prototype.has_placeholder || false;
 
             // aggregate makes no sense with some widgets
             this.hasAggregate = _.contains(['integer', 'float', 'monetary'], field.type) &&

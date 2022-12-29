@@ -3,33 +3,45 @@
 # 	* quality_mrp
 # 
 # Translators:
-# Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatic4@gmail.com>, 2019
-# Martin Trigaux, 2019
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.5+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:04+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"POT-Creation-Date: 2021-09-14 10:59+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: quality_mrp
 #: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
-msgid ""
-"<span class=\"o_stat_text text-success\" attrs=\"{'invisible': [('quality_check_fail', '=', True)]}\">Quality Checks</span>\n"
-"                    <span class=\"o_stat_text text-danger\" attrs=\"{'invisible': [('quality_check_fail', '!=', True)]}\">Quality Checks</span>"
+msgid "<span class=\"o_stat_text text-danger\">Quality Checks</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
+msgid "<span class=\"o_stat_text text-success\">Quality Checks</span>"
 msgstr ""
 
 #. module: quality_mrp
 #: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
 msgid "<span class=\"o_stat_text\">Quality Alerts</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
+msgid "<span class=\"o_stat_text\">Quality Checks</span>"
+msgstr ""
+
+#. module: quality_mrp
+#: model_terms:ir.ui.view,arch_db:quality_mrp.worksheet_page
+msgid "<strong>Manufacturing Order : </strong>"
 msgstr ""
 
 #. module: quality_mrp
@@ -41,6 +53,11 @@ msgstr "Alertas"
 #: model:ir.model.fields,field_description:quality_mrp.field_mrp_production__check_ids
 msgid "Checks"
 msgstr "Verificar"
+
+#. module: quality_mrp
+#: model:ir.model,name:quality_mrp.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimentos do produto (Linha do Movimento do Estoque)"
 
 #. module: quality_mrp
 #: model:ir.model,name:quality_mrp.model_mrp_production
@@ -80,6 +97,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_mrp.mrp_production_view_form_inherit_quality
 msgid "Quality Checks"
 msgstr "Verificar Qualidade"
+
+#. module: quality_mrp
+#: model:ir.model,name:quality_mrp.model_quality_point
+msgid "Quality Control Point"
+msgstr "Ponto de Controle de Qualidade"
+
+#. module: quality_mrp
+#: model:ir.model,name:quality_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento de Estoque"
 
 #. module: quality_mrp
 #: code:addons/quality_mrp/models/mrp_production.py:0

@@ -33,7 +33,7 @@ export const DocumentsSpreadsheetControllerMixin = {
                 type: "ir.actions.client",
                 tag: "action_open_spreadsheet",
                 params: {
-                    spreadsheet_id: documents[0].data.res_id,
+                    spreadsheet_id: documents[0].resId,
                 },
             });
         } else if (documents[0].data.mimetype === XLSX_MIME_TYPE) {
@@ -45,7 +45,7 @@ export const DocumentsSpreadsheetControllerMixin = {
                     const spreadsheetId = await this.orm.call(
                         "documents.document",
                         "clone_xlsx_into_spreadsheet",
-                        [documents[0].data.res_id]
+                        [documents[0].resId]
                     );
                     this.action.doAction({
                         type: "ir.actions.client",

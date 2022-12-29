@@ -61,7 +61,8 @@
                             <div t-attf-class="o_social_stream_post_message_body flex-grow-1 py-2 px-3 #{has_attachments ? 'o_social_stream_post_with_attachments' : 'border-bottom'}">
                                 <div name="o_social_stream_post_message_text"
                                      t-attf-class="o_social_stream_post_message_text overflow-hidden #{has_attachments ? 'mb-2' : ''}">
-                                    <div t-out="formatPost(record.message.value)"/>
+                                    <div t-if="formatPost" t-out="formatPost(record.message.value)"/>
+                                    <div t-else="" t-out="record.message.value"/>
                                 </div>
 
                                 <div t-if="has_attachments"
@@ -72,7 +73,7 @@
                                     <t t-foreach="image_urls_json.length > 2 ? image_urls_json.slice(0, 2) : image_urls_json" t-as="image_url" t-key="image_url_index">
                                         <t t-if="image_url_index == 1 &amp; record.image_ids.raw_value.length > 2">
                                             <a class="o_social_stream_post_image_more position-relative d-flex ms-1"
-                                                t-on-click.stop="() => this.onClickMoreImages(image_url_index, image_urls_json)">
+                                                t-on-click.stop="() => this.onClickMoreImages ? this.onClickMoreImages(image_url_index, image_urls_json) : {}">
                                                 <img t-att-src="image_urls_json[1]" alt="Post Image" />
                                                 <div class="o_social_stream_post_image_more_overlay d-flex align-items-center h-100 w-100 text-white justify-content-center position-absolute h1 m-0" style="user-select: none;">
                                                     +<t t-esc="image_urls_json.length - 2"/>
@@ -80,14 +81,13 @@
                                             </a>
                                         </t>
                                         <img t-else="" t-att-src="image_url" alt="Post Image"
-                                            t-on-click.stop="() => this.onClickMoreImages(image_url_index, image_urls_json)"/>
+                                            t-on-click.stop="() => this.onClickMoreImages ? this.onClickMoreImages(image_url_index, image_urls_json) : {}"/>
                                     </t>
                                 </div>
                             </div>
                             <div id="post-stats" class="d-flex bg-100 px-3 py-1 border-bottom">
                                 <div class="px-2 text-center">
-                                    <small>Clicks:</small>
-                                    <small class="fw-bold" t-esc="record.click_count.raw_value"/>
+                                    <small class="pe-1">Clicks:</small> <small class="fw-bold" t-esc="record.click_count.raw_value"/>
                                 </div>
                             </div>
                             <div class="d-flex flex-grow-0 align-items-center px-3 py-2">
@@ -103,7 +103,7 @@
                                     </t>
                                 </time>
                                 <div class="ms-2 me-3" title="Engagement">
-                                    <i class="fa fa-heart" />
+                                    <i class="fa fa-heart me-1" />
                                     <span t-esc="record.engagement.raw_value"/>
                                 </div>
 
@@ -201,8 +201,7 @@
                     <button class="oe_stat_button" name="action_redirect_to_clicks" type="object" icon="fa-mouse-pointer">
                         <field name="click_count" string="Clicks" widget="statinfo"/>
                     </button>
-                    <button class="oe_stat_button" icon="fa-thumbs-up" name="engagement"
-                        attrs="{'invisible': [('engagement', '=', 0)]}" disabled="disabled">
+                    <button class="oe_stat_button o_social_post_engagement_stat_btn" icon="fa-thumbs-up" disabled="disabled" attrs="{'invisible': [('engagement', '=', 0)]}">
                         <field string="Engagement" name="engagement" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" icon="fa-newspaper-o" type="object" name="social_stream_post_action_my"

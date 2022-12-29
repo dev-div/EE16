@@ -13,12 +13,12 @@ class TestHrAppraisalRequest(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.manager_user = new_test_user(cls.env, login='Lucky Luke')
+        cls.manager_user = new_test_user(cls.env, login='Lucky Luke', name='Manager Tiranique')
         cls.manager = cls.env['hr.employee'].create({
             'name': 'Manager Tiranique',
             'user_id': cls.manager_user.id,
         })
-        cls.employee_user = new_test_user(cls.env, login='Rantanplan')
+        cls.employee_user = new_test_user(cls.env, login='Rantanplan', name='Michaël Hawkins')
         cls.employee = cls.env['hr.employee'].create({
             'name': "Michaël Hawkins",
             'parent_id': cls.manager.id,

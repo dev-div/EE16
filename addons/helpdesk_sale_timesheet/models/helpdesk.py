@@ -3,7 +3,7 @@
 
 from collections import defaultdict
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.osv import expression
 from odoo.addons.sale_timesheet_enterprise.models.sale import DEFAULT_INVOICED_TIMESHEET
 
@@ -56,7 +56,7 @@ class HelpdeskTicket(models.Model):
             if timesheet.so_line == timesheet.helpdesk_ticket_id.sale_line_id:
                 delta -= timesheet.unit_amount
             if delta:
-                mapped_remaining_hours[timesheet.helpdesk_ticket_id._origin.id] += timesheet.so_line.product_uom._compute_quantity(delta, uom_hour)
+                mapped_remaining_hours[timesheet.helpdesk_ticket_id._origin.id] += timesheet.product_uom_id._compute_quantity(delta, uom_hour)
 
         for ticket in self:
             ticket.remaining_hours_so = mapped_remaining_hours[ticket._origin.id]
@@ -142,7 +142,7 @@ class HelpdeskTicket(models.Model):
         action_window = {
             "type": "ir.actions.act_window",
             "res_model": "sale.order",
-            "name": "Sales Order",
+            "name": _("Sales Order"),
             "views": [[False, "form"]],
             "context": {"create": False, "show_sale": True},
             "res_id": self.sale_line_id.order_id.id or self.sale_order_id.id

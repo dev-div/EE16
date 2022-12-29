@@ -196,7 +196,6 @@ class HrContract(models.Model):
                     'date_start': interval[0].astimezone(pytz.utc).replace(tzinfo=None),
                     'date_stop': interval[1].astimezone(pytz.utc).replace(tzinfo=None),
                     'work_entry_type_id': work_entry_type_id.id,
-                    'is_credit_time': True,
                     'employee_id': employee.id,
                     'contract_id': contract.id,
                     'company_id': contract.company_id.id,

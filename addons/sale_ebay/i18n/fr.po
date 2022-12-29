@@ -9,9 +9,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:47+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
 "Last-Translator: Jolien De Paepe, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
@@ -22,6 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -33,6 +34,7 @@ msgstr ""
 "l'annulation\"."
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -112,6 +114,7 @@ msgid "Add other countries"
 msgstr "Ajouter d'autres pays"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -181,6 +184,7 @@ msgid "Config Settings"
 msgstr "Paramètres de config"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid "Configure The eBay Integrator Now"
@@ -273,6 +277,7 @@ msgid "Duration"
 msgstr "Durée"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -283,6 +288,7 @@ msgstr ""
 "%s"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -295,7 +301,6 @@ msgstr ""
 #. module: sale_ebay
 #: model:ir.actions.server,name:sale_ebay.ir_cron_sale_ebay_orders_sync_ir_actions_server
 #: model:ir.cron,cron_name:sale_ebay.ir_cron_sale_ebay_orders_sync
-#: model:ir.cron,name:sale_ebay.ir_cron_sale_ebay_orders_sync
 msgid "Ebay: get new orders"
 msgstr "Ebay: obtenez de nouvelles commandes"
 
@@ -307,14 +312,12 @@ msgstr "Ebay: reprise des commandes"
 #. module: sale_ebay
 #: model:ir.actions.server,name:sale_ebay.ir_cron_sale_ebay_stock_sync_ir_actions_server
 #: model:ir.cron,cron_name:sale_ebay.ir_cron_sale_ebay_stock_sync
-#: model:ir.cron,name:sale_ebay.ir_cron_sale_ebay_stock_sync
 msgid "Ebay: synchronise stock"
 msgstr "Ebay : synchroniser les stocks"
 
 #. module: sale_ebay
 #: model:ir.actions.server,name:sale_ebay.ir_cron_sale_ebay_categories_ir_actions_server
 #: model:ir.cron,cron_name:sale_ebay.ir_cron_sale_ebay_categories
-#: model:ir.cron,name:sale_ebay.ir_cron_sale_ebay_categories
 msgid "Ebay: update categories"
 msgstr "Ebay : mettre à jour les catégories"
 
@@ -324,6 +327,7 @@ msgid "End Item's Listing"
 msgstr "Terminer la liste des articles"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -334,6 +338,7 @@ msgstr ""
 "Pas de variante définie pour être listée sur eBay."
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -395,6 +400,7 @@ msgstr ""
 "Importer les données de configuration eBay et synchroniser les transactions"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -508,6 +514,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_ebay.py:0
 #, python-format
 msgid "No Business Policies"
@@ -519,12 +526,14 @@ msgid "Official eBay Category"
 msgstr "Catégorie officielle d'eBay"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid "One parameter is missing."
 msgstr "Un paramètre est manquant."
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid "Or the condition is not compatible with the category."
@@ -542,6 +551,7 @@ msgid "Payment Policy"
 msgstr "Politique de paiement"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/res_config_settings.py:0
 #, python-format
 msgid ""
@@ -583,6 +593,7 @@ msgid "Product Variant"
 msgstr "Variante d'article"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_order.py:0
 #, python-format
 msgid "Product created from eBay transaction %s"
@@ -733,18 +744,21 @@ msgid "Sync now"
 msgstr "Synchroniser"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_order.py:0
 #, python-format
 msgid "The Buyer Chose The Following Delivery Method :\n"
 msgstr "L'acheteur a choisi la méthode de livraison suivante :\n"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_order.py:0
 #, python-format
 msgid "The Buyer Posted :\n"
 msgstr "L'acheteur a écrit :\n"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/res_config_settings.py:0
 #, python-format
 msgid ""
@@ -782,6 +796,7 @@ msgstr ""
 " fonctionnalité. "
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid ""
@@ -796,6 +811,20 @@ msgstr ""
 "commande que vous souhaitez synchroniser au format \"AAAA-MM-JJ\"."
 
 #. module: sale_ebay
+#. odoo-python
+#: code:addons/sale_ebay/models/product.py:0
+#, python-format
+msgid ""
+"This function should not be called with a range of more than 30 days, as "
+"eBay does not handle longer timespans. Instead use synchronize_orders which "
+"split in as many calls as needed."
+msgstr ""
+"Cette fonction ne doit pas être appelée avec une plage de plus de 30 jours, "
+"car eBay ne gère pas des plages de temps plus longues. Utilisez plutôt la "
+"fonction synchroize_orders qui se divise en autant d'appels que nécessaire."
+
+#. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/res_partner.py:0
 #, python-format
 msgid ""
@@ -954,6 +983,7 @@ msgid "eBay documentation"
 msgstr "Documentation eBay"
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/sale_ebay.py:0
 #, python-format
 msgid ""
@@ -964,6 +994,7 @@ msgstr ""
 "\"%s\""
 
 #. module: sale_ebay
+#. odoo-python
 #: code:addons/sale_ebay/models/product.py:0
 #, python-format
 msgid "eBay is unreachable. Please try again later."

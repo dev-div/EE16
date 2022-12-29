@@ -128,7 +128,7 @@ if env.user.has_group('mrp.group_mrp_workorder_dependencies'):
                 </div>
                 <div class="o_workorder_bar">
                     <div class="o_workorder_bar_left o_workorder_action o_workorder_bar_content">
-                        <button name="openMenuPopup" t-att-disabled="isBlocked" class="btn btn-secondary o_workorder_icon_btn fa fa-bars" type="workorder_event" title="menu"/>
+                        <button name="openMenuPopup" class="btn btn-secondary o_workorder_icon_btn fa fa-bars" type="workorder_event" title="menu"/>
                         <span groups="mrp_workorder.group_mrp_wo_tablet_timer">
                             <button name="button_pending" type="object" class="btn btn-secondary" attrs="{'invisible': ['|', ('is_user_working', '=', False), ('working_state', '=', 'blocked')]}" barcode_trigger="pause" string="PAUSE"/>
                             <button name="button_start" type="object" class="btn btn-warning" attrs="{'invisible': ['|', '|', ('is_user_working', '=', True), ('working_state', '=', 'blocked'), ('state', '=', ('done', 'cancel'))]}" barcode_trigger="pause" string="CONTINUE"/>

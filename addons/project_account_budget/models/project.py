@@ -9,7 +9,23 @@ from odoo.osv import expression
 class Project(models.Model):
     _inherit = "project.project"
 
-    total_planned_amount = fields.Monetary(related='analytic_account_id.total_planned_amount')
+    total_planned_amount = fields.Monetary(compute="_compute_total_planned_amount")
+
+    def _compute_total_planned_amount(self):
+        budget_read_group = self.env['crossovered.budget.lines'].sudo()._read_group(
+            [
+                ('crossovered_budget_id.state', 'not in', ['draft', 'cancel']),
+                ('analytic_account_id', 'in', self.analytic_account_id.ids)
+            ],
+            ['planned_amount:sum(planned_amount)'],
+            ['analytic_account_id'],
+        )
+        planned_amount_per_account_id = {
+            group['analytic_account_id'][0]: group['planned_amount']
+            for group in budget_read_group
+        }
+        for project in self:
+            project.total_planned_amount = planned_amount_per_account_id.get(project.analytic_account_id.id, 0)
 
     def action_view_budget_lines(self, domain=None):
         self.ensure_one()
@@ -17,7 +33,7 @@ class Project(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "crossovered.budget.lines",
             "domain": expression.AND([
-                [('analytic_account_id', '=', self.analytic_account_id.id)],
+                [('analytic_account_id', '=', self.analytic_account_id.id), ('crossovered_budget_id.state', 'not in', ['draft', 'cancel'])],
                 domain or [],
             ]),
             'context': {'create': False, 'edit': False},

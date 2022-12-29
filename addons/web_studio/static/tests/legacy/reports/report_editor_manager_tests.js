@@ -10,7 +10,7 @@ var studioTestUtils = require('web_studio.testUtils');
 var session = require('web.session');
 const { patchWithCleanup } = require("@web/../tests/helpers/utils");
 
-const { useEffect } = owl;
+const { useEffect } = require("@odoo/owl");
 
 function getFloatSizeFromPropertyInPixels($element, propertyName) {
     var size = $element.css(propertyName);
@@ -2171,10 +2171,8 @@ QUnit.module('ReportEditorManager', {
             await testUtils.dom.click(rem.$('iframe').contents().find('span'));
 
             var $editable = rem.$('.o_web_studio_sidebar .card.o_web_studio_active .note-editable');
-            // The editor will always wrap lone Inline Elements into Paragraphs.
-            var $editableFirstP = $editable.find('>p');
 
-            assert.strictEqual($editableFirstP.html(), 'taratata <strong>bo</strong>', 'Should display the text content');
+            assert.strictEqual($editable.html(), 'taratata <strong>bo</strong>', 'Should display the text content');
 
             $editable.mousedown();
             await testUtils.nextTick();

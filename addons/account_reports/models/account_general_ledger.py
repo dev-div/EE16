@@ -314,6 +314,11 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
         aml_query, aml_params = self._get_query_amls(report, options, expanded_account_ids, offset=offset, limit=limit)
         self._cr.execute(aml_query, aml_params)
         for aml_result in self._cr.dictfetchall():
+            if aml_result['ref']:
+                aml_result['communication'] = f"{aml_result['ref']} - {aml_result['name']}"
+            else:
+                aml_result['communication'] = aml_result['name']
+
             # The same aml can return multiple results when using account_report_cash_basis module, if the receivable/payable
             # is reconciled with multiple payments. In this case, the date shown for the move lines actually corresponds to the
             # reconciliation date. In order to keep distinct lines in this case, we include date in the grouping key.

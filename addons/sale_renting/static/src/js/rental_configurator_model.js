@@ -1,6 +1,6 @@
 /** @odoo-module */
 import { registry } from "@web/core/registry";
-import { formView } from "@web/views/form/form_view"
+import { formView } from "@web/views/form/form_view";
 import { Record, RelationalModel } from "@web/views/relational_model";
 
 /**
@@ -30,11 +30,18 @@ export class RentalConfiguratorRecord extends Record {
      *
      * @override
      */
-    async save(options = {}) {
-        await super.save(options);
-        this.model.action.doAction({type: 'ir.actions.act_window_close', infos: {
-            rentalConfiguration: this._getRentalInfos()
-        }});
+    async save() {
+        const isSaved = await super.save(...arguments);
+        if (!isSaved) {
+            return false;
+        }
+        this.model.action.doAction({
+            type: "ir.actions.act_window_close",
+            infos: {
+                rentalConfiguration: this._getRentalInfos(),
+            },
+        });
+        return true;
     }
 }
 

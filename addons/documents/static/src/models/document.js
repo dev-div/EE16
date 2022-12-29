@@ -37,15 +37,12 @@ registerModel({
         }),
         defaultSource: attr({
             compute() {
-                if (this.attachment) {
-                    return this.attachment.defaultSource;
-                }
                 if (this.isImage) {
                     return `/web/image/${this.id}?model=documents.document`;
                 }
                 if (this.isPdf) {
                     const pdf_lib = `/web/static/lib/pdfjs/web/viewer.html?file=`;
-                    return `${pdf_lib}/web/content/${this.id}?model=documents.document`;
+                    return `${pdf_lib}/web/content/${this.id}?model%3Ddocuments.document`;
                 }
                 if (this.isUrlYoutube) {
                     const youtubeUrlMatch = this.url.match(

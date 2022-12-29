@@ -27,7 +27,7 @@ class ProductCode(models.Model):
     """
     _name = 'product.unspsc.code'
     _description = "Product and UOM Codes from UNSPSC"
-    _rec_names_get = ['name', 'code']
+    _rec_names_search = ['name', 'code']
 
     code = fields.Char('Code', required=True)
     name = fields.Char('Name', required=True)

@@ -13,7 +13,7 @@
                 <p>The view does not exist or you are not allowed to access to it.</p>
             </div>
         </div>
-        <t t-if="state.waiting">
+        <t t-elif="state.waiting">
             <div class="p-3 text-center">
                 <i class="fa fa-circle-o-notch fa-2x fa-spin" title="loader" role="img"/>
             </div>

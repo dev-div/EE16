@@ -3,7 +3,7 @@
 import { NavBar } from "@web/webclient/navbar/navbar";
 import { useService, useBus } from "@web/core/utils/hooks";
 
-const { useEffect, useRef } = owl;
+import { useEffect, useRef } from "@odoo/owl";
 
 export class EnterpriseNavBar extends NavBar {
     setup() {

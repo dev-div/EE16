@@ -34,7 +34,7 @@ class AccountJournal(models.Model):
     def _import_bank_statement(self, attachments):
         """ Process the file chosen in the wizard, create bank statement(s) and go to reconciliation. """
         statement_ids_all = []
-        notifications_all = []
+        notifications_all = {}
         # Let the appropriate implementation module parse the file and return the required data
         # The active_id is passed in context in case an implementation module requires information about the wizard state (see QIF)
         for attachment in attachments:
@@ -51,7 +51,6 @@ class AccountJournal(models.Model):
             # Create the bank statements
             statement_ids, statement_line_ids, notifications = self._create_bank_statements(stmts_vals)
             statement_ids_all.extend(statement_ids)
-            notifications_all.extend(notifications)
 
             # Now that the import worked out, set it as the bank_statements_source of the journal
             if journal.bank_statements_source != 'file_import':
@@ -60,26 +59,21 @@ class AccountJournal(models.Model):
                 # must be able to import bank statement files
                 journal.sudo().bank_statements_source = 'file_import'
 
-            # Post the warnings on the statements
             msg = ""
             for notif in notifications:
                 msg += (
-                    f"{notif['message']}<br/><br/>"
-                    f"{notif['details']['name']}<br/>"
-                    f"{notif['details']['model']}<br/>"
-                    f"{notif['details']['ids']}<br/><br/>"
+                    f"{notif['message']}"
                 )
-            if msg:
-                statements = self.env['account.bank.statement'].browse(statement_ids)
-                for statement in statements:
-                    statement.message_post(body=msg)
+            if notifications:
+                notifications_all[attachment.name] = msg
 
         statements = self.env['account.bank.statement'].browse(statement_ids_all)
         return self.env['account.bank.statement.line']._action_open_bank_reconciliation_widget(
             extra_domain=[('statement_id', 'in', statements.ids)],
             default_context={
                 'search_default_not_matched': True,
-                 'default_journal_id': statements[:1].journal_id.id,
+                'default_journal_id': statements[:1].journal_id.id,
+                'notifications': notifications_all,
             },
         )
 
@@ -144,6 +138,11 @@ class AccountJournal(models.Model):
         # Needed for BNP France
         if len(sanitized_acc_number) == 27 and len(account_number) == 11 and sanitized_acc_number[:2].upper() == "FR":
             return sanitized_acc_number[14:-2] == account_number
+
+        # Needed for Credit Lyonnais (LCL)
+        if len(sanitized_acc_number) == 27 and len(account_number) == 7 and sanitized_acc_number[:2].upper() == "FR":
+            return sanitized_acc_number[18:-2] == account_number
+
         return sanitized_acc_number == account_number
 
     def _find_additional_data(self, currency_code, account_number):
@@ -230,6 +229,9 @@ class AccountJournal(models.Model):
         BankStatement = self.env['account.bank.statement']
         BankStatementLine = self.env['account.bank.statement.line']
 
+        ir_actions_report_sudo = self.env['ir.actions.report'].sudo()
+        statement_report = self.env.ref('account.action_report_account_statement').sudo()
+
         # Filter out already imported transactions and create statements
         statement_ids = []
         statement_line_ids = []
@@ -250,18 +252,26 @@ class AccountJournal(models.Model):
             if len(filtered_st_lines) > 0:
                 # Remove values that won't be used to create records
                 st_vals.pop('transactions', None)
-                number = st_vals.pop('number', None)
                 # Create the statement
                 st_vals['line_ids'] = [[0, False, line] for line in filtered_st_lines]
                 statement = BankStatement.with_context(default_journal_id=self.id).create(st_vals)
+                if not statement.name:
+                    statement.name = st_vals['reference']
                 statement_ids.append(statement.id)
-                if number and number.isdecimal():
-                    statement._set_next_sequence()
-                    format, format_values = statement._get_sequence_format_param(statement.name)
-                    format_values['seq'] = int(number)
-                    #build the full name like BNK/2016/00135 by just giving the number '135'
-                    statement.name = format.format(**format_values)
                 statement_line_ids.extend(statement.line_ids.ids)
+
+                # Create the report.
+                if statement.is_complete:
+                    content, _content_type = ir_actions_report_sudo._render_qweb_pdf(statement_report, res_ids=statement.ids)
+                    statement.attachment_ids |= self.env['ir.attachment'].create({
+                        'name': _("Bank Statement %s.pdf", statement.name) if statement.name else _("Bank Statement.pdf"),
+                        'type': 'binary',
+                        'mimetype': 'application/pdf',
+                        'raw': content,
+                        'res_model': statement._name,
+                        'res_id': statement.id,
+                    })
+
         if len(statement_line_ids) == 0:
             raise UserError(_('You already have imported that file.'))
 
@@ -274,10 +284,5 @@ class AccountJournal(models.Model):
                 'message': _("%d transactions had already been imported and were ignored.", num_ignored)
                            if num_ignored > 1
                            else _("1 transaction had already been imported and was ignored."),
-                'details': {
-                    'name': _('Already imported items'),
-                    'model': 'account.bank.statement.line',
-                    'ids': BankStatementLine.search([('unique_import_id', 'in', ignored_statement_lines_import_ids)]).ids
-                }
             }]
         return statement_ids, statement_line_ids, notifications

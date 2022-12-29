@@ -4,6 +4,7 @@
 from markupsafe import Markup
 
 from odoo import SUPERUSER_ID, api, fields, models, _
+from odoo.tools import is_html_empty
 
 
 class ProposeChange(models.TransientModel):
@@ -47,7 +48,13 @@ class ProposeChange(models.TransientModel):
         self.ensure_one()
         self.step_id.note = self.note
         if notify_bom and self.workorder_id.production_id.bom_id:
-            body = Markup(_("<b>New Instruction suggested by %s</b><br/>%s<br/><b>Reason: %s</b>")) % (self._workorder_name(), self.note, self.comment)
+            tl_text = _("New Instruction suggested by %(user_name)s", user_name=self._workorder_name())
+            body = Markup("<b>%s</b>") % tl_text
+            if self.note and not is_html_empty(self.note):
+                body += Markup("<br/>%s") % self.note
+            if self.comment:
+                tl_text = _("Reason:")
+                body += Markup("<br/><b>%s</b> %s") % (tl_text, self.comment)
             self.env['mail.activity'].sudo().create({
                 'res_model_id': self.env.ref('mrp.model_mrp_bom').id,
                 'res_id': self.workorder_id.production_id.bom_id.id,
@@ -67,7 +74,11 @@ class ProposeChange(models.TransientModel):
         self.step_id.is_deleted = True
         bom = self.step_id.workorder_id.production_id.bom_id
         if notify_bom and bom:
-            body = Markup(_("<b>%s suggests to delete this instruction</b>")) % self._workorder_name()
+            tl_text = _("%(user_name)s suggests to delete this instruction", user_name=self._workorder_name())
+            body = Markup("<b>%s</b>") % tl_text
+            if self.comment:
+                tl_text = _("Reason:")
+                body += Markup("<br/><b>%s</b> %s") % (tl_text, self.comment)
             self.env['mail.activity'].sudo().create({
                 'res_model_id': self.env.ref('mrp.model_mrp_bom').id,
                 'res_id': bom.id,

@@ -4,7 +4,7 @@ import Dialog from "web.Dialog";
 import { ComponentWrapper, WidgetAdapterMixin } from "web.OwlCompatibility";
 import { _t } from "web.core";
 
-const { Component, useState } = owl;
+import { Component, useState } from "@odoo/owl";
 
 export class ModelConfigurator extends Component {
     setup() {

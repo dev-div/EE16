@@ -255,3 +255,35 @@ class TestAccountAvalaraSalesTaxItemsIntegration(TestAccountAvataxCommon):
             invoice = self.sale_order._create_invoices()
             invoice.action_post()
         self.assertTrue(capture.val['json']['commit'])
+
+    def test_merge_sale_orders(self):
+        """Ensure sale orders with different shipping partner are not merged
+           in the same invoice
+        """
+        shipping_partner_b = self.env["res.partner"].create({
+            'name': "Shipping Partner B",
+            'street': "4557 De Silva St",
+            'city': "Freemont",
+            'state_id': self.env.ref("base.state_us_13").id,
+            'country_id': self.env.ref("base.us").id,
+            'zip': "94538",
+        })
+
+        with self._capture_request(return_value={'lines': [], 'summary': []}):
+            sale_order_b = self.env['sale.order'].create({
+                'partner_id': self.partner.id,
+                'partner_shipping_id': shipping_partner_b.id,
+                'fiscal_position_id': self.fp_avatax.id,
+                'date_order': '2021-01-01',
+                'order_line': [
+                    (0, 0, {
+                        'product_id': self.product.id,
+                        'tax_id': None,
+                        'price_unit': self.product.list_price,
+                    }),
+                ]
+            })
+            orders = self.sale_order | sale_order_b
+            orders.action_confirm()
+            orders._create_invoices()
+        self.assertEqual(len(orders.invoice_ids), 2, "Different invoices should be created")

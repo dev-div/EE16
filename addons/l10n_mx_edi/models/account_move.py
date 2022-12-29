@@ -3,6 +3,7 @@
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import ValidationError, UserError
 from odoo.tools.float_utils import float_repr
+from odoo.tools.sql import column_exists, create_column
 
 import base64
 import requests
@@ -130,6 +131,15 @@ class AccountMove(models.Model):
     l10n_mx_edi_payment_policy = fields.Selection(string='Payment Policy',
         selection=[('PPD', 'PPD'), ('PUE', 'PUE')],
         compute='_compute_l10n_mx_edi_payment_policy')
+
+    def _auto_init(self):
+        """
+        Create compute stored field l10n_mx_edi_cfdi_request
+        here to avoid MemoryError on large databases.
+        """
+        if not column_exists(self.env.cr, 'account_move', 'l10n_mx_edi_cfdi_request'):
+            create_column(self.env.cr, 'account_move', 'l10n_mx_edi_cfdi_request', 'varchar')
+        return super()._auto_init()
 
     # -------------------------------------------------------------------------
     # HELPERS
@@ -301,11 +311,8 @@ class AccountMove(models.Model):
         elif code == 'ROO':
             return timezone('America/Cancun')
         # Pacific area
-        elif code in ('BCS', 'CHH', 'SIN', 'NAY'):
-            return timezone('America/Chihuahua')
-        # Sonora
-        elif code == 'SON':
-            return timezone('America/Hermosillo')
+        elif code in ('SON', 'BCS', 'SIN', 'NAY'):
+            return timezone('America/Mazatlan')
         # By default, takes the central area timezone
         return timezone('America/Mexico_City')
 

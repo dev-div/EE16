@@ -3,7 +3,9 @@
 # 	* website_helpdesk
 # 
 # Translators:
+# Raymond Yu <cl_yu@hotmail.com>, 2022
 # Martin Trigaux, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -11,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:48+0000\n"
 "PO-Revision-Date: 2022-09-22 05:50+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,17 +33,19 @@ msgid ""
 "<i class=\"fa fa-check-circle fa-1x text-success me-2\" role=\"img\" aria-"
 "label=\"Success\" title=\"Success\"/>"
 msgstr ""
+"<i class=\"fa fa-check-circle fa-1x text-success me-2\" role=\"img\" aria-"
+"label=\"Success\" title=\"Success\"/>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar
 msgid "<span class=\"navbar-brand h4 my-0 me-auto\">Help Center</span>"
-msgstr ""
+msgstr "<span class=\"navbar-brand h4 my-0 me-auto\">帮助中心</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submit_form
 msgid "<span class=\"s_website_form_label_content\">Attachment</span>"
-msgstr ""
+msgstr "<span class=\"s_website_form_label_content\">附件</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -82,21 +86,21 @@ msgstr ""
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.search_results
 msgid "<span class=\"text-600\">Search results for</span>"
-msgstr ""
+msgstr "<span class=\"text-600\">搜索结果</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.footer
 msgid ""
 "<span style=\"font-size: 24px;\">Can't find your answer? Our support team is"
 " here to help.</span>"
-msgstr ""
+msgstr "<span style=\"font-size: 24px;\">查找不到您的答案？我们的支持团队随时为您提供帮助。</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.knowledge_base
 msgid ""
 "<span style=\"font-size: 48px; font-weight: bolder;\">How can we help "
 "you?</span>"
-msgstr ""
+msgstr "<span style=\"font-size: 48px; font-weight: bolder;\">我们如何帮助您？</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_date
@@ -111,7 +115,7 @@ msgstr "所有标签"
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_type
 msgid "All Types"
-msgstr ""
+msgstr "所有类型"
 
 #. module: website_helpdesk
 #. openerp-web
@@ -121,19 +125,26 @@ msgid "All results"
 msgstr "所有结果"
 
 #. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Attachment"
+msgstr "附件"
+
+#. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_date
 msgid "By Date"
-msgstr ""
+msgstr "按日期"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_tag
 msgid "By Tags"
-msgstr ""
+msgstr "按标记"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_type
 msgid "By Type"
-msgstr ""
+msgstr "按类型"
 
 #. module: website_helpdesk
 #: model:ir.model.fields,field_description:website_helpdesk.field_helpdesk_team__can_publish
@@ -154,7 +165,14 @@ msgstr "客户关怀"
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
 msgid "Date Filter"
-msgstr ""
+msgstr "日期筛选"
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Description"
+msgstr "说明"
 
 #. module: website_helpdesk
 #: model:ir.model.fields,field_description:website_helpdesk.field_helpdesk_team__website_form_view_id
@@ -171,7 +189,7 @@ msgstr "帮助"
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
 msgid "Help Center Page"
-msgstr ""
+msgstr "帮助中心网页"
 
 #. module: website_helpdesk
 #: code:addons/website_helpdesk/models/website.py:0
@@ -220,9 +238,22 @@ msgid "No results found. Please try another search."
 msgstr "没有找到记录。请尝试另外的关键字。"
 
 #. module: website_helpdesk
+#: code:addons/website_helpdesk/models/helpdesk.py:0
+#, python-format
+msgid "Redirect to the Website Helpdesk Rating Page"
+msgstr ""
+
+#. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.knowledge_base
 msgid "Search for articles, best practices and more..."
-msgstr ""
+msgstr "搜索文章、最佳实践和更多……"
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Subject"
+msgstr "主题"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -234,12 +265,12 @@ msgstr "提交"
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submit_form
 msgid "Submit a Ticket"
-msgstr "提交一个服务单"
+msgstr "提交一个工单"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
 msgid "Tags Filter"
-msgstr ""
+msgstr "标签筛选"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submited
@@ -256,12 +287,12 @@ msgstr "通过网站访问文档的完整网址。"
 #: code:addons/website_helpdesk/models/helpdesk.py:0
 #, python-format
 msgid "The team company and the website company should match"
-msgstr ""
+msgstr "团队公司和网站公司要匹配"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
 msgid "Type Filter"
-msgstr ""
+msgstr "类型筛选"
 
 #. module: website_helpdesk
 #: model:ir.model.fields,field_description:website_helpdesk.field_helpdesk_team__feature_form_url
@@ -290,7 +321,21 @@ msgid "Website URL"
 msgstr "网站网址"
 
 #. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Your Email"
+msgstr "您的电子邮件"
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Your Name"
+msgstr "您的姓名"
+
+#. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submited
 #: model_terms:website.page,arch_db:website_helpdesk.aboutus_page
 msgid "Your Ticket Number is"
-msgstr "您的服务单号为"
+msgstr "您的工单号为"

@@ -2,13 +2,15 @@
 "use strict";
 
 import { registry } from "@web/core/registry";
-
 import { loadJS } from "@web/core/assets";
+import { getCookie } from "web.utils.cookies";
+
 const actionRegistry = registry.category('actions');
 /* global OdooFin */
 
 function OdooFinConnector(parent, action) {
     const id = action.id;
+    action.params.colorScheme = getCookie("color_scheme");
     let mode = action.params.mode || 'link';
     // Ensure that the proxyMode is valid
     const modeRegexp = /^[a-z0-9-_]+$/i;

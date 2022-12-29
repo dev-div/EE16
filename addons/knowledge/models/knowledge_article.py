@@ -845,6 +845,8 @@ class Article(models.Model):
         article = self[0] if self else False
         if not article and self.env.context.get('res_id', False):
             article = self.browse([self.env.context["res_id"]])
+            if not article.exists():
+                raise UserError(_("The Article you are trying to access has been deleted"))
         if not article:
             article = self._get_first_accessible_article()
 

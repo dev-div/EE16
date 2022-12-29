@@ -127,7 +127,7 @@ class HrPayslipWorkedDays(models.Model):
                         worked_day_amount = wage * 3 / (13 * hours_per_week) * training_hours if hours_per_week else 0
                 elif worked_day.code == main_worked_day:  # WORK100 (Generally)
                     # Case with half days mixed with full days
-                    work100_wds = worked_day.payslip_id.worked_days_line_ids.filtered(lambda wd: wd.code == "WORK100")
+                    work100_wds = worked_day.payslip_id.worked_days_line_ids.filtered(lambda wd: wd.code == main_worked_day)
                     number_of_hours = sum([
                         wd.number_of_hours
                         for wd in worked_day.payslip_id.worked_days_line_ids

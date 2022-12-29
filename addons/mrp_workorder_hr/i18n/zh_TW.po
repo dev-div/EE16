@@ -3,16 +3,16 @@
 # 	* mrp_workorder_hr
 # 
 # Translators:
-# 敬雲 林 <chingyun@yuanchih-consult.com>, 2022
 # Martin Trigaux, 2022
+# 敬雲 林 <chingyun@yuanchih-consult.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"POT-Creation-Date: 2022-12-15 13:29+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: 敬雲 林 <chingyun@yuanchih-consult.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/odoo/teams/41243/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/working_employee_popup.xml:0
 #, python-format
 msgid "+ New Operator"
@@ -36,8 +36,8 @@ msgstr ""
 
 #. module: mrp_workorder_hr
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_hr.mrp_workcenter_form_view_inherit
-msgid "<span class=\"o_form_label oe_edit_only\">Allowed Employees </span>"
-msgstr "<span class=\"o_form_label oe_edit_only\">被允許的員工</span>"
+msgid "Allowed Employees"
+msgstr ""
 
 #. module: mrp_workorder_hr
 #: model:ir.model,name:mrp_workorder_hr.model_report_mrp_report_bom_structure
@@ -45,7 +45,7 @@ msgid "BOM Overview Report"
 msgstr ""
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/pin_popup.xml:0
 #: code:addons/mrp_workorder_hr/static/src/components/popup.xml:0
 #, python-format
@@ -53,14 +53,14 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/tablet.js:0
 #, python-format
 msgid "Change Worker"
 msgstr ""
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/working_employee_popup.xml:0
 #, python-format
 msgid "Continue"
@@ -72,12 +72,13 @@ msgid "Cost"
 msgstr "成本"
 
 #. module: mrp_workorder_hr
+#: model:ir.model.fields,field_description:mrp_workorder_hr.field_mrp_workcenter__currency_id
 #: model:ir.model.fields,field_description:mrp_workorder_hr.field_mrp_workcenter_productivity__currency_id
 msgid "Currency"
 msgstr "幣別"
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/working_employee_popup.xml:0
 #: model:ir.model,name:mrp_workorder_hr.model_hr_employee
 #: model:ir.model.fields,field_description:mrp_workorder_hr.field_mrp_workcenter_productivity__employee_id
@@ -103,26 +104,27 @@ msgid "Employee Name"
 msgstr "員工姓名"
 
 #. module: mrp_workorder_hr
-#. openerp-web
-#: code:addons/mrp_workorder_hr/static/src/js/mrp_workorder_hr.xml:0
+#. odoo-javascript
+#: code:addons/mrp_workorder_hr/static/src/views/xml/mrp_workorder_buttons.xml:0
 #, python-format
 msgid "Log In"
 msgstr "登錄"
 
 #. module: mrp_workorder_hr
-#. openerp-web
-#: code:addons/mrp_workorder_hr/static/src/js/mrp_workorder_hr.js:0
+#. odoo-javascript
+#: code:addons/mrp_workorder_hr/static/src/views/kanban/mrp_workorder_kanban_controller.js:0
+#: code:addons/mrp_workorder_hr/static/src/views/list/mrp_workorder_list_controller.js:0
 #, python-format
 msgid "Logged in!"
 msgstr ""
 
 #. module: mrp_workorder_hr
 #: model:ir.model.fields,help:mrp_workorder_hr.field_mrp_routing_workcenter__employee_ratio
-msgid "Number of employee needed to produce one batch"
+msgid "Number of employees needed to complete operation."
 msgstr ""
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/pin_popup.xml:0
 #, python-format
 msgid "Ok"
@@ -134,7 +136,7 @@ msgid "Operations"
 msgstr "製程"
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/pin_popup.xml:0
 #, python-format
 msgid "Password ?"
@@ -157,22 +159,24 @@ msgid "Requires Log In"
 msgstr ""
 
 #. module: mrp_workorder_hr
-#. openerp-web
-#: code:addons/mrp_workorder_hr/static/src/js/mrp_workorder_hr.js:0
+#. odoo-javascript
+#: code:addons/mrp_workorder_hr/static/src/views/kanban/mrp_workorder_kanban_controller.js:0
+#: code:addons/mrp_workorder_hr/static/src/views/list/mrp_workorder_list_controller.js:0
 #, python-format
 msgid "Select Employee"
 msgstr "選擇員工"
 
 #. module: mrp_workorder_hr
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder_hr/static/src/components/working_employee_popup.xml:0
 #, python-format
 msgid "Stop"
 msgstr "停止"
 
 #. module: mrp_workorder_hr
-#. openerp-web
-#: code:addons/mrp_workorder_hr/static/src/js/mrp_workorder_hr.js:0
+#. odoo-javascript
+#: code:addons/mrp_workorder_hr/static/src/views/kanban/mrp_workorder_kanban_controller.js:0
+#: code:addons/mrp_workorder_hr/static/src/views/list/mrp_workorder_list_controller.js:0
 #, python-format
 msgid "This employee is not allowed on this workcenter"
 msgstr ""
@@ -203,8 +207,9 @@ msgid "Working Employees"
 msgstr ""
 
 #. module: mrp_workorder_hr
-#. openerp-web
-#: code:addons/mrp_workorder_hr/static/src/js/mrp_workorder_hr.js:0
+#. odoo-javascript
+#: code:addons/mrp_workorder_hr/static/src/views/kanban/mrp_workorder_kanban_controller.js:0
+#: code:addons/mrp_workorder_hr/static/src/views/list/mrp_workorder_list_controller.js:0
 #, python-format
 msgid "Wrong password !"
 msgstr ""

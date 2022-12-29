@@ -5,7 +5,7 @@ from markupsafe import Markup
 from odoo import SUPERUSER_ID, api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.fields import Command
-from odoo.tools import float_compare, float_round
+from odoo.tools import float_compare, float_round, is_html_empty
 
 
 class TestType(models.Model):
@@ -75,6 +75,7 @@ class MrpRouting(models.Model):
         """
         return [
             'worksheet',
+            'worksheet_google_slide',
             'id',
         ]
 
@@ -240,7 +241,7 @@ class QualityCheck(models.Model):
     def _compute_title(self):
         super()._compute_title()
         for check in self:
-            if not check.point_id or check.component_id:
+            if not check.point_id and check.component_id:
                 check.title = '{} "{}"'.format(check.test_type_id.display_name, check.component_id.name or check.workorder_id.name)
 
     @api.depends('point_id', 'quality_state', 'component_id', 'component_uom_id', 'lot_id', 'qty_done')
@@ -337,10 +338,11 @@ class QualityCheck(models.Model):
         else:
             self.workorder_id.current_quality_check_id = self
         if self.workorder_id.production_id.bom_id and activity:
-            body = Markup(_("<b>New Step suggested by %s</b><br/>"
-                 "<b>Reason:</b>"
-                 "%s", self.env.user.name, self.additional_note
-            ))
+            tl_text = _("New Step suggested by %(user_name)s", user_name=self.env.user.name)
+            body = Markup("<b>%s</b>") % tl_text
+            if self.note and not is_html_empty(self.note):
+                tl_text = _("Instruction:")
+                body += Markup("<br/><b>%s</b>%s") % (tl_text, self.note)
             self.env['mail.activity'].sudo().create({
                 'res_model_id': self.env.ref('mrp.model_mrp_bom').id,
                 'res_id': self.workorder_id.production_id.bom_id.id,
@@ -374,22 +376,23 @@ class QualityCheck(models.Model):
         # Loop on the quants to get the locations. If there is not enough
         # quantity into stock, we take the move location. Anyway, no
         # reservation is made, so it is still possible to change it afterwards.
+        move_uom = self.move_id.product_uom
         shared_vals = {
             'move_id': self.move_id.id,
             'product_id': self.move_id.product_id.id,
             'location_dest_id': location_dest_id.id,
             'reserved_uom_qty': 0,
-            'product_uom_id': self.move_id.product_uom.id,
+            'product_uom_id': move_uom.id,
             'lot_id': self.lot_id.id,
             'company_id': self.move_id.company_id.id,
         }
         for quant in quants:
             vals = shared_vals.copy()
             quantity = quant.quantity - quant.reserved_quantity
-            quantity = self.product_id.uom_id._compute_quantity(quantity, self.product_uom_id, rounding_method='HALF-UP')
+            quantity = self.product_id.uom_id._compute_quantity(quantity, move_uom, rounding_method='HALF-UP')
             rounding = quant.product_uom_id.rounding
             if (float_compare(quant.quantity, 0, precision_rounding=rounding) <= 0 or
-                    float_compare(quantity, 0, precision_rounding=self.product_uom_id.rounding) <= 0):
+                    float_compare(quantity, 0, precision_rounding=move_uom.rounding) <= 0):
                 continue
             vals.update({
                 'location_id': quant.location_id.id,
@@ -540,4 +543,5 @@ class QualityCheck(models.Model):
         values = self.read(self._get_fields_list_for_tablet(), load=False)
         for check in values:
             check['worksheet_url'] = self.env['quality.check'].browse(check['id']).point_id.worksheet_url
+            check['source_document'] = self.env['quality.check'].browse(check['id']).point_id.source_document
         return values

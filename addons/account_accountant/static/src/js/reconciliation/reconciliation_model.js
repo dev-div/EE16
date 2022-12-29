@@ -238,11 +238,14 @@ var ManualModel = BasicModel.extend({
         return this.lines[handle];
     },
     _loadReconciliationModel: function (company_ids) {
+        var self = this;
         return this._rpc({
                 model: 'account.reconciliation.widget',
                 method: 'get_reconcile_modelds_for_manual_reconciliation',
                 args: [company_ids],
-            })
+            }).then(function (reconcileModels) {
+                self.reconcileModels = reconcileModels;
+            });
     },
     _loadTaxes: function(){
         var self = this;
@@ -285,7 +288,7 @@ var ManualModel = BasicModel.extend({
         })
     },
     /**
-    * Prepares a the reconciliation propositions for a line from the data
+    * Prepares a reconciliation propositions for a line from the data
     * returned by the server (get_reconciliation_dict_from_model).
     */
     prepare_propositions_from_server: function (widget_line, server_lines) {
@@ -313,53 +316,7 @@ var ManualModel = BasicModel.extend({
         widget_line.createForm = _.pick(prop, this.quickCreateFields);
         return this._computeLine(widget_line);
     },
-    /**
-     * Remove a proposition and switch to an active mode ('create' or 'match_rp' or 'match_other')
-     * overridden in ManualModel
-     *
-     * @param {string} handle
-     * @param {number} id (move line id)
-     * @returns {Promise}
-     */
-    removeProposition: function (handle, id) {
-        var self = this;
-        var line = this.getLine(handle);
-        var defs = [];
 
-        // If the line was an aml proposition
-        var prop = _.find(line.reconciliation_proposition, {'id' : id});
-        if (prop) {
-            line.reconciliation_proposition = _.filter(line.reconciliation_proposition, function (p) {
-                return p.id !== prop.id && p.id !== prop.link && p.link !== prop.id && (!p.link || p.link !== prop.link);
-            });
-            if (!isNaN(id)) {
-                if (['asset_receivable', 'liability_payable', 'asset_cash', 'liability_credit_card'].includes(prop.account_type)) {
-                    line.mv_lines_match_rp.unshift(prop);
-                } else {
-                    line.mv_lines_match_other.unshift(prop);
-                }
-            }
-
-            // No proposition left and then, reset the st_line partner.
-            if(line.reconciliation_proposition.length == 0 && line.st_line.has_no_partner)
-                defs.push(self.changePartner(line.handle));
-        }
-
-        // If the line was a write-off proposition
-        var write_off =  _.find(line.write_off_vals, {'id' : id});
-        if (write_off) {
-            line.write_off_vals = _.filter(line.write_off_vals, function (w) {
-                return w.id !== write_off.id;
-            });
-        }
-
-        line.mode = (id || line.mode !== "create") && isNaN(id) ? 'create' : 'match_rp';
-        defs.push(this._computeLine(line));
-        self._refresh_partial_rec_preview(line);
-        return Promise.all(defs).then(function() {
-            return self.changeMode(handle, line.mode, true);
-        })
-    },
     getPartialReconcileAmount: function(handle, data) {
         var line = this.getLine(handle);
         var formatOptions = {
@@ -472,7 +429,7 @@ var ManualModel = BasicModel.extend({
         if ('amount' in values) {
             prop.base_amount = values.amount;
         }
-        if ('name' in values || 'force_tax_included' in values || 'amount' in values || 'account_id' in values) {
+        if ('name' in values || 'force_tax_included' in values || 'amount' in values || 'account_id' in values || 'analytic_account_id' in values) {
             prop.__tax_to_recompute = true;
         }
         line.createForm = _.pick(prop, this.quickCreateFields);
@@ -838,6 +795,7 @@ var ManualModel = BasicModel.extend({
                                 'name': prop.name ? prop.name + " " + tax.name : tax.name,
                                 'date': prop.date,
                                 'account_id': tax.account_id ? [tax.account_id, null] : prop.account_id,
+                                'analytic_account_id': tax.analytic ? prop.analytic_account_id : false,
                                 'analytic': tax.analytic,
                                 '__focus': false
                             });
@@ -923,91 +881,12 @@ var ManualModel = BasicModel.extend({
     _formatNameGet: function (value) {
         return value ? (value.id ? value : {'id': value[0], 'display_name': value[1]}) : false;
     },
-    _formatMany2ManyTags: function (value) {
-        var res = [];
-        for (var i=0, len=value.length; i<len; i++) {
-            res[i] = {'id': value[i][0], 'display_name': value[i][1]};
-        }
-        return res;
-    },
     _formatMany2ManyTagsTax: function(value) {
         var res = [];
         for (var i=0; i<value.length; i++) {
             res.push({id: value[i], display_name: this.taxes[value[i]] ? this.taxes[value[i]].display_name : ''});
         }
         return res;
-    },
-    /**
-     * Format each server lines and propositions and compute all lines
-     * overridden in ManualModel
-     *
-     * @see '_computeLine'
-     *
-     * @private
-     * @param {Object[]} lines
-     * @returns {Promise}
-     */
-    _formatLine: function (lines) {
-        var self = this;
-        var defs = [];
-        _.each(lines, function (data) {
-            var line = _.find(self.lines, function (l) {
-                return l.id === data.st_line.id;
-            });
-            line.visible = true;
-            line.limitMoveLines = self.limitMoveLines;
-            _.extend(line, data);
-
-            // Now that extend() has filled in the reconciliation propositions, we need to handle their reconciliation
-            self._refresh_partial_rec_preview(line);
-
-            self._formatLineProposition(line, line.reconciliation_proposition);
-            if (!line.reconciliation_proposition.length) {
-                delete line.reconciliation_proposition;
-            }
-
-            // No partner set on st_line and all matching amls have the same one: set it on the st_line.
-            defs.push(
-                self._computeLine(line)
-                .then(function(){
-                    if(!line.st_line.partner_id && line.reconciliation_proposition.length > 0){
-                        var hasDifferentPartners = function(prop){
-                            return !prop.partner_id || prop.partner_id != line.reconciliation_proposition[0].partner_id;
-                        };
-
-                        if(!_.any(line.reconciliation_proposition, hasDifferentPartners)){
-                            return self.changePartner(line.handle, {
-                                'id': line.reconciliation_proposition[0].partner_id,
-                                'display_name': line.reconciliation_proposition[0].partner_name,
-                            }, true);
-                        }
-                    }else if(!line.st_line.partner_id && line.partner_id && line.partner_name){
-                        return self.changePartner(line.handle, {
-                            'id': line.partner_id,
-                            'display_name': line.partner_name,
-                        }, true);
-                    }
-                    return true;
-                })
-                .then(function(){
-                    if (data.write_off_vals) {
-                        return self.prepare_propositions_from_server(line, data.write_off_vals)
-                    }
-                    return true;
-                })
-                .then(function() {
-                    // If still no partner set, take the one from context, if it exists
-                    if (!line.st_line.partner_id && self.context.partner_id && self.context.partner_name) {
-                        return self.changePartner(line.handle, {
-                            'id': self.context.partner_id,
-                            'display_name': self.context.partner_name,
-                        }, true);
-                    }
-                    return true;
-                })
-            );
-        });
-        return Promise.all(defs);
     },
     /**
     * Refresh partial reconciliation data for the reconciliation propositions of

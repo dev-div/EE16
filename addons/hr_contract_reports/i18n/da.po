@@ -3,18 +3,17 @@
 # 	* hr_contract_reports
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Morten Schou <ms@msteknik.dk>, 2019
-# Jesper Carstensen <jc@danodoo.dk>, 2019
-# Sanne Kristensen <sanne@vkdata.dk>, 2019
+# JonathanStein <jstein@image.dk>, 2022
+# Martin Trigaux, 2022
+# Mads Søndergaard, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.2+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-23 11:38+0000\n"
-"PO-Revision-Date: 2019-08-26 09:36+0000\n"
-"Last-Translator: Sanne Kristensen <sanne@vkdata.dk>, 2019\n"
+"POT-Creation-Date: 2022-04-19 09:53+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: Mads Søndergaard, 2022\n"
 "Language-Team: Danish (https://www.transifex.com/odoo/teams/41243/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +24,12 @@ msgstr ""
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__count_employee_exit
 msgid "# Departure Employee"
-msgstr ""
+msgstr "# Afskediget ansatte"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__count_new_employee
 msgid "# New Employees"
-msgstr ""
+msgstr "# Nye ansatte"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__company_id
@@ -46,7 +45,7 @@ msgstr "Kontrakt"
 #. module: hr_contract_reports
 #: model:ir.model,name:hr_contract_reports.model_hr_contract_employee_report
 msgid "Contract and Employee Analysis Report"
-msgstr ""
+msgstr "Kontrakt og ansatte analyse rapport"
 
 #. module: hr_contract_reports
 #: model:ir.ui.menu,name:hr_contract_reports.menu_report_contract_employee_all
@@ -61,7 +60,7 @@ msgstr "Dato"
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__date_end_contract
 msgid "Date Last Contract Ended"
-msgstr ""
+msgstr "Dato for afslutning på sidste kontrakt"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__department_id
@@ -72,13 +71,13 @@ msgstr "Afdeling"
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Departure Employees"
-msgstr ""
+msgstr "Afskedig ansatte"
 
 #. module: hr_contract_reports
-#: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__departure_reason
+#: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__departure_reason_id
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Departure Reason"
-msgstr ""
+msgstr "Afgang årsag"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__display_name
@@ -88,7 +87,7 @@ msgstr "Vis navn"
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__age_sum
 msgid "Duration Contract"
-msgstr ""
+msgstr "Varighed kontrakt"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__employee_id
@@ -101,13 +100,9 @@ msgstr "Medarbejder"
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_graph
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_pivot
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_search
+#: model_terms:ir.ui.view,arch_db:hr_contract_reports.hr_contract_employee_report_view_tree
 msgid "Employees Analysis"
-msgstr ""
-
-#. module: hr_contract_reports
-#: model:ir.model.fields.selection,name:hr_contract_reports.selection__hr_contract_employee_report__departure_reason__fired
-msgid "Fired"
-msgstr ""
+msgstr "Ansatte analyse"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_search
@@ -122,12 +117,12 @@ msgstr "ID"
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_search
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Seneste 365 dage"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Last Contract Ended"
-msgstr ""
+msgstr "Sidste kontrakt sluttede"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report____last_update
@@ -137,67 +132,57 @@ msgstr "Sidst ændret den"
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Max Date in Months"
-msgstr ""
+msgstr "Maks dato i måneder"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Mean Contract Duration"
-msgstr ""
+msgstr "Gennemsnitlig kontrakt varighed"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Min Date in Months"
-msgstr ""
+msgstr "Minimum dato i måneder"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__start_date_months
 msgid "Months of first date of this month since 01/01/1970"
-msgstr ""
+msgstr "Måneder af første dato af denne måned siden 01/01/1970"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__end_date_months
 msgid "Months of last date of this month since 01/01/1970"
-msgstr ""
+msgstr "Måneder af sidste dato af denne måned siden 01/01/1970"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "New Employees"
-msgstr ""
-
-#. module: hr_contract_reports
-#: model:ir.model.fields.selection,name:hr_contract_reports.selection__hr_contract_employee_report__departure_reason__resigned
-msgid "Resigned"
-msgstr ""
-
-#. module: hr_contract_reports
-#: model:ir.model.fields.selection,name:hr_contract_reports.selection__hr_contract_employee_report__departure_reason__retired
-msgid "Retired"
-msgstr ""
+msgstr "Nye ansatte"
 
 #. module: hr_contract_reports
 #: model_terms:ir.actions.act_window,help:hr_contract_reports.contract_employee_report_action
 msgid "This report performs analysis on your contracts."
-msgstr ""
+msgstr "Denne rapport udfører analyser af dine kontrakter."
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Total Contract Length"
-msgstr ""
+msgstr "Samlet kontrakt længde"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Total Contracts"
-msgstr ""
+msgstr "Samlet antal kontrakter"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Total Employees"
-msgstr ""
+msgstr "Samlet antal ansatte"
 
 #. module: hr_contract_reports
 #: model_terms:ir.ui.view,arch_db:hr_contract_reports.contract_employee_report_view_dashboard
 msgid "Turnover Rate"
-msgstr ""
+msgstr "Omsætningshastighed"
 
 #. module: hr_contract_reports
 #: model:ir.model.fields,field_description:hr_contract_reports.field_hr_contract_employee_report__wage

@@ -86,21 +86,6 @@ QUnit.module("timesheet_grid", (hooks) => {
         _checkCardButton(thirdCard, true, assert);
     });
 
-    QUnit.test("button is displayed on hover", async function (assert) {
-        await makeView(makeViewArgs);
-        const secondCard = target.querySelector(".o_kanban_renderer .o_kanban_record:nth-of-type(2)");
-        assert.containsOnce(secondCard, ".o_kanban_timer_start span");
-        assert.containsNone(secondCard, ".o_kanban_timer_start button");
-        await triggerEvent(secondCard, ".o_kanban_timer_start", "mouseover");
-        await nextTick();
-        assert.containsOnce(secondCard, ".o_kanban_timer_start button");
-        assert.containsNone(secondCard, ".o_kanban_timer_start span");
-        await triggerEvent(secondCard, ".o_kanban_timer_start", "mouseout");
-        await nextTick();
-        assert.containsOnce(secondCard, ".o_kanban_timer_start span");
-        assert.containsNone(secondCard, ".o_kanban_timer_start button");
-    });
-
     QUnit.test("correct rpc calls are performed (click decrease)", async function (assert) {
         const mockRPC = function (route, { args, method }) {
             if (method === "action_timer_decrease") {

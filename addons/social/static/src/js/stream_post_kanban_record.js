@@ -69,6 +69,9 @@ export class StreamPostKanbanRecord extends KanbanRecord {
         });
     }
 
+    /**
+     * @deprecated will be removed in v16.1
+     */
     _insertThousandSeparator(value) {
         return formatInteger(value);
     }

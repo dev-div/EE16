@@ -40,7 +40,7 @@
             <field name="sequence">3</field>
             <field name="name">Create a Task</field>
             <field name="activity_option">True</field>
-            <field name="excluded_tag_ids" eval="[(4, ref('documents.documents_internal_status_deprecated'))]"/>
+            <field name="excluded_tag_ids" model="documents.tag" eval="obj().env.ref('documents.documents_internal_status_deprecated', raise_if_not_found=False) and [(4, obj().env.ref('documents.documents_internal_status_deprecated', raise_if_not_found=False).id)]"/>
             <field name="activity_type_id" ref="documents.mail_documents_activity_data_tv"/>
             <field name="create_model">project.task</field>
             <field name="condition_type">domain</field>
@@ -51,8 +51,8 @@
         <record id="documents_workflow_action_project" model="documents.workflow.action" forcecreate="0">
             <field name="workflow_rule_id" ref="documents_project_rule"/>
             <field name="action">replace</field>
-            <field name="facet_id" ref="documents.documents_internal_status"/>
-            <field name="tag_id" ref="documents.documents_internal_status_tc"/>
+            <field name="facet_id" model="documents.facet" eval="obj().env.ref('documents.documents_internal_status', raise_if_not_found=False)"/>
+            <field name="tag_id" model="documents.tag" eval="obj().env.ref('documents.documents_internal_status_tc', raise_if_not_found=False)"/>
         </record>
 
 

@@ -6,7 +6,7 @@ import { formView } from "@web/views/form/form_view";
 import { SettingsConfirmationDialog } from "./settings_confirmation_dialog";
 import { SettingsFormRenderer } from "./settings_form_renderer";
 
-const { useSubEnv, useState, useRef, useEffect } = owl;
+import { useSubEnv, useState, useRef, useEffect } from "@odoo/owl";
 
 export class SettingsFormController extends formView.Controller {
     setup() {
@@ -61,7 +61,6 @@ export class SettingsFormController extends formView.Controller {
                 this.dialogService.add(SettingsConfirmationDialog, {
                     body: message,
                     confirm: async () => {
-                        await this.model.root.save({ stayInEdition: true });
                         await this._save();
                         // It doesn't make sense to do the action of the button
                         // as the res.config.settings `execute` method will trigger a reload.

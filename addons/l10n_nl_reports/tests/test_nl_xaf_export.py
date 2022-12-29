@@ -41,7 +41,7 @@ class TestNlXafExport(TestAccountReportsCommon):
         report = self.env.ref('account_reports.general_ledger_report')
         options = self._generate_options(report, fields.Date.from_string('2019-01-01'), fields.Date.from_string('2019-12-31'))
 
-        generated_xaf = self.get_xml_tree_from_string(self.env[report.custom_handler_model_name].with_context(skip_xsd=True)._l10n_nl_get_xaf(options).get('file_content'))
+        generated_xaf = self.get_xml_tree_from_string(self.env[report.custom_handler_model_name].with_context(skip_xsd=True).l10n_nl_get_xaf(options).get('file_content'))
         expected_xaf = self.get_xml_tree_from_string('''
             <auditfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.auditfiles.nl/XAF/3.2">
                 <header>

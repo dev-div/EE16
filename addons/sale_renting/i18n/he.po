@@ -13,6 +13,7 @@
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # Martin Trigaux, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
+# NoaFarkash, 2022
 # 
 msgid ""
 msgstr ""
@@ -20,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-04 09:41+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022\n"
+"Last-Translator: NoaFarkash, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr ""
 #: code:addons/sale_renting/models/product_template.py:0
 #, python-format
 msgid "%s (Rental)"
-msgstr ""
+msgstr "%s (השכרה)"
 
 #. module: sale_renting
 #: model:ir.actions.report,print_report_name:sale_renting.action_report_rental_saleorder
@@ -63,6 +64,9 @@ msgid ""
 "                                    Default Delay Costs\n"
 "                                </span>"
 msgstr ""
+"<span class=\"o_form_label\">\n"
+"עלויות ברירת מחדל נוספות עבור החזרות מאוחרות\n"
+"</span>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.product_product_form_view_rental_gantt
@@ -78,17 +82,17 @@ msgstr "<span>ל</span>"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "<strong>Order # — </strong>"
-msgstr ""
+msgstr "<strong>הזמנה # —</strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "<strong>Pickup  — </strong>"
-msgstr ""
+msgstr "<strong> איסוף — </strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "<strong>Return — </strong>"
-msgstr ""
+msgstr "<strong>החזרה — </strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.report_rental_order_document
@@ -103,7 +107,7 @@ msgstr "<strong>כתובת לאספקה:</strong>"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_schedule_view_gantt
 msgid "<strong>Status — </strong>"
-msgstr ""
+msgstr "<strong>סטטוס — </strong>"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.rental_configurator_view_form
@@ -262,7 +266,7 @@ msgstr "הזמנות מאושרות"
 #. module: sale_renting
 #: model:ir.actions.act_window,name:sale_renting.action_create_rental_order
 msgid "Create Rental Orders"
-msgstr ""
+msgstr "צור הזמנות השכרה"
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_order_action
@@ -272,7 +276,7 @@ msgstr "צור הצעת מחיר חדשה, הצעד הראשון בהשכרה ח
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.action_rental_report
 msgid "Create a new rental order"
-msgstr ""
+msgstr "צור הזמנת השכרה חדשה"
 
 #. module: sale_renting
 #: model_terms:ir.actions.act_window,help:sale_renting.rental_product_template_action
@@ -1006,7 +1010,7 @@ msgstr "אשף שורת השכרה"
 #. module: sale_renting
 #: model:ir.ui.menu,name:sale_renting.menu_sale_renting_periods
 msgid "Rental periods"
-msgstr ""
+msgstr "תקופות השכרה"
 
 #. module: sale_renting
 #: model:ir.model,name:sale_renting.model_rental_order_wizard_line
@@ -1184,17 +1188,17 @@ msgstr "סטטוס"
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
 msgid "Sum of Daily Amount"
-msgstr ""
+msgstr "סכום הכמות היומית"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
 msgid "Sum of Daily Ordered Qty"
-msgstr ""
+msgstr "סכום כמות הזמנה יומית"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.sale_rental_report_view_tree
 msgid "Sum of Daily Picked-Up Qty"
-msgstr ""
+msgstr "סכום כמות האיסוף היומית"
 
 #. module: sale_renting
 #: model:ir.model.fields,field_description:sale_renting.field_sale_order_line__temporal_type
@@ -1204,7 +1208,7 @@ msgstr ""
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_rental_wizard__duration
 msgid "The duration unit is based on the unit of the rental pricing rule."
-msgstr ""
+msgstr "יחידת משך הזמן מבוססת על היחידה של כלל תמחור השכירות."
 
 #. module: sale_renting
 #: model:ir.model.fields,help:sale_renting.field_res_company__extra_product
@@ -1377,6 +1381,9 @@ msgid ""
 "                <br>\n"
 "                or create a new rental order."
 msgstr ""
+"אתה יכול לחפש על תקופה גדולה יותר באמצעות המסננים כאן למעלה\n"
+"<br>\n"
+"או ליצור הזמנת השכרה חדשה."
 
 #. module: sale_renting
 #: code:addons/sale_renting/wizard/rental_processing.py:0
@@ -1394,7 +1401,7 @@ msgstr "אתה לא יכול להחזיר יותר ממה שנאסף."
 #: code:addons/sale_renting/static/src/js/tours/rental.js:0
 #, python-format
 msgid "You're done with your fist rental. Congratulations !"
-msgstr ""
+msgstr "סיימת עם ההשכרה הראשונה שלך. כל הכבוד!"
 
 #. module: sale_renting
 #: model_terms:ir.ui.view,arch_db:sale_renting.res_config_settings_view_form

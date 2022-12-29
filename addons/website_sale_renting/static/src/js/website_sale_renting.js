@@ -10,9 +10,10 @@ WebsiteSale.include({
         'renting_constraints_changed': '_onRentingConstraintsChanged',
         'toggle_disable': '_onToggleDisable',
         'change .js_main_product .o_website_sale_daterange_picker input.daterange-input': 'onChangeVariant',
+        'outsideClick.daterangepicker': '_onDatePickerHide',
         'apply.daterangepicker': '_onDatePickerApply',
+        'click .clear-daterange': '_onDatePickerClear',
     }),
-
 
     /**
      * Assign the renting dates to the rootProduct for rental products.
@@ -133,18 +134,40 @@ WebsiteSale.include({
         return result;
     },
 
+    /**
+     * Redirect to the shop page with the appropriate dates as search.
+     */
     _onDatePickerApply: function (ev) {
         const datepickerEl = ev.target.closest('.o_website_sale_shop_daterange_picker');
         if (datepickerEl) {
-            const rawInput = datepickerEl.querySelector('.daterange-input').value;
             // get current URL parameters
             const searchParams = new URLSearchParams(window.location.search);
-            const [startDate, endDate] = rawInput.split(' - ');
-            if (startDate && endDate) {
-                searchParams.set('start_date', `${new Date(startDate).toISOString()}`);
-                searchParams.set('end_date', `${new Date(endDate).toISOString()}`);
+            const $daterangeInput = $(datepickerEl.querySelector(".daterange-input"));
+            const daterangepicker = $daterangeInput.data("daterangepicker");
+            if (daterangepicker.startDate && daterangepicker.endDate) {
+                searchParams.set("start_date", daterangepicker.startDate.toISOString());
+                searchParams.set("end_date", daterangepicker.endDate.toISOString());
             }
-            window.location = `/shop?${searchParams.toString()}`;
+            const searchString = searchParams.toString();
+            window.location = `/shop` + searchString.length ? `?${searchString}` : ``;
+            this.isRedirecting = true;
         }
+    },
+
+    /**
+     * Upon hiding the daterangepicker, if no date was set and on the shop page, clear the input.
+     */
+    _onDatePickerHide: function (ev) {
+        if (!this.isRedirecting && ev.target.closest(".o_website_sale_shop_daterange_picker") && ev.target.dataset.hasDefaultDates === "false") {
+            ev.target.value = '';
+        }
+    },
+
+    _onDatePickerClear: function (ev) {
+        const searchParams = new URLSearchParams(window.location.search);
+        searchParams.delete('start_date');
+        searchParams.delete('end_date');
+        const searchString = searchParams.toString();
+        window.location = `${window.location.pathname}` + searchString.length ? `?${searchParams.toString()}` : ``;
     },
 });

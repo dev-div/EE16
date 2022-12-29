@@ -19,7 +19,7 @@ export class AccountMoveLineListController extends ListController {
         this.ui = useService("ui");
         this.attachmentPreviewState = useState({
             previewEnabled: !this.env.searchModel.context.disable_preview && this.ui.size >= SIZES.XXL,
-            displayAttachment: true,
+            displayAttachment: localStorage.getItem('account.move_line_pdf_previewer_hidden') !== 'false',
             selectedRecord: false,
             thread: null,
         });
@@ -28,6 +28,7 @@ export class AccountMoveLineListController extends ListController {
 
     togglePreview() {
         this.attachmentPreviewState.displayAttachment = !this.attachmentPreviewState.displayAttachment;
+        localStorage.setItem('account.move_line_pdf_previewer_hidden', this.attachmentPreviewState.displayAttachment);
     }
 
     evaluatePreviewEnabled() {

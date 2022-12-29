@@ -57,7 +57,7 @@ class DeliverCarrier(models.Model):
                 }
                 return action
         else:
-            raise UserError('A production key is required in order to load your easypost carriers.')
+            raise UserError(_('A production key is required in order to load your easypost carriers.'))
 
     def easypost_rate_shipment(self, order):
         """ Return the rates for a quotation/SO."""

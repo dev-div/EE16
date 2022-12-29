@@ -1,20 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_enterprise
+# 	* sale_enterprise
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Anders Wallenquist <anders.wallenquist@vertel.se>, 2019
-# Egils Verkstad <egils@riseup.net>, 2019
-# Kim Asplund <kim.asplund@gmail.com>, 2019
+# Simon S, 2022
+# Mikael Åkerberg <mikael.akerberg@mariaakerberg.com>, 2022
+# Martin Trigaux, 2022
+# Jakob Krabbe <jakob.krabbe@vertel.se>, 2022
+# Chrille Hedberg <hedberg.chrille@gmail.com>, 2022
+# Anders Wallenquist <anders.wallenquist@vertel.se>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.1+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-16 08:13+0000\n"
-"PO-Revision-Date: 2019-01-16 08:40+0000\n"
-"Last-Translator: Kim Asplund <kim.asplund@gmail.com>, 2019\n"
+"POT-Creation-Date: 2021-07-12 07:57+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Anders Wallenquist <anders.wallenquist@vertel.se>, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,33 +27,56 @@ msgstr ""
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "# Customers"
-msgstr ""
+msgstr "# kunder"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "# Lines"
-msgstr ""
+msgstr "# rader"
+
+#. module: sale_enterprise
+#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid "Average Days To Confirm"
+msgstr "Dagar i snitt att bekräfta"
+
+#. module: sale_enterprise
+#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
+msgid "Average Days to Confirm"
+msgstr "Dagar i snitt att bekräfta"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Average Order"
-msgstr ""
+msgstr "Snittorder"
 
 #. module: sale_enterprise
-#: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__days_to_confirm
-msgid "Days To Confirm"
+#: model:ir.model.fields,help:sale_enterprise.field_sale_report__avg_days_to_confirm
+msgid ""
+"Average days to confirm a sales order after its creation. Due to a hack "
+"needed to calculate this,               every record will show the same "
+"average value, therefore only use this as an aggregated value with "
+"group_operator=avg"
 msgstr ""
+"Genomsnittligt antal dagar att bekräfta en order efter att den skapas. På "
+"grund av en bugg behöver               varje post visa samma genomsnittliga "
+"värde, använd därför bara detta med group_operator=avg"
 
 #. module: sale_enterprise
-#: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
-msgid "Days to Confirm"
-msgstr ""
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "Create a new sales order"
+msgstr "Skapa en ny kundorder"
 
 #. module: sale_enterprise
+#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
+#: model:ir.ui.menu,name:sale_enterprise.menu_sale_report_dashboard
+msgid "Dashboard"
+msgstr "Anslagstavla"
+
+#. module: sale_enterprise
+#: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__invoiced
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.view_order_product_search_inherit
-#: selection:sale.report,invoice_status:0
 msgid "Fully Invoiced"
-msgstr ""
+msgstr "Fullt fakturerad"
 
 #. module: sale_enterprise
 #: model:ir.model.fields,field_description:sale_enterprise.field_sale_report__invoice_status
@@ -59,17 +84,21 @@ msgid "Invoice Status"
 msgstr "Fakturastatus"
 
 #. module: sale_enterprise
-#: selection:sale.report,invoice_status:0
+#: model_terms:ir.actions.act_window,help:sale_enterprise.sale_report_action_dashboard
+msgid "No data yet!"
+msgstr "Ingen data ännu!"
+
+#. module: sale_enterprise
+#: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__no
 msgid "Nothing to Invoice"
-msgstr "Inget att fakturera"
+msgstr "Ingenting att fakturera"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Orders"
-msgstr "Ordrar"
+msgstr "Order"
 
 #. module: sale_enterprise
-#: model:ir.actions.act_window,name:sale_enterprise.sale_report_action_dashboard
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_pivot
 msgid "Sales Analysis"
 msgstr "Försäljningsanalys"
@@ -77,40 +106,40 @@ msgstr "Försäljningsanalys"
 #. module: sale_enterprise
 #: model:ir.model,name:sale_enterprise.model_sale_report
 msgid "Sales Analysis Report"
-msgstr "Försäljningsanalys Raport"
+msgstr "Rapport försäljningsanalys"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Sales Teams"
-msgstr "Säljlag"
+msgstr "Säljteam"
 
 #. module: sale_enterprise
+#: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__to_invoice
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.view_order_product_search_inherit
-#: selection:sale.report,invoice_status:0
 msgid "To Invoice"
 msgstr "Att fakturera"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Total Sales"
-msgstr ""
+msgstr "Total försäljning"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Total, Tax Included"
-msgstr ""
+msgstr "Totalt inkl moms"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
 msgid "Untaxed Total"
-msgstr "Total exkl. skatt"
+msgstr "Total exkl moms"
 
 #. module: sale_enterprise
-#: selection:sale.report,invoice_status:0
+#: model:ir.model.fields.selection,name:sale_enterprise.selection__sale_report__invoice_status__upselling
 msgid "Upselling Opportunity"
-msgstr ""
+msgstr "Tillfälle för merförsäljning"
 
 #. module: sale_enterprise
 #: model_terms:ir.ui.view,arch_db:sale_enterprise.sale_report_view_dashboard
-msgid "day(s)"
-msgstr ""
+msgid "days"
+msgstr "dagar"

@@ -15,7 +15,7 @@
         'data/mail_template_data.xml',
         'data/payment_provider_data.xml',
     ],
-    'application': True,
+    'application': False,
     'uninstall_hook': 'uninstall_hook',
     'assets': {
         'web.assets_common': [

@@ -1063,7 +1063,7 @@ var SaleSubscriptionDashboardStatBox = Widget.extend({
         const options = {
             has_mrr: this.has_mrr, format_number: this.format_number,
             value: this.value, demo_values: this.demo_values,
-            stat_type: this.stat_type, currency_id: this.currency_id,
+            stat_type: this.stat_type, currency_id: this.is_monetary && this.currency_id,
             added_symbol: this.added_symbol,
         };
         const $boxName = $(QWeb.render("sale_subscription_dashboard.box_name", options));

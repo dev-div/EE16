@@ -23,10 +23,10 @@
         <div class="o_phonecall_details text-center">
             <div class="o_phonecall_top fs-5 mb-2"/>
             <span t-if="widget.imageSmall" class="o_dial_phonecall_clip d-inline-block">
-                <img alt="Avatar" class="o_dial_phonecall_avatar mb-2 bg-white border rounded-circle" width="80" t-attf-src="data:image/jpg;base64,{{ widget.imageSmall }}"/>
+                <img alt="Avatar" class="o_dial_phonecall_avatar mb-2 bg-100 border rounded-circle" width="80" t-attf-src="data:image/jpg;base64,{{ widget.imageSmall }}"/>
             </span>
             <span t-else="" class="o_dial_phonecall_clip d-inline-block">
-                <img alt="Avatar" class="o_dial_phonecall_avatar mb-2 bg-white border rounded-circle" width="80" src="/base/static/img/avatar.png"/>
+                <img alt="Avatar" class="o_dial_phonecall_avatar mb-2 bg-100 border rounded-circle" width="80" src="/base/static/img/avatar_grey.png"/>
             </span>
             <div>
                 <div class="o_dial_phonecall_partner_name">
@@ -50,14 +50,14 @@
             <div class="o_phonecall_info o_call_date">
                 <small><span t-if="widget.date" t-out="widget.date"></span><span t-if="widget.state === 'done'"> • <t t-out="widget.minutes"/>min <t t-out="widget.seconds"/>sec</span></small>
             </div>
-            <div class="o_dial_incoming_buttons mt-5">
-                <button aria-label="Reject call" class="o_dial_reject_button btn col-6 text-danger" title="Reject">
-                    <i class="fa fa-3x fa-phone"/>
-                </button>
-                <button aria-label="Take call" class="o_dial_accept_button btn col-6 text-primary" title="Accept">
-                    <i class="fa fa-3x fa-phone"/>
-                </button>
-            </div>
+        </div>
+        <div class="o_dial_incoming_buttons justify-content-around mt-5">
+            <button aria-label="Reject call" class="o_dial_reject_button btn btn-danger rounded-circle" title="Reject">
+                <i class="fa fa-2x fa-phone p-2"/>
+            </button>
+            <button aria-label="Take call" class="o_dial_accept_button btn btn-success rounded-circle" title="Accept">
+                <i class="fa fa-2x fa-phone p-2"/>
+            </button>
         </div>
         <div class="o_dial_keypad_button_container mx-3 my-4">
             <div class="o_voip_row_header o_horizontal_separator">Document</div>

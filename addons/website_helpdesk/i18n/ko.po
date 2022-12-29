@@ -3,8 +3,9 @@
 # 	* website_helpdesk
 # 
 # Translators:
-# Martin Trigaux, 2022
 # JH CHOI <hwangtog@gmail.com>, 2022
+# Sarah Park, 2022
+# Martin Trigaux, 2022
 # 
 msgid ""
 msgstr ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:48+0000\n"
 "PO-Revision-Date: 2022-09-22 05:50+0000\n"
-"Last-Translator: JH CHOI <hwangtog@gmail.com>, 2022\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Korean (https://www.transifex.com/odoo/teams/41243/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,13 +43,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submit_form
 msgid "<span class=\"s_website_form_label_content\">Attachment</span>"
-msgstr ""
+msgstr "<span class=\"s_website_form_label_content\">첨부 자료</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submit_form
 msgid "<span class=\"s_website_form_label_content\">Description</span>"
-msgstr ""
+msgstr "<span class=\"s_website_form_label_content\">내용</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -57,6 +58,8 @@ msgid ""
 "<span class=\"s_website_form_label_content\">Subject</span>\n"
 "                                            <span class=\"s_website_form_mark\"> *</span>"
 msgstr ""
+"<span class=\"s_website_form_label_content\">제목</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -65,6 +68,8 @@ msgid ""
 "<span class=\"s_website_form_label_content\">Your Email</span>\n"
 "                                            <span class=\"s_website_form_mark\"> *</span>"
 msgstr ""
+"<span class=\"s_website_form_label_content\">이메일 주소</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -73,6 +78,8 @@ msgid ""
 "<span class=\"s_website_form_label_content\">Your Name</span>\n"
 "                                            <span class=\"s_website_form_mark\"> *</span>"
 msgstr ""
+"<span class=\"s_website_form_label_content\">이름</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.search_results
@@ -116,6 +123,13 @@ msgid "All results"
 msgstr "전체 결과"
 
 #. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Attachment"
+msgstr "첨부 파일"
+
+#. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.navbar_search_date
 msgid "By Date"
 msgstr ""
@@ -150,6 +164,13 @@ msgstr "고객 관리"
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
 msgid "Date Filter"
 msgstr ""
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Description"
+msgstr "설명"
 
 #. module: website_helpdesk
 #: model:ir.model.fields,field_description:website_helpdesk.field_helpdesk_team__website_form_view_id
@@ -215,9 +236,22 @@ msgid "No results found. Please try another search."
 msgstr "검색 결과가 없습니다. 다른 검색을 시도하십시오."
 
 #. module: website_helpdesk
+#: code:addons/website_helpdesk/models/helpdesk.py:0
+#, python-format
+msgid "Redirect to the Website Helpdesk Rating Page"
+msgstr ""
+
+#. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.knowledge_base
 msgid "Search for articles, best practices and more..."
 msgstr ""
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Subject"
+msgstr "제목"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
@@ -229,7 +263,7 @@ msgstr "제출"
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.team_form_1
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submit_form
 msgid "Submit a Ticket"
-msgstr "티켓 제출"
+msgstr "상담 요청"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.snippet_options
@@ -283,6 +317,20 @@ msgstr "웹사이트 메뉴"
 #: model:ir.model.fields,field_description:website_helpdesk.field_helpdesk_team__website_url
 msgid "Website URL"
 msgstr "웹 사이트 URL"
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Your Email"
+msgstr "이메일"
+
+#. module: website_helpdesk
+#. openerp-web
+#: code:addons/website_helpdesk/static/src/js/website_helpdesk_form_editor.js:0
+#, python-format
+msgid "Your Name"
+msgstr "성명"
 
 #. module: website_helpdesk
 #: model_terms:ir.ui.view,arch_db:website_helpdesk.ticket_submited

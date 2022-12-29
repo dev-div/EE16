@@ -29,10 +29,10 @@ patch(SpreadsheetAction.prototype, "spreadsheet_dashboard_documents.SpreadsheetA
      * @param {Model} model
      * @private
      */
-    _createDashboardFromDocument(model) {
+    async _createDashboardFromDocument(model) {
         const resId = this.resId;
         const name = this.state.spreadsheetName;
-        this.env.services.orm.write("documents.document", [resId], {
+        await this.env.services.orm.write("documents.document", [resId], {
             raw: JSON.stringify(model.exportData()),
         });
         this.env.services.action.doAction(
@@ -47,7 +47,7 @@ patch(SpreadsheetAction.prototype, "spreadsheet_dashboard_documents.SpreadsheetA
             {
                 additionalContext: {
                     default_document_id: resId,
-                    default_name: name
+                    default_name: name,
                 },
             }
         );

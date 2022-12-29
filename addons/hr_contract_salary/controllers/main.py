@@ -3,7 +3,6 @@
 
 import hashlib
 
-from itertools import groupby
 from collections import defaultdict, OrderedDict
 from odoo import fields, http, models, _, Command, SUPERUSER_ID
 
@@ -15,7 +14,6 @@ from werkzeug.exceptions import NotFound
 from werkzeug.wsgi import get_current_url
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
-
 
 
 class SignContract(Sign):
@@ -255,7 +253,8 @@ class HrContractSalary(http.Controller):
             'submit': not values['redirect_to_job'],
             'default_mobile': request.env['ir.default'].sudo().get('hr.contract', 'mobile'),
             'original_link': get_current_url(request.httprequest.environ),
-            'token': kw.get('token')
+            'token': kw.get('token'),
+            'master_department_id': request.env['hr.department'].browse(int(values['department_id'])).master_department_id.id if values['department_id'] else False
         })
 
         response = request.render("hr_contract_salary.salary_package", values)
@@ -833,10 +832,12 @@ class HrContractSalary(http.Controller):
             if contract.employee_id.user_id == request.env.user:
                 kw['employee'] = contract.employee_id
         kw['package_submit'] = True
-        new_contract, contract_diff = self.create_new_contract(contract, advantages, no_write=True, **kw)
+        new_contract = self.create_new_contract(contract, advantages, no_write=True, **kw)
 
         if isinstance(new_contract, dict) and new_contract.get('error'):
             return new_contract
+
+        new_contract, contract_diff = new_contract
 
         #write on new contract differences with current one
         current_contract = request.env['hr.contract'].sudo().search([
@@ -924,6 +925,8 @@ class HrContractSalary(http.Controller):
                     new_value = new_values[0]
                     if isinstance(new_value, float):
                         new_value = round(new_value, 2)
+                    if item.type_id.item_type == "checkbox":
+                        new_value = 'on' if new_value else 'off'
                 if new_value is not None:
                     sign_values_by_role[item.responsible_id][str(item.id)] = new_value
             except Exception:

@@ -9,16 +9,12 @@ var framework = require('web.framework');
 var session = require('web.session');
 var view_registry = require('web.view_registry');
 const { processArch } = require("@web/legacy/legacy_load_views");
-const KanbanView = require("web.KanbanView");
-const ListView = require("web.ListView");
 
 var AbstractEditorManager = require('web_studio.AbstractEditorManager');
 var bus = require('web_studio.bus');
 var EditorMixin = require('web_studio.EditorMixin');
 var EditorMixinOwl = require('web_studio.EditorMixinOwl');
 
-var KanbanEditor = require('web_studio.KanbanEditor');
-var ListEditor = require('web_studio.ListEditor');
 var SearchEditor = require('web_studio.SearchEditor');
 var SearchRenderer = require('web_studio.SearchRenderer');
 
@@ -42,24 +38,23 @@ const viewRegistry = registry.category("views");
 
 const { resetViewCompilerCache } = require("@web/views/view_compiler");
 const { extendEnv } = require('@web_studio/client_action/view_editors/utils')
-const { getNodesFromXpath, getLegacyNode, xpathToLegacyXpathInfo, serializeXmlToString, parseStringToXml } = require('@web_studio/client_action/view_editors/xml_utils')
+const { getNodesFromXpath, getLegacyNode, xpathToLegacyXpathInfo, serializeXmlToString, parseStringToXml, nodeStudioXpathSymbol } = require('@web_studio/client_action/view_editors/xml_utils')
 
 const CONVERTED_VIEWS = [
     "calendar",
     "cohort",
-    "dashboard",
     "graph",
     "map",
     "pivot",
     "form",
+    "kanban",
+    "list",
 ];
 
 var _t = core._t;
 var QWeb = core.qweb;
 
 var Editors = {
-    kanban: KanbanEditor,
-    list: ListEditor,
     search: SearchEditor,
 };
 
@@ -101,9 +96,24 @@ function getX2MFullXpath(x2mPathsInfos) {
     return x2mPathsInfos.map(info => info.xpath).join("/");
 }
 
-function getSubArch(mainArch, xpath) {
-    const nodes = getNodesFromXpath(xpath, parseStringToXml(mainArch));
-    return serializeXmlToString(nodes[0]);
+function getSubArch(mainArch, xpathToField, viewType, throwIfNotFound=true) {
+    let xpathToArch;
+    if (viewType === "list") {
+        xpathToArch = "/tree";
+    } else {
+        xpathToArch = `/${viewType}`;
+    }
+    xpathToArch = `${xpathToField}${xpathToArch}`;
+
+    const nodes = getNodesFromXpath(xpathToArch, parseStringToXml(mainArch));
+    const hasSingleArch = nodes.length === 1;
+    if (hasSingleArch && !nodes[0].getAttribute("studio_subview_inlined")) {
+        return serializeXmlToString(nodes[0]);
+    }
+    if (throwIfNotFound) {
+        throw new Error(`Single sub-view arch not found for xpath: ${xpathToArch}`);
+    }
+    return false;
 }
 
 async function wowlCreateInlineView(env, { subViewType, viewId, fullXpath, subViewRef, resModel, fieldName }) {
@@ -113,7 +123,7 @@ async function wowlCreateInlineView(env, { subViewType, viewId, fullXpath, subVi
     // Use specific view if available in context
     // We write views in the base language to make sure we do it on the source term field
     // of ir.ui.view
-    const context = { ...user.context, lang: false };
+    const context = { ...user.context, lang: false, studio: true };
     if (subViewRef) {
         context[`${subViewType}_view_ref`] = subViewRef;
     }
@@ -214,23 +224,6 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
             'filter': ['name'],
             'button': ['name'],
         };
-    },
-    /**
-     * @override
-     */
-    start: async function () {
-        const _super = this._super;
-        if (this.isEditingX2m) {
-            let fieldsView = this._getX2mFieldsView(this.fields_view);
-
-            if (!fieldsView || fieldsView.name) {
-                fieldsView = await this._createInlineView(this.x2mViewType, this.x2mField)
-                fieldsView = this._getX2mFieldsView(fieldsView);
-            }
-            this.fields_view = fieldsView;
-            this.fields = await this._getProcessedX2mFields();
-        }
-        return _super.apply(this, arguments);
     },
 
     destroy() {
@@ -751,7 +744,6 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         var prom = Promise.resolve();
 
         const { models, studio_view_id, views } = result;
-
         if (!views) {
             // the operation can't be applied
             this.trigger_up('studio_error', {error: 'wrong_xpath'});
@@ -759,41 +751,13 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
                 return Promise.reject();
             });
         }
-
-
         // the studio_view could have been created at the first edition so
         // studio_view_id must be updated (but /web_studio/edit_view_arch
         // doesn't return the view id)
         if (studio_view_id) {
             this.studio_view_id = studio_view_id;
         }
-
-        const viewType = this.mainViewType;
-        const view = views[viewType];
-        const { arch, viewFields } = processArch(view.arch, viewType, this.model_name, models);
-
-        // NOTE: fields & fields_view are from the base model here.
-        // fields will be updated accordingly if editing a x2m (see
-        // @_setX2mParameters).
-        this.fields = this._processFields(models[this.model_name]);
-        this.viewDescriptions.views[viewType].arch = view.arch;
-        this.viewDescriptions.relatedModels = models; // add names (see _processFields)?
-        this.viewDescriptions.fields = this.fields;
-
-        this.fields_view = {
-            arch,
-            fields: this.fields,
-            viewFields,
-            model: view.model,
-            type: viewType,
-            view_id: view.id,
-        };
-
-        if (this.isEditingX2m) {
-            this.fields_view = this._getX2mFieldsView(this.fields_view);
-            this.fields = await this._getProcessedX2mFields();
-        }
-
+        await this._updateLegacyArchState(models, views);
         return prom.then(self.updateEditor.bind(self));
     },
     /**
@@ -822,50 +786,6 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
             this.studio_view_arch = lastOp.new_arch;
             this._super.apply(this, arguments);
         }
-    },
-    /**
-     * Makes a RPC to modify the studio view in order to add the x2m view
-     * inline. This is done to avoid modifying the x2m default view.
-     *
-     * @private
-     * @param {string} type
-     * @param {string} field_name
-     * @return {Promise}
-     */
-    _createInlineView: async function (type, field_name) {
-        var subviewType = type === 'list' ? 'tree' : type;
-        // We build the correct xpath if we are editing a 'sub' subview
-        var subviewXpath = this._getSubviewXpath(this.x2mEditorPath.slice(0, -1));
-        var context = _.extend({}, session.user_context, {lang: false});
-        // Use specific view if available in context
-        var specific_view = this.x2mViewParams.context[subviewType+'_view_ref'];
-        if (specific_view) {
-            context[subviewType+'_view_ref'] = specific_view;
-        }
-        const studioViewArch = await this._rpc({
-            route: '/web_studio/create_inline_view',
-            params: {
-                model: this.x2mModel,
-                view_id: this.view_id,
-                field_name: field_name,
-                subview_type: subviewType,
-                subview_xpath: subviewXpath,
-                // We write views in the base language to make sure we do it on the source term field
-                // of ir.ui.view
-                context: context,
-            },
-        });
-
-        this.operations = [];
-        this.studio_view_arch = studioViewArch;
-
-        const viewInfo = await this.loadViews(
-            this.model_name,
-            this.currentX2m.x2mViewContext || {},
-            [[this.view_id, this.mainViewType]]
-        );
-
-        return viewInfo[this.mainViewType];
     },
     /**
      * @override
@@ -944,7 +864,7 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
                 model: this.x2mModel ? this.x2mModel : this.model_name,
                 // We write views in the base language to make sure we do it on the source term field
                 // of ir.ui.view
-                context: _.extend({}, session.user_context, {lang: false}),
+                context: _.extend({}, session.user_context, {lang: false}, {studio: true}),
             },
         });
     },
@@ -1158,57 +1078,66 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
 
     async instantiateWowlController(viewParams) {
         const mainViewType = this.mainViewType;
-        const x2ManyInfo = this.x2mEditorPath ? this.x2mEditorPath[this.x2mEditorPath.length-1].wowlX2ManyInfo  : null;
+        const x2ManyFullPath = this.x2mEditorPath ? this.x2mEditorPath.map(infos => infos.wowlX2ManyInfo) : [];
+        const x2ManyInfo = x2ManyFullPath.length ? x2ManyFullPath[x2ManyFullPath.length-1]  : null;
         const nextViewType = x2ManyInfo ? x2ManyInfo.viewType : mainViewType;
 
         const chatterAllowed = x2ManyInfo ? false : this.chatter_allowed;
         const resModel = x2ManyInfo ? x2ManyInfo.resModel : viewParams.action.res_model;
+        const fullXpath = x2ManyInfo ? getX2MFullXpath(x2ManyFullPath) : "";
 
-        const fullXpath = x2ManyInfo ? getX2MFullXpath(this.x2mEditorPath.map(infos => infos.wowlX2ManyInfo)) : "";
+        let viewDescriptions = this.viewDescriptions;
+        let { arch: mainArch, custom_view_id } = viewDescriptions.views[mainViewType];
 
-        // FIXME: only loadViews when arch changed
-        let shouldLoadViews = false; //!!this.wowlEditor;
-        if (x2ManyInfo && !x2ManyInfo.hasArch) {
-            shouldLoadViews = true;
-            const { viewType, fieldName, resModel } = x2ManyInfo;
-            const viewId = this.viewDescriptions.views[mainViewType].id;
-            const subViewRef = null;
-            const studioArch = await wowlCreateInlineView(this.wowlEnv, { subViewType: viewType, viewId, fullXpath, subViewRef, resModel, fieldName })
-            this.studio_view_arch = studioArch;
+        let archToEdit;
+        if (x2ManyInfo) {
+            archToEdit = getSubArch(mainArch, fullXpath, nextViewType, false);
+        } else {
+            archToEdit = mainArch;
         }
 
-        if (shouldLoadViews) {
+        const shouldUpdateLegacyArchState = x2ManyInfo && !!archToEdit;
+        if (x2ManyInfo && !archToEdit) {
+            const { viewType, fieldName, resModel, fieldContext } = x2ManyInfo;
+            const viewId = viewDescriptions.views[mainViewType].id;
+            const subViewRef = fieldContext[`${nextViewType === "list" ? "tree" : nextViewType}_view_ref`] || null;;
+            const xpathToCurrentSubView = getX2MFullXpath(x2ManyFullPath.slice(0, -1));
+            const studioArch = await wowlCreateInlineView(this.wowlEnv, { subViewType: viewType, viewId, fullXpath: xpathToCurrentSubView, subViewRef, resModel, fieldName })
+            this.studio_view_arch = studioArch;
+            this.operations = [];
+
             const context = Object.assign({}, this.action.context, { studio: true, lang: false });
-            const resModel = this.action.res_model;
-            const views = this.action.views;
+            const mainResModel = this.action.res_model;
+            const _views = this.action.views;
             const actionId = this.action.id;
             const loadActionMenus = false;
             const loadIrFilters = true;
-            this.viewDescriptions = await this.wowlEnv.services.view.loadViews(
-                { context, resModel, views },
+            const { relatedModels, views } = await this.wowlEnv.services.view.loadViews(
+                { context, resModel: mainResModel, views: _views },
                 { actionId, loadActionMenus, loadIrFilters }
             );
+
+            viewDescriptions = await this._updateLegacyArchState(relatedModels, views);
+            ({ arch: mainArch, custom_view_id } = viewDescriptions.views[mainViewType]);
+
+            archToEdit = getSubArch(mainArch, fullXpath, nextViewType);
         }
 
-        let { arch, custom_view_id } = this.viewDescriptions.views[mainViewType];
-        if (x2ManyInfo) {
-            arch = getSubArch(arch, `${fullXpath}/${nextViewType}`);
+        if (shouldUpdateLegacyArchState) { 
+            viewDescriptions = await this._updateLegacyArchState(viewDescriptions.relatedModels, viewDescriptions.views);
         }
 
-        // determine view and controller classes
-        const view = editorsRegistry.contains(nextViewType) && this.mode === "edition"
-            ? editorsRegistry.get(nextViewType)
-            : viewRegistry.get(nextViewType);
+        // Get the editor, it should honor the View Interface
+        // We also need the original view, in case we are not in edition mode
+        let editor = editorsRegistry.contains(nextViewType) ? editorsRegistry.get(nextViewType) : null;
+        const view = viewRegistry.get(nextViewType);
+        const getControllerProps = editor ? editor.props : view.props;
+        editor = editor && this.mode === "edition" ? editor : view;
 
-        if (view.type === "form") {
-            const newModel = class newModel extends view.Model {};
-            newModel.Record = class newRecord extends view.Model.Record {
-                get isInEdition() {
-                    return false;
-                }
-            };
-            view.Model = newModel;
-        }
+        const parser = new DOMParser();
+        const archXml = parser.parseFromString(archToEdit, "text/xml");
+        const rootArchXmlNode = archXml.documentElement;
+
         if (this.mode !== "edition") {
             resetViewCompilerCache();
         }
@@ -1224,13 +1153,13 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
             resIds = this.resIds;
         }
 
-        const fields = x2ManyInfo ? this.viewDescriptions.relatedModels[x2ManyInfo.resModel] : this.viewDescriptions.fields;
+        const fields = x2ManyInfo ? viewDescriptions.relatedModels[x2ManyInfo.resModel] : viewDescriptions.fields;
 
         let controllerProps = {
             info: {},
-            arch,
+            arch: archToEdit,
             fields,
-            relatedModels: this.viewDescriptions.relatedModels,
+            relatedModels: viewDescriptions.relatedModels,
             resModel,
             useSampleModel: false,
             searchMenuTypes: [],
@@ -1241,10 +1170,6 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
 
         if (["list", "tree", "form"].includes(nextViewType) && this.mode === "edition" && x2ManyInfo) {
             controllerProps.parentRecord = x2ManyInfo.parentRecord;
-        }
-
-        if (nextViewType === "form") {
-            controllerProps.preventEdit = true;
         }
 
         if (custom_view_id) {
@@ -1265,14 +1190,17 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
             x2mField: this.x2mField,
             type: nextViewType,
             breadcrumbs: [],
+            isStudioInEdition: this.mode === "edition",
         };
 
         config.onNodeClicked = (params) => {
             this.wowlEditor.setLastClickedXpath(params.xpath);
-            const legacyNode = getLegacyNode(params.xpath, controllerProps.archInfo.xmlDoc)
+            const legacyNode = getLegacyNode(params.xpath, archXml)
+            const $node = $(params.target);
             this._onNodeClicked({data: {
                 node: legacyNode,
                 isWowl: true,
+                $node,
             }})
         }
         config.onViewChange = (data) => {
@@ -1281,24 +1209,17 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         };
 
         config.onEditX2ManyView = ({viewType, fieldName, record, xpath}) => {
-            let data = record.data[fieldName];
-            // LEGACY STUFF: FIXME by removing me
-            if ("__bm__" in record.model) {
-                // well we shouldn't be here if there is no basicModel
-                data = record.model.__bm__.get(record.__bm_handle__).data[fieldName];
+            // Dummy object, no one uses those data anymore, but we keep relying
+            // on legacy stuff for the sidebar.
+            const data = {
+                getContext() {}
             }
             const legacyX2MPath = this._computeX2mPath(fieldName, viewType, null, data);
-            legacyX2MPath.x2mViewParams.model = record.model.__bm__;
-            legacyX2MPath.x2mViewParams.parentID = record.__bm_handle__;
-            // END LEGACY STUFF
-
-            const activeField = record.activeFields[fieldName];
             const staticList = record.data[fieldName];
-
             const resIds = staticList.records.map((r) => r.resId);
             const wowlX2ManyInfo = {
-                hasArch: viewType in activeField.views,
                 resModel: staticList.resModel,
+                fieldContext: record.getFieldContext(fieldName),
                 resId: resIds[0],
                 resIds,
                 viewType,
@@ -1312,23 +1233,40 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         }
 
         config.structureChange = (params) => {
-            const legacyNode = getLegacyNode(params.xpath, controllerProps.archInfo.xmlDoc)
+            const legacyNode = getLegacyNode(params.xpath, archXml);
             const xpathInfo = xpathToLegacyXpathInfo(params.xpath);
             const data = {...params, node: legacyNode, xpathInfo }
             resetViewCompilerCache();
             this._onViewChange({data});
         }
 
-        controllerProps = view.props ? view.props(controllerProps, view, config) : controllerProps;
+        config.handleRenderingError = !this.wowlEditor || !this.wowlEditor.status === "mounted" ?
+            (error) => { throw error; } : // vem had not been mounted: re-throw the error as it is not the user's faults
+            (error) => {
+                this.trigger_up('studio_error', {error: 'view_rendering'});
+                this._undo(null, true);
+            }; // vem had been mounted: handle the error as its cause is a user's action
 
-        const Controller = view.Controller;
-        const SearchModelClass = view.SearchModel || SearchModel;
+        controllerProps = getControllerProps ? getControllerProps(controllerProps, editor, config) : controllerProps;
+
+        const Controller = editor.Controller;
+        const SearchModelClass = editor.SearchModel || SearchModel;
+
+        let searchViewArch, searchViewFields, searchViewIrFilters, globalState;
+        if (this.viewDescriptions.views.search && !x2ManyInfo) {
+            searchViewArch = this.viewDescriptions.views.search.arch;
+            searchViewIrFilters = this.viewDescriptions.views.search.irFilters;
+            searchViewFields = this.viewDescriptions.fields;
+            globalState = viewParams.action.globalState;
+        }
 
         const env = extendEnv(this.wowlEnv, { config });
         const studioViewProps = {
             Controller,
             SearchModelClass,
             context: viewParams.context,
+            globalState,
+            searchViewArch, searchViewFields, searchViewIrFilters,
             domain: viewParams.domain || [], // bug in cohort domain = false???
             env, // deleted by ComponentWrapper (see owl_compatibility)
             controllerProps,
@@ -1341,23 +1279,20 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         const Wrapper = wrapperRegistry.get(nextViewType, GenericWowlEditor);
         this.wowlEditor = new Wrapper(this, StudioView, studioViewProps);
 
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(controllerProps.arch, "text/xml");
-        const rootNode = xml.documentElement;
-
         const attrs = {};
-        for (const { name, value } of rootNode.attributes) {
+        for (const { name, value } of rootArchXmlNode.attributes) {
             attrs[name] = value;
         }
-        if (attrs.sample) {
+        if (attrs.sample && !["list", "kanban"].includes(nextViewType)) {
             controllerProps.useSampleModel = Boolean(evaluateExpr(attrs.sample));
         }
 
         this.view = {
             //  in case we pass line: const arch = Editors[this.view_type].prototype.preprocessArch(this.view.arch);
-            arch: Object.assign({}, viewUtils.parseArch(controllerProps.arch), { mode: "view"}),
+            arch: Object.assign({}, viewUtils.parseArch(archToEdit), { mode: "view"}),
             controllerProps,
             loadParams: {},
+            fieldsInfo: this.wowlEditor.state.fieldsInfo,
         };
         return this.wowlEditor;
     },
@@ -1396,14 +1331,7 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
             if (CONVERTED_VIEWS.includes(this.view_type)) {
                 return this.instantiateWowlController(viewParams);
             }
-            let View;
-            if (this.view_type === "kanban") {
-                View = KanbanView;
-            } else if (this.view_type === "list") {
-                View = ListView;
-            } else {
-                View = view_registry.get(this.view_type);
-            }
+            const View = view_registry.get(this.view_type);
             this.view = new View(fields_view, _.extend({}, viewParams));
             if (this.mode === 'edition') {
                 var Editor = Editors[this.view_type];
@@ -1438,10 +1366,6 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
                     x2mField: this.x2mField,
                     viewType: this.view_type,
                 });
-
-                if (this.view_type === 'list') {
-                    editorParams.hasSelectors = false;
-                }
                 def = this.view.createStudioEditor(this, Editor, editorParams);
             } else {
                 def = this.view.createStudioRenderer(this, {
@@ -1571,8 +1495,8 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         // anymore, the parent node is also deleted (except if the parent is
         // the only remaining node and if we are editing a x2many subview)
         if (!this.x2mField) {
-            if (node.attrs.studioXpath) {
-                node = findNodeViewArch([this.view.arch], node.attrs.studioXpath);
+            if (node.attrs[nodeStudioXpathSymbol]) {
+                node = findNodeViewArch([this.view.arch], node.attrs[nodeStudioXpathSymbol]);
             }
             var parent_node = findParent(this.view.arch, node, this.expr_attrs);
             var is_root = !findParent(this.view.arch, parent_node, this.expr_attrs);
@@ -2081,9 +2005,9 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
         var xpath_info;
         const wowlXpath = data.xpath;
         if (node && !wowlXpath) {
-            if (node.attrs.studioXpath) {
+            if (node.attrs[nodeStudioXpathSymbol]) {
                 // chatter feature use this: see compilation of true chatter (chatterAdded = false)
-                xpath_info = xpathToLegacyXpathInfo(node.attrs.studioXpath);
+                xpath_info = xpathToLegacyXpathInfo(node.attrs[nodeStudioXpathSymbol]);
             } else {
                 const arch = Editors[this.view_type].prototype.preprocessArch(this.view.arch);
                 xpath_info = findParentsPositions(arch, node);
@@ -2165,6 +2089,46 @@ var ViewEditorManager = AbstractEditorManager.extend(WidgetAdapterMixin, {
                 this._addApproval(data);
                 break;
         }
+    },
+    /**
+     * Updates the internal state of the viewManagerEditor from data received from WOWL getViews API
+     * Should be used after loadViews, editView, editViewArch
+     *
+     * @params {Object} models: models data received, should honor the getViews API
+     * @params {Object} views: views data received, should honor the getViews API
+     */
+    async _updateLegacyArchState(models, views) {
+        const viewType = this.mainViewType;
+        const view = views[viewType];
+        const { arch, viewFields } = processArch(view.arch, viewType, this.model_name, models);
+
+        // NOTE: fields & fields_view are from the base model here.
+        // fields will be updated accordingly if editing a x2m (see
+        // @_setX2mParameters).
+        this.fields = this._processFields(models[this.model_name]);
+        this.viewDescriptions.views[viewType].arch = view.arch;
+        this.viewDescriptions.relatedModels = models; // add names (see _processFields)?
+        this.viewDescriptions.fields = this.fields;
+
+        this.fields_view = {
+            arch,
+            fields: this.fields,
+            viewFields,
+            model: view.model,
+            type: viewType,
+            view_id: view.id,
+        };
+
+        if (this.isEditingX2m) {
+            this.fields_view = this._getX2mFieldsView(this.fields_view);
+            const fieldsGetResult = await this.wowlEnv.services.orm.call(this.x2mModel, "fields_get");
+            // relatedModel only contains field descriptions that are present in the view.
+            // Merge them with the fields_get's result to have an exhaustive list of all fields for the model
+            const subFields = this.viewDescriptions.relatedModels[this.x2mModel];
+            this.viewDescriptions.relatedModels[this.x2mModel] = { ...subFields, ...fieldsGetResult };
+            this.fields = this._processFields(fieldsGetResult);
+        }
+        return this.viewDescriptions;
     },
 });
 

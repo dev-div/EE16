@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <group class="o_label_nowrap" string="Payslip current year">
+                <group class="o_label_nowrap mb-4" string="Payslip current year">
                     <field name="payslip_n_ids" nolabel="1" colspan="2">
                         <tree>
                             <field name="number"/>
@@ -46,7 +46,9 @@
                             <field name="state"/>
                         </tree>
                     </field>
-                    <field name="net_n" colspan="2"/>
+                    <group>
+                        <field name="net_n"/>
+                    </group>
                 </group>
                 <group class="o_label_nowrap" string="Payslip previous year">
                     <field name="payslip_n1_ids" nolabel="1" colspan="2">
@@ -61,9 +63,11 @@
                             <field name="state"/>
                         </tree>
                     </field>
-                    <field name="net_n1"/>
+                    <group>
+                        <field name="net_n1"/>
+                    </group>
                 </group>
-                <group string="Allocation Time Off">
+                <group class="o_label_nowrap" string="Allocation Time Off">
                     <field name="time_off_allocation_n_ids" nolabel="1" colspan="2">
                         <tree>
                             <field name="holiday_status_id"/>
@@ -72,9 +76,11 @@
                             <field name="state"/>
                         </tree>
                     </field>
-                    <field name="time_off_allocated"/>
+                    <group>
+                        <field name="time_off_allocated"/>
+                    </group>
                 </group>
-                <group string="Time Off" colspan="2">
+                <group class="o_label_nowrap" string="Time Off">
                     <field name="time_off_n_ids" nolabel="1" colspan="2">
                         <tree>
                             <field name="holiday_type"/>
@@ -85,8 +91,9 @@
                             <field name="state"/>
                         </tree>
                     </field>
-                    <field name="time_off_taken"/>
-
+                    <group>
+                        <field name="time_off_taken"/>
+                    </group>
                 </group>
                 <group string="Unpaid Time Off">
                     <group>

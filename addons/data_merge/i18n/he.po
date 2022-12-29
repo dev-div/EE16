@@ -10,14 +10,15 @@
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
 # דודי מלכה <Dudimalka6@gmail.com>, 2022
+# Ha Ketem <haketem@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 09:48+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:45+0000\n"
-"Last-Translator: דודי מלכה <Dudimalka6@gmail.com>, 2022\n"
+"Last-Translator: Ha Ketem <haketem@gmail.com>, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,17 +27,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_model.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (העתק)"
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
 #: code:addons/data_merge/static/src/views/data_merge_list_view.js:0
 #, python-format
 msgid "%s records have been merged"
-msgstr ""
+msgstr "%s רשומות מוזגו"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_duplicate
@@ -51,6 +53,8 @@ msgid ""
 "<span attrs=\"{'invisible': [('custom_merge_method', '=', False)]}\">Model "
 "specific</span>"
 msgstr ""
+"<span attrs=\"{'invisible': [('custom_merge_method', '=', False)]}\">מודל "
+"ספציפי</span>"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_model_form
@@ -60,12 +64,12 @@ msgstr ""
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_model_form
 msgid "<span class=\"oe_inline\">%</span>"
-msgstr ""
+msgstr "<span class=\"oe_inline\">%</span>"
 
 #. module: data_merge
 #: model:ir.model.constraint,message:data_merge.constraint_data_merge_rule_uniq_model_id_field_id
 msgid "A field can only appear once!"
-msgstr ""
+msgstr "שדה יכול להופיע רק פעם אחת!"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group__active
@@ -86,20 +90,20 @@ msgid "Archived"
 msgstr "בארכיון"
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
 #: code:addons/data_merge/static/src/views/data_merge_list_view.js:0
 #, python-format
 msgid ""
 "Are you sure that you want to merge the selected records in their respective"
 " group?"
-msgstr ""
+msgstr "האם בטוח/ה שברצונך למזג את הרשומות הנבחרות עם הקבוצות הרלוונטיות?"
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
 #: code:addons/data_merge/static/src/views/data_merge_list_view.js:0
 #, python-format
 msgid "Are you sure that you want to merge these records?"
-msgstr ""
+msgstr "בטוח שברצונך למזג את הרשומות האלה?"
 
 #. module: data_merge
 #: model:ir.model.fields.selection,name:data_merge.selection__data_merge_model__merge_mode__automatic
@@ -110,13 +114,14 @@ msgstr "אוטומטי"
 #: model:ir.model.fields,field_description:data_merge.field_ir_model__is_merge_enabled
 #: model_terms:ir.ui.view,arch_db:data_merge.ir_model_view_search
 msgid "Can Be Merged"
-msgstr ""
+msgstr "ניתנים למיזוג"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_rule.py:0
 #, python-format
 msgid "Case/Accent Insensitive Match"
-msgstr ""
+msgstr "התאמה תוך התעלמות מגודל אותיות"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__company_id
@@ -127,7 +132,7 @@ msgstr "חברה"
 #: model_terms:ir.actions.act_window,help:data_merge.action_data_merge_record
 #: model_terms:ir.actions.act_window,help:data_merge.action_data_merge_record_notification
 msgid "Configure rules to identify duplicate records"
-msgstr ""
+msgstr "הגדרת הכללים לזיהוי רשומות כפולות"
 
 #. module: data_merge
 #: model:ir.model,name:data_merge.model_res_partner
@@ -169,26 +174,24 @@ msgstr "נוצר ב-"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__mix_by_company
 msgid "Cross-Company"
-msgstr ""
+msgstr "בין-ארגוני"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__custom_merge_method
 msgid "Custom Merge Method"
-msgstr ""
+msgstr "שיטת מיזוג מותאמת"
 
 #. module: data_merge
 #: model:ir.actions.server,name:data_merge.ir_cron_cleanup_ir_actions_server
 #: model:ir.cron,cron_name:data_merge.ir_cron_cleanup
-#: model:ir.cron,name:data_merge.ir_cron_cleanup
 msgid "Data Merge: Cleanup Records"
-msgstr ""
+msgstr "מיזוג נתונים: ניקוי רשומות"
 
 #. module: data_merge
 #: model:ir.actions.server,name:data_merge.ir_cron_find_duplicates_ir_actions_server
 #: model:ir.cron,cron_name:data_merge.ir_cron_find_duplicates
-#: model:ir.cron,name:data_merge.ir_cron_find_duplicates
 msgid "Data Merge: Find Duplicate Records"
-msgstr ""
+msgstr "מיזוג נתונים: מציאת ערכים כפולים"
 
 #. module: data_merge
 #: model:ir.model.fields.selection,name:data_merge.selection__data_merge_model__notify_frequency_period__days
@@ -196,17 +199,18 @@ msgid "Days"
 msgstr "ימים"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_model_form
 #, python-format
 msgid "Deduplicate"
-msgstr ""
+msgstr "ביטול מיזוג"
 
 #. module: data_merge
 #: model:ir.ui.menu,name:data_merge.menu_data_merge_config_rules_deduplication
 #: model:ir.ui.menu,name:data_merge.menu_data_merge_group
 msgid "Deduplication"
-msgstr ""
+msgstr "ביטול מיזוג"
 
 #. module: data_merge
 #: model:ir.model,name:data_merge.model_data_merge_group
@@ -239,6 +243,13 @@ msgid "Deduplication Rules"
 msgstr ""
 
 #. module: data_merge
+#. odoo-python
+#: code:addons/data_merge/models/data_merge_model.py:0
+#, python-format
+msgid "Deduplication is forbidden on the model: %s"
+msgstr ""
+
+#. module: data_merge
 #: model:ir.model.fields.selection,name:data_merge.selection__data_merge_model__removal_mode__delete
 msgid "Delete"
 msgstr "מחק"
@@ -246,17 +257,17 @@ msgstr "מחק"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__differences
 msgid "Differences"
-msgstr ""
+msgstr "הפרשים"
 
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_record__differences
 msgid "Differences with the master record"
-msgstr ""
+msgstr "הפרשים מהרשומה הראשית"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.ir_model_view_form
 msgid "Disable Merge"
-msgstr ""
+msgstr "השבת מיזוג"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_record_list
@@ -267,7 +278,7 @@ msgstr "בטל"
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_record_view_search_merge_action
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_record_search
 msgid "Discarded"
-msgstr ""
+msgstr "בוטל"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group__display_name
@@ -290,46 +301,47 @@ msgstr "דומיין"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__removal_mode
 msgid "Duplicate Removal"
-msgstr ""
+msgstr "הסרת כפילויות"
 
 #. module: data_merge
 #: model:ir.actions.act_window,name:data_merge.action_data_merge_record
 #: model:ir.actions.act_window,name:data_merge.action_data_merge_record_notification
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_model_form
 msgid "Duplicates"
-msgstr ""
+msgstr "כפילויות"
 
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_model__create_threshold
 msgid ""
 "Duplicates with a similarity below this threshold will not be suggested"
-msgstr ""
+msgstr "כפילויות עם דמיון פחות מהסף הזה לא יוצעו"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.ir_model_view_form
 msgid "Enable Merge"
-msgstr ""
+msgstr "אישור מיזוג"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_rule.py:0
 #, python-format
 msgid "Exact Match"
-msgstr ""
+msgstr "התאמה מושלמה"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__field_values
 msgid "Field Values"
-msgstr ""
+msgstr "ערכי שדה"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_ir_model__hide_merge_action
 msgid "Hide merge action button"
-msgstr ""
+msgstr "הסתרת כפתור פעולת מיזוג"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_duplicate
 msgid "I've identified"
-msgstr ""
+msgstr "זיהינו"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group__id
@@ -364,17 +376,17 @@ msgstr ""
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__is_deleted
 msgid "Is Deleted"
-msgstr ""
+msgstr "נמחק"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__is_discarded
 msgid "Is Discarded"
-msgstr ""
+msgstr "בוטל"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__is_master
 msgid "Is Master"
-msgstr ""
+msgstr "ראשי"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group____last_update
@@ -387,7 +399,7 @@ msgstr "שינוי אחרון ב"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__last_notification
 msgid "Last Notification"
-msgstr ""
+msgstr "התראה אחרונה"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group__write_uid
@@ -408,12 +420,12 @@ msgstr "עדכון אחרון ב"
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_record__used_in
 msgid "List of other models referencing this record"
-msgstr ""
+msgstr "רשימת מודלים אחרים שמפנים לרשומה זו"
 
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_model__notify_user_ids
 msgid "List of users to notify when there are new records to merge"
-msgstr ""
+msgstr "רשימת משתמשים שיקבלו הודעה כשיש רשומות חדשות למיזוג"
 
 #. module: data_merge
 #: model:ir.model.fields.selection,name:data_merge.selection__data_merge_model__merge_mode__manual
@@ -421,13 +433,15 @@ msgid "Manual"
 msgstr "ידני"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #, python-format
 msgid "Manual Selection - %s"
-msgstr ""
+msgstr "בחירה ידנית - %s"
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
+#. odoo-python
 #: code:addons/data_merge/models/ir_model.py:0
 #: code:addons/data_merge/static/src/views/data_merge_list_view.xml:0
 #: model:ir.actions.server,name:data_merge.merge_action_crm_lost_reason
@@ -452,31 +466,38 @@ msgstr "מזג"
 #. module: data_merge
 #: model:ir.ui.menu,name:data_merge.ir_model_menu_merge_action_manager
 msgid "Merge Action Manager"
-msgstr ""
+msgstr "ניהול פעולות מיזוג"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_rule__match_mode
 msgid "Merge If"
-msgstr ""
+msgstr "מיזוג אם"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__merge_mode
 msgid "Merge Mode"
-msgstr ""
+msgstr "מצב מיזוג"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_ir_model__ref_merge_ir_act_server_id
 msgid "Merge Server Action"
-msgstr ""
+msgstr "פעולת שרת במיזוג"
 
 #. module: data_merge
 #: model:ir.actions.act_window,name:data_merge.ir_model_action_merge
 msgid "Merge action Manager"
-msgstr ""
+msgstr "ניהול פעולת מיזוג"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__is_contextual_merge_action
 msgid "Merge action attached"
+msgstr "פעולת מיזוג מחוברת"
+
+#. module: data_merge
+#. odoo-python
+#: code:addons/data_merge/models/data_merge_model.py:0
+#, python-format
+msgid "Missing required PostgreSQL extension: unaccent"
 msgstr ""
 
 #. module: data_merge
@@ -513,26 +534,35 @@ msgid "Name"
 msgstr "שם"
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #: model_terms:ir.actions.act_window,help:data_merge.action_data_merge_record
 #: model_terms:ir.actions.act_window,help:data_merge.action_data_merge_record_notification
 #, python-format
 msgid "No duplicates found"
-msgstr ""
+msgstr "לא נמצאו כפילויות"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__notify_frequency
 msgid "Notify"
-msgstr ""
+msgstr "להודיע"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__notify_frequency_period
 msgid "Notify Frequency Period"
-msgstr ""
+msgstr "תדירות הודעות"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__notify_user_ids
 msgid "Notify Users"
+msgstr "הודעה למשתמשים"
+
+#. module: data_merge
+#. odoo-python
+#: code:addons/data_merge/models/data_merge_record.py:0
+#: code:addons/data_merge/models/data_merge_record.py:0
+#, python-format
+msgid "Query Failed."
 msgstr ""
 
 #. module: data_merge
@@ -543,7 +573,7 @@ msgstr "רשומה"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__group_id
 msgid "Record Group"
-msgstr ""
+msgstr "רישום קבוצה"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__res_id
@@ -554,12 +584,12 @@ msgstr "מזהה רשומה"
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_record_view_search_merge_action
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_record_search
 msgid "Records"
-msgstr ""
+msgstr "רשומות"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__records_to_merge_count
 msgid "Records To Merge Count"
-msgstr ""
+msgstr "מספר רשומות למיזוג"
 
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_model__domain
@@ -567,11 +597,18 @@ msgid "Records eligible for the deduplication process"
 msgstr ""
 
 #. module: data_merge
+#. odoo-python
+#: code:addons/data_merge/models/data_merge_record.py:0
+#, python-format
+msgid "Records must be of the same model"
+msgstr ""
+
+#. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_model__merge_threshold
 msgid ""
 "Records with a similarity percentage above this threshold will be "
 "automatically merged"
-msgstr ""
+msgstr "רשומות עם דמיון מעל הסף הזה ימוזגו אוטומטית"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.view_data_merge_record_search
@@ -591,12 +628,12 @@ msgstr "רצף"
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_group__similarity
 msgid "Similarity %"
-msgstr ""
+msgstr "% אחוזי דמיון"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__merge_threshold
 msgid "Similarity Threshold"
-msgstr ""
+msgstr "סף דמיון"
 
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_group__similarity
@@ -607,32 +644,41 @@ msgstr ""
 #. module: data_merge
 #: model:ir.model.fields,help:data_merge.field_data_merge_model__rule_ids
 msgid "Suggest to merge records matching at least one of these rules"
-msgstr ""
+msgstr "להציע למזג תאים שמתאימים לפחות לאחד הכללים להלן"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_model__create_threshold
 msgid "Suggestion Threshold"
-msgstr ""
+msgstr "סף הצעות"
 
 #. module: data_merge
 #: model:ir.model.constraint,message:data_merge.constraint_data_merge_model_check_notif_freq
 msgid "The notification frequency should be greater than 0"
+msgstr "תדירות ההודעות צריכה להיות יותר מ-0"
+
+#. module: data_merge
+#. odoo-python
+#: code:addons/data_merge/models/data_merge_record.py:0
+#, python-format
+msgid "The referenced record does not exist"
 msgstr ""
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
 #: code:addons/data_merge/static/src/views/data_merge_list_view.js:0
 #, python-format
 msgid "The selected records have been merged"
 msgstr ""
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #, python-format
 msgid "The target model does not exists."
-msgstr ""
+msgstr "מודל היעד הזה לא קיים."
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #, python-format
 msgid "There is not referenced record"
@@ -641,29 +687,29 @@ msgstr ""
 #. module: data_merge
 #: model:ir.model.constraint,message:data_merge.constraint_data_merge_model_uniq_name
 msgid "This name is already taken"
-msgstr ""
+msgstr "השם הזה כבר תפוס"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_rule__field_id
 msgid "Unique ID Field"
-msgstr ""
+msgstr "שדה זיהוי ID ייחודי"
 
 #. module: data_merge
-#. openerp-web
+#. odoo-javascript
 #: code:addons/data_merge/static/src/views/data_merge_list_view.xml:0
 #, python-format
 msgid "Unselect"
-msgstr ""
+msgstr "הסרת בחירה"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__record_write_uid
 msgid "Updated By"
-msgstr ""
+msgstr "עודכן על-ידי"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__record_write_date
 msgid "Updated On"
-msgstr ""
+msgstr "עודכן ב"
 
 #. module: data_merge
 #: model:ir.model.fields,field_description:data_merge.field_data_merge_record__used_in
@@ -681,15 +727,16 @@ msgid "When enabled, duplicates across different companies will be suggested"
 msgstr ""
 
 #. module: data_merge
+#. odoo-python
 #: code:addons/data_merge/models/data_merge_record.py:0
 #, python-format
 msgid "You must select at least two %s in order to merge them."
-msgstr ""
+msgstr "יש לבחור לפחות שני %s כדי למזג אותם."
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_duplicate
 msgid "duplicate records with the '"
-msgstr ""
+msgstr "רשומות כפולות עם ה'"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_duplicate
@@ -699,9 +746,9 @@ msgstr "כאן"
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_merged
 msgid "merged into"
-msgstr ""
+msgstr "מוזגו לתוך"
 
 #. module: data_merge
 #: model_terms:ir.ui.view,arch_db:data_merge.data_merge_main
 msgid "merged into this one"
-msgstr ""
+msgstr "מוזגו לזה"

@@ -499,6 +499,7 @@ class BankReconciliationReportCustomHandler(models.AbstractModel):
                     no_convert = journal_currency and results['currency_id'] == journal_currency.id
                     if col_expr_label == 'amount_currency':
                         if no_convert:
+                            foreign_currency = journal_currency
                             col_value = 0.0
                         else:
                             foreign_currency = self.env['res.currency'].browse(results['currency_id'])

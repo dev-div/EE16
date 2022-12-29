@@ -5,10 +5,6 @@ import spreadsheet from "@spreadsheet/o_spreadsheet/o_spreadsheet_extended";
 const { Component } = owl;
 const { autofillModifiersRegistry, autofillRulesRegistry } = spreadsheet.registries;
 
-const UP = 0;
-const DOWN = 1;
-const LEFT = 2;
-const RIGHT = 3;
 //--------------------------------------------------------------------------
 // Autofill Component
 //--------------------------------------------------------------------------
@@ -48,19 +44,19 @@ autofillModifiersRegistry
             let isColumn;
             let steps;
             switch (direction) {
-                case UP:
+                case "up":
                     isColumn = false;
                     steps = -rule.current;
                     break;
-                case DOWN:
+                case "down":
                     isColumn = false;
                     steps = rule.current;
                     break;
-                case LEFT:
+                case "left":
                     isColumn = true;
                     steps = -rule.current;
                     break;
-                case RIGHT:
+                case "right":
                     isColumn = true;
                     steps = rule.current;
             }
@@ -106,13 +102,14 @@ autofillModifiersRegistry
         apply: (rule, data, getters, direction) => {
             const formulaString = data.cell.content;
             const pivotId = formulaString.match(/ODOO\.PIVOT\.POSITION\(\s*"(\w+)"\s*,/)[1];
-            if (!getters.isExistingPivot(pivotId))
+            if (!getters.isExistingPivot(pivotId)) {
                 return { cellData: { ...data.cell, content: formulaString } };
+            }
             const pivotDefinition = getters.getPivotDefinition(pivotId);
-            const fields = [UP, DOWN].includes(direction)
+            const fields = ["up", "down"].includes(direction)
                 ? pivotDefinition.rowGroupBys
                 : pivotDefinition.colGroupBys;
-            const step = [RIGHT, DOWN].includes(direction) ? 1 : -1;
+            const step = ["right", "down"].includes(direction) ? 1 : -1;
 
             const field = fields
                 .reverse()

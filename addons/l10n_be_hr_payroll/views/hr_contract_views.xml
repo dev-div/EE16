@@ -39,51 +39,51 @@
             <xpath expr="//group[@name='yearly_advantages']" position="inside">
                 <label for="commission_on_target" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}">
-                    <field name="commission_on_target" nolabel="1"/>
-                    <span>/ month</span>
+                    <field name="commission_on_target" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ month</span>
                 </div>
                 <label for="representation_fees" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}">
-                    <field name="representation_fees" nolabel="1"/>
-                    <span>/ month</span>
+                    <field name="representation_fees" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ month</span>
                 </div>
                 <label for="ip" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}">
                     <field name="ip" nolabel="1"
                            attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('ip_wage_rate', '=', 0.0)]}"/>
-                    <field name="ip_wage_rate" attrs="{'invisible': [('wage_type', '=', 'hourly')]}"/>
+                    <field name="ip_wage_rate" class="o_hr_narrow_field" attrs="{'invisible': [('wage_type', '=', 'hourly')]}"/>
                     <span>%</span>
                 </div>
                 <label for="mobile" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}">
-                    <field name="mobile" nolabel="1"/>
-                    <span>/ month</span>
+                    <field name="mobile" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ month</span>
                 </div>
                 <label for="internet" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}">
-                    <field name="internet" nolabel="1"/>
-                    <span>/ month</span>
+                    <field name="internet" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ month</span>
                 </div>
                 <field name="has_laptop" attrs="{'invisible': ['|', ('country_code', '!=', 'BE'), ('wage_type', '=', 'hourly')]}"/>
                 <label for="meal_voucher_amount" attrs="{'invisible': [('country_code', '!=', 'BE')]}"/>
                 <div class="o_row" attrs="{'invisible': [('country_code', '!=', 'BE')]}">
-                    <field name="meal_voucher_amount" nolabel="1"/>
-                    <span>/ worked day</span>
+                    <field name="meal_voucher_amount" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ worked day</span>
                 </div>
                 <label for="eco_checks" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}">
-                    <field name="eco_checks" nolabel="1"/>
-                    <span>/ year</span>
+                    <field name="eco_checks" class="o_hr_narrow_field" nolabel="1"/>
+                    <span class="ms-3">/ year</span>
                 </div>
                 <label for="l10n_be_canteen_cost" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}">
-                    <field name="l10n_be_canteen_cost"/>
-                    <span> / month</span>
+                    <field name="l10n_be_canteen_cost" class="o_hr_narrow_field"/>
+                    <span class="ms-3"> / month</span>
                 </div>
                 <label for="l10n_be_group_insurance_rate" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}"/>
                 <div class="o_row" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('country_code', '!=', 'BE')]}">
-                    <field name="l10n_be_group_insurance_rate"/>
-                    <span attrs="{'invisible': [('wage_type', '=', 'hourly')]}">%</span>
+                    <field name="l10n_be_group_insurance_rate" class="o_hr_narrow_field"/>
+                    <span class="ms-3" attrs="{'invisible': [('wage_type', '=', 'hourly')]}">%</span>
                 </div>
                 <field name="l10n_be_group_insurance_amount" invisible="1"/>
                 <field name="l10n_be_group_insurance_cost" invisible="1"/>
@@ -95,7 +95,7 @@
                     <field name="l10n_be_ambulatory_insured_adults" string="# Insured Children &gt;= 19"/>
                     <field name="l10n_be_ambulatory_insured_children" string="# Insured Children &lt; 19"/>
                     <label for="l10n_be_ambulatory_insurance_amount" attrs="{'invisible': [('l10n_be_has_ambulatory_insurance', '=', False)]}">Insurance Amount</label>
-                    <div class="o_row" attrs="{'invisible': [('l10n_be_has_ambulatory_insurance', '=', False)]}">
+                    <div class="o_row o_hr_narrow_field" attrs="{'invisible': [('l10n_be_has_ambulatory_insurance', '=', False)]}">
                         <field name="l10n_be_ambulatory_insurance_amount" nolabel="1"/>
                         <span>€ / month</span>
                     </div>
@@ -111,7 +111,7 @@
                     <field name="insured_relative_adults" attrs="{'invisible': [('has_hospital_insurance', '=', False)]}"/>
                     <field name="insured_relative_children" attrs="{'invisible': [('has_hospital_insurance', '=', False)]}"/>
                     <label for="insurance_amount" attrs="{'invisible': [('has_hospital_insurance', '=', False)]}"/>
-                    <div class="o_row" attrs="{'invisible': [('has_hospital_insurance', '=', False)]}">
+                    <div class="o_row o_hr_narrow_field" attrs="{'invisible': [('has_hospital_insurance', '=', False)]}">
                         <field name="insurance_amount" nolabel="1"/>
                         <span>€ / month</span>
                     </div>
@@ -123,14 +123,17 @@
             <xpath expr="//group[@name='salary_info']" position="after">
                 <group name="transportation" string="Transportation" attrs="{'invisible': [('country_code', '!=', 'BE')]}">
                     <group name="transportation_left">
-                        <field name="transport_mode_car" attrs="{'invisible': [('wage_type', '=', 'hourly')]}"/>
+                        <label for="transport_mode_car" attrs="{'invisible': [('wage_type', '=', 'hourly')]}"/>
+                        <div class="o_row" name="transport_mode_car" attrs="{'invisible': [('wage_type', '=', 'hourly')]}">
+                            <field name="transport_mode_car" nolabel="1"/>
+                        </div>
                         <label for="fuel_card" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('transport_mode_car', '=', False)]}"/>
                         <div class="o_row" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('transport_mode_car', '=', False)]}" name="fuel_card_div">
-                            <field name="fuel_card" nolabel="1"/>
+                            <field name="fuel_card" class="o_hr_narrow_field" nolabel="1"/>
                             <span>/ month</span>
                         </div>
                         <field name="car_atn" widget="monetary" options="{'currency_field': 'currency_id'}"
-                               attrs="{'invisible': [('transport_mode_car', '=', False)]}"/>
+                            attrs="{'invisible': [('transport_mode_car', '=', False)]}"/>
                     </group>
                     <group name="transportation_right">
                         <field name="transport_mode_train" attrs="{'invisible': [('wage_type', '=', 'hourly')]}"/>
@@ -196,7 +199,7 @@
                     <label for="fiscal_voluntary_rate"
                            attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('fiscal_voluntarism', '=', False)]}"/>
                     <div class="o_row" attrs="{'invisible': ['|', ('wage_type', '=', 'hourly'), ('fiscal_voluntarism', '=', False)]}">
-                        <field name="fiscal_voluntary_rate" nolabel="1"/>
+                        <field name="fiscal_voluntary_rate" class="o_hr_narrow_field" nolabel="1"/>
                         <span>%</span>
                     </div>
                 </group>

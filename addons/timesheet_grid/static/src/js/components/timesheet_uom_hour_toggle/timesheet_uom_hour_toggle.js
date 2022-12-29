@@ -8,16 +8,13 @@ import { TimerToggleButton } from "@timer/component/timer_toggle_button/timer_to
 import { TimesheetDisplayTimer } from "../timesheet_display_timer/timesheet_display_timer";
 
 
-const { Component, useState } = owl;
+const { Component } = owl;
 
 export class FieldTimesheetHourToggle extends Component {
 
     setup() {
         super.setup();
         this.ormService = useService("orm");
-        this.state = useState({
-            displayButton: false,
-        });
     }
 
     async _performActionAndReload(action) {
@@ -32,14 +29,6 @@ export class FieldTimesheetHourToggle extends Component {
 
     async onClickIncrease() {
         await this._performActionAndReload("action_timer_increase");
-    }
-
-    async onMouseOver() {
-        this.state.displayButton = true;
-    }
-
-    async onMouseOut() {
-        this.state.displayButton = false;
     }
 
     get TimesheetDisplayTimerProps() {

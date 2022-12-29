@@ -7,7 +7,6 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.addons.account_sepa import sanitize_communication
 from odoo.modules.module import get_module_resource
 from odoo.tests import tagged
-from odoo.tests.common import Form
 
 
 @tagged('post_install', '-at_install')
@@ -153,3 +152,35 @@ class TestSEPACreditTransfer(AccountTestInvoicingCommon):
         self.env.company.country_id = self.env.company.country_id = self.env.ref('base.se')
         self.env.company.account_fiscal_country_id = None
         self.assertEqual(self.bank_journal.sepa_pain_version, 'pain.001.001.03.se')
+
+    def test_sepa_character_conversion(self):
+        # change the partner's name and street to contain non-latin characters
+        self.partner_a.name = "ÀÎÑϐН"
+        self.partner_a.street = "íċēķθН"
+        self.partner_a.city = "City"
+        self.partner_a.country_id = self.env.ref('base.be')
+
+        payment_1 = self.createPayment(self.partner_a, 500)
+        payment_1.action_post()
+        payment_2 = self.createPayment(self.partner_a, 700)
+        payment_2.action_post()
+
+        self.bank_journal.bank_id.bic = "BBRUBEBB"
+        batch = self.env['account.batch.payment'].create({
+            'journal_id': self.bank_journal.id,
+            'payment_ids': [(4, payment.id, None) for payment in (payment_1 | payment_2)],
+            'payment_method_id': self.sepa_ct_method.id,
+            'batch_type': 'outbound',
+        })
+
+        self.assertFalse(batch.sct_generic)
+
+        wizard_action = batch.validate_batch()
+        self.assertFalse(wizard_action, "Validation wizard should not have returned an action")
+
+        ct_doc = etree.fromstring(base64.b64decode(batch.export_file))
+        namespaces = {'ns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03'}
+        name = ct_doc.findtext('.//ns:Cdtr/ns:Nm', namespaces=namespaces)
+        street = ct_doc.findtext('.//ns:Cdtr/ns:PstlAdr/ns:AdrLine', namespaces=namespaces)
+        self.assertEqual(name, "AIN.N")
+        self.assertEqual(street, "icekthN")

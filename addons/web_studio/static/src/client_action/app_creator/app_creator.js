@@ -8,7 +8,7 @@ import StandaloneFieldManagerMixin from "web.StandaloneFieldManagerMixin";
 import Widget from "web.Widget";
 import { IconCreator } from "../icon_creator/icon_creator";
 
-const { Component, onWillStart, useExternalListener, useState } = owl;
+import { Component, onWillStart, useExternalListener, useState } from "@odoo/owl";
 
 class ModelSelector extends ComponentAdapter {
     constructor() {

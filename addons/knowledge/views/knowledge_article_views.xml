@@ -268,6 +268,22 @@
                                                     <span class="o_knowledge_article_view_form_dynamic_width d-none"
                                                           attrs="{'invisible': [('full_width', '=', True)]}"/>
 
+                                                    <!-- Article Icon -->
+                                                    <div t-attf-class="o_knowledge_icon o_large #{props.record.data.cover_image_id ? 'o_overlap_cover' : ''}"
+                                                         attrs="{'invisible': [('icon', '=', False)]}">
+                                                        <div class="o_article_emoji_dropdown">
+                                                            <a class="o_article_emoji o-no-caret"
+                                                               role="button"
+                                                               t-on-click="_showEmojiPicker"
+                                                               attrs="{'invisible': ['|', '|', ('is_locked', '=', True), ('user_can_write', '=', False), ('active', '=', False)]}">
+                                                               <field name="icon" attrs="{'readonly': True }" class="d-inline"/>
+                                                           </a>
+                                                            <p class="o_article_emoji o-no-caret"
+                                                               attrs="{'invisible': [('is_locked', '=', False), ('user_can_write', '=', True), ('active', '=', True)]}">
+                                                               <field name="icon" attrs="{'readonly': True }"/>
+                                                           </p>
+                                                        </div>
+                                                    </div>
                                                     <!-- Icon and Cover buttons -->
                                                     <div class="o_knowledge_icon_cover_buttons text-muted d-print-none py-1"
                                                          attrs="{'invisible': ['|', '|', ('is_locked', '=', True), ('user_can_write', '=', False), ('active', '=', False)]}">
@@ -286,23 +302,6 @@
                                                            class="btn btn-light text-capitalize o_knowledge_add_properties o_knowledge_option_button">
                                                             <i class="fa fa-fw fa-lg fa-cog" title="Add properties"/> Add Properties
                                                         </a>
-                                                    </div>
-
-                                                    <!-- Article Icon -->
-                                                    <div t-attf-class="o_knowledge_icon o_large #{props.record.data.cover_image_id ? 'o_overlap_cover' : ''}" 
-                                                         attrs="{'invisible': [('icon', '=', False)]}">
-                                                        <div class="o_article_emoji_dropdown">
-                                                            <a class="o_article_emoji o-no-caret"
-                                                               role="button"
-                                                               t-on-click="_showEmojiPicker"
-                                                               attrs="{'invisible': ['|', '|', ('is_locked', '=', True), ('user_can_write', '=', False), ('active', '=', False)]}">
-                                                               <field name="icon" attrs="{'readonly': True }" class="d-inline"/>
-                                                           </a>
-                                                            <p class="o_article_emoji o-no-caret"
-                                                               attrs="{'invisible': [('is_locked', '=', False), ('user_can_write', '=', True), ('active', '=', True)]}">
-                                                               <field name="icon" attrs="{'readonly': True }"/>
-                                                           </p>
-                                                        </div>
                                                     </div>
                                                     <field name="category" invisible="1"/>
                                                     <!-- Article body -->

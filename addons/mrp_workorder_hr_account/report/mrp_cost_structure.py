@@ -40,5 +40,9 @@ class MrpCostStructure(models.AbstractModel):
                 cost = employee_cost * currency_rate
                 empl_cost_by_product[product].append([employee_name, op_id, wo_name, duration / 60.0, cost * currency_rate])
             for product_lines in lines:
-                product_lines['operations'] += empl_cost_by_product.get(product_lines['product'].id, [])
+                empl_cost_line = empl_cost_by_product.get(product_lines['product'].id, [])
+                cost = sum((l[-1] * l[-2] for l in empl_cost_line))
+                product_lines['operations'] += empl_cost_line
+                product_lines['total_cost_operations'] += cost
+                product_lines['total_cost'] += cost
         return lines

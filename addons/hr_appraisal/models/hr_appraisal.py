@@ -3,6 +3,7 @@
 
 import datetime
 import logging
+import pytz
 
 from dateutil.relativedelta import relativedelta
 
@@ -153,18 +154,21 @@ class HrAppraisal(models.Model):
         for appraisal in self:
             appraisal.waiting_feedback = not appraisal.employee_feedback_published or not appraisal.manager_feedback_published
 
+    @api.depends_context('uid')
     @api.depends('meeting_ids.start')
     def _compute_final_interview(self):
         today = fields.Date.today()
+        user_tz = self.env.user.tz or self.env.context.get('tz')
+        user_pytz = pytz.timezone(user_tz) if user_tz else pytz.utc
         with_meeting = self.filtered('meeting_ids')
         (self - with_meeting).date_final_interview = False
         for appraisal in with_meeting:
             all_dates = appraisal.meeting_ids.mapped('start')
             min_date, max_date = min(all_dates), max(all_dates)
             if min_date.date() >= today:
-                appraisal.date_final_interview = min_date
+                appraisal.date_final_interview = min_date.astimezone(user_pytz)
             else:
-                appraisal.date_final_interview = max_date
+                appraisal.date_final_interview = max_date.astimezone(user_pytz)
 
     @api.depends_context('lang')
     @api.depends('meeting_ids')

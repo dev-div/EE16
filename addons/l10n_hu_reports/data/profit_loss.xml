@@ -182,7 +182,7 @@
     <record id="action_account_report_hu_pl" model="ir.actions.client">
         <field name="name">Profit and loss</field>
         <field name="tag">account_report</field>
-        <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('l10n_hu_profit_loss')}"/>
+        <field name="context" eval="{'model': 'account.report', 'report_id': ref('l10n_hu_profit_loss')}"/>
     </record>
     <record id="l10n_hu_balance_sheet_D_VII_1" model="account.report.line">
         <field name="action_id" ref="action_account_report_hu_pl"/>

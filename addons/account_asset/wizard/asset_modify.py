@@ -67,15 +67,14 @@ class AssetModify(models.TransientModel):
 
     @api.depends('asset_id')
     def _get_selection_modify_options(self):
-        options = [
-            ('dispose', "Dispose"),
-            ('sell', "Sell"),
-            ('modify', "Re-evaluate"),
-            ('pause', "Pause"),
-        ]
         if self.env.context.get('resume_after_pause'):
-            options = [('resume', 'Resume')]
-        return options
+            return [('resume', _('Resume'))]
+        return [
+            ('dispose', _("Dispose")),
+            ('sell', _("Sell")),
+            ('modify', _("Re-evaluate")),
+            ('pause', _("Pause")),
+        ]
 
     @api.depends('company_id')
     def _compute_accounts(self):
@@ -288,7 +287,7 @@ class AssetModify(models.TransientModel):
             self.asset_id._create_move_before_date(self.date)
         if increase < 0:
             if self.env['account.move'].search([('asset_id', '=', self.asset_id.id), ('state', '=', 'draft'), ('date', '<=', self.date)]):
-                raise UserError('There are unposted depreciations prior to the selected operation date, please deal with them first.')
+                raise UserError(_('There are unposted depreciations prior to the selected operation date, please deal with them first.'))
             move = self.env['account.move'].create(self.env['account.move']._prepare_move_for_asset_depreciation({
                 'amount': -increase,
                 'asset_id': self.asset_id,

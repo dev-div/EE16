@@ -6,6 +6,7 @@
 # Martin Trigaux, 2022
 # 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022
 # Jeffery CHEN <jeffery9@gmail.com>, 2022
+# Raymond Yu <cl_yu@hotmail.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-04 09:41+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
+"Last-Translator: Raymond Yu <cl_yu@hotmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 #. module: delivery_dhl
 #: model_terms:ir.ui.view,arch_db:delivery_dhl.view_delivery_carrier_form_with_provider_dhl
 msgid "'rate': {}, 'ship': {}, 'return': {}"
-msgstr ""
+msgstr "'rate': {}, 'ship': {}, 'return': {}"
 
 #. module: delivery_dhl
 #: model:ir.model.fields.selection,name:delivery_dhl.selection__delivery_carrier__dhl_product_code__0
@@ -169,12 +170,12 @@ msgstr "包裹需缴税选项"
 #. module: delivery_dhl
 #: model_terms:ir.ui.view,arch_db:delivery_dhl.view_delivery_carrier_form_with_provider_dhl
 msgid "Custom Data"
-msgstr ""
+msgstr "自定义数据"
 
 #. module: delivery_dhl
 #: model:ir.model.fields,field_description:delivery_dhl.field_delivery_carrier__dhl_custom_data_request
 msgid "Custom data for DHL requests,"
-msgstr ""
+msgstr "DHL请求的自定义数据,"
 
 #. module: delivery_dhl
 #: model:ir.model.fields.selection,name:delivery_dhl.selection__delivery_carrier__dhl_product_code__d
@@ -202,7 +203,7 @@ msgstr "DHL配置"
 #: code:addons/delivery_dhl/models/delivery_dhl.py:0
 #, python-format
 msgid "DHL Documents"
-msgstr ""
+msgstr "DHL文档"
 
 #. module: delivery_dhl
 #: model:delivery.carrier,name:delivery_dhl.delivery_carrier_dhl_eu_dom
@@ -221,7 +222,7 @@ msgstr "DHL EU -> International"
 #. module: delivery_dhl
 #: model:ir.model.fields,field_description:delivery_dhl.field_delivery_carrier__dhl_default_package_type_id
 msgid "DHL Package Type"
-msgstr "DHL 包装类型"
+msgstr "DHL 包裹类型"
 
 #. module: delivery_dhl
 #: model:ir.model.fields,field_description:delivery_dhl.field_delivery_carrier__dhl_password
@@ -275,7 +276,7 @@ msgstr "DHL账号丢失，请更正你的运输方式设置"
 #: code:addons/delivery_dhl/models/dhl_request.py:0
 #, python-format
 msgid "DHL doesn't support products with name greater than 75 characters."
-msgstr ""
+msgstr "DHL不支持名称超过75字符的产品。"
 
 #. module: delivery_dhl
 #: code:addons/delivery_dhl/models/dhl_request.py:0
@@ -348,7 +349,7 @@ msgstr "英寸"
 #: code:addons/delivery_dhl/models/delivery_dhl.py:0
 #, python-format
 msgid "Invalid syntax for DHL custom data."
-msgstr ""
+msgstr "DHL自定义数据的语法无效"
 
 #. module: delivery_dhl
 #: model:ir.model.fields.selection,name:delivery_dhl.selection__delivery_carrier__dhl_product_code__j
@@ -423,7 +424,7 @@ msgstr "包裹尺寸单位"
 #. module: delivery_dhl
 #: model:ir.model.fields,field_description:delivery_dhl.field_delivery_carrier__dhl_package_weight_unit
 msgid "Package Weight Unit"
-msgstr "包装重量单位"
+msgstr "包裹重量单位"
 
 #. module: delivery_dhl
 #: code:addons/delivery_dhl/models/dhl_request.py:0
@@ -494,7 +495,7 @@ msgstr "送货方式"
 #. module: delivery_dhl
 #: model:ir.model,name:delivery_dhl.model_stock_package_type
 msgid "Stock package type"
-msgstr "库存包装类型"
+msgstr "库存包裹类型"
 
 #. module: delivery_dhl
 #: model:ir.model.fields.selection,name:delivery_dhl.selection__delivery_carrier__dhl_product_code__t
@@ -528,6 +529,9 @@ msgid ""
 "        There are 3 possible keys: 'rate', 'ship', 'return', to which you can add your custom data.\n"
 "        More info on https://xmlportal.dhl.com/"
 msgstr ""
+"DHL中的自定义数据像json文件的内部一样组织。\n"
+"        有3个可能的键：'rate'，'ship'，'return'，您可以将自定义数据添加到其中。\n"
+"        更多资料https://xmlportal.dhl.com/"
 
 #. module: delivery_dhl
 #: code:addons/delivery_dhl/models/dhl_request.py:0
@@ -594,7 +598,7 @@ msgstr "不能取消没有拣货日期的DHL装运"
 #: code:addons/delivery_dhl/models/delivery_dhl.py:0
 #, python-format
 msgid "You cannot delete the commercial invoice sequence."
-msgstr ""
+msgstr "您不能删除商业结算单序号。"
 
 #. module: delivery_dhl
 #: model:ir.model.fields.selection,name:delivery_dhl.selection__delivery_carrier__dhl_product_code__z

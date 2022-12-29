@@ -769,6 +769,14 @@ class AccountJournal(models.Model):
                 statement_data.update({'coda_note': _('Communication: ') + '\n' + statement['coda_note']})
             statement_data.update({'transactions': statement_line})
             ret_statements.append(statement_data)
+
+        # Order the transactions according the newly created statements to ensure valid balances.
+        line_sequence = 1
+        for statement_vals in reversed(ret_statements):
+            for statement_line_vals in reversed(statement_vals.get('transactions', [])):
+                statement_line_vals['sequence'] = line_sequence
+                line_sequence += 1
+
         currency_code = statement['currency']
         acc_number = statements[0] and statements[0]['acc_number'] or False
         return currency_code, acc_number, ret_statements

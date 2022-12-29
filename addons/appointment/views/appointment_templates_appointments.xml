@@ -21,7 +21,7 @@
                             method="POST">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <t t-call="appointment.appointment_type_select"/>
-                            <div t-out="appointment_types[0].message_intro" class="o_calendar_intro my-2"/>
+                            <div t-out="appointment_types[0].message_intro" class="o_appointment_intro my-2"/>
                             <div class="row">
                                 <div class="mx-auto">
                                     <button type="submit" class="btn btn-primary">Preview <span class="fa fa-arrow-right"/></button>

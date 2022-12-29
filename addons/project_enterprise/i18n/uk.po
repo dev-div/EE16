@@ -3,8 +3,8 @@
 # 	* project_enterprise
 # 
 # Translators:
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # Martin Trigaux, 2022
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # 
 msgid ""
 msgstr ""
@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:24+0000\n"
 "PO-Revision-Date: 2022-09-22 05:48+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: code:addons/project_enterprise/models/project_task.py:0
 #, python-format
 msgid "%s other task(s) for the same employee at the same time."
-msgstr ""
+msgstr "%s інші задачі для того ж співробітника у той же час."
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_form
@@ -41,6 +41,8 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
 "                    <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow icon\" title=\"Arrow\"/>\n"
+"                    <i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}\"/>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_kanban_inherited
@@ -49,6 +51,9 @@ msgid ""
 "icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', "
 "False), ('planned_date_end', '=', False)]}\"/>"
 msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_read_only\" aria-label=\"Arrow "
+"icon\" title=\"Arrow\" attrs=\"{'invisible': [('planned_date_begin', '=', "
+"False), ('planned_date_end', '=', False)]}\"/>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_sharing_project_task_view_kanban_inherited
@@ -69,6 +74,8 @@ msgstr "<i class=\"fa fa-long-arrow-right\" title=\"Arrow\"/>"
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "<span class=\"fst-italic text-muted\"><i class=\"fa fa-lock\"/> Private</span>"
 msgstr ""
+"<span class=\"fst-italic text-muted\"><i class=\"fa fa-lock\"/> "
+"Приватний</span>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
@@ -84,12 +91,12 @@ msgstr "<strong>Клієнт — </strong>"
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
 msgid "<strong>Milestone — </strong>"
-msgstr ""
+msgstr "<strong>Віхи — </strong>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_project_view_gantt
 msgid "<strong>Project Manager — </strong>"
-msgstr ""
+msgstr "<strong>Проектний менеджер — </strong>"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.project_task_view_gantt
@@ -121,7 +128,7 @@ msgstr "Скасувати"
 #: code:addons/project_enterprise/models/project_task.py:0
 #, python-format
 msgid "Caution: some tasks have not been scheduled"
-msgstr ""
+msgstr "Увага: деякі завдання не заплановано"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__create_uid
@@ -186,6 +193,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: project_enterprise
+#. openerp-web
+#: code:addons/project_enterprise/static/src/js/task_gantt_utils.js:0
+#, python-format
+msgid "Invalid scale interval"
+msgstr ""
+
+#. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard____last_update
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard____last_update
 msgid "Last Modified on"
@@ -223,6 +237,14 @@ msgstr "Мобільний"
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "No task has been scheduled in the future."
+msgstr "На майбутнє не заплановано задач."
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid ""
+"One parameter is missing to use this method. You should give a start and end"
+" dates."
 msgstr ""
 
 #. module: project_enterprise
@@ -238,7 +260,7 @@ msgstr ""
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task__overlap_warning
 msgid "Overlap Warning"
-msgstr ""
+msgstr "Попередження про перевиконання по часу"
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0
@@ -295,22 +317,22 @@ msgstr "Зберегти"
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_line_wizard__schedule_task
 msgid "Schedule Task"
-msgstr ""
+msgstr "Запланувати задачу"
 
 #. module: project_enterprise
 #: model_terms:ir.ui.view,arch_db:project_enterprise.view_task_confirm_schedule_wizard_form
 msgid "Schedule Tasks"
-msgstr ""
+msgstr "Запланувати задачі"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__selected_line_count
 msgid "Selected Line Count"
-msgstr ""
+msgstr "Підрахунок вибраних рядків"
 
 #. module: project_enterprise
 #: model:ir.model.fields,field_description:project_enterprise.field_project_task_confirm_schedule_wizard__show_warnings
 msgid "Show Warnings"
-msgstr ""
+msgstr "Показати попередження"
 
 #. module: project_enterprise
 #: code:addons/project_enterprise/models/project_task.py:0
@@ -345,7 +367,7 @@ msgstr "Завдання"
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_line_wizard
 msgid "Task confirm schedule line wizard"
-msgstr ""
+msgstr "Майстер рядка розкладу підтвердження завдання"
 
 #. module: project_enterprise
 #: model:ir.model,name:project_enterprise.model_project_task_confirm_schedule_wizard
@@ -385,6 +407,12 @@ msgstr ""
 #: code:addons/project_enterprise/wizard/task_confirm_schedule_wizard.py:0
 #, python-format
 msgid "The tasks have been successfully scheduled."
+msgstr ""
+
+#. module: project_enterprise
+#: code:addons/project_enterprise/models/project_task.py:0
+#, python-format
+msgid "This Progress Bar is not implemented."
 msgstr ""
 
 #. module: project_enterprise

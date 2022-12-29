@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
-# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # Raymond Yu <cl_yu@hotmail.com>, 2022
+# digitalliuzg8888, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:27+0000\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Raymond Yu <cl_yu@hotmail.com>, 2022\n"
+"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,30 +23,36 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #, python-format
 msgid "<b>%s suggests to delete this instruction</b>"
-msgstr ""
+msgstr "<b>%s 建议删除此指令</b>"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #, python-format
 msgid ""
 "<b>%s suggests to use this document as instruction</b><br/><img style='max-"
 "width: 75%%' class='img-fluid' src=%s/>"
 msgstr ""
+"<b>%s 建议使用此文档作为说明</b><br/><img style='max-width: 75%%' class='img-fluid' "
+"src=%s/>"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #, python-format
 msgid "<b>New Instruction suggested by %s</b><br/>%s<br/><b>Reason: %s</b>"
-msgstr ""
+msgstr "<b>建议的新指令 %s</b><br/>%s<br/><b>原因： %s</b>"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "<b>New Step suggested by %s</b><br/><b>Reason:</b>%s"
-msgstr ""
+msgstr "<b>建议的新步骤 %s</b><br/><b>原因：</b>%s"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.res_config_settings_view_form
@@ -55,7 +62,7 @@ msgstr "<i class=\"fa fa-print\"/>打印条码命令"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_operation_form_view
 msgid "<span class=\"o_stat_text\">Instructions</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">指令</span>"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_bom__activity_ids
@@ -65,7 +72,7 @@ msgstr "活动"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_bom__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "活动异常勋章"
+msgstr "活动异常装饰"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_bom__activity_state
@@ -75,9 +82,10 @@ msgstr "活动状态"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_bom__activity_type_icon
 msgid "Activity Type Icon"
-msgstr "活动类型图表"
+msgstr "活动类型图标"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.view_mrp_workorder_additional_product_wizard
 #, python-format
@@ -85,14 +93,15 @@ msgid "Add By-Product"
 msgstr "添加副产品"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Add By-product"
 msgstr "添加副产品"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.view_mrp_workorder_additional_product_wizard
@@ -101,12 +110,13 @@ msgid "Add Component"
 msgstr "添加组件"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Add a Step"
-msgstr ""
+msgstr "添加步骤"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.view_mrp_workorder_additional_product_wizard
@@ -126,7 +136,7 @@ msgstr "允许更改生产数量"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point_test_type__allow_registration
 msgid "Allow Registration"
-msgstr "允许注册"
+msgstr "允许登记"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.view_routing_steps_search
@@ -144,11 +154,11 @@ msgid "Barcode Scanned"
 msgstr "扫描到条码"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "Best Time! Congratulations!"
-msgstr ""
+msgstr "最佳时机！祝贺！"
 
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_mrp_bom
@@ -157,20 +167,21 @@ msgid "Bill of Material"
 msgstr "物料清单"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Block"
 msgstr "阻塞"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #: code:addons/mrp_workorder/wizard/propose_change.py:0
 #, python-format
 msgid "BoM feedback %s (%s)"
-msgstr ""
+msgstr "物料清单反馈%s （%s）"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__bom_product_ids
@@ -185,7 +196,7 @@ msgstr "副产品"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_tablet
 msgid "CONTINUE"
-msgstr ""
+msgstr "继续"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.quality_check_view_form_tablet
@@ -193,7 +204,7 @@ msgid "CONTINUE PRODUCTION"
 msgstr "继续生产"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Cancel"
@@ -236,11 +247,11 @@ msgid "Company"
 msgstr "公司"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "Completion Time:"
-msgstr ""
+msgstr "完成时间："
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__component_id
@@ -299,12 +310,6 @@ msgid "Custom"
 msgstr "自定义"
 
 #. module: mrp_workorder
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_1
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_1_radio
-msgid "Dark Blue"
-msgstr ""
-
-#. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_inherit_workorder
 msgid "Date"
 msgstr "日期"
@@ -312,19 +317,19 @@ msgstr "日期"
 #. module: mrp_workorder
 #: model:ir.model.fields,help:mrp_workorder.field_quality_point__test_type_id
 msgid "Defines the type of the quality control point."
-msgstr "定义质量管理点类型"
+msgstr "定义质量控制点类型"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Delete this Step"
-msgstr ""
+msgstr "删除此步骤"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__is_deleted
 msgid "Deleted in production"
-msgstr ""
+msgstr "在生产中删除"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.add_quality_check_from_tablet
@@ -384,10 +389,10 @@ msgstr "完成步骤"
 #. module: mrp_workorder
 #: model:ir.model.fields,help:mrp_workorder.field_mrp_bom__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "完美的图标，例如FA任务"
+msgstr "完美字体图标，例如 fa-tasks"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "Good Job!"
@@ -401,19 +406,7 @@ msgstr "谷歌幻灯片链接"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__worksheet_url
 msgid "Google doc URL"
-msgstr ""
-
-#. module: mrp_workorder
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_2
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_2_radio
-msgid "Green"
-msgstr "绿色"
-
-#. module: mrp_workorder
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_3
-#: model:product.template.attribute.value,name:mrp_workorder.product_attribute_value_3_radio
-msgid "Grey"
-msgstr "灰色"
+msgstr "谷歌文档网址"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_workorder_additional_product__id
@@ -435,7 +428,7 @@ msgstr "表示异常活动的图标。"
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__worksheet_document
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__worksheet_document
 msgid "Image/PDF"
-msgstr ""
+msgstr "图片/PDF"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,help:mrp_workorder.field_mrp_workorder__move_line_id
@@ -448,11 +441,10 @@ msgstr "在按数量进行质量检查的情况下，适用于质量检查的移
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.add_quality_check_from_tablet
 msgid "Instruction"
-msgstr ""
+msgstr "指令"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_routing_workcenter__quality_point_count
-#: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_routing_workcenter_tree_view_inherited
 msgid "Instructions"
 msgstr "指令"
 
@@ -485,7 +477,7 @@ msgstr "首张工单"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__is_workorder_step
 msgid "Is Workorder Step"
-msgstr "工序"
+msgstr "是工单步骤"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__is_user_working
@@ -542,6 +534,7 @@ msgid "Mark as Done and Close MO"
 msgstr "标记为完成并关闭MO"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #, python-format
 msgid "Menu"
@@ -560,7 +553,7 @@ msgstr "我的活动截止时间"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_propose_change__note
 msgid "New Instruction"
-msgstr ""
+msgstr "新指令"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.quality_check_view_form_tablet
@@ -605,7 +598,7 @@ msgstr "没有待办的工单！"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_production_workorder_tree_editable_view_inherit_workorder
 msgid "Open Tablet View"
-msgstr ""
+msgstr "打开平板视图"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_alert__workorder_id
@@ -626,7 +619,7 @@ msgstr "概述"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_tablet
 msgid "PAUSE"
-msgstr ""
+msgstr "暂停"
 
 #. module: mrp_workorder
 #: model:ir.model.fields.selection,name:mrp_workorder.selection__quality_point__test_report_type__pdf
@@ -650,24 +643,28 @@ msgid "Planning by Workcenter"
 msgstr "工作中心计划"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "Please ensure the quantity to produce is greater than 0."
 msgstr "请确保生产数量大于0。"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "Please enter a Lot/SN."
 msgstr "请输入批号/序号。"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "Please enter a positive quantity."
 msgstr "请输入正数。"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #, python-format
 msgid ""
@@ -676,6 +673,7 @@ msgid ""
 msgstr "请设定正在生产的数量且不可为零。"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "Please upload a picture."
@@ -732,7 +730,7 @@ msgstr "产品"
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.add_quality_check_from_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.view_propose_change_wizard
 msgid "Propose Change"
-msgstr ""
+msgstr "提出更改"
 
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_propose_change
@@ -740,7 +738,7 @@ msgid "Propose a change in the production"
 msgstr "生产的改变提议"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "Quality"
@@ -755,7 +753,7 @@ msgstr "质量警报"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_workorder__quality_alert_count
 msgid "Quality Alert Count"
-msgstr "质量警报次数"
+msgstr "质量警报计数"
 
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_quality_check
@@ -775,12 +773,12 @@ msgstr "待执行"
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_quality_point
 msgid "Quality Control Point"
-msgstr "质量管理节点"
+msgstr "质量控制点"
 
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_quality_point_test_type
 msgid "Quality Control Test Type"
-msgstr "质量管理测试类型"
+msgstr "质量控制测试类型"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_routing_workcenter__quality_point_ids
@@ -820,12 +818,12 @@ msgstr "生产记录"
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_workorder__additional
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__additional
 msgid "Register additional product"
-msgstr "册附加产品"
+msgstr "登记附加产品"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__bom_active
 msgid "Related Bill of Material Active"
-msgstr "相关材料清单启用"
+msgstr "相关物料清单启用"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_check__component_remaining_qty
@@ -835,7 +833,7 @@ msgstr "组件剩余数量"
 #. module: mrp_workorder
 #: model:ir.model.fields.selection,name:mrp_workorder.selection__propose_change__change_type__remove_step
 msgid "Remove Current Step"
-msgstr ""
+msgstr "移除当前步骤"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__test_report_type
@@ -858,7 +856,7 @@ msgid "Result"
 msgstr "结果"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Scrap"
@@ -873,13 +871,18 @@ msgstr "序列号"
 #. module: mrp_workorder
 #: model:ir.model.fields.selection,name:mrp_workorder.selection__propose_change__change_type__set_picture
 msgid "Set Picture"
-msgstr ""
+msgstr "设置图片"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Set a New picture"
+msgstr "设置新图片"
+
+#. module: mrp_workorder
+#: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_routing_workcenter_tree_view_inherited
+msgid "Show Instructions"
 msgstr ""
 
 #. module: mrp_workorder
@@ -888,17 +891,14 @@ msgid "Show the timer on the work order screen"
 msgstr "在专用的工单显示屏上显示计时器"
 
 #. module: mrp_workorder
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_1
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_2
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_3
 #: model:product.template,description_sale:mrp_workorder.product_template_stool
 msgid "Small wooden stool"
-msgstr ""
+msgstr "小木凳"
 
 #. module: mrp_workorder
 #: model:ir.model.fields.selection,name:mrp_workorder.selection__quality_point__source_document__operation
 msgid "Specific Page of Operation Worksheet"
-msgstr ""
+msgstr "操作工作表的特定页面"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,help:mrp_workorder.field_mrp_bom__activity_state
@@ -916,17 +916,17 @@ msgstr ""
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__operation_id
 msgid "Step"
-msgstr "步"
+msgstr "步骤"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_quality_point__source_document
 msgid "Step Document"
-msgstr ""
+msgstr "步骤文档"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_propose_change__step_id
 msgid "Step to change"
-msgstr ""
+msgstr "更改步骤"
 
 #. module: mrp_workorder
 #: model:ir.actions.act_window,name:mrp_workorder.action_mrp_workorder_show_steps
@@ -948,40 +948,31 @@ msgid "Stock Move Line"
 msgstr "库存移动明细"
 
 #. module: mrp_workorder
-#: model:product.product,name:mrp_workorder.product_product_stool_1
-#: model:product.product,name:mrp_workorder.product_product_stool_2
-#: model:product.product,name:mrp_workorder.product_product_stool_3
 #: model:product.template,name:mrp_workorder.product_template_stool
 msgid "Stool"
-msgstr ""
+msgstr "凳子"
 
 #. module: mrp_workorder
-#: model:product.product,name:mrp_workorder.product_product_stool_foot_1
-#: model:product.product,name:mrp_workorder.product_product_stool_foot_2
-#: model:product.product,name:mrp_workorder.product_product_stool_foot_3
 #: model:product.template,name:mrp_workorder.product_template_stool_foot
 msgid "Stool Foot"
-msgstr ""
+msgstr "凳脚"
 
 #. module: mrp_workorder
-#: model:product.product,name:mrp_workorder.product_product_stool_top_1
-#: model:product.product,name:mrp_workorder.product_product_stool_top_2
-#: model:product.product,name:mrp_workorder.product_product_stool_top_3
 #: model:product.template,name:mrp_workorder.product_template_stool_top
 msgid "Stool Top"
-msgstr ""
+msgstr "凳子顶部"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Suggest a Worksheet improvement"
-msgstr ""
+msgstr "建议工作表改进"
 
 #. module: mrp_workorder
 #: model:ir.actions.client,name:mrp_workorder.tablet_client_action
 msgid "Tablet Client Action"
-msgstr ""
+msgstr "平板电脑客户端操作"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_mrp_workorder__test_type
@@ -995,12 +986,13 @@ msgid "Test Type"
 msgstr "测试类型"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #, python-format
 msgid ""
 "This workcenter isn't expected to have open workorders during this period. "
 "Work hours :"
-msgstr ""
+msgstr "在此期间，此工作中心不应有未结的工作订单。工作时间 ："
 
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_res_config_settings__group_mrp_wo_tablet_timer
@@ -1032,7 +1024,7 @@ msgstr "类型"
 #. module: mrp_workorder
 #: model:ir.model.fields,field_description:mrp_workorder.field_propose_change__change_type
 msgid "Type of Change"
-msgstr ""
+msgstr "在此作业类型下不能创建批次或者序列号。要更改此设置，请在相应的作业类型下勾选“创建新的批次 / 序列号” 选项。"
 
 #. module: mrp_workorder
 #: model:ir.model.fields,help:mrp_workorder.field_mrp_bom__activity_exception_decoration
@@ -1042,28 +1034,12 @@ msgstr "记录的异常活动类型。"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_tablet
 msgid "Unblock"
-msgstr "解锁"
+msgstr "解除阻塞"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_production_tree_view_planning
 msgid "Unit of Measure"
 msgstr "计量单位"
-
-#. module: mrp_workorder
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_1
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_2
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_3
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_foot_1
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_foot_2
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_foot_3
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_top_1
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_top_2
-#: model:product.product,uom_name:mrp_workorder.product_product_stool_top_3
-#: model:product.template,uom_name:mrp_workorder.product_template_stool
-#: model:product.template,uom_name:mrp_workorder.product_template_stool_foot
-#: model:product.template,uom_name:mrp_workorder.product_template_stool_top
-msgid "Units"
-msgstr "件"
 
 #. module: mrp_workorder
 #: model:ir.actions.server,name:mrp_workorder.production_order_unplan_server_action
@@ -1078,14 +1054,14 @@ msgstr "计量单位"
 #. module: mrp_workorder
 #: model:ir.model.fields.selection,name:mrp_workorder.selection__propose_change__change_type__update_step
 msgid "Update Current Step"
-msgstr ""
+msgstr "更新当前步骤"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/menuPopup.xml:0
 #, python-format
 msgid "Update Instructions"
-msgstr ""
+msgstr "更新指令"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.quality_point_view_form_inherit_mrp
@@ -1121,11 +1097,11 @@ msgid "Value of the last barcode scanned."
 msgstr "上次扫描到的条码的值"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "Well done, you're in the Top 10!"
-msgstr ""
+msgstr "非常棒，你现在进入前10！"
 
 #. module: mrp_workorder
 #: model:ir.model,name:mrp_workorder.model_mrp_workcenter
@@ -1199,13 +1175,14 @@ msgid "Worksheet page"
 msgstr "工作记录表页面"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
-msgid "Wow, you made the the Top 5!"
+msgid "Wow, you made the Top 5!"
 msgstr ""
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/wizard/change_production_qty.py:0
 #, python-format
 msgid ""
@@ -1214,18 +1191,21 @@ msgid ""
 msgstr "无法更新已执行质量检查的正在进行的生产订单的待办数量。"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/quality.py:0
 #, python-format
 msgid "You did not set a lot/serial number for the final product"
 msgstr "请提供产品的批号/序列号"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #, python-format
 msgid "You should provide a lot/serial number for the final product"
 msgstr "您应该提供最终产品的批号/序列号"
 
 #. module: mrp_workorder
+#. odoo-python
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #: code:addons/mrp_workorder/models/mrp_workorder.py:0
 #, python-format
@@ -1240,7 +1220,7 @@ msgstr "ZPL"
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_tablet
 msgid "back"
-msgstr ""
+msgstr "返回"
 
 #. module: mrp_workorder
 #: model_terms:ir.ui.view,arch_db:mrp_workorder.mrp_workorder_view_form_tablet
@@ -1248,7 +1228,7 @@ msgid "menu"
 msgstr "菜单"
 
 #. module: mrp_workorder
-#. openerp-web
+#. odoo-javascript
 #: code:addons/mrp_workorder/static/src/components/summary_step.xml:0
 #, python-format
 msgid "minutes"
@@ -1260,17 +1240,11 @@ msgid "title"
 msgstr "标题"
 
 #. module: mrp_workorder
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_foot_1
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_foot_2
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_foot_3
 #: model:product.template,description_sale:mrp_workorder.product_template_stool_foot
 msgid "wooden stool foot"
-msgstr ""
+msgstr "木凳脚"
 
 #. module: mrp_workorder
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_top_1
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_top_2
-#: model:product.product,description_sale:mrp_workorder.product_product_stool_top_3
 #: model:product.template,description_sale:mrp_workorder.product_template_stool_top
 msgid "wooden stool top"
-msgstr ""
+msgstr "木制凳子顶部"

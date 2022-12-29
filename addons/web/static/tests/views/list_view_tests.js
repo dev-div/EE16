@@ -12,7 +12,7 @@ import { session } from "@web/session";
 import { FloatField } from "@web/views/fields/float/float_field";
 import { TextField } from "@web/views/fields/text/text_field";
 import { ListController } from "@web/views/list/list_controller";
-import { DynamicRecordList } from "@web/views/relational_model";
+import { DynamicRecordList, DynamicGroupList } from "@web/views/relational_model";
 import { actionService } from "@web/webclient/actions/action_service";
 import { makeFakeLocalizationService, makeFakeUserService } from "../helpers/mock_services";
 import { Many2XAutocomplete } from "@web/views/fields/relational_utils";
@@ -62,7 +62,7 @@ import {
 import { createWebClient, doAction, loadState } from "../webclient/helpers";
 import { makeView, setupViewRegistries } from "./helpers";
 
-const { Component, onWillStart, xml } = owl;
+import { Component, onWillStart, xml } from "@odoo/owl";
 
 const fieldRegistry = registry.category("fields");
 const serviceRegistry = registry.category("services");
@@ -80,6 +80,15 @@ function getDataRow(position) {
 
 function getGroup(position) {
     return target.querySelectorAll(".o_group_header")[position - 1];
+}
+
+/**
+ * @param {Element} el
+ * @param {string} varName
+ * @returns {string}
+ */
+function getCssVar(el, varName) {
+    return getComputedStyle(el).getPropertyValue(varName);
 }
 
 QUnit.module("Views", (hooks) => {
@@ -1071,6 +1080,41 @@ QUnit.module("Views", (hooks) => {
         assert.verifySteps([]);
     });
 
+    QUnit.test(
+        "multi_edit: clicking on a readonly field switches the focus to the next editable field",
+        async function (assert) {
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: `
+                <tree multi_edit="1">
+                    <field name="int_field" readonly="1"/>
+                    <field name="foo" />
+                </tree>`,
+            });
+
+            const firstRow = target.querySelector(".o_data_row");
+            await click(firstRow, ".o_list_record_selector input");
+
+            let intField = firstRow.querySelector("[name='int_field']");
+            intField.focus();
+            await click(intField);
+            assert.strictEqual(
+                document.activeElement.closest(".o_field_widget").getAttribute("name"),
+                "foo"
+            );
+
+            intField = firstRow.querySelector("[name='int_field']");
+            intField.focus();
+            await click(intField);
+            assert.strictEqual(
+                document.activeElement.closest(".o_field_widget").getAttribute("name"),
+                "foo"
+            );
+        }
+    );
+
     QUnit.test("save a record with an required field computed by another", async function (assert) {
         serverData.models.foo.onchanges = {
             foo(record) {
@@ -1633,7 +1677,7 @@ QUnit.module("Views", (hooks) => {
             { force: true }
         );
 
-        serverData.models.foo.fields.m2m.sortable = true;
+        serverData.models.foo.fields.m2m.store = true;
 
         await makeView({
             type: "list",
@@ -2830,11 +2874,24 @@ QUnit.module("Views", (hooks) => {
     });
 
     QUnit.test("aggregates are computed correctly", async function (assert) {
+        // map: foo record id -> qux value
+        const quxVals = { 1: 1.0, 2: 2.0, 3: 3.0, 4: 0 };
+
+        serverData.models.foo.records = serverData.models.foo.records.map((r) => ({
+            ...r,
+            qux: quxVals[r.id],
+        }));
+
         await makeView({
             type: "list",
             resModel: "foo",
             serverData,
-            arch: '<tree><field name="foo"/><field name="int_field" sum="Sum"/></tree>',
+            arch: /*xml*/ `
+                <tree>
+                    <field name="foo"/>
+                    <field name="int_field" sum="Sum"/>
+                    <field name="qux" avg="Average"/>
+                </tree>`,
             searchViewArch: `
                 <search>
                     <filter name="my_filter" string="My Filter" domain="[('id', '=', 0)]"/>
@@ -2843,23 +2900,23 @@ QUnit.module("Views", (hooks) => {
         const tbodySelectors = target.querySelectorAll("tbody .o_list_record_selector input");
         const theadSelector = target.querySelector("thead .o_list_record_selector input");
 
-        assert.strictEqual(target.querySelectorAll("tfoot td")[2].innerText, "32");
+        const getFooterTextArray = () => {
+            return [...target.querySelectorAll("tfoot td")].map((td) => td.innerText);
+        };
+
+        assert.deepEqual(getFooterTextArray(), ["", "", "32", "1.50"]);
 
         await click(tbodySelectors[0]);
         await click(tbodySelectors[3]);
-        assert.strictEqual(target.querySelectorAll("tfoot td")[2].innerText, "6");
+        assert.deepEqual(getFooterTextArray(), ["", "", "6", "0.50"]);
 
         await click(theadSelector);
-        assert.strictEqual(target.querySelectorAll("tfoot td")[2].innerText, "32");
+        assert.deepEqual(getFooterTextArray(), ["", "", "32", "1.50"]);
 
         // Let's update the view to dislay NO records
         await toggleFilterMenu(target);
         await toggleMenuItem(target, "My Filter");
-        assert.strictEqual(
-            target.querySelectorAll("tfoot td")[2].innerText,
-            "",
-            "No records, so no total."
-        );
+        assert.deepEqual(getFooterTextArray(), ["", "", "", ""]);
     });
 
     QUnit.test("aggregates are computed correctly in grouped lists", async function (assert) {
@@ -5005,6 +5062,57 @@ QUnit.module("Views", (hooks) => {
         );
     });
 
+    QUnit.test(
+        "grouped, update the count of the group (and ancestors) when a record is deleted",
+        async function (assert) {
+            serverData.models.foo.records = [
+                { id: 121, foo: "blip", bar: true },
+                { id: 122, foo: "blip", bar: true },
+                { id: 123, foo: "blip", bar: true },
+                { id: 124, foo: "blip", bar: true },
+                { id: 125, foo: "blip", bar: false },
+                { id: 126, foo: "blip", bar: false },
+            ];
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: /*xml*/ `
+                    <tree expand="1">
+                        <field name="foo"/>
+                    </tree>`,
+                groupBy: ["foo", "bar"],
+                actionMenus: {},
+            });
+            assert.strictEqual(
+                target.querySelector(".o_group_header:first-child").textContent.trim(),
+                "blip (6)"
+            );
+            assert.strictEqual(
+                target.querySelector(".o_group_header:nth-child(2)").textContent.trim(),
+                "No (2)"
+            );
+
+            const secondNestedGroup = target.querySelector(".o_group_header:nth-child(3)");
+            assert.strictEqual(secondNestedGroup.textContent.trim(), "Yes (4)");
+            await click(secondNestedGroup);
+            assert.containsN(target, ".o_data_row", 4);
+
+            await click(target.querySelector(".o_data_row input"));
+            await toggleActionMenu(target);
+            await toggleMenuItem(target, "Delete");
+            await click(target, ".modal .btn-primary");
+            assert.strictEqual(
+                target.querySelector(".o_group_header:first-child").textContent.trim(),
+                "blip (5)"
+            );
+            assert.strictEqual(
+                target.querySelector(".o_group_header:nth-child(3)").textContent.trim(),
+                "Yes (3)"
+            );
+        }
+    );
+
     QUnit.test("pager (ungrouped and grouped mode), default limit", async function (assert) {
         assert.expect(4);
 
@@ -5167,6 +5275,64 @@ QUnit.module("Views", (hooks) => {
             "2"
         );
     });
+
+    QUnit.test(
+        "pager, grouped, pager limit should be based on the group's count",
+        async function (assert) {
+            patchWithCleanup(DynamicRecordList, { WEB_SEARCH_READ_COUNT_LIMIT: 3 });
+            serverData.models.foo.records = [
+                { id: 121, foo: "blip" },
+                { id: 122, foo: "blip" },
+                { id: 123, foo: "blip" },
+                { id: 124, foo: "blip" },
+                { id: 125, foo: "blip" },
+                { id: 126, foo: "blip" },
+            ];
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: '<tree limit="2"><field name="foo"/><field name="bar"/></tree>',
+                groupBy: ["foo"],
+            });
+
+            // unfold
+            await click(target.querySelector(".o_group_header:first-of-type"));
+            assert.strictEqual(
+                target.querySelector(".o_group_header:first-of-type .o_pager_limit").innerText,
+                "6"
+            );
+        }
+    );
+
+    QUnit.test(
+        "grouped, show only limited records when the list view is initially expanded",
+        async function (assert) {
+            const forcedDefaultLimit = 3;
+            patchWithCleanup(DynamicGroupList, { DEFAULT_LIMIT: forcedDefaultLimit });
+
+            serverData.models.foo.records = [
+                { id: 121, foo: "blip" },
+                { id: 122, foo: "blip" },
+                { id: 123, foo: "blip" },
+                { id: 124, foo: "blip" },
+                { id: 125, foo: "blip" },
+                { id: 126, foo: "blip" },
+            ];
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: /*xml*/ `
+                    <tree expand="1">
+                        <field name="foo"/>
+                    </tree>`,
+                groupBy: ["foo"],
+            });
+
+            assert.containsN(target, ".o_data_row", forcedDefaultLimit);
+        }
+    );
 
     QUnit.test("list keeps offset on switchView", async (assert) => {
         assert.expect(3);
@@ -6979,9 +7145,8 @@ QUnit.module("Views", (hooks) => {
             "the carret of closed groups should be right"
         );
         assert.strictEqual(
-            value1Group.querySelector("span").style["padding-left"],
-            "2px",
-            "groups of level 1 should have a 2px padding-left"
+            getCssVar(value1Group.querySelector("span"), "--o-list-group-level").trim(),
+            "0"
         );
         assert.strictEqual(
             [...value1Group.querySelectorAll("td")].pop().textContent,
@@ -7021,9 +7186,8 @@ QUnit.module("Views", (hooks) => {
             "group should have correct name and count"
         );
         assert.strictEqual(
-            blipGroup.querySelector("span").style["padding-left"],
-            "22px",
-            "groups of level 2 should have a 22px padding-left"
+            getCssVar(blipGroup.querySelector("span"), "--o-list-group-level").trim(),
+            "1"
         );
         assert.strictEqual(
             [...blipGroup.querySelectorAll("td")].pop().textContent,
@@ -11087,9 +11251,12 @@ QUnit.module("Views", (hooks) => {
             "There should be an element creating the indentation for the subgroup."
         );
         assert.notStrictEqual(
-            target.querySelector("tr:nth-child(1) th.o_group_name .fa").style.paddingLeft,
+            getCssVar(
+                target.querySelector("tr:nth-child(1) th.o_group_name span"),
+                "--o-list-group-level"
+            ).trim(),
             "",
-            "The element creating the indentation should have a padding."
+            "The element creating the indentation should have a group level to use for margin css calculation."
         );
     });
 
@@ -11264,7 +11431,7 @@ QUnit.module("Views", (hooks) => {
     QUnit.test(
         "grouped list view move to previous page of group when all records from last page deleted",
         async function (assert) {
-            assert.expect(9);
+            assert.expect(10);
 
             let checkSearchRead = false;
             await makeView({
@@ -11320,6 +11487,63 @@ QUnit.module("Views", (hooks) => {
                 $(target).find("th.o_group_name:eq(0) .o_pager_counter").text().trim(),
                 "",
                 "should be on first page now"
+            );
+            assert.containsN(target, ".o_data_row", 2);
+        }
+    );
+
+    QUnit.test(
+        "grouped list view move to next page when all records from the current page deleted",
+        async function (assert) {
+            serverData.models.foo.records = [1, 2, 3, 4, 5, 6]
+                .map((i) => ({
+                    id: i,
+                    foo: `yop${i}`,
+                    m2o: 1,
+                }))
+                .concat([{ id: 7, foo: "blip", m2o: 2 }]);
+
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: '<tree limit="2"><field name="foo"/></tree>',
+                actionMenus: {},
+                groupBy: ["m2o"],
+            });
+
+            assert.strictEqual(
+                target.querySelector("tr.o_group_header:first-child th").textContent.trim(),
+                "Value 1 (6)"
+            );
+            assert.strictEqual(
+                target.querySelector("tr.o_group_header:nth-child(2) th").textContent.trim(),
+                "Value 2 (1)"
+            );
+            const firstGroup = target.querySelector("tr.o_group_header:first-child");
+            await click(firstGroup);
+            assert.deepEqual(getPagerValue(firstGroup), [1, 2]);
+            assert.strictEqual(getPagerLimit(firstGroup), 6);
+
+            // delete all records from current page
+            await click(target.querySelector("thead .o_list_record_selector input"));
+            await click(target, ".o_cp_action_menus .dropdown-toggle");
+            await click(
+                [...target.querySelectorAll(".dropdown-item")].filter(
+                    (el) => el.innerText === "Delete"
+                )[0]
+            );
+            await click(target, ".modal .btn-primary");
+
+            const groupLabel = "Value 1 (4)";
+            const pagerText = "1-2 / 4";
+            assert.strictEqual(
+                target.querySelector(".o_group_header:nth-child(1) .o_group_name").textContent,
+                `${groupLabel} ${pagerText}`
+            );
+            assert.deepEqual(
+                [...target.querySelectorAll(".o_data_row")].map((row) => row.textContent),
+                ["yop3", "yop4"]
             );
         }
     );
@@ -14666,6 +14890,13 @@ QUnit.module("Views", (hooks) => {
         };
         const webClient = await createWebClient({ serverData });
 
+        patchWithCleanup(webClient.env.services.notification, {
+            add: (message, options) => {
+                assert.step(options.title.toString());
+                assert.step(message.toString());
+            },
+        });
+
         await doAction(webClient, 1);
         assert.deepEqual(
             [...target.querySelectorAll(".o_data_cell")].map((el) => el.textContent),
@@ -14674,13 +14905,15 @@ QUnit.module("Views", (hooks) => {
 
         await click(target.querySelector(".o_data_cell"));
         await editInput(target, '.o_data_cell [name="foo"] input', "");
-        await assert.rejects(doAction(webClient, 2));
+        await doAction(webClient, 2);
         assert.deepEqual(
             [...target.querySelectorAll(".o_data_cell")].map((el) => el.textContent),
             ["", "blip", "gnap", "blip"]
         );
         assert.hasClass(target.querySelector('.o_data_cell [name="foo"]'), "o_field_invalid");
         assert.containsN(target, ".o_data_row", 4);
+
+        assert.verifySteps(["Invalid fields: ", "<ul><li>Foo</li></ul>"]);
     });
 
     QUnit.test("Auto save: add a record and change page", async function (assert) {
@@ -15092,6 +15325,50 @@ QUnit.module("Views", (hooks) => {
         assert.containsOnce(target, ".o_group_open");
         assert.containsN(target, ".o_data_row", 3);
     });
+
+    QUnit.test(
+        "go to the next page after leaving and coming back to a grouped list view",
+        async (assert) => {
+            serverData.views = {
+                "foo,false,list": `<tree groups_limit="1"><field name="foo"/></tree>`,
+                "foo,false,search": "<search/>",
+                "foo,false,form": "<form/>",
+            };
+            const webClient = await createWebClient({ serverData });
+            await doAction(webClient, {
+                name: "Partners",
+                res_model: "foo",
+                type: "ir.actions.act_window",
+                views: [
+                    [false, "list"],
+                    [false, "form"],
+                ],
+                context: {
+                    group_by: ["bar"],
+                },
+            });
+            assert.containsOnce(target, ".o_list_view");
+            assert.containsOnce(target, ".o_group_header");
+            assert.strictEqual(target.querySelector(".o_group_header").textContent, "No (1) ");
+
+            // unfold the second group
+            await click(target, ".o_group_header");
+            assert.containsOnce(target, ".o_group_open");
+            assert.containsOnce(target, ".o_data_row");
+
+            // open a record and go back
+            await click(target.querySelector(".o_data_cell"));
+            assert.containsOnce(target, ".o_form_view");
+
+            await click(target.querySelector(".breadcrumb-item a"));
+            assert.containsOnce(target, ".o_group_header");
+            assert.strictEqual(target.querySelector(".o_group_header").textContent, "No (1) ");
+
+            await pagerNext(target);
+            assert.containsOnce(target, ".o_group_header");
+            assert.strictEqual(target.querySelector(".o_group_header").textContent, "Yes (3) ");
+        }
+    );
 
     QUnit.test("keep order after grouping", async (assert) => {
         serverData.models.foo.fields.foo.sortable = true;
@@ -15682,7 +15959,12 @@ QUnit.module("Views", (hooks) => {
                 </list>
             `,
         });
-        assert.containsN(target, ".test_widget", 4, "there should be one widget per record");
+        assert.containsN(
+            target,
+            "td .test_widget",
+            4,
+            "there should be one widget (inside td) per record"
+        );
         assert.deepEqual(
             [...target.querySelectorAll(".test_widget")].map((w) => w.textContent),
             ["true", "true", "true", "false"],
@@ -15715,6 +15997,7 @@ QUnit.module("Views", (hooks) => {
             assert.containsOnce(target, "[name='foo'] input");
 
             await click(target.querySelectorAll(".o_data_cell")[0]);
+            await nextTick();
             assert.containsOnce(target, ".o_dialog_error");
 
             await click(target, ".o_dialog_error .btn-primary.o-default-button");
@@ -15722,6 +16005,7 @@ QUnit.module("Views", (hooks) => {
             assert.hasClass(target.querySelectorAll(".o_data_row")[1], "o_selected_row");
 
             await click(target.querySelectorAll(".o_data_cell")[0]);
+            await nextTick();
             assert.containsOnce(target, ".o_dialog_error");
 
             await click(target, ".o_dialog_error .btn-primary.o-default-button");

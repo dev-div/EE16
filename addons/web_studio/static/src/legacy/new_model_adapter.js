@@ -4,7 +4,7 @@ import NewModel from "web_studio.NewModel";
 import { ComponentAdapter } from "web.OwlCompatibility";
 import { useService } from "@web/core/utils/hooks";
 
-const { Component, onWillUpdateProps, xml } = owl;
+import { Component, onWillUpdateProps, xml } from "@odoo/owl";
 
 class NewModelItemAdapter extends ComponentAdapter {
     setup() {
@@ -15,7 +15,7 @@ class NewModelItemAdapter extends ComponentAdapter {
         if (ev.name === "reload_menu_data") {
             this.props.reloadMenuData(ev);
         } else if (ev.name === "menu_clicked") {
-            this.props.editNewModel(ev);
+            this.props.editNewModel(Object.assign({}, ev, {detail: ev.data}));
         }
         super._trigger_up(...arguments);
     }

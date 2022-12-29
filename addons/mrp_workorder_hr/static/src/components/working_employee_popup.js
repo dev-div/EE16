@@ -12,7 +12,7 @@ export class WorkingEmployeePopup extends Component {
         this.orm = useService('orm');
         this.workorderId = this.props.popupData.workorderId;
 
-        onWillStart(() => this._getState())
+        onWillStart(() => this._getState());
     }
 
     addEmployee() {
@@ -31,6 +31,8 @@ export class WorkingEmployeePopup extends Component {
         this.lines.map(l => {
             if (l.employee_id === employeeId) {
                 l.ongoing = false;
+                const additionalDuration = moment(new Date()).diff(l.start, 'seconds') / 60;
+                l.duration += additionalDuration;
             }
         });
         this.render();
@@ -40,6 +42,7 @@ export class WorkingEmployeePopup extends Component {
         this.props.onStartEmployee(employeeId);
         this.lines.map(l => {
             if (l.employee_id === employeeId) {
+                l.start = moment(new Date());
                 l.ongoing = true;
             }
         });
@@ -50,7 +53,7 @@ export class WorkingEmployeePopup extends Component {
         this.props.onClosePopup('WorkingEmployeePopup', true);
     }
 
-   async _getState() {
+    async _getState() {
         const productivityLines = await this.orm.call('mrp.workcenter.productivity', 'read_group', [
             [
                 ['workorder_id', '=', this.workorderId],
@@ -59,21 +62,23 @@ export class WorkingEmployeePopup extends Component {
             ['duration', 'date_start:array_agg', 'date_end:array_agg'],
             ['employee_id']
         ]);
+        const now = moment(new Date());
         this.lines = productivityLines.map((pl) => {
             let duration = pl.duration;
             const ongoingTimerIndex = pl.date_end.indexOf(null);
-            if ( ongoingTimerIndex != -1 ){
-                const additionalDuration = moment(new Date()).diff(moment(time.auto_str_to_date(pl.date_start[ongoingTimerIndex])), 'minutes');
+            if (ongoingTimerIndex != -1) {
+                const additionalDuration = now.diff(moment(time.auto_str_to_date(pl.date_start[ongoingTimerIndex])), 'seconds') / 60;
                 duration += additionalDuration;
             }
             return {
                 'employee_id': pl.employee_id[0],
                 'employee_name': pl.employee_id[1],
+                'start': now,
                 'duration': duration,
                 'ongoing': pl.date_end.some(d => !d),
-            }
-        })
-   }
+            };
+        });
+    }
 }
 
 WorkingEmployeePopup.components = { MrpTimer };

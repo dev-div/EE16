@@ -6,7 +6,8 @@ from odoo.exceptions import ValidationError, UserError
 from odoo.models import MAGIC_COLUMNS
 from odoo.osv.expression import OR
 from odoo.tools import get_lang
-from odoo.tools.misc import format_datetime, format_date
+from odoo.tools.misc import format_datetime, format_date, partition as tools_partition
+from collections.abc import Iterable
 
 from datetime import datetime, date
 import psycopg2
@@ -16,6 +17,7 @@ import logging
 import operator as py_operator
 
 _logger = logging.getLogger(__name__)
+ALLOWED_COMPANY_OPERATORS = ['not in', 'in', '=', '!=', 'ilike', 'not ilike', 'like', 'not like']
 
 
 class DataMergeRecord(models.Model):
@@ -51,17 +53,65 @@ class DataMergeRecord(models.Model):
     #############
     ### Searchs
     #############
+
     def _search_company_id(self, operator, value):
-        records = self.with_context(active_test=False).search([])
-        if operator == 'in':
-            records = records.filtered(lambda r: r.company_id.id in value)
-        elif operator in ['=', '!=']:
-            op = py_operator.eq if operator == "=" else py_operator.ne
-            convert_to_compare = lambda r: bool(r) if isinstance(value, bool) else r
-            records = records.filtered(lambda r: op(convert_to_compare(r.company_id.id), value))
-        else:
+        """ Build a subquery to be used in the domain returned by this search method.
+
+            There can be two types of res_model_names regarding the company_id field.
+            Either the corresponding env[res_model_name] records have a company_id field or they don't.
+            In the first case we add a where condition for each distinct res_model_name.
+            In the second case we either return all the records or no records, depending
+            on the (operator, value) pair.
+        """
+        if operator not in ALLOWED_COMPANY_OPERATORS:
             raise NotImplementedError()
-        return [('id', 'in', records.ids)]
+        # Initial select id query to apply ir.rules and build Query object.
+        query = self.env['data_merge.record'].with_context(active_test=False)._search([])
+        self._cr.execute("""SELECT DISTINCT res_model_name FROM data_merge_record""")
+        res_model_names_w_company_field, res_model_names_wo_company_field = tools_partition(
+            lambda name: self.env[name]._fields.get('company_id'),
+            (name for (name,) in self._cr.fetchall())
+        )
+        if not res_model_names_w_company_field and not res_model_names_wo_company_field:
+            return [('id', 'in', query)]
+        subquery = """({} OR {})"""
+        no_company_field_query_part, company_field_query_part = "", ""
+        no_company_field_query_params, company_field_query_params = [], []
+        if res_model_names_wo_company_field:
+            no_company_field_query_part = """(res_model_name IN %s AND %s)"""
+            # Check if we should return all records for res_model_names without a company_id field.
+            if (operator in ('not ilike', 'not like') or (operator in ('=', 'ilike', 'like') and not value) or (operator == '!=' and value)
+                    or (isinstance(value, Iterable) and ((operator == 'in' and False in value) or (operator == 'not in' and False not in value)))):
+                no_company_field_query_params += [tuple(res_model_names_wo_company_field), True]
+            else:
+                no_company_field_query_params += [tuple(res_model_names_wo_company_field), False]
+        if res_model_names_w_company_field:
+            company_field_query_part = """
+                    data_merge_record.id IN (
+                    SELECT data_merge_record.id
+                    FROM data_merge_record
+                    WHERE {}
+                )
+            """
+            where_conditions = []
+            for res_model_name in res_model_names_w_company_field:
+                res_model_query, res_model_query_params = self.env[res_model_name].with_context(active_test=False)._search(
+                    [('company_id', operator, value)], order='id asc'
+                ).select()
+                # Optimization when _search returns [].
+                if not res_model_query:
+                    continue
+                where_conditions.append("""
+                    (data_merge_record.res_model_name = %s AND data_merge_record.res_id IN ({}))
+                    """.format(res_model_query)
+                )
+                company_field_query_params.extend([res_model_name] + res_model_query_params)
+            company_field_query_part = company_field_query_part.format(" OR ".join(where_conditions))
+        query.add_where(
+            subquery.format(no_company_field_query_part or "FALSE", company_field_query_part or "FALSE"),
+            no_company_field_query_params + company_field_query_params
+        )
+        return [('id', 'in', query)]
 
     #############
     ### Computes
@@ -215,7 +265,7 @@ class DataMergeRecord(models.Model):
         model_name = set(self.mapped('res_model_name')) or {}
 
         if len(model_name) != 1:
-            raise ValidationError('Records must be of the same model')
+            raise ValidationError(_('Records must be of the same model'))
 
         model = model_name.pop()
         ids = self.mapped('res_id')
@@ -342,7 +392,7 @@ class DataMergeRecord(models.Model):
                             else:
                                 _logger.warning('Query %s failed', query)
                         except psycopg2.Error:
-                            raise ValidationError('Query Failed.')
+                            raise ValidationError(_('Query Failed.'))
 
         self._merge_additional_models(destination, source_ids)
         fields_to_recompute = [f.name for f in destination._fields.values() if f.compute and f.store]
@@ -400,7 +450,7 @@ class DataMergeRecord(models.Model):
                     else:
                         _logger.warning('Query %s failed', query)
                 except psycopg2.Error:
-                    raise ValidationError('Query Failed.')
+                    raise ValidationError(_('Query Failed.'))
 
     #############
     ### Override
@@ -414,7 +464,7 @@ class DataMergeRecord(models.Model):
             record = self.env[group.res_model_name].browse(vals['res_id'])
 
             if not record.exists():
-                raise ValidationError('The referenced record does not exist')
+                raise ValidationError(_('The referenced record does not exist'))
         return super().create(vals_list)
 
 

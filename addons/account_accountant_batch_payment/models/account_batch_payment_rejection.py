@@ -53,6 +53,7 @@ class AccountBatchPaymentRejection(models.TransientModel):
         to_reject = self.rejected_payment_ids.move_id - to_unlink
         if to_unlink:
             to_unlink.button_draft()
+            to_unlink.button_cancel()
         if to_reject:
             to_reject._reverse_moves(cancel=True)
         return True

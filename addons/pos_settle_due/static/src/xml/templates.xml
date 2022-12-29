@@ -4,7 +4,7 @@
      <t t-name="PartnerLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">
         <xpath expr="//td[hasclass('partner-line-balance')]" position="inside">
             <div class="partner-due pos-right-align" t-if="props.partner.total_due">
-                <t t-esc="env.pos.format_currency(props.partner.total_due)"/>
+                Total due: <t t-esc="env.pos.format_currency(props.partner.total_due)"/>
             </div>
         </xpath>
     </t>

@@ -3,7 +3,7 @@
 import { getActiveHotkey } from "@web/core/hotkeys/hotkey_service";
 import { useBus } from "@web/core/utils/hooks";
 
-const { useComponent, useEffect, useRef, useEnv } = owl;
+import { useComponent, useEffect, useRef, useEnv } from "@odoo/owl";
 
 /**
  * This hook is meant to be used by field components that use an input or
@@ -145,7 +145,7 @@ export function useInputField(params) {
                 return;
             }
 
-            if (val !== component.props.value) {
+            if ((val || false) !== (component.props.value || false)) {
                 await component.props.update(val);
                 lastSetValue = inputRef.el.value;
                 if (component.props.setDirty) {

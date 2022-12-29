@@ -5,7 +5,7 @@ import { useDebounced } from "@web/core/utils/timing";
 import { getActiveHotkey } from "@web/core/hotkeys/hotkey_service";
 import { usePosition } from "@web/core/position_hook";
 
-const { Component, useExternalListener, useRef, useState } = owl;
+import { Component, useExternalListener, useRef, useState } from "@odoo/owl";
 
 export class AutoComplete extends Component {
     setup() {
@@ -69,11 +69,12 @@ export class AutoComplete extends Component {
     }
 
     loadSources(useInput) {
-        const sources = [];
+        this.sources = [];
+        this.state.activeSourceOption = null;
         const proms = [];
         for (const pSource of this.props.sources) {
             const source = this.makeSource(pSource);
-            sources.push(source);
+            this.sources.push(source);
 
             const options = this.loadOptions(
                 pSource.options,
@@ -93,7 +94,6 @@ export class AutoComplete extends Component {
         }
 
         Promise.all(proms).then(() => {
-            this.sources = sources;
             this.navigate(0);
         });
     }
@@ -186,7 +186,9 @@ export class AutoComplete extends Component {
 
             if (source) {
                 const optionIndex = step < 0 ? source.options.length - 1 : 0;
-                this.state.activeSourceOption = [sourceIndex, optionIndex];
+                if (optionIndex < source.options.length) {
+                    this.state.activeSourceOption = [sourceIndex, optionIndex];
+                }
             }
         }
     }

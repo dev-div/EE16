@@ -3,18 +3,20 @@
 # 	* pos_iot
 # 
 # Translators:
-# Ákos Nagy <akos.nagy@oregional.hu>, 2019
-# gezza <geza.nagy@oregional.hu>, 2019
-# Martin Trigaux, 2019
-# krnkris, 2019
+# gezza <geza.nagy@oregional.hu>, 2022
+# Zsolt Godó <zsolttokio@gmail.com>, 2022
+# Ákos Nagy <akos.nagy@oregional.hu>, 2022
+# Martin Trigaux, 2022
+# krnkris, 2022
+# Tamás Németh <ntomasz81@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server saas~15.2+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-23 11:37+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: krnkris, 2019\n"
+"POT-Creation-Date: 2022-02-11 15:05+0000\n"
+"PO-Revision-Date: 2022-09-22 05:48+0000\n"
+"Last-Translator: Tamás Németh <ntomasz81@gmail.com>, 2022\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr ""
 
 #. module: pos_iot
 #: model_terms:ir.ui.view,arch_db:pos_iot.res_config_view_form_inherit_pos_iot
-msgid "Accept payments with a SIX payment terminal"
+msgid "Accept payments with a Worldline payment terminal"
 msgstr ""
 
 #. module: pos_iot
@@ -34,14 +36,28 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "Access your"
 msgstr ""
 
 #. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
+#, python-format
+msgid "Action identifier:"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
+#, python-format
+msgid "Amount:"
+msgstr "Összeg:"
+
+#. module: pos_iot
 #: model_terms:ir.ui.view,arch_db:pos_iot.pos_iot_config_view_form
-msgid "Barcode Scanners"
+msgid "Barcode Scanners/Card Readers"
 msgstr ""
 
 #. module: pos_iot
@@ -56,14 +72,14 @@ msgstr "Készpénz fiók"
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "Click on Advanced/Show Details/Details/More information"
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid ""
 "Click on Proceed to .../Add Exception/Visit this website/Go on to the "
@@ -72,15 +88,15 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "Close this window and try again"
-msgstr ""
+msgstr "Zárja be ezt az ablakot és próbálja újra"
 
 #. module: pos_iot
 #: model:ir.model,name:pos_iot.model_res_config_settings
 msgid "Config Settings"
-msgstr "Beállítások konfigurálása"
+msgstr "Beállítások módosítása"
 
 #. module: pos_iot
 #. openerp-web
@@ -91,7 +107,7 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/iot.js:0
+#: code:addons/pos_iot/static/src/js/iot_longpolling.js:0
 #: code:addons/pos_iot/static/src/js/payment.js:0
 #, python-format
 msgid "Connection to IoT Box failed"
@@ -99,8 +115,6 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/chrome.js:0
-#: code:addons/pos_iot/static/src/js/close_session.js:0
 #: code:addons/pos_iot/static/src/js/payment.js:0
 #, python-format
 msgid "Connection to terminal failed"
@@ -108,7 +122,7 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/scale.js:0
+#: code:addons/pos_iot/static/src/js/ScaleScreen.js:0
 #, python-format
 msgid "Could not connect to IoT scale"
 msgstr ""
@@ -119,9 +133,14 @@ msgid "Customer Display"
 msgstr ""
 
 #. module: pos_iot
-#: model:ir.model.fields,field_description:pos_iot.field_pos_config__iface_customer_facing_display
+#: model:ir.model.fields,field_description:pos_iot.field_pos_config__iface_customer_facing_display_via_proxy
 msgid "Customer Facing Display"
 msgstr ""
+
+#. module: pos_iot
+#: model_terms:ir.ui.view,arch_db:pos_iot.res_config_view_form_inherit_pos_iot
+msgid "Documentation"
+msgstr "Dokumentáció"
 
 #. module: pos_iot
 #: model:ir.model.fields,field_description:pos_iot.field_pos_config__iface_electronic_scale
@@ -130,8 +149,18 @@ msgid "Electronic Scale"
 msgstr "Elektronikus mérleg"
 
 #. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/LastTransactionStatus.js:0
+#, python-format
+msgid "Electronic payment in progress"
+msgstr ""
+
+#. module: pos_iot
 #: model:ir.model.fields,help:pos_iot.field_pos_config__iface_scan_via_proxy
-msgid "Enable barcode scanning with a remotely connected barcode scanner."
+#: model:ir.model.fields,help:pos_iot.field_pos_config__iface_scanner_ids
+msgid ""
+"Enable barcode scanning with a remotely connected barcode scanner and card "
+"swiping with a Vantiv card reader."
 msgstr ""
 
 #. module: pos_iot
@@ -141,21 +170,21 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/close_session.js:0
-#, python-format
-msgid "Error performing balance"
-msgstr ""
-
-#. module: pos_iot
-#. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "Firefox only : Click on Confirm Security Exception"
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/ScaleScreen.xml:0
+#, python-format
+msgid "Get Weight"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid ""
 "If you are on a secure server (HTTPS) check if you accepted the certificate:"
@@ -193,7 +222,7 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "IoT Box Homepage"
 msgstr ""
@@ -210,7 +239,7 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/scale.js:0
+#: code:addons/pos_iot/static/src/js/ProductScreen.js:0
 #, python-format
 msgid ""
 "It seems that no scale was detected.\n"
@@ -219,14 +248,21 @@ msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/scale.js:0
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
+#, python-format
+msgid "Last Transaction Status"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/ProductScreen.js:0
 #, python-format
 msgid "No Scale Detected"
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
 #, python-format
 msgid "Ok"
 msgstr "Ok"
@@ -245,7 +281,6 @@ msgstr ""
 #. module: pos_iot
 #. openerp-web
 #: code:addons/pos_iot/static/src/js/payment.js:0
-#: code:addons/pos_iot/static/src/js/payment.js:0
 #, python-format
 msgid "Payment terminal error"
 msgstr ""
@@ -253,18 +288,32 @@ msgstr ""
 #. module: pos_iot
 #. openerp-web
 #: code:addons/pos_iot/static/src/js/payment.js:0
-#: code:addons/pos_iot/static/src/xml/pos.xml:0
+#: code:addons/pos_iot/static/src/xml/IoTErrorPopup.xml:0
 #, python-format
 msgid "Please check if the IoT Box is still connected."
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/chrome.js:0
-#: code:addons/pos_iot/static/src/js/close_session.js:0
 #: code:addons/pos_iot/static/src/js/payment.js:0
 #, python-format
 msgid "Please check if the terminal is still connected."
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/payment.js:0
+#, python-format
+msgid ""
+"Please check the network connection and then check the status of the last "
+"transaction manually."
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/Chrome.js:0
+#, python-format
+msgid "Please process or cancel the current transaction."
 msgstr ""
 
 #. module: pos_iot
@@ -278,6 +327,11 @@ msgid "Point of Sale Payment Methods"
 msgstr ""
 
 #. module: pos_iot
+#: model:ir.model,name:pos_iot.model_pos_session
+msgid "Point of Sale Session"
+msgstr "Értékesítési Pont Értékesítési folyamat"
+
+#. module: pos_iot
 #: model:ir.model.fields,field_description:pos_iot.field_pos_config__iface_print_via_proxy
 msgid "Print via Proxy"
 msgstr "Nyomtatás proxy-n keresztül"
@@ -288,42 +342,25 @@ msgid "Receipt Printer"
 msgstr "Bizonylat nyugta nyomtató"
 
 #. module: pos_iot
-#: model_terms:ir.ui.view,arch_db:pos_iot.res_config_view_form_inherit_pos_iot
-msgid "SIX"
-msgstr ""
-
-#. module: pos_iot
-#: model:ir.model.fields,field_description:pos_iot.field_res_config_settings__six_payment_terminal
-msgid "SIX Payment Terminal"
-msgstr ""
-
-#. module: pos_iot
 #: model:ir.model.fields,field_description:pos_iot.field_pos_config__iface_scan_via_proxy
 msgid "Scan via Proxy"
-msgstr "Leolvasás proxy-n keresztül"
+msgstr "Leolvasás proxyn keresztül"
 
 #. module: pos_iot
-#. openerp-web
-#: code:addons/pos_iot/static/src/js/chrome.js:0
-#, python-format
-msgid "Send Balance"
-msgstr ""
-
-#. module: pos_iot
-#: model:ir.model.fields,help:pos_iot.field_pos_config__iface_customer_facing_display
+#: model:ir.model.fields,help:pos_iot.field_pos_config__iface_customer_facing_display_via_proxy
 msgid "Show checkout to customers with a remotely-connected screen."
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/chrome.js:0
+#: code:addons/pos_iot/static/src/js/payment.js:0
 #, python-format
-msgid "Terminal Error"
+msgid "Terminal Disconnected"
 msgstr ""
 
 #. module: pos_iot
 #. openerp-web
-#: code:addons/pos_iot/static/src/js/scale.js:0
+#: code:addons/pos_iot/static/src/js/ScaleScreen.js:0
 #, python-format
 msgid "The IoT scale is not responding. You should check your connection."
 msgstr ""
@@ -336,16 +373,59 @@ msgid ""
 msgstr ""
 
 #. module: pos_iot
+#: model:ir.model.fields,help:pos_iot.field_res_config_settings__worldline_payment_terminal
 #: model_terms:ir.ui.view,arch_db:pos_iot.res_config_view_form_inherit_pos_iot
 msgid ""
-"The transactions are processed by Six. Set your Six device on the related "
-"payment method."
+"The transactions are processed by Worldline. Set your Worldline device on "
+"the related payment method."
 msgstr ""
 
 #. module: pos_iot
-#: model_terms:ir.ui.view,arch_db:pos_iot.pos_iot_session_view_form
-msgid "Validate Closing & Post Entries"
-msgstr "Bezárás jóváhagyása és a tételek küldése"
+#. openerp-web
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
+#, python-format
+msgid "Time:"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/payment.js:0
+#, python-format
+msgid "Transaction could not be cancelled"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/Chrome.js:0
+#, python-format
+msgid "Transaction in progress"
+msgstr ""
+
+#. module: pos_iot
+#: model_terms:ir.ui.view,arch_db:pos_iot.res_config_view_form_inherit_pos_iot
+msgid "Worldline"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/xml/LastTransactionStatus.xml:0
+#, python-format
+msgid "Worldline - Last Transaction Status"
+msgstr ""
+
+#. module: pos_iot
+#: model:ir.model.fields,field_description:pos_iot.field_res_config_settings__worldline_payment_terminal
+msgid "Worldline Payment Terminal"
+msgstr ""
+
+#. module: pos_iot
+#. openerp-web
+#: code:addons/pos_iot/static/src/js/LastTransactionStatus.js:0
+#, python-format
+msgid ""
+"You cannot check the status of the last transaction when a payment in in "
+"progress."
+msgstr ""
 
 #. module: pos_iot
 #. openerp-web

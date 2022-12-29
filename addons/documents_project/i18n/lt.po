@@ -3,16 +3,20 @@
 # 	* documents_project
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Linas Versada <linaskrisiukenas@gmail.com>, 2019
+# Antanas Muliuolis <an.muliuolis@gmail.com>, 2022
+# Ramunė ViaLaurea <ramune.vialaurea@gmail.com>, 2022
+# Audrius Palenskis <audrius.palenskis@gmail.com>, 2022
+# Martin Trigaux, 2022
+# Linas Versada <linaskrisiukenas@gmail.com>, 2022
+# Jonas Zinkevicius <jozi@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 11:38+0000\n"
-"PO-Revision-Date: 2019-08-26 09:35+0000\n"
-"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-09-27 15:41+0000\n"
+"PO-Revision-Date: 2022-09-22 05:46+0000\n"
+"Last-Translator: Jonas Zinkevicius <jozi@odoo.com>, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,15 +25,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. module: documents_project
-#: model_terms:ir.ui.view,arch_db:documents_project.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+#: code:addons/documents_project/models/project_project.py:0
+#, python-format
+msgid "%(project_name)s's Documents"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_documents_workflow_rule
@@ -37,21 +36,28 @@ msgid ""
 "A set of condition and actions which will be available to all attachments "
 "matching the conditions"
 msgstr ""
+"Sąlygų ir veiksmų, kurie bus prieinami visiems sąlygas atitinkantiems "
+"priedams, rinkinys"
 
 #. module: documents_project
-#: model_terms:ir.ui.view,arch_db:documents_project.res_config_settings_view_form
-msgid "Centralize files attached to projects and tasks"
+#: model:documents.workflow.rule,name:documents_project.documents_project_rule_ask_for_validation
+msgid "Ask for Validation"
+msgstr "Prašyti patvirtinimo"
+
+#. module: documents_project
+#: model:ir.model,name:documents_project.model_ir_attachment
+msgid "Attachment"
+msgstr "Prisegtukas"
+
+#. module: documents_project
+#: model_terms:ir.ui.view,arch_db:documents_project.edit_project_document_form_inherit
+msgid "Categorize and share your documents with your customers"
 msgstr ""
 
 #. module: documents_project
-#: model:ir.model,name:documents_project.model_res_company
-msgid "Companies"
-msgstr "Įmonės"
-
-#. module: documents_project
-#: model:ir.model,name:documents_project.model_res_config_settings
-msgid "Config Settings"
-msgstr "Konfigūracijos nustatymai"
+#: model:ir.model,name:documents_project.model_documents_facet
+msgid "Category"
+msgstr "Kategorija"
 
 #. module: documents_project
 #: model:ir.model.fields,field_description:documents_project.field_documents_workflow_rule__create_model
@@ -61,39 +67,115 @@ msgstr "Sukurti"
 #. module: documents_project
 #: model:documents.workflow.rule,name:documents_project.documents_project_rule
 msgid "Create a Task"
-msgstr ""
+msgstr "Sukurti užduotį"
 
 #. module: documents_project
-#: model_terms:ir.ui.view,arch_db:documents_project.res_config_settings_view_form
+#: model:ir.model.fields,field_description:documents_project.field_project_project__documents_tag_ids
 msgid "Default Tags"
+msgstr "Žymos pagal nutylėjimą"
+
+#. module: documents_project
+#: model:documents.workflow.rule,name:documents_project.documents_project_rule_deprecate
+msgid "Deprecate"
+msgstr "Nurašyti"
+
+#. module: documents_project
+#: model:documents.tag,name:documents_project.documents_project_status_deprecated
+msgid "Deprectated"
 msgstr ""
 
 #. module: documents_project
-#: model:ir.model.fields,field_description:documents_project.field_res_company__documents_project_settings
-msgid "Documents Project Settings"
+#: model:ir.model,name:documents_project.model_documents_document
+#: model:ir.model.fields,field_description:documents_project.field_ir_attachment__document_ids
+msgid "Document"
+msgstr "Dokumentas"
+
+#. module: documents_project
+#: code:addons/documents_project/models/project_project.py:0
+#: model:ir.actions.act_window,name:documents_project.action_view_documents_project_task
+#: model:ir.model.fields,field_description:documents_project.field_project_project__use_documents
+#: model:ir.model.fields,field_description:documents_project.field_project_task__document_ids
+#: model_terms:ir.ui.view,arch_db:documents_project.portal_my_task
+#: model_terms:ir.ui.view,arch_db:documents_project.portal_tasks_list
+#: model_terms:ir.ui.view,arch_db:documents_project.project_view_kanban_inherit_documents
+#: model_terms:ir.ui.view,arch_db:documents_project.view_task_form2_document_inherit
+#, python-format
+msgid "Documents"
+msgstr "Dokumentai"
+
+#. module: documents_project
+#: model_terms:ir.ui.view,arch_db:documents_project.edit_project_document_form_inherit
+msgid "Documents &amp; Analytics"
 msgstr ""
 
 #. module: documents_project
-#: model:ir.model.fields,field_description:documents_project.field_documents_workflow_rule__has_business_option
-msgid "Has Business Option"
+#: model:ir.model,name:documents_project.model_documents_folder
+msgid "Documents Workspace"
+msgstr ""
+
+#. module: documents_project
+#: model:documents.tag,name:documents_project.documents_project_status_draft
+msgid "Draft"
+msgstr "Juodraštis"
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_documents_document__is_shared
+msgid "Is Shared"
+msgstr ""
+
+#. module: documents_project
+#: model:documents.workflow.rule,name:documents_project.documents_project_rule_mark_as_draft
+msgid "Mark As Draft"
+msgstr "Atstatyti į juodraštį"
+
+#. module: documents_project
+#: code:addons/documents_project/models/folder.py:0
+#, python-format
+msgid "Merged Workspace"
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/workflow.py:0
+#, python-format
+msgid "New task from Documents"
+msgstr ""
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_project_project__document_count
+msgid "Number of documents in Project"
+msgstr ""
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_project_task__document_count
+msgid "Number of documents in Task"
 msgstr ""
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_project_project
-#: model:ir.model.fields,field_description:documents_project.field_res_config_settings__documents_project_settings
+#: model:ir.model.fields,field_description:documents_project.field_documents_folder__project_ids
 msgid "Project"
 msgstr "Projektas"
 
 #. module: documents_project
-#: model:ir.model.fields,field_description:documents_project.field_res_company__project_tags
-#: model:ir.model.fields,field_description:documents_project.field_res_config_settings__project_tags
-msgid "Project Tags"
-msgstr "Projekto žymos"
+#: model:documents.folder,name:documents_project.documents_project_folder
+msgid "Projects"
+msgstr "Projektai"
 
 #. module: documents_project
-#: model:ir.model.fields,field_description:documents_project.field_res_company__project_folder
-msgid "Project Workspace"
+#: model:ir.model.fields,field_description:documents_project.field_project_project__shared_document_ids
+#: model:ir.model.fields,field_description:documents_project.field_project_task__shared_document_ids
+msgid "Shared Documents"
+msgstr "Pasidalinti dokumentai"
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_project_project__shared_document_count
+msgid "Shared Documents Count"
 msgstr ""
+
+#. module: documents_project
+#: model:documents.facet,name:documents_project.documents_project_status
+msgid "Status"
+msgstr "Būsena"
 
 #. module: documents_project
 #: model:ir.model,name:documents_project.model_project_task
@@ -102,11 +184,105 @@ msgid "Task"
 msgstr "Užduotis"
 
 #. module: documents_project
-#: model_terms:ir.ui.view,arch_db:documents_project.res_config_settings_view_form
-msgid "Workspace"
+#: code:addons/documents_project/models/workflow.py:0
+#, python-format
+msgid "Task created from document"
 msgstr ""
 
 #. module: documents_project
-#: model:ir.model.fields,field_description:documents_project.field_res_config_settings__project_folder
-msgid "project default workspace"
+#: code:addons/documents_project/models/folder.py:0
+#, python-format
+msgid ""
+"The \"%s\" workspace is required by the Project application and cannot be "
+"deleted."
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/project_project.py:0
+#, python-format
+msgid ""
+"The \"%s\" workspace should either be in the \"%s\" company like this "
+"project or be open to all companies."
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/folder.py:0
+#, python-format
+msgid ""
+"This workspace should remain in the same company as the \"%s\" project to "
+"which it is linked. Please update the company of the \"%s\" project, or "
+"leave the company of this workspace empty."
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/folder.py:0
+#, python-format
+msgid ""
+"This workspace should remain in the same company as the following projects to which it is linked:\n"
+"%s\n"
+"\n"
+"Please update the company of those projects, or leave the company of this workspace empty."
+msgstr ""
+
+#. module: documents_project
+#: model:documents.tag,name:documents_project.documents_project_status_to_validate
+msgid "To Validate"
+msgstr "Reikia patvirtinti"
+
+#. module: documents_project
+#: model_terms:ir.actions.act_window,help:documents_project.action_view_documents_project_task
+msgid ""
+"Upload <span class=\"fw-normal\">a file or </span>drag <span class=\"fw-"
+"normal\">it here.</span>"
+msgstr ""
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_project_task__project_use_documents
+msgid "Use Documents"
+msgstr ""
+
+#. module: documents_project
+#: model:documents.workflow.rule,name:documents_project.documents_project_rule_validate
+msgid "Validate"
+msgstr "Patvirtinti"
+
+#. module: documents_project
+#: model:documents.tag,name:documents_project.documents_project_status_validated
+msgid "Validated"
+msgstr "Patvirtinta"
+
+#. module: documents_project
+#: model:ir.model.fields,field_description:documents_project.field_project_project__documents_folder_id
+#: model:ir.model.fields,field_description:documents_project.field_project_task__documents_folder_id
+msgid "Workspace"
+msgstr "Darbo erdvė"
+
+#. module: documents_project
+#: model:ir.model.fields,help:documents_project.field_project_project__documents_folder_id
+#: model:ir.model.fields,help:documents_project.field_project_task__documents_folder_id
+msgid ""
+"Workspace in which all of the documents of this project will be categorized."
+" All of the attachments of your tasks will be automatically added as "
+"documents in this workspace as well."
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/project_project.py:0
+#, python-format
+msgid ""
+"You cannot change the company of this project, because its workspace is linked to the other following projects that are still in the \"%s\" company:\n"
+"%s\n"
+"\n"
+"Please update the company of all projects so that they remain in the same company as their workspace, or leave the company of the \"%s\" workspace blank."
+msgstr ""
+
+#. module: documents_project
+#: code:addons/documents_project/models/folder.py:0
+#, python-format
+msgid "You cannot set a company on the Projects workspace."
+msgstr ""
+
+#. module: documents_project
+#: model_terms:ir.ui.view,arch_db:documents_project.share_page
+msgid "documents shared"
 msgstr ""

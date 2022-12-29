@@ -15,20 +15,15 @@ class GermanTaxReportCustomHandler(models.AbstractModel):
 
     def _custom_options_initializer(self, report, options, previous_options=None):
         super()._custom_options_initializer(report, options, previous_options=previous_options)
-        options.setdefault('buttons', []).extend((
+        options.setdefault('buttons', []).append(
             {
                 'name': _('XML'),
                 'sequence': 30,
                 'action': 'export_file',
                 'action_param': 'export_tax_report_to_xml',
                 'file_export_type': _('XML'),
-            },
-            {
-                'name': _('Closing Entry'),
-                'action': 'action_periodic_vat_entries',
-                'sequence': 80,
-            },
-        ))
+            }
+        )
 
     def export_tax_report_to_xml(self, options):
         report = self.env['account.report'].browse(options['report_id'])
@@ -59,18 +54,18 @@ class GermanTaxReportCustomHandler(models.AbstractModel):
         elem.text = "0.00" #please keep "0.00" until Odoo has "Kz09"
 
         report_lines = report._get_lines(options)
-        colname_to_idx = {col['name']: idx for idx, col in enumerate(options.get('columns', []))}
-        report_line_ids = [line['columns'][colname_to_idx['Balance']]['report_line_id'] for line in report_lines]
+        colname_to_idx = {col['expression_label']: idx for idx, col in enumerate(options.get('columns', []))}
+        report_line_ids = [line['columns'][colname_to_idx['balance']]['report_line_id'] for line in report_lines]
         codes_context = {}
         for record in self.env['account.report.line'].browse(report_line_ids):
             codes_context[record.id] = record.code
 
         for line in report_lines:
-            line_code = codes_context[line['columns'][colname_to_idx['Balance']]['report_line_id']]
+            line_code = codes_context[line['columns'][colname_to_idx['balance']]['report_line_id']]
             if line_code and line_code.startswith('DE') and not line_code.endswith('BASE'):
                 line_code = line_code.split('_')[1]
                 #all "Kz" may be supplied as negative, except "Kz39"
-                line_value = line['columns'][colname_to_idx['Balance']]['no_format']
+                line_value = line['columns'][colname_to_idx['balance']]['no_format']
                 if line_value and (line_code != "39" or line_value > 0):
                     elem = etree.SubElement(taxes, "Kz" + line_code)
                     #only "kz09" and "kz83" can be supplied with decimals

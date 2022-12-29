@@ -88,10 +88,9 @@ class SocialInstagramController(SocialController):
         # called manually to throw a ValidationError if not valid instagram image
         social_post._check_post_access()
 
-        return request.env['ir.binary']._get_stream_from(
+        return request.env['ir.binary']._get_image_stream_from(
             social_post.instagram_image_id,
             default_mimetype='image/jpeg',
-            placeholder=request.env['ir.http']._placeholder_path(),
         ).get_response()
 
     def _instagram_create_accounts(self, access_token, extended_access_token):

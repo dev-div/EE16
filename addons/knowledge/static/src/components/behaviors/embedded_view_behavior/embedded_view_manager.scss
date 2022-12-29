@@ -56,9 +56,16 @@
         }
     }
     .o_calendar_renderer {
+        height: auto !important;
+        max-height: clamp(300px, 50vh, 800px);
         .o_calendar_widget {
             height: auto !important;
-            max-height: 800px;
+            max-height: clamp(300px, 50vh, 800px);
+        }
+    }
+    .o_calendar_container {
+        .o_calendar_sidebar_container {
+            max-height: clamp(300px, 50vh, 800px);
         }
     }
     .o_calendar_filter .ui-menu-item a {

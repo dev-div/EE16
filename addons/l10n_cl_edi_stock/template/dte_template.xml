@@ -6,7 +6,7 @@
                 <IdDoc>
                     <TipoDTE t-esc="picking.l10n_latam_document_type_id.code"/>
                     <Folio t-esc="int(picking.l10n_latam_document_number)"/>
-                    <FchEmis t-esc="picking.date_done.date()"/>
+                    <FchEmis t-esc="picking._get_cl_current_datetime().date()"/>
                     <IndTraslado t-esc="picking.l10n_cl_delivery_guide_reason"/>
                 </IdDoc>
                 <Emisor>

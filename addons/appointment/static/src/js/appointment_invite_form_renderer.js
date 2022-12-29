@@ -29,7 +29,7 @@ export class AppointmentInviteFormRenderer extends FormRenderer {
         ev.stopImmediatePropagation();
         if (await this.props.record.save()) {
             const bookUrl = this.props.record.data.book_url;
-            browser.navigator.clipboard.writeText(bookUrl);
+            setTimeout(async () => await browser.navigator.clipboard.writeText(bookUrl));
             this.notification.add(
                 this.env._t("Link copied to clipboard!"),
                 {type: "success"}

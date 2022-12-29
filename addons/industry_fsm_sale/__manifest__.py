@@ -22,6 +22,7 @@ Create Sales order with timesheets and products from tasks
     ],
     'auto_install': True,
     'post_init_hook': 'post_init',
+    'uninstall_hook': 'uninstall_hook',
     'assets': {
         'web.assets_backend': [
             'industry_fsm_sale/static/src/components/**/*',

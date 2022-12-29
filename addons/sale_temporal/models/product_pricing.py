@@ -5,9 +5,9 @@ from collections import defaultdict
 import math
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, _, _lt
 from odoo.exceptions import ValidationError
-from odoo.tools import format_amount
+from odoo.tools import format_amount, float_compare, float_is_zero
 
 # For our use case: pricing depending on the duration, the values should be sufficiently different from one plan to
 # another to not suffer from the approcimation that all months are 31 longs.
@@ -64,10 +64,14 @@ class ProductPricing(models.Model):
         if pricing_issues:
             raise ValidationError(_("You cannot have multiple pricing for the same variant, recurrence and pricelist"))
 
+    @api.depends_context('lang')
     @api.depends('recurrence_id')
     def _compute_name(self):
         for pricing in self:
-            pricing.name = _("%s %s", pricing.recurrence_id.duration, pricing.recurrence_id.unit)
+            pricing.name = _(
+                "%s %s",
+                pricing.recurrence_id.duration,
+                pricing._get_unit_label(pricing.recurrence_id.duration))
 
     def _compute_description(self):
         for pricing in self:
@@ -169,3 +173,22 @@ class ProductPricing(models.Model):
                 available_pricings |= pricing
 
         return available_pricings
+
+    def _get_unit_label(self, duration):
+        """ Get the translated product pricing unit label. """
+        if duration is None:
+            return ""
+        if float_compare(duration, 1.0, precision_digits=2) < 1\
+           and not float_is_zero(duration, precision_digits=2):
+            singular_labels = {
+                'hour': _lt("Hour"),
+                'day': _lt("Day"),
+                'week': _lt("Week"),
+                'month': _lt("Month"),
+                'year': _lt("Year"),
+            }
+            if self.recurrence_id.unit in singular_labels:
+                return singular_labels[self.recurrence_id.unit]
+        return dict(
+            self.env['sale.temporal.recurrence']._fields['unit']._description_selection(self.env)
+        )[self.recurrence_id.unit]

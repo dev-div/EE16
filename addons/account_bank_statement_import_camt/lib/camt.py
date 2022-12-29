@@ -739,11 +739,11 @@ class CAMT:
         if unique_import_ref and not CAMT._is_full_of_zeros(unique_import_ref[0]) and unique_import_ref[0] != 'NOTPROVIDED':
             entry_ref = entry.xpath('ns:NtryRef/text()', namespaces=namespaces)
             if entry_ref:
-                return '{}-{}'.format(unique_import_ref[0], entry_ref[0])
+                return '{}-{}-{}'.format(name, unique_import_ref[0], entry_ref[0])
             elif not entry_ref and unique_import_ref[0] not in unique_import_set:
                 return unique_import_ref[0]
             else:
-                return '{}-{}'.format(unique_import_ref[0], sequence)
+                return '{}-{}-{}'.format(name, unique_import_ref[0], sequence)
         else:
             return '{}-{}-{}'.format(name, date, sequence)
 

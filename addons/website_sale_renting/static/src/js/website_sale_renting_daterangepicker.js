@@ -34,12 +34,25 @@ publicWidget.registry.WebsiteSaleDaterangePicker = publicWidget.Widget.extend(Re
      */
     async start() {
         await this._super(...arguments);
+        // Whether this is the daterange picker that is available on /shop/
+        this.isShopDatePicker = this.el.classList.contains("o_website_sale_shop_daterange_picker");
         this.startDate = this._getDefaultRentingDate('start_date');
         this.endDate = this._getDefaultRentingDate('end_date');
         this.el.querySelectorAll('input.daterange-input').forEach(daterangeInput => {
             this._initSaleRentingDateRangePicker(daterangeInput);
         });
         this._verifyValidPeriod();
+    },
+
+    /**
+     * Checks if the default renting dates are set.
+     * @returns {*}
+     * @private
+     */
+    _hasDefaultDates() {
+        return (this._getSearchDefaultRentingDate('start_date') && this._getSearchDefaultRentingDate('end_date'))
+               ||
+               (this.el.querySelector('input[name="default_start_date"]') && this.el.querySelector('input[name="default_end_date"]'));
     },
 
     /**
@@ -86,7 +99,7 @@ publicWidget.registry.WebsiteSaleDaterangePicker = publicWidget.Widget.extend(Re
                 direction: _t.database.parameters.direction,
                 format: this._isDurationWithHours() ?
                     time.getLangDatetimeFormat().replace('YYYY', 'YY').replace(':ss', '') : time.getLangDateFormat(),
-                applyLabel: _t('Apply'),
+                applyLabel: _t('Search'),
                 cancelLabel: _t('Cancel'),
                 weekLabel: 'W',
                 customRangeLabel: _t('Custom Range'),
@@ -104,6 +117,11 @@ publicWidget.registry.WebsiteSaleDaterangePicker = publicWidget.Widget.extend(Re
             }
         });
         $dateInput.data('daterangepicker').container.addClass('o_website_sale_renting');
+        $dateInput[0].dataset.hasDefaultDates = Boolean(this._hasDefaultDates());
+        if (this.isShopDatePicker && !this._hasDefaultDates()) {
+            $dateInput.val('');
+            $dateInput.attr('placeholder', ' - ');
+        }
     },
 
     // ------------------------------------------

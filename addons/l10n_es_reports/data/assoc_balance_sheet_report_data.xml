@@ -220,18 +220,25 @@
                                         <field name="name">IV. Excedentes de ejercicios anteriores</field>
                                         <field name="code">l10n_es_assoc_line_21300</field>
                                         <field name="expression_ids">
-                                            <record id="balance_assoc_line_21300_balance" model="account.report.expression">
-                                                <field name="label">balance</field>
+                                            <record id="balance_assoc_line_21300_sub_normal" model="account.report.expression">
+                                                <field name="label">sub_strict</field>
+                                                <field name="engine">account_codes</field>
+                                                <field name="formula">-120 - 121</field>
+                                            </record>
+                                            <record id="balance_assoc_line_21300_sub_to_beginning" model="account.report.expression">
+                                                <field name="label">sub_to_beginning</field>
                                                 <field name="engine">domain</field>
                                                 <field name="formula" eval="[
-                                                    '|', '|', '|',
-                                                    ('account_id.code','=like','120%'),
-                                                    ('account_id.code','=like','121%'),
+                                                    '|',
                                                     ('account_id.code','=like','129%'),
-                                                    ('account_id.internal_group', 'in', ['income', 'expense'])
-                                                ]"/>
-                                                <field name="date_scope">to_beginning_of_period</field>
+                                                    ('account_id.internal_group', 'in', ['income', 'expense'])]"/>
+                                                <field name="date_scope">to_beginning_of_fiscalyear</field>
                                                 <field name="subformula">-sum</field>
+                                            </record>
+                                            <record id="balance_assoc_line_21300_balance" model="account.report.expression">
+                                                <field name="label">balance</field>
+                                                <field name="engine">aggregation</field>
+                                                <field name="formula">l10n_es_assoc_line_21300.sub_strict + l10n_es_assoc_line_21300.sub_to_beginning</field>
                                             </record>
                                         </field>
                                     </record>
@@ -243,7 +250,10 @@
                                             <record id="balance_assoc_line_21400_balance" model="account.report.expression">
                                                 <field name="label">balance</field>
                                                 <field name="engine">domain</field>
-                                                <field name="formula" eval="[('account_id.internal_group', 'in', ['income', 'expense'])]"/>
+                                                <field name="formula" eval="[
+                                                    '|',
+                                                    ('account_id.code','=like','129%'),
+                                                    ('account_id.internal_group', 'in', ['income', 'expense'])]"/>
                                                 <field name="date_scope">from_fiscalyear</field>
                                                 <field name="subformula">-sum</field>
                                             </record>

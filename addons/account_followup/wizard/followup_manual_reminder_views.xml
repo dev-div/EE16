@@ -35,11 +35,6 @@
                                        attrs="{'readonly': [('can_edit_body', '=', False)]}" colspan="2"/>
                             </group>
                         </group>
-                        <group string="Print" name="print_options" attrs="{'invisible':[('print', '=', False)]}" colspan="2">
-                            <group colspan="2">
-                                <field name="join_invoices" nolabel="1"/><label for="join_invoices"/>
-                            </group>
-                        </group>
                     </group>
                 </group>
 
@@ -74,15 +69,17 @@
                     </group>
                 </group>
 
-                <group name="attachments" col="4">
+                <group name="attachments" col="4" attrs="{'invisible': [('email','=',False),('print','=',False)]}">
                     <group colspan="2">
-                        <field name="attachment_ids" widget="many2many_binary" nolabel="1"
-                               colspan="2" attrs="{'invisible':[('email','=',False)]}"/>
+                        <field name="join_invoices"/>
                     </group>
                     <group colspan="2">
                         <field name="template_id" string="Content Template" options="{'no_create': True}"
-                               context="{'default_model': 'res.partner', 'default_body': body_html, 'default_subject': subject}"
-                               attrs="{'invisible':[('email','=',False), ('print','=',False)]}"/>
+                               context="{'default_model': 'res.partner', 'default_body': body_html, 'default_subject': subject}"/>
+                    </group>
+                    <group colspan="2">
+                        <field name="attachment_ids" widget="many2many_binary" nolabel="1"
+                               colspan="2" attrs="{'invisible':[('join_invoices','=',False)]}"/>
                     </group>
                 </group>
 

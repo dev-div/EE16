@@ -15,9 +15,7 @@ class IrAttachment(models.Model):
         self.ensure_one()
         super(IrAttachment, self).register_as_main_attachment(force=force)
 
-        if self.res_model == 'hr.expense' and self.env.company.expense_extract_show_ocr_option_selection == 'auto_send':
+        if self.res_model == 'hr.expense':
             related_record = self.env[self.res_model].browse(self.res_id)
-            if related_record.extract_state == "no_extract_requested" and not related_record.sample:
-                related_record.action_manual_send_for_digitization()
-                # OCR usually takes between 5 and 10 seconds to process the file. Thus, we wait a bit before we update the status
-                self.env.ref('hr_expense_extract.ir_cron_update_ocr_status')._trigger(fields.Datetime.now() + timedelta(minutes=1))
+            if not related_record.sample:
+                related_record._autosend_for_digitization()

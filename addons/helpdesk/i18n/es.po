@@ -7,6 +7,7 @@
 # Martin Trigaux, 2022
 # ramiadavid, 2022
 # Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2022
+# Óscar Fonseca <tecnico@extreme-micro.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-10 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2022\n"
+"Last-Translator: Óscar Fonseca <tecnico@extreme-micro.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/odoo/teams/41243/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +98,7 @@ msgstr ""
 #, python-format
 msgid "<b>Drag &amp; drop</b> the card to change the stage of your ticket."
 msgstr ""
-"<b>Aarrastre y suelte</b> la tarjeta para cambiar el estado de su ticket. "
+"<b>Aarrastre y suelte</b> la tarjeta para cambiar la etapa de su tíquet. "
 
 #. module: helpdesk
 #. openerp-web
@@ -198,10 +199,10 @@ msgid ""
 "        "
 msgstr ""
 "<div>\n"
-"    Estimada/o <t t-out=\"object.sudo().partner_id.name or 'Madam/Sir'\">señora/señor</t>,<br/><br/>\n"
-"    Este mensaje automático es para avisarle que cerramos su ticket (referencia <t t-out=\"object.id or ''\">15</t>).\n"
+"    Apreciada/o <t t-out=\"object.sudo().partner_id.name or 'Madam/Sir'\">señora/señor</t>,<br/><br/>\n"
+"    Este mensaje automático es para avisarle que cerramos su tíquet (referencia <t t-out=\"object.id or ''\">15</t>).\n"
 "    Esperamos que el servicio proporcionado haya cumplido con sus expectativas.\n"
-"   Si tiene preguntas o comentarios, no dude en responder a este mensaje para re-abrir su ticket.<br/><br/>\n"
+"   Si tiene preguntas o comentarios, no duda en responder a este mensaje para re-abrir su tíquet.<br/><br/>\n"
 "    Gracias por su cooperación.<br/>\n"
 "    Saludos cordiales,<br/><br/>\n"
 "    El equipo<t t-out=\"object.team_id.name or 'Helpdesk'\">de asistencia</t>.\n"
@@ -669,14 +670,14 @@ msgstr "¿Estás seguro de que deseas continuar?"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_form
 msgid "Assign To Me"
-msgstr "Asignar para mi"
+msgstr "Asignarme"
 
 #. module: helpdesk
 #. openerp-web
 #: code:addons/helpdesk/static/src/js/tours/helpdesk.js:0
 #, python-format
 msgid "Assign the ticket to a <b>member of your team</b>."
-msgstr "Asigne el ticket a un <b>miembro de su equipo</b>."
+msgstr "Asignar el tíquet a un <b>miembro de su equipo</b>."
 
 #. module: helpdesk
 #: code:addons/helpdesk/models/helpdesk_ticket.py:0
@@ -930,12 +931,12 @@ msgstr "Cierre tickets inactivos automáticamente"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
 msgid "Close the ticket"
-msgstr "Cerrar el ticket"
+msgstr "Cerrar el tíquet"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
 msgid "Close ticket"
-msgstr "Cerrar ticket"
+msgstr "Cerrar tíquet"
 
 #. module: helpdesk
 #: code:addons/helpdesk/controllers/portal.py:0
@@ -1149,7 +1150,7 @@ msgstr "Criterios"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
 msgid "Current stage of this ticket"
-msgstr "Etapa actual de este ticket"
+msgstr "Etapa actual de este tíquet"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_team__alias_bounced_content
@@ -1288,7 +1289,7 @@ msgstr "Descripción de la política..."
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_form
 msgid "Description of the ticket..."
-msgstr "Descripción del ticket..."
+msgstr "Descripción del tíquet..."
 
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_digest_digest
@@ -1431,8 +1432,8 @@ msgid ""
 "Enter the <b>subject</b> of your ticket <br/><i>(e.g. Problem with my "
 "installation, Wrong order, etc.).</i>"
 msgstr ""
-"Ingrese el <b>asunto</b> de su ticket <br/><i>(p. ej. problema con la "
-"instalación, orden incorrecta, etc.).</i>"
+"Ingrese el <b>asunto</b> de su tíquet <br/><i>(p. ej. Problema con la "
+"instalación, Pedido incorrecto, etc.).</i>"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_status__exceeded_hours
@@ -1602,7 +1603,7 @@ msgstr "Agrupar por"
 #. module: helpdesk
 #: model:mail.activity.type,name:helpdesk.mail_act_helpdesk_handle
 msgid "Handle Ticket"
-msgstr "Manejar el ticket"
+msgstr "Gestionar el tíquet"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.team_rating_progress_data
@@ -1634,7 +1635,7 @@ msgstr ""
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__sla_reached_late
 msgid "Has SLA reached late"
-msgstr "Se excedió el tiempo en el SLA"
+msgstr "Se excedió el tiempo del ANS"
 
 #. module: helpdesk
 #: model:ir.ui.menu,name:helpdesk.menu_helpdesk_root
@@ -1655,7 +1656,7 @@ msgstr "Políticas SLA del servicio de asistencia"
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_helpdesk_stage
 msgid "Helpdesk Stage"
-msgstr "Etapa de servicio de asistencia"
+msgstr "Etapas de asistencias"
 
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_helpdesk_stage_delete_wizard
@@ -1681,19 +1682,19 @@ msgstr "Equipo de servicio de asistencia"
 #: model:ir.model,name:helpdesk.model_helpdesk_ticket
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_form
 msgid "Helpdesk Ticket"
-msgstr "Ticket de servicio de asistencia"
+msgstr "Tíquet de servicio de asistencia"
 
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_helpdesk_ticket_type
 msgid "Helpdesk Ticket Type"
-msgstr "Tipo de ticket de servicio de asistencia"
+msgstr "Tipo de tíquet de asistencia"
 
 #. module: helpdesk
 #: model:ir.actions.server,name:helpdesk.ir_cron_auto_close_ticket_ir_actions_server
 #: model:ir.cron,cron_name:helpdesk.ir_cron_auto_close_ticket
 #: model:ir.cron,name:helpdesk.ir_cron_auto_close_ticket
 msgid "Helpdesk Ticket: Automatically close the tickets"
-msgstr "Ticket del servicio de asistencia: cierre tickets automáticamente"
+msgstr "Tíquet de asistencia: Cerrar tíquets automáticamente"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_graph_main
@@ -2048,7 +2049,7 @@ msgstr "Actividades atrasadas"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.team_rating_data
 msgid "Latest Ratings"
-msgstr ""
+msgstr "Últimas calificaciones"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_team_view_form
@@ -2061,7 +2062,7 @@ msgstr ""
 #: code:addons/helpdesk/static/src/js/tours/helpdesk.js:0
 #, python-format
 msgid "Let's create your first <b>ticket</b>."
-msgstr "Vamos a crear su primer <b>ticket</b>."
+msgstr "Vamos a crear su primer <b>tíquet</b>."
 
 #. module: helpdesk
 #. openerp-web
@@ -2123,7 +2124,7 @@ msgstr "Asegúrese de que los tickets se solucionen a tiempo"
 #: model_terms:ir.actions.act_window,help:helpdesk.helpdesk_sla_action_main
 msgid "Make sure tickets are handled on time by using SLA Policies.<br>"
 msgstr ""
-"Utilice políticas SLA y asegúrese de que los tickets se atienden a "
+"Utilice políticas de ANS y asegúrese de que los tíquets se atienden a "
 "tiempo.<br>"
 
 #. module: helpdesk
@@ -2193,7 +2194,7 @@ msgstr "Prioridad mínima "
 #: model:ir.model.fields,help:helpdesk.field_helpdesk_sla__stage_id
 #: model:ir.model.fields,help:helpdesk.field_helpdesk_sla_status__sla_stage_id
 msgid "Minimum stage a ticket needs to reach in order to satisfy this SLA."
-msgstr "Etapa mínima que necesita un ticket para cumplir con este SLA."
+msgstr "Etapa mínima que necesita un tíquet para cumplir con este ANS."
 
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_ir_module_module
@@ -2595,7 +2596,8 @@ msgstr "Análisis de desempeño"
 #: model:ir.model.fields,help:helpdesk.field_helpdesk_team__auto_close_day
 msgid "Period of inactivity after which tickets will be automatically closed."
 msgstr ""
-"Periodo de inactividad después del que el ticket se cerrará automáticamente."
+"Periodo de inactividad a partir del cual se cerrará el tíquet "
+"automáticamente."
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_form
@@ -3090,7 +3092,7 @@ msgstr "Guarda esta página y actulizala para activar esta característica."
 #: code:addons/helpdesk/static/src/js/tours/helpdesk.js:0
 #, python-format
 msgid "Save this ticket and the modifications you've made to it."
-msgstr "Guarda este ticket y las modificaciones que hiciste."
+msgstr "Guardar este tíquet y los cambios realizados."
 
 #. module: helpdesk
 #: code:addons/helpdesk/controllers/portal.py:0
@@ -3137,7 +3139,7 @@ msgstr "Token de seguridad"
 #: code:addons/helpdesk/static/src/js/tours/helpdesk.js:0
 #, python-format
 msgid "Select the <b>customer</b> of your ticket."
-msgstr "Seleccione el <b>cliente</b> de su ticket."
+msgstr "Seleccione el <b>cliente</b> de su tíquet."
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_team_view_form
@@ -3541,6 +3543,8 @@ msgid ""
 "This will archive the stages and all of the tickets they contain from the "
 "following teams:"
 msgstr ""
+"Se archivaran los estados y todos los tíquets que contengan de los "
+"siguientes equipos:"
 
 #. module: helpdesk
 #: model_terms:ir.actions.act_window,help:helpdesk.mail_activity_type_action_config_helpdesk
@@ -3548,6 +3552,8 @@ msgid ""
 "Those represent the different categories of things you have to do (e.g. "
 "\"Call\" or \"Send email\")."
 msgstr ""
+"Representan las diferentes categorías de cosas que se deben hacer (p. ej. "
+"\"Llamar\" o \"Enviar correo electrónico\")."
 
 #. module: helpdesk
 #. openerp-web
@@ -3570,7 +3576,7 @@ msgstr "Tres estrellas, puntuación más alta"
 #: model_terms:ir.ui.view,arch_db:helpdesk.rating_rating_view_tree_inherit_helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
 msgid "Ticket"
-msgstr "Ticket"
+msgstr "Tíquet"
 
 #. module: helpdesk
 #: model:ir.actions.act_window,name:helpdesk.helpdesk_ticket_action_dashboard
@@ -3578,86 +3584,86 @@ msgstr "Ticket"
 #: model:ir.model,name:helpdesk.model_helpdesk_ticket_report_analysis
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_pivot_analysis
 msgid "Ticket Analysis"
-msgstr "Analisis de tickets"
+msgstr "Análisis de tiquets"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_report_analysis__ticket_closed
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_team__ticket_closed
 msgid "Ticket Closed"
-msgstr "Ticket cerrado"
+msgstr "Tíquet cerrado"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla__ticket_count
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_stage__ticket_count
 msgid "Ticket Count"
-msgstr "Número de tickets"
+msgstr "Número de tiquets"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_report_analysis__create_date
 msgid "Ticket Create Date"
-msgstr "Fecha de creación del ticket"
+msgstr "Fecha de creación del tíquet"
 
 #. module: helpdesk
 #: model:mail.message.subtype,name:helpdesk.mt_team_ticket_new
 #: model:mail.message.subtype,name:helpdesk.mt_ticket_new
 msgid "Ticket Created"
-msgstr "Ticket creado"
+msgstr "Tíquet creado"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_report_analysis__ticket_deadline
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket_report_analysis__ticket_deadline
 msgid "Ticket Deadline"
-msgstr "Fecha límite del ticket"
+msgstr "Fecha límite del tiquet"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__ticket_ref
 msgid "Ticket IDs Sequence"
-msgstr ""
+msgstr "Secuencia de los IDs de tíquets"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_team__ticket_properties
 msgid "Ticket Properties"
-msgstr ""
+msgstr "Propiedades del tíquet"
 
 #. module: helpdesk
 #: model:mail.message.subtype,name:helpdesk.mt_team_ticket_rated
 #: model:mail.message.subtype,name:helpdesk.mt_ticket_rated
 msgid "Ticket Rated"
-msgstr "Ticket calificado"
+msgstr "Tíquet calificado"
 
 #. module: helpdesk
 #: model:ir.model,name:helpdesk.model_helpdesk_sla_status
 msgid "Ticket SLA Status"
-msgstr "Estado SLA del ticket"
+msgstr "Estado ANS del tíquet"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_report_analysis__ticket_stage_id
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket_report_analysis__ticket_stage_id
 msgid "Ticket Stage"
-msgstr "Etapa del ticket"
+msgstr "Etapa del tíquet"
 
 #. module: helpdesk
 #: model:mail.message.subtype,name:helpdesk.mt_team_ticket_stage
 msgid "Ticket Stage Changed"
-msgstr "La etapa de ticket cambió"
+msgstr "La etapa de tíquet cambió"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_sla_report_analysis__ticket_type_id
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket_report_analysis__ticket_type_id
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_search_analysis
 msgid "Ticket Type"
-msgstr "Tipo de ticket"
+msgstr "Tipo de tíquet"
 
 #. module: helpdesk
 #: code:addons/helpdesk/controllers/portal.py:0
 #, python-format
 msgid "Ticket closed by the customer"
-msgstr "Ticket cerrado por el cliente"
+msgstr "Tíquet cerrado por el cliente"
 
 #. module: helpdesk
 #: model:mail.message.subtype,description:helpdesk.mt_ticket_new
 msgid "Ticket created"
-msgstr "Ticket creado"
+msgstr "Tíquet creado"
 
 #. module: helpdesk
 #. openerp-web
@@ -3685,7 +3691,7 @@ msgstr "Ticket creado"
 #: model_terms:ir.ui.view,arch_db:helpdesk.portal_my_home_menu_helpdesk
 #, python-format
 msgid "Tickets"
-msgstr "Tickets"
+msgstr "Tíquet"
 
 #. module: helpdesk
 #. openerp-web
@@ -3701,19 +3707,19 @@ msgstr "Tickets"
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_graph_analysis
 #, python-format
 msgid "Tickets Analysis"
-msgstr "Análisis de tickets"
+msgstr "Análisis de tíquets"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_digest_digest__kpi_helpdesk_tickets_closed
 msgid "Tickets Closed"
-msgstr "Tickets cerrados"
+msgstr "Tíquets cerrados"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_search_analysis
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_search_analysis_closed
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_tickets_view_search
 msgid "Tickets Search"
-msgstr "Buscar tickets"
+msgstr "Buscar tíquets"
 
 #. module: helpdesk
 #: model:ir.model.fields,help:helpdesk.field_helpdesk_stage__fold
@@ -3893,27 +3899,27 @@ msgstr "Utilice <b>actividades</b> para organizar su trabajo diario."
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__use_coupons
 msgid "Use Coupons"
-msgstr "Utiliza cupones"
+msgstr "Utilizar cupones"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__use_credit_notes
 msgid "Use Credit Notes"
-msgstr "Utiliza notas de crédito"
+msgstr "Utilizar facturas rectificativas"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__use_rating
 msgid "Use Customer Ratings"
-msgstr "Use valoraciones de los clientes"
+msgstr "Utilizar valoración de clientes"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__use_product_repairs
 msgid "Use Repairs"
-msgstr "Utiliza reparaciones"
+msgstr "Utilizar reparaciones"
 
 #. module: helpdesk
 #: model:ir.model.fields,field_description:helpdesk.field_helpdesk_ticket__use_product_returns
 msgid "Use Returns"
-msgstr "Utiliza devoluciones"
+msgstr "Utilizar devoluciones"
 
 #. module: helpdesk
 #. openerp-web
@@ -4058,23 +4064,23 @@ msgstr "Completaste todos tus tickets a tiempo"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_sla_view_form
 msgid "e.g. Close urgent tickets within 36 hours"
-msgstr "Ej. cierra tickets urgentes dentro de 36 horas"
+msgstr "p. ej. Cierra tíquets urgentes dentro de 36 horas"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_team_view_form
 msgid "e.g. Customer Care"
-msgstr "p. ej. atención al cliente"
+msgstr "p. ej. Atención al cliente"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_view_form
 #: model_terms:ir.ui.view,arch_db:helpdesk.quick_create_ticket_form
 msgid "e.g. Product arrived damaged"
-msgstr ""
+msgstr "p. ej. El producto llegó dañadoi"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_ticket_type_view_tree
 msgid "e.g. Question"
-msgstr ""
+msgstr "p. ej. Pregunta"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_team_view_form
@@ -4094,7 +4100,7 @@ msgstr "genera tickets en tu pipeline"
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.ticket_creation
 msgid "has been created from ticket:"
-msgstr "Se creó a partir del ticket:"
+msgstr "se creó a partir del tíquet:"
 
 #. module: helpdesk
 #: model_terms:ir.ui.view,arch_db:helpdesk.helpdesk_team_view_form
@@ -4105,7 +4111,7 @@ msgstr "búsqueda de equipo"
 #: code:addons/helpdesk/models/helpdesk_ticket.py:0
 #, python-format
 msgid "ticket"
-msgstr ""
+msgstr "tíquet"
 
 #. module: helpdesk
 #: model:mail.template,subject:helpdesk.rating_ticket_request_email_template

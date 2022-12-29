@@ -43,7 +43,7 @@ class FollowupManualReminder(models.TransientModel):
     # sms fields
     sms = fields.Boolean()
     sms_body = fields.Char(compute='_compute_sms_body', readonly=False, store=True)
-    sms_template_id = fields.Many2one(comodel_name='sms.template')
+    sms_template_id = fields.Many2one(comodel_name='sms.template', domain=[('model', '=', 'res.partner')])
 
     # print fields
     print = fields.Boolean(default=True)

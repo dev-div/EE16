@@ -3,7 +3,7 @@
 import { useService } from "@web/core/utils/hooks";
 import { StudioApprovalInfos } from "@web_studio/approval/approval_infos";
 
-const { useState, Component, onWillUnmount, useRef } = owl;
+import { useState, Component, onWillUnmount, useRef } from "@odoo/owl";
 
 function useOpenExternal() {
     const closeFns = [];

@@ -10,6 +10,13 @@ from odoo.exceptions import UserError
 class AccountGeneralLedger(models.AbstractModel):
     _inherit = "account.report"
 
+    def _saft_get_account_type(self, account):
+        """To be overridden if specific account types are needed.
+        Some countries need to specify an account type, unique to the saf-t report.
+
+        :return: False if no account type needed, otherwise a string with the account type"""
+        return False
+
     @api.model
     def _saft_fill_report_general_ledger_values(self, options, values):
         res = {
@@ -39,6 +46,7 @@ class AccountGeneralLedger(models.AbstractModel):
             res['account_vals_list'].append({
                 'account': account,
                 'account_type': dict(self.env['account.account']._fields['account_type']._description_selection(self.env))[account.account_type],
+                'saft_account_type': self._saft_get_account_type(account),
                 'opening_balance': opening_balance,
                 'closing_balance': closing_balance,
             })
@@ -164,6 +172,7 @@ class AccountGeneralLedger(models.AbstractModel):
                 tax_detail.base_line_id,
                 tax_line.currency_id,
                 tax.id AS tax_id,
+                tax.type_tax_use AS tax_type,
                 tax.amount_type AS tax_amount_type,
                 {tax_name} AS tax_name,
                 tax.amount AS tax_amount,
@@ -186,6 +195,7 @@ class AccountGeneralLedger(models.AbstractModel):
                 'name': tax_vals['tax_name'],
                 'amount': tax_vals['tax_amount'],
                 'amount_type': tax_vals['tax_amount_type'],
+                'type': tax_vals['tax_type'],
             })
 
         # Fill 'tax_vals_list'.

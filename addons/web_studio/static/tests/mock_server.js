@@ -54,6 +54,20 @@ patch(MockServer.prototype, "web_studio.MockServer", {
                 type: "ir.actions.act_window",
                 views: [[false, "kanban"]],
             };
+        } else if (args.action_name === "automations") {
+            return {
+                name: "Automated Actions",
+                type: "ir.actions.act_window",
+                res_model: "base.automation",
+                views: [[false, "list"]],
+                target: "current",
+                domain: [],
+                help: /*xml*/ `
+                    <p class="no_content_helper_class">
+                        This text content is needed here, otherwise the paragraph won't be rendered.
+                    </p>
+                `,
+            };
         }
     },
 

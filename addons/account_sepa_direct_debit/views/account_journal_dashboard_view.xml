@@ -7,7 +7,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="sdd_account_payment_with_mandates_tree"/>
             <field name="domain">
-                [('payment_method_code','=','sdd'),
+                [('payment_method_code','in', ('sdd', 'sepa_direct_debit')),
                  ('state', '=', 'posted'),
                  ('is_move_sent', '=', False),
                 ]

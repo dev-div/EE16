@@ -222,6 +222,7 @@ class AccountMove(models.Model):
     def _cron_parse(self):
         for rec in self.search([('extract_state', '=', 'waiting_upload')]):
             rec.retry_ocr()
+            rec.env.cr.commit()
 
     def get_user_infos(self):
         user_infos = {
@@ -259,7 +260,6 @@ class AccountMove(models.Model):
                 'account_token': account_token.account_token,
                 'dbuuid': self.env['ir.config_parameter'].sudo().get_param('database.uuid'),
                 'documents': [x.datas.decode('utf-8') for x in attachments],
-                'file_names': [x.name for x in attachments],
                 'user_infos': user_infos,
                 'webhook_url': webhook_url,
             }
@@ -315,9 +315,17 @@ class AccountMove(models.Model):
         but if he entered the text of the field manually, we return only the text, as we
         don't know which box is the right one (if it exists)
         """
-        selected = self.env["account.invoice_extract.words"].search([("invoice_id", "=", self.id), ("field", "=", field), ("user_selected", "=", True)])
+        selected = self.env["account.invoice_extract.words"].search([
+            ("invoice_id", "=", self.id),
+            ("field", "=", field),
+            ("user_selected", "=", True),
+        ], limit=1)
         if not selected:
-            selected = self.env["account.invoice_extract.words"].search([("invoice_id", "=", self.id), ("field", "=", field), ("ocr_selected", "=", True)], limit=1)
+            selected = self.env["account.invoice_extract.words"].search([
+                ("invoice_id", "=", self.id),
+                ("field", "=", field),
+                ("ocr_selected", "=", True),
+            ], limit=1)
         return_box = {}
         if selected:
             return_box["box"] = [selected.word_text, selected.word_page, selected.word_box_midX,
@@ -435,59 +443,6 @@ class AccountMove(models.Model):
             "box_height": data.word_box_height,
             "box_angle": data.word_box_angle} for data in self.extract_word_ids]
 
-    def remove_user_selected_box(self, id):
-        """Set the selected box for a feature. The id of the box indicates the concerned feature.
-        The method returns the text that can be set in the view (possibly different of the text in the file)"""
-        self.ensure_one()
-        word = self.env["account.invoice_extract.words"].browse(int(id))
-        to_unselect = self.env["account.invoice_extract.words"].search([
-            ("invoice_id", "=", self.id),
-            ("field", "=", word.field),
-            '|',
-                ("user_selected", "=", True),
-                ("ocr_selected", "=", False),
-        ])
-        user_selected_found = False
-        for box in to_unselect:
-            if box.user_selected:
-                user_selected_found = True
-                box.user_selected = False
-        ocr_new_value = False
-        new_word = None
-        if user_selected_found:
-            ocr_new_value = True
-        for box in to_unselect:
-            if box.ocr_selected:
-                box.ocr_selected = ocr_new_value
-                if ocr_new_value:
-                    new_word = box
-        word.user_selected = False
-        if new_word is None:
-            if word.field in ["VAT_Number", "supplier", "currency"]:
-                return 0
-            return ""
-        if new_word.field == "VAT_Number":
-            partner_vat = self.find_partner_id_with_vat(new_word.word_text)
-            if partner_vat:
-                return partner_vat.id
-            return 0
-        if new_word.field == "supplier":
-            partner_names = self.env["res.partner"].search([("name", "ilike", new_word.word_text), *self._domain_company()])
-            if partner_names:
-                partner = min(partner_names, key=len)
-                return partner.id
-            else:
-                partners = {}
-                for single_word in new_word.word_text.split(" "):
-                    partner_names = self.env["res.partner"].search([("name", "ilike", single_word), *self._domain_company()], limit=30)
-                    for partner in partner_names:
-                        partners[partner.id] = partners[partner.id] + 1 if partner.id in partners else 1
-                if len(partners) > 0:
-                    key_max = max(partners.keys(), key=(lambda k: partners[k]))
-                    return key_max
-            return 0
-        return new_word.word_text
-
     def set_user_selected_box(self, id):
         """Set the selected box for a feature. The id of the box indicates the concerned feature.
         The method returns the text that can be set in the view (possibly different of the text in the file)"""
@@ -496,10 +451,7 @@ class AccountMove(models.Model):
         to_unselect = self.env["account.invoice_extract.words"].search([("invoice_id", "=", self.id), ("field", "=", word.field), ("user_selected", "=", True)])
         for box in to_unselect:
             box.user_selected = False
-        ocr_boxes = self.env["account.invoice_extract.words"].search([("invoice_id", "=", self.id), ("field", "=", word.field), ("ocr_selected", "=", True)])
-        for box in ocr_boxes:
-            if not box.ocr_selected:
-                box.ocr_selected = True
+
         word.user_selected = True
         if word.field == "currency":
             text = word.word_text
@@ -583,7 +535,7 @@ class AccountMove(models.Model):
         if not partner_name:
             return 0
 
-        partner = self.env["res.partner"].search([("name", "=", partner_name), *self._domain_company()], limit=1)
+        partner = self.env["res.partner"].search([("name", "=", partner_name), *self._domain_company()], order='supplier_rank desc', limit=1)
         if partner:
             return partner.id if partner.id != self.company_id.partner_id.id else 0
 
@@ -692,6 +644,24 @@ class AccountMove(models.Model):
                                 taxes_record = taxes_records[0]
                             taxes_found |= taxes_record
         return taxes_found
+
+    def _get_currency(self, currency_ocr, partner_id):
+        for comparison in ['=ilike', 'ilike']:
+            possible_currencies = self.env["res.currency"].search([
+                '|', '|',
+                ('currency_unit_label', comparison, currency_ocr),
+                ('name', comparison, currency_ocr),
+                ('symbol', comparison, currency_ocr),
+            ])
+            if possible_currencies:
+                break
+
+        partner_last_invoice_currency = partner_id.invoice_ids[:1].currency_id
+        if partner_last_invoice_currency in possible_currencies:
+            return partner_last_invoice_currency
+        if self.company_id.currency_id in possible_currencies:
+            return self.company_id.currency_id
+        return possible_currencies[:1]
 
     def _get_invoice_lines(self, ocr_results):
         """
@@ -815,30 +785,36 @@ class AccountMove(models.Model):
                 ocr_results = result['results'][0]
                 if 'full_text_annotation' in ocr_results:
                     self.message_main_attachment_id.index_content = ocr_results['full_text_annotation']
-                self.extract_word_ids.unlink()
 
                 self._save_form(ocr_results, force_write=force_write)
 
-                fields_with_boxes = ['supplier', 'date', 'due_date', 'invoice_id', 'currency', 'VAT_Number', 'total']
-                for field in fields_with_boxes:
-                    if field in ocr_results:
-                        value = ocr_results[field]
-                        data = []
-                        for word in value["words"]:
-                            ocr_chosen = value["selected_value"] == word
-                            data.append((0, 0, {
-                                "field": field,
-                                "ocr_selected": ocr_chosen,
-                                "user_selected": ocr_chosen,
-                                "word_text": word['content'],
-                                "word_page": word['page'],
-                                "word_box_midX": word['coords'][0],
-                                "word_box_midY": word['coords'][1],
-                                "word_box_width": word['coords'][2],
-                                "word_box_height": word['coords'][3],
-                                "word_box_angle": word['coords'][4],
-                            }))
-                        self.write({'extract_word_ids': data})
+                if not self.extract_word_ids:  # We don't want to recreate the boxes when the user clicks on "Reload AI data"
+                    fields_with_boxes = ['supplier', 'date', 'due_date', 'invoice_id', 'currency', 'VAT_Number', 'total']
+                    for field in fields_with_boxes:
+                        if field in ocr_results:
+                            value = ocr_results[field]
+                            data = []
+
+                            # We need to make sure that only one word is selected.
+                            # Once this flag is set, the next words can't be set as selected.
+                            ocr_chosen_found = False
+                            for word in value["words"]:
+                                ocr_chosen = value["selected_value"] == word and not ocr_chosen_found
+                                if ocr_chosen:
+                                    ocr_chosen_found = True
+                                data.append((0, 0, {
+                                    "field": field,
+                                    "ocr_selected": ocr_chosen,
+                                    "user_selected": ocr_chosen,
+                                    "word_text": word['content'],
+                                    "word_page": word['page'],
+                                    "word_box_midX": word['coords'][0],
+                                    "word_box_midY": word['coords'][1],
+                                    "word_box_width": word['coords'][2],
+                                    "word_box_height": word['coords'][3],
+                                    "word_box_angle": word['coords'][4],
+                                }))
+                            self.write({'extract_word_ids': data})
             elif result['status_code'] == NOT_READY:
                 self.extract_state = 'extract_not_ready'
             else:
@@ -940,9 +916,7 @@ class AccountMove(models.Model):
                     move_form.name = invoice_id_ocr
 
             if currency_ocr and (move_form.currency_id == move_form.company_currency_id or force_write):
-                currency = self.env["res.currency"].search([
-                        '|', '|', ('currency_unit_label', 'ilike', currency_ocr),
-                        ('name', 'ilike', currency_ocr), ('symbol', 'ilike', currency_ocr)], limit=1)
+                currency = self._get_currency(currency_ocr, move_form.partner_id)
                 if currency:
                     move_form.currency_id = currency
 

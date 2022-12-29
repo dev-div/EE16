@@ -169,12 +169,18 @@ odoo.define('web_grid.GridRenderer', function (require) {
             const grid_path = cell_path.slice(0, -3);
             const row_path = grid_path.concat(['rows'], cell_path.slice(-2, -1));
             const col_path = grid_path.concat(['cols'], cell_path.slice(-1));
+            const $glassIcon = $(`div[data-path="${path}"]`).find('i');
+            $glassIcon.css('pointer-events', 'none');
             this.trigger('cell-edited', {
                 cell_path,
                 row_path,
                 col_path,
                 value,
-                doneCallback,
+                doneCallback: () => {
+                    const res = doneCallback && doneCallback();
+                    $glassIcon.css('pointer-events', 'auto');
+                    return res;
+                },
             });
         }
         /**

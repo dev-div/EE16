@@ -5,7 +5,7 @@ import { _lt } from "@web/core/l10n/translation";
 import { useService } from "@web/core/utils/hooks";
 import { IconCreator } from "@web_studio/client_action/icon_creator/icon_creator";
 
-const { Component, useState } = owl;
+import { Component, useState } from "@odoo/owl";
 
 export class IconCreatorDialog extends Component {
     setup() {

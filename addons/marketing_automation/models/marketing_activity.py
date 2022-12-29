@@ -66,7 +66,7 @@ class MarketingActivity(models.Model):
         default='hours', required=True)
     # target
     domain = fields.Char(
-        string='Applied Filter', default='[]',
+        string='Applied Filter',
         help='Activity will only be performed if record satisfies this domain, obtained from the combination of the activity filter and its inherited filter',
         compute='_compute_inherited_domain', recursive=True, store=True, readonly=True)
     activity_domain = fields.Char(

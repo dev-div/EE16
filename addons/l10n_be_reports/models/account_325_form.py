@@ -135,10 +135,10 @@ class Form325(models.Model):
         compute='_compute_debtor_citizen_identification', store=True,
     )
 
-    reference_year = fields.Integer(
+    reference_year = fields.Char(
         string='Reference Year',
         required=True,
-        default=lambda x: fields.Date.context_today(x).year - 1,
+        default=lambda x: str(fields.Date.context_today(x).year - 1),
         readonly=True,
     )
     is_test = fields.Boolean(
@@ -183,12 +183,12 @@ class Form325(models.Model):
     form_281_50_ids = fields.One2many('l10n_be.form.281.50', 'form_325_id', string='Forms 281.50')
     form_281_50_count = fields.Integer(string='Forms 281.50 count', compute='_compute_form_281_50_count')
     form_281_50_total_amount = fields.Monetary(
-        string='Forms 281.50 total amount',
+        string='Forms 281.50 total',
         compute='_compute_form_281_50_total_amount',
     )
 
     def name_get(self):
-        return [(record.id, f"325 - {record.reference_year}") for record in self]
+        return [(f_325.id, f"325 - {f_325.reference_year}{' - TEST' if f_325.is_test else ''}") for f_325 in self]
 
     @api.depends('form_281_50_ids')
     def _compute_form_281_50_count(self):
@@ -378,7 +378,7 @@ class Form325(models.Model):
             return {}
 
         self.env.cr.execute("""
-            SELECT COALESCE(move.commercial_partner_id, line.partner_id), 
+            SELECT COALESCE(move.commercial_partner_id, line.partner_id),
                    ROUND(SUM(line.balance), %(decimal_places)s) AS balance
               FROM account_move_line line
               JOIN account_move move on line.move_id = move.id
@@ -548,13 +548,15 @@ class Form325(models.Model):
         return etree.tostring(xml_element, xml_declaration=True, encoding='utf-8')  # Well format the xml and add the xml_declaration
 
     def _validate_form(self):
-        # Once the xml is generated, we decide that the 325 and 281.50 forms are now generated and can't be edited
+        # Once the xml is generated, the 325 and 281.50 forms are in the generated state and can't be edited
         # We save all information from sender and debtor in the form.
         self.ensure_one()
-        self.write({
-            'state': 'generated',
-            'user_id': self.env.user,
-        })
+        if self.state != 'generated':
+            self.form_281_50_ids.assign_official_id()
+            self.write({
+                'state': 'generated',
+                'user_id': self.env.user,
+            })
 
     def get_dict_values(self):
         self.ensure_one()
@@ -629,6 +631,6 @@ class Form325(models.Model):
         return super().unlink()
 
     @api.ondelete(at_uninstall=False)
-    def _unlink_only_if_state_not_generated(self):
-        if self.filtered(lambda x: x.state == 'generated'):
+    def _unlink_only_if_state_not_generated_and_not_test(self):
+        if self.filtered(lambda f_325: f_325.state == 'generated' and not f_325.is_test):
             raise UserError(_("You can't delete a 281.50 for which its form 325 xml has been generated"))

@@ -119,7 +119,7 @@
             <div class="btn-group">
                 <t t-set="locked" t-value="isLocked"/>
                 <t t-set="editDisabled" t-value="isEditDisabled"/>
-                <button class="btn fa fa-download o_inspector_button o_inspector_download" title="Download" t-on-click.stop.prevent="onDownload" t-att-disabled="editDisabled"/>
+                <button class="btn fa fa-download o_inspector_button o_inspector_download" title="Download" t-on-click.stop.prevent="onDownload"/>
                 <t t-if="records[0].data.active">
                     <!-- groups does not work here -->
                     <button t-if="currentFolder.id" class="btn fa fa-share-alt o_inspector_button o_inspector_share" title="Share this selection" groups="documents.group_documents_user"
@@ -190,7 +190,7 @@
                         <t t-set="additionalProps" t-value="{canOpen: false, canCreate: false, canCreateEdit: false, canQuickCreate: false}"/>
                     </t>
                     <tr class="o_inspector_divider"/>
-                    <tr t-if="nbPreviews === 1 &amp;&amp; records[0].data.res_model_name &amp;&amp; records[0].data.res_model !== 'documents.document'" class="o_inspector_custom_field o_model_container">
+                    <tr t-if="nbPreviews === 1 &amp;&amp; records[0].data.res_id &amp;&amp; records[0].data.res_model_name &amp;&amp; records[0].data.res_model !== 'documents.document'" class="o_inspector_custom_field o_model_container">
                         <td class="o_inspector_label align-middle">
                             <label t-att-title="records[0].data.res_model_name" class="o_inspector_model_name">
                                 <i class="o_documents_model_color fa fa-file-text"/> <t t-esc="records[0].data.res_model_name"/>

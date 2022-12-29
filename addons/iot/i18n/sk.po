@@ -1,18 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * iot
+# 	* iot
 # 
 # Translators:
-# Martin Trigaux, 2018
-# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2018
-# gebri <gebri@inmail.sk>, 2018
+# Rastislav Brencic <rastislav.brencic@azet.sk>, 2022
+# SAKodoo <sak@odoo.com>, 2022
+# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2022
+# Jan Prokop, 2022
+# Martin Trigaux, 2022
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-08 07:14+0000\n"
-"PO-Revision-Date: 2018-10-08 07:14+0000\n"
-"Last-Translator: gebri <gebri@inmail.sk>, 2018\n"
+"POT-Creation-Date: 2022-09-27 15:40+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: Martin Trigaux, 2022\n"
 "Language-Team: Slovak (https://www.transifex.com/odoo/teams/41243/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,21 +28,31 @@ msgstr ""
 msgid ""
 "0. Power on the IoT Box<br/><br/>\n"
 "\n"
-"                            <strong>A. Ethernet Connection</strong><br/>\n"
-"                            1. Click on the \"Scan\" button below<br/><br/>\n"
-"\n"
-"                            <strong>B. WiFi Connection (or Ethernet Connection doesn't work)</strong><br/>\n"
-"                            1. Make sure no ethernet cable is connected to the IoT Box<br/>\n"
-"                            2. Copy the token that is below<br/>\n"
-"                            3. Connect to the IoT Box WiFi network (you should see it in your available WiFi networks)<br/>\n"
-"                            4. You will be redirected to the IoT Box Homepage<br/>\n"
-"                            5. Paste the token in token field and follow the steps described on the IoT Box Homepage<br/>"
+"                    <strong>A. Ethernet Connection</strong><br/>\n"
+"                    1. Read the pairing code from a display or thermal printer connected to the IoT Box.<br/>\n"
+"                    2. Enter the code below and click on \"Pair\".<br/>"
 msgstr ""
 
 #. module: iot
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__action
-msgid "Action"
-msgstr "Akcia"
+#: model_terms:ir.ui.view,arch_db:iot.iot_device_view_kanban
+msgid "<span class=\"badge text-bg-secondary\">Disconnected</span>"
+msgstr ""
+
+#. module: iot
+#: model_terms:ir.ui.view,arch_db:iot.iot_device_view_kanban
+msgid "<span class=\"badge text-bg-success\">Connected</span>"
+msgstr ""
+
+#. module: iot
+#: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
+msgid ""
+"<strong>B. WiFi Connection (or Ethernet Connection doesn't work)</strong><br/>\n"
+"                    1. Make sure no ethernet cable is connected to the IoT Box<br/>\n"
+"                    2. Copy the token that is below<br/>\n"
+"                    3. Connect to the IoT Box WiFi network (you should see it in your available WiFi networks)<br/>\n"
+"                    4. You will be redirected to the IoT Box Homepage<br/>\n"
+"                    5. Paste the token in token field and follow the steps described on the IoT Box Homepage<br/>"
+msgstr ""
 
 #. module: iot
 #: model:ir.model,name:iot.model_add_iot_box
@@ -47,19 +60,88 @@ msgid "Add IoT Box wizard"
 msgstr ""
 
 #. module: iot
-#: selection:iot.device,connection:0
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Are you sure you want to reboot the IoT box?"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Are you sure you want to restart Odoo on the IoT box?"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_box__drivers_auto_update
+msgid "Automatic drivers update"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,help:iot.field_iot_box__drivers_auto_update
+msgid "Automatically update drivers when the IoT Box boots"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__scanner
+msgid "Barcode Scanner"
+msgstr "Skener čiarových kódov"
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__connection__bluetooth
 msgid "Bluetooth"
 msgstr ""
 
 #. module: iot
-#: selection:iot.device,type:0
-msgid "Camera"
+#. openerp-web
+#: code:addons/iot/static/src/views/box_kanban_view.xml:0
+#: code:addons/iot/static/src/views/box_list_view.xml:0
+#, python-format
+msgid "CONNECT"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Cancel"
-msgstr "Zrušiť"
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__camera
+msgid "Camera"
+msgstr "Kamera"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/views/iot_device_form.js:0
+#, python-format
+msgid "Check if the device is still connected"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_report_action.js:0
+#, python-format
+msgid "Check if the printer is still connected"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Click here to open your IoT Homepage"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Click on Advanced/Show Details/Details/More information"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid ""
+"Click on Proceed to .../Add Exception/Visit this website/Go on to the "
+"webpage"
+msgstr ""
 
 #. module: iot
 #: model_terms:ir.actions.act_window,help:iot.iot_box_action
@@ -67,14 +149,33 @@ msgid "Click on the"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Close MO"
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
+#, python-format
+msgid "Close"
+msgstr "Zatvoriť"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Close this window and try again"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Close WO"
-msgstr ""
+#: model:ir.model.fields,field_description:iot.field_iot_box__company_id
+#: model:ir.model.fields,field_description:iot.field_iot_device__company_id
+msgid "Company"
+msgstr "Spoločnosť"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/views/box_kanban_view.xml:0
+#: code:addons/iot/static/src/views/box_list_view.xml:0
+#, python-format
+msgid "Connect"
+msgstr "Pripojte sa"
 
 #. module: iot
 #: model:ir.actions.act_window,name:iot.action_add_iot_box
@@ -84,28 +185,36 @@ msgstr ""
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_iot_device__connection
+#: model_terms:ir.ui.view,arch_db:iot.iot_device_search
 msgid "Connection"
 msgstr ""
 
 #. module: iot
 #. openerp-web
-#: code:addons/iot/static/src/js/iot.js:291
+#: code:addons/iot/static/src/iot_connection_error_dialog.js:0
 #, python-format
-msgid "Connection failed"
+msgid "Connection to IoT Box failed"
 msgstr ""
 
 #. module: iot
 #. openerp-web
-#: code:addons/iot/static/src/js/iot.js:94
+#: code:addons/iot/static/src/views/iot_device_form.js:0
 #, python-format
-msgid "Connection with the IoT Box failed!"
+msgid "Connection to device failed"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_report_action.js:0
+#, python-format
+msgid "Connection to printer failed"
 msgstr ""
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__create_uid
 #: model:ir.model.fields,field_description:iot.field_iot_box__create_uid
 #: model:ir.model.fields,field_description:iot.field_iot_device__create_uid
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__create_uid
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__create_uid
 msgid "Created by"
 msgstr "Vytvoril"
 
@@ -113,19 +222,19 @@ msgstr "Vytvoril"
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__create_date
 #: model:ir.model.fields,field_description:iot.field_iot_box__create_date
 #: model:ir.model.fields,field_description:iot.field_iot_device__create_date
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__create_date
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__create_date
 msgid "Created on"
 msgstr "Vytvorené"
 
 #. module: iot
-#: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
-msgid "Detect and Add IoT devices in the network"
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__device
+msgid "Device"
 msgstr ""
 
 #. module: iot
-#: selection:iot.device,type:0
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__device_id
-msgid "Device"
+#: model:ir.model.fields,field_description:iot.field_iot_box__device_count
+#: model_terms:ir.ui.view,arch_db:iot.iot_box_view_kanban
+msgid "Device Count"
 msgstr ""
 
 #. module: iot
@@ -134,7 +243,13 @@ msgid "Device type"
 msgstr ""
 
 #. module: iot
+#: model_terms:ir.ui.view,arch_db:iot.iot_device_view_kanban
+msgid "Device type is #{record.type.raw_value}"
+msgstr ""
+
+#. module: iot
 #: model:ir.actions.act_window,name:iot.iot_device_action
+#: model:ir.actions.act_window,name:iot.iot_device_action_search_iot_box
 #: model:ir.model.fields,field_description:iot.field_iot_box__device_ids
 #: model:ir.ui.menu,name:iot.iot_device_menu_action
 #: model_terms:ir.ui.view,arch_db:iot.iot_box_view_form
@@ -142,26 +257,53 @@ msgid "Devices"
 msgstr "Zariadenia"
 
 #. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__display
+msgid "Display"
+msgstr "Zobraziť"
+
+#. module: iot
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__display_name
 #: model:ir.model.fields,field_description:iot.field_iot_box__display_name
 #: model:ir.model.fields,field_description:iot.field_iot_device__display_name
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__display_name
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__display_name
 msgid "Display Name"
-msgstr "Zobrazovaný Názov"
+msgstr "Zobrazovaný názov"
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Fail"
+#: model:ir.model.fields,field_description:iot.field_iot_device__display_url
+msgid "Display URL"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Finish"
-msgstr "Dokončiť"
+#: model:ir.model.fields,field_description:iot.field_iot_box__ip
+#: model:ir.model.fields,field_description:iot.field_iot_device__iot_ip
+msgid "Domain Address"
+msgstr ""
 
 #. module: iot
-#: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
-msgid "Found IoT Box(s)"
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_download_logs.xml:0
+#, python-format
+msgid "Download Logs"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_download_logs.xml:0
+#, python-format
+msgid "Download logs"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Firefox only : Click on Confirm Security Exception"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__fiscal_data_module
+msgid "Fiscal Data Module"
 msgstr ""
 
 #. module: iot
@@ -170,10 +312,15 @@ msgid "Group By"
 msgstr "Zoskupiť podľa"
 
 #. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__connection__hdmi
+msgid "Hdmi"
+msgstr ""
+
+#. module: iot
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__id
 #: model:ir.model.fields,field_description:iot.field_iot_box__id
 #: model:ir.model.fields,field_description:iot.field_iot_device__id
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__id
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__id
 msgid "ID"
 msgstr "ID"
 
@@ -181,16 +328,6 @@ msgstr "ID"
 #: model:ir.model,name:iot.model_iot_device
 msgid "IOT Device"
 msgstr ""
-
-#. module: iot
-#: model:ir.model,name:iot.model_iot_trigger
-msgid "IOT Trigger"
-msgstr ""
-
-#. module: iot
-#: model:ir.model.fields,field_description:iot.field_iot_box__ip
-msgid "IP Address"
-msgstr "IP adresy"
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_iot_device__identifier
@@ -203,6 +340,24 @@ msgid "Identifier (Mac Address)"
 msgstr ""
 
 #. module: iot
+#: model:ir.model.fields,help:iot.field_iot_device__connected
+msgid "If device is connected to the IoT Box"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid ""
+"If you are on a secure server (HTTPS) check if you accepted the certificate:"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_box__version
+msgid "Image Version"
+msgstr ""
+
+#. module: iot
 #: model:ir.ui.menu,name:iot.iot_menu_root
 msgid "IoT"
 msgstr ""
@@ -212,7 +367,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:iot.field_iot_device__iot_id
 #: model_terms:ir.ui.view,arch_db:iot.iot_device_search
 msgid "IoT Box"
-msgstr ""
+msgstr "Zariadenie IoT"
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_iot_box__ip_url
@@ -232,23 +387,39 @@ msgid "IoT Device"
 msgstr ""
 
 #. module: iot
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__key
-msgid "Key"
-msgstr "Kľúč"
+#: model:ir.model.fields,field_description:iot.field_iot_device__is_scanner
+msgid "Is Scanner"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__keyboard
+msgid "Keyboard"
+msgstr ""
+
+#. module: iot
+#: model:ir.model,name:iot.model_iot_keyboard_layout
+#: model:ir.model.fields,field_description:iot.field_iot_device__keyboard_layout
+msgid "Keyboard Layout"
+msgstr ""
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_add_iot_box____last_update
 #: model:ir.model.fields,field_description:iot.field_iot_box____last_update
 #: model:ir.model.fields,field_description:iot.field_iot_device____last_update
-#: model:ir.model.fields,field_description:iot.field_iot_trigger____last_update
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout____last_update
 msgid "Last Modified on"
-msgstr "Posledná modifikácia"
+msgstr "Posledná úprava"
+
+#. module: iot
+#: model_terms:ir.ui.view,arch_db:iot.iot_device_view_form
+msgid "Last Sent Value"
+msgstr ""
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__write_uid
 #: model:ir.model.fields,field_description:iot.field_iot_box__write_uid
 #: model:ir.model.fields,field_description:iot.field_iot_device__write_uid
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__write_uid
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__write_uid
 msgid "Last Updated by"
 msgstr "Naposledy upravoval"
 
@@ -256,25 +427,53 @@ msgstr "Naposledy upravoval"
 #: model:ir.model.fields,field_description:iot.field_add_iot_box__write_date
 #: model:ir.model.fields,field_description:iot.field_iot_box__write_date
 #: model:ir.model.fields,field_description:iot.field_iot_device__write_date
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__write_date
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__write_date
 msgid "Last Updated on"
 msgstr "Naposledy upravované"
 
 #. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Last restarting process hasn't finished yet"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__layout
+msgid "Layout"
+msgstr "Usporiadanie"
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_device__manual_measurement
+msgid "Manual Measurement"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,help:iot.field_iot_device__manual_measurement
+msgid "Manually read the measurement from the device"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,help:iot.field_iot_device__is_scanner
+msgid "Manually switch the device type between keyboard and scanner"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_device__manufacturer
+msgid "Manufacturer"
+msgstr "Výrobca"
+
+#. module: iot
 #: model:ir.model.fields,field_description:iot.field_iot_box__name
 #: model:ir.model.fields,field_description:iot.field_iot_device__name
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__name
 msgid "Name"
 msgstr "Meno"
 
 #. module: iot
-#: selection:iot.device,connection:0
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__connection__network
 msgid "Network"
 msgstr "Sieť"
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Next"
-msgstr "Ďalší"
 
 #. module: iot
 #: model_terms:ir.actions.act_window,help:iot.iot_box_action
@@ -282,49 +481,62 @@ msgid "No IoT Box found !"
 msgstr ""
 
 #. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Odoo cannot reach the IoT Box."
+msgstr ""
+
+#. module: iot
 #: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
-msgid "OK"
-msgstr "OK"
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Pack"
-msgstr "Balenie"
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Pass"
+msgid "Pair"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Pause"
-msgstr "Pozastavenie"
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Previous"
+#: model:ir.model.fields,field_description:iot.field_add_iot_box__pairing_code
+msgid "Pairing Code"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Print Delivery Slip"
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__payment
+msgid "Payment Terminal"
+msgstr "Platobný terminál"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid ""
+"Please accept the certificate of your IoT Box (procedure depends on your "
+"browser) :"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Print Labels"
+#. openerp-web
+#: code:addons/iot/static/src/iot_connection_error_dialog.xml:0
+#, python-format
+msgid "Please check if the IoT Box is still connected."
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Print Operation"
-msgstr ""
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Please wait"
+msgstr "Prosím čakajte"
 
 #. module: iot
-#: selection:iot.device,type:0
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__printer
 msgid "Printer"
 msgstr "Tlačiareň"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_report_action.js:0
+#, python-format
+msgid "Printer "
+msgstr ""
 
 #. module: iot
 #: model_terms:ir.ui.view,arch_db:iot.iot_device_view_form
@@ -332,79 +544,100 @@ msgid "Printer Reports"
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Record Production"
+#: model:ir.model,name:iot.model_publisher_warranty_contract
+msgid "Publisher Warranty Contract For IoT Box"
 msgstr ""
 
 #. module: iot
 #: model:ir.model,name:iot.model_ir_actions_report
 msgid "Report Action"
-msgstr ""
+msgstr "Akcia výkazu"
 
 #. module: iot
 #: model_terms:ir.ui.view,arch_db:iot.act_report_xml_view_tree_iot
 msgid "Report xml"
-msgstr "xml výkaz"
+msgstr "Report xml"
 
 #. module: iot
 #: model:ir.model.fields,field_description:iot.field_iot_device__report_ids
 msgid "Reports"
-msgstr "Výkazy"
+msgstr "Reporty"
 
 #. module: iot
 #. openerp-web
-#: code:addons/iot/static/src/js/iot.js:120
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
 #, python-format
-msgid "SCAN"
+msgid "Restart Failed"
 msgstr ""
-
-#. module: iot
-#: model_terms:ir.ui.view,arch_db:iot.view_add_iot_box
-msgid "Scanning range(s)"
-msgstr ""
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Scrap"
-msgstr "Vyradené"
-
-#. module: iot
-#: model:ir.model.fields,field_description:iot.field_iot_box__screen_url
-msgid "Screen URL"
-msgstr ""
-
-#. module: iot
-#: model:ir.model.fields,field_description:iot.field_iot_trigger__sequence
-msgid "Sequence"
-msgstr "Postupnosť"
-
-#. module: iot
-#: selection:iot.trigger,action:0
-msgid "Skip"
-msgstr "Preskočiť"
 
 #. module: iot
 #. openerp-web
-#: code:addons/iot/static/src/js/iot.js:89
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Restart finished"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Restarting"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__type__scale
+msgid "Scale"
+msgstr "Váha"
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__connection__serial
+msgid "Serial"
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields,field_description:iot.field_iot_device__connected
+msgid "Status"
+msgstr "Stav"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Success"
+msgstr "Úspech"
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/iot_report_action.js:0
 #, python-format
 msgid "Successfully sent to printer!"
 msgstr ""
 
 #. module: iot
-#. openerp-web
-#: code:addons/iot/static/src/js/iot.js:325 selection:iot.trigger,action:0
+#: code:addons/iot/wizard/add_iot_box.py:0
 #, python-format
-msgid "Take Measure"
+msgid ""
+"The pairing code you provided was not found in our system. Please check that"
+" you entered it correctly."
 msgstr ""
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Take Picture"
+#: model_terms:ir.actions.act_window,help:iot.iot_device_action_search_iot_box
+msgid "There is no device connected to this IoT Box"
 msgstr ""
 
 #. module: iot
 #: model_terms:ir.actions.act_window,help:iot.iot_device_action
 msgid "There is no device connected to your IoT Boxes"
+msgstr ""
+
+#. module: iot
+#. openerp-web
+#: code:addons/iot/static/src/view_widgets/iot_restart_odoo.js:0
+#, python-format
+msgid "Timed out"
 msgstr ""
 
 #. module: iot
@@ -428,19 +661,27 @@ msgid "Type of device."
 msgstr ""
 
 #. module: iot
-#: selection:iot.device,connection:0
+#: model:ir.model.fields,help:iot.field_iot_device__display_url
+msgid ""
+"URL of the page that will be displayed by the device, leave empty to use the"
+" customer facing display of the POS."
+msgstr ""
+
+#. module: iot
+#: model:ir.model.fields.selection,name:iot.selection__iot_device__connection__direct
 msgid "USB"
 msgstr ""
 
 #. module: iot
-#: model:ir.model.fields,help:iot.field_iot_box__screen_url
-msgid "Url of the page that will be displayed by hdmi port of the box."
-msgstr ""
+#: model:ir.model.fields,field_description:iot.field_iot_keyboard_layout__variant
+msgid "Variant"
+msgstr "Variant"
 
 #. module: iot
-#: selection:iot.trigger,action:0
-msgid "Validate"
-msgstr "Overiť"
+#: code:addons/iot/wizard/add_iot_box.py:0
+#, python-format
+msgid "We had troubles pairing your IoT Box. Please try again later."
+msgstr ""
 
 #. module: iot
 #: model:ir.model.fields,help:iot.field_ir_actions_report__device_id

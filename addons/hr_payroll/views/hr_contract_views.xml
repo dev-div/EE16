@@ -15,7 +15,7 @@
             <xpath expr="//label[@for='wage']" position="before">
                 <field name="wage_type"/>
                 <label for="hourly_wage" attrs="{'invisible': [('wage_type', '!=', 'hourly')]}"/>
-                <div class="o_row" name="hourly_wage" attrs="{'invisible': [('wage_type', '!=', 'hourly')]}">
+                <div class="o_row mw-50" name="hourly_wage" attrs="{'invisible': [('wage_type', '!=', 'hourly')]}">
                     <field name="hourly_wage" nolabel="1"/>
                     <span>/ hour</span>
                 </div>

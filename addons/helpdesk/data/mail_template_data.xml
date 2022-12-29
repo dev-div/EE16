@@ -16,7 +16,7 @@
         <a t-attf-href="/my/ticket/{{ object.id }}/{{ object.access_token }}" t-out="object.name or ''"></a>
     </t>
     has been received and is being reviewed by our <t t-out="object.team_id.name or ''">Table legs are unbalanced</t> team.
-    The reference of your ticket is <t t-out="object.id or ''">15</t>.<br />
+    The reference of your ticket is <t t-out="object.ticket_ref or ''">15</t>.<br />
 
     <div style="text-align: center; padding: 16px 0px 16px 0px;">
         <a style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;" t-att-href="object.get_portal_url()" target="_blank">View the ticket</a><br/>

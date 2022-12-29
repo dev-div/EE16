@@ -8,4 +8,4 @@ class SpreadsheetShareRoute(ShareRoute):
             override of documents to prevent the download
             of spreadsheets binary as they are not usable
         """
-        return documents.filtered(lambda doc: doc.mimetype != "application/o-spreadsheet")
+        return super()._get_downloadable_documents(documents.filtered(lambda doc: doc.mimetype != "application/o-spreadsheet"))

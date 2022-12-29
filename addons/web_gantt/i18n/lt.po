@@ -3,25 +3,36 @@
 # 	* web_gantt
 # 
 # Translators:
-# Martin Trigaux, 2019
-# Audrius Palenskis <audrius.palenskis@gmail.com>, 2019
-# Rolandas <info@paninfo.lt>, 2019
-# Edgaras Kriukonis <edgaras@focusate.eu>, 2019
-# Linas Versada <linaskrisiukenas@gmail.com>, 2019
+# Audrius Palenskis <audrius.palenskis@gmail.com>, 2022
+# Rolandas <info@paninfo.lt>, 2022
+# Edgaras Kriukonis <edgaras@focusate.eu>, 2022
+# Ramunė ViaLaurea <ramune.vialaurea@gmail.com>, 2022
+# Naglis Jonaitis, 2022
+# Martin Trigaux, 2022
+# Linas Versada <linaskrisiukenas@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 15.5alpha1+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-23 11:39+0000\n"
-"PO-Revision-Date: 2019-08-26 09:38+0000\n"
-"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2019\n"
+"POT-Creation-Date: 2022-09-20 09:49+0000\n"
+"PO-Revision-Date: 2022-09-22 05:49+0000\n"
+"Last-Translator: Linas Versada <linaskrisiukenas@gmail.com>, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#. module: web_gantt
+#. openerp-web
+#: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
+#: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
+#: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
+#, python-format
+msgid "&nbsp;"
+msgstr "&nbsp;"
 
 #. module: web_gantt
 #. openerp-web
@@ -35,14 +46,14 @@ msgstr "Pridėti"
 #: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
 #, python-format
 msgid "Add record"
-msgstr ""
+msgstr "Pridėti įrašą"
 
 #. module: web_gantt
 #. openerp-web
 #: code:addons/web_gantt/static/src/js/gantt_controller.js:0
 #, python-format
 msgid "Are you sure to delete this record?"
-msgstr ""
+msgstr "Ar tikrai norite ištrinti šį įrašą?"
 
 #. module: web_gantt
 #: model:ir.model,name:web_gantt.model_base
@@ -54,7 +65,7 @@ msgstr "Bazė"
 #: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
 #, python-format
 msgid "Collapse rows"
-msgstr ""
+msgstr "Sutraukti eilutes"
 
 #. module: web_gantt
 #. openerp-web
@@ -76,7 +87,7 @@ msgstr "Diena"
 #: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
 #, python-format
 msgid "Expand rows"
-msgstr ""
+msgstr "Išskleisti eilutes"
 
 #. module: web_gantt
 #. openerp-web
@@ -93,11 +104,43 @@ msgid "Gantt View"
 msgstr "Ganto vaizdas"
 
 #. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid "Gantt child can only be field or template, got %s"
+msgstr ""
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid "Gantt must have a 'date_start' attribute"
+msgstr "Ganto diagrama privalo turėti pradžios ir pabaigos požymius"
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid "Gantt must have a 'date_stop' attribute"
+msgstr ""
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid ""
+"Gantt must have a 'dependency_inverted_field' attribute once the "
+"'dependency_field' is specified"
+msgstr ""
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid "Gantt view can contain only one templates tag"
+msgstr ""
+
+#. module: web_gantt
 #. openerp-web
 #: code:addons/web_gantt/static/src/js/gantt_model.js:0
 #, python-format
-msgid "Grouping by date is not supported, ignoring it"
-msgstr ""
+msgid "Grouping by date is not supported"
+msgstr "Grupavimas pagal datas nepalaikomas"
 
 #. module: web_gantt
 #: code:addons/web_gantt/models/models.py:0
@@ -106,10 +149,15 @@ msgid "Insufficient fields for Gantt View!"
 msgstr ""
 
 #. module: web_gantt
-#. openerp-web
-#: code:addons/web_gantt/static/src/js/gantt_model.js:0
+#: code:addons/web_gantt/models/ir_ui_view.py:0
 #, python-format
-msgid "Invalid group by"
+msgid "Invalid attributes (%s) in gantt view. Attributes must be in (%s)"
+msgstr ""
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/ir_ui_view.py:0
+#, python-format
+msgid "Invalid default_scale '%s' in gantt"
 msgstr ""
 
 #. module: web_gantt
@@ -162,11 +210,19 @@ msgid "Previous"
 msgstr "Ankstesnis"
 
 #. module: web_gantt
+#: code:addons/web_gantt/models/models.py:0
+#, python-format
+msgid ""
+"Records that are in the past cannot be automatically rescheduled. They "
+"should be manually rescheduled instead."
+msgstr ""
+
+#. module: web_gantt
 #. openerp-web
 #: code:addons/web_gantt/static/src/xml/web_gantt.xml:0
 #, python-format
 msgid "Start:"
-msgstr ""
+msgstr "Pradėti:"
 
 #. module: web_gantt
 #. openerp-web
@@ -187,7 +243,12 @@ msgstr "Šiandien"
 #: code:addons/web_gantt/static/src/js/gantt_model.js:0
 #, python-format
 msgid "Undefined %s"
-msgstr ""
+msgstr "Nežinoma %s"
+
+#. module: web_gantt
+#: model:ir.model,name:web_gantt.model_ir_ui_view
+msgid "View"
+msgstr "Peržiūrėti"
 
 #. module: web_gantt
 #. openerp-web
@@ -202,3 +263,17 @@ msgstr "Savaitė"
 #, python-format
 msgid "Year"
 msgstr "Metai"
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/models.py:0
+#, python-format
+msgid "You cannot reschedule %s towards %s."
+msgstr ""
+
+#. module: web_gantt
+#: code:addons/web_gantt/models/models.py:0
+#, python-format
+msgid ""
+"You cannot reschedule tasks that do not follow a direct dependency path. "
+"Only the first task has been automatically rescheduled."
+msgstr ""

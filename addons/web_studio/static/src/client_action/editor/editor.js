@@ -9,7 +9,7 @@ import { EditorMenu } from "./editor_menu/editor_menu";
 
 import { mapDoActionOptionAPI } from "@web/legacy/backend_utils";
 
-const { Component, EventBus, onWillStart, useSubEnv } = owl;
+import { Component, EventBus, markup, onWillStart, useSubEnv } from "@odoo/owl";
 
 const editorTabRegistry = registry.category("web_studio.editor_tabs");
 
@@ -84,11 +84,13 @@ export class Editor extends Component {
         } else if (editorTab === "reports" && editedReport) {
             return "web_studio.report_editor";
         } else {
-            return this.rpc("/web_studio/get_studio_action", {
+            const action = await this.rpc("/web_studio/get_studio_action", {
                 action_name: editorTab,
                 model: editedAction.res_model,
                 view_id: editedAction.view_id && editedAction.view_id[0], // Not sure it is correct or desirable
             });
+            action.help = action.help && markup(action.help);
+            return action;
         }
     }
 

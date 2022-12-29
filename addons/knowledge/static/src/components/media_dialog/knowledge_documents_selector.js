@@ -19,13 +19,14 @@ export class KnowledgeDocumentSelector extends DocumentSelector {
      * @override
      */
     get attachmentsDomain() {
-        const domain = super.attachmentsDomain;
-        return domain.map(d => {
+        const domain = super.attachmentsDomain.map(d => {
             if (d[0] === 'mimetype') {
                 return ['mimetype', '!=', false];
             }
             return d;
         });
+        domain.unshift('&', '|', ['url', '=', null], '!', ['url', '=like', '/web/assets/%']);
+        return domain;
     }
 
     static async createElements(...args) {

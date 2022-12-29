@@ -47,7 +47,8 @@ class AccountBankStmtImportCSV(models.TransientModel):
         # EXTENDS base
         data = super()._parse_import_data(data, import_fields, options)
         journal_id = self._context.get('default_journal_id')
-        if not journal_id:
+        bank_stmt_import = options.get('bank_stmt_import')
+        if not journal_id or not bank_stmt_import:
             return data
 
         journal = self.env['account.journal'].browse(journal_id)

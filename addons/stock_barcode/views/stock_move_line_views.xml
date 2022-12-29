@@ -92,11 +92,11 @@
                 <div class="col-12 col-md-6 my-2 d-flex align-items-baseline">
                     <i class="fa fa-fw fa-lg fa-barcode me-3" title="Serial/Lot Number" attrs="{'invisible': [('tracking', 'not in', ['serial', 'lot'])]}"/>
                     <field name="lot_name" placeholder="Serial/Lot Number"
-                        attrs="{'invisible': ['|', '|', ('tracking', '=', 'none'), ('picking_type_use_create_lots', '=', False), ('picking_type_use_existing_lots', '=', True)]}"
+                           attrs="{'invisible': ['|', '|', ('tracking', '=', 'none'), ('picking_type_use_create_lots', '=', False), '&amp;', ('picking_type_use_existing_lots', '=', True), ('lot_name', '=', False)]}"
                         />
                     <field name="lot_id" placeholder="Serial/Lot Number" options="{'no_open': True}"
-                        context="{'default_product_id': product_id, 'default_company_id': company_id}"
-                        attrs="{'invisible': ['|', ('tracking', '=', 'none'), ('picking_type_use_existing_lots', '=', False)]}"
+                           context="{'default_product_id': product_id, 'default_company_id': company_id, 'active_picking_id': picking_id}"
+                           attrs="{'invisible': ['|', '|', ('tracking', '=', 'none'), ('picking_type_use_existing_lots', '=', False), '&amp;', ('picking_type_use_create_lots', '=', True), ('lot_name', '!=', False)]}"
                         />
                 </div>
             </div>

@@ -33,8 +33,32 @@ export class EmbeddedViewManager extends Component {
             ...getDefaultConfig(),
             disableSearchBarAutofocus: true,
         };
+
+        /**
+         * @param {ViewType} viewType
+         * @param {Object} [props={}]
+         */
+        const switchView = (viewType, props = {}) => {
+            if (this.action.type !== "ir.actions.act_window") {
+                throw new Error('Can not open the view: The action is not an "ir.actions.act_window"');
+            }
+            if (props.resId) {
+                this.action.res_id = props.resId;
+            }
+            this.action.globalState = this.getEmbeddedViewGlobalState();
+            this.actionService.doAction(this.action, {
+                viewType: viewType,
+            });
+        };
+
+        const services = this.env.services;
+        const extendedServices = Object.create(services);
+        extendedServices.action = Object.create(services.action);
+        extendedServices.action.switchView = switchView;
+
         useSubEnv({
             config,
+            services: extendedServices,
             __getGlobalState__: this.__getGlobalState__,
         });
         onWillStart(this.onWillStart.bind(this));

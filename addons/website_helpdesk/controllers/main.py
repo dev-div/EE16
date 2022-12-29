@@ -121,7 +121,10 @@ class WebsiteForm(form.WebsiteForm):
     def _handle_website_form(self, model_name, **kwargs):
         email = request.params.get('partner_email')
         if email:
-            partner = request.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
+            if request.env.user.email == email:
+                partner = request.env.user.partner_id
+            else:
+                partner = request.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
             if not partner:
                 partner = request.env['res.partner'].sudo().create({
                     'email': email,

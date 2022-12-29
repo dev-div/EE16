@@ -140,11 +140,12 @@ const HtmlFieldPatch = {
                 }
                 // parse html to get all data-behavior-props content nodes
                 const props = {
+                    ...behaviorData.props,
                     readonly: this.props.readonly,
                     anchor: anchor,
                     wysiwyg: this.wysiwyg,
-                    ...behaviorData.props,
-                    record: this.props.record
+                    record: this.props.record,
+                    root: this.injectorEl
                 };
                 let behaviorProps = {};
                 if (anchor.hasAttribute("data-behavior-props")) {

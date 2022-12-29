@@ -98,14 +98,20 @@ class RentalOrderLine(models.Model):
                     vals['reserved_lot_ids'] = vals['pickedup_lot_ids']
 
         res = super(RentalOrderLine, self).write(vals)
-        if not movable_confirmed_rental_lines:
-            return res
 
-        movable_confirmed_rental_lines.mapped('company_id').filtered(lambda company: not company.rental_loc_id)._create_rental_location()
+        self._write_rental_lines(movable_confirmed_rental_lines, old_vals, vals)
+        # TODO constraint s.t. qty_returned cannot be > than qty_delivered (and same for lots)
+        return res
+
+    def _write_rental_lines(self, lines, old_vals, vals):
+        if not lines:
+            return
+
+        lines.mapped('company_id').filtered(lambda company: not company.rental_loc_id)._create_rental_location()
         # to undo stock moves partially: what if location has changed? :x
         # can we ascertain the warehouse_id.lot_stock_id of a sale.order doesn't change???
 
-        for sol in movable_confirmed_rental_lines:
+        for sol in lines:
             rented_location = sol.company_id.rental_loc_id
             stock_location = sol.order_id.warehouse_id.lot_stock_id
             if sol.product_id.tracking == 'serial' and (vals.get('pickedup_lot_ids', False) or vals.get('returned_lot_ids', False)):
@@ -133,9 +139,6 @@ class RentalOrderLine(models.Model):
                     sol._move_qty(qty_returned_change, rented_location, stock_location)
                 elif qty_returned_change < 0.0:
                     sol._return_qty(-qty_returned_change, rented_location, stock_location)
-
-        # TODO constraint s.t. qty_returned cannot be > than qty_delivered (and same for lots)
-        return res
 
     def _move_serials(self, lot_ids, location_id, location_dest_id):
         """Move the given lots from location_id to location_dest_id.
@@ -254,7 +257,7 @@ class RentalOrderLine(models.Model):
         for line in self.filtered('is_rental'):
             moves = line.move_ids.filtered(lambda m: m.state != 'cancel')
             if moves and moves.mapped('product_id') != line.product_id:
-                raise ValidationError("You cannot change the product of lines linked to stock moves.")
+                raise ValidationError(_("You cannot change the product of lines linked to stock moves."))
 
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
         """Disable stock moves for rental order lines.

@@ -70,6 +70,12 @@
   </record>
 
   <!-- Set available meeting room serial numbers -->
+  <function model="stock.quant" name="unlink">
+    <value model="stock.quant" eval="obj().search([
+            ('product_id', '=', ref('rental_stock_product_1'))
+        ]).ids"/>
+  </function>
+
   <record id="rental_stock_inventory_1" model="stock.quant">
     <field name="product_id" ref="rental_stock_product_1"/>
     <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>

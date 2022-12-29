@@ -8,20 +8,20 @@
 # Güven YILMAZ <guvenyilmaz@outlook.com.tr>, 2022
 # Ozlem Cikrikci <ozlemc@eskayazilim.com.tr>, 2022
 # Levent Karakaş <levent@mektup.at>, 2022
+# Gökhan Erdoğdu <gokhan.erdogdu@mechsoft.com.tr>, 2022
 # Nadir Gazioglu <nadirgazioglu@gmail.com>, 2022
 # Umur Akın <umura@projetgrup.com>, 2022
 # Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2022
 # Murat Kaplan <muratk@projetgrup.com>, 2022
 # Martin Trigaux, 2022
-# Gökhan Erdoğdu <gokhan.erdogdu@mechsoft.com.tr>, 2022
 # Ediz Duman <neps1192@gmail.com>, 2022
 # Tugay Hatıl <tugayh@projetgrup.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0beta+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 13:26+0000\n"
+"POT-Creation-Date: 2022-12-15 13:27+0000\n"
 "PO-Revision-Date: 2022-09-22 05:49+0000\n"
 "Last-Translator: Tugay Hatıl <tugayh@projetgrup.com>, 2022\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
@@ -32,6 +32,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "%s Spent"
@@ -46,6 +47,11 @@ msgstr "<i class=\"fa fa-pause text-warning\" title=\"Timer is Paused\"/>"
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_view_kanban
 msgid "<i class=\"fa fa-play text-success\" title=\"Timer is Running\"/>"
 msgstr "<i class=\"fa fa-play text-success\" title=\"Timer is Running\"/>"
+
+#. module: timesheet_grid
+#: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
+msgid "<span class=\"col-auto ms-2\">minutes</span>"
+msgstr ""
 
 #. module: timesheet_grid
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
@@ -319,6 +325,7 @@ msgid "Amount"
 msgstr "Tutar"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "An employee must be linked to your user to record time."
@@ -331,7 +338,7 @@ msgid "Analytic Account"
 msgstr "Analitik Hesap"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Apple App Store"
@@ -377,13 +384,14 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/task.py:0
 #, python-format
 msgid "Confirm Time Spent"
 msgstr "Harcanan Zamanı Onayla"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Congratulations, you are now a master of Timesheets."
@@ -445,7 +453,7 @@ msgid "Days to Remind User"
 msgstr "Hatırlatma Günleri"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_toggle/timesheet_uom_hour_toggle.xml:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
@@ -470,7 +478,7 @@ msgid "Describe your activity"
 msgstr "Etkinliğinizi açıklayın"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -481,7 +489,7 @@ msgstr ""
 "görüşme...)</i>."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.project_task_create_timesheet_view_form
 #, python-format
@@ -495,7 +503,7 @@ msgid "Description"
 msgstr "Açıklama"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_project.js:0
 #, python-format
 msgid ""
@@ -504,7 +512,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_task.js:0
 #, python-format
 msgid ""
@@ -513,7 +521,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_avatar_employee.js:0
 #, python-format
 msgid ""
@@ -524,7 +532,7 @@ msgstr ""
 "sayısı arasındaki fark."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_avatar_employee.js:0
 #, python-format
 msgid ""
@@ -535,7 +543,7 @@ msgstr ""
 " sayısı arasındaki fark."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/widgets/timesheets_m2o_widget.js:0
 #, python-format
 msgid "Difference between the time allocated and the time recorded."
@@ -592,7 +600,7 @@ msgid "Display Timesheet Time"
 msgstr "Çalışma Çizelgesi Süresini Görüntüle"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid ""
@@ -635,7 +643,7 @@ msgid "Encoding Uom"
 msgstr "Kodlama Ölçü Birimi"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Enter"
@@ -647,21 +655,21 @@ msgid "Frequency"
 msgstr "Sıklık"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Google Chrome Store"
 msgstr "Google Chrome Mağazası"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Google Play Store"
 msgstr "Google Play Mağazası"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timesheet_grid_group_by_no_date_mixin.js:0
 #, python-format
 msgid "Grouping by date is not supported"
@@ -684,7 +692,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_toggle/timesheet_uom_hour_toggle.xml:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
@@ -732,7 +740,7 @@ msgid "Last Week"
 msgstr "Geçen Hafta"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -743,7 +751,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Launch the <b>timer</b> to start a new activity."
@@ -783,6 +791,7 @@ msgid "Merge Timesheet"
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: model:ir.actions.server,name:timesheet_grid.merge_timesheet_action
 #: model:ir.model,name:timesheet_grid.model_hr_timesheet_merge_wizard
@@ -843,7 +852,7 @@ msgid "Next scheduled date for manager reminder"
 msgstr "Yönetici hatırlatıcısı için sonraki planlanan tarih"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "No activities found. Let's start a new one!"
@@ -877,6 +886,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -897,21 +907,21 @@ msgid "Pause timer"
 msgstr "Zamanlayıcıyı duraklat"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #, python-format
 msgid "Play"
 msgstr "Oynat"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "Press Esc to discard"
 msgstr "Çıkış için Esc tuşuna basın"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #: model:ir.model,name:timesheet_grid.model_project_project
 #: model:ir.model.fields,field_description:timesheet_grid.field_account_analytic_line__project_id
@@ -978,28 +988,28 @@ msgid "Save time"
 msgstr "Zamanı kaydet"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "See all the records aggregated in this cell"
 msgstr "Bu hücrede toplanan tüm kayıtları görün"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #, python-format
 msgid "Select a Project"
 msgstr "Bir Proje Seçin"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #, python-format
 msgid "Select a Task"
 msgstr "Bir Görev Seçin"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Select the <b>project</b> on which you are working."
@@ -1010,10 +1020,8 @@ msgstr "Üzerinde çalıştığınız <b>projeyi</b> seçin."
 #: model:ir.model.fields,help:timesheet_grid.field_res_users__timesheet_manager_id
 msgid ""
 "Select the user responsible for approving \"Timesheet\" of this employee.\n"
-"If empty, the approval is done by an Administrator or Team Approver (determined in settings/users)."
+"If empty, the approval is done by a Timesheets > Administrator or a Timesheets > User: all timesheets (as determined in the users settings)."
 msgstr ""
-"Bu çalışanın \"Çalışma Çizelgesi\"ni onaylamaktan sorumlu kullanıcıyı seçin.\n"
-"Boşsa, onay Yönetici veya Ekip Onaylayıcısı tarafından yapılır (ayarlarda/kullanıcılarda belirlenir)."
 
 #. module: timesheet_grid
 #: model:ir.model.fields,help:timesheet_grid.field_account_analytic_line__is_timesheet
@@ -1030,7 +1038,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -1041,7 +1049,14 @@ msgstr ""
 " Bir hücreden diğerine kolayca gitmek için sekme tuşlarını kullanın."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-python
+#: code:addons/timesheet_grid/models/analytic.py:0
+#, python-format
+msgid "Sorry, you cannot use a timer for a validated timesheet"
+msgstr ""
+
+#. module: timesheet_grid
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_timer/timesheet_uom_hour_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
@@ -1056,7 +1071,7 @@ msgid "Start timer"
 msgstr "Zamanlayıcıyı başlat"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/components/timesheet_uom_hour_timer/timesheet_uom_hour_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
 #: code:addons/timesheet_grid/static/src/js/timesheet_uom_timer.js:0
@@ -1067,7 +1082,7 @@ msgid "Stop"
 msgstr "Durdur"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid ""
@@ -1087,7 +1102,7 @@ msgid "Suspicious Durations"
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timer_m2o.js:0
 #: model:ir.model,name:timesheet_grid.model_project_task
 #: model:ir.model.fields,field_description:timesheet_grid.field_hr_timesheet_merge_wizard__task_id
@@ -1120,7 +1135,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/timesheet_grid/timesheet_grid_controller_mixin.js:0
 #, python-format
 msgid "The timesheet entry has successfully been created."
@@ -1132,30 +1147,42 @@ msgid "The timesheet's time must be positive"
 msgstr "Çalışma çizelgesinin zamanı pozitif olmalıdır"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/wizard/timesheet_merge_wizard.py:0
 #, python-format
 msgid "The timesheets have successfully been merged."
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "The timesheets have successfully been reset to draft."
 msgstr "Çalışma çizelgeleri başarıyla taslağa sıfırlandı."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "The timesheets have successfully been validated."
 msgstr "Çalışma çizelgeleri başarıyla doğrulandı."
 
 #. module: timesheet_grid
+#. odoo-python
+#: code:addons/timesheet_grid/wizard/timesheet_merge_wizard.py:0
+#, python-format
+msgid "The timesheets must have the same encoding unit"
+msgstr ""
+
+#. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "There are no timesheets to merge."
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1164,6 +1191,7 @@ msgid ""
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/task.py:0
 #, python-format
 msgid ""
@@ -1228,7 +1256,6 @@ msgstr "Çalışma Çizelgesi Birim Zaman"
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_reminder_user_ir_actions_server
 #: model:ir.cron,cron_name:timesheet_grid.timesheet_reminder_user
-#: model:ir.cron,name:timesheet_grid.timesheet_reminder_user
 msgid "Timesheet: Employees Email Reminder"
 msgstr "Çalışma Çizelgesi: Personel E-mail Hatırlatıcı"
 
@@ -1245,7 +1272,6 @@ msgstr "Çalışma Çizelgesi: Yönetici Hatırlatıcısı"
 #. module: timesheet_grid
 #: model:ir.actions.server,name:timesheet_grid.timesheet_reminder_manager_ir_actions_server
 #: model:ir.cron,cron_name:timesheet_grid.timesheet_reminder_manager
-#: model:ir.cron,name:timesheet_grid.timesheet_reminder_manager
 msgid "Timesheet: Managers Email Reminder"
 msgstr "Çalışma Çizelgesi: Yönetici E-mail Hatırlatıcı"
 
@@ -1264,6 +1290,7 @@ msgid "Timesheets Analysis Report"
 msgstr ""
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1295,7 +1322,7 @@ msgid "To Validate"
 msgstr "Onaylanacak"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/tours/timesheet_grid.js:0
 #, python-format
 msgid "Track the <b>time spent</b> on your projects. <i>It starts here.</i>"
@@ -1303,7 +1330,7 @@ msgstr ""
 "Projelerinize <b>harcanan zamanı</b> takip edin. <i>Burada başlıyor.</i>"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid ""
@@ -1342,9 +1369,8 @@ msgstr ""
 "Yöneticisi olmalı."
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/js/views/timesheet_kanban/timesheet_validation_kanban_controler.xml:0
-#: code:addons/timesheet_grid/static/src/xml/timesheet_kanban.xml:0
 #: model:ir.actions.server,name:timesheet_grid.timesheet_validate_action
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_form_view
 #: model_terms:ir.ui.view,arch_db:timesheet_grid.timesheet_view_form
@@ -1404,6 +1430,7 @@ msgstr ""
 "alabileceği."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1415,6 +1442,7 @@ msgstr ""
 "sıfırlayabilirsiniz."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
@@ -1426,12 +1454,14 @@ msgstr ""
 "çalışanların çalışma çizelgelerini doğrulayabilirsiniz."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "You cannot access timesheets that are not yours."
 msgstr "Size ait olmayan çalışma çizelgelerine erişemezsiniz."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1442,6 +1472,7 @@ msgstr ""
 "çizelgesi onaylayıcınıza başvurun."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/project.py:0
 #, python-format
 msgid ""
@@ -1452,6 +1483,7 @@ msgstr ""
 "zamanlayıcıyı başlatamazsınız."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
 #: code:addons/timesheet_grid/models/analytic.py:0
@@ -1462,6 +1494,7 @@ msgid "You cannot use the timer on validated timesheets."
 msgstr "Zamanlayıcıyı doğrulanmış çalışma çizelgelerinde kullanamazsınız."
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid ""
@@ -1489,59 +1522,56 @@ msgid "days"
 msgstr "gün"
 
 #. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "deleted"
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "letter shortcut"
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "min"
 msgstr "dak"
 
 #. module: timesheet_grid
-#: model_terms:ir.ui.view,arch_db:timesheet_grid.res_config_settings_view_form
-msgid "minutes"
-msgstr "dakika"
-
-#. module: timesheet_grid
+#. odoo-python
 #: code:addons/timesheet_grid/models/analytic.py:0
 #, python-format
 msgid "modified"
 msgstr "değiştirildi"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "or a"
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "press"
 msgstr "basın"
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "press Shift + a letter shortcut"
 msgstr ""
 
 #. module: timesheet_grid
-#. openerp-web
+#. odoo-javascript
 #: code:addons/timesheet_grid/static/src/xml/timesheet_grid.xml:0
 #, python-format
 msgid "to add"

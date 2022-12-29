@@ -12,7 +12,7 @@
 
 <t t-name="reconciliation.control.pager">
     <div class="progress progress-reconciliation bg-odoo">
-        <div aria-valuemin="0" t-att-aria-valuenow="widget._initialState.valuenow" t-att-aria-valuemax="widget._initialState.valuemax" class="progress-bar" role="progressbar" style="width: 0%;"><span class="valuenow"><t t-esc="widget._initialState.valuenow"/></span> / <span class="valuemax"><t t-esc="widget._initialState.valuemax"/></span></div>
+        <div aria-valuemin="0" t-att-aria-valuenow="widget._initialState.valuenow" t-att-aria-valuemax="widget._initialState.valuemax" class="progress-bar" role="progressbar"><span class="valuenow"><t t-esc="widget._initialState.valuenow"/></span> / <span class="valuemax"><t t-esc="widget._initialState.valuemax"/></span></div>
     </div>
 </t>
 
@@ -162,8 +162,8 @@
         </div>
     </div>
     <div class="clearfix o_form_sheet">
-    <div class="o_group">
-        <table class="o_group o_inner_group o_group_col_6">
+    <div class="d-flex gap-1 align-items-start">
+        <table class="o_group ms-1">
             <tbody>
                 <tr class="create_account_id">
                     <td class="o_td_label"><label class="o_form_label">Account</label></td>
@@ -179,7 +179,7 @@
                 </tr>
             </tbody>
         </table>
-        <table class="o_group o_inner_group o_group_col_6">
+        <table class="o_group">
             <tbody>
                 <tr class="create_journal_id" style="display: none;">
                     <td class="o_td_label"><label class="o_form_label">Journal</label></td>

@@ -3,15 +3,18 @@
 # 	* mrp_maintenance
 # 
 # Translators:
-# Martin Trigaux, 2019
+# Батмөнх Ганбат <batmunkh2522@gmail.com>, 2022
+# Minj P <pminj322@gmail.com>, 2022
+# Martin Trigaux, 2022
+# hish, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5+e\n"
+"Project-Id-Version: Odoo Server 16.0beta+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 08:05+0000\n"
-"PO-Revision-Date: 2019-08-26 09:37+0000\n"
-"Last-Translator: Martin Trigaux, 2019\n"
+"POT-Creation-Date: 2022-10-04 09:42+0000\n"
+"PO-Revision-Date: 2022-09-22 05:47+0000\n"
+"Last-Translator: hish, 2022\n"
 "Language-Team: Mongolian (https://www.transifex.com/odoo/teams/41243/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,15 +28,30 @@ msgid "<span class=\"o_stat_text\">Maintenance</span>"
 msgstr "<span class=\"o_stat_text\">Арчилгаа</span>"
 
 #. module: mrp_maintenance
+#: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__company_id
+msgid "Company"
+msgstr "Компани"
+
+#. module: mrp_maintenance
 #: model:ir.model.fields,help:mrp_maintenance.field_maintenance_equipment__estimated_next_failure
 msgid "Computed as Latest Failure Date + MTBF"
 msgstr ""
 "Хамгийн сүүлийн алдааны огноо + Алдаа хоорондын дундаж хугацаа гэж тооцсон"
 
 #. module: mrp_maintenance
+#: model:maintenance.equipment,name:mrp_maintenance.equipment_furniture1
+msgid "Crosscut Saw: 8 ppi."
+msgstr "Хөндлөн тастагч хөрөө: 8 ppi."
+
+#. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_request_view_form_inherit_mrp
 msgid "Discard"
 msgstr "Үл хэрэгсэх"
+
+#. module: mrp_maintenance
+#: model:maintenance.equipment,name:mrp_maintenance.equipment_furniture3
+msgid "Drill Machine"
+msgstr "Өрмийн машин"
 
 #. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_workcenter_view_form_inherit_maintenance
@@ -72,6 +90,11 @@ msgid "Expected Mean Time Between Failure"
 msgstr "Алдаа хоорондын таамагласан дундаж хугацаа"
 
 #. module: mrp_maintenance
+#: model:maintenance.equipment.category,name:mrp_maintenance.equipment_furniture_tools
+msgid "Furniture Tools"
+msgstr "Тавилгын багажууд"
+
+#. module: mrp_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_equipment_view_form_inherit_mrp
 msgid "Latest Failure"
 msgstr "Хамгийн сүүлийн алдаа"
@@ -108,8 +131,11 @@ msgid "Maintenance Equipment"
 msgstr "Арчилгааны тоног төхөөрөмж"
 
 #. module: mrp_maintenance
+#. openerp-web
+#: code:addons/mrp_maintenance/static/src/components/menuPopup.xml:0
 #: model:ir.model,name:mrp_maintenance.model_maintenance_request
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_production_view_form_inherit_maintenance
+#, python-format
 msgid "Maintenance Request"
 msgstr "Арчилгааны Хүсэлт"
 
@@ -118,11 +144,6 @@ msgstr "Арчилгааны Хүсэлт"
 #, python-format
 msgid "Maintenance Requests"
 msgstr "Арчилгааны Хүсэлтүүд"
-
-#. module: mrp_maintenance
-#: model_terms:ir.ui.view,arch_db:mrp_maintenance.mrp_workorder_tablet_view_form_inherit_maintenance
-msgid "Maintenance request"
-msgstr ""
 
 #. module: mrp_maintenance
 #: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__production_id
@@ -166,9 +187,14 @@ msgid "Operation"
 msgstr "Ажилбар"
 
 #. module: mrp_maintenance
+#: model:ir.model.fields,field_description:mrp_maintenance.field_maintenance_request__production_company_id
+msgid "Production Company"
+msgstr ""
+
+#. module: mrp_maintenance
 #: model:ir.model,name:mrp_maintenance.model_mrp_production
 msgid "Production Order"
-msgstr "Үйлдвэрлэлийн Захиалга"
+msgstr "Үйлдвэрлэлийн захиалга"
 
 #. module: mrp_maintenance
 #: model:ir.model.fields,field_description:mrp_maintenance.field_mrp_production__request_ids
@@ -179,6 +205,11 @@ msgstr "Хүсэлт"
 #: model_terms:ir.ui.view,arch_db:mrp_maintenance.maintenance_request_view_form_inherit_mrp
 msgid "Save"
 msgstr "Хадгалах"
+
+#. module: mrp_maintenance
+#: model:maintenance.equipment,name:mrp_maintenance.equipment_furniture2
+msgid "Scrub Plane"
+msgstr "Гар харуул"
 
 #. module: mrp_maintenance
 #: model:ir.model,name:mrp_maintenance.model_mrp_workcenter

@@ -44,7 +44,7 @@ class ReturnPicking(models.TransientModel):
                 domain += [('partner_id', 'child_of', r.partner_id.commercial_partner_id._origin.id)]
             if r.ticket_id.product_id:
                 domain += [('move_line_ids.product_id', '=', r.ticket_id.product_id._origin.id)]
-            r.suitable_picking_ids = self.env['stock.picking'].search(domain)
+            r.suitable_picking_ids = self.env['stock.picking'].with_context(active_test=False).search(domain)
 
     @api.depends('ticket_id.partner_id.commercial_partner_id')
     def _compute_suitable_sale_orders(self):

@@ -11,7 +11,7 @@ class HrEmployee(models.Model):
     _inherit = ['hr.employee', 'documents.mixin']
 
     document_count = fields.Integer(compute='_compute_document_count')
-    documents_share_id = fields.Many2one('documents.share', groups="hr.group_hr_manager")
+    documents_share_id = fields.Many2one('documents.share', readonly=True, groups="hr.group_hr_manager")
 
     def _get_document_folder(self):
         return self.company_id.documents_hr_folder if self.company_id.documents_hr_settings else False

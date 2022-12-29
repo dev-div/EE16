@@ -190,8 +190,8 @@
                                 <field name="unit_amount" widget="timesheet_uom" attrs="{'readonly': [('id', '!=', False), '|', ('validated', '=', True), ('timer_start', '!=', False)]}" decoration-danger="unit_amount &gt; 24"/>
                             </group>
                         </group>
-                        <group>
-                            <field name="name" placeholder="Describe your activity" widget="text" required="0" nolabel="1" attrs="{'readonly':[('can_edit', '=', False)]}"/>
+                        <group col="2">
+                            <field name="name" placeholder="Describe your activity" widget="text" required="0" nolabel="1" attrs="{'readonly':[('can_edit', '=', False)]}" colspan="2"/>
                         </group>
                     </sheet>
                 </form>
@@ -511,6 +511,7 @@
                 'grid_anchor': (datetime.date.today()).strftime('%Y-%m-%d'),
                 'my_timesheet_display_timer': True,
                 'group_expand': True,
+                "is_timesheet": 1,
             }</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -574,6 +575,7 @@
             <field name="view_mode">grid,tree,kanban</field>
             <field name="context">{
                 'group_expand': True,
+                "is_timesheet": 1,
             }</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -610,6 +612,7 @@
                 'grid_anchor': (datetime.date.today()).strftime('%Y-%m-%d'),
                 'group_expand': True,
                 'default_employee_id': active_id,
+                "is_timesheet": 1,
             }</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -651,6 +654,7 @@
                 'grid_anchor': (datetime.date.today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'),
                 'search_default_nonvalidated': True,
                 'search_default_my_team_timesheet': True,
+                'is_timesheet': 1,
             }</field>
             <field name="help" type="html">
                 <p>
@@ -694,6 +698,7 @@
                 'grid_anchor': (datetime.date.today() - relativedelta(months=1)).strftime('%Y-%m-%d'), 'grid_range': 'month',
                 'search_default_nonvalidated': True,
                 'search_default_my_team_timesheet': True,
+                "is_timesheet": 1,
             }</field>
             <field name="help" type="html">
                 <p>
@@ -809,6 +814,7 @@ action = model._action_open_to_validate_timesheet_view()
                 'search_default_nonvalidated': True,
                 'search_default_my_team_timesheet': True,
                 'group_expand': True,
+                "is_timesheet": 1,
             }</field>
             <field name="view_mode">grid,tree,kanban,pivot,graph,form</field>
             <field name="help" type="html">

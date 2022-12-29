@@ -1,16 +1,18 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * delivery_bpost
+# 	* delivery_bpost
 # 
 # Translators:
-# Martin Trigaux, 2018
+# Martin Trigaux, 2022
+# Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2022
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5+e\n"
+"Project-Id-Version: Odoo Server saas~14.4+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 14:06+0000\n"
-"PO-Revision-Date: 2018-09-21 14:06+0000\n"
-"Last-Translator: Martin Trigaux, 2018\n"
+"POT-Creation-Date: 2021-07-12 07:56+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2022\n"
 "Language-Team: Serbian (https://www.transifex.com/odoo/teams/41243/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +21,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_label_stock_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_label_stock_type__a4
 msgid "A4"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_label_stock_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_label_stock_type__a6
 msgid "A6"
 msgstr ""
 
@@ -34,16 +36,11 @@ msgid "Allow deliveries on Saturday (extra charges apply)"
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:98
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "Authentication error -- wrong credentials\n"
 "(Detailed error: %s)"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-msgid "Based on Rules"
 msgstr ""
 
 #. module: delivery_bpost
@@ -84,6 +81,11 @@ msgid "Bpost Label Stock Type"
 msgstr ""
 
 #. module: delivery_bpost
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.view_delivery_carrier_form_with_provider_bpost
+msgid "Bpost Package Type"
+msgstr ""
+
+#. module: delivery_bpost
 #: model:ir.model.fields,field_description:delivery_bpost.field_delivery_carrier__bpost_parcel_return_instructions
 msgid "Bpost Parcel Return Instructions"
 msgstr ""
@@ -101,24 +103,13 @@ msgid "Bpost World Express Pro"
 msgstr ""
 
 #. module: delivery_bpost
-#: model:ir.model.fields,field_description:delivery_bpost.field_product_packaging__package_carrier_type
+#: model:ir.model.fields,field_description:delivery_bpost.field_stock_package_type__package_carrier_type
 msgid "Carrier"
 msgstr "Prevoznik"
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
-msgid "DHL"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,bpost_shipment_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_shipment_type__documents
 msgid "DOCUMENTS"
-msgstr ""
-
-#. module: delivery_bpost
-#: model:ir.model,name:delivery_bpost.model_delivery_carrier
-msgid "Delivery Methods"
 msgstr ""
 
 #. module: delivery_bpost
@@ -127,69 +118,62 @@ msgid "Delivery on Saturday"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_parcel_return_instructions:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_parcel_return_instructions__abandoned
 msgid "Destroy"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_delivery_nature:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_delivery_nature__domestic
 msgid "Domestic"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
-msgid "Easypost"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
-msgid "FedEx"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-msgid "Fixed Price"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,bpost_shipment_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_shipment_type__gift
 msgid "GIFT"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_shipment_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_shipment_type__goods
 msgid "GOODS"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_delivery_nature:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_delivery_nature__international
 msgid "International"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:product.packaging,package_carrier_type:0
-msgid "No carrier integration"
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.view_delivery_carrier_form_with_provider_bpost
+msgid "Label Format"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_shipment_type:0
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.view_delivery_carrier_form_with_provider_bpost
+msgid "Label Type"
+msgstr ""
+
+#. module: delivery_bpost
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_shipment_type__other
 msgid "OTHER"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_label_format:0
-msgid "PDF"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.view_delivery_carrier_form_with_provider_bpost
+msgid "Options"
+msgstr "Opcije"
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_label_format:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_label_format__pdf
+msgid "PDF"
+msgstr "PDF"
+
+#. module: delivery_bpost
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_label_format__png
 msgid "PNG"
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:134
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid "Packages over 30 Kg are not accepted by bpost."
 msgstr ""
@@ -200,44 +184,74 @@ msgid "Passphrase"
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:58
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid "Please provide at least one item to ship."
 msgstr ""
 
 #. module: delivery_bpost
-#: model:ir.model,name:delivery_bpost.model_product_packaging
-msgid "Product Packaging"
-msgstr ""
-
-#. module: delivery_bpost
 #: model:ir.model.fields,field_description:delivery_bpost.field_delivery_carrier__delivery_type
 msgid "Provider"
+msgstr "Provajder"
+
+#. module: delivery_bpost
+#: code:addons/delivery_bpost/models/delivery_bpost.py:0
+#, python-format
+msgid ""
+"Return labels created into bpost <br/> <b>Tracking Numbers: </b><br/>%s"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_parcel_return_instructions:0
+#: code:addons/delivery_bpost/models/delivery_bpost.py:0
+#, python-format
+msgid "Return shipment created into bpost <br/> <b>Tracking Number : </b>%s"
+msgstr ""
+
+#. module: delivery_bpost
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_parcel_return_instructions__rta
 msgid "Return to sender by air"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_parcel_return_instructions:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_parcel_return_instructions__rts
 msgid "Return to sender by road"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_shipment_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_shipment_type__sample
 msgid "SAMPLE"
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/delivery_bpost.py:80
+#: code:addons/delivery_bpost/models/delivery_bpost.py:0
 #, python-format
-msgid "Shipment created into bpost <br/> <b>Tracking Number : </b>%s"
+msgid "Shipment #%s has been cancelled"
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:50
+#: code:addons/delivery_bpost/models/delivery_bpost.py:0
+#, python-format
+msgid "Shipment created into bpost <br/> <b>Tracking Links</b> <br/>%s"
+msgstr ""
+
+#. module: delivery_bpost
+#: model:ir.model,name:delivery_bpost.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr ""
+
+#. module: delivery_bpost
+#: model:ir.model,name:delivery_bpost.model_stock_package_type
+msgid "Stock package type"
+msgstr ""
+
+#. module: delivery_bpost
+#: code:addons/delivery_bpost/models/bpost_request.py:0
+#, python-format
+msgid "The BPost shipping service is unresponsive, please retry later."
+msgstr ""
+
+#. module: delivery_bpost
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "The address of your company/warehouse is incomplete or wrong (Missing field(s):  \n"
@@ -245,23 +259,23 @@ msgid ""
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:60
-#, python-format
-msgid ""
-"The estimated shipping cannot be computed because the weight of your product"
-" is missing."
-msgstr ""
-
-#. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:56
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "The estimated shipping price cannot be computed because all your products "
-"are service/digital."
+"are service."
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:42
+#: code:addons/delivery_bpost/models/bpost_request.py:0
+#, python-format
+msgid ""
+"The estimated shipping price cannot be computed because the weight is missing for the following product(s): \n"
+" %s"
+msgstr ""
+
+#. module: delivery_bpost
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "The recipient address is incomplete or wrong (Missing field(s):  \n"
@@ -269,79 +283,60 @@ msgid ""
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
-msgid "UPS"
-msgstr ""
-
-#. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-msgid "USPS"
-msgstr ""
-
-#. module: delivery_bpost
 #: model:product.product,uom_name:delivery_bpost.product_product_delivery_bpost_domestic
 #: model:product.product,uom_name:delivery_bpost.product_product_delivery_bpost_world
 #: model:product.template,uom_name:delivery_bpost.product_product_delivery_bpost_domestic_product_template
 #: model:product.template,uom_name:delivery_bpost.product_product_delivery_bpost_world_product_template
-msgid "Unit(s)"
-msgstr ""
+msgid "Units"
+msgstr "Kom"
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/delivery_bpost.py:91
-#, python-format
-msgid ""
-"You can not cancel a bpost shipment when a shipping label has already been "
-"generated."
-msgstr ""
-
-#. module: delivery_bpost
-#: code:addons/delivery_bpost/models/delivery_bpost.py:96
+#: code:addons/delivery_bpost/models/delivery_bpost.py:0
 #, python-format
 msgid "You cannot compute a passphrase for non-bpost carriers."
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:52
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid "Your company/warehouse address must be in Belgium to ship with bpost"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_domestic_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_domestic_deliver_type__bpack_24h_pro
 msgid "bpack 24h Pro"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_domestic_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_domestic_deliver_type__bpack_24h_business
 msgid "bpack 24h business"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_domestic_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_domestic_deliver_type__bpack_bus
 msgid "bpack Bus"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_international_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_international_deliver_type__bpack_europe_business
 msgid "bpack Europe Business"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_international_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_international_deliver_type__bpack_world_business
 msgid "bpack World Business"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,bpost_international_deliver_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__bpost_international_deliver_type__bpack_world_express_pro
 msgid "bpack World Express Pro"
 msgstr ""
 
 #. module: delivery_bpost
-#: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__delivery_carrier__delivery_type__bpost
+#: model:ir.model.fields.selection,name:delivery_bpost.selection__stock_package_type__package_carrier_type__bpost
 msgid "bpost"
-msgstr ""
+msgstr "bpost"
 
 #. module: delivery_bpost
 #: model_terms:ir.ui.view,arch_db:delivery_bpost.view_delivery_carrier_form_with_provider_bpost
@@ -349,18 +344,12 @@ msgid "bpost Configuration"
 msgstr ""
 
 #. module: delivery_bpost
-#: model:ir.model.fields,field_description:delivery_bpost.field_delivery_carrier__bpost_default_packaging_id
-msgid "bpost Default Packaging Type"
+#: model:ir.model.fields,field_description:delivery_bpost.field_delivery_carrier__bpost_default_package_type_id
+msgid "bpost Default Package Type"
 msgstr ""
 
 #. module: delivery_bpost
-#: model_terms:ir.ui.view,arch_db:delivery_bpost.res_config_settings_view_form_sale
-#: model_terms:ir.ui.view,arch_db:delivery_bpost.res_config_settings_view_form_stock
-msgid "bpost Delivery Methods"
-msgstr ""
-
-#. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:46
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "bpost Domestic is used only to ship inside Belgium. Please change the "
@@ -368,7 +357,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:44
+#: code:addons/delivery_bpost/models/bpost_request.py:0
 #, python-format
 msgid ""
 "bpost International is used only to ship outside Belgium. Please change the "
@@ -376,15 +365,13 @@ msgid ""
 msgstr ""
 
 #. module: delivery_bpost
-#: code:addons/delivery_bpost/models/bpost_request.py:112
-#, python-format
-msgid "bpost did not return prices for this destination country."
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.res_config_settings_view_form_sale
+#: model_terms:ir.ui.view,arch_db:delivery_bpost.res_config_settings_view_form_stock
+msgid "bpost Shipping Methods"
 msgstr ""
 
 #. module: delivery_bpost
-#: model:product.product,weight_uom_name:delivery_bpost.product_product_delivery_bpost_domestic
-#: model:product.product,weight_uom_name:delivery_bpost.product_product_delivery_bpost_world
-#: model:product.template,weight_uom_name:delivery_bpost.product_product_delivery_bpost_domestic_product_template
-#: model:product.template,weight_uom_name:delivery_bpost.product_product_delivery_bpost_world_product_template
-msgid "kg"
-msgstr "kg"
+#: code:addons/delivery_bpost/models/bpost_request.py:0
+#, python-format
+msgid "bpost did not return prices for this destination country."
+msgstr ""

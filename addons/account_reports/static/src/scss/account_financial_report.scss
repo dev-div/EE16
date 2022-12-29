@@ -68,7 +68,7 @@
 
         .o_account_reports_table {
             thead {
-                background-color: #FFFFFF;
+                background-color: var(--AccountFinancial-background-color, #FFFFFF);
                 z-index: 2;
             }
         }
@@ -79,7 +79,7 @@
     // Define direction attribute here so when rtlcss preprocessor run, it converts it to rtl
     direction: ltr;
     background-color: $o-view-background-color;
-    color: $o-main-text-color;
+    color: var(--AccountFinancial-text-color, #{$o-main-text-color});
 
     // Override bootstrap in the account reports.
     thead, tbody, tfoot, tr, td, th {
@@ -119,12 +119,12 @@
             }
             &.up span::before {
                 content: '\f176';
-                color: black;
+                color: var(--AccountFinancial-text-color, black);
                 padding-right: 8px;
             }
             &.down span::before {
                 content: '\f175';
-                color: black;
+                color: var(--AccountFinancial-text-color, black);
                 padding-right: 8px;
             }
             &:first-child {
@@ -161,7 +161,7 @@
         border: 1px solid $o-gray-300;
     }
     .account_report_line_name a {
-        color:#008784;
+        color: var(--AccountFinancial-link-color, #008784);
     }
     a {
         cursor: pointer;
@@ -223,7 +223,7 @@
         cursor: pointer;
     }
     .color-red {
-        color: #d23f3a !important;
+        color: var(--AccountFinancial-red-color, #d23f3a) !important;
     }
     .color-blue {
         color: #2693d5 !important;
@@ -254,7 +254,7 @@
             text-align: center;
         }
         th {
-            background-color: white;
+            background-color: var(--AccountFinancial-background-color, white);
             background-clip: padding-box;
             .subtitle{
                 font-weight:normal;
@@ -360,7 +360,7 @@
     .o_account_reports_domain_line_2 {
         margin-left: 30px;
     }
-    @for $i from 3 through 13 {
+    @for $i from 3 through 19 {
         .o_account_reports_domain_line_#{$i} {
             margin-left: ($i * 10px) + 10;
         }
@@ -389,13 +389,13 @@
     }
     .o_account_reports_level0, .o_account_reports_level1, .o_account_reports_level2, .o_account_reports_domain_total, .total {
         .text-muted {
-            color: #666666 !important;
+            color: var(--AccountFinancial-text-color, #666666) !important;
         }
     }
     .o_foldable_total {
-        color: #666666 !important;
+        color: var(--AccountFinancial-text-color, #666666) !important;
         &.color-red {
-            color: #d23f3a !important;
+            color: var(--AccountFinancial-red-color, #d23f3a) !important;
         }
         &.color-green {
             color: green !important;
@@ -416,7 +416,7 @@
         font-weight: bold;
     }
     @mixin report_level($indent) {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--AccountFinancial-border-color, #eee);
         line-height: 1.8;
 
         > td.o_account_report_line_indent > span:last-child {
@@ -424,7 +424,7 @@
         }
         &.total {
             font-weight: bold !important;
-            color: #212121 !important;
+            color: var(--AccountFinancial-text-color, #212121) !important;
 
             > td > span:last-child {
                 margin-left: $indent * 10px;
@@ -450,12 +450,12 @@
     .o_account_reports_level1 {
         @include report_level(1);
         font-weight: bold;
-        border-bottom: 2px solid #bbb;
+        border-bottom: 2px solid var(--AccountFinancial-border-accent-color, #bbb);
     }
     .o_account_reports_level2 {
         @include report_level(2);
         font-weight: bold;
-        border-bottom: 1px solid #bbb;
+        border-bottom: 1px solid var(--AccountFinancial-border-color, #bbb);
     }
     @for $i from 3 through 13 {
         .o_account_reports_level#{$i} {
@@ -463,7 +463,7 @@
         }
     }
     .o_account_reports_default_style {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--AccountFinancial-border-color, #eee);
         > td.o_account_report_line_indent > tr:first-child > span:last-child {
             margin-left: 30px;
         }
@@ -496,7 +496,7 @@
     .o_account_coa_column_contrast td:nth-child(4n-2),
     td.o_account_coa_column_contrast:nth-child(4n-1),
     td.o_account_coa_column_contrast:nth-child(4n-2) {
-        background-color: #FAFAFA;
+        background-color: var(--AccountFinancial-background-contrast, #FAFAFA);
         background-clip: padding-box;
     }
     .table-hover tbody {
@@ -506,9 +506,9 @@
 
         // Since, we can't add spacing between rows in a table, this prevents the background to be the full height of the row.
         tr.o_account_reports_level0:hover > td {
-            background-color: #F0F0F0 !important;
+            background-color: var(--AccountFinancial-background-hover, #F0F0F0) !important;
             background-repeat: no-repeat;
-            background-image: linear-gradient(#FFF, #FFF), linear-gradient(#F0F0F0, #F0F0F0);
+            background-image: var(--AccountFinancial-background-linear, #{linear-gradient(#FFF, #FFF), linear-gradient(#F0F0F0, #F0F0F0)});
             background-size: 100% 26px, 100% 28px;
         }
     }
@@ -532,7 +532,7 @@
     }
 
     .o_account_reports_ja_header_line {
-        background-color: #F6F6F6;
+        background-color: var(--AccountFinancial-background-color, #F6F6F6);
     }
 }
 

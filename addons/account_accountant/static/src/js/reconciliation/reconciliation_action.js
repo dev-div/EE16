@@ -6,6 +6,7 @@ var ReconciliationModel = require('account.ReconciliationModel');
 var ReconciliationRenderer = require('account.ReconciliationRenderer');
 var core = require('web.core');
 var QWeb = core.qweb;
+const { _t } = require('web.core');
 
 /**
  * Widget used as action for 'account.move.line' and 'res.partner' for the
@@ -50,6 +51,7 @@ var ManualAction = AbstractAction.extend({
      */
     init: function (parent, params) {
         this._super.apply(this, arguments);
+        this.name = params.name;
         this.action_manager = parent;
         this.params = params;
         this.searchModelConfig.modelName = 'account.bank.statement.line';
@@ -70,6 +72,10 @@ var ManualAction = AbstractAction.extend({
                 params.params[name] = params.context[name];
             }
         });
+    },
+
+    getTitle() {
+       return this.name || _t("Reconciliation");
     },
 
     /**

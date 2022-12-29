@@ -45,7 +45,7 @@ class HrPayslipRun(models.Model):
     def _compute_state_change(self):
         for payslip_run in self:
             if payslip_run.state == 'draft' and payslip_run.slip_ids:
-                payslip_run.write({'state': 'verify'})
+                payslip_run.update({'state': 'verify'})
 
     def action_draft(self):
         if self.slip_ids.filtered(lambda s: s.state == 'paid'):

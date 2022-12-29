@@ -5,7 +5,7 @@ import { useHotkey } from "@web/core/hotkeys/hotkey_hook";
 import { useService } from "@web/core/utils/hooks";
 import { ExpirationPanel } from "./expiration_panel";
 
-const {
+import {
     Component,
     useExternalListener,
     onMounted,
@@ -13,7 +13,7 @@ const {
     onWillUpdateProps,
     useState,
     useRef,
-} = owl;
+} from "@odoo/owl";
 
 class FooterComponent extends Component {
     setup() {

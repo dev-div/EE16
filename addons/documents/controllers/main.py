@@ -36,8 +36,8 @@ class ShareRoute(http.Controller):
         return request.env['ir.binary']._get_stream_from(record, field).get_response()
 
     def _get_downloadable_documents(self, documents):
-        """ to override to filter out documents that cannot be downloaded """
-        return documents
+        """ file requests are not downloadable """
+        return documents.filtered(lambda d: d.type != "empty")
 
     def _make_zip(self, name, documents):
         """returns zip files for the Document Inspector and the portal.

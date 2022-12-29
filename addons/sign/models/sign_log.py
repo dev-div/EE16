@@ -142,7 +142,7 @@ class SignLog(models.Model):
         sign_request = request_item.sign_request_id
         # NOTE: We update request_item.latitude/longitude when the request_item is opened and not 'completed'/'refused'
         # And If the signer accepted the browser geolocation request, the coordinates will be more precise.
-        # We should forcely use the GeoIP ones only if the the request_item is 'completed'/'refused'
+        # We should forcely use the GeoIP ones only if the request_item is 'completed'/'refused'
         latitude = 0.0
         longitude = 0.0
         if request:

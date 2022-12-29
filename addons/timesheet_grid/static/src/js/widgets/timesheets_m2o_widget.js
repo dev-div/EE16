@@ -16,7 +16,7 @@ import { qweb, _lt } from 'web.core';
 
 const TimesheetM2OWidget = Widget.extend(StandaloneFieldManagerMixin, {
     $className: '.o_grid_section_subtext',
-    className:'o_standalone_timesheets_m2o_widget d-inline-flex',
+    className:'o_standalone_timesheets_m2o_widget text-truncate',
     hoursTemplate: 'timesheet_grid.Many2OneTimesheetSubfield',
     title: _lt('Difference between the time allocated and the time recorded.'),
 

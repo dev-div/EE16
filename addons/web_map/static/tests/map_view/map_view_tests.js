@@ -17,6 +17,7 @@ import {
     makeDeferred,
     nextTick,
     patchWithCleanup,
+    patchTimeZone,
     destroy,
     findChildren,
 } from "@web/../tests/helpers/utils";
@@ -45,6 +46,7 @@ QUnit.module("Views", (hooks) => {
             "project.task": {
                 fields: {
                     display_name: { string: "name", type: "char" },
+                    scheduled_date: { string: "Schedule date", type: "datetime"},
                     sequence: { string: "sequence", type: "integer" },
                     partner_id: {
                         string: "partner",
@@ -68,6 +70,14 @@ QUnit.module("Views", (hooks) => {
                 oneRecord: {
                     records: [{ id: 1, display_name: "Foo", partner_id: [1] }],
                     length: 1,
+                },
+
+                twoRecordsFieldDateTime: {
+                    records: [
+                        { id: 1, display_name: "Foo", scheduled_date: false, partner_id: [1] },
+                        { id: 2, display_name: "Bar", scheduled_date: "2022-02-07 21:09:31", partner_id: [2] },
+                    ],
+                    length: 2,
                 },
 
                 twoRecords: {
@@ -1665,6 +1675,48 @@ QUnit.module("Views", (hooks) => {
         );
     });
 
+    QUnit.test('Content of the marker popup with date time', async function (assert) {
+        assert.expect(2);
+        serverData.views = {
+            "project.task,false,form": "<form/>",
+        };    
+
+        patchTimeZone(120); // UTC+2
+        patchWithCleanup(session, {map_box_token: MAP_BOX_TOKEN});
+        serverData.models["res.partner"].twoRecordsAddressCoordinates[0].partner_latitude = 11.0;
+
+        await makeView({
+            config: { views: [[false, "form"]] },
+            serverData,
+            type: "map",
+            resModel: "project.task",
+            arch: `<map res_partner="partner_id" routing="true" hide_name="true" hide_address="true">
+                    <field name="scheduled_date" string="Date"/>
+                </map>`,
+            async mockRPC(route) {
+                switch (route) {
+                    case "/web/dataset/call_kw/project.task/web_search_read":
+                        return serverData.models["project.task"].twoRecordsFieldDateTime;
+                    case "/web/dataset/call_kw/res.partner/search_read":
+                        return serverData.models["res.partner"].twoRecordsAddressCoordinates;
+                }
+            },
+        });
+
+        await click(target, "div.leaflet-marker-icon:first-child");
+
+        assert.containsNone(
+            target,
+            "tbody tr .o-map-renderer--popup-table-content-value",
+            "It should not contains a value node because it's not scheduled"
+        );
+
+        await click(target, "div.leaflet-marker-icon:last-child");
+
+        assert.strictEqual(target.querySelector("tbody tr .o-map-renderer--popup-table-content-value").textContent, "2022-02-07 23:09:31",
+            'The time  "2022-02-07 21:09:31" should be in the local timezone');
+    });
+
     /**
      * data: two located records
      * asserts that no field is shown in popup
@@ -2273,27 +2325,17 @@ QUnit.module("Views", (hooks) => {
     //--------------------------------------------------------------------------
 
     QUnit.test("Click on open button switches to form view", async function (assert) {
-        assert.expect(7);
+        assert.expect(5);
 
         serviceRegistry.add(
             "action",
             {
                 start() {
                     return {
-                        switchView(name, info) {
+                        switchView(name, props) {
                             assert.step("switchView");
                             assert.strictEqual(name, "form", "The view switched to should be form");
-                            assert.strictEqual(info.resId, 1, "The record's id should be 1");
-                            assert.strictEqual(
-                                info.mode,
-                                "readonly",
-                                "The mode should be readonly"
-                            );
-                            assert.strictEqual(
-                                info.model,
-                                "project.task",
-                                "The form view should be on the 'project.task' model"
-                            );
+                            assert.deepEqual(props, { resId: 1 }, "Props should be correct");
                         },
                     };
                 },

@@ -18,7 +18,7 @@ import { registerCleanup } from "@web/../tests/helpers/cleanup";
 import { errorService } from "@web/core/errors/error_service";
 import { browser } from "@web/core/browser/browser";
 
-const { Component, xml } = owl;
+import { Component, xml } from "@odoo/owl";
 
 let serverData;
 let fixture;
@@ -179,19 +179,17 @@ QUnit.module("WebClient Enterprise", (hooks) => {
             ]);
             const menuToggle = fixture.querySelector(".o_menu_toggle");
             await click(menuToggle);
+
+            // can't click again too soon because of the mutex in home_menu
+            // service (waiting for the url to be updated)
+            await nextTick();
+
             await click(menuToggle);
-            // if we don't reload on going back to underlying action
-            // assert.verifySteps(
-            //   [],
-            //   "the underlying view should not reload when toggling the HomeMenu to off"
-            // );
-            // endif
-            // if we reload on going back to underlying action
+
             assert.verifySteps(
                 ["/web/dataset/call_kw/partner/read"],
                 "the underlying view should reload when toggling the HomeMenu to off"
             );
-            // endif
             assert.containsNone(fixture, ".o_home_menu");
             assert.containsOnce(fixture, ".o_form_view");
             assert.notOk(menuToggle.classList.contains("o_menu_toggle_back"));
@@ -202,7 +200,7 @@ QUnit.module("WebClient Enterprise", (hooks) => {
             assert.containsN(fixture, ".breadcrumb-item", 3);
         });
 
-        QUnit.test("restore the newly created record in form view (legacy)", async (assert) => {
+        QUnit.test("restore the newly created record in form view", async (assert) => {
             const action = serverData.actions[6];
             delete action.res_id;
             action.target = "current";
@@ -219,6 +217,10 @@ QUnit.module("WebClient Enterprise", (hooks) => {
             );
             await click(fixture.querySelector(".o_menu_toggle"));
             assert.isNotVisible(fixture.querySelector(".o_form_view"));
+
+            // can't click again too soon because of the mutex in home_menu
+            // service (waiting for the url to be updated)
+            await nextTick();
 
             await click(fixture.querySelector(".o_menu_toggle"));
             assert.containsOnce(fixture, ".o_form_view");

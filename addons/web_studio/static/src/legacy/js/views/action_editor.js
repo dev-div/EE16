@@ -116,9 +116,6 @@ var ActionEditor = Widget.extend({
             case 'pivot':
                 category = 'reporting';
                 break;
-            case 'dashboard':
-                category = 'reporting';
-                break;
             case 'calendar':
                 category = 'timeline';
                 break;

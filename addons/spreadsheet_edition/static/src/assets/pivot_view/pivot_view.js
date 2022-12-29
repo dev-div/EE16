@@ -3,7 +3,8 @@
 import { PivotController } from "@web/views/pivot/pivot_controller";
 import { patch } from "@web/core/utils/patch";
 import { useService } from "@web/core/utils/hooks";
-import { removeContextUserInfo, PERIODS } from "@spreadsheet_edition/assets/helpers";
+import { PERIODS } from "@spreadsheet_edition/assets/helpers";
+import { omit } from "@web/core/utils/objects";
 
 import { _t } from "@web/core/l10n/translation";
 import { SpreadsheetSelectorDialog } from "@spreadsheet_edition/assets/components/spreadsheet_selector_dialog/spreadsheet_selector_dialog";
@@ -40,7 +41,7 @@ patch(PivotController.prototype, "pivot_spreadsheet", {
                 metaData: this.model.metaData,
                 searchParams: {
                     ...this.model.searchParams,
-                    context: removeContextUserInfo(this.model.searchParams.context),
+                    context: omit(this.model.searchParams.context, ...Object.keys(this.userService.context)),
                 },
                 name,
             },

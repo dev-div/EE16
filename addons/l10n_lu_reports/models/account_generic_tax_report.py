@@ -18,6 +18,10 @@ class LuxembourgishTaxReportCustomHandler(models.AbstractModel):
             {'name': _('XML'), 'sequence': 30, 'action': 'open_report_export_wizard', 'file_export_type': _('XML')}
         )
 
+    def _dynamic_lines_generator(self, report, options, all_column_groups_expression_totals):
+        # Overridden to prevent having unnecessary lines from the generic tax report.
+        return []
+
     def get_tax_electronic_report_values(self, options):
         report = self.env['account.report'].browse(options['report_id'])
         lu_template_values = self.env['l10n_lu.report.handler'].get_electronic_report_values(options)

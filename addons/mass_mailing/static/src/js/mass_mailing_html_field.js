@@ -210,13 +210,15 @@ export class MassMailingHtmlField extends HtmlField {
 
         if (device.isMobile) {
             $snippetsSideBar.hide();
-            this.$content.attr('style', 'padding-left: 0px !important');
+            this.wysiwyg.$iframe.attr('style', 'padding-left: 0px !important');
         }
 
         if (!odoo.debug) {
             $snippetsSideBar.find('.o_codeview_btn').hide();
         }
         const $codeview = this.wysiwyg.$iframe.contents().find('textarea.o_codeview');
+        // Unbind first the event handler as this method can be called multiple time during the component life.
+        $snippetsSideBar.off('click', '.o_codeview_btn');
         $snippetsSideBar.on('click', '.o_codeview_btn', () => {
             this.wysiwyg.odooEditor.observerUnactive();
             $codeview.toggleClass('d-none');
@@ -230,8 +232,10 @@ export class MassMailingHtmlField extends HtmlField {
             }
             this.onIframeUpdated();
         });
-
-        $snippetsSideBar.on('click', '.o_mobile_preview_btn', () => {
+        const $previewBtn = $snippetsSideBar.find('.o_mobile_preview_btn');
+        $previewBtn.off('click');
+        $previewBtn.on('click', () => {
+            $previewBtn.prop('disabled', true); // Prevent double execution when double-clicking on the button
             let mailingHtml = new DOMParser().parseFromString(this.wysiwyg.getValue(), 'text/html');
             [...mailingHtml.querySelectorAll('a')].forEach(el => {
                 el.style.setProperty('pointer-events', 'none');
@@ -239,6 +243,8 @@ export class MassMailingHtmlField extends HtmlField {
             this.mobilePreview = this.dialog.add(MassMailingMobilePreviewDialog, {
                 title: this.env._t("Mobile Preview"),
                 preview: mailingHtml.body.innerHTML,
+            }, {
+                onClose: () => $previewBtn.prop('disabled', false),
             });
         });
 
@@ -275,8 +281,8 @@ export class MassMailingHtmlField extends HtmlField {
                     layoutStyles: $theme.data('layout-styles'),
                 };
             });
-            $themes.parent().remove();
         }
+        $themes.parent().remove();
 
         if (!this._themeParams.length) {
             return;
@@ -429,12 +435,14 @@ export class MassMailingHtmlField extends HtmlField {
             .removeClass('d-none')
             .addClass('d-inline-block');
 
-        // Hide or show the help message if some templates are visible
+        // Hide or show the help message and preview wrapper based on whether there are any relevant templates
         if (sameModelTemplates.length) {
             iframeContent.find('.o_mailing_template_message').addClass('d-none');
+            iframeContent.find('.o_mailing_template_preview_wrapper').removeClass('d-none');
         } else {
             iframeContent.find('.o_mailing_template_message').removeClass('d-none');
             iframeContent.find('.o_mailing_template_message span').text(this.props.record.data.mailing_model_id[1]);
+            iframeContent.find('.o_mailing_template_preview_wrapper').addClass('d-none');
         }
     }
     /**

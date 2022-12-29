@@ -6,6 +6,8 @@ import spreadsheet from "@spreadsheet/o_spreadsheet/o_spreadsheet_extended";
 import { createSpreadsheetWithPivot } from "@spreadsheet/../tests/utils/pivot";
 import { setCellContent } from "@spreadsheet/../tests/utils/commands";
 import { getCellContent } from "@spreadsheet/../tests/utils/getters";
+import { getBasicServerData } from "@spreadsheet/../tests/utils/data";
+import { getDataFromTemplate } from "@documents_spreadsheet/bundle/helpers";
 
 const { Model } = spreadsheet;
 
@@ -426,4 +428,42 @@ QUnit.module("documents_spreadsheet > pivot_templates", {}, function () {
         });
         assert.equal(result, `ODOO.PIVOT("1","probability","product_id",A2,"bar","110")`);
     });
+
+    QUnit.test(
+        "Open spreadsheet from template containing pivot of records without data",
+        async (assert) => {
+            const serverData = getBasicServerData();
+            const { model, env } = await createSpreadsheetWithPivot({
+                arch: /*xml*/ `
+                    <pivot>
+                        <field name="product_id" type="row"/>
+                        <field name="bar" type="row"/>
+                        <field name="foo" type="col"/>
+                        <field name="bar" type="col"/>
+                        <field name="probability" type="measure"/>
+                    </pivot>`,
+                serverData,
+            });
+            await model.getters.getPivotDataSource("1").prepareForTemplateGeneration();
+            model.dispatch("CONVERT_PIVOT_TO_TEMPLATE");
+            const dataString = JSON.stringify(model.exportData());
+
+            serverData.models.partner.records = [];
+            serverData.models["spreadsheet.template"].records.push({
+                id: 3,
+                name: "Template of parther",
+                data: btoa(dataString),
+            });
+            const data = await getDataFromTemplate(env, env.services.orm, 3);
+            const cells = data.sheets[0].cells;
+            assert.equal(cells.A4.content, "=ODOO.PIVOT.HEADER(1)");
+            assert.equal(cells.B1.content, '=ODOO.PIVOT.HEADER(1,"foo",1)');
+            assert.equal(cells.B2.content, '=ODOO.PIVOT.HEADER(1,"foo",1,"bar","true")');
+            assert.equal(
+                cells.B3.content,
+                '=ODOO.PIVOT.HEADER(1,"foo",1,"bar","true","measure","probability")'
+            );
+            assert.equal(cells.B4.content, '=ODOO.PIVOT(1,"probability","foo",1,"bar","true")');
+        }
+    );
 });

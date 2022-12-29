@@ -67,10 +67,10 @@
                 </div>
                 <field name="youtube_video_id" invisible="1"/>
                 <field name="youtube_access_token" invisible="1"/>
-                <field name="youtube_title" string="Video Title" options="{'onchange_on_keydown': true}"
+                <field name="youtube_title" string="Video Title" onchange_on_keydown="True"
                     placeholder="e.g. Odoo Social Tutorial"
                     attrs="{'invisible': [('youtube_accounts_count', '!=', 1)], 'readonly': [('state', '!=', 'draft')], 'required': [('youtube_accounts_count', '!=', 0)]}"/>
-                <field name="youtube_description" string="Video Description" options="{'onchange_on_keydown': true}"
+                <field name="youtube_description" string="Video Description" onchange_on_keydown="True"
                     widget="text_emojis" placeholder="e.g. Engage your entire community with a single app! https://www.odoo.com/trial"
                     attrs="{'invisible': [('youtube_accounts_count', '!=', 1)], 'readonly': [('state', '!=', 'draft')], 'required': [('youtube_video_id', '!=', False)]}"/>
                 <field name="youtube_video_privacy"

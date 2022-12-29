@@ -197,6 +197,11 @@
                     <field name="move_id" optional="hidden" required="0"/>
                     <field name="payment_ref" required="1" attrs="{'readonly': [('is_reconciled', '=', True),('amount', '!=', 0)]}"/>
                     <field name="partner_id" attrs="{'readonly': [('is_reconciled', '=', True),('amount', '!=', 0)]}"/>
+                    <field name="narration"
+                           string="Notes"
+                           attrs="{'readonly': [('is_reconciled', '=', True), ('amount', '!=', 0)],
+                                   'invisible': [('narration', '=', False)]}"
+                           optional="hidden"/>
                     <field name="ref" attrs="{'readonly': [('is_reconciled', '=', True),('amount', '!=', 0)]}" optional="hidden"/>
                     <field name="transaction_type" optional="hidden"/>
                     <field name="foreign_currency_id"
@@ -234,8 +239,14 @@
                             type="object"
                             name="action_open_recon_st_line"
                             string="Match"
-                            attrs="{'invisible':[('id', '=', False)]}">
-
+                            attrs="{'invisible':['|', ('id', '=', False), ('is_reconciled', '=', True)]}">
+                    </button>
+                    <button class="btn btn-sm btn-secondary"
+                            title="View"
+                            type="object"
+                            name="action_open_recon_st_line"
+                            string="View"
+                            attrs="{'invisible':['|', ('id', '=', False), ('is_reconciled', '=', False)]}">
                     </button>
                 </tree>
             </field>
@@ -453,6 +464,7 @@
                                            options="{'account_field': 'form_account_id', 'business_domain': 'general'}"
                                            attrs="{'invisible': ['|', ('form_flag', '=', 'liquidity'), ('form_index', '=', False)]}"/>
                                     <field name="form_date"
+                                           string="Date"
                                            attrs="{'invisible': ['|', ('form_flag', '!=', 'liquidity'), ('form_index', '=', False)], 'required': [('form_flag', '=', 'liquidity')]}"/>/>
                                 </group>
                                 <group>

@@ -152,23 +152,20 @@
                         <t t-if="record.account_online_link_state.raw_value === 'connected'">
                             <t t-set="test_danger_expiring_date" t-value="record.expiring_synchronization_due_day.value &lt;= 3"/>
                             <t t-set="test_warning_expiring_date" t-value="record.expiring_synchronization_due_day.value &lt;= 7"/>
-                            <a groups="account.group_account_user" attrs="{'invisible': [('expiring_synchronization_date', '=', None)]}"
+                            <a groups="account.group_account_user" attrs="{'invisible': [('expiring_synchronization_date', '=', False)]}"
                                type="object" name="action_open_account_online_link"
                                t-att-class="'oe_inline ' + (test_warning_expiring_date ? test_danger_expiring_date ? 'text-danger' : 'text-warning' : '')">
-                                <t t-if="record.expiring_synchronization_due_day.value &gt; 7">
-                                    Consent expires on <t t-esc="luxon.DateTime.fromISO(record.expiring_synchronization_date.raw_value).toFormat('dd MMM')"/>
-                                </t>
-                                <t t-elif="record.expiring_synchronization_due_day.value == 0">
+                                <t t-if="record.expiring_synchronization_due_day.value == 0">
                                     Consent expires today
                                 </t>
                                 <t t-elif="record.expiring_synchronization_due_day.value &lt; 0">
                                     Consent expired
                                 </t>
-                                <t t-else="">
+                                <t t-elif="record.expiring_synchronization_due_day.value &lt; 7">
                                     Consent expires in <t t-esc="record.expiring_synchronization_due_day.value"/> day<t t-if="record.expiring_synchronization_due_day.value &gt; 1">s</t>
                                 </t>
                             </a>
-                            <br attrs="{'invisible': [('expiring_synchronization_date', '=', None)]}"/>
+                            <br attrs="{'invisible': [('expiring_synchronization_date', '=', False)]}"/>
                             <a attrs="{'invisible': [('account_online_account_id', '=', False)]}" type="object"
                                 name="manual_sync" class="oe_inline" groups="account.group_account_user">Synchronize now</a>
                             <br/>

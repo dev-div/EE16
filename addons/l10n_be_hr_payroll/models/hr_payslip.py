@@ -375,7 +375,7 @@ class Payslip(models.Model):
 
     def _compute_number_complete_months_of_work(self, date_from, date_to, contracts):
         invalid_days_by_year = defaultdict(lambda: defaultdict(dict))
-        for day in rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to):
+        for day in rrule.rrule(rrule.DAILY, dtstart=date_from + relativedelta(day=1), until=date_to + relativedelta(day=31)):
             invalid_days_by_year[day.year][day.month][day.date()] = True
 
         for contract in contracts:
@@ -387,7 +387,7 @@ class Payslip(models.Model):
                 contract_start = contract.date_start
             work_days = {int(d) for d in contract.resource_calendar_id._get_global_attendances().mapped('dayofweek')}
 
-            previous_week_start = max(contract_start + relativedelta(weeks=-1, weekday=MO(-1)), date_from)
+            previous_week_start = max(contract_start + relativedelta(weeks=-1, weekday=MO(-1)), date_from + relativedelta(day=1))
             next_week_end = min(contract.date_end + relativedelta(weeks=+1, weekday=SU(+1)) if contract.date_end else date.max, date_to)
             days_to_check = rrule.rrule(rrule.DAILY, dtstart=previous_week_start, until=next_week_end)
             for day in days_to_check:
@@ -402,20 +402,29 @@ class Payslip(models.Model):
                     out_of_schedule = False
                 invalid_days_by_year[day.year][day.month][day] &= out_of_schedule
 
-        # If X = valid days
-        # -  0 <= X <= 10 days :   0 month
-        # - 11 <= X <= 20 days : 0.5 month
-        # - 21 <= X <= 31 days :   1 month
-        # If X = invalid days
-        # -  0 <= X <= 10 days :   1 month
-        # - 11 <= X <= 20 days : 0.5 month
-        # - 21 <= X <= 31 days :   0 month
-        complete_months = [
-            1 if sum(days.values()) <= 10 else 0.5 if 11 <= sum(days.values()) <= 20 else 0
-            for year, invalid_days_by_months in invalid_days_by_year.items()
-            for month, days in invalid_days_by_months.items()
-        ]
-        return sum(complete_months)
+        if self.struct_id.code == "CP200THIRTEEN":
+            complete_months = [
+                month
+                for year, invalid_days_by_months in invalid_days_by_year.items()
+                for month, days in invalid_days_by_months.items()
+                if not any(days.values())
+            ]
+            return len(complete_months)
+        else:
+            # If X = valid days
+            # -  0 <= X <= 10 days :   0 month
+            # - 11 <= X <= 20 days : 0.5 month
+            # - 21 <= X <= 31 days :   1 month
+            # If X = invalid days
+            # -  0 <= X <= 10 days :   1 month
+            # - 11 <= X <= 20 days : 0.5 month
+            # - 21 <= X <= 31 days :   0 month
+            complete_months = [
+                1 if sum(days.values()) <= 10 else 0.5 if 11 <= sum(days.values()) <= 20 else 0
+                for year, invalid_days_by_months in invalid_days_by_year.items()
+                for month, days in invalid_days_by_months.items()
+            ]
+            return sum(complete_months)
 
     def _compute_presence_prorata(self, date_from, date_to, contracts):
         unpaid_work_entry_types = self.struct_id.unpaid_work_entry_type_ids
@@ -441,7 +450,7 @@ class Payslip(models.Model):
                 or (first_contract_date.month > 7)):
             return 0.0
 
-        date_from = first_contract_date
+        date_from = max(first_contract_date, self.date_from + relativedelta(day=1, month=1))
         date_to = self.date_to + relativedelta(day=31)
 
         basic = self.contract_id._get_contract_wage()
@@ -1227,25 +1236,25 @@ def compute_holiday_pay_recovery_n(payslip, categories, worked_days, inputs):
 
     employee = payslip.dict.employee_id
     number_of_days = employee.l10n_be_holiday_pay_number_of_days_n
-    hourly_amount_to_recover = employee.l10n_be_holiday_pay_to_recover_n / (number_of_days * 7.6)
+    employee_hourly_cost = payslip.contract_id.hourly_wage if payslip.wage_type == 'hourly' else payslip.contract_id.contract_wage / payslip.sum_worked_hours
+    max_amount_to_recover = min(employee.l10n_be_holiday_pay_to_recover_n, employee_hourly_cost * number_of_days * 7.6)
     if not worked_days.LEAVE120 or not worked_days.LEAVE120.amount:
         return 0
     leave120_amount = payslip.dict._get_worked_days_line_amount('LEAVE120')
-    holiday_amount = min(leave120_amount, hourly_amount_to_recover * worked_days.LEAVE120.number_of_hours)
-    recovered_amount = employee.l10n_be_holiday_pay_recovered_n
-    remaining_amount = employee.l10n_be_holiday_pay_to_recover_n - recovered_amount
+    holiday_amount = min(leave120_amount, employee_hourly_cost * worked_days.LEAVE120.number_of_hours)
+    remaining_amount = max_amount_to_recover - employee.l10n_be_holiday_pay_recovered_n
     return - min(remaining_amount, holiday_amount)
 
 def compute_holiday_pay_recovery_n1(payslip, categories, worked_days, inputs):
     employee = payslip.dict.employee_id
     number_of_days = employee.l10n_be_holiday_pay_number_of_days_n1
-    hourly_amount_to_recover = employee.l10n_be_holiday_pay_to_recover_n1 / (number_of_days * 7.6)
+    employee_hourly_cost = payslip.contract_id.hourly_wage if payslip.wage_type == 'hourly' else payslip.contract_id.contract_wage / payslip.sum_worked_hours
+    max_amount_to_recover = min(employee.l10n_be_holiday_pay_to_recover_n1, employee_hourly_cost * number_of_days * 7.6)
     if not worked_days.LEAVE120 or not worked_days.LEAVE120.amount:
         return 0
     leave120_amount = payslip.dict._get_worked_days_line_amount('LEAVE120')
-    holiday_amount = min(leave120_amount, hourly_amount_to_recover * worked_days.LEAVE120.number_of_hours)
-    recovered_amount = employee.l10n_be_holiday_pay_recovered_n1
-    remaining_amount = employee.l10n_be_holiday_pay_to_recover_n1 - recovered_amount
+    holiday_amount = min(leave120_amount, employee_hourly_cost * worked_days.LEAVE120.number_of_hours)
+    remaining_amount = max_amount_to_recover - employee.l10n_be_holiday_pay_recovered_n1
     return - min(remaining_amount, holiday_amount)
 
 def compute_termination_n_basic_double(payslip, categories, worked_days, inputs):

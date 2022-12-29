@@ -58,3 +58,10 @@ DocumentsMany2ManyTagsField.components = {
     TagsList: DocumentsTagsList,
 };
 registry.category("fields").add("documents_many2many_tags", DocumentsMany2ManyTagsField);
+
+// Necessary for studio
+import RelationalFields from "web.relational_fields";
+import fieldRegistry from 'web.field_registry';
+
+fieldRegistry.add("documents_many2many_tags", RelationalFields.FieldMany2ManyTags);
+fieldRegistry.add("kanban.documents_many2many_tags", RelationalFields.KanbanFieldMany2ManyTags);

@@ -5,7 +5,7 @@
 # Translators:
 # marcescu, 2022
 # Arnau Ros, 2022
-# jabelchi, 2022
+# Josep Anton Belchi, 2022
 # ericrolo, 2022
 # Mohamed Sallam, 2022
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2022
@@ -15,6 +15,9 @@
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2022
 # Quim - eccit <quim@eccit.com>, 2022
 # RGB Consulting <odoo@rgbconsulting.com>, 2022
+# Óscar Fonseca <tecnico@extreme-micro.com>, 2022
+# Ivan Espinola, 2022
+# Farouk Jabiri, 2022
 # 
 msgid ""
 msgstr ""
@@ -22,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-04 09:41+0000\n"
 "PO-Revision-Date: 2022-09-22 05:46+0000\n"
-"Last-Translator: RGB Consulting <odoo@rgbconsulting.com>, 2022\n"
+"Last-Translator: Farouk Jabiri, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +36,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_page_statistics_header
 msgid "- Feedback requested by -"
-msgstr ""
+msgstr "- Comentari sol·licitat per -"
 
 #. module: hr_appraisal_survey
 #: model:survey.survey,title:hr_appraisal_survey.appraisal_360_feedback_template
@@ -79,6 +82,40 @@ msgid ""
 "                </div>\n"
 "            "
 msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        Benvolguts <t t-out=\"object.partnerid.name or ''\">Brandon Freeman</t>,\n"
+"                        <br/><br/>\n"
+"                        Es va demanar una opinió d'avaluació sobre <t t-out=\"object.appraisalid.employeeid.name or 'this'\">aquest</t>.\n"
+"                        <br/>\n"
+"                        Preneu-vos temps per omplir l'enquesta.\n"
+"                        <br/><br/>\n"
+"                        Gràcies!\n"
+"                        <br/><br/>\n"
+"                        <t t-if=\"ctx.get('recipientusers')\">\n"
+"                            <p style=\"margin: 16px 0px 16px 0px;\">\n"
+"                                <a t-att-href=\"ctx.get('url')\" style=\"background-color:#875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px;\">\n"
+"                                    Visualitza l'avaluació\n"
+"                                </a>\n"
+"                            </p>\n"
+"                        </t>\n"
+"                        <t t-if=\"ctx.get('userbody')\">\n"
+"                            <div style=\"background-color:#F8F8F8;\">\n"
+"                                <t t-out=\"ctx.get('userbody')\">Avaluació anual.</t>\n"
+"                            </div>\n"
+"                        </t>\n"
+"                        <div style=\"margin: 16px 0px 16px 0px; text-align: center;\">\n"
+"                            <a t-att-href=\"object.getstarturl()\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                <t t-if=\"object.surveyid.certification\">\n"
+"                                    Inicia la certificació\n"
+"                                </t>\n"
+"                                <t t-else=\"\">\n"
+"                                    Inicia l'enquesta\n"
+"                                </t>\n"
+"                            </a>\n"
+"                        </div>\n"
+"                    </p>\n"
+"                </div>"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,description:hr_appraisal_survey.appraisal_1
@@ -104,11 +141,30 @@ msgid ""
 "            </ul>\n"
 "        "
 msgstr ""
+"<h2>General Purpose of Employee Appraisal</h2>\n"
+"            <ul>\n"
+"                <li>Per iniciar una comunicació clara i oberta de les expectatives de rendiment</li>\n"
+"                <li>Per ajudar els empleats en el seu creixement professional, mitjançant la identificació de fortaleses i oportunitats de desenvolupament</li>\n"
+"            </ul>\n"
+"\n"
+"            <h2>A l'inici del període d'avaluació</h2>\n"
+"            <ul>\n"
+"                <li>és responsabilitat conjunta de l'empleat i el supervisor (avaluador) establir un pla de treball factible per a l'any vinent, incloses les principals responsabilitats dels empleats i els corresponents punts de referència amb els quals s'avaluaran els resultats.</li>\n"
+"                <li>Elements crítics o clau de rendiment i necessitats de desenvolupament professional (si n'hi ha), també s'ha d'observar en aquest moment</li>\n"
+"            </ul>\n"
+"\n"
+"            <h2>Al final del període d'avaluació</h2>\n"
+"            <ul>\n"
+"                <li>L'empleat serà responsable de completar un esborrany del formulari d'avaluació com a eina per a l'autoavaluació i un punt de partida per a l'avaluació del supervisor. L'empleat pot afegir exemples d'assoliments per a cada criteri. Un cop emplenat el formulari, l'empleat l'envia al seu supervisor.</li>\n"
+"                <li>és la responsabilitat principal del supervisor reunir l'entrada necessària de les fonts apropiades de retroalimentació (clients interns i/o externs, companys).</li>\n"
+"                <li>El supervisor sintetitza i integra totes les entrades en l'avaluació completa. La motivació de l'avaluació s'explica en els camps ad hoc.</li>\n"
+"                <li>L'empleat pot optar per oferir comentaris o explicacions sobre la revisió completada.</li>\n"
+"            </ul>"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_button_form_view
 msgid "<i class=\"fa fa-fw fa-arrow-right\"/>Edit Survey"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-arrow-right\"/>Modifica l'enquesta"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,description:hr_appraisal_survey.appraisal_2
@@ -117,7 +173,7 @@ msgstr ""
 #: model:survey.question,description:hr_appraisal_survey.appraisal_360_9
 #: model:survey.survey,description:hr_appraisal_survey.opinion_form
 msgid "<p> </p>"
-msgstr ""
+msgstr "<p> </p>"
 
 #. module: hr_appraisal_survey
 #: model:survey.survey,description:hr_appraisal_survey.appraisal_360_feedback_template
@@ -126,6 +182,8 @@ msgid ""
 "            This typically includes the employee's manager, peers, and direct reports.</p>\n"
 "        "
 msgstr ""
+"La retroalimentació de 360 graus <p>és un sistema o procés en el qual els gerents demanaran comentaris a les persones que treballen al voltant de l'empleat.\n"
+"            Això normalment inclou el gestor de l'empleat, companys i informes directes.</p>"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,description:hr_appraisal_survey.appraisal_4
@@ -133,6 +191,9 @@ msgid ""
 "<p>Identify professional, performance, or project objectives you recommend "
 "for employee’s continued career development over the coming year.</p>"
 msgstr ""
+"<p>Identifica els objectius professionals, de rendiment o de projecte que "
+"recomaneu per al desenvolupament continuat de la carrera dels empleats "
+"durant l'any següent.</p>"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,description:hr_appraisal_survey.appraisal_3
@@ -147,6 +208,14 @@ msgid ""
 "            </ol>\n"
 "        "
 msgstr ""
+"<p>L'avaluador hauria de valorar els principals èxits i rendiments de la feina de l'empleat d'acord amb la mètrica proporcionada a continuació:</p>\n"
+"            <ol>\n"
+"                <li> supera significativament els estàndards i expectatives requerits de la posició</li>\n"
+"                <li> Excedeix els estàndards i les expectatives</li>\n"
+"                <li> estàndards i expectatives dels fulls</li>\n"
+"                <li> no compleix els estàndards i les expectatives</li>\n"
+"                <li> significativament per sota dels estàndards i expectatives</li>\n"
+"            </ol>"
 
 #. module: hr_appraisal_survey
 #: model:survey.survey,description:hr_appraisal_survey.appraisal_feedback_template
@@ -154,6 +223,8 @@ msgid ""
 "<p>This survey allows you to give a feedback about your collaboration with an employee. Filling it helps us improving the appraisal process.</p>\n"
 "        "
 msgstr ""
+"<p>Aquesta enquesta us permet donar comentaris sobre la vostra col·laboració"
+" amb un empleat. Omplir-ho ens ajuda a millorar el procés d'avaluació.</p>"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_view_form
@@ -161,6 +232,8 @@ msgid ""
 "<span class=\"o_stat_text\">Feedback</span>\n"
 "                        <span class=\"o_stat_text\">Survey</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Comentaris</span>\n"
+"                        <span class=\"o_stat_text\">Survey</span>"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_1
@@ -206,7 +279,7 @@ msgstr "Afegir una nova enquesta"
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.appraisal_ask_feedback_view_form
 msgid "Add employees..."
-msgstr ""
+msgstr "Afegeix empleats..."
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_2_3
@@ -216,12 +289,12 @@ msgstr "Comentaris adicionals"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_6
 msgid "Admit my mistakes"
-msgstr ""
+msgstr "Admet els meus errors"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.x_360_5_5
 msgid "Almost always"
-msgstr ""
+msgstr "Gairebé sempre"
 
 #. module: hr_appraisal_survey
 #: code:addons/hr_appraisal_survey/wizard/appraisal_ask_feedback.py:0
@@ -230,6 +303,8 @@ msgid ""
 "An appraisal feedback was requested. Please take time to fill the <a "
 "href=\"%s\" target=\"_blank\">survey</a>"
 msgstr ""
+"S'ha sol·licitat un comentari d'avaluació. Preneu-vos temps per omplir "
+"l'enquesta <a href=\"%s\" target=\"_blank\"></a>"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_11
@@ -239,7 +314,7 @@ msgstr "Ment analítica i sintètica"
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__deadline
 msgid "Answer Deadline"
-msgstr ""
+msgstr "Termini de resposta"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__appraisal_id
@@ -250,23 +325,23 @@ msgstr "Avaluació"
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__employee_id
 msgid "Appraisal Employee"
-msgstr ""
+msgstr "Empleat de l'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_survey_survey__is_appraisal
 msgid "Appraisal Managers Only"
-msgstr ""
+msgstr "Només els gestors d'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_hr_department__appraisal_survey_template_id
 msgid "Appraisal Survey"
-msgstr ""
+msgstr "Enquesta d'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_res_company__appraisal_survey_template_id
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_res_config_settings__appraisal_survey_template_id
 msgid "Appraisal Survey Template"
-msgstr ""
+msgstr "Plantilla d'enquesta d'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_1_3
@@ -276,12 +351,12 @@ msgstr "Avaluació per període"
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_page_statistics_header
 msgid "Appraisal of"
-msgstr ""
+msgstr "Avaluació de"
 
 #. module: hr_appraisal_survey
 #: model:mail.template,name:hr_appraisal_survey.mail_template_appraisal_ask_feedback
 msgid "Appraisal: Ask Feedback"
-msgstr ""
+msgstr "Avaluació: Demana comentaris"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_1_5
@@ -292,17 +367,17 @@ msgstr "Avaluador"
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.appraisal_ask_feedback_view_form
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_view_form
 msgid "Ask Feedback"
-msgstr ""
+msgstr "Demana comentaris"
 
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_appraisal_ask_feedback
 msgid "Ask Feedback for Appraisal"
-msgstr ""
+msgstr "Demana comentaris per avaluar"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_hr_appraisal__employee_feedback_ids
 msgid "Asked Feedback"
-msgstr ""
+msgstr "Comentaris preguntats"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__attachment_ids
@@ -317,12 +392,12 @@ msgstr "Autor"
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_button_form_view
 msgid "Back to the appraisal"
-msgstr ""
+msgstr "Torna a l'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__can_edit_body
 msgid "Can Edit Body"
-msgstr "Pot Editar el Cos"
+msgstr "Pot Modificar el Cos"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.appraisal_ask_feedback_view_form
@@ -333,6 +408,8 @@ msgstr "Cancel·lar"
 #: model:ir.model.fields,help:hr_appraisal_survey.field_survey_survey__is_appraisal
 msgid "Check this option to restrict the answers to appraisal managers only."
 msgstr ""
+"Activeu aquesta opció per restringir les respostes només als gestors "
+"d'avaluació."
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_button_form_view
@@ -342,7 +419,7 @@ msgstr "Tancar"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_3
 msgid "Collaborate effectively with others to achieve shared goals"
-msgstr ""
+msgstr "Col·laborar eficaçment amb altres per aconseguir objectius compartits"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_9
@@ -355,7 +432,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_res_company
 msgid "Companies"
-msgstr "Companyies"
+msgstr "Empreses"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_3
@@ -368,7 +445,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_9
 msgid "Conclusion"
-msgstr ""
+msgstr "Conclusió"
 
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_res_config_settings
@@ -383,7 +460,7 @@ msgstr "Continguts"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_2
 msgid "Create space for different ideas and options to be voiced"
-msgstr ""
+msgstr "Crea un espai per a les diferents idees i opcions a expressar"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__create_uid
@@ -439,7 +516,7 @@ msgstr "Nom a mostrar"
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_10
 msgid "Do you have any comment to tell me and help me improve?"
-msgstr ""
+msgstr "Tens algun comentari per dir-me i ajudar-me a millorar?"
 
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_hr_appraisal
@@ -475,7 +552,7 @@ msgstr "Entusiasme i implicació als projectes/assignacions"
 #: code:addons/hr_appraisal_survey/wizard/appraisal_ask_feedback.py:0
 #, python-format
 msgid "Fill the feedback form on survey"
-msgstr ""
+msgstr "Omple el formulari de retroalimentació a l'enquesta"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__email_from
@@ -485,22 +562,22 @@ msgstr "Des de"
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_5
 msgid "How do you feel to work with me? Do I ... "
-msgstr ""
+msgstr "Com et sents per treballar amb mi? Jo..."
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.appraisal_360_3_sug5
 msgid "I'm not from the company."
-msgstr ""
+msgstr "No sóc de l'empresa."
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.appraisal_360_3_sug3
 msgid "I'm part of your management."
-msgstr ""
+msgstr "Sóc part de la teva gestió."
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.appraisal_360_3_sug4
 msgid "I'm referring to you."
-msgstr ""
+msgstr "Em refereixo a tu."
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__id
@@ -555,7 +632,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_1
 msgid "Listen well to others"
-msgstr ""
+msgstr "Escolta bé els altres"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__template_id
@@ -586,12 +663,12 @@ msgstr "Objectius"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.x_360_5_4
 msgid "Often"
-msgstr ""
+msgstr "Sovint"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.appraisal_ask_feedback_view_form
 msgid "Optional message"
-msgstr ""
+msgstr "Missatge opcional"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,help:hr_appraisal_survey.field_appraisal_ask_feedback__lang
@@ -639,7 +716,7 @@ msgstr "Puntualitat i registre d'assistència"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.x_360_5_2
 msgid "Rarely"
-msgstr ""
+msgstr "Rares vegades"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__employee_ids
@@ -649,7 +726,7 @@ msgstr "Destinataris"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_7
 msgid "Recognize the contributions of teammates and peers"
-msgstr ""
+msgstr "Reconeix les contribucions dels companys i companys"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__render_model
@@ -659,7 +736,7 @@ msgstr "Model de renderització"
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_page_statistics_header
 msgid "Responded:"
-msgstr ""
+msgstr "Resposta:"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_2_2
@@ -678,7 +755,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_5
 msgid "Seek to understand the problem before working on a solution"
-msgstr ""
+msgstr "Cerca entendre el problema abans de treballar en una solució"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.appraisal_ask_feedback_view_form
@@ -688,22 +765,22 @@ msgstr "Enviar"
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,help:hr_appraisal_survey.field_hr_appraisal__survey_ids
 msgid "Sent out surveys"
-msgstr ""
+msgstr "Enquestes enviades"
 
 #. module: hr_appraisal_survey
 #: model:mail.template,description:hr_appraisal_survey.mail_template_appraisal_ask_feedback
 msgid "Sent to employees to gather appraisal feedback"
-msgstr ""
+msgstr "Enviat als empleats per recollir comentaris d'avaluació"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.y_360_5_4
 msgid "Show good judgment in decision making"
-msgstr ""
+msgstr "Mostra un bon criteri en la presa de decisions"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.x_360_5_3
 msgid "Sometimes"
-msgstr ""
+msgstr "De vegades"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__subject
@@ -734,7 +811,7 @@ msgstr "Enquesta"
 #: code:addons/hr_appraisal_survey/models/survey.py:0
 #, python-format
 msgid "Survey Feedback"
-msgstr ""
+msgstr "Comentari de l'enquesta"
 
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_survey_question_answer
@@ -744,7 +821,7 @@ msgstr "Etiqueta de l'enquesta"
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__survey_template_id
 msgid "Survey Template"
-msgstr ""
+msgstr "Plantilla d'enquesta"
 
 #. module: hr_appraisal_survey
 #: model:ir.model,name:hr_appraisal_survey.model_survey_user_input
@@ -760,7 +837,7 @@ msgstr "Enquestes"
 #. module: hr_appraisal_survey
 #: model:mail.template,subject:hr_appraisal_survey.mail_template_appraisal_ask_feedback
 msgid "Take part in {{ object.employee_id.name or 'this' }} appraisal"
-msgstr ""
+msgstr "Participeu en l'avaluació {{ object.employeeid.name o 'this' }}"
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_4
@@ -784,6 +861,9 @@ msgid ""
 "The following employees do not have any email : \n"
 "%s"
 msgstr ""
+"Aquest empleat no té cap adreça de correu registrada i no rebrà cap correu electrònic. \n"
+"Els empleats següents no tenen cap correu electrònic: \n"
+"%s"
 
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,help:hr_appraisal_survey.field_hr_department__appraisal_survey_template_id
@@ -791,11 +871,14 @@ msgid ""
 "This field is used with 360 Feedback setting on Appraisal App, the aim is to"
 " define a default Survey Template related to this department."
 msgstr ""
+"Aquest camp s'utilitza amb la configuració de 360 comentaris a Appraisal, "
+"l'objectiu és definir una plantilla d'enquesta predeterminada relacionada "
+"amb aquest departament."
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_button_form_view
 msgid "This is a Test Survey."
-msgstr ""
+msgstr "Aquesta és una enquesta de proves."
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.arow_3_1_15
@@ -822,7 +905,7 @@ msgstr ""
 #. module: hr_appraisal_survey
 #: model:ir.model.fields,field_description:hr_appraisal_survey.field_appraisal_ask_feedback__user_body
 msgid "User Contents"
-msgstr ""
+msgstr "Contingut de l'usuari"
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.survey_user_input_view_tree
@@ -832,32 +915,32 @@ msgstr "Veure resultats"
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.appraisal_360_3_sug1
 msgid "We're colleagues, for the same manager."
-msgstr ""
+msgstr "Som col·legues, pel mateix director."
 
 #. module: hr_appraisal_survey
 #: model:survey.question.answer,value:hr_appraisal_survey.appraisal_360_3_sug2
 msgid "We're colleagues, in different teams."
-msgstr ""
+msgstr "Som col·legues, en equips diferents."
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_6
 msgid "What should I do in order to improve on my day-to-day job?"
-msgstr ""
+msgstr "Què hauria de fer per a millorar el meu treball quotidià?"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_7
 msgid "What's my greatest strength?"
-msgstr ""
+msgstr "Quina és la meva força més gran?"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_8
 msgid "What's my greatest weakness?"
-msgstr ""
+msgstr "Quina és la meva debilitat més gran?"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_3
 msgid "What's the relation between us?"
-msgstr ""
+msgstr "Quina és la relació entre nosaltres?"
 
 #. module: hr_appraisal_survey
 #: model:survey.question,title:hr_appraisal_survey.appraisal_360_2
@@ -875,6 +958,8 @@ msgid ""
 "You can create surveys used for appraisals. Design easily your appraisal,\n"
 "                send invitations and analyze answers."
 msgstr ""
+"Podeu crear enquestes utilitzades per a les avaluacions. Dissenya fàcilment la teva avaluació,\n"
+"                enviar invitacions i analitzar les respostes."
 
 #. module: hr_appraisal_survey
 #: model_terms:ir.ui.view,arch_db:hr_appraisal_survey.hr_appraisal_survey_button_form_view

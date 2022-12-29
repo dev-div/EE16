@@ -1,19 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_invoice_extract
+# 	* account_invoice_extract
 # 
 # Translators:
-# Martin Trigaux, 2018
-# Birgir Steinarsson <biggboss83@gmail.com>, 2018
-# Bjorn Ingvarsson <boi@exigo.is>, 2018
+# Heiðar Sigurðsson, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 12:42+0000\n"
-"PO-Revision-Date: 2018-08-24 11:36+0000\n"
-"Last-Translator: Bjorn Ingvarsson <boi@exigo.is>, 2018\n"
+"POT-Creation-Date: 2022-12-15 13:28+0000\n"
+"PO-Revision-Date: 2022-09-22 05:45+0000\n"
+"Last-Translator: Heiðar Sigurðsson, 2022\n"
 "Language-Team: Icelandic (https://www.transifex.com/odoo/teams/41243/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,54 +20,106 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,help:account_invoice_extract.field_account_invoice_extract_words__selected_status
+#: model:mail.template,body_html:account_invoice_extract.account_invoice_extract_no_credit
 msgid ""
-"0 for 'not selected', 1 for ocr choosed and 2 for ocr selected but not "
-"choosed by user"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p>Dear,<br/></p>\n"
+"    <p>There are no more credits on your IAP Invoice OCR account.<br/>\n"
+"    You can charge your IAP Invoice OCR account in the Accounting settings page.</p>\n"
+"    <p>Best regards,<br/></p>\n"
+"    <p>Odoo S.A.</p>\n"
+"</div>"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
-msgid "An error occured"
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Buy credits"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid "An error occured during the ocr process."
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Refresh"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid ""
+"<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/>\n"
+"                        Resend For Digitization"
 msgstr ""
 
 #. module: account_invoice_extract
 #: model_terms:ir.ui.view,arch_db:account_invoice_extract.res_config_settings_view_form
-msgid "Autocomplete Vendor Bills (OCR + AI)"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\"/>"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_show_ocr_option_selection
-msgid "Automatic Bills Processing"
+#: model:mail.template,name:account_invoice_extract.account_invoice_extract_no_credit
+#: model:mail.template,subject:account_invoice_extract.account_invoice_extract_no_credit
+msgid "Account Invoice Extract Notification"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid "Buy credits"
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid ""
+"All fields will be automated by Artificial Intelligence, it might take 5 "
+"seconds."
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice__extract_can_show_resend_button
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__error_status
+#, python-format
+msgid "An error occurred"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model,name:account_invoice_extract.model_ir_attachment
+msgid "Attachment"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Bill is being Digitized"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_can_show_banners
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_can_show_banners
+msgid "Can show the ocr banners"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_resend_button
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_can_show_resend_button
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_can_show_resend_button
 msgid "Can show the ocr resend button"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice__extract_can_show_send_button
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_can_show_send_button
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_can_show_send_button
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_can_show_send_button
 msgid "Can show the ocr send button"
 msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model,name:account_invoice_extract.model_res_company
 msgid "Companies"
-msgstr "Fyrirtæki"
+msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__done
 msgid "Completed flow"
 msgstr ""
 
@@ -79,32 +129,97 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Couldn't reload AI data."
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-javascript
+#: code:addons/account_invoice_extract/static/src/js/invoice_extract_form_renderer.js:0
+#, python-format
+msgid "Create"
+msgstr ""
+
+#. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__create_uid
 msgid "Created by"
-msgstr "Búið til af"
+msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__create_date
 msgid "Created on"
-msgstr "Stofnað þann"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_out_invoice_digitalization_mode
+msgid "Customer Invoices"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_company__extract_out_invoice_digitalization_mode
+msgid "Digitization mode on customer invoices"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_company__extract_in_invoice_digitalization_mode
+msgid "Digitization mode on vendor bills"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_in_invoice_digitalization_mode__auto_send
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_out_invoice_digitalization_mode__auto_send
+msgid "Digitize automatically"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_in_invoice_digitalization_mode__manual_send
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_out_invoice_digitalization_mode__manual_send
+msgid "Digitize on demand only"
+msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__display_name
 msgid "Display Name"
-msgstr "Nafn"
-
-#. module: account_invoice_extract
-#: selection:res.company,extract_show_ocr_option_selection:0
-msgid "Do not process bills"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice__extract_word_ids
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_in_invoice_digitalization_mode__no_send
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__res_company__extract_out_invoice_digitalization_mode__no_send
+msgid "Do not digitize"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.res_config_settings_view_form
+msgid "Enable to get only one invoice line per tax"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_error_message
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_error_message
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_error_message
+msgid "Error message"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_attachment_id
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_attachment_id
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_attachment_id
+msgid "Extract Attachment"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_word_ids
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_word_ids
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_word_ids
 msgid "Extract Word"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice__extract_state
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_state
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_state
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_state
 msgid "Extract state"
 msgstr ""
 
@@ -114,107 +229,195 @@ msgid "Extracted words from invoice scan"
 msgstr ""
 
 #. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "Extraction Information"
+msgstr ""
+
+#. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__field
 msgid "Field"
-msgstr "Field"
+msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__id
 msgid "ID"
-msgstr "Auðkenni"
+msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice__extract_remoteid
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_remote_id
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_remote_id
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_remote_id
 msgid "Id of the request to IAP-OCR"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model,name:account_invoice_extract.model_account_invoice
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Invalid PDF (Conversion error)"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Invalid PDF (Unable to get page count)"
+msgstr ""
+
+#. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__invoice_id
 msgid "Invoice"
-msgstr "Reikningur"
-
-#. module: account_invoice_extract
-#: model:ir.model.fields,help:account_invoice_extract.field_account_invoice__extract_remoteid
-msgid "Invoice extract id"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__selected_status
-msgid "Invoice extract selected status."
+#: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_parse_ir_actions_server
+#: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_parse
+msgid "Invoice OCR: Parse Invoices"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,help:account_invoice_extract.field_account_invoice_extract_words__invoice_id
-msgid "Invoice id"
-msgstr "Invoice id"
+#: model:ir.actions.server,name:account_invoice_extract.ir_cron_update_ocr_status_ir_actions_server
+#: model:ir.cron,cron_name:account_invoice_extract.ir_cron_update_ocr_status
+msgid "Invoice OCR: Update All Status"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.actions.server,name:account_invoice_extract.ir_cron_ocr_validate_ir_actions_server
+#: model:ir.cron,cron_name:account_invoice_extract.ir_cron_ocr_validate
+msgid "Invoice OCR: Validate Invoices"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model,name:account_invoice_extract.model_account_move
+msgid "Journal Entry"
+msgstr "Dagbókarfærsla"
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words____last_update
 msgid "Last Modified on"
-msgstr "Síðast breytt þann"
+msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__write_uid
 msgid "Last Updated by"
-msgstr "Síðast uppfært af"
+msgstr ""
 
 #. module: account_invoice_extract
 #: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__write_date
 msgid "Last Updated on"
-msgstr "Síðast uppfært þann"
+msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "No document name provided"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__no_extract_requested
 msgid "No extract requested"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__not_enough_credit
 msgid "Not enough credit"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:res.company,extract_show_ocr_option_selection:0
-msgid "Process all bills automatically"
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_invoice_extract_words__ocr_selected
+msgid "Ocr Selected"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:res.company,extract_show_ocr_option_selection:0
-msgid "Process bills on demand only"
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "Reload AI Data"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid "Resend File through OCR"
+#: model:ir.actions.server,name:account_invoice_extract.model_account_send_for_digitalization
+msgid "Send Bills for digitization"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid "Send File through OCR"
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "Send For Digitization"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model:ir.model.fields,field_description:account_invoice_extract.field_res_company__extract_show_ocr_option_selection
-msgid "Send mode on invoices attachments"
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Server is currently under maintenance. Please retry later"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Server not available. Please retry later"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_company__extract_single_line_per_tax
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_single_line_per_tax
+msgid "Single Invoice Line Per Tax"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_bank_statement_line__extract_status_code
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_move__extract_status_code
+#: model:ir.model.fields,field_description:account_invoice_extract.field_account_payment__extract_status_code
+msgid "Status code"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid ""
+"The 'invoice_ocr' IAP account token is invalid. Please delete it to let Odoo"
+" generate a new one or fill it with a valid token."
+msgstr ""
+
+#. module: account_invoice_extract
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
 msgid ""
 "The data extraction is not finished yet. The extraction usually takes "
-"between 5 and 60 seconds."
+"between 5 and 10 seconds."
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid ""
-"The data extraction started. It takes usually between 5 and 60 seconds."
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "The document could not be found"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
-msgid "Update status"
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "The document has been rejected because it is too small"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-javascript
+#: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
+#, python-format
+msgid "The following fields were populated by the OCR:"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__to_validate
+msgid "To validate"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "Unsupported image format"
 msgstr ""
 
 #. module: account_invoice_extract
@@ -223,20 +426,23 @@ msgid "User Selected"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
+#: model:ir.model.fields,field_description:account_invoice_extract.field_res_config_settings__extract_in_invoice_digitalization_mode
+msgid "Vendor Bills"
+msgstr "Innkaupareikningar"
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__waiting_extraction
 msgid "Waiting extraction"
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
-msgid "Waiting validation"
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__waiting_upload
+msgid "Waiting upload"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.res_config_settings_view_form
-msgid ""
-"When receiving an email with a bill, or uploading scanned bills, Odoo will "
-"parse them (OCR) and auto-complete (AI) Draft Bills to validate."
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__waiting_validation
+msgid "Waiting validation"
 msgstr ""
 
 #. module: account_invoice_extract
@@ -275,13 +481,44 @@ msgid "Word Text"
 msgstr ""
 
 #. module: account_invoice_extract
-#: model_terms:ir.ui.view,arch_db:account_invoice_extract.invoice_supplier_form_inherit_ocr
+#. odoo-javascript
+#: code:addons/account_invoice_extract/static/src/xml/populated_fields_tooltip.xml:0
+#, python-format
 msgid ""
-"You don't have enough credit to extract datas from your invoice. You can buy"
-" new credits here:"
+"You can always change the mapping by clicking on one field in the Invoice "
+"form and select the appropriate value in the PDF."
 msgstr ""
 
 #. module: account_invoice_extract
-#: selection:account.invoice,extract_state:0
+#: model_terms:ir.ui.view,arch_db:account_invoice_extract.view_move_form_inherit_ocr
+msgid "You don't have enough credit to extract data from your invoice."
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid "You must send the same quantity of documents and file names"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Your PDF file is protected by a password. The OCR can't extract data from it"
+msgstr ""
+
+#. module: account_invoice_extract
+#. odoo-python
+#: code:addons/account_invoice_extract/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Your invoice is too heavy to be processed by the OCR. Try to reduce the "
+"number of pages and avoid pages with too many text"
+msgstr ""
+
+#. module: account_invoice_extract
+#: model:ir.model.fields.selection,name:account_invoice_extract.selection__account_move__extract_state__extract_not_ready
 msgid "waiting extraction, but it is not ready"
 msgstr ""

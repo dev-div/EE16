@@ -145,7 +145,10 @@ class AccountAsset(models.Model):
     @api.depends('company_id')
     def _compute_journal_id(self):
         for asset in self:
-            asset.journal_id = self.env['account.journal'].search([('type', '=', 'general'), ('company_id', '=', asset.company_id.id)], limit=1)
+            if asset.journal_id and asset.journal_id.company_id == asset.company_id:
+                asset.journal_id = asset.journal_id
+            else:
+                asset.journal_id = self.env['account.journal'].search([('type', '=', 'general'), ('company_id', '=', asset.company_id.id)], limit=1)
 
     @api.depends('salvage_value', 'original_value')
     def _compute_total_depreciable_value(self):
@@ -198,7 +201,7 @@ class AccountAsset(models.Model):
         for asset in self:
             distribution_asset = {}
             amount_total = sum(asset.original_move_line_ids.mapped("balance"))
-            if not float_is_zero(amount_total, precision_rounding=self.currency_id.rounding):
+            if not float_is_zero(amount_total, precision_rounding=asset.currency_id.rounding):
                 for line in asset.original_move_line_ids._origin:
                     if line.analytic_distribution:
                         for account, distribution in line.analytic_distribution.items():
@@ -227,6 +230,8 @@ class AccountAsset(models.Model):
     @api.depends('prorata_date', 'prorata_computation_type', 'asset_paused_days')
     def _compute_paused_prorata_date(self):
         for asset in self:
+            if not asset.prorata_date:
+                raise UserError(_('Prorata Date can not be empty'))
             if asset.prorata_computation_type == 'daily_computation':
                 asset.paused_prorata_date = asset.prorata_date + relativedelta(days=asset.asset_paused_days)
             else:
@@ -431,6 +436,12 @@ class AccountAsset(models.Model):
                     'You cannot delete a document that is in %s state.',
                     dict(self._fields['state']._description_selection(self.env)).get(asset.state)
                 ))
+
+            posted_amount = len(asset.depreciation_move_ids.filtered(lambda x: x.state == 'posted'))
+            if posted_amount > 0:
+                raise UserError(_('You cannot delete an asset linked to posted entries.'
+                                  '\nYou should either confirm the asset, then, sell or dispose of it,'
+                                  ' or cancel the linked journal entries.'))
 
     def unlink(self):
         for asset in self:
@@ -866,6 +877,10 @@ class AccountAsset(models.Model):
         else:
             asset_type = self[0].asset_type
         views = [v for v in self._get_views(asset_type) if v[1] in view_mode]
+        ctx = dict(self._context,
+                asset_type=asset_type,
+                default_asset_type=asset_type)
+        ctx.pop('default_move_type', None)
         action = {
             'name': _('Asset'),
             'view_mode': ','.join(view_mode),
@@ -874,11 +889,7 @@ class AccountAsset(models.Model):
             'res_model': 'account.asset',
             'views': views,
             'domain': [('id', 'in', self.ids)],
-            'context': {
-                **self._context,
-                'asset_type': asset_type,
-                'default_asset_type': asset_type
-            }
+            'context': ctx
         }
         if asset_type == 'sale':
             action['name'] = _('Deferred Revenue')
@@ -998,7 +1009,7 @@ class AccountAsset(models.Model):
                 'name': asset.name,
                 'account_id': account.id,
                 'balance': -amount,
-                'analytic_distribution': analytic_distribution if asset.asset_type == 'sale' else {},
+                'analytic_distribution': analytic_distribution,
                 'currency_id': asset.currency_id.id,
                 'amount_currency': -asset.company_id.currency_id._convert(
                     from_amount=amount,

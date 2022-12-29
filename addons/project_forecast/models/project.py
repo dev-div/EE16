@@ -35,16 +35,19 @@ class Project(models.Model):
     def action_project_forecast_from_project(self):
         action = self.env["ir.actions.actions"]._for_xml_id("project_forecast.project_forecast_action_from_project")
         first_slot = self.env['planning.slot'].search([('start_datetime', '>=', datetime.datetime.now()), ('project_id', '=', self.id)], limit=1, order="start_datetime")
-        action['context'] = {
+        context = {
             'default_project_id': self.id,
             'search_default_project_id': [self.id],
-            **ast.literal_eval(action['context'])
+            **ast.literal_eval(action['context']),
         }
-        action['display_name'] = _("%s's Planning", self.name)
         if first_slot:
-            action['context'].update({'initialDate': first_slot.start_datetime})
+            context['initialDate'] = first_slot.start_datetime
         elif self.date_start and self.date_start >= datetime.date.today():
-            action['context'].update({'initialDate': self.date_start})
+            context['initialDate'] = self.date_start
+        action.update(
+            context=context,
+            domain=[('start_datetime', '!=', False), ('end_datetime', '!=', False)],
+        )
         return action
 
     # ----------------------------

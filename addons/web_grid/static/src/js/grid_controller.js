@@ -13,7 +13,7 @@ const { FormViewDialog } = require("@web/views/view_dialogs/form_view_dialog");
 var qweb = core.qweb;
 var _t = core._t;
 
-const { Component, markup } = owl;
+const { Component, markup } = require("@odoo/owl");
 
 var GridController = AbstractController.extend({
     custom_events: Object.assign({}, AbstractController.prototype.custom_events, {
@@ -39,6 +39,17 @@ var GridController = AbstractController.extend({
         this.createInline = params.createInline;
         this.displayEmpty = params.displayEmpty;
         this.mutex = new concurrency.Mutex();
+    },
+    /**
+     * @override
+     * Close the dialog if it is open.
+     */
+    on_detach_callback() {
+        if (this.closeDialog) {
+            this.closeDialog();
+            this.closeDialog = undefined;
+        }
+        return this._super.apply(this, arguments);
     },
 
     //--------------------------------------------------------------------------
@@ -139,7 +150,7 @@ var GridController = AbstractController.extend({
      */
     _addLine() {
         const options = this._getFormDialogOptions()
-        Component.env.services.dialog.add(FormViewDialog, options);
+        this.closeDialog = Component.env.services.dialog.add(FormViewDialog, options);
     },
     /**
      * @private

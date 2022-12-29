@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Mention that the token will be saved when paying for a subscription. -->
+    <template id="payment_checkout_inherit" inherit_id="payment.checkout">
+        <xpath expr="//div[@name='o_payment_inline_form']" position="inside">
+            <label t-if="is_subscription" class="fst-italic">
+                Your payment details will be saved for automatic renewals.
+            </label>
+        </xpath>
+    </template>
+
+</odoo>

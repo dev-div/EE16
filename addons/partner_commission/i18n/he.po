@@ -3,7 +3,6 @@
 # 	* partner_commission
 # 
 # Translators:
-# NoaFarkash, 2022
 # Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # Jonathan Spier, 2022
 # Martin Trigaux, 2022
@@ -11,6 +10,9 @@
 # Yihya Hugirat <hugirat@gmail.com>, 2022
 # ZVI BLONDER <ZVIBLONDER@gmail.com>, 2022
 # ExcaliberX <excaliberx@gmail.com>, 2022
+# NoaFarkash, 2022
+# Ha Ketem <haketem@gmail.com>, 2022
+# Roy Sayag, 2022
 # 
 msgid ""
 msgstr ""
@@ -18,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-23 08:24+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: ExcaliberX <excaliberx@gmail.com>, 2022\n"
+"Last-Translator: Roy Sayag, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,6 +48,8 @@ msgid ""
 "<span class=\"o_form_label\">Automatic PO frequency</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"o_form_label\">אישור תעודות משלוח באופן אוטומטי ע\"פ תקופה</span>\n"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: partner_commission
 #: model_terms:ir.ui.view,arch_db:partner_commission.res_config_settings_view_form
@@ -53,6 +57,8 @@ msgid ""
 "<span class=\"o_form_label\">Minimum PO amount total</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"o_form_label\">סכום מינימלי לאישור הזמנת רכש באופן אוטומטי</span>\n"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_commission_plan__active
@@ -93,13 +99,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:partner_commission.field_res_users__commission_plan_id
 #: model:ir.model.fields,field_description:partner_commission.field_sale_order__commission_plan_id
 msgid "Commission Plan"
-msgstr ""
+msgstr "תכנית עמלות"
 
 #. module: partner_commission
 #: model:ir.actions.act_window,name:partner_commission.action_commission_plans
 #: model:ir.ui.menu,name:partner_commission.menu_commission_plans
 msgid "Commission Plans"
-msgstr ""
+msgstr "תכניות עמלות"
 
 #. module: partner_commission
 #: model:ir.model,name:partner_commission.model_commission_plan
@@ -151,7 +157,7 @@ msgstr "חשבוניות לקוח"
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_res_partner_grade__default_commission_plan_id
 msgid "Default Commission Plan"
-msgstr ""
+msgstr "תכנית עמלות ברירת מחדל"
 
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_commission_plan__display_name
@@ -162,12 +168,12 @@ msgstr "שם לתצוגה"
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_sale_order__commission_plan_frozen
 msgid "Freeze Plan"
-msgstr ""
+msgstr "תכנית הקפאה"
 
 #. module: partner_commission
 #: model_terms:ir.ui.view,arch_db:partner_commission.res_config_settings_view_form
 msgid "Frequency at which purchase orders will be automatically confirmed"
-msgstr ""
+msgstr "תקופה בה הזמנות רכש יאושרו באופן אוטומטי"
 
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_commission_plan__id
@@ -313,7 +319,7 @@ msgstr "הזמנת רכש"
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_purchase_order__purchase_type
 msgid "Purchase Type"
-msgstr ""
+msgstr "סוג רכש"
 
 #. module: partner_commission
 #: model:ir.model.fields.selection,name:partner_commission.selection__res_company__commission_automatic_po_frequency__quarterly
@@ -363,7 +369,7 @@ msgstr "כללים"
 #. module: partner_commission
 #: model:ir.model.fields,field_description:partner_commission.field_commission_rule__template_id
 msgid "Sale Order Template"
-msgstr ""
+msgstr "תבנית הזמנת לקוח"
 
 #. module: partner_commission
 #: model:ir.model,name:partner_commission.model_sale_order
@@ -379,12 +385,12 @@ msgstr "רצף"
 #: model:ir.model.fields,field_description:partner_commission.field_purchase_order__invoice_commission_count
 #: model_terms:ir.ui.view,arch_db:partner_commission.purchase_order_form_inherit_partner_commission
 msgid "Source Invoices"
-msgstr ""
+msgstr "חשבוניות מקור"
 
 #. module: partner_commission
 #: model:ir.model,name:partner_commission.model_sale_subscription_report
 msgid "Subscription Analysis"
-msgstr ""
+msgstr "ניתוח מנויים"
 
 #. module: partner_commission
 #: model:ir.model.fields,help:partner_commission.field_sale_order__commission_plan_id
@@ -403,7 +409,7 @@ msgstr ""
 msgid ""
 "The required minimum amount total needed to automatically confirm purchase "
 "orders"
-msgstr ""
+msgstr "הסכום המינימלי הדרוש לאישור אוטומטי של הזמנות רכש"
 
 #. module: partner_commission
 #: model:product.product,uom_name:partner_commission.product_commission

@@ -121,6 +121,8 @@ export class TemplateDialog extends Component {
                 createFromTemplateId: templateId,
                 createFromTemplateName: template && template.name,
             },
+        }, {
+            additionalContext: this.props.context,
         });
         this.data.close();
     }

@@ -4,6 +4,8 @@
 # 
 # Translators:
 # Martin Trigaux, 2022
+# Raymond Yu <cl_yu@hotmail.com>, 2022
+# Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
@@ -11,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-20 09:49+0000\n"
 "PO-Revision-Date: 2022-09-22 05:47+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: Jeffery CHEN <jeffery9@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +24,7 @@ msgstr ""
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_applicant__sign_request_count
 msgid "# Signatures"
-msgstr "# 签名"
+msgstr "# 签字"
 
 #. module: hr_recruitment_sign
 #: code:addons/hr_recruitment_sign/wizard/hr_recruitment_sign_document_wizard.py:0
@@ -33,7 +35,7 @@ msgstr "%s和%s是签署人。"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_applicant_sign_view_form
 msgid "<span class=\"o_stat_text\">Signature Requests</span>"
-msgstr "<span class=\"o_stat_text\">签署请求</span>"
+msgstr "<span class=\"o_stat_text\">签字请求</span>"
 
 #. module: hr_recruitment_sign
 #: model:ir.model,name:hr_recruitment_sign.model_hr_applicant
@@ -44,7 +46,7 @@ msgstr "申请人"
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__applicant_role_id
 msgid "Applicant Role"
-msgstr ""
+msgstr "申请人角色"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__partner_name
@@ -56,7 +58,7 @@ msgstr "申请人姓名"
 msgid ""
 "Applicant's role on the templates to sign. The same role must be present in "
 "all the templates"
-msgstr ""
+msgstr "申请人在模板上的角色签名。 所有模板中必须存在相同的角色"
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
@@ -115,6 +117,8 @@ msgid ""
 "        Documents with 1 responsible will only have to be signed by the applicant while documents with 2 different responsible will have to be signed by both the applicant and the responsible.\n"
 "        "
 msgstr ""
+"要签署的文档。 只有具有1个或2个不同负责人的文档是可选择的。\n"
+"有1个责任人的文档只须由申请人签署，而有2个不同责任人的文档则须由申请人及责任人共同签署。"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__has_both_template
@@ -144,7 +148,7 @@ msgstr "最后更新时间"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "Mail Options"
-msgstr ""
+msgstr "邮件选项"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__message
@@ -178,12 +182,12 @@ msgstr "可选消息…"
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__possible_template_ids
 msgid "Possible Template"
-msgstr ""
+msgstr "可能的模板"
 
 #. module: hr_recruitment_sign
 #: model:ir.actions.server,name:hr_recruitment_sign.action_request_signature
 msgid "Request Signature"
-msgstr "请求签名"
+msgstr "请求签字"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__responsible_id
@@ -198,7 +202,7 @@ msgstr "发送"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "Sign Request Options"
-msgstr ""
+msgstr "签名要求选项"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__sign_template_responsible_ids
@@ -208,24 +212,24 @@ msgstr "负责人签名模板"
 #. module: hr_recruitment_sign
 #: model:ir.model,name:hr_recruitment_sign.model_hr_recruitment_sign_document_wizard
 msgid "Sign document in recruitment"
-msgstr ""
+msgstr "在招聘时签署文档"
 
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.hr_recruitment_sign_view
 msgid "Signature Request"
-msgstr "签名需求"
+msgstr "签字请求"
 
 #. module: hr_recruitment_sign
 #: code:addons/hr_recruitment_sign/wizard/hr_recruitment_sign_document_wizard.py:0
 #, python-format
 msgid "Signature Request - %s"
-msgstr "签名请求 - %s"
+msgstr "签字请求 - %s"
 
 #. module: hr_recruitment_sign
 #: code:addons/hr_recruitment_sign/models/hr_applicant.py:0
 #, python-format
 msgid "Signature Requests"
-msgstr "签名需求"
+msgstr "签字请求"
 
 #. module: hr_recruitment_sign
 #: model:ir.model.fields,field_description:hr_recruitment_sign.field_hr_recruitment_sign_document_wizard__subject
@@ -251,4 +255,4 @@ msgstr "你必须为此申请人定义联系人姓名。"
 #. module: hr_recruitment_sign
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_sign.message_signature_request
 msgid "requested a new signature on the following documents:"
-msgstr ""
+msgstr "请求在下列文档签字新的签字:"

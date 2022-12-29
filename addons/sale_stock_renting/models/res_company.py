@@ -23,7 +23,7 @@ class ResCompany(models.Model):
         help="Amount of time (in hours) during which a product is considered unavailable prior to renting (preparation time).")
 
     def _create_rental_location(self):
-        for company in self:
+        for company in self.sudo():
             if not company.rental_loc_id:
                 company.rental_loc_id = self.env['stock.location'].sudo().create({
                     "name": "Rental",

@@ -23,3 +23,4 @@ from . import test_balance_sheet_report
 from . import test_journal_report
 from . import test_report_engines
 from . import test_all_reports_generation
+from . import test_report_analytic_group_by

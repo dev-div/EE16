@@ -32,7 +32,7 @@ class DHLProvider():
 
     def _set_client(self, wsdl_filename, api):
         wsdl_path = get_resource_path('delivery_dhl', 'api', wsdl_filename)
-        client = Client('file:///%s' % wsdl_path.lstrip('/'))
+        client = Client(wsdl_path)
         return client
 
     def _set_request(self, site_id, password):
@@ -245,7 +245,7 @@ class DHLProvider():
         # 'ErrorResponse', we could handle them differently if needed as
         # the 'ShipmentValidateErrorResponse' is something you cannot do,
         # and 'ErrorResponse' are bad values given in the request.
-        if response_element_xml.find('GetQuoteResponse'):
+        if response_element_xml.find('GetQuoteResponse') is not None:
             return response_element_xml
         else:
             condition = response_element_xml.find('Response/Status/Condition')

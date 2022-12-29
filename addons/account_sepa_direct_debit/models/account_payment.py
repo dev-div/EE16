@@ -12,6 +12,7 @@ from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_repr
 from odoo.tools.xml_utils import create_xml_node, create_xml_node_chain
 from odoo.tools.misc import remove_accents
+from odoo.addons.account_batch_payment.models.sepa_mapping import _replace_characters_SEPA
 
 from lxml import etree
 
@@ -65,7 +66,7 @@ class AccountPayment(models.Model):
             communication = communication[1:]
         if communication.endswith('/'):
             communication = communication[:-1]
-        communication = re.sub('[^-A-Za-z0-9/?:().,\'+ ]', '', remove_accents(communication))
+        communication = _replace_characters_SEPA(communication)
         return communication
 
     def generate_xml(self, company_id, required_collection_date, askBatchBooking):
@@ -115,7 +116,7 @@ class AccountPayment(models.Model):
         """ Generates a group of payments in the same PmtInfo node, provided
         that they share the same journal."""
         PmtInf = create_xml_node(CstmrDrctDbtInitn, 'PmtInf')
-        create_xml_node(PmtInf, 'PmtInfId', str(payment_info_counter))
+        create_xml_node(PmtInf, 'PmtInfId', CstmrDrctDbtInitn.find('GrpHdr/MsgId').text + '/' + str(payment_info_counter))
         create_xml_node(PmtInf, 'PmtMtd', 'DD')
         create_xml_node(PmtInf, 'BtchBookg',askBatchBooking and 'true' or 'false')
         create_xml_node(PmtInf, 'NbOfTxs', str(len(self)))
@@ -153,7 +154,7 @@ class AccountPayment(models.Model):
         if self.company_id != company_id:
             raise UserError(_("Trying to generate a Direct Debit XML file containing payments from another company than that file's creditor."))
 
-        if self.payment_method_line_id.code != 'sdd':
+        if self.payment_method_line_id.code not in self.payment_method_id._get_sdd_payment_method_code():
             raise UserError(_("Trying to generate a Direct Debit XML for payments coming from another payment method than SEPA Direct Debit."))
 
         if not self.sdd_mandate_id:

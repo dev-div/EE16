@@ -61,7 +61,7 @@
                     <div attrs="{'invisible': [('suggested_staff_user_ids', '=', [])]}">
                         <label for="base_book_url" string="Link URL"/>
                         <field name="base_book_url" nolabel="1" readonly="1" class="me-1 oe_inline"/>
-                        <field name="short_code" nolabel="1" required="1" class="oe_inline" options="{'onchange_on_keydown': True, 'keydown_debounce_delay': 500}"/>
+                        <field name="short_code" nolabel="1" required="1" class="oe_inline" onchange_on_keydown="True" keydown_debounce_delay="500"/>
                     </div>
                     <div class="alert alert-warning" role="alert"
                          attrs="{'invisible': &quot;['|', ('staff_users_choice', '!=', 'current_user'), ('suggested_staff_user_ids', 'in', uid)]&quot;}">

@@ -9,7 +9,7 @@ class HelpdeskSaleCouponGenerate(models.TransientModel):
 
 
     def _get_default_program(self):
-        return self.env['loyalty.program'].search([('applies_on', '=', 'current'), ('trigger', '=', 'with_code')], limit=1)
+        return self.env['loyalty.program'].search([('applies_on', '=', 'current'), ('trigger', '=', 'with_code'), ('program_type', '=', 'coupons')], limit=1)
 
     ticket_id = fields.Many2one('helpdesk.ticket')
     company_id = fields.Many2one(related="ticket_id.company_id")

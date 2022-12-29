@@ -14,6 +14,9 @@ class WorksheetTemplate(models.Model):
         res['context'] = dict(literal_eval(res.get('context', '{}')), fsm_mode=True)
         return res
 
+    def _generate_qweb_report_template_with_form_view(self, form_view_id=False):
+        self.with_context(qweb_report_template_form_view_id=form_view_id)._generate_qweb_report_template()
+
     @api.model
     def _get_models_to_check_dict(self):
         res = super()._get_models_to_check_dict()

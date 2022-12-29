@@ -639,3 +639,40 @@ class TestQualityCheck(TestQualityCommon):
             {'product_id': p02.id, 'product_uom_qty': 1},
         ])
         self.assertEqual(internal_transfer.check_ids.product_id, p01 + p02)
+
+    def test_propagate_sml_lot_name(self):
+        self.env['quality.point'].create({
+            'picking_type_ids': [(4, self.picking_type_id)],
+            'measure_on': 'move_line',
+            'test_type_id': self.env.ref('quality_control.test_type_passfail').id
+        })
+        self.product.write({
+            'type': 'product',
+            'tracking': 'serial',
+        })
+
+        receipt = self.env['stock.picking'].create({
+            'picking_type_id': self.picking_type_id,
+            'location_id': self.location_id,
+            'location_dest_id': self.location_dest_id,
+        })
+        move = self.env['stock.move'].create({
+            'name': self.product.name,
+            'product_id': self.product.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product.uom_id.id,
+            'picking_id': receipt.id,
+            'location_id': receipt.location_id.id,
+            'location_dest_id': receipt.location_dest_id.id,
+        })
+        receipt.action_confirm()
+        ml = move.move_line_ids
+
+        ml.write({
+            'qty_done': 1,
+            'lot_name': '1457',
+        })
+        self.assertEqual(ml.check_ids.lot_name, '1457')
+
+        ml.lot_name = '1458'
+        self.assertEqual(ml.check_ids.lot_name, '1458')

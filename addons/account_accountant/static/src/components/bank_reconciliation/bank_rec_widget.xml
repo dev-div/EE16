@@ -7,7 +7,7 @@
         </xpath>
         <xpath expr="//t[@t-component='props.Renderer']" position="after">
             <div class="o_bank_rec_right_div">
-                <t t-if="!!state.selectedStLineId">
+                <t t-if="state.selectedStLineId">
                     <!-- Use the datapoint as a key to ensure the form view is rerendered when the model is reloaded -->
                     <View t-props="bankRecFormViewProps" t-key="this.recordById(state.selectedStLineId).id"/>
                 </t>
@@ -129,7 +129,12 @@
                                t-value="line.flag == 'auto_balance' and 'o_bank_rec_auto_balance_line' or ''"/>
 
                             <tr class="o_data_row o_list_no_open"
-                                t-att-class="{'o_bank_rec_liquidity_line': line.flag.value == 'liquidity', 'o_bank_rec_auto_balance_line': line.flag.value == 'auto_balance', 'o_bank_rec_selected_line': line.index.value == data.form_index}"
+                                t-att-class="{
+                                    'o_bank_rec_liquidity_line': line.flag.value == 'liquidity',
+                                    'o_bank_rec_auto_balance_line': line.flag.value == 'auto_balance',
+                                    'o_bank_rec_selected_line': line.index.value == data.form_index,
+                                    'o_bank_rec_expanded_line': data.extra_notes and state.extraNoteVisible and line.flag.value == 'liquidity',
+                                }"
                                 t-on-click="(ev) => this.mountLine(ev, line.index.value)">
 
                                 <t t-foreach="data.columns" t-as="column" t-key="column[0]">
@@ -179,16 +184,9 @@
                                                                 t-on-click.stop="() => this.showMove(line.source_aml_move_id.id)"/>
                                                         <span class="mr4">:</span>
                                                     </t>
-                                                    <span t-att-title="!!data.extra_notes and !state.extraNoteVisible ? data.extra_notes : line.name.value"
+                                                    <span t-att-title="(data.extra_notes and !state.extraNoteVisible) ? data.extra_notes : line.name.value"
                                                           t-esc="line.name.value"
                                                           field="name"/>
-                                                    <t t-if="data.extra_notes and state.extraNoteVisible">
-                                                        <br/>
-                                                        <span t-att-class="'text-muted'"
-                                                              t-att-title="data.extra_notes"
-                                                              t-esc="data.extra_notes"
-                                                              field="extra_notes"/>
-                                                    </t>
                                                 </div>
                                             </td>
                                         </t>
@@ -257,11 +255,11 @@
                                         </t>
                                     </t>
                                     <t t-if="column[0] === 'taxes'">
-                                        <td class="o_data_cell o_field_cell o_many2many_tags_cell"
+                                        <td class="o_data_cell o_field_cell o_field_widget o_field_many2many_tags"
                                             field="tax_ids">
-                                            <t t-call="account_accountant.bank_rec_widget_form_lines_widget_tags">
-                                                <t t-set="tag_names" t-value="line.tax_ids.display"/>
-                                            </t>
+                                            <div class="o_field_tags d-inline-flex flex-wrap mw-100">
+                                                <TagsList tags="line.tax_ids.display.map((tax)=>({text:tax,id:tax}))"/>
+                                            </div>
                                         </td>
                                     </t>
                                     <t t-if="column[0] === 'debit'">
@@ -311,6 +309,19 @@
                                     </t>
                                 </t>
                             </tr>
+                            <!-- Ensure the same color band will be applied -->
+                            <tr t-if="line.flag.value == 'liquidity'"/>
+                            <tr t-if="line.flag.value == 'liquidity'"
+                                t-att-class="{'o_bank_rec_selected_line': line.index.value == data.form_index}">
+                                <td t-if="data.extra_notes and state.extraNoteVisible"
+                                    t-att-colspan="data.columns.length"
+                                    class="text-wrap"
+                                    t-on-click="() => state.extraNoteVisible = !state.extraNoteVisible">
+                                    <span class="text-muted fst-italic"
+                                          t-esc="data.extra_notes"
+                                          field="extra_notes"/>
+                                </td>
+                            </tr>
                         </t>
 
                         <t t-set="nb_extra_lines" t-value="5 - data.lines.length"/>
@@ -321,19 +332,6 @@
                     </tbody>
                 </table>
         </div>
-    </t>
-
-    <t t-name="account_accountant.bank_rec_widget_form_lines_widget_tags" owl="1">
-        <t t-foreach="tag_names" t-as="tag_name" t-key="tag_name_index">
-            <div class="badge rounded-pill o_tag_color_0">
-                <span>
-                    <span class="o_badge_text" t-att-title="tag_name">
-                        <span role="img"/>
-                        <span class="o_tag_badge_text" t-esc="tag_name"/>
-                    </span>
-                </span>
-            </div>
-        </t>
     </t>
 
     <t t-name="account_accountant.FormChatterContainer" owl="1">

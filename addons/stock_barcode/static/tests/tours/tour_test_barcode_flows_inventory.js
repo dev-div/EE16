@@ -312,6 +312,82 @@ tour.register('test_inventory_adjustment_tracked_product', {test: true}, [
     },
 ]);
 
+tour.register('test_inventory_adjustment_tracked_product_multilocation', {test: true}, [
+    { trigger: '.button_inventory' },
+    {
+        trigger: '.o_barcode_line',
+        run: function() {
+            const [line1, line2] = helper.getLine({barcode: 'productlot1'});
+            helper.assertLineSourceLocation(line1, "WH/Stock/Section 1");
+            helper.assertLineQuantityOnReservedQty(0, "3 / 3");
+            helper.assertLineSourceLocation(line2, "WH/Stock/Section 2");
+            helper.assertLineQuantityOnReservedQty(1, "0 / 5");
+        }
+    },
+    // Scans Section 1 then scans productlot1.
+    { trigger: '.o_barcode_line', run: 'scan LOC-01-01-00' },
+    {
+        trigger: '.o_barcode_line:first-child [name=source_location].o_highlight',
+        run: 'scan lot1',
+    },
+    {
+        trigger: '.o_barcode_line:first-child.o_selected',
+        run: function() {
+            const [line1, line2] = helper.getLine({barcode: 'productlot1'});
+            helper.assertLineSourceLocation(line1, "WH/Stock/Section 1");
+            helper.assertLineQuantityOnReservedQty(0, "4 / 3");
+            helper.assertLineSourceLocation(line2, "WH/Stock/Section 2");
+            helper.assertLineQuantityOnReservedQty(1, "0 / 5");
+        }
+    },
+]);
+
+tour.register('test_inventory_create_quant', {test: true}, [
+    { trigger: '.button_inventory' },
+    {
+        trigger: '.o_barcode_client_action',
+        run: function () {
+            helper.assertLinesCount(0);
+        }
+    },
+
+    // Scans product 1: must have 1 quantity and buttons +1/-1 must be visible.
+    { trigger: '.o_barcode_client_action', run: 'scan product1' },
+    {
+        trigger: '.o_barcode_client_action .o_barcode_line',
+        run: function () {
+            helper.assertLinesCount(1);
+            const $line = helper.getLine({barcode: 'product1'});
+            helper.assertLineIsHighlighted($line, true);
+            helper.assertLineQty($line, '1');
+            helper.assertButtonIsVisible($line, 'add_quantity');
+            helper.assertButtonIsVisible($line, 'remove_unit');
+        }
+    },
+
+    // Edits the line to set the counted quantity to zero.
+    { trigger: '.o_edit' },
+    {
+        trigger: '.o_field_widget[name="product_id"]',
+        run: function() {
+            helper.assertFormQuantity("1");
+        },
+    },
+    {
+        trigger: '.o_field_widget[name=inventory_quantity] input',
+        run: 'text 0',
+    },
+    { trigger: '.o_save' },
+    {
+        trigger: '.o_barcode_client_action .o_barcode_line',
+        run: function () {
+            helper.assertLinesCount(1);
+            const $line = helper.getLine({barcode: 'product1'});
+            helper.assertLineQty($line, '0');
+        }
+    },
+]);
+
 tour.register('test_inventory_nomenclature', {test: true}, [
 
     {

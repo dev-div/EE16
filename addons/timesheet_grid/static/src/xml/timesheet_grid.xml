@@ -34,7 +34,7 @@
         </xpath>
     </t>
 
-    <div t-name="timesheet_grid.timer_header" class="timesheet-timer d-flex align-items-center px-4 py-2 border-bottom bg-view " owl="1" t-on-timer-started="props.onTimerStarted" t-on-timer-stopped="props.onTimerStopped"
+    <div t-name="timesheet_grid.timer_header" class="timesheet-timer d-md-flex align-items-center px-4 py-2 border-bottom bg-view " owl="1" t-on-timer-started="props.onTimerStarted" t-on-timer-stopped="props.onTimerStopped"
                 t-on-timer-unlink="props.onTimerUnlink" t-on-timer-edit-project="props.onTimerEditProject"
                 t-on-timer-edit-task="props.onTimerEditTask" t-on-new-timer-value="props.onNewTimerValue"
                 t-on-new-description="props.onNewDescription">
@@ -42,7 +42,7 @@
             <button class="my-2 me-2 btn btn-primary btn_stop_timer" t-on-click="_onClickStopTimer" t-ref="stopButton" data-hotkey="z">
                 Stop
             </button>
-            <div class="input_timer py-2 px-3 text-center">
+            <div class="input_timer py-2 px-3 text-center d-inline-block">
                 <input class="o_field_float o_field_number o_field_widget o_input input_manual_time" t-att-class="{'o_field_invalid': state.errorManualTimeInput === true}" type="text" t-att-value="timeInput"
                 t-on-keydown="_onKeydown" t-on-input="_onInputTimer" t-on-focusout="_onFocusoutTimer" t-ref="manualTimerInput"
                 t-if="_manualTimeInput"/>
@@ -50,7 +50,10 @@
                     <t t-esc="_timerString"/>
                 </span>
             </div>
-            <div class="input_description col-sm-12 col-md-5 d-flex p-2">
+            <div class="ps-md-2 py-2 o_timer_discard d-inline-block position-absolute end-0 me-md-2 me-sm-4">
+                <button class="btn btn-muted px-0 stop-timer fa fa-times" t-on-click="_onUnlinkTimer" title="Press Esc to discard"/>
+            </div>
+            <div class="input_description col-sm-12 col-md-5 d-flex p-2 ps-sm-0 ps-md-2">
                 <span t-if="_timerReadOnly" t-esc="props.description" class="input_description_timer"/>
                 <input t-else="" class="o_field_float o_field_number o_field_widget o_input input_description_timer" type="text" t-model="state.description" placeholder="Describe your activity..." t-on-change="_onInputDescription" t-on-keydown="_onKeydown"/>
             </div>
@@ -64,9 +67,6 @@
             </div>
             <div t-else="" class="input_m2o flex-fill p-md-2 px-0 ">
                 <TimerHeaderM2OAdapter Component="TimerHeaderM2O" widgetArgs="[props.projectId, props.taskId, props.projectWarning]"/>
-            </div>
-            <div class="ps-md-2 py-2 o_timer_discard">
-                <button class="btn btn-muted px-0 stop-timer fa fa-times" t-on-click="_onUnlinkTimer" title="Press Esc to discard"/>
             </div>
         </t>
         <t t-else="">
@@ -151,7 +151,7 @@
                 }">
                 <t t-set="cellPath" t-value="path.concat([rowIndex, cell_index]).join('.')"/>
                 <t t-set="cellReadOnly" t-value="!props.editableCells || cell.readonly"/>
-                <div t-att-class="_getCellClassMap(cell)" t-attf-data-path="cellPath">
+                <div t-att-class="_getCellClassMap(cell)" t-att-data-path="cellPath">
                     <t t-if="cell.size or !cellReadOnly">
                         <i class="fa fa-search-plus o_grid_cell_information" t-on-click="() => this._onClickCellInformation(cellPath)"
                             title="See all the records aggregated in this cell">

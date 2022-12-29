@@ -51,13 +51,16 @@ const UpdateDeviceAccountControllerMixin = {
      * @override
      */
     async save() {
-        const changedFields = await this._super(...arguments);
+        const isSaved = await this._super(...arguments);
+        if (!isSaved) {
+            return false;
+        }
         const updated = session.updateAccountOnMobileDevice();
         // Crapy workaround for unupdatable Odoo Mobile App iOS (Thanks Apple :@)
         if (!isIosApp()){
             await updated;
         }
-        return changedFields;
+        return true;
     },
 };
 
@@ -79,7 +82,7 @@ odoo.define('web_mobile.hooks', function (require) {
 
 const { backButtonManager } = require('web_mobile.core');
 
-const { onMounted, onPatched, onWillUnmount, useComponent } = owl;
+const { onMounted, onPatched, onWillUnmount, useComponent } = require("@odoo/owl");
 
 /**
  * This hook provides support for executing code when the back button is pressed
